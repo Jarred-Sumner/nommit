@@ -26,6 +26,9 @@
 		8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50C19B267A000EE227A /* HATransitionController.m */; };
 		8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50E19B267A000EE227A /* HATransitionLayout.m */; };
 		8DEED51C19B270D700EE227A /* NMFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51B19B270D700EE227A /* NMFoodCell.m */; };
+		8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */; };
+		8DEED52319B299D300EE227A /* NMOrderFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED52219B299D300EE227A /* NMOrderFoodView.m */; };
+		8DEED52719B29B0D00EE227A /* FoodItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED52619B29B0D00EE227A /* FoodItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,12 @@
 		8DEED50E19B267A000EE227A /* HATransitionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HATransitionLayout.m; sourceTree = "<group>"; };
 		8DEED51A19B270D700EE227A /* NMFoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodCell.h; path = Cells/NMFoodCell.h; sourceTree = "<group>"; };
 		8DEED51B19B270D700EE227A /* NMFoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodCell.m; path = Cells/NMFoodCell.m; sourceTree = "<group>"; };
+		8DEED51D19B299A000EE227A /* NMOrderFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodViewController.h; path = "untitled folder/NMOrderFoodViewController.h"; sourceTree = "<group>"; };
+		8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodViewController.m; path = "untitled folder/NMOrderFoodViewController.m"; sourceTree = "<group>"; };
+		8DEED52119B299D300EE227A /* NMOrderFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodView.h; path = Views/NMOrderFoodView.h; sourceTree = "<group>"; };
+		8DEED52219B299D300EE227A /* NMOrderFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodView.m; path = Views/NMOrderFoodView.m; sourceTree = "<group>"; };
+		8DEED52519B29B0D00EE227A /* FoodItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodItem.h; path = Model/FoodItem.h; sourceTree = "<group>"; };
+		8DEED52619B29B0D00EE227A /* FoodItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoodItem.m; path = Model/FoodItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +137,8 @@
 		8DD3FC3619B2512900DAFCDB /* nommit */ = {
 			isa = PBXGroup;
 			children = (
+				8DEED52419B29AFD00EE227A /* Model */,
+				8DEED52019B299C000EE227A /* Views */,
 				8DEED51919B270AE00EE227A /* Cells */,
 				8DEED50A19B267A000EE227A /* Transition */,
 				8DEED50219B2667E00EE227A /* Custom Layout */,
@@ -175,6 +186,8 @@
 			children = (
 				831B796619B283C0009B9948 /* NMFoodsViewController.h */,
 				831B796719B283C0009B9948 /* NMFoodsViewController.m */,
+				8DEED51D19B299A000EE227A /* NMOrderFoodViewController.h */,
+				8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -217,6 +230,24 @@
 				8DEED51B19B270D700EE227A /* NMFoodCell.m */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		8DEED52019B299C000EE227A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8DEED52119B299D300EE227A /* NMOrderFoodView.h */,
+				8DEED52219B299D300EE227A /* NMOrderFoodView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8DEED52419B29AFD00EE227A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8DEED52519B29B0D00EE227A /* FoodItem.h */,
+				8DEED52619B29B0D00EE227A /* FoodItem.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +352,9 @@
 				8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */,
 				8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
+				8DEED52319B299D300EE227A /* NMOrderFoodView.m in Sources */,
+				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
+				8DEED52719B29B0D00EE227A /* FoodItem.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
 				831B796819B283C0009B9948 /* NMFoodsViewController.m in Sources */,
