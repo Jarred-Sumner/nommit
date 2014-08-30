@@ -1,0 +1,419 @@
+Tnommit
+v6
+r1
+cCheck dependencies
+cProcessPCH /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch.pch nommit/nommit-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSmallFlashSaleCell.o /Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMColors.o /Users/jarred/Code/nommit/nommit/Constants/NMColors.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionLayout.o /Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewLargeLayout.o /Users/jarred/Code/nommit/nommit/Custom\ Layout/NMCollectionViewLargeLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionController.o /Users/jarred/Code/nommit/nommit/Transition/HATransitionController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMBaseCollectionViewController.o /Users/jarred/Code/nommit/nommit/Base\ Collection/NMBaseCollectionViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/main.o /Users/jarred/Code/nommit/nommit/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMAppDelegate.o /Users/jarred/Code/nommit/nommit/NMAppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewSmallLayout.o /Users/jarred/Code/nommit/nommit/Custom\ Layout/NMCollectionViewSmallLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMFoodViewController.o /Users/jarred/Code/nommit/nommit/untitled\ folder/NMFoodViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/SDKSettings.plist
+c00000000531F782D00000000000003B4
+t1394571309
+s948
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/CoreServices/SystemVersion.plist
+c00000000531F7831000000000000019E
+t1394571313
+s414
+
+N/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1/include/module.map
+c00000000531F78410000000000000ADC
+t1394571329
+s2780
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch.pch
+t1409437398
+s115676
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionController.o
+t1409433453
+s76068
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionLayout.o
+t1409433453
+s49612
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMAppDelegate.o
+t1409435809
+s77860
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMBaseCollectionViewController.o
+t1409434954
+s50880
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewLargeLayout.o
+t1409433453
+s48632
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewSmallLayout.o
+t1409433454
+s43288
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMColors.o
+t1409433453
+s10892
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMFoodViewController.o
+t2
+s0
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSmallFlashSaleCell.o
+t1409435607
+s49520
+
+N/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/main.o
+t1409433453
+s3496
+
+N/Users/jarred/Code/nommit/nommit/Base Collection/NMBaseCollectionViewController.m
+c0000000054024B5E0000000000000983
+t1409436510
+s2435
+
+N/Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.m
+c0000000054024B5E0000000000000334
+t1409436510
+s820
+
+N/Users/jarred/Code/nommit/nommit/Constants/NMColors.m
+c0000000054023C5C00000000000005C8
+t1409432668
+s1480
+
+N/Users/jarred/Code/nommit/nommit/Custom Layout/NMCollectionViewLargeLayout.m
+c0000000054023C5C0000000000000766
+t1409432668
+s1894
+
+N/Users/jarred/Code/nommit/nommit/Custom Layout/NMCollectionViewSmallLayout.m
+c0000000054023F6500000000000002D0
+t1409433445
+s720
+
+N/Users/jarred/Code/nommit/nommit/NMAppDelegate.m
+c0000000054024ED500000000000003D0
+t1409437397
+s976
+
+N/Users/jarred/Code/nommit/nommit/Transition/HATransitionController.m
+c0000000054023C5C00000000000020BD
+t1409432668
+s8381
+
+N/Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.m
+c0000000054023C5C00000000000008AC
+t1409432668
+s2220
+
+N/Users/jarred/Code/nommit/nommit/main.m
+c0000000054023067000000000000014E
+t1409429607
+s334
+
+N/Users/jarred/Code/nommit/nommit/nommit-Prefix.pch
+c0000000054023C5C0000000000000203
+t1409432668
+s515
+
+N/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m
+c0000000054024ED50000000000000F0C
+t1409437397
+s3852
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Base\ Collection/NMBaseCollectionViewController.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Constants/NMColors.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Controllers/NMOrdersViewController.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Controllers/NMSalesViewController.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Controllers/NMSmallCollectionViewController.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Controllers/NMTabsController.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Custom\ Layout/NMCollectionViewLargeLayout.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Custom\ Layout/NMCollectionViewSmallLayout.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/NMAppDelegate.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Transition/HATransitionController.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/main.m
+r0
+
+CBuild AST from /Users/jarred/Code/nommit/nommit/untitled\ folder/NMFoodViewController.m
+r0
+
+CCheck dependencies
+r0
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesfacfbe5586b2b941^8eafc95586b2b941^---0#1#1#--18"Check dependencies36"D4029990-7DAD-43E4-83E2-A4713126F303-
+
+CCompileAssetCatalog /Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/nommit.app /Users/jarred/Code/nommit/nommit/Images.xcassets
+r0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionController.o /Users/jarred/Code/nommit/nommit/Transition/HATransitionController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130198.883707
+e431130199.089189
+r1
+xCompileC
+xBuilds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionController.o
+x/Users/jarred/Code/nommit/nommit/Transition/HATransitionController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/Transition/HATransitionController.m
+d/Users/jarred/Code/nommit/nommit/Transition/HATransitionController.h
+d/Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection76"Compile /Users/jarred/Code/nommit/nommit/Transition/HATransitionController.m246"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionController.o nommit/Transition/HATransitionController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler6457e25686b2b941^c6df165786b2b941^---0#0#1#-19%DVTDocumentLocation2@75"file:///Users/jarred/Code/nommit/nommit/Transition/HATransitionController.m0000000000000000^3695"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionController.o nommit/Transition/HATransitionController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator -include /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionController.d --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionController.dia -c /Users/jarred/Code/nommit/nommit/Transition/HATransitionController.m -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionController.o36"794081BB-1D35-43B3-9295-955E4F89E1A7-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionLayout.o /Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130198.883147
+e431130199.089207
+r1
+xCompileC
+xBuilds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionLayout.o
+x/Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.m
+d/Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection72"Compile /Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.m238"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionLayout.o nommit/Transition/HATransitionLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler3430e25686b2b941^d6e3165786b2b941^---0#0#1#-19%DVTDocumentLocation2@71"file:///Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.m0000000000000000^3671"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionLayout.o nommit/Transition/HATransitionLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator -include /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionLayout.d --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionLayout.dia -c /Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.m -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/HATransitionLayout.o36"52673039-22BE-40F7-ABC7-00F1D23C2CBC-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMAppDelegate.o /Users/jarred/Code/nommit/nommit/NMAppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130198.884873
+e431130198.988382
+r0
+xCompileC
+xBuilds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMAppDelegate.o
+x/Users/jarred/Code/nommit/nommit/NMAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/NMAppDelegate.m
+d/Users/jarred/Code/nommit/nommit/NMAppDelegate.h
+d/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.h
+o/Users/jarred/Code/nommit/nommit/NMAppDelegate.m:12:62: error: cannot find protocol declaration for 'HATransitionControllerDelegate'; did you mean 'UINavigationControllerDelegate'?
+o@interface NMAppDelegate () <UINavigationControllerDelegate, HATransitionControllerDelegate>
+o                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o                                                             UINavigationControllerDelegate
+oIn module 'UIKit' imported from /Users/jarred/Code/nommit/nommit/NMAppDelegate.h:9:
+o/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UINavigationController.h:78:11: note: 'UINavigationControllerDelegate' declared here
+o@protocol UINavigationControllerDelegate <NSObject>
+o          ^
+o/Users/jarred/Code/nommit/nommit/NMAppDelegate.m:14:23: error: unknown type name 'HATransitionController'
+o@property (nonatomic) HATransitionController *transitionController;
+o                      ^
+o/Users/jarred/Code/nommit/nommit/NMAppDelegate.m:24:29: warning: unused variable 'navigationController' [-Wunused-variable]
+o    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[NMFoodViewController alloc] init]];
+o                            ^
+o1 warning and 2 errors generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection56"Compile /Users/jarred/Code/nommit/nommit/NMAppDelegate.m217"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMAppDelegate.o nommit/NMAppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compilereca4e25686b2b941^fcfffc5686b2b941^-1391"/Users/jarred/Code/nommit/nommit/NMAppDelegate.m:12:62: error: cannot find protocol declaration for 'HATransitionControllerDelegate'; did you mean 'UINavigationControllerDelegate'?@interface NMAppDelegate () <UINavigationControllerDelegate, HATransitionControllerDelegate>                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                             UINavigationControllerDelegateIn module 'UIKit' imported from /Users/jarred/Code/nommit/nommit/NMAppDelegate.h:9:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UINavigationController.h:78:11: note: 'UINavigationControllerDelegate' declared here@protocol UINavigationControllerDelegate <NSObject>          ^/Users/jarred/Code/nommit/nommit/NMAppDelegate.m:14:23: error: unknown type name 'HATransitionController'@property (nonatomic) HATransitionController *transitionController;                      ^/Users/jarred/Code/nommit/nommit/NMAppDelegate.m:24:29: warning: unused variable 'navigationController' [-Wunused-variable]    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[NMFoodViewController alloc] init]];                            ^1 warning and 2 errors generated.3(36%IDEClangDiagnosticActivityLogMessage2@117"Cannot find protocol declaration for 'HATransitionControllerDelegate'; did you mean 'UINavigationControllerDelegate'?-431130198#18446744073709551615#0#1(2@46"'UINavigationControllerDelegate' declared here-431130198#18446744073709551615#0#-0#27"com.apple.dt.IDE.diagnostic23%DVTTextDocumentLocation3@197"file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UINavigationController.h0000000000000000^77#10#77#10#4390#0#14"Semantic Issue--2#27"com.apple.dt.IDE.diagnostic3@55"file:///Users/jarred/Code/nommit/nommit/NMAppDelegate.m0000000000000000^11#61#11#61#252#0#14"Semantic Issue1(3@55"file:///Users/jarred/Code/nommit/nommit/NMAppDelegate.m0000000000000000^11#61#11#91#252#30#-2@42"Unknown type name 'HATransitionController'-431130198#18446744073709551615#0#-2#27"com.apple.dt.IDE.diagnostic3@55"file:///Users/jarred/Code/nommit/nommit/NMAppDelegate.m0000000000000000^13#22#13#22#307#0#11"Parse Issue--2@38"Unused variable 'navigationController'-431130198#18446744073709551615#0#-1#27"com.apple.dt.IDE.diagnostic3@55"file:///Users/jarred/Code/nommit/nommit/NMAppDelegate.m0000000000000000^23#28#23#28#618#0#19"Unused Entity Issue--0#0#1#-19%DVTDocumentLocation4@55"file:///Users/jarred/Code/nommit/nommit/NMAppDelegate.m0000000000000000^3619"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMAppDelegate.o nommit/NMAppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator -include /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMAppDelegate.d --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMAppDelegate.dia -c /Users/jarred/Code/nommit/nommit/NMAppDelegate.m -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMAppDelegate.o36"C1AB2884-3729-4134-8F9D-9E6609C80172-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMBaseCollectionViewController.o /Users/jarred/Code/nommit/nommit/Base\ Collection/NMBaseCollectionViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130198.884112
+e431130198.986988
+r1
+xCompileC
+xBuilds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMBaseCollectionViewController.o
+x/Users/jarred/Code/nommit/nommit/Base Collection/NMBaseCollectionViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/Base Collection/NMBaseCollectionViewController.m
+d/Users/jarred/Code/nommit/nommit/Base Collection/NMBaseCollectionViewController.h
+d/Users/jarred/Code/nommit/nommit/Transition/HATransitionLayout.h
+d/Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection89"Compile /Users/jarred/Code/nommit/nommit/Base Collection/NMBaseCollectionViewController.m268"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMBaseCollectionViewController.o nommit/Base\ Collection/NMBaseCollectionViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler5a80e25686b2b941^e2acfc5686b2b941^---0#0#1#-19%DVTDocumentLocation2@90"file:///Users/jarred/Code/nommit/nommit/Base%20Collection/NMBaseCollectionViewController.m0000000000000000^3755"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMBaseCollectionViewController.o nommit/Base\ Collection/NMBaseCollectionViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator -include /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMBaseCollectionViewController.d --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMBaseCollectionViewController.dia -c /Users/jarred/Code/nommit/nommit/Base\ Collection/NMBaseCollectionViewController.m -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMBaseCollectionViewController.o36"4D32B0E3-62CD-4DEC-AAF1-7C4F993C776D-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewLargeLayout.o /Users/jarred/Code/nommit/nommit/Custom\ Layout/NMCollectionViewLargeLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130198.883382
+e431130199.088985
+r1
+xCompileC
+xBuilds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewLargeLayout.o
+x/Users/jarred/Code/nommit/nommit/Custom Layout/NMCollectionViewLargeLayout.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/Custom Layout/NMCollectionViewLargeLayout.m
+d/Users/jarred/Code/nommit/nommit/Custom Layout/NMCollectionViewLargeLayout.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"Compile /Users/jarred/Code/nommit/nommit/Custom Layout/NMCollectionViewLargeLayout.m260"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewLargeLayout.o nommit/Custom\ Layout/NMCollectionViewLargeLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compilera241e25686b2b941^8dd5165786b2b941^---0#0#1#-19%DVTDocumentLocation2@85"file:///Users/jarred/Code/nommit/nommit/Custom%20Layout/NMCollectionViewLargeLayout.m0000000000000000^3733"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewLargeLayout.o nommit/Custom\ Layout/NMCollectionViewLargeLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator -include /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewLargeLayout.d --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewLargeLayout.dia -c /Users/jarred/Code/nommit/nommit/Custom\ Layout/NMCollectionViewLargeLayout.m -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewLargeLayout.o36"BAA0D6B1-F2D7-4819-8297-042771646962-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewSmallLayout.o /Users/jarred/Code/nommit/nommit/Custom\ Layout/NMCollectionViewSmallLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130198.932343
+e431130199.089222
+r1
+xCompileC
+xBuilds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewSmallLayout.o
+x/Users/jarred/Code/nommit/nommit/Custom Layout/NMCollectionViewSmallLayout.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/Custom Layout/NMCollectionViewSmallLayout.m
+d/Users/jarred/Code/nommit/nommit/Custom Layout/NMCollectionViewSmallLayout.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection84"Compile /Users/jarred/Code/nommit/nommit/Custom Layout/NMCollectionViewSmallLayout.m260"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewSmallLayout.o nommit/Custom\ Layout/NMCollectionViewSmallLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler2ee7ee5686b2b941^3ae8165786b2b941^---0#0#1#-19%DVTDocumentLocation2@85"file:///Users/jarred/Code/nommit/nommit/Custom%20Layout/NMCollectionViewSmallLayout.m0000000000000000^3733"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewSmallLayout.o nommit/Custom\ Layout/NMCollectionViewSmallLayout.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator -include /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewSmallLayout.d --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewSmallLayout.dia -c /Users/jarred/Code/nommit/nommit/Custom\ Layout/NMCollectionViewSmallLayout.m -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMCollectionViewSmallLayout.o36"7081AE77-1B16-4FF3-8D29-B135738B9515-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMColors.o /Users/jarred/Code/nommit/nommit/Constants/NMColors.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130198.882884
+e431130198.945324
+r1
+xCompileC
+xBuilds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMColors.o
+x/Users/jarred/Code/nommit/nommit/Constants/NMColors.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/Constants/NMColors.m
+d/Users/jarred/Code/nommit/nommit/Constants/NMColors.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection61"Compile /Users/jarred/Code/nommit/nommit/Constants/NMColors.m217"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMColors.o nommit/Constants/NMColors.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler691ce25686b2b941^5801f25686b2b941^---0#0#1#-19%DVTDocumentLocation2@60"file:///Users/jarred/Code/nommit/nommit/Constants/NMColors.m0000000000000000^3609"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMColors.o nommit/Constants/NMColors.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator -include /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMColors.d --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMColors.dia -c /Users/jarred/Code/nommit/nommit/Constants/NMColors.m -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMColors.o36"E3F7C15A-081B-414D-9D0F-DD722969FCE4-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMFoodViewController.o /Users/jarred/Code/nommit/nommit/untitled\ folder/NMFoodViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130198.945606
+e431130199.089279
+r0
+xCompileC
+xBuilds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMFoodViewController.o
+x/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m
+d/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.h
+o/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m:42:6: error: use of undeclared identifier '_mainView'
+o    [_mainView addSubview:logo];
+o     ^
+o/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m:58:6: error: use of undeclared identifier '_mainView'
+o    [_mainView addSubview:title];
+o     ^
+o/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m:76:6: error: use of undeclared identifier '_mainView'
+o    [_mainView addSubview:subTitle];
+o     ^
+o/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m:82:6: error: use of undeclared identifier '_mainView'
+o    [_mainView addSubview:transparent];
+o     ^
+o/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m:100:32: error: use of undeclared identifier '_mainView'
+o    [UIView transitionWithView:_mainView
+o                               ^
+o5 errors generated.
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection79"Compile /Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m248"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMFoodViewController.o nommit/untitled\ folder/NMFoodViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler6e32f25686b2b941^1cef165786b2b941^-898"/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m:42:6: error: use of undeclared identifier '_mainView'    [_mainView addSubview:logo];     ^/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m:58:6: error: use of undeclared identifier '_mainView'    [_mainView addSubview:title];     ^/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m:76:6: error: use of undeclared identifier '_mainView'    [_mainView addSubview:subTitle];     ^/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m:82:6: error: use of undeclared identifier '_mainView'    [_mainView addSubview:transparent];     ^/Users/jarred/Code/nommit/nommit/untitled folder/NMFoodViewController.m:100:32: error: use of undeclared identifier '_mainView'    [UIView transitionWithView:_mainView                               ^5 errors generated.-0#0#1#-19%DVTDocumentLocation2@80"file:///Users/jarred/Code/nommit/nommit/untitled%20folder/NMFoodViewController.m0000000000000000^3695"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMFoodViewController.o nommit/untitled\ folder/NMFoodViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator -include /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMFoodViewController.d --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMFoodViewController.dia -c /Users/jarred/Code/nommit/nommit/untitled\ folder/NMFoodViewController.m -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMFoodViewController.o36"787F6BB2-53DC-4324-BEDB-8B9707C2DE7B-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMOrdersViewController.o /Users/jarred/Code/nommit/nommit/Controllers/NMOrdersViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+r0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSalesViewController.o /Users/jarred/Code/nommit/nommit/Controllers/NMSalesViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+r0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSmallCollectionViewController.o /Users/jarred/Code/nommit/nommit/Controllers/NMSmallCollectionViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+r0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSmallFlashSaleCell.o /Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130198.882547
+e431130199.088992
+r1
+xCompileC
+xBuilds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSmallFlashSaleCell.o
+x/Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.m
+d/Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Compile /Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.m237"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSmallFlashSaleCell.o nommit/Cells/NMSmallFlashSaleCell.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler8a05e25686b2b941^86cb165786b2b941^---0#0#1#-19%DVTDocumentLocation2@68"file:///Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.m0000000000000000^3673"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSmallFlashSaleCell.o nommit/Cells/NMSmallFlashSaleCell.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator -include /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSmallFlashSaleCell.d --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSmallFlashSaleCell.dia -c /Users/jarred/Code/nommit/nommit/Cells/NMSmallFlashSaleCell.m -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMSmallFlashSaleCell.o36"C2143C76-EBD5-4FCD-AA54-A72B2AB79B99-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/NMTabsController.o /Users/jarred/Code/nommit/nommit/Controllers/NMTabsController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+r0
+
+CCompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/main.o /Users/jarred/Code/nommit/nommit/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130198.884435
+e431130198.932067
+r1
+xCompileC
+xBuilds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/main.o
+x/Users/jarred/Code/nommit/nommit/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/main.m
+d/Users/jarred/Code/nommit/nommit/NMAppDelegate.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection47"Compile /Users/jarred/Code/nommit/nommit/main.m199"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/main.o nommit/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler1f86e25686b2b941^679cee5686b2b941^---0#0#1#-19%DVTDocumentLocation2@46"file:///Users/jarred/Code/nommit/nommit/main.m0000000000000000^3565"CompileC Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/main.o nommit/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator -include /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/main.d --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/main.dia -c /Users/jarred/Code/nommit/nommit/main.m -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/Objects-normal/i386/main.o36"96B5FF78-0687-4A9A-B3BA-0AB25DFFC655-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CCopyStringsFile /Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/nommit.app/en.lproj/InfoPlist.strings nommit/en.lproj/InfoPlist.strings
+r0
+
+CGenerateDSYMFile /Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/nommit.app.dSYM /Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/nommit.app/nommit
+r0
+
+CLd /Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/nommit.app/nommit normal i386
+r0
+
+CProcessInfoPlistFile /Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/nommit.app/Info.plist /Users/jarred/Code/nommit/nommit/nommit-Info.plist
+r0
+
+CProcessPCH /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch.pch nommit/nommit-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s431130197.788608
+e431130198.881895
+r1
+xProcessPCH
+x/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch.pch
+xnommit/nommit-Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/jarred/Code/nommit/nommit/nommit-Prefix.pch
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection35"Precompile nommit/nommit-Prefix.pch221"ProcessPCH Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch.pch nommit/nommit-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compilerf9f7c95586b2b941^76c4e15686b2b941^---0#0#1#-19%DVTDocumentLocation2@57"file:///Users/jarred/Code/nommit/nommit/nommit-Prefix.pch0000000000000000^3479"ProcessPCH Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch.pch nommit/nommit-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/jarred/Code/nommit    export LANG=en_US.US-ASCII    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=gnu99 -fobjc-arc -fmodules -fmodules-cache-path=/Users/jarred/Code/nommit/Builds/ModuleCache -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wno-implicit-atomic-properties -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=7.1 -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-generated-files.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-own-target-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-all-target-headers.hmap -iquote /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/nommit-project-headers.hmap -I/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources/i386 -I/Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/nommit.build/Debug-iphonesimulator/nommit.build/DerivedSources -F/Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator --serialize-diagnostics /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch.dia -MMD -MT dependencies -MF /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch.d -c /Users/jarred/Code/nommit/nommit/nommit-Prefix.pch -o /Users/jarred/Code/nommit/Builds/nommit/Build/Intermediates/PrecompiledHeaders/nommit-Prefix-caazdpoitdeylnelezawvbqhuved/nommit-Prefix.pch.pch36"6649ACD3-0F0F-4477-89B1-DD68CDE1873E-
+b28097C5A-17EF-4272-B4B4-B668EE7EBAB0
+
+CProcessPCH /Users/jarred/Code/nommit/Builds/nommit/Index/PrecompiledHeaders/nommit-Prefix-drcvbkhieypfsqblaohbxpxfskqz_ast/nommit-Prefix.pch.pch nommit/nommit-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+
+CTouch /Users/jarred/Code/nommit/Builds/nommit/Build/Products/Debug-iphonesimulator/nommit.app
+r0
+
