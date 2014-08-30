@@ -85,12 +85,12 @@
     [_topImage addSubview:perfectPixelContent];
     
     
-    // Label logo
-    UILabel *logo = [[UILabel alloc] initWithFrame:CGRectMake(15, 12, 290, 0)];
+    // Name logo
+    UILabel *logo = [[UILabel alloc] initWithFrame:CGRectMake(15, 82, 290, 0)];
     logo.backgroundColor = [UIColor clearColor];
     logo.textColor = [UIColor whiteColor];
     logo.font = [UIFont fontWithName:@"Helvetica-Bold" size:22];
-    logo.text = @"Paper";
+    logo.text = @"Pepperoni Pizza";
     [logo sizeToFit];
     // Label Shadow
     [logo setClipsToBounds:NO];
