@@ -19,6 +19,16 @@
 		8DD3FC4C19B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
 		8DD3FC5419B2512900DAFCDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3FC5219B2512900DAFCDB /* InfoPlist.strings */; };
 		8DD3FC5619B2512900DAFCDB /* nommitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3FC5519B2512900DAFCDB /* nommitTests.m */; };
+		8DD3FC6219B2575400DAFCDB /* NMTabsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3FC6119B2575400DAFCDB /* NMTabsController.m */; };
+		8DD3FC6519B257A300DAFCDB /* NMSalesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3FC6419B257A300DAFCDB /* NMSalesViewController.m */; };
+		8DD3FC6819B257B500DAFCDB /* NMOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3FC6719B257B500DAFCDB /* NMOrdersViewController.m */; };
+		8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3FC6B19B258F700DAFCDB /* NMColors.m */; };
+		8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50419B2669F00EE227A /* NMCollectionViewSmallLayout.m */; };
+		8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50719B2673A00EE227A /* NMCollectionViewLargeLayout.m */; };
+		8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50C19B267A000EE227A /* HATransitionController.m */; };
+		8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50E19B267A000EE227A /* HATransitionLayout.m */; };
+		8DEED51319B2687D00EE227A /* NMSmallCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51219B2687D00EE227A /* NMSmallCollectionViewController.m */; };
+		8DEED51719B268BF00EE227A /* NMBaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51619B268BF00EE227A /* NMBaseCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +58,26 @@
 		8DD3FC5119B2512900DAFCDB /* nommitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "nommitTests-Info.plist"; sourceTree = "<group>"; };
 		8DD3FC5319B2512900DAFCDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8DD3FC5519B2512900DAFCDB /* nommitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nommitTests.m; sourceTree = "<group>"; };
+		8DD3FC6019B2575400DAFCDB /* NMTabsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMTabsController.h; path = Controllers/NMTabsController.h; sourceTree = "<group>"; };
+		8DD3FC6119B2575400DAFCDB /* NMTabsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMTabsController.m; path = Controllers/NMTabsController.m; sourceTree = "<group>"; };
+		8DD3FC6319B257A300DAFCDB /* NMSalesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMSalesViewController.h; path = Controllers/NMSalesViewController.h; sourceTree = "<group>"; };
+		8DD3FC6419B257A300DAFCDB /* NMSalesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMSalesViewController.m; path = Controllers/NMSalesViewController.m; sourceTree = "<group>"; };
+		8DD3FC6619B257B500DAFCDB /* NMOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrdersViewController.h; path = Controllers/NMOrdersViewController.h; sourceTree = "<group>"; };
+		8DD3FC6719B257B500DAFCDB /* NMOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrdersViewController.m; path = Controllers/NMOrdersViewController.m; sourceTree = "<group>"; };
+		8DD3FC6A19B258F700DAFCDB /* NMColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMColors.h; path = Constants/NMColors.h; sourceTree = "<group>"; };
+		8DD3FC6B19B258F700DAFCDB /* NMColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMColors.m; path = Constants/NMColors.m; sourceTree = "<group>"; };
+		8DEED50319B2669F00EE227A /* NMCollectionViewSmallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCollectionViewSmallLayout.h; path = "Custom Layout/NMCollectionViewSmallLayout.h"; sourceTree = "<group>"; };
+		8DEED50419B2669F00EE227A /* NMCollectionViewSmallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCollectionViewSmallLayout.m; path = "Custom Layout/NMCollectionViewSmallLayout.m"; sourceTree = "<group>"; };
+		8DEED50619B2673A00EE227A /* NMCollectionViewLargeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCollectionViewLargeLayout.h; path = "Custom Layout/NMCollectionViewLargeLayout.h"; sourceTree = "<group>"; };
+		8DEED50719B2673A00EE227A /* NMCollectionViewLargeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCollectionViewLargeLayout.m; path = "Custom Layout/NMCollectionViewLargeLayout.m"; sourceTree = "<group>"; };
+		8DEED50B19B267A000EE227A /* HATransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HATransitionController.h; sourceTree = "<group>"; };
+		8DEED50C19B267A000EE227A /* HATransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HATransitionController.m; sourceTree = "<group>"; };
+		8DEED50D19B267A000EE227A /* HATransitionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HATransitionLayout.h; sourceTree = "<group>"; };
+		8DEED50E19B267A000EE227A /* HATransitionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HATransitionLayout.m; sourceTree = "<group>"; };
+		8DEED51119B2687D00EE227A /* NMSmallCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMSmallCollectionViewController.h; path = Controllers/NMSmallCollectionViewController.h; sourceTree = "<group>"; };
+		8DEED51219B2687D00EE227A /* NMSmallCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMSmallCollectionViewController.m; path = Controllers/NMSmallCollectionViewController.m; sourceTree = "<group>"; };
+		8DEED51519B268BF00EE227A /* NMBaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMBaseCollectionViewController.h; path = "Base Collection/NMBaseCollectionViewController.h"; sourceTree = "<group>"; };
+		8DEED51619B268BF00EE227A /* NMBaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMBaseCollectionViewController.m; path = "Base Collection/NMBaseCollectionViewController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +137,11 @@
 		8DD3FC3619B2512900DAFCDB /* nommit */ = {
 			isa = PBXGroup;
 			children = (
+				8DEED51419B2689E00EE227A /* Base Collection */,
+				8DEED50A19B267A000EE227A /* Transition */,
+				8DEED50219B2667E00EE227A /* Custom Layout */,
+				8DD3FC6919B258CC00DAFCDB /* Constants */,
+				8DD3FC5F19B2570D00DAFCDB /* Controllers */,
 				8DD3FC3F19B2512900DAFCDB /* NMAppDelegate.h */,
 				8DD3FC4019B2512900DAFCDB /* NMAppDelegate.m */,
 				8DD3FC4219B2512900DAFCDB /* Images.xcassets */,
@@ -142,6 +177,61 @@
 				8DD3FC5219B2512900DAFCDB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8DD3FC5F19B2570D00DAFCDB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8DD3FC6019B2575400DAFCDB /* NMTabsController.h */,
+				8DD3FC6119B2575400DAFCDB /* NMTabsController.m */,
+				8DD3FC6319B257A300DAFCDB /* NMSalesViewController.h */,
+				8DD3FC6419B257A300DAFCDB /* NMSalesViewController.m */,
+				8DD3FC6619B257B500DAFCDB /* NMOrdersViewController.h */,
+				8DD3FC6719B257B500DAFCDB /* NMOrdersViewController.m */,
+				8DEED51119B2687D00EE227A /* NMSmallCollectionViewController.h */,
+				8DEED51219B2687D00EE227A /* NMSmallCollectionViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8DD3FC6919B258CC00DAFCDB /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8DD3FC6A19B258F700DAFCDB /* NMColors.h */,
+				8DD3FC6B19B258F700DAFCDB /* NMColors.m */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		8DEED50219B2667E00EE227A /* Custom Layout */ = {
+			isa = PBXGroup;
+			children = (
+				8DEED50319B2669F00EE227A /* NMCollectionViewSmallLayout.h */,
+				8DEED50419B2669F00EE227A /* NMCollectionViewSmallLayout.m */,
+				8DEED50619B2673A00EE227A /* NMCollectionViewLargeLayout.h */,
+				8DEED50719B2673A00EE227A /* NMCollectionViewLargeLayout.m */,
+			);
+			name = "Custom Layout";
+			sourceTree = "<group>";
+		};
+		8DEED50A19B267A000EE227A /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				8DEED50B19B267A000EE227A /* HATransitionController.h */,
+				8DEED50C19B267A000EE227A /* HATransitionController.m */,
+				8DEED50D19B267A000EE227A /* HATransitionLayout.h */,
+				8DEED50E19B267A000EE227A /* HATransitionLayout.m */,
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
+		8DEED51419B2689E00EE227A /* Base Collection */ = {
+			isa = PBXGroup;
+			children = (
+				8DEED51519B268BF00EE227A /* NMBaseCollectionViewController.h */,
+				8DEED51619B268BF00EE227A /* NMBaseCollectionViewController.m */,
+			);
+			name = "Base Collection";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,8 +330,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DD3FC6519B257A300DAFCDB /* NMSalesViewController.m in Sources */,
+				8DD3FC6819B257B500DAFCDB /* NMOrdersViewController.m in Sources */,
+				8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */,
+				8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */,
+				8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */,
+				8DD3FC6219B2575400DAFCDB /* NMTabsController.m in Sources */,
+				8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */,
+				8DEED51319B2687D00EE227A /* NMSmallCollectionViewController.m in Sources */,
+				8DEED51719B268BF00EE227A /* NMBaseCollectionViewController.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
+				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +538,7 @@
 				8DD3FC5B19B2512900DAFCDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8DD3FC5C19B2512900DAFCDB /* Build configuration list for PBXNativeTarget "nommitTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +547,7 @@
 				8DD3FC5E19B2512900DAFCDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
