@@ -29,6 +29,7 @@
 		8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50E19B267A000EE227A /* HATransitionLayout.m */; };
 		8DEED51319B2687D00EE227A /* NMSmallCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51219B2687D00EE227A /* NMSmallCollectionViewController.m */; };
 		8DEED51719B268BF00EE227A /* NMBaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51619B268BF00EE227A /* NMBaseCollectionViewController.m */; };
+		8DEED51C19B270D700EE227A /* NMSmallFlashSaleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51B19B270D700EE227A /* NMSmallFlashSaleCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		8DEED51219B2687D00EE227A /* NMSmallCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMSmallCollectionViewController.m; path = Controllers/NMSmallCollectionViewController.m; sourceTree = "<group>"; };
 		8DEED51519B268BF00EE227A /* NMBaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMBaseCollectionViewController.h; path = "Base Collection/NMBaseCollectionViewController.h"; sourceTree = "<group>"; };
 		8DEED51619B268BF00EE227A /* NMBaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMBaseCollectionViewController.m; path = "Base Collection/NMBaseCollectionViewController.m"; sourceTree = "<group>"; };
+		8DEED51A19B270D700EE227A /* NMSmallFlashSaleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMSmallFlashSaleCell.h; path = Cells/NMSmallFlashSaleCell.h; sourceTree = "<group>"; };
+		8DEED51B19B270D700EE227A /* NMSmallFlashSaleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMSmallFlashSaleCell.m; path = Cells/NMSmallFlashSaleCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,7 @@
 		8DD3FC3619B2512900DAFCDB /* nommit */ = {
 			isa = PBXGroup;
 			children = (
+				8DEED51919B270AE00EE227A /* Cells */,
 				8DEED51419B2689E00EE227A /* Base Collection */,
 				8DEED50A19B267A000EE227A /* Transition */,
 				8DEED50219B2667E00EE227A /* Custom Layout */,
@@ -232,6 +236,15 @@
 				8DEED51619B268BF00EE227A /* NMBaseCollectionViewController.m */,
 			);
 			name = "Base Collection";
+			sourceTree = "<group>";
+		};
+		8DEED51919B270AE00EE227A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8DEED51A19B270D700EE227A /* NMSmallFlashSaleCell.h */,
+				8DEED51B19B270D700EE227A /* NMSmallFlashSaleCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DEED51C19B270D700EE227A /* NMSmallFlashSaleCell.m in Sources */,
 				8DD3FC6519B257A300DAFCDB /* NMSalesViewController.m in Sources */,
 				8DD3FC6819B257B500DAFCDB /* NMOrdersViewController.m in Sources */,
 				8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */,

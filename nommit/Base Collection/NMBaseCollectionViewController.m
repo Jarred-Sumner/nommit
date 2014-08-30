@@ -8,6 +8,7 @@
 
 #import "NMBaseCollectionViewController.h"
 #import "HATransitionLayout.h"
+#import "NMSmallFlashSaleCell.h"
 
 #define MAX_COUNT 20
 #define CELL_ID @"CELL_ID"
@@ -22,7 +23,7 @@
 {
     if (self = [super initWithCollectionViewLayout:layout])
     {
-        [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CELL_ID];
+        [self.collectionView registerClass:[NMSmallFlashSaleCell class] forCellWithReuseIdentifier:CELL_ID];
         [self.collectionView setBackgroundColor:[UIColor clearColor]];
     }
     return self;
@@ -34,15 +35,17 @@
     return NO;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (NMSmallFlashSaleCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
+    NMSmallFlashSaleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_ID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
     cell.layer.cornerRadius = 4;
     cell.clipsToBounds = YES;
     
-    UIImageView *backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Cell"]];
-    cell.backgroundView = backgroundView;
+//    UIImageView *backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Cell"]];
+//    cell.backgroundView = backgroundView;
+    
+    cell.itemImage = [UIImage imageNamed:@"Image1"];
     
     return cell;
 }
