@@ -76,11 +76,11 @@
     
     
     // Gradient to reflected image
-    CAGradientLayer *gradientReflected = [CAGradientLayer layer];
-    gradientReflected.frame = _reflected.bounds;
-    gradientReflected.colors = @[(id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:1] CGColor],
-                                 (id)[[UIColor colorWithWhite:0 alpha:0] CGColor]];
-    [_reflected.layer insertSublayer:gradientReflected atIndex:0];
+//    CAGradientLayer *gradientReflected = [CAGradientLayer layer];
+//    gradientReflected.frame = _reflected.bounds;
+//    gradientReflected.colors = @[(id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:1] CGColor],
+//                                 (id)[[UIColor colorWithWhite:0 alpha:0] CGColor]];
+//    [_reflected.layer insertSublayer:gradientReflected atIndex:0];
     
     
     // Content perfect pixel
@@ -110,7 +110,7 @@
     title.backgroundColor = [UIColor clearColor];
     title.textColor = [UIColor whiteColor];
     title.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
-    title.text = @"Heberti Almeida";
+    title.text = @"Round Table";
     [title sizeToFit];
     // Label Shadow
     [title setClipsToBounds:NO];
@@ -126,7 +126,7 @@
     subTitle.backgroundColor = [UIColor clearColor];
     subTitle.textColor = [UIColor whiteColor];
     subTitle.font = [UIFont fontWithName:@"Helvetica" size:13];
-    subTitle.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit";
+    subTitle.text = @"Delicious pizza cooked fresh. Receive it in under 10 minutes.";
     subTitle.lineBreakMode = NSLineBreakByWordWrapping;
     subTitle.numberOfLines = 0;
     [subTitle sizeToFit];
