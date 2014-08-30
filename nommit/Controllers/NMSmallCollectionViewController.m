@@ -51,7 +51,8 @@
     
     
     // Init mainView
-    _mainView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+    // _mainView = [[UIView alloc] initWithFrame:self.view.bounds];
     _mainView.clipsToBounds = YES;
     _mainView.layer.cornerRadius = 4;
     [self.view insertSubview:_mainView belowSubview:self.collectionView];
@@ -137,6 +138,12 @@
     [subTitle.layer setShadowRadius:1.0];
     [subTitle.layer setShadowOpacity:0.6];
     [_mainView addSubview:subTitle];
+    
+    // transparent white box
+    UIView *transparent = [[UIView alloc] initWithFrame:CGRectMake(0, 368, self.view.frame.size.width, self.view.frame.size.height)];
+    transparent.backgroundColor = [UIColor whiteColor];
+    transparent.alpha = .5f;
+    [_mainView addSubview:transparent];
     
     
     // First Load
