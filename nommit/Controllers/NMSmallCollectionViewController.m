@@ -41,6 +41,10 @@
 {
     [super viewDidLoad];
     
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
     //Gallery
     _galleryImages = @[@"Image", @"Image1", @"Image2", @"Image3", @"Image4"];
     _slide = 0;
@@ -53,10 +57,10 @@
     [self.view insertSubview:_mainView belowSubview:self.collectionView];
     
     // ImageView on top
-    _topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    _reflected = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(_topImage.bounds), 320, 320)];
+    _topImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, screenWidth, screenHeight)];
+    // _reflected = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(_topImage.bounds), 320, 320)];
     [_mainView addSubview:_topImage];
-    [_mainView addSubview:_reflected];
+    // [_mainView addSubview:_reflected];
     
     
     // Reflect imageView
