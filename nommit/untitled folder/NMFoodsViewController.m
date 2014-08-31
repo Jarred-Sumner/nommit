@@ -189,6 +189,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"hi");
+    // test code - DONT DELETE YET
     NMFoodItem *foodItem = [[NMFoodItem alloc] initWithTotalItems:70 withPrice:5 withName:@"Pepperoni Pizza" withDescription:@"All the delicious and cheesines" withImage:[UIImage imageNamed:@"Image1"]];
     NMOrderFoodViewController *orderFoodViewController = [[NMOrderFoodViewController alloc] initWithNibName:nil bundle:nil withFoodItem:foodItem];
     [self.navigationController pushViewController:orderFoodViewController animated:YES];
