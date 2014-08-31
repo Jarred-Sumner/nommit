@@ -8,24 +8,45 @@
 
 #import "NMOrderFoodView.h"
 
+const int headerHeight = 146;
+
 @implementation NMOrderFoodView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame initWithFoodItem:(NMFoodItem *)foodItem
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.backgroundColor = [UIColor whiteColor];
+        self.foodItem = foodItem;
+        [self setupHeaderImageView];
+        [self setupItemInfoView];
+        [self setupCampaignTracking];
+        [self setupLocationInfoView];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)setupHeaderImageView
 {
-    // Drawing code
+    UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, headerHeight)];
+    headerImageView.image = self.foodItem.headerImage;
+    [self addSubview:headerImageView];
 }
-*/
+
+- (void)setupItemInfoView
+{
+    
+}
+
+- (void)setupCampaignTracking
+{
+    
+}
+
+- (void)setupLocationInfoView
+{
+    
+}
 
 @end

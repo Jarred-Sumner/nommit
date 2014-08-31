@@ -28,7 +28,7 @@
 		8DEED51C19B270D700EE227A /* NMFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51B19B270D700EE227A /* NMFoodCell.m */; };
 		8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */; };
 		8DEED52319B299D300EE227A /* NMOrderFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED52219B299D300EE227A /* NMOrderFoodView.m */; };
-		8DEED52719B29B0D00EE227A /* FoodItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED52619B29B0D00EE227A /* FoodItem.m */; };
+		8DEED52719B29B0D00EE227A /* NMFoodItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED52619B29B0D00EE227A /* NMFoodItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,8 +76,8 @@
 		8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodViewController.m; path = "untitled folder/NMOrderFoodViewController.m"; sourceTree = "<group>"; };
 		8DEED52119B299D300EE227A /* NMOrderFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodView.h; path = Views/NMOrderFoodView.h; sourceTree = "<group>"; };
 		8DEED52219B299D300EE227A /* NMOrderFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodView.m; path = Views/NMOrderFoodView.m; sourceTree = "<group>"; };
-		8DEED52519B29B0D00EE227A /* FoodItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodItem.h; path = Model/FoodItem.h; sourceTree = "<group>"; };
-		8DEED52619B29B0D00EE227A /* FoodItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoodItem.m; path = Model/FoodItem.m; sourceTree = "<group>"; };
+		8DEED52519B29B0D00EE227A /* NMFoodItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodItem.h; path = Model/NMFoodItem.h; sourceTree = "<group>"; };
+		8DEED52619B29B0D00EE227A /* NMFoodItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodItem.m; path = Model/NMFoodItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,8 +244,8 @@
 		8DEED52419B29AFD00EE227A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8DEED52519B29B0D00EE227A /* FoodItem.h */,
-				8DEED52619B29B0D00EE227A /* FoodItem.m */,
+				8DEED52519B29B0D00EE227A /* NMFoodItem.h */,
+				8DEED52619B29B0D00EE227A /* NMFoodItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -354,7 +354,7 @@
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
 				8DEED52319B299D300EE227A /* NMOrderFoodView.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
-				8DEED52719B29B0D00EE227A /* FoodItem.m in Sources */,
+				8DEED52719B29B0D00EE227A /* NMFoodItem.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
 				831B796819B283C0009B9948 /* NMFoodsViewController.m in Sources */,

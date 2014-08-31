@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FoodItem.h"
+#import "NMFoodItem.h"
 
 @interface NMOrderFoodView : UIView
 
-@property (nonatomic, strong) FoodItem *foodItem;
+@property (nonatomic, strong) NMFoodItem *foodItem;
 
 @end
