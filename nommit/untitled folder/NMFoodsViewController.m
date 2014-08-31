@@ -9,6 +9,8 @@
 #import "NMFoodsViewController.h"
 #import "NMFoodCell.h"
 #import "NMCollectionViewSmallLayout.h"
+#import "NMOrderFoodViewController.h"
+#import "NMFoodItem.h"
 
 static const NSInteger NMFoodCount = 2;
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
@@ -187,6 +189,9 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"hi");
+    NMFoodItem *foodItem = [[NMFoodItem alloc] initWithTotalItems:70 withPrice:5 withName:@"Pepperoni Pizza" withDescription:@"All the delicious and cheesines" withImage:[UIImage imageNamed:@"Image1"]];
+    NMOrderFoodViewController *orderFoodViewController = [[NMOrderFoodViewController alloc] initWithNibName:nil bundle:nil withFoodItem:foodItem];
+    [self.navigationController pushViewController:orderFoodViewController animated:YES];
 }
 
 @end

@@ -8,14 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FoodItem : NSObject
+@interface NMFoodItem : NSObject
 
 @property (nonatomic, strong) UIImage *headerImage;
 @property (nonatomic, strong) NSString *itemName;
+@property (nonatomic, strong) NSString *description;
 @property (nonatomic) NSUInteger price;
 @property (nonatomic) NSUInteger itemsSold;
 @property (nonatomic) NSUInteger itemsTotal;
 
-- (id)initWithTotalItems:(NSUInteger)totalItems withPrice:(NSUInteger)price withName:(NSString *)name withImage:(UIImage *)headerImage;
+- (id)initWithTotalItems:(NSUInteger)totalItems withPrice:(NSUInteger)price withName:(NSString *)name withDescription:(NSString *)description withImage:(UIImage *)headerImage;
 
 @end

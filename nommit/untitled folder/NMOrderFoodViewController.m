@@ -14,11 +14,12 @@
 
 @implementation NMOrderFoodViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withFoodItem:(NMFoodItem *)foodItem
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
