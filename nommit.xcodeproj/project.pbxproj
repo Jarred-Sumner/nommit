@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		831B796819B283C0009B9948 /* NMFoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831B796719B283C0009B9948 /* NMFoodsViewController.m */; };
+		83291B0219B5242500524801 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0119B5242500524801 /* CoreVideo.framework */; };
+		83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0319B5242B00524801 /* CoreImage.framework */; };
+		83291B0619B5243600524801 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0519B5243600524801 /* Security.framework */; };
+		8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */; };
+		8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -44,6 +49,11 @@
 /* Begin PBXFileReference section */
 		831B796619B283C0009B9948 /* NMFoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodsViewController.h; path = "untitled folder/NMFoodsViewController.h"; sourceTree = "<group>"; };
 		831B796719B283C0009B9948 /* NMFoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodsViewController.m; path = "untitled folder/NMFoodsViewController.m"; sourceTree = "<group>"; };
+		83291B0119B5242500524801 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		83291B0319B5242B00524801 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		83291B0519B5243600524801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8332FC0E19B3D447000D56AB /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
+		8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nommit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -78,6 +88,7 @@
 		8DEED52219B299D300EE227A /* NMOrderFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodView.m; path = Views/NMOrderFoodView.m; sourceTree = "<group>"; };
 		8DEED52519B29B0D00EE227A /* NMFoodItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodItem.h; path = Model/NMFoodItem.h; sourceTree = "<group>"; };
 		8DEED52619B29B0D00EE227A /* NMFoodItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodItem.m; path = Model/NMFoodItem.m; sourceTree = "<group>"; };
+		D2FDA88EF48045A4AE4BAF69 /* Pods-nommit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nommit.xcconfig"; path = "Pods/Pods-nommit.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +96,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83291B0619B5243600524801 /* Security.framework in Frameworks */,
+				83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */,
+				83291B0219B5242500524801 /* CoreVideo.framework in Frameworks */,
 				8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */,
 				8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */,
 				8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */,
+				8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +126,7 @@
 				8DD3FC4F19B2512900DAFCDB /* nommitTests */,
 				8DD3FC2F19B2512900DAFCDB /* Frameworks */,
 				8DD3FC2E19B2512900DAFCDB /* Products */,
+				D2FDA88EF48045A4AE4BAF69 /* Pods-nommit.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,10 +142,14 @@
 		8DD3FC2F19B2512900DAFCDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83291B0519B5243600524801 /* Security.framework */,
+				83291B0319B5242B00524801 /* CoreImage.framework */,
+				83291B0119B5242500524801 /* CoreVideo.framework */,
 				8DD3FC3019B2512900DAFCDB /* Foundation.framework */,
 				8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */,
 				8DD3FC3419B2512900DAFCDB /* UIKit.framework */,
 				8DD3FC4919B2512900DAFCDB /* XCTest.framework */,
+				8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,6 +266,7 @@
 			children = (
 				8DEED52519B29B0D00EE227A /* NMFoodItem.h */,
 				8DEED52619B29B0D00EE227A /* NMFoodItem.m */,
+				8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -257,9 +278,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DD3FC5919B2512900DAFCDB /* Build configuration list for PBXNativeTarget "nommit" */;
 			buildPhases = (
+				2ECB165F93014A138F7028E8 /* Check Pods Manifest.lock */,
 				8DD3FC2919B2512900DAFCDB /* Sources */,
 				8DD3FC2A19B2512900DAFCDB /* Frameworks */,
 				8DD3FC2B19B2512900DAFCDB /* Resources */,
+				DBA4CF18DA734625B24A115A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -341,6 +364,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2ECB165F93014A138F7028E8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DBA4CF18DA734625B24A115A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-nommit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8DD3FC2919B2512900DAFCDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -353,6 +409,7 @@
 				8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
 				8DEED52319B299D300EE227A /* NMOrderFoodView.m in Sources */,
+				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
 				8DEED52719B29B0D00EE227A /* NMFoodItem.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
@@ -471,6 +528,7 @@
 		};
 		8DD3FC5A19B2512900DAFCDB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2FDA88EF48045A4AE4BAF69 /* Pods-nommit.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -484,6 +542,7 @@
 		};
 		8DD3FC5B19B2512900DAFCDB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2FDA88EF48045A4AE4BAF69 /* Pods-nommit.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -566,6 +625,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8332FC0E19B3D447000D56AB /* Models.xcdatamodel */,
+			);
+			currentVersion = 8332FC0E19B3D447000D56AB /* Models.xcdatamodel */;
+			path = Models.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8DD3FC2519B2512900DAFCDB /* Project object */;
 }
