@@ -49,7 +49,7 @@ const int headerHeight = 146;
 
 - (void)setupItemInfoView
 {
-    itemInfoView = [[NMItemInfoView alloc] initWithFrame:CGRectMake(-1, headerHeight, self.frame.size.width + 2, 89) withItemName:self.foodItem.itemName withItemDescription:self.foodItem.description withPrice:self.foodItem.price];
+    itemInfoView = [[NMItemInfoView alloc] initWithFrame:CGRectMake(-1, headerHeight, self.frame.size.width + 2, 99) withItemName:self.foodItem.itemName withItemDescription:self.foodItem.description withPrice:self.foodItem.price];
     
     [self addSubview:itemInfoView];
 }

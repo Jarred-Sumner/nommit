@@ -39,7 +39,7 @@
     itemName = [[UILabel alloc] init];
     itemName.text = name;
     itemName.numberOfLines = 1;
-    itemName.font = [UIFont fontWithName:@"Avenir" size:18];
+    itemName.font = [UIFont fontWithName:@"Avenir" size:22];
     itemName.textColor = UIColorFromRGB(0x3C3C3C);
     CGSize textSize = [itemName.text sizeWithFont:itemName.font];
     itemName.frame = CGRectMake(15, 10, textSize.width, textSize.height);
@@ -51,14 +51,14 @@
     itemDescription = [[UILabel alloc] init];
     itemDescription.text = description;
     itemDescription.numberOfLines = 0;
-    itemDescription.font = [UIFont fontWithName:@"Avenir" size:12];
+    itemDescription.font = [UIFont fontWithName:@"Avenir" size:11];
     itemDescription.textColor = UIColorFromRGB(0x5D5D5D);
     itemDescription.lineBreakMode = NSLineBreakByWordWrapping;
 //    [itemDescription sizeToFit];
     CGSize textSize = [itemDescription.text sizeWithFont:itemDescription.font forWidth:self.frame.size.width - 20 lineBreakMode:NSLineBreakByWordWrapping];
 //    CGSize textSize2 = [itemDescription.text boundingRectWithSize:CGSizeMake(self.frame.size.width, self.frame.size.height) options:NSStringDrawingUsesFontLeading attributes:<#(NSDictionary *)#> context:<#(NSStringDrawingContext *)#>]
     
-    itemDescription.frame = CGRectMake(15, 40, textSize.width, textSize.height);
+    itemDescription.frame = CGRectMake(15, 48, textSize.width, textSize.height);
     
     [itemDescription sizeToFit];
     
@@ -67,6 +67,15 @@
 
 - (void)setupItemPriceLabel:(NSUInteger)price {
     itemPrice = [[UILabel alloc] init];
+    itemPrice.text = [NSString stringWithFormat:@"$%d", price];
+    itemPrice.numberOfLines = 0;
+    itemPrice.font = [UIFont fontWithName:@"Avenir" size:23];
+    itemPrice.textColor = UIColorFromRGB(0x60C4BE);
+    
+    CGSize textSize = [itemPrice.text sizeWithFont:itemPrice.font];
+    itemPrice.frame = CGRectMake(self.frame.size.width - textSize.width - 20, 10, textSize.width, textSize.height);
+    [itemPrice sizeToFit];
+    [self addSubview:itemPrice];
 }
 
 @end
