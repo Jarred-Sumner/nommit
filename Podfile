@@ -2,6 +2,7 @@
 # platform :ios, "6.0"
 
 target "nommit" do
+  pod 'TYMProgressBarView'
   pod 'AFNetworking'
   pod 'MagicalRecord'
 end

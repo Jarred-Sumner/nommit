@@ -60,3 +60,9 @@
 #define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 2
 #define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
 
+// TYMProgressBarView
+#define COCOAPODS_POD_AVAILABLE_TYMProgressBarView
+#define COCOAPODS_VERSION_MAJOR_TYMProgressBarView 0
+#define COCOAPODS_VERSION_MINOR_TYMProgressBarView 3
+#define COCOAPODS_VERSION_PATCH_TYMProgressBarView 0
+
