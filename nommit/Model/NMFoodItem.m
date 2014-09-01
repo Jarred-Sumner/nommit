@@ -19,12 +19,12 @@
 //@dynamic itemsTotal;
 //@dynamic description;
 
-- (id)initWithTotalItems:(NSUInteger)totalItems withPrice:(NSUInteger)price withName:(NSString *)name withDescription:(NSString *)description withImage:(UIImage *)headerImage {
+- (id)initWithTotalItems:(NSUInteger)totalItems withPrice:(NSUInteger)price withName:(NSString *)name withDescription:(NSString *)description withImage:(UIImage *)headerImage withItemsSold:(NSUInteger)sold {
     self.itemsTotal = totalItems;
     self.price = price;
     self.itemName = name;
     self.headerImage = headerImage;
-    self.itemsSold = 0;
+    self.itemsSold = sold;
     self.description = description;
     return self;
 }

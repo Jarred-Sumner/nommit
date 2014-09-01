@@ -17,6 +17,6 @@
 @property (nonatomic) NSUInteger itemsSold;
 @property (nonatomic) NSUInteger itemsTotal;
 
-- (id)initWithTotalItems:(NSUInteger)totalItems withPrice:(NSUInteger)price withName:(NSString *)name withDescription:(NSString *)description withImage:(UIImage *)headerImage;
+- (id)initWithTotalItems:(NSUInteger)totalItems withPrice:(NSUInteger)price withName:(NSString *)name withDescription:(NSString *)description withImage:(UIImage *)headerImage withItemsSold:(NSUInteger)sold;
 
 @end

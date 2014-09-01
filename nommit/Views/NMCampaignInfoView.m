@@ -42,13 +42,5 @@
     progressBarView.progress = ([[NSNumber numberWithInt:numberLeft] floatValue]/[[NSNumber numberWithInt:numberTotal] floatValue]);
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

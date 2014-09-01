@@ -56,7 +56,7 @@ const int headerHeight = 146;
 
 - (void)setupCampaignInfoView
 {
-    campaignInfoView = [[NMCampaignInfoView alloc] initWithFrame:CGRectMake(-1, itemInfoView.frame.origin.y + itemInfoView.frame.size.height - 1, self.frame.size.width + 2, 120) withNumberLeft:(self.foodItem.itemsTotal - self.foodItem.itemsTotal) withNumberTotal:self.foodItem.itemsTotal];
+    campaignInfoView = [[NMCampaignInfoView alloc] initWithFrame:CGRectMake(-1, itemInfoView.frame.origin.y + itemInfoView.frame.size.height - 1, self.frame.size.width + 2, 120) withNumberLeft:(self.foodItem.itemsTotal - self.foodItem.itemsSold) withNumberTotal:self.foodItem.itemsTotal];
     
     [self addSubview:campaignInfoView];
 }
