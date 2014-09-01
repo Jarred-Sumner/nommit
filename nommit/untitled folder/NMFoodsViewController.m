@@ -11,6 +11,7 @@
 #import "NMCollectionViewSmallLayout.h"
 #import "NMOrderFoodViewController.h"
 #import "NMFoodItem.h"
+#import "NMColors.h"
 
 static const NSInteger NMFoodCount = 2;
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
@@ -137,7 +138,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     [self.view addSubview:_bodyLabel];
 
     NSDictionary *views = NSDictionaryOfVariableBindings(_titleLabel, _subtitleLabel, _bodyLabel);
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-75-[_titleLabel]-5-[_subtitleLabel]-8-[_bodyLabel]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_titleLabel]-5-[_subtitleLabel]-8-[_bodyLabel]" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_titleLabel]-30-|"options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_subtitleLabel]-30-|"options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_bodyLabel]-30-|"options:0 metrics:nil views:views]];
@@ -178,11 +179,11 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NMFoodCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor greenColor];
+    cell.backgroundColor = [UIColor whiteColor];
     cell.layer.cornerRadius = 4;
     cell.clipsToBounds = YES;
     
-    cell.itemImage = [UIImage imageNamed:@"Image1"];
+    cell.itemImage = [UIImage imageNamed:@"PepperoniPizza"];
     
     return cell;
 }
@@ -190,7 +191,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"hi");
     // test code - DONT DELETE YET
-    NMFoodItem *foodItem = [[NMFoodItem alloc] initWithTotalItems:70 withPrice:5 withName:@"Pepperoni Pizza" withDescription:@"All the delicious and cheesines" withImage:[UIImage imageNamed:@"Image1"]];
+    NMFoodItem *foodItem = [[NMFoodItem alloc] initWithTotalItems:70 withPrice:5 withName:@"Pepperoni Pizza" withDescription:@"A delicious slice of pizza filled with crispy pepperoni and scrumptuous cheese." withImage:[UIImage imageNamed:@"PepperoniPizza"]];
     NMOrderFoodViewController *orderFoodViewController = [[NMOrderFoodViewController alloc] initWithNibName:nil bundle:nil withFoodItem:foodItem];
     [self.navigationController pushViewController:orderFoodViewController animated:YES];
 }

@@ -32,4 +32,6 @@
 
 + (UIColor *)navTint;
 
++ (UIColor *)lightGray;
+
 @end

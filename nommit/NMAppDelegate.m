@@ -22,6 +22,8 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[NMFoodsViewController alloc] init]];
     self.window.rootViewController = navigationController;
     
+    navigationController.navigationBar.translucent = NO;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
