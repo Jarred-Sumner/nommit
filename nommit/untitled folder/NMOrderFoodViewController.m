@@ -7,8 +7,9 @@
 //
 
 #import "NMOrderFoodViewController.h"
+#import "NMOrderFoodView.h"
 
-@interface NMOrderFoodViewController ()
+@interface NMOrderFoodViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -19,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.view.backgroundColor = [UIColor whiteColor];
+        self.view = [[NMOrderFoodView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) initWithFoodItem:foodItem];
     }
     return self;
 }

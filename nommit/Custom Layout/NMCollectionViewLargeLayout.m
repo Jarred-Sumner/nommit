@@ -19,7 +19,7 @@
     if (!(self = [super init])) return nil;
     
     self.itemSize = CGSizeMake(CGRectGetWidth([[UIScreen mainScreen] bounds]), CGRectGetHeight([[UIScreen mainScreen] bounds]));
-    self.sectionInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    self.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.minimumInteritemSpacing = 10.0f;
     self.minimumLineSpacing = 4.0f;
     self.scrollDirection = UICollectionViewScrollDirectionHorizontal;

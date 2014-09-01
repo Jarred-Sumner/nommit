@@ -7,8 +7,22 @@
 //
 
 #import "NMOrderFoodView.h"
+#import "NMColors.h"
+#import "NMItemHeaderView.h"
+#import "NMItemInfoView.h"
+#import "NMCampaignInfoView.h"
 
 const int headerHeight = 146;
+
+@interface NMOrderFoodView() {
+    NMItemHeaderView *headerImageView;
+    NMItemInfoView *itemInfoView;
+    NMCampaignInfoView *campaignInfoView;
+    UILabel *campaignSold;
+    UIView *progressBar;
+}
+
+@end
 
 @implementation NMOrderFoodView
 
@@ -19,9 +33,9 @@ const int headerHeight = 146;
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
         self.foodItem = foodItem;
-        [self setupHeaderImageView];
         [self setupItemInfoView];
-        [self setupCampaignTracking];
+        [self setupHeaderImageView];
+        [self setupCampaignInfoView];
         [self setupLocationInfoView];
     }
     return self;
@@ -29,19 +43,22 @@ const int headerHeight = 146;
 
 - (void)setupHeaderImageView
 {
-    UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, headerHeight)];
-    headerImageView.image = self.foodItem.headerImage;
+    headerImageView = [[NMItemHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, headerHeight) initWithImage:self.foodItem.headerImage];
     [self addSubview:headerImageView];
 }
 
 - (void)setupItemInfoView
 {
+    itemInfoView = [[NMItemInfoView alloc] initWithFrame:CGRectMake(-1, headerHeight, self.frame.size.width + 2, 99) withItemName:self.foodItem.itemName withItemDescription:self.foodItem.description withPrice:self.foodItem.price];
     
+    [self addSubview:itemInfoView];
 }
 
-- (void)setupCampaignTracking
+- (void)setupCampaignInfoView
 {
+    campaignInfoView = [[NMCampaignInfoView alloc] initWithFrame:CGRectMake(-1, itemInfoView.frame.origin.y + itemInfoView.frame.size.height - 1, self.frame.size.width + 2, 120) withNumberLeft:(self.foodItem.itemsTotal - self.foodItem.itemsTotal) withNumberTotal:self.foodItem.itemsTotal];
     
+    [self addSubview:campaignInfoView];
 }
 
 - (void)setupLocationInfoView

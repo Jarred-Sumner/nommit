@@ -13,4 +13,6 @@
 
 @property (nonatomic, strong) NMFoodItem *foodItem;
 
+- (id)initWithFrame:(CGRect)frame initWithFoodItem:(NMFoodItem *)foodItem;
+
 @end
