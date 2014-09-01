@@ -10,16 +10,16 @@
 #import "NMColors.h"
 #import "NMItemHeaderView.h"
 #import "NMItemInfoView.h"
+#import "NMCampaignInfoView.h"
 
 const int headerHeight = 146;
 
 @interface NMOrderFoodView() {
     NMItemHeaderView *headerImageView;
     NMItemInfoView *itemInfoView;
+    NMCampaignInfoView *campaignInfoView;
     UILabel *campaignSold;
     UIView *progressBar;
-    
-    
 }
 
 @end
@@ -35,7 +35,7 @@ const int headerHeight = 146;
         self.foodItem = foodItem;
         [self setupItemInfoView];
         [self setupHeaderImageView];
-        [self setupCampaignTracking];
+        [self setupCampaignInfoView];
         [self setupLocationInfoView];
     }
     return self;
@@ -54,9 +54,11 @@ const int headerHeight = 146;
     [self addSubview:itemInfoView];
 }
 
-- (void)setupCampaignTracking
+- (void)setupCampaignInfoView
 {
+    campaignInfoView = [[NMCampaignInfoView alloc] initWithFrame:CGRectMake(-1, itemInfoView.frame.origin.y + itemInfoView.frame.size.height - 1, self.frame.size.width + 2, 120) withNumberLeft:(self.foodItem.itemsTotal - self.foodItem.itemsTotal) withNumberTotal:self.foodItem.itemsTotal];
     
+    [self addSubview:campaignInfoView];
 }
 
 - (void)setupLocationInfoView

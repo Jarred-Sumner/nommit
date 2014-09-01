@@ -12,6 +12,7 @@
 		8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29319B3A43F00920F69 /* UIImage+ImageEffects.m */; };
 		8D51D29719B3BA9900920F69 /* NMItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29619B3BA9900920F69 /* NMItemInfoView.m */; };
 		8D51D29A19B4C38E00920F69 /* NMItemHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29919B4C38E00920F69 /* NMItemHeaderView.m */; };
+		8D51D29D19B509B400920F69 /* NMCampaignInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29C19B509B400920F69 /* NMCampaignInfoView.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -56,6 +57,8 @@
 		8D51D29619B3BA9900920F69 /* NMItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMItemInfoView.m; path = Views/NMItemInfoView.m; sourceTree = "<group>"; };
 		8D51D29819B4C38E00920F69 /* NMItemHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMItemHeaderView.h; path = Views/NMItemHeaderView.h; sourceTree = "<group>"; };
 		8D51D29919B4C38E00920F69 /* NMItemHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMItemHeaderView.m; path = Views/NMItemHeaderView.m; sourceTree = "<group>"; };
+		8D51D29B19B509B400920F69 /* NMCampaignInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCampaignInfoView.h; path = Views/NMCampaignInfoView.h; sourceTree = "<group>"; };
+		8D51D29C19B509B400920F69 /* NMCampaignInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCampaignInfoView.m; path = Views/NMCampaignInfoView.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -265,6 +268,8 @@
 				8D51D29619B3BA9900920F69 /* NMItemInfoView.m */,
 				8D51D29819B4C38E00920F69 /* NMItemHeaderView.h */,
 				8D51D29919B4C38E00920F69 /* NMItemHeaderView.m */,
+				8D51D29B19B509B400920F69 /* NMCampaignInfoView.h */,
+				8D51D29C19B509B400920F69 /* NMCampaignInfoView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 				8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */,
 				8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */,
 				8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */,
+				8D51D29D19B509B400920F69 /* NMCampaignInfoView.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
 				8DEED52319B299D300EE227A /* NMOrderFoodView.m in Sources */,
 				8D51D29719B3BA9900920F69 /* NMItemInfoView.m in Sources */,
