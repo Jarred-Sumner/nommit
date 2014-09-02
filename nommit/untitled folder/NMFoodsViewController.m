@@ -32,7 +32,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     if (self) {
         self.view.backgroundColor = [NMColors lightGray];
         [self setupCollectionView];
-        [self.collectionView addParallaxWithImage:[UIImage imageNamed:@"Image1"] andHeight:160];
+        [self.collectionView addParallaxWithImage:[UIImage imageNamed:@"Image"] andHeight:160];
         [self.collectionView.parallaxView setDelegate:self];
     }
     return self;
