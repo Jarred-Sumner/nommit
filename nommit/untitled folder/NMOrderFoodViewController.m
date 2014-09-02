@@ -7,45 +7,96 @@
 //
 
 #import "NMOrderFoodViewController.h"
-#import "NMOrderFoodView.h"
 
-@interface NMOrderFoodViewController () <UITableViewDataSource, UITableViewDelegate>
+#import "NMOrderFoodInfoCell.h"
+#import "NMOrderFoodProgressCell.h"
+#import "NMOrderFoodDeliveryDetailsCell.h"
+#import "NMOrderFoodOrderButtonCell.h"
+
+const NSInteger NMInfoSection = 0;
+const NSInteger NMProgressSection = 1;
+const NSInteger NMOrderDeliveryDetailsSection = 2;
+const NSInteger NMOrderButtonSection = 3;
+
+static NSString *NMOrderFoodInfoIdentifier = @"NMOrderFoodInfoCell";
+static NSString *NMOrderFoodProgressIdentifier = @"NMOrderFoodProgressCell";
+static NSString *NMOrderFoodDeliveryIdentifier = @"NMOrderFoodDeliveryDetailsCell";
+static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
+
+@interface NMOrderFoodViewController ()
+
+@property (nonatomic, strong) NMFoodItem *foodItem;
 
 @end
 
 @implementation NMOrderFoodViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withFoodItem:(NMFoodItem *)foodItem
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        self.view = [[NMOrderFoodView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) initWithFoodItem:foodItem];
-    }
+- (instancetype)initWithFoodItem:(NMFoodItem *)foodItem {
+    self = [super initWithStyle:UITableViewStylePlain];
+    _foodItem = foodItem;
+    
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self.tableView registerClass:[NMOrderFoodInfoCell class] forCellReuseIdentifier:NMOrderFoodInfoIdentifier];
+    [self.tableView registerClass:[NMOrderFoodProgressCell class] forCellReuseIdentifier:NMOrderFoodProgressIdentifier];
+    [self.tableView registerClass:[NMOrderFoodDeliveryDetailsCell class] forCellReuseIdentifier:NMOrderFoodDeliveryIdentifier];
+    [self.tableView registerClass:[NMOrderFoodOrderButtonCell class] forCellReuseIdentifier:NMOrderFoodButtonIdentifier];
+    
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 5;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == NMInfoSection) {
+        return 125;
+    } else if (indexPath.section == NMProgressSection) {
+        return 125;
+    } else if (indexPath.section == NMOrderDeliveryDetailsSection) {
+        return 50;
+    } else if (indexPath.section == NMOrderButtonSection) {
+        return 66;
+    }
+    return 0;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == NMInfoSection) {
+        return 1;
+    } else if (section == NMProgressSection) {
+        return 1;
+    } else if (section == NMOrderDeliveryDetailsSection) {
+        return 3;
+    } else if (section == NMOrderButtonSection) {
+        return 1;
+    }
+    return 0;
 }
-*/
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == NMInfoSection) {
+        NMOrderFoodInfoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodInfoIdentifier];
+        cell.nameLabel.text = _foodItem.itemName;
+        cell.descriptionLabel.text = _foodItem.description;
+        cell.priceLabel.text = [NSString stringWithFormat:@"$%d", _foodItem.price];
+        
+        return cell;
+    } else if (indexPath.section == NMProgressSection) {
+        NMOrderFoodProgressCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodProgressIdentifier];
+        cell.progressBarView.progress = 0.5f;
+        
+        return cell;
+    } else if (indexPath.section == NMOrderDeliveryDetailsSection) {
+        NMOrderFoodDeliveryDetailsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryIdentifier];
+        return cell;
+    
+    } else if (indexPath.section == NMOrderButtonSection) {
+        NMOrderFoodOrderButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodButtonIdentifier];
+        
+        return cell;
+        
+    }
+    return nil;
+}
 @end

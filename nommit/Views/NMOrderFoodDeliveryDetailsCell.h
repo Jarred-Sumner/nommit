@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMLocationInfoView : UIView
+@interface NMOrderFoodDeliveryDetailsCell : UITableViewCell
 
 - (id)initWithFrame:(CGRect)frame withAddress:(NSString *)address;
 

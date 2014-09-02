@@ -192,7 +192,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     NSLog(@"hi");
     // test code - DONT DELETE YET
     NMFoodItem *foodItem = [[NMFoodItem alloc] initWithTotalItems:70 withPrice:5 withName:@"Pepperoni Pizza" withDescription:@"A delicious slice of pizza filled with crispy pepperoni and scrumptuous cheese." withImage:[UIImage imageNamed:@"PepperoniPizza"] withItemsSold:23];
-    NMOrderFoodViewController *orderFoodViewController = [[NMOrderFoodViewController alloc] initWithNibName:nil bundle:nil withFoodItem:foodItem];
+    NMOrderFoodViewController *orderFoodViewController = [[NMOrderFoodViewController alloc] initWithFoodItem:foodItem];
     [self.navigationController pushViewController:orderFoodViewController animated:YES];
 }
 

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMLocationInfoView.h"
+#import "NMOrderFoodDeliveryDetailsCell.h"
 #import "NMColors.h"
 
-@implementation NMLocationInfoView
+@implementation NMOrderFoodDeliveryDetailsCell
 
 - (id)initWithFrame:(CGRect)frame withAddress:(NSString *)address
 {
@@ -19,6 +19,7 @@
         self.backgroundColor = [NMColors lightGray];
         self.layer.borderColor = [UIColorFromRGB(0xD3D3D3) CGColor];
         self.layer.borderWidth = 1.0f;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
