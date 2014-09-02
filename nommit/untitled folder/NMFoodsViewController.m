@@ -113,7 +113,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
                                                            target:self
                                                            action:@selector(launchMenu)];
     
-    lbb.tintColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;
     
     // Logo in the center of navigation bar
