@@ -153,7 +153,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-    _collectionView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
+    _collectionView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.55f];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.alwaysBounceHorizontal = YES;
