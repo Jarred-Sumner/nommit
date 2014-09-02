@@ -11,6 +11,7 @@
 #import <MGLine.h>
 #import "NMColors.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
+#import "NMMiniItemView.h"
 
 @interface NMItemsCollectionViewController ()<APParallaxViewDelegate> {
     MGScrollView *scroller;
@@ -41,9 +42,25 @@
             MGLine *row = [MGLine lineWithSize:(CGSize){160, 190}];
             row.bottomBorderColor = UIColor.lightGrayColor;
             row.padding = UIEdgeInsetsMake(0, 16, 0, 16);
-            row.leftItems = (id)[NSString stringWithFormat:@"Row Number %d", i];
-            row.rightItems = (id)[UIImage imageNamed:@"Image1"];
+            
+            NMMiniItemView *cell = [[NMMiniItemView alloc] initWithFrame:CGRectMake(0, 0, 160, 190)];
+            cell.backgroundColor = [UIColor whiteColor];
+            cell.layer.cornerRadius = 4;
+            cell.clipsToBounds = YES;
+            cell.layer.borderColor = [UIColorFromRGB(0xE9E9E9) CGColor];
+            cell.layer.borderWidth = 1.0f;
+            
+            cell.itemImage = [UIImage imageNamed:@"PepperoniPizza"];
+            
+            
+            // row.leftItems = (id)[NSString stringWithFormat:@"Row Number %d", i];
+            UIImageView *blah  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PepperoniPizza"]];
+            row.rightItems = (id)blah;
             [scroller.boxes addObject:row];
+
+            
+            
+            
         }
         
         scroller.contentLayoutMode = MGLayoutGridStyle;

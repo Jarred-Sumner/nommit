@@ -13,6 +13,7 @@
 #import "NMFoodItem.h"
 #import "NMColors.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
+#import <MGScrollView.h>
 
 static const NSInteger NMFoodCount = 5;
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
@@ -26,7 +27,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
 @property (nonatomic, strong) UILabel *bodyLabel;
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) MGScrollView *scrollView;
 
 @property NSInteger slide;
 
@@ -40,25 +41,24 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 //    self.view.clipsToBounds = YES;
 //    self.view.layer.cornerRadius = 4;
     
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 400)];
+    // self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 400)];
+    
+    // [self setupBackgroundImageView];
+    
+    self.scrollView = [MGScrollView scrollerWithSize:self.view.size];
     
     self.scrollView.backgroundColor = [NMColors lightGray];
     
     [self.view addSubview:self.scrollView];
-    
-    // [self setupBackgroundImageView];
     [self setupCollectionView];
     // [self setupLabels];
+    
+    
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.scrollView addParallaxWithImage:[UIImage imageNamed:@"Image1"] andHeight:160];
-    
-    [self.scrollView.parallaxView setDelegate:self];
-    [self.scrollView autoresizingMask];
-    [self.scrollView layoutSubviews];
 }
 
 #pragma mark - backgroundImageView
