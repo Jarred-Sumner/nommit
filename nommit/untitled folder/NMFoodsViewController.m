@@ -32,7 +32,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     if (self) {
         self.view.backgroundColor = [NMColors lightGray];
         [self setupCollectionView];
-        [self.collectionView addParallaxWithImage:[UIImage imageNamed:@"Image"] andHeight:160];
+        [self.collectionView addParallaxWithImage:[UIImage imageNamed:@"Image"] andHeight:187];
         [self.collectionView.parallaxView setDelegate:self];
     }
     return self;
@@ -40,13 +40,6 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    CSStickyHeaderFlowLayout *layout = (id)self.collectionView.collectionViewLayout;
-//    if ([layout isKindOfClass:[CSStickyHeaderFlowLayout class]]) {
-//        layout.parallaxHeaderReferenceSize = CGSizeMake(320, 200);
-//    }
-//    
-//    [self.collectionView registerClass:[NMCollectionHeaderView class] forSupplementaryViewOfKind:CSStickyHeaderParallaxHeader withReuseIdentifier:@"header"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,13 +70,11 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NMFoodCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.layer.cornerRadius = 4;
+    cell.backgroundColor = [UIColor clearColor];
     cell.clipsToBounds = YES;
-    cell.layer.borderColor = [UIColorFromRGB(0xE9E9E9) CGColor];
-    cell.layer.borderWidth = 1.0f;
+
     
-    cell.itemImage = [UIImage imageNamed:@"PepperoniPizza"];
+    cell.itemImage = [UIImage imageNamed:@"PepperoniPizzaMini"];
     
     return cell;
 }
