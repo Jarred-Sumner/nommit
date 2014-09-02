@@ -20,14 +20,14 @@
     self.backgroundView.layer.borderColor = [UIColorFromRGB(0xD3D3D3) CGColor];
     self.backgroundView.layer.borderWidth = 1.0f;
     
-    [self setupHeaderImageView];
+    // [self setupHeaderImageView];
     [self setupNameLabel];
     [self setupDescriptionLabel];
     [self setupPriceLabel];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_headerImageView, _nameLabel, _descriptionLabel, _priceLabel);
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_headerImageView]-10-[_nameLabel]-10-[_descriptionLabel]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_headerImageView]-10-[_priceLabel]" options:0 metrics:nil views:views]];
+    NSDictionary *views = NSDictionaryOfVariableBindings(_nameLabel, _descriptionLabel, _priceLabel);
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_nameLabel]-10-[_descriptionLabel]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_priceLabel]" options:0 metrics:nil views:views]];
     return self;
 }
 

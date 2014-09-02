@@ -12,6 +12,7 @@
 #import "NMOrderFoodProgressCell.h"
 #import "NMOrderFoodDeliveryDetailsCell.h"
 #import "NMOrderFoodOrderButtonCell.h"
+#import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMProgressSection = 1;
@@ -23,7 +24,7 @@ static NSString *NMOrderFoodProgressIdentifier = @"NMOrderFoodProgressCell";
 static NSString *NMOrderFoodDeliveryIdentifier = @"NMOrderFoodDeliveryDetailsCell";
 static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
-@interface NMOrderFoodViewController ()
+@interface NMOrderFoodViewController ()<APParallaxViewDelegate>
 
 @property (nonatomic, strong) NMFoodItem *foodItem;
 
@@ -40,6 +41,9 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     [self.tableView registerClass:[NMOrderFoodProgressCell class] forCellReuseIdentifier:NMOrderFoodProgressIdentifier];
     [self.tableView registerClass:[NMOrderFoodDeliveryDetailsCell class] forCellReuseIdentifier:NMOrderFoodDeliveryIdentifier];
     [self.tableView registerClass:[NMOrderFoodOrderButtonCell class] forCellReuseIdentifier:NMOrderFoodButtonIdentifier];
+    
+    [self.tableView addParallaxWithImage:foodItem.headerImage andHeight:150];
+    [self.tableView.parallaxView setDelegate:self];
     
     return self;
 }
@@ -99,4 +103,17 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     }
     return nil;
 }
+
+#pragma mark - APParallaxViewDelegate
+
+- (void)parallaxView:(APParallaxView *)view willChangeFrame:(CGRect)frame {
+    // Do whatever you need to do to the parallaxView or your subview before its frame changes
+    NSLog(@"parallaxView:willChangeFrame: %@", NSStringFromCGRect(frame));
+}
+
+- (void)parallaxView:(APParallaxView *)view didChangeFrame:(CGRect)frame {
+    // Do whatever you need to do to the parallaxView or your subview after its frame changed
+    NSLog(@"parallaxView:didChangeFrame: %@", NSStringFromCGRect(frame));
+}
+
 @end
