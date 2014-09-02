@@ -27,8 +27,8 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 @implementation NMFoodsViewController
 
 - (id)init {
-    UICollectionViewFlowLayout *cssStickHeaderLayout = [[CSStickyHeaderFlowLayout alloc] init];
-    self = [super initWithCollectionViewLayout:cssStickHeaderLayout];
+    UICollectionViewFlowLayout *flowLayout = [[NMCollectionViewSmallLayout alloc] init];
+    self = [super initWithCollectionViewLayout:flowLayout];
     if (self) {
         self.view.backgroundColor = [NMColors lightGray];
         [self setupCollectionView];
@@ -56,23 +56,12 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 #pragma mark - UICollectionView
 
 - (void)setupCollectionView {
-    
-//    UICollectionViewFlowLayout *flowLayout = [[NMCollectionViewSmallLayout alloc] init];
-//    
-//    UICollectionViewFlowLayout *cssStickHeaderLayout = [[CSStickyHeaderFlowLayout alloc] init];
-//    
-//    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:cssStickHeaderLayout];
-    
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     self.collectionView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.55f];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 
     [self.collectionView registerClass:[NMFoodCell class] forCellWithReuseIdentifier:NMFoodCellIdentifier];
-    
-//    NSDictionary *views = NSDictionaryOfVariableBindings(_collectionView);
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_collectionView(200)]|" options:0 metrics:nil views:views]];
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_collectionView]|" options:0 metrics:nil views:views]];
 }
 
 #pragma mark - UIColllectionViewDelegate
@@ -108,28 +97,8 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    // return self.collectionView.frame.size;
     return CGSizeMake(142, 187);
 }
-//
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-//    
-//    // Check the kind if it's CSStickyHeaderParallaxHeader
-//    if ([kind isEqualToString:CSStickyHeaderParallaxHeader]) {
-//        
-//        UICollectionReusableView *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind
-//                                                                            withReuseIdentifier:@"header"
-//                                                                                   forIndexPath:indexPath];
-//        
-//        return cell;
-//        
-//    } else if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-//        // Your code to configure your section header...
-//    } else {
-//        // other custom supplementary views
-//    }
-//    return nil;
-//}
 
 #pragma mark - APParallaxViewDelegate
 
