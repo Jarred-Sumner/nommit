@@ -25,7 +25,6 @@
 		8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */; };
 		8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */; };
 		8D51D2A019B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29F19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m */; };
->>>>>>> 5ceac9acc20f9a165be5162ff0799a3e45bbd63d
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -91,7 +90,6 @@
 		8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodProgressCell.m; path = Views/NMOrderFoodProgressCell.m; sourceTree = "<group>"; };
 		8D51D29E19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodDeliveryDetailsCell.h; path = Views/NMOrderFoodDeliveryDetailsCell.h; sourceTree = "<group>"; };
 		8D51D29F19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodDeliveryDetailsCell.m; path = Views/NMOrderFoodDeliveryDetailsCell.m; sourceTree = "<group>"; };
->>>>>>> 5ceac9acc20f9a165be5162ff0799a3e45bbd63d
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };

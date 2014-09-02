@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>E23EB85D-0045-45AC-9002-3EB0B406A17B</string>
+	<string>D05FDF29-E1D1-41FA-BC93-8DC5F27D7167</string>
 	<key>IDESourceControlProjectName</key>
 	<string>nommit</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>4E952B99-C465-4313-B0A6-21FB84A38BEF</key>
-		<string>ssh://github.com/Jarred-Sumner/nommit.git</string>
+		<key>170D374C-F14F-416E-8BB3-9BA8DBFCF147</key>
+		<string>https://github.com/Jarred-Sumner/nommit</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>nommit.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>4E952B99-C465-4313-B0A6-21FB84A38BEF</key>
+		<key>170D374C-F14F-416E-8BB3-9BA8DBFCF147</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/Jarred-Sumner/nommit.git</string>
+	<string>https://github.com/Jarred-Sumner/nommit</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>4E952B99-C465-4313-B0A6-21FB84A38BEF</string>
+	<string>170D374C-F14F-416E-8BB3-9BA8DBFCF147</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4E952B99-C465-4313-B0A6-21FB84A38BEF</string>
+			<string>170D374C-F14F-416E-8BB3-9BA8DBFCF147</string>
 			<key>IDESourceControlWCCName</key>
 			<string>nommit</string>
 		</dict>
