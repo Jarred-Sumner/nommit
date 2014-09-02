@@ -25,8 +25,11 @@
     
     navigationController.navigationBar.translucent = NO;
     
+    self.navigationController = navigationController;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
-                                                                                                            
+
+
 @end

@@ -45,6 +45,8 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     [self.tableView addParallaxWithImage:foodItem.headerImage andHeight:150];
     [self.tableView.parallaxView setDelegate:self];
     
+    [self initNavBar];
+    
     return self;
 }
 
@@ -114,6 +116,28 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 - (void)parallaxView:(APParallaxView *)view didChangeFrame:(CGRect)frame {
     // Do whatever you need to do to the parallaxView or your subview after its frame changed
     NSLog(@"parallaxView:didChangeFrame: %@", NSStringFromCGRect(frame));
+}
+
+#pragma mark - Navigation Bar Customization
+
+- (void)initNavBar
+{
+    UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:self
+                                                           action:@selector(launchMenu)];
+    
+    lbb.tintColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    self.navigationItem.leftBarButtonItem = lbb;
+    
+    // Logo in the center of navigation bar
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 55, 37.5)];
+    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];
+    titleImageView.frame = CGRectMake(0, 0, titleImageView.frame.size.width/2, titleImageView.frame.size.height/2);
+    [logoView addSubview:titleImageView];
+    self.navigationItem.titleView = logoView;
+    
+    self.navigationItem.title = @"WTFFFF";
 }
 
 @end
