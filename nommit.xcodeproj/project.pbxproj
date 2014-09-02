@@ -16,15 +16,12 @@
 		8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */; };
 		8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D28F19B3A3DD00920F69 /* MEExpandableHeaderView.m */; };
 		8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29319B3A43F00920F69 /* UIImage+ImageEffects.m */; };
-		8D51D29719B3BA9900920F69 /* NMItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29619B3BA9900920F69 /* NMItemInfoView.m */; };
-		8D51D29A19B4C38E00920F69 /* NMItemHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29919B4C38E00920F69 /* NMItemHeaderView.m */; };
-		8D51D29D19B509B400920F69 /* NMCampaignInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29C19B509B400920F69 /* NMCampaignInfoView.m */; };
-		8D51D2A019B51E3000920F69 /* NMLocationInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29F19B51E3000920F69 /* NMLocationInfoView.m */; };
-		8D51D2A919B58DA500920F69 /* NMItemsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */; };
-		8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */; };
 		8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */; };
 		8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */; };
 		8D51D2A019B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29F19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m */; };
+		8D51D2A919B58DA500920F69 /* NMItemsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */; };
+		8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */; };
+		8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2AE19B6418000920F69 /* NMCollectionHeaderView.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -71,25 +68,20 @@
 		8D51D28F19B3A3DD00920F69 /* MEExpandableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MEExpandableHeaderView.m; path = Libraries/MEExpandableHeaderView.m; sourceTree = "<group>"; };
 		8D51D29219B3A43F00920F69 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Libraries/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		8D51D29319B3A43F00920F69 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "Libraries/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		8D51D29519B3BA9900920F69 /* NMItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMItemInfoView.h; path = Views/NMItemInfoView.h; sourceTree = "<group>"; };
-		8D51D29619B3BA9900920F69 /* NMItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMItemInfoView.m; path = Views/NMItemInfoView.m; sourceTree = "<group>"; };
-		8D51D29819B4C38E00920F69 /* NMItemHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMItemHeaderView.h; path = Views/NMItemHeaderView.h; sourceTree = "<group>"; };
-		8D51D29919B4C38E00920F69 /* NMItemHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMItemHeaderView.m; path = Views/NMItemHeaderView.m; sourceTree = "<group>"; };
-		8D51D29B19B509B400920F69 /* NMCampaignInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCampaignInfoView.h; path = Views/NMCampaignInfoView.h; sourceTree = "<group>"; };
-		8D51D29C19B509B400920F69 /* NMCampaignInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCampaignInfoView.m; path = Views/NMCampaignInfoView.m; sourceTree = "<group>"; };
-		8D51D29E19B51E3000920F69 /* NMLocationInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLocationInfoView.h; path = Views/NMLocationInfoView.h; sourceTree = "<group>"; };
-		8D51D29F19B51E3000920F69 /* NMLocationInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLocationInfoView.m; path = Views/NMLocationInfoView.m; sourceTree = "<group>"; };
-		8D51D2A719B58DA500920F69 /* NMItemsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMItemsCollectionViewController.h; path = "untitled folder/NMItemsCollectionViewController.h"; sourceTree = "<group>"; };
-		8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMItemsCollectionViewController.m; path = "untitled folder/NMItemsCollectionViewController.m"; sourceTree = "<group>"; };
-		8D51D2AA19B6382D00920F69 /* NMMiniItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMMiniItemView.h; path = Views/NMMiniItemView.h; sourceTree = "<group>"; };
-		8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMMiniItemView.m; path = Views/NMMiniItemView.m; sourceTree = "<group>"; };
-
 		8D51D29519B3BA9900920F69 /* NMOrderFoodInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodInfoCell.h; path = Views/NMOrderFoodInfoCell.h; sourceTree = "<group>"; };
 		8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodInfoCell.m; path = Views/NMOrderFoodInfoCell.m; sourceTree = "<group>"; };
+		8D51D29819B4C38E00920F69 /* NMItemHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMItemHeaderView.h; path = Views/NMItemHeaderView.h; sourceTree = "<group>"; };
+		8D51D29919B4C38E00920F69 /* NMItemHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMItemHeaderView.m; path = Views/NMItemHeaderView.m; sourceTree = "<group>"; };
 		8D51D29B19B509B400920F69 /* NMOrderFoodProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodProgressCell.h; path = Views/NMOrderFoodProgressCell.h; sourceTree = "<group>"; };
 		8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodProgressCell.m; path = Views/NMOrderFoodProgressCell.m; sourceTree = "<group>"; };
 		8D51D29E19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodDeliveryDetailsCell.h; path = Views/NMOrderFoodDeliveryDetailsCell.h; sourceTree = "<group>"; };
 		8D51D29F19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodDeliveryDetailsCell.m; path = Views/NMOrderFoodDeliveryDetailsCell.m; sourceTree = "<group>"; };
+		8D51D2A719B58DA500920F69 /* NMItemsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMItemsCollectionViewController.h; path = "untitled folder/NMItemsCollectionViewController.h"; sourceTree = "<group>"; };
+		8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMItemsCollectionViewController.m; path = "untitled folder/NMItemsCollectionViewController.m"; sourceTree = "<group>"; };
+		8D51D2AA19B6382D00920F69 /* NMMiniItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMMiniItemView.h; path = Views/NMMiniItemView.h; sourceTree = "<group>"; };
+		8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMMiniItemView.m; path = Views/NMMiniItemView.m; sourceTree = "<group>"; };
+		8D51D2AD19B6418000920F69 /* NMCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCollectionHeaderView.h; path = Cells/NMCollectionHeaderView.h; sourceTree = "<group>"; };
+		8D51D2AE19B6418000920F69 /* NMCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCollectionHeaderView.m; path = Cells/NMCollectionHeaderView.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -294,6 +286,8 @@
 		8DEED51919B270AE00EE227A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8D51D2AD19B6418000920F69 /* NMCollectionHeaderView.h */,
+				8D51D2AE19B6418000920F69 /* NMCollectionHeaderView.m */,
 				8D51D29519B3BA9900920F69 /* NMOrderFoodInfoCell.h */,
 				8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */,
 				8D51D29B19B509B400920F69 /* NMOrderFoodProgressCell.h */,
@@ -311,16 +305,14 @@
 		8DEED52019B299C000EE227A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8DEED52119B299D300EE227A /* NMOrderFoodView.h */,
-				8DEED52219B299D300EE227A /* NMOrderFoodView.m */,
-				8D51D29519B3BA9900920F69 /* NMItemInfoView.h */,
-				8D51D29619B3BA9900920F69 /* NMItemInfoView.m */,
+				8D51D29519B3BA9900920F69 /* NMOrderFoodInfoCell.h */,
+				8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */,
 				8D51D29819B4C38E00920F69 /* NMItemHeaderView.h */,
 				8D51D29919B4C38E00920F69 /* NMItemHeaderView.m */,
-				8D51D29B19B509B400920F69 /* NMCampaignInfoView.h */,
-				8D51D29C19B509B400920F69 /* NMCampaignInfoView.m */,
-				8D51D29E19B51E3000920F69 /* NMLocationInfoView.h */,
-				8D51D29F19B51E3000920F69 /* NMLocationInfoView.m */,
+				8D51D29B19B509B400920F69 /* NMOrderFoodProgressCell.h */,
+				8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */,
+				8D51D29E19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.h */,
+				8D51D29F19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m */,
 				8D51D2AA19B6382D00920F69 /* NMMiniItemView.h */,
 				8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */,
 			);
@@ -479,6 +471,7 @@
 				83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */,
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
+				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
 				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
 				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,

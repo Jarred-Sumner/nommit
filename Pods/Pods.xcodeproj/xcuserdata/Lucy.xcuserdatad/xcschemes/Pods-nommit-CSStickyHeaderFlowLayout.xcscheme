@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4E267A9EDB154E64B71C8B12"
-               BuildableName = "libPods-nommit.a"
-               BlueprintName = "Pods-nommit"
+               BlueprintIdentifier = "A26F067528364737AAD1173B"
+               BuildableName = "libPods-nommit-CSStickyHeaderFlowLayout.a"
+               BlueprintName = "Pods-nommit-CSStickyHeaderFlowLayout"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - APParallaxHeader (0.1.6)
+  - CSStickyHeaderFlowLayout (0.2.2)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
@@ -34,6 +35,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - APParallaxHeader
+  - CSStickyHeaderFlowLayout
   - MagicalRecord
   - MGBoxKit
   - TYMProgressBarView
@@ -41,6 +43,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   APParallaxHeader: 6e7cc27c052be34e1a5655dc2fab6c40eecbbe55
+  CSStickyHeaderFlowLayout: 79e586ba3d94941c79146832227ddbc6702c8705
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   MGBoxKit: 86493ff76fb2164a32426418a1a900c84edd0ffa
   MGEvents: e6254d7873bcb90b266801d171f9948194010927

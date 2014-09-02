@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-nommit-CSStickyHeaderFlowLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-nommit-MGBoxKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,42 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6695B17F4ADC476A98698031</key>
+		<key>1CCE3DAC3FAC4099B4A0EC27</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>72CBFB6477E348F9BD2C06A3</key>
+		<key>2A4F883EF35248658AAA868A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>783B1312823C4CF8888C0F5F</key>
+		<key>459CA0230C6B4CA282A48CC4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C05D9BAD4984F28BF4FC6BA</key>
+		<key>48552FB1CA2F43A09DB1C72D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BB96D64D1BED42A390358665</key>
+		<key>4E267A9EDB154E64B71C8B12</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C26F1FAF77A841B9B703E22B</key>
+		<key>764BF31E91574D4C837344DD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D3FAB4429F40454A8FBB328D</key>
+		<key>A26F067528364737AAD1173B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D7BFF142B46B411399FB30D0</key>
+		<key>ABFBF2277E504DC7B3482A5D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9A77C96DBCD47EA97912A4F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
