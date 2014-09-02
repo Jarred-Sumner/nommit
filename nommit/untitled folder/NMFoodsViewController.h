@@ -11,4 +11,8 @@
 
 @interface NMFoodsViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate, REFrostedViewControllerDelegate>
 
+@property (nonatomic, readonly, getter=isFullscreen) BOOL fullscreen;
+@property (nonatomic, readonly, getter=isTransitioning) BOOL transitioning;
+@property (nonatomic, strong) NSArray *galleryImages;
+
 @end

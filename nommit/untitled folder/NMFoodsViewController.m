@@ -23,6 +23,10 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 
 @interface NMFoodsViewController ()<APParallaxViewDelegate>
 
+@property (nonatomic, assign) NSInteger slide;
+@property (nonatomic, getter=isFullscreen) BOOL fullscreen;
+@property (nonatomic, getter=isTransitioning) BOOL transitioning;
+
 @end
 
 @implementation NMFoodsViewController
@@ -42,6 +46,15 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _galleryImages = @[@"Image", @"Image1", @"Image2", @"Image3", @"Image4"];
+    _slide = 0;
+    
+    // First Load
+    [self changeSlide];
+    
+    // Loop gallery - fix loop: http://bynomial.com/blog/?p=67
+    NSTimer *timer = [NSTimer timerWithTimeInterval:3.5f target:self selector:@selector(changeSlide) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -130,6 +143,23 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     [logoView addSubview:titleImageView];
     self.navigationItem.titleView = logoView;
     
+}
+
+#pragma mark - Change slider
+- (void)changeSlide
+{
+    if (_fullscreen == NO && _transitioning == NO) {
+        if(_slide > _galleryImages.count-1) _slide = 0;
+        
+        UIImage *toImage = [UIImage imageNamed:_galleryImages[_slide]];
+        [UIView transitionWithView:self.collectionView.parallaxView
+                          duration:0.6f
+                           options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationCurveEaseInOut
+                        animations:^{
+                            self.collectionView.parallaxView.imageView.image = toImage;
+                        } completion:nil];
+        _slide++;
+    }
 }
 
 @end
