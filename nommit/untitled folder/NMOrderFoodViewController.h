@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "NMFoodItem.h"
 
-@interface NMOrderFoodViewController : UIViewController <UITableViewDelegate>
+@interface NMOrderFoodViewController : UITableViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withFoodItem:(NMFoodItem *)foodItem;
+- (id)initWithFoodItem:(NMFoodItem *)foodItem;
 
 @end

@@ -12,6 +12,7 @@
 		83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0319B5242B00524801 /* CoreImage.framework */; };
 		83291B0619B5243600524801 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0519B5243600524801 /* Security.framework */; };
 		8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */; };
+		83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */; };
 		8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */; };
 		8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D28F19B3A3DD00920F69 /* MEExpandableHeaderView.m */; };
 		8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29319B3A43F00920F69 /* UIImage+ImageEffects.m */; };
@@ -21,6 +22,10 @@
 		8D51D2A019B51E3000920F69 /* NMLocationInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29F19B51E3000920F69 /* NMLocationInfoView.m */; };
 		8D51D2A919B58DA500920F69 /* NMItemsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */; };
 		8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */; };
+		8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */; };
+		8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */; };
+		8D51D2A019B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29F19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m */; };
+>>>>>>> 5ceac9acc20f9a165be5162ff0799a3e45bbd63d
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -40,7 +45,6 @@
 		8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50E19B267A000EE227A /* HATransitionLayout.m */; };
 		8DEED51C19B270D700EE227A /* NMFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51B19B270D700EE227A /* NMFoodCell.m */; };
 		8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */; };
-		8DEED52319B299D300EE227A /* NMOrderFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED52219B299D300EE227A /* NMOrderFoodView.m */; };
 		8DEED52719B29B0D00EE227A /* NMFoodItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED52619B29B0D00EE227A /* NMFoodItem.m */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +65,8 @@
 		83291B0319B5242B00524801 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		83291B0519B5243600524801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8332FC0E19B3D447000D56AB /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
+		83FB6CFF19B57D6700B808B6 /* NMOrderFoodOrderButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMOrderFoodOrderButtonCell.h; sourceTree = "<group>"; };
+		83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMOrderFoodOrderButtonCell.m; sourceTree = "<group>"; };
 		8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nommit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D51D28E19B3A3DD00920F69 /* MEExpandableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MEExpandableHeaderView.h; path = Libraries/MEExpandableHeaderView.h; sourceTree = "<group>"; };
 		8D51D28F19B3A3DD00920F69 /* MEExpandableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MEExpandableHeaderView.m; path = Libraries/MEExpandableHeaderView.m; sourceTree = "<group>"; };
@@ -78,6 +84,14 @@
 		8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMItemsCollectionViewController.m; path = "untitled folder/NMItemsCollectionViewController.m"; sourceTree = "<group>"; };
 		8D51D2AA19B6382D00920F69 /* NMMiniItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMMiniItemView.h; path = Views/NMMiniItemView.h; sourceTree = "<group>"; };
 		8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMMiniItemView.m; path = Views/NMMiniItemView.m; sourceTree = "<group>"; };
+
+		8D51D29519B3BA9900920F69 /* NMOrderFoodInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodInfoCell.h; path = Views/NMOrderFoodInfoCell.h; sourceTree = "<group>"; };
+		8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodInfoCell.m; path = Views/NMOrderFoodInfoCell.m; sourceTree = "<group>"; };
+		8D51D29B19B509B400920F69 /* NMOrderFoodProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodProgressCell.h; path = Views/NMOrderFoodProgressCell.h; sourceTree = "<group>"; };
+		8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodProgressCell.m; path = Views/NMOrderFoodProgressCell.m; sourceTree = "<group>"; };
+		8D51D29E19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodDeliveryDetailsCell.h; path = Views/NMOrderFoodDeliveryDetailsCell.h; sourceTree = "<group>"; };
+		8D51D29F19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodDeliveryDetailsCell.m; path = Views/NMOrderFoodDeliveryDetailsCell.m; sourceTree = "<group>"; };
+>>>>>>> 5ceac9acc20f9a165be5162ff0799a3e45bbd63d
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,8 +122,6 @@
 		8DEED51B19B270D700EE227A /* NMFoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodCell.m; path = Cells/NMFoodCell.m; sourceTree = "<group>"; };
 		8DEED51D19B299A000EE227A /* NMOrderFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodViewController.h; path = "untitled folder/NMOrderFoodViewController.h"; sourceTree = "<group>"; };
 		8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodViewController.m; path = "untitled folder/NMOrderFoodViewController.m"; sourceTree = "<group>"; };
-		8DEED52119B299D300EE227A /* NMOrderFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodView.h; path = Views/NMOrderFoodView.h; sourceTree = "<group>"; };
-		8DEED52219B299D300EE227A /* NMOrderFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodView.m; path = Views/NMOrderFoodView.m; sourceTree = "<group>"; };
 		8DEED52519B29B0D00EE227A /* NMFoodItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodItem.h; path = Model/NMFoodItem.h; sourceTree = "<group>"; };
 		8DEED52619B29B0D00EE227A /* NMFoodItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodItem.m; path = Model/NMFoodItem.m; sourceTree = "<group>"; };
 		D2FDA88EF48045A4AE4BAF69 /* Pods-nommit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nommit.xcconfig"; path = "Pods/Pods-nommit.xcconfig"; sourceTree = "<group>"; };
@@ -284,8 +296,16 @@
 		8DEED51919B270AE00EE227A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8D51D29519B3BA9900920F69 /* NMOrderFoodInfoCell.h */,
+				8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */,
+				8D51D29B19B509B400920F69 /* NMOrderFoodProgressCell.h */,
+				8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */,
+				8D51D29E19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.h */,
+				8D51D29F19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m */,
 				8DEED51A19B270D700EE227A /* NMFoodCell.h */,
 				8DEED51B19B270D700EE227A /* NMFoodCell.m */,
+				83FB6CFF19B57D6700B808B6 /* NMOrderFoodOrderButtonCell.h */,
+				83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -458,15 +478,14 @@
 				8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */,
 				8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */,
 				8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */,
-				8D51D29D19B509B400920F69 /* NMCampaignInfoView.m in Sources */,
+				83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */,
+				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
-				8DEED52319B299D300EE227A /* NMOrderFoodView.m in Sources */,
 				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
-				8D51D29719B3BA9900920F69 /* NMItemInfoView.m in Sources */,
+				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
 				8DEED52719B29B0D00EE227A /* NMFoodItem.m in Sources */,
-				8D51D2A019B51E3000920F69 /* NMLocationInfoView.m in Sources */,
-				8D51D29A19B4C38E00920F69 /* NMItemHeaderView.m in Sources */,
+				8D51D2A019B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
 				831B796819B283C0009B9948 /* NMFoodsViewController.m in Sources */,

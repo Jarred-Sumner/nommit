@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <TYMProgressBarView.h>
 
-@interface NMCampaignInfoView : UIView
+@interface NMOrderFoodProgressCell : UITableViewCell
 
-- (id)initWithFrame:(CGRect)frame withNumberLeft:(NSUInteger)numberLeft withNumberTotal:(NSUInteger)numberTotal;
+@property TYMProgressBarView *progressBarView;
 
 @end
