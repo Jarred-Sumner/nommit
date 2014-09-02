@@ -12,11 +12,12 @@
 #import "NMOrderFoodViewController.h"
 #import "NMFoodItem.h"
 #import "NMColors.h"
+#import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 
-static const NSInteger NMFoodCount = 2;
+static const NSInteger NMFoodCount = 5;
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 
-@interface NMFoodsViewController ()
+@interface NMFoodsViewController ()<APParallaxViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -25,6 +26,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
 @property (nonatomic, strong) UILabel *bodyLabel;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
 @property NSInteger slide;
 
@@ -35,12 +37,28 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 - (void)loadView
 {
     [super loadView];
-    self.view.clipsToBounds = YES;
-    self.view.layer.cornerRadius = 4;
+//    self.view.clipsToBounds = YES;
+//    self.view.layer.cornerRadius = 4;
     
-    [self setupBackgroundImageView];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 400)];
+    
+    self.scrollView.backgroundColor = [NMColors lightGray];
+    
+    [self.view addSubview:self.scrollView];
+    
+    // [self setupBackgroundImageView];
     [self setupCollectionView];
-    [self setupLabels];
+    // [self setupLabels];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.scrollView addParallaxWithImage:[UIImage imageNamed:@"Image1"] andHeight:160];
+    
+    [self.scrollView.parallaxView setDelegate:self];
+    [self.scrollView autoresizingMask];
+    [self.scrollView layoutSubviews];
 }
 
 #pragma mark - backgroundImageView
@@ -72,7 +90,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     NSTimer *timer = [NSTimer timerWithTimeInterval:5.0f target:self selector:@selector(changeSlide) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
-    [self.view addSubview:_backgroundImageView];
+    [self.scrollView addSubview:_backgroundImageView];
 }
 
 - (void)changeSlide
@@ -80,7 +98,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     if (_slide > _galleryImages.count - 1) _slide = 0;
     
     UIImage *toImage = [UIImage imageNamed:_galleryImages[_slide]];
-    [UIView transitionWithView:self.view
+    [UIView transitionWithView:self.scrollView
                       duration:0.6f
                        options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationCurveEaseInOut
                     animations:^{
@@ -133,15 +151,15 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     _subtitleLabel.text = @"Round Table";
     _bodyLabel.text = @"Delicious pizza cooked fresh. Receive it in under 10 minutes.";
     
-    [self.view addSubview:_titleLabel];
-    [self.view addSubview:_subtitleLabel];
-    [self.view addSubview:_bodyLabel];
+    [self.scrollView addSubview:_titleLabel];
+    [self.scrollView addSubview:_subtitleLabel];
+    [self.scrollView addSubview:_bodyLabel];
 
     NSDictionary *views = NSDictionaryOfVariableBindings(_titleLabel, _subtitleLabel, _bodyLabel);
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_titleLabel]-5-[_subtitleLabel]-8-[_bodyLabel]" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_titleLabel]-30-|"options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_subtitleLabel]-30-|"options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_bodyLabel]-30-|"options:0 metrics:nil views:views]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_titleLabel]-5-[_subtitleLabel]-8-[_bodyLabel]" options:0 metrics:nil views:views]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_titleLabel]-30-|"options:0 metrics:nil views:views]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_subtitleLabel]-30-|"options:0 metrics:nil views:views]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_bodyLabel]-30-|"options:0 metrics:nil views:views]];
     
 }
 
@@ -151,19 +169,18 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     
     UICollectionViewFlowLayout *flowLayout = [[NMCollectionViewSmallLayout alloc] init];
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:flowLayout];
     _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     _collectionView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.55f];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
-    _collectionView.alwaysBounceHorizontal = YES;
 
     [_collectionView registerClass:[NMFoodCell class] forCellWithReuseIdentifier:NMFoodCellIdentifier];
-    [self.view addSubview:_collectionView];
+    [self.scrollView addSubview:_collectionView];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_collectionView);
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_collectionView(200)]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_collectionView]|" options:0 metrics:nil views:views]];
+//    NSDictionary *views = NSDictionaryOfVariableBindings(_collectionView);
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_collectionView(200)]|" options:0 metrics:nil views:views]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_collectionView]|" options:0 metrics:nil views:views]];
 }
 
 #pragma mark - UIColllectionViewDelegate
@@ -182,6 +199,8 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     cell.backgroundColor = [UIColor whiteColor];
     cell.layer.cornerRadius = 4;
     cell.clipsToBounds = YES;
+    cell.layer.borderColor = [UIColorFromRGB(0xE9E9E9) CGColor];
+    cell.layer.borderWidth = 1.0f;
     
     cell.itemImage = [UIImage imageNamed:@"PepperoniPizza"];
     
@@ -194,6 +213,23 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     NMFoodItem *foodItem = [[NMFoodItem alloc] initWithTotalItems:70 withPrice:5 withName:@"Pepperoni Pizza" withDescription:@"A delicious slice of pizza filled with crispy pepperoni and scrumptuous cheese." withImage:[UIImage imageNamed:@"PepperoniPizza"] withItemsSold:23];
     NMOrderFoodViewController *orderFoodViewController = [[NMOrderFoodViewController alloc] initWithNibName:nil bundle:nil withFoodItem:foodItem];
     [self.navigationController pushViewController:orderFoodViewController animated:YES];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    // return self.collectionView.frame.size;
+    return CGSizeMake(142, 187);
+}
+
+#pragma mark - APParallaxViewDelegate
+
+- (void)parallaxView:(APParallaxView *)view willChangeFrame:(CGRect)frame {
+    // Do whatever you need to do to the parallaxView or your subview before its frame changes
+    NSLog(@"parallaxView:willChangeFrame: %@", NSStringFromCGRect(frame));
+}
+
+- (void)parallaxView:(APParallaxView *)view didChangeFrame:(CGRect)frame {
+    // Do whatever you need to do to the parallaxView or your subview after its frame changed
+    NSLog(@"parallaxView:didChangeFrame: %@", NSStringFromCGRect(frame));
 }
 
 @end

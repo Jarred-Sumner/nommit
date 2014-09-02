@@ -22,7 +22,7 @@
     self.sectionInset = UIEdgeInsetsMake(0, 9, 0, 9);
     self.minimumInteritemSpacing = 10.0f;
     self.minimumLineSpacing = 9.0f;
-    self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//    self.scrollDirection = UICollectionViewScrollDirectionVertical;
     
     return self;
 }

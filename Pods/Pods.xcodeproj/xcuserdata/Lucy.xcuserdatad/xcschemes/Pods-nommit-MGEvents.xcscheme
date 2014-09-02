@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D474EB8E3451405DA64681B2"
-               BuildableName = "libPods-nommit-ELCTextFieldCell.a"
-               BlueprintName = "Pods-nommit-ELCTextFieldCell"
+               BlueprintIdentifier = "72CBFB6477E348F9BD2C06A3"
+               BuildableName = "libPods-nommit-MGEvents.a"
+               BlueprintName = "Pods-nommit-MGEvents"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

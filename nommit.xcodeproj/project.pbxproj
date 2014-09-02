@@ -19,6 +19,7 @@
 		8D51D29A19B4C38E00920F69 /* NMItemHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29919B4C38E00920F69 /* NMItemHeaderView.m */; };
 		8D51D29D19B509B400920F69 /* NMCampaignInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29C19B509B400920F69 /* NMCampaignInfoView.m */; };
 		8D51D2A019B51E3000920F69 /* NMLocationInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29F19B51E3000920F69 /* NMLocationInfoView.m */; };
+		8D51D2A919B58DA500920F69 /* NMItemsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -72,6 +73,8 @@
 		8D51D29C19B509B400920F69 /* NMCampaignInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCampaignInfoView.m; path = Views/NMCampaignInfoView.m; sourceTree = "<group>"; };
 		8D51D29E19B51E3000920F69 /* NMLocationInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLocationInfoView.h; path = Views/NMLocationInfoView.h; sourceTree = "<group>"; };
 		8D51D29F19B51E3000920F69 /* NMLocationInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLocationInfoView.m; path = Views/NMLocationInfoView.m; sourceTree = "<group>"; };
+		8D51D2A719B58DA500920F69 /* NMItemsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMItemsCollectionViewController.h; path = "untitled folder/NMItemsCollectionViewController.h"; sourceTree = "<group>"; };
+		8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMItemsCollectionViewController.m; path = "untitled folder/NMItemsCollectionViewController.m"; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -238,6 +241,8 @@
 				831B796719B283C0009B9948 /* NMFoodsViewController.m */,
 				8DEED51D19B299A000EE227A /* NMOrderFoodViewController.h */,
 				8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */,
+				8D51D2A719B58DA500920F69 /* NMItemsCollectionViewController.h */,
+				8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D51D2A919B58DA500920F69 /* NMItemsCollectionViewController.m in Sources */,
 				8DEED51C19B270D700EE227A /* NMFoodCell.m in Sources */,
 				8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */,
 				8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "NMAppDelegate.h"
 #import "NMFoodsViewController.h"
+#import "NMItemsCollectionViewController.h"
 
 @interface NMAppDelegate () <UINavigationControllerDelegate>
 

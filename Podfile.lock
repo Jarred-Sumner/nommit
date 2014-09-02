@@ -20,19 +20,31 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - APParallaxHeader (0.1.6)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
+  - MGBoxKit (7.0.1):
+    - MGEvents
+    - MGMushParser
+  - MGEvents (1.0.3)
+  - MGMushParser (1.0.0)
   - TYMProgressBarView (0.3.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - APParallaxHeader
   - MagicalRecord
+  - MGBoxKit
   - TYMProgressBarView
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
+  APParallaxHeader: 6e7cc27c052be34e1a5655dc2fab6c40eecbbe55
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
+  MGBoxKit: 86493ff76fb2164a32426418a1a900c84edd0ffa
+  MGEvents: e6254d7873bcb90b266801d171f9948194010927
+  MGMushParser: 2c28a4e5c5938da9dcc1fbb090347e5ff575fc5b
   TYMProgressBarView: 3798cb41cb7eea63714d5db5793c06f31e37b4d5
 
 COCOAPODS: 0.33.1

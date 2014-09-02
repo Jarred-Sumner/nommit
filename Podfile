@@ -5,6 +5,8 @@ target "nommit" do
   pod 'TYMProgressBarView'
   pod 'AFNetworking'
   pod 'MagicalRecord'
+  pod 'MGBoxKit'
+  pod 'APParallaxHeader'
 end
 
 target "nommitTests" do
