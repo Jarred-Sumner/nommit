@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <REFrostedViewController.h>
 
-@interface NMFoodsViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface NMFoodsViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate, REFrostedViewControllerDelegate>
 
 @end

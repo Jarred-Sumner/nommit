@@ -54,12 +54,6 @@
 #define COCOAPODS_VERSION_MINOR_APParallaxHeader 1
 #define COCOAPODS_VERSION_PATCH_APParallaxHeader 6
 
-// CSStickyHeaderFlowLayout
-#define COCOAPODS_POD_AVAILABLE_CSStickyHeaderFlowLayout
-#define COCOAPODS_VERSION_MAJOR_CSStickyHeaderFlowLayout 0
-#define COCOAPODS_VERSION_MINOR_CSStickyHeaderFlowLayout 2
-#define COCOAPODS_VERSION_PATCH_CSStickyHeaderFlowLayout 2
-
 // MGBoxKit
 #define COCOAPODS_POD_AVAILABLE_MGBoxKit
 #define COCOAPODS_VERSION_MAJOR_MGBoxKit 7
@@ -89,6 +83,12 @@
 #define COCOAPODS_VERSION_MAJOR_MagicalRecord_Core 2
 #define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 2
 #define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
+
+// REFrostedViewController
+#define COCOAPODS_POD_AVAILABLE_REFrostedViewController
+#define COCOAPODS_VERSION_MAJOR_REFrostedViewController 2
+#define COCOAPODS_VERSION_MINOR_REFrostedViewController 4
+#define COCOAPODS_VERSION_PATCH_REFrostedViewController 6
 
 // TYMProgressBarView
 #define COCOAPODS_POD_AVAILABLE_TYMProgressBarView

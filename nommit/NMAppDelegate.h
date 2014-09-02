@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <REFrostedViewController.h>
+#import "NMMenuNavigationController.h"
 
-@interface NMAppDelegate : UIResponder <UIApplicationDelegate>
+
+@interface NMAppDelegate : UIResponder <UIApplicationDelegate, REFrostedViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) NMMenuNavigationController *navigationController;
 
 @end

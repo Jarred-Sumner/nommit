@@ -7,7 +7,7 @@ target "nommit" do
   pod 'MagicalRecord'
   pod 'MGBoxKit'
   pod 'APParallaxHeader'
-  pod 'CSStickyHeaderFlowLayout'
+  pod 'REFrostedViewController'
 end
 
 target "nommitTests" do

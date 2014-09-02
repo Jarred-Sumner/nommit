@@ -14,8 +14,9 @@
 #import "NMColors.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import <MGScrollView.h>
-#import <CSStickyHeaderFlowLayout.h>
 #import "NMCollectionHeaderView.h"
+#import <REFrostedViewController.h>
+#import "NMMenuNavigationController.h"
 
 static const NSInteger NMFoodCount = 5;
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
@@ -116,8 +117,8 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
                                                             style:UIBarButtonItemStylePlain
-                                                           target:self
-                                                           action:@selector(launchMenu)];
+                                                           target:(NMMenuNavigationController *)self.navigationController
+                                                           action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;

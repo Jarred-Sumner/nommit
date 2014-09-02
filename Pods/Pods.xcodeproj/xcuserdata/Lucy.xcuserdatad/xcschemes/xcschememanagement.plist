@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-nommit-CSStickyHeaderFlowLayout.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-nommit-MGBoxKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -39,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-nommit-REFrostedViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-nommit-TYMProgressBarView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1CCE3DAC3FAC4099B4A0EC27</key>
+		<key>07ECD6F642D94ED48DF1C119</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2A4F883EF35248658AAA868A</key>
+		<key>3DF75B4F21C949BAB5CE4412</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>459CA0230C6B4CA282A48CC4</key>
+		<key>7B3E7FE983D54ACEA9DEE281</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>48552FB1CA2F43A09DB1C72D</key>
+		<key>AEDCA0833D7444CFBDDAA08B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4E267A9EDB154E64B71C8B12</key>
+		<key>C905A75B22E640F9AAB2851E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>764BF31E91574D4C837344DD</key>
+		<key>CCFB3E05D0AD481AAB706276</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A26F067528364737AAD1173B</key>
+		<key>D30553E0D11D46A5968FC229</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ABFBF2277E504DC7B3482A5D</key>
+		<key>DC1D53C2E3DD411BB91A902B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E9A77C96DBCD47EA97912A4F</key>
+		<key>F131DAB7EA444FF08C362D61</key>
 		<dict>
 			<key>primary</key>
 			<true/>

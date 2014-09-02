@@ -22,6 +22,9 @@
 		8D51D2A919B58DA500920F69 /* NMItemsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */; };
 		8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */; };
 		8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2AE19B6418000920F69 /* NMCollectionHeaderView.m */; };
+		8D51D2B319B6688200920F69 /* NMMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2B219B6688200920F69 /* NMMenuViewController.m */; };
+		8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2B519B6690900920F69 /* NMMenuNavigationController.m */; };
+		8D51D2B819B66D0100920F69 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D51D2B719B66D0100920F69 /* Accelerate.framework */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -82,6 +85,11 @@
 		8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMMiniItemView.m; path = Views/NMMiniItemView.m; sourceTree = "<group>"; };
 		8D51D2AD19B6418000920F69 /* NMCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCollectionHeaderView.h; path = Cells/NMCollectionHeaderView.h; sourceTree = "<group>"; };
 		8D51D2AE19B6418000920F69 /* NMCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCollectionHeaderView.m; path = Cells/NMCollectionHeaderView.m; sourceTree = "<group>"; };
+		8D51D2B119B6688200920F69 /* NMMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMMenuViewController.h; path = "Sliding Menu/NMMenuViewController.h"; sourceTree = "<group>"; };
+		8D51D2B219B6688200920F69 /* NMMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMMenuViewController.m; path = "Sliding Menu/NMMenuViewController.m"; sourceTree = "<group>"; };
+		8D51D2B419B6690900920F69 /* NMMenuNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMMenuNavigationController.h; path = "Sliding Menu/NMMenuNavigationController.h"; sourceTree = "<group>"; };
+		8D51D2B519B6690900920F69 /* NMMenuNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMMenuNavigationController.m; path = "Sliding Menu/NMMenuNavigationController.m"; sourceTree = "<group>"; };
+		8D51D2B719B66D0100920F69 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D51D2B819B66D0100920F69 /* Accelerate.framework in Frameworks */,
 				83291B0619B5243600524801 /* Security.framework in Frameworks */,
 				83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */,
 				83291B0219B5242500524801 /* CoreVideo.framework in Frameworks */,
@@ -156,6 +165,17 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
+		8D51D2B019B6686E00920F69 /* Sliding Menu */ = {
+			isa = PBXGroup;
+			children = (
+				8D51D2B119B6688200920F69 /* NMMenuViewController.h */,
+				8D51D2B219B6688200920F69 /* NMMenuViewController.m */,
+				8D51D2B419B6690900920F69 /* NMMenuNavigationController.h */,
+				8D51D2B519B6690900920F69 /* NMMenuNavigationController.m */,
+			);
+			name = "Sliding Menu";
+			sourceTree = "<group>";
+		};
 		8DD3FC2419B2512900DAFCDB = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +199,7 @@
 		8DD3FC2F19B2512900DAFCDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D51D2B719B66D0100920F69 /* Accelerate.framework */,
 				83291B0519B5243600524801 /* Security.framework */,
 				83291B0319B5242B00524801 /* CoreImage.framework */,
 				83291B0119B5242500524801 /* CoreVideo.framework */,
@@ -194,6 +215,7 @@
 		8DD3FC3619B2512900DAFCDB /* nommit */ = {
 			isa = PBXGroup;
 			children = (
+				8D51D2B019B6686E00920F69 /* Sliding Menu */,
 				8D51D28D19B3A3C200920F69 /* Libraries */,
 				8DEED52419B29AFD00EE227A /* Model */,
 				8DEED52019B299C000EE227A /* Views */,
@@ -472,6 +494,7 @@
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
 				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
+				8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */,
 				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
 				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
@@ -480,6 +503,7 @@
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
 				831B796819B283C0009B9948 /* NMFoodsViewController.m in Sources */,
+				8D51D2B319B6688200920F69 /* NMMenuViewController.m in Sources */,
 				8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
