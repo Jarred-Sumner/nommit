@@ -76,6 +76,12 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 
     
     cell.itemImage = [UIImage imageNamed:@"PepperoniPizzaMini"];
+    cell.itemName = @"Pepperoni Pizza";
+    NSNumber *itemsLeft = [NSNumber numberWithInt:30];
+    NSNumber *itemsTotal = [NSNumber numberWithInt:60];
+    cell.itemsSoldAndTotal = [NSArray arrayWithObjects:itemsLeft, itemsTotal, nil];
+    cell.progressBarView.progress = .5f;
+    cell.itemPrice = 5;
     
     return cell;
 }
@@ -89,7 +95,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(142, 187);
+    return CGSizeMake(142, 200);
 }
 
 #pragma mark - APParallaxViewDelegate

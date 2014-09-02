@@ -28,6 +28,9 @@
     self.navigationController = navigationController;
     
     [self.window makeKeyAndVisible];
+    
+    [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
+    
     return YES;
 }
 
