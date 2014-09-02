@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMFoodsViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface NMFoodsViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end
