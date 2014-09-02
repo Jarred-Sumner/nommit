@@ -34,6 +34,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
         [self setupCollectionView];
         [self.collectionView addParallaxWithImage:[UIImage imageNamed:@"Image"] andHeight:187];
         [self.collectionView.parallaxView setDelegate:self];
+        [self initNavBar];
     }
     return self;
 }
@@ -101,6 +102,27 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 - (void)parallaxView:(APParallaxView *)view didChangeFrame:(CGRect)frame {
     // Do whatever you need to do to the parallaxView or your subview after its frame changed
     NSLog(@"parallaxView:didChangeFrame: %@", NSStringFromCGRect(frame));
+}
+
+#pragma mark - nav bar
+
+- (void)initNavBar
+{
+    UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:self
+                                                           action:@selector(launchMenu)];
+    
+    lbb.tintColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    self.navigationItem.leftBarButtonItem = lbb;
+    
+    // Logo in the center of navigation bar
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 88, 21)];
+    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];
+    titleImageView.frame = CGRectMake(0, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
+    [logoView addSubview:titleImageView];
+    self.navigationItem.titleView = logoView;
+    
 }
 
 @end
