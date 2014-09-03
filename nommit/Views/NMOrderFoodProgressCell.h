@@ -13,7 +13,7 @@
 @interface NMOrderFoodProgressCell : UITableViewCell
 
 @property TYMProgressBarView *progressBarView;
-
 @property CHDigitInput *digitInput;
+@property (strong, nonatomic) NSArray *leftSold;
 
 @end

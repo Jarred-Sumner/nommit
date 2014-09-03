@@ -91,6 +91,9 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     } else if (indexPath.section == NMProgressSection) {
         NMOrderFoodProgressCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodProgressIdentifier];
         cell.progressBarView.progress = 0.5f;
+        NSNumber *left = [NSNumber numberWithInt:_foodItem.itemsTotal - _foodItem.itemsSold];
+        NSNumber *total = [NSNumber numberWithInt:_foodItem.itemsTotal];
+        cell.leftSold = @[left, total];
         
         return cell;
     } else if (indexPath.section == NMOrderDeliveryDetailsSection) {

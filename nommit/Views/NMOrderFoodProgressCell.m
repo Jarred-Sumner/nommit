@@ -10,6 +10,8 @@
 
 @interface NMOrderFoodProgressCell() {
     UIView *separator;
+    UILabel *progressLabel;
+    UILabel *quantityLabel;
 }
 
 - (void)didBeginEditing:(id)sender;
@@ -31,7 +33,9 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [self setupProgressBar];
+        [self setupProgressLabel];
         [self setupSeparator];
+        [self setupQuantityLabel];
         [self setupDigitInput];
     }
     return self;
@@ -57,6 +61,22 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-70-[_progressBarView]-30-|" options:0 metrics:nil views:views ]];
 }
 
+- (void)setLeftSold:(NSArray *)leftSold
+{
+    NSNumber *left = leftSold[0];
+    NSNumber *total = leftSold[1];
+    progressLabel.text = [NSString stringWithFormat:@"%@/%@ sold", left, total];
+}
+
+- (void)setupProgressLabel
+{
+    progressLabel = [[UILabel alloc] init];
+    progressLabel.textColor = UIColorFromRGB(0x787878);
+    progressLabel.font = [UIFont fontWithName:@"Avenir" size:24.0f];
+    progressLabel.frame = CGRectMake(40, 15, 150, 50);
+    [self.contentView addSubview:progressLabel];
+}
+
 - (void)setupSeparator
 {
     separator = [[UIView alloc] init];
@@ -65,6 +85,15 @@
     separator.frame = CGRectMake(210, 0, 1, 115);
     [self.contentView addSubview:separator];
     
+}
+
+- (void)setupQuantityLabel
+{
+    quantityLabel = [[UILabel alloc] initWithFrame:CGRectMake(separator.frame.origin.x + 35, 15, 50, 20)];
+    quantityLabel.font = [UIFont fontWithName:@"Avenir-Light" size:12.0f];
+    quantityLabel.textColor = UIColorFromRGB(0x494949);
+    quantityLabel.text = @"Quantity";
+    [self.contentView addSubview:quantityLabel];
 }
 
 - (void)setupDigitInput
@@ -98,7 +127,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_progressBarView, _digitInput);
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_progressBarView]-45-[_digitInput]-20-|" options:0 metrics:nil views:views ]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[_digitInput]-25-|" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-35-[_digitInput]-15-|" options:0 metrics:nil views:views ]];
     
     // adding the target,actions for available events
     [_digitInput addTarget:self action:@selector(didBeginEditing:) forControlEvents:UIControlEventEditingDidBegin];
