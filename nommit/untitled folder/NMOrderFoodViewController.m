@@ -24,7 +24,7 @@ static NSString *NMOrderFoodProgressIdentifier = @"NMOrderFoodProgressCell";
 static NSString *NMOrderFoodDeliveryIdentifier = @"NMOrderFoodDeliveryDetailsCell";
 static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
-@interface NMOrderFoodViewController ()<APParallaxViewDelegate, NMOrderFoodProgressCell>
+@interface NMOrderFoodViewController ()<APParallaxViewDelegate, NMOrderFoodProgressCell, NMOrderFoodOrderButtonCell>
 
 @property (nonatomic, strong) NMFoodItem *foodItem;
 
@@ -62,7 +62,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     } else if (indexPath.section == NMOrderDeliveryDetailsSection) {
         return 50;
     } else if (indexPath.section == NMOrderButtonSection) {
-        return 66;
+        return 49;
     }
     return 0;
 }
@@ -121,6 +121,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     return nil;
 }
 
+
 #pragma mark - APParallaxViewDelegate
 
 - (void)parallaxView:(APParallaxView *)view willChangeFrame:(CGRect)frame {
@@ -178,6 +179,12 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 {
     CHDigitInput *input = (CHDigitInput *)sender;
     NSLog(@"value changed %i",input.value);
+}
+
+#pragma mark - order food button
+- (void)orderFoodButtonPressed:(id)sender
+{
+    NSLog(@"Your food has been ordered!");
 }
 
 @end
