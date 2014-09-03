@@ -17,9 +17,12 @@
 #import "NMCollectionHeaderView.h"
 #import <REFrostedViewController.h>
 #import "NMMenuNavigationController.h"
+#import "NMRibbonCell.h"
 
 static const NSInteger NMFoodCount = 5;
+static const NSInteger headerHeight = 187;
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
+static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
 
 @interface NMFoodsViewController ()<APParallaxViewDelegate>
 
@@ -37,8 +40,9 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     if (self) {
         self.view.backgroundColor = [NMColors lightGray];
         [self setupCollectionView];
-        [self.collectionView addParallaxWithImage:[UIImage imageNamed:@"Image"] andHeight:187];
+        [self.collectionView addParallaxWithImage:[UIImage imageNamed:@"Image"] andHeight:headerHeight];
         [self.collectionView.parallaxView setDelegate:self];
+        self.collectionView.contentOffset = CGPointMake(0, 0);
         [self initNavBar];
     }
     return self;
@@ -70,6 +74,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
     self.collectionView.delegate = self;
 
     [self.collectionView registerClass:[NMFoodCell class] forCellWithReuseIdentifier:NMFoodCellIdentifier];
+    [self.collectionView registerClass:[NMRibbonCell class] forCellWithReuseIdentifier:NMRibbonCellIdentifier];
 }
 
 #pragma mark - UIColllectionViewDelegate
@@ -84,6 +89,13 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        NMRibbonCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NMRibbonCellIdentifier forIndexPath:indexPath];
+//        UIImageView *banner = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 289.5/2, headerHeight - 35/2, 289.5, 35)];
+//        banner.image = [UIImage imageNamed:@"HomeRibbon"];
+//        [cell addSubview:banner];
+        return cell;
+    }
     NMFoodCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
     cell.backgroundColor = [UIColor clearColor];
     cell.clipsToBounds = YES;
@@ -109,6 +121,7 @@ static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) return CGSizeMake(289.5, 35);
     return CGSizeMake(142, 200);
 }
 

@@ -25,6 +25,7 @@
 		8D51D2B319B6688200920F69 /* NMMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2B219B6688200920F69 /* NMMenuViewController.m */; };
 		8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2B519B6690900920F69 /* NMMenuNavigationController.m */; };
 		8D51D2B819B66D0100920F69 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D51D2B719B66D0100920F69 /* Accelerate.framework */; };
+		8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -90,6 +91,8 @@
 		8D51D2B419B6690900920F69 /* NMMenuNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMMenuNavigationController.h; path = "Sliding Menu/NMMenuNavigationController.h"; sourceTree = "<group>"; };
 		8D51D2B519B6690900920F69 /* NMMenuNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMMenuNavigationController.m; path = "Sliding Menu/NMMenuNavigationController.m"; sourceTree = "<group>"; };
 		8D51D2B719B66D0100920F69 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		8D51D2B919B6A28700920F69 /* NMRibbonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRibbonCell.h; path = Cells/NMRibbonCell.h; sourceTree = "<group>"; };
+		8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRibbonCell.m; path = Cells/NMRibbonCell.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -320,6 +323,8 @@
 				8DEED51B19B270D700EE227A /* NMFoodCell.m */,
 				83FB6CFF19B57D6700B808B6 /* NMOrderFoodOrderButtonCell.h */,
 				83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */,
+				8D51D2B919B6A28700920F69 /* NMRibbonCell.h */,
+				8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 				8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */,
 				8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */,
 				8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */,
+				8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */,
 				83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */,
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
