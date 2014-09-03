@@ -16,7 +16,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.backgroundView.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = UIColorFromRGB(0xFBFBFB);
     self.backgroundView.layer.borderColor = [UIColorFromRGB(0xD3D3D3) CGColor];
     self.backgroundView.layer.borderWidth = 1.0f;
     

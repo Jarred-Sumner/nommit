@@ -56,9 +56,9 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMInfoSection) {
-        return 125;
+        return 110;
     } else if (indexPath.section == NMProgressSection) {
-        return 125;
+        return 115;
     } else if (indexPath.section == NMOrderDeliveryDetailsSection) {
         return 50;
     } else if (indexPath.section == NMOrderButtonSection) {

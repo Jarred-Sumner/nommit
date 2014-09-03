@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <TYMProgressBarView.h>
+#import "CHDigitInput.h"
 
 @interface NMOrderFoodProgressCell : UITableViewCell
 
 @property TYMProgressBarView *progressBarView;
+
+@property CHDigitInput *digitInput;
 
 @end
