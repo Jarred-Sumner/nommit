@@ -58,7 +58,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_progressBarView);
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_progressBarView]-130-|" options:0 metrics:nil views:views ]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-70-[_progressBarView]-30-|" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[_progressBarView]-30-|" options:0 metrics:nil views:views ]];
 }
 
 - (void)setLeftSold:(NSArray *)leftSold
@@ -82,14 +82,14 @@
     separator = [[UIView alloc] init];
     separator.backgroundColor = UIColorFromRGB(0xD8D8D8);
     // separator.backgroundColor = [UIColor redColor];
-    separator.frame = CGRectMake(210, 0, 1, 115);
+    separator.frame = CGRectMake(210, 0, 1, 103);
     [self.contentView addSubview:separator];
     
 }
 
 - (void)setupQuantityLabel
 {
-    quantityLabel = [[UILabel alloc] initWithFrame:CGRectMake(separator.frame.origin.x + 35, 15, 50, 20)];
+    quantityLabel = [[UILabel alloc] initWithFrame:CGRectMake(separator.frame.origin.x + 35, 8, 50, 20)];
     quantityLabel.font = [UIFont fontWithName:@"Avenir-Light" size:12.0f];
     quantityLabel.textColor = UIColorFromRGB(0x494949);
     quantityLabel.text = @"Quantity";
@@ -127,7 +127,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_progressBarView, _digitInput);
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_progressBarView]-45-[_digitInput]-20-|" options:0 metrics:nil views:views ]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-35-[_digitInput]-15-|" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[_digitInput]-15-|" options:0 metrics:nil views:views ]];
     
     // adding the target,actions for available events
     [_digitInput addTarget:_delegate action:@selector(didBeginEditing:) forControlEvents:UIControlEventEditingDidBegin];
