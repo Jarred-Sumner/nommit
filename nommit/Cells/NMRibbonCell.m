@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        UIImageView *banner = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width/2 - 289.5/2, 0, 289.5, 35)];
+        UIImageView *banner = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width/2 - 289.5/2, -3, 289.5, 35)];
         banner.image = [UIImage imageNamed:@"HomeRibbon"];
         [self addSubview:banner];
     }
