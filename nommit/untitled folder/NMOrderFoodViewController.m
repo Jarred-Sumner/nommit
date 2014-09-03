@@ -145,7 +145,6 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
 #pragma mark - digit input delegates
 
-/////////// recating on demo events ///////////
 -(void)didBeginEditing:(id)sender
 {
     CHDigitInput *input = (CHDigitInput *)sender;
