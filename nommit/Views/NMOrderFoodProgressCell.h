@@ -10,10 +10,24 @@
 #import <TYMProgressBarView.h>
 #import "CHDigitInput.h"
 
+@protocol NMOrderFoodProgressCell;
+
 @interface NMOrderFoodProgressCell : UITableViewCell
 
 @property TYMProgressBarView *progressBarView;
 @property CHDigitInput *digitInput;
 @property (strong, nonatomic) NSArray *leftSold;
+
+@property (nonatomic, weak) id<NMOrderFoodProgressCell> delegate;
+
+@end
+
+@protocol NMOrderFoodProgressCell
+
+@required
+-(void)didBeginEditing:(id)sender;
+-(void)didEndEditing:(id)sender;
+-(void)textDidChange:(id)sender;
+-(void)valueChanged:(id)sender;
 
 @end

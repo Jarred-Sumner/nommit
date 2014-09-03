@@ -24,7 +24,7 @@ static NSString *NMOrderFoodProgressIdentifier = @"NMOrderFoodProgressCell";
 static NSString *NMOrderFoodDeliveryIdentifier = @"NMOrderFoodDeliveryDetailsCell";
 static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
-@interface NMOrderFoodViewController ()<APParallaxViewDelegate>
+@interface NMOrderFoodViewController ()<APParallaxViewDelegate, NMOrderFoodProgressCell>
 
 @property (nonatomic, strong) NMFoodItem *foodItem;
 
@@ -90,6 +90,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         return cell;
     } else if (indexPath.section == NMProgressSection) {
         NMOrderFoodProgressCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodProgressIdentifier];
+        cell.delegate = self;
         cell.progressBarView.progress = 0.5f;
         NSNumber *left = [NSNumber numberWithInt:_foodItem.itemsTotal - _foodItem.itemsSold];
         NSNumber *total = [NSNumber numberWithInt:_foodItem.itemsTotal];
@@ -140,6 +141,33 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     [logoView addSubview:titleImageView];
     self.navigationItem.titleView = logoView;
     
+}
+
+#pragma mark - digit input delegates
+
+/////////// recating on demo events ///////////
+-(void)didBeginEditing:(id)sender
+{
+    CHDigitInput *input = (CHDigitInput *)sender;
+    NSLog(@"did begin editing %i",input.value);
+}
+
+-(void)didEndEditing:(id)sender
+{
+    CHDigitInput *input = (CHDigitInput *)sender;
+    NSLog(@"did end editing %i",input.value);
+}
+
+-(void)textDidChange:(id)sender
+{
+    CHDigitInput *input = (CHDigitInput *)sender;
+    NSLog(@"text did change %i",input.value);
+}
+
+-(void)valueChanged:(id)sender
+{
+    CHDigitInput *input = (CHDigitInput *)sender;
+    NSLog(@"value changed %i",input.value);
 }
 
 @end

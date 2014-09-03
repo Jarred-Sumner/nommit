@@ -130,10 +130,10 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-35-[_digitInput]-15-|" options:0 metrics:nil views:views ]];
     
     // adding the target,actions for available events
-    [_digitInput addTarget:self action:@selector(didBeginEditing:) forControlEvents:UIControlEventEditingDidBegin];
-    [_digitInput addTarget:self action:@selector(didEndEditing:) forControlEvents:UIControlEventEditingDidEnd];
-    [_digitInput addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [_digitInput addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_digitInput addTarget:_delegate action:@selector(didBeginEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    [_digitInput addTarget:_delegate action:@selector(didEndEditing:) forControlEvents:UIControlEventEditingDidEnd];
+    [_digitInput addTarget:_delegate action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [_digitInput addTarget:_delegate action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 // dismissing the keyboard
@@ -141,32 +141,5 @@
 {
     [_digitInput resignFirstResponder];
 }
-
-/////////// recating on demo events ///////////
--(void)didBeginEditing:(id)sender
-{
-    CHDigitInput *input = (CHDigitInput *)sender;
-    NSLog(@"did begin editing %i",input.value);
-}
-
--(void)didEndEditing:(id)sender
-{
-    CHDigitInput *input = (CHDigitInput *)sender;
-    NSLog(@"did end editing %i",input.value);
-}
-
--(void)textDidChange:(id)sender
-{
-    CHDigitInput *input = (CHDigitInput *)sender;
-    NSLog(@"text did change %i",input.value);
-}
-
--(void)valueChanged:(id)sender
-{
-    CHDigitInput *input = (CHDigitInput *)sender;
-    NSLog(@"value changed %i",input.value);
-}
-
-
 
 @end
