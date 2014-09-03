@@ -10,6 +10,6 @@
 
 @interface NMOrderFoodDeliveryDetailsCell : UITableViewCell
 
-- (id)initWithFrame:(CGRect)frame withAddress:(NSString *)address;
+@property (nonatomic, strong) UITextField *textField;
 
 @end
