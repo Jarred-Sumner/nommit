@@ -11,15 +11,26 @@
 
 @implementation NMOrderFoodDeliveryDetailsCell
 
-- (id)initWithFrame:(CGRect)frame withAddress:(NSString *)address
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.backgroundColor = [NMColors lightGray];
-        self.layer.borderColor = [UIColorFromRGB(0xD3D3D3) CGColor];
-        self.layer.borderWidth = 1.0f;
+        self.backgroundView.backgroundColor = [NMColors lightGray];
+        self.backgroundView.layer.borderColor = [UIColorFromRGB(0xD3D3D3) CGColor];
+        self.backgroundView.layer.borderWidth = 1.0f;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        _textField = [[UITextField alloc] init];
+        _textField.font = [UIFont fontWithName:@"Avenir" size:16.f];
+        _textField.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        [self.contentView addSubview:_textField];
+        
+        NSDictionary *views = NSDictionaryOfVariableBindings(_textField);
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_textField]-15-|" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_textField]-0-|" options:0 metrics:nil views:views]];
+
     }
     return self;
 }

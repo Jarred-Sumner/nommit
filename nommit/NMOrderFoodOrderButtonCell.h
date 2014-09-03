@@ -10,4 +10,6 @@
 
 @interface NMOrderFoodOrderButtonCell : UITableViewCell
 
+@property (nonatomic, strong) UIButton *orderButton;
+
 @end

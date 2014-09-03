@@ -73,7 +73,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     } else if (section == NMProgressSection) {
         return 1;
     } else if (section == NMOrderDeliveryDetailsSection) {
-        return 3;
+        return 2;
     } else if (section == NMOrderButtonSection) {
         return 1;
     }
@@ -99,6 +99,17 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         return cell;
     } else if (indexPath.section == NMOrderDeliveryDetailsSection) {
         NMOrderFoodDeliveryDetailsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryIdentifier];
+        
+        switch (indexPath.row) {
+            case 0:
+                cell.textField.placeholder = @"Address";
+                break;
+            case 1:
+                cell.textField.placeholder = @"Room #";
+                break;
+            default:
+                break;
+        }
         return cell;
     
     } else if (indexPath.section == NMOrderButtonSection) {
