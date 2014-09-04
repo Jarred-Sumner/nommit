@@ -8,6 +8,7 @@ target "nommit" do
   pod 'MGBoxKit'
   pod 'APParallaxHeader'
   pod 'REFrostedViewController'
+  pod 'Overcoat'
 end
 
 target "nommitTests" do

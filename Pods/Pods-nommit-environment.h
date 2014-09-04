@@ -84,6 +84,36 @@
 #define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 2
 #define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
 
+// Mantle
+#define COCOAPODS_POD_AVAILABLE_Mantle
+#define COCOAPODS_VERSION_MAJOR_Mantle 1
+#define COCOAPODS_VERSION_MINOR_Mantle 5
+#define COCOAPODS_VERSION_PATCH_Mantle 0
+
+// Mantle/extobjc
+#define COCOAPODS_POD_AVAILABLE_Mantle_extobjc
+#define COCOAPODS_VERSION_MAJOR_Mantle_extobjc 1
+#define COCOAPODS_VERSION_MINOR_Mantle_extobjc 5
+#define COCOAPODS_VERSION_PATCH_Mantle_extobjc 0
+
+// Overcoat
+#define COCOAPODS_POD_AVAILABLE_Overcoat
+#define COCOAPODS_VERSION_MAJOR_Overcoat 2
+#define COCOAPODS_VERSION_MINOR_Overcoat 0
+#define COCOAPODS_VERSION_PATCH_Overcoat 2
+
+// Overcoat/Core
+#define COCOAPODS_POD_AVAILABLE_Overcoat_Core
+#define COCOAPODS_VERSION_MAJOR_Overcoat_Core 2
+#define COCOAPODS_VERSION_MINOR_Overcoat_Core 0
+#define COCOAPODS_VERSION_PATCH_Overcoat_Core 2
+
+// Overcoat/NSURLSession
+#define COCOAPODS_POD_AVAILABLE_Overcoat_NSURLSession
+#define COCOAPODS_VERSION_MAJOR_Overcoat_NSURLSession 2
+#define COCOAPODS_VERSION_MINOR_Overcoat_NSURLSession 0
+#define COCOAPODS_VERSION_PATCH_Overcoat_NSURLSession 2
+
 // REFrostedViewController
 #define COCOAPODS_POD_AVAILABLE_REFrostedViewController
 #define COCOAPODS_VERSION_MAJOR_REFrostedViewController 2

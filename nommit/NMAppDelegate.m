@@ -33,7 +33,6 @@
     NMMenuViewController *menuController = [[NMMenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
     // Create frosted view controller
-    //
     REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
     frostedViewController.direction = REFrostedViewControllerDirectionLeft;
     frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
@@ -53,31 +52,5 @@
     
     return YES;
 }
-
-- (void)frostedViewController:(REFrostedViewController *)frostedViewController didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer
-{
-    
-}
-
-- (void)frostedViewController:(REFrostedViewController *)frostedViewController willShowMenuViewController:(UIViewController *)menuViewController
-{
-    NSLog(@"willShowMenuViewController");
-}
-
-- (void)frostedViewController:(REFrostedViewController *)frostedViewController didShowMenuViewController:(UIViewController *)menuViewController
-{
-    NSLog(@"didShowMenuViewController");
-}
-
-- (void)frostedViewController:(REFrostedViewController *)frostedViewController willHideMenuViewController:(UIViewController *)menuViewController
-{
-    NSLog(@"willHideMenuViewController");
-}
-
-- (void)frostedViewController:(REFrostedViewController *)frostedViewController didHideMenuViewController:(UIViewController *)menuViewController
-{
-    NSLog(@"didHideMenuViewController");
-}
-
 
 @end
