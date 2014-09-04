@@ -611,11 +611,8 @@
 				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,
 				83D6A9E619B822B8009A6D9B /* NMUser.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
-<<<<<<< HEAD
 				8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */,
-=======
 				83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */,
->>>>>>> 2bdd1fcf42f2d153cc61224b1478dc6459239835
 				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				8DEED52719B29B0D00EE227A /* NMFoodItem.m in Sources */,
 				83D6A9E319B822B8009A6D9B /* _NMUser.m in Sources */,
