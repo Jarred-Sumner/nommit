@@ -35,6 +35,11 @@
 		8D51D2B819B66D0100920F69 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D51D2B719B66D0100920F69 /* Accelerate.framework */; };
 		8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */; };
 		8D51D2BE19B6A92000920F69 /* CHDigitInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2BD19B6A92000920F69 /* CHDigitInput.m */; };
+		8D6DE41719B7B220008F64CE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D6DE41619B7B220008F64CE /* CoreLocation.framework */; };
+		8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE41919B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m */; };
+		8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE41B19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m */; };
+		8D6DE42119B7B5AB008F64CE /* NMAddressSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE42019B7B5AB008F64CE /* NMAddressSearchViewController.m */; };
+		8D6DE42419B8342A008F64CE /* NMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE42319B8342A008F64CE /* NMLoginViewController.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -118,6 +123,15 @@
 		8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRibbonCell.m; path = Cells/NMRibbonCell.m; sourceTree = "<group>"; };
 		8D51D2BC19B6A92000920F69 /* CHDigitInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHDigitInput.h; path = Libraries/CHDigitInput.h; sourceTree = "<group>"; };
 		8D51D2BD19B6A92000920F69 /* CHDigitInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHDigitInput.m; path = Libraries/CHDigitInput.m; sourceTree = "<group>"; };
+		8D6DE41619B7B220008F64CE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8D6DE41819B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPGooglePlacesAutocompleteUtilities.h; path = Libraries/SPGooglePlacesAutocompleteUtilities.h; sourceTree = "<group>"; };
+		8D6DE41919B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesAutocompleteUtilities.m; path = Libraries/SPGooglePlacesAutocompleteUtilities.m; sourceTree = "<group>"; };
+		8D6DE41A19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPGooglePlacesPlaceDetailQuery.h; path = Libraries/SPGooglePlacesPlaceDetailQuery.h; sourceTree = "<group>"; };
+		8D6DE41B19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesPlaceDetailQuery.m; path = Libraries/SPGooglePlacesPlaceDetailQuery.m; sourceTree = "<group>"; };
+		8D6DE41F19B7B5AB008F64CE /* NMAddressSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMAddressSearchViewController.h; path = "untitled folder/NMAddressSearchViewController.h"; sourceTree = "<group>"; };
+		8D6DE42019B7B5AB008F64CE /* NMAddressSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMAddressSearchViewController.m; path = "untitled folder/NMAddressSearchViewController.m"; sourceTree = "<group>"; };
+		8D6DE42219B8342A008F64CE /* NMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLoginViewController.h; path = "untitled folder/NMLoginViewController.h"; sourceTree = "<group>"; };
+		8D6DE42319B8342A008F64CE /* NMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLoginViewController.m; path = "untitled folder/NMLoginViewController.m"; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -159,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83D6A9E819B822F7009A6D9B /* CoreData.framework in Frameworks */,
+				8D6DE41719B7B220008F64CE /* CoreLocation.framework in Frameworks */,
 				8D51D2B819B66D0100920F69 /* Accelerate.framework in Frameworks */,
 				83291B0619B5243600524801 /* Security.framework in Frameworks */,
 				83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */,
@@ -195,6 +210,7 @@
 		8D51D28D19B3A3C200920F69 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8D6DE41E19B7B3CE008F64CE /* Google Places */,
 				8D51D29219B3A43F00920F69 /* UIImage+ImageEffects.h */,
 				8D51D29319B3A43F00920F69 /* UIImage+ImageEffects.m */,
 				8D51D28E19B3A3DD00920F69 /* MEExpandableHeaderView.h */,
@@ -214,6 +230,17 @@
 				8D51D2B519B6690900920F69 /* NMMenuNavigationController.m */,
 			);
 			name = "Sliding Menu";
+			sourceTree = "<group>";
+		};
+		8D6DE41E19B7B3CE008F64CE /* Google Places */ = {
+			isa = PBXGroup;
+			children = (
+				8D6DE41819B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.h */,
+				8D6DE41919B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m */,
+				8D6DE41A19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.h */,
+				8D6DE41B19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m */,
+			);
+			name = "Google Places";
 			sourceTree = "<group>";
 		};
 		8DD3FC2419B2512900DAFCDB = {
@@ -240,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				83D6A9E719B822F7009A6D9B /* CoreData.framework */,
+				8D6DE41619B7B220008F64CE /* CoreLocation.framework */,
 				8D51D2B719B66D0100920F69 /* Accelerate.framework */,
 				83291B0519B5243600524801 /* Security.framework */,
 				83291B0319B5242B00524801 /* CoreImage.framework */,
@@ -312,6 +340,10 @@
 				8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */,
 				8D51D2A719B58DA500920F69 /* NMItemsCollectionViewController.h */,
 				8D51D2A819B58DA500920F69 /* NMItemsCollectionViewController.m */,
+				8D6DE41F19B7B5AB008F64CE /* NMAddressSearchViewController.h */,
+				8D6DE42019B7B5AB008F64CE /* NMAddressSearchViewController.m */,
+				8D6DE42219B8342A008F64CE /* NMLoginViewController.h */,
+				8D6DE42319B8342A008F64CE /* NMLoginViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -540,6 +572,7 @@
 				8D51D2A919B58DA500920F69 /* NMItemsCollectionViewController.m in Sources */,
 				8DEED51C19B270D700EE227A /* NMFoodCell.m in Sources */,
 				8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */,
+				8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
 				8D51D2BE19B6A92000920F69 /* CHDigitInput.m in Sources */,
 				8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */,
 				8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */,
@@ -550,9 +583,11 @@
 				83D6A9E519B822B8009A6D9B /* NMOrder.m in Sources */,
 				8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */,
 				83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */,
+				8D6DE42119B7B5AB008F64CE /* NMAddressSearchViewController.m in Sources */,
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
 				83D6A9E419B822B8009A6D9B /* NMFood.m in Sources */,
+				8D6DE42419B8342A008F64CE /* NMLoginViewController.m in Sources */,
 				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
 				8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */,
 				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
@@ -560,6 +595,7 @@
 				83D6A9E619B822B8009A6D9B /* NMUser.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
 				83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */,
+				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				8DEED52719B29B0D00EE227A /* NMFoodItem.m in Sources */,
 				83D6A9E319B822B8009A6D9B /* _NMUser.m in Sources */,
 				8D51D2A019B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m in Sources */,
