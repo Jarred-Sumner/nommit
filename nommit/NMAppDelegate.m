@@ -14,6 +14,7 @@
 #import "NMMenuNavigationController.h"
 #import "NMMenuViewController.h"
 #import "NMMenuNavigationController.h"
+#import "NMLoginViewController.h"
 
 @interface NMAppDelegate ()
 
@@ -28,7 +29,7 @@
     // UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[NMFoodsViewController alloc] init]];
     
     // create content and menu controllers
-    NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:[[NMFoodsViewController alloc] init]];
+    NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:[[NMLoginViewController alloc] init]];
     NMMenuViewController *menuController = [[NMMenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
     // Create frosted view controller

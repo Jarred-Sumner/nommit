@@ -63,6 +63,7 @@ static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 #pragma mark - UICollectionView
@@ -174,5 +175,7 @@ static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
         _slide++;
     }
 }
+
+-(BOOL)prefersStatusBarHidden { return NO; }
 
 @end
