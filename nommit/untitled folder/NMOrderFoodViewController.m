@@ -13,6 +13,7 @@
 #import "NMOrderFoodDeliveryDetailsCell.h"
 #import "NMOrderFoodOrderButtonCell.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
+#import "NMAddressSearchViewController.h"
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMProgressSection = 1;
@@ -185,6 +186,9 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 - (void)orderFoodButtonPressed:(id)sender
 {
     NSLog(@"Your food has been ordered!");
+    NMAddressSearchViewController *addressSearchVC = [[NMAddressSearchViewController alloc] init];
+    [self presentViewController:addressSearchVC animated:YES completion:nil];
+    
 }
 
 @end

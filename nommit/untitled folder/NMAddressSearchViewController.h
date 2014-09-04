@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMAddressSearchViewController : UIViewController
+@interface NMAddressSearchViewController : UIViewController <UISearchDisplayDelegate, UISearchBarDelegate> {
+    BOOL shouldBeginEditing;
+}
 
 @end

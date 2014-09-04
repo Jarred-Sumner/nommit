@@ -32,6 +32,9 @@
 		8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE41B19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m */; };
 		8D6DE42119B7B5AB008F64CE /* NMAddressSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE42019B7B5AB008F64CE /* NMAddressSearchViewController.m */; };
 		8D6DE42419B8342A008F64CE /* NMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE42319B8342A008F64CE /* NMLoginViewController.m */; };
+		8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819719B84269004A5090 /* NMAddressTableViewController.m */; };
+		8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819A19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m */; };
+		8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819C19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -110,6 +113,12 @@
 		8D6DE42019B7B5AB008F64CE /* NMAddressSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMAddressSearchViewController.m; path = "untitled folder/NMAddressSearchViewController.m"; sourceTree = "<group>"; };
 		8D6DE42219B8342A008F64CE /* NMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLoginViewController.h; path = "untitled folder/NMLoginViewController.h"; sourceTree = "<group>"; };
 		8D6DE42319B8342A008F64CE /* NMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLoginViewController.m; path = "untitled folder/NMLoginViewController.m"; sourceTree = "<group>"; };
+		8D74819619B84269004A5090 /* NMAddressTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMAddressTableViewController.h; path = "untitled folder/NMAddressTableViewController.h"; sourceTree = "<group>"; };
+		8D74819719B84269004A5090 /* NMAddressTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMAddressTableViewController.m; path = "untitled folder/NMAddressTableViewController.m"; sourceTree = "<group>"; };
+		8D74819919B84448004A5090 /* SPGooglePlacesAutocompletePlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPGooglePlacesAutocompletePlace.h; path = Libraries/SPGooglePlacesAutocompletePlace.h; sourceTree = "<group>"; };
+		8D74819A19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesAutocompletePlace.m; path = Libraries/SPGooglePlacesAutocompletePlace.m; sourceTree = "<group>"; };
+		8D74819B19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPGooglePlacesAutocompleteQuery.h; path = Libraries/SPGooglePlacesAutocompleteQuery.h; sourceTree = "<group>"; };
+		8D74819C19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesAutocompleteQuery.m; path = Libraries/SPGooglePlacesAutocompleteQuery.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -203,6 +212,10 @@
 		8D6DE41E19B7B3CE008F64CE /* Google Places */ = {
 			isa = PBXGroup;
 			children = (
+				8D74819919B84448004A5090 /* SPGooglePlacesAutocompletePlace.h */,
+				8D74819A19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m */,
+				8D74819B19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.h */,
+				8D74819C19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m */,
 				8D6DE41819B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.h */,
 				8D6DE41919B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m */,
 				8D6DE41A19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.h */,
@@ -310,6 +323,8 @@
 				8D6DE42019B7B5AB008F64CE /* NMAddressSearchViewController.m */,
 				8D6DE42219B8342A008F64CE /* NMLoginViewController.h */,
 				8D6DE42319B8342A008F64CE /* NMLoginViewController.m */,
+				8D74819619B84269004A5090 /* NMAddressTableViewController.h */,
+				8D74819719B84269004A5090 /* NMAddressTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -542,9 +557,12 @@
 				8D6DE42419B8342A008F64CE /* NMLoginViewController.m in Sources */,
 				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
 				8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */,
+				8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
+				8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
+				8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */,
 				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				8DEED52719B29B0D00EE227A /* NMFoodItem.m in Sources */,
 				8D51D2A019B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m in Sources */,
