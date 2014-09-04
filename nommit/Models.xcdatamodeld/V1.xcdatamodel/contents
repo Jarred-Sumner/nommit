@@ -9,6 +9,7 @@
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="NMOrder" syncable="YES">
         <attribute name="deliveryAddress" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,19 +17,20 @@
         <attribute name="placedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="priceInCents" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="food" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMFood" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="orders" inverseEntity="NMUser" syncable="YES"/>
     </entity>
     <entity name="NMUser" syncable="YES">
-        <attribute name="discounts" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="facebookUID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facebookUID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="user" inverseEntity="NMOrder" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NMFood" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="NMFood" positionX="-63" positionY="-18" width="128" height="178"/>
+        <element name="NMOrder" positionX="-36" positionY="63" width="128" height="163"/>
         <element name="NMUser" positionX="-54" positionY="54" width="128" height="118"/>
-        <element name="NMOrder" positionX="-36" positionY="63" width="128" height="148"/>
     </elements>
 </model>
