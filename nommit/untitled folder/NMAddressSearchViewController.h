@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+
+@class SPGooglePlacesAutocompleteQuery;
 
 @interface NMAddressSearchViewController : UIViewController <UISearchDisplayDelegate, UISearchBarDelegate> {
     BOOL shouldBeginEditing;
+    SPGooglePlacesAutocompleteQuery *searchQuery;
 }
 
 @end

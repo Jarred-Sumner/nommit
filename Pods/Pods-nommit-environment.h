@@ -54,6 +54,36 @@
 #define COCOAPODS_VERSION_MINOR_APParallaxHeader 1
 #define COCOAPODS_VERSION_PATCH_APParallaxHeader 6
 
+// DBCamera
+#define COCOAPODS_POD_AVAILABLE_DBCamera
+#define COCOAPODS_VERSION_MAJOR_DBCamera 2
+#define COCOAPODS_VERSION_MINOR_DBCamera 3
+#define COCOAPODS_VERSION_PATCH_DBCamera 4
+
+// GPUImage
+#define COCOAPODS_POD_AVAILABLE_GPUImage
+#define COCOAPODS_VERSION_MAJOR_GPUImage 0
+#define COCOAPODS_VERSION_MINOR_GPUImage 1
+#define COCOAPODS_VERSION_PATCH_GPUImage 5
+
+// INTULocationManager
+#define COCOAPODS_POD_AVAILABLE_INTULocationManager
+#define COCOAPODS_VERSION_MAJOR_INTULocationManager 1
+#define COCOAPODS_VERSION_MINOR_INTULocationManager 2
+#define COCOAPODS_VERSION_PATCH_INTULocationManager 0
+
+// JVFloatLabeledTextField
+#define COCOAPODS_POD_AVAILABLE_JVFloatLabeledTextField
+#define COCOAPODS_VERSION_MAJOR_JVFloatLabeledTextField 0
+#define COCOAPODS_VERSION_MINOR_JVFloatLabeledTextField 0
+#define COCOAPODS_VERSION_PATCH_JVFloatLabeledTextField 9
+
+// MBProgressHUD
+#define COCOAPODS_POD_AVAILABLE_MBProgressHUD
+#define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
+#define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
+#define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
+
 // MGBoxKit
 #define COCOAPODS_POD_AVAILABLE_MGBoxKit
 #define COCOAPODS_VERSION_MAJOR_MGBoxKit 7
@@ -114,11 +144,29 @@
 #define COCOAPODS_VERSION_MINOR_Overcoat_NSURLSession 0
 #define COCOAPODS_VERSION_PATCH_Overcoat_NSURLSession 2
 
+// PaymentKit
+#define COCOAPODS_POD_AVAILABLE_PaymentKit
+#define COCOAPODS_VERSION_MAJOR_PaymentKit 1
+#define COCOAPODS_VERSION_MINOR_PaymentKit 0
+#define COCOAPODS_VERSION_PATCH_PaymentKit 5
+
 // REFrostedViewController
 #define COCOAPODS_POD_AVAILABLE_REFrostedViewController
 #define COCOAPODS_VERSION_MAJOR_REFrostedViewController 2
 #define COCOAPODS_VERSION_MINOR_REFrostedViewController 4
 #define COCOAPODS_VERSION_PATCH_REFrostedViewController 6
+
+// RateView
+#define COCOAPODS_POD_AVAILABLE_RateView
+#define COCOAPODS_VERSION_MAJOR_RateView 1
+#define COCOAPODS_VERSION_MINOR_RateView 1
+#define COCOAPODS_VERSION_PATCH_RateView 0
+
+// Stripe
+#define COCOAPODS_POD_AVAILABLE_Stripe
+#define COCOAPODS_VERSION_MAJOR_Stripe 1
+#define COCOAPODS_VERSION_MINOR_Stripe 2
+#define COCOAPODS_VERSION_PATCH_Stripe 0
 
 // TYMProgressBarView
 #define COCOAPODS_POD_AVAILABLE_TYMProgressBarView

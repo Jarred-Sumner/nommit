@@ -9,6 +9,13 @@ target "nommit" do
   pod 'APParallaxHeader'
   pod 'REFrostedViewController'
   pod 'Overcoat'
+  pod 'MBProgressHUD', '~> 0.8'
+  pod 'JVFloatLabeledTextField'
+  pod 'INTULocationManager'
+  pod 'PaymentKit'
+  pod 'DBCamera'
+  pod 'Stripe'
+  pod 'RateView'
 end
 
 target "nommitTests" do

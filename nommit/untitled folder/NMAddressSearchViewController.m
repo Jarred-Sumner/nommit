@@ -8,6 +8,7 @@
 
 #import "NMAddressSearchViewController.h"
 #import "NMAddressTableViewController.h"
+#import "SPGooglePlacesAutocompleteQuery.h"
 
 @interface NMAddressSearchViewController ()
 
@@ -28,6 +29,10 @@
     
     self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:self.tableViewController.searchBar contentsController:self];
     self.searchController.delegate = self;
+    
+    searchQuery = [[SPGooglePlacesAutocompleteQuery alloc] init];
+    searchQuery.radius = 100.0;
+    shouldBeginEditing = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,15 +68,15 @@
 #pragma mark UISearchDisplayDelegate
 
 - (void)handleSearchForSearchString:(NSString *)searchString {
-//    searchQuery.location = CLLocationCoordinate2DMake(3.14, 2.15);
-//    searchQuery.input = searchString;
-//    [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
-//        if (error) {
-//            SPPresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
-//        } else {
-//            [self.searchDisplayController.searchResultsTableView reloadData];
-//        }
-//    }];
+    searchQuery.location = CLLocationCoordinate2DMake(3.14, 2.15);
+    searchQuery.input = searchString;
+    [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
+        if (error) {
+            SPPresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
+        } else {
+            [self.searchDisplayController.searchResultsTableView reloadData];
+        }
+    }];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
