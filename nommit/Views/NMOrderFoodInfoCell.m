@@ -17,8 +17,8 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.backgroundColor = UIColorFromRGB(0xFBFBFB);
-    self.backgroundView.layer.borderColor = [UIColorFromRGB(0xD3D3D3) CGColor];
-    self.backgroundView.layer.borderWidth = 1.0f;
+    self.layer.borderColor = [UIColorFromRGB(0xD3D3D3) CGColor];
+    self.layer.borderWidth = 1.0f;
     
     // [self setupHeaderImageView];
     [self setupNameLabel];

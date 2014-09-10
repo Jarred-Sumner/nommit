@@ -28,8 +28,6 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
-        self.layer.borderColor = [UIColorFromRGB(0xD3D3D3) CGColor];
-        self.layer.borderWidth = 1.0f;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [self setupProgressBar];

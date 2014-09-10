@@ -14,14 +14,18 @@
 #import "NMOrderFoodOrderButtonCell.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMAddressSearchViewController.h"
+#import "NMDeliveryAddressTableViewCell.h"
+#import "NMMenuNavigationController.h"
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMProgressSection = 1;
-const NSInteger NMOrderDeliveryDetailsSection = 2;
-const NSInteger NMOrderButtonSection = 3;
+const NSInteger NMDeliveryAddressSection = 2;
+const NSInteger NMOrderDeliveryDetailsSection = 3;
+const NSInteger NMOrderButtonSection = 4;
 
 static NSString *NMOrderFoodInfoIdentifier = @"NMOrderFoodInfoCell";
 static NSString *NMOrderFoodProgressIdentifier = @"NMOrderFoodProgressCell";
+static NSString *NMOrderFoodDeliveryAddressIdentifier = @"NMDeliveryAddressTableViewCell";
 static NSString *NMOrderFoodDeliveryIdentifier = @"NMOrderFoodDeliveryDetailsCell";
 static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
@@ -40,6 +44,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.tableView registerClass:[NMOrderFoodInfoCell class] forCellReuseIdentifier:NMOrderFoodInfoIdentifier];
     [self.tableView registerClass:[NMOrderFoodProgressCell class] forCellReuseIdentifier:NMOrderFoodProgressIdentifier];
+    [self.tableView registerClass:[NMDeliveryAddressTableViewCell class] forCellReuseIdentifier:NMOrderFoodDeliveryAddressIdentifier];
     [self.tableView registerClass:[NMOrderFoodDeliveryDetailsCell class] forCellReuseIdentifier:NMOrderFoodDeliveryIdentifier];
     [self.tableView registerClass:[NMOrderFoodOrderButtonCell class] forCellReuseIdentifier:NMOrderFoodButtonIdentifier];
     
@@ -60,7 +65,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         return 100;
     } else if (indexPath.section == NMProgressSection) {
         return 103;
-    } else if (indexPath.section == NMOrderDeliveryDetailsSection) {
+    } else if (indexPath.section == NMOrderDeliveryDetailsSection || indexPath.section == NMDeliveryAddressSection) {
         return 50;
     } else if (indexPath.section == NMOrderButtonSection) {
         return 49;
@@ -73,8 +78,10 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         return 1;
     } else if (section == NMProgressSection) {
         return 1;
+    } else if (section == NMDeliveryAddressSection) {
+        return 1;
     } else if (section == NMOrderDeliveryDetailsSection) {
-        return 2;
+        return 1;
     } else if (section == NMOrderButtonSection) {
         return 1;
     }
@@ -98,21 +105,15 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         cell.leftSold = @[left, total];
         
         return cell;
+    } else if (indexPath.section == NMDeliveryAddressSection) {
+        NMDeliveryAddressTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryAddressIdentifier];
+        cell.currentAddress.text = @"2211 mission street, San Francisco, CA 15232";
+        cell.estimatedTime.text = @"2 minutes";
+        return cell;
     } else if (indexPath.section == NMOrderDeliveryDetailsSection) {
         NMOrderFoodDeliveryDetailsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryIdentifier];
-        
-        switch (indexPath.row) {
-            case 0:
-                cell.textField.placeholder = @"Address";
-                break;
-            case 1:
-                cell.textField.placeholder = @"Room #";
-                break;
-            default:
-                break;
-        }
+        cell.textField.placeholder = @"Room #";
         return cell;
-    
     } else if (indexPath.section == NMOrderButtonSection) {
         NMOrderFoodOrderButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodButtonIdentifier];
         
@@ -120,6 +121,16 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         
     }
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == NMDeliveryAddressSection) {
+        NMAddressSearchViewController *addressSearchVC = [[NMAddressSearchViewController alloc] init];
+        addressSearchVC.delegate = self;
+        NMMenuNavigationController *navController =
+        [[NMMenuNavigationController alloc] initWithRootViewController:addressSearchVC];
+        [self presentViewController:navController animated:YES completion:nil];
+    }
 }
 
 

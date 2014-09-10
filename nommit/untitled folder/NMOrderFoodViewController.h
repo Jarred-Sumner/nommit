@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "NMFoodItem.h"
+#import "NMAddressSearchViewController.h"
 
-@interface NMOrderFoodViewController : UITableViewController
+@interface NMOrderFoodViewController : UITableViewController<NMAddressSearchDelegate>
 
 - (id)initWithFoodItem:(NMFoodItem *)foodItem;
 
