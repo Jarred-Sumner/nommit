@@ -31,6 +31,8 @@
 		83EE766119BBFE51006FEDDF /* NMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765F19BBFE51006FEDDF /* NMAddress.m */; };
 		83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */; };
 		8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */; };
+		8D49F30819BE942600E60145 /* NMPaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30719BE942600E60145 /* NMPaymentsViewController.m */; };
+		8D49F30B19BEAF2B00E60145 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30A19BEAF2B00E60145 /* Constants.m */; };
 		8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D28F19B3A3DD00920F69 /* MEExpandableHeaderView.m */; };
 		8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29319B3A43F00920F69 /* UIImage+ImageEffects.m */; };
 		8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */; };
@@ -126,6 +128,10 @@
 		83FB6CFF19B57D6700B808B6 /* NMOrderFoodOrderButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMOrderFoodOrderButtonCell.h; sourceTree = "<group>"; };
 		83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMOrderFoodOrderButtonCell.m; sourceTree = "<group>"; };
 		8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nommit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D49F30619BE942600E60145 /* NMPaymentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPaymentsViewController.h; path = "untitled folder/NMPaymentsViewController.h"; sourceTree = "<group>"; };
+		8D49F30719BE942600E60145 /* NMPaymentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPaymentsViewController.m; path = "untitled folder/NMPaymentsViewController.m"; sourceTree = "<group>"; };
+		8D49F30919BEAF2B00E60145 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Constants/Constants.h; sourceTree = "<group>"; };
+		8D49F30A19BEAF2B00E60145 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Constants/Constants.m; sourceTree = "<group>"; };
 		8D51D28E19B3A3DD00920F69 /* MEExpandableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MEExpandableHeaderView.h; path = Libraries/MEExpandableHeaderView.h; sourceTree = "<group>"; };
 		8D51D28F19B3A3DD00920F69 /* MEExpandableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MEExpandableHeaderView.m; path = Libraries/MEExpandableHeaderView.m; sourceTree = "<group>"; };
 		8D51D29219B3A43F00920F69 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Libraries/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -411,6 +417,8 @@
 				8D6DE42319B8342A008F64CE /* NMLoginViewController.m */,
 				8D74819619B84269004A5090 /* NMAddressTableViewController.h */,
 				8D74819719B84269004A5090 /* NMAddressTableViewController.m */,
+				8D49F30619BE942600E60145 /* NMPaymentsViewController.h */,
+				8D49F30719BE942600E60145 /* NMPaymentsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -420,6 +428,8 @@
 			children = (
 				8DD3FC6A19B258F700DAFCDB /* NMColors.h */,
 				8DD3FC6B19B258F700DAFCDB /* NMColors.m */,
+				8D49F30919BEAF2B00E60145 /* Constants.h */,
+				8D49F30A19BEAF2B00E60145 /* Constants.m */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -634,6 +644,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D49F30819BE942600E60145 /* NMPaymentsViewController.m in Sources */,
 				83D6A9E219B822B8009A6D9B /* _NMOrder.m in Sources */,
 				8D51D2A919B58DA500920F69 /* NMItemsCollectionViewController.m in Sources */,
 				8DEED51C19B270D700EE227A /* NMFoodCell.m in Sources */,
@@ -661,6 +672,7 @@
 				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
 				83EE766119BBFE51006FEDDF /* NMAddress.m in Sources */,
 				8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */,
+				8D49F30B19BEAF2B00E60145 /* Constants.m in Sources */,
 				8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
 				8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */,
