@@ -12,12 +12,14 @@ extern const struct NMUserAttributes {
 } NMUserAttributes;
 
 extern const struct NMUserRelationships {
+	__unsafe_unretained NSString *addresses;
 	__unsafe_unretained NSString *orders;
 } NMUserRelationships;
 
 extern const struct NMUserFetchedProperties {
 } NMUserFetchedProperties;
 
+@class NMAddress;
 @class NMOrder;
 
 
@@ -78,6 +80,13 @@ extern const struct NMUserFetchedProperties {
 
 
 
+@property (nonatomic, strong) NMAddress *addresses;
+
+//- (BOOL)validateAddresses:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, strong) NSSet *orders;
 
 - (NSMutableSet*)ordersSet;
@@ -122,6 +131,11 @@ extern const struct NMUserFetchedProperties {
 - (void)setPrimitivePhone:(NSString*)value;
 
 
+
+
+
+- (NMAddress*)primitiveAddresses;
+- (void)setPrimitiveAddresses:(NMAddress*)value;
 
 
 

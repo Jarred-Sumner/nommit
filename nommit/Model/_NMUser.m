@@ -11,6 +11,7 @@ const struct NMUserAttributes NMUserAttributes = {
 };
 
 const struct NMUserRelationships NMUserRelationships = {
+	.addresses = @"addresses",
 	.orders = @"orders",
 };
 
@@ -77,6 +78,10 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 
 
+
+@dynamic addresses;
+
+	
 
 @dynamic orders;
 

@@ -10,6 +10,10 @@
 
 @implementation NMFood
 
-// Custom logic goes here.
+- (NSFoodState)state {
+    return (NSFoodState)[self rawStateValue];
+}
+
+
 
 @end

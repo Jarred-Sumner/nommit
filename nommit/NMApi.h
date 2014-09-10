@@ -8,6 +8,18 @@
 
 #import <Overcoat.h>
 
+#import "NMFoodApiModel.h"
+#import "NMOrderApiModel.h"
+#import "NMUserApiModel.h"
+#import "NMAddressApiModel.h"
+
+#import "NMAddress.h"
+#import "NMFood.h"
+#import "NMorder.h"
+#import "NMUser.h"
+
 @interface NMApi : OVCHTTPSessionManager
+
++ (NSDateFormatter *)dateFormatter;
 
 @end

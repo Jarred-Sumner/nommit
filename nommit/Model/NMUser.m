@@ -1,15 +1,18 @@
 #import "NMUser.h"
 
 
-@interface NMUser ()
-
-// Private interface goes here.
-
-@end
-
-
 @implementation NMUser
 
-// Custom logic goes here.
+- (NSString*)accessToken {
+    return @"";
+}
+
+- (void)setAccessToken:(NSString *)accessToken {
+}
+
+
+
+
+
 
 @end

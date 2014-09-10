@@ -16,6 +16,9 @@
 #import "NMMenuNavigationController.h"
 #import "NMLoginViewController.h"
 
+#import "CoreData+MagicalRecord.h"
+#import <MagicalRecord+ShorthandSupport.h>
+
 @interface NMAppDelegate ()
 
 @end
@@ -24,9 +27,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [MagicalRecord setupAutoMigratingCoreDataStack];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[NMFoodsViewController alloc] init]];
+    
+//    NMApi *api = [[NMApi alloc] initWithBaseURL:[NSURL URLWithString:@"http://nommit-api.herokuapp.com"] managedObjectContext:[NSManagedObjectContext MR_defaultContext] sessionConfiguration:nil];
+//    [api GET:@"orders" parameters:@{@"access_token": @"CAACEdEose0cBAKsEmpmL1ZCC2ojnVZAce3bSUbRjJJ8S1xwMNBUouv10jl5X2V2jv3r5MGqwZCKyMhTaZCJgNrBVhI46o4Y2BUkZCWVTGrKnlfyyMmEFDLOtfj0k4gHhoUlwtoIJFRxc9NOcgME6mm0gVAsGVUCZBMjRGcsFJKuaQuB3v0jLVaptadeHSwOVN3QrvZACp18Bhu49tZAfwnXMZA7VOQwF9yZA8ZD"} completion:^(OVCResponse *response, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//        NSLog(@"Order Count: %d", [NMOrder MR_countOfEntities]);
+//        NSLog(@"Food Count: %d", [NMFood MR_countOfEntities]);
+//        NSLog(@"Address Count: %d", [NMAddress MR_countOfEntities]);
+//        NSLog(@"User Count: %d", [NMUser MR_countOfEntities]);
+//    }];
+
     
     // create content and menu controllers
     NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:[[NMLoginViewController alloc] init]];
@@ -51,6 +66,10 @@
     [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
     
     return YES;
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    [MagicalRecord cleanUp];
 }
 
 @end

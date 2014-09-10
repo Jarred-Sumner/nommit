@@ -8,6 +8,4 @@
 
 @implementation NMOrder
 
-// Custom logic goes here.
-
 @end
