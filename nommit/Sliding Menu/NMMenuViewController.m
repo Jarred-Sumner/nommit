@@ -13,6 +13,7 @@
 #import "NMFoodsViewController.h"
 #import "NMMenuNavigationController.h"
 #import "NMPaymentsViewController.h"
+#import "NMCreateCampaignViewController.h"
 
 @interface NMMenuViewController ()
 
@@ -106,6 +107,11 @@
         NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:paymentsVC];
         self.frostedViewController.contentViewController = navigationController;
         navigationController.navigationBar.translucent = NO;
+    } else if (indexPath.section == 0 && indexPath.row == 2) {
+        NMCreateCampaignViewController *createVC = [[NMCreateCampaignViewController alloc] init];
+        NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:createVC];
+        self.frostedViewController.contentViewController = navigationController;
+        navigationController.navigationBar.translucent = NO;
     } else {
         NMFoodsViewController *secondViewController = [[NMFoodsViewController alloc] init];
         NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:secondViewController];
@@ -145,7 +151,7 @@
     }
     
     if (indexPath.section == 0) {
-        NSArray *titles = @[@"Home", @"Payments", @"Chats"];
+        NSArray *titles = @[@"Home", @"Payments", @"Create a Campaign"];
         cell.textLabel.text = titles[indexPath.row];
     } else {
         NSArray *titles = @[@"Pepperoni Pizza", @"Dinosaur Nuggets", @"Pasta"];
