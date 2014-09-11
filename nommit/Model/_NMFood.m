@@ -4,11 +4,13 @@
 #import "_NMFood.h"
 
 const struct NMFoodAttributes NMFoodAttributes = {
+	.details = @"details",
 	.endDate = @"endDate",
 	.headerImageURL = @"headerImageURL",
 	.orderCount = @"orderCount",
 	.orderGoal = @"orderGoal",
-	.state = @"state",
+	.price = @"price",
+	.stateID = @"stateID",
 	.subtitle = @"subtitle",
 	.thumbnailImageURL = @"thumbnailImageURL",
 	.title = @"title",
@@ -16,6 +18,7 @@ const struct NMFoodAttributes NMFoodAttributes = {
 };
 
 const struct NMFoodRelationships NMFoodRelationships = {
+	.orders = @"orders",
 };
 
 const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
@@ -57,8 +60,8 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"stateValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"state"];
+	if ([key isEqualToString:@"stateIDValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"stateID"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -70,6 +73,13 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic details;
+
+
 
 
 
@@ -140,26 +150,33 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 
 
 
-@dynamic state;
+@dynamic price;
 
 
 
-- (int16_t)stateValue {
-	NSNumber *result = [self state];
+
+
+
+@dynamic stateID;
+
+
+
+- (int16_t)stateIDValue {
+	NSNumber *result = [self stateID];
 	return [result shortValue];
 }
 
-- (void)setStateValue:(int16_t)value_ {
-	[self setState:[NSNumber numberWithShort:value_]];
+- (void)setStateIDValue:(int16_t)value_ {
+	[self setStateID:[NSNumber numberWithShort:value_]];
 }
 
-- (int16_t)primitiveStateValue {
-	NSNumber *result = [self primitiveState];
+- (int16_t)primitiveStateIDValue {
+	NSNumber *result = [self primitiveStateID];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveStateValue:(int16_t)value_ {
-	[self setPrimitiveState:[NSNumber numberWithShort:value_]];
+- (void)setPrimitiveStateIDValue:(int16_t)value_ {
+	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
 }
 
 
@@ -212,6 +229,19 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 
 
 
+
+@dynamic orders;
+
+	
+- (NSMutableSet*)ordersSet {
+	[self willAccessValueForKey:@"orders"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orders"];
+  
+	[self didAccessValueForKey:@"orders"];
+	return result;
+}
+	
 
 
 

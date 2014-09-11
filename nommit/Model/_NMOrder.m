@@ -4,15 +4,16 @@
 #import "_NMOrder.h"
 
 const struct NMOrderAttributes NMOrderAttributes = {
-	.deliveryAddress = @"deliveryAddress",
-	.deliveryNote = @"deliveryNote",
+	.deliveredAt = @"deliveredAt",
 	.placedAt = @"placedAt",
 	.priceInCents = @"priceInCents",
-	.state = @"state",
+	.quantity = @"quantity",
+	.stateID = @"stateID",
 	.uid = @"uid",
 };
 
 const struct NMOrderRelationships NMOrderRelationships = {
+	.address = @"address",
 	.food = @"food",
 	.user = @"user",
 };
@@ -51,8 +52,13 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"stateValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"state"];
+	if ([key isEqualToString:@"quantityValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"quantity"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"stateIDValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"stateID"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -68,14 +74,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 
 
-@dynamic deliveryAddress;
-
-
-
-
-
-
-@dynamic deliveryNote;
+@dynamic deliveredAt;
 
 
 
@@ -115,26 +114,52 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 
 
-@dynamic state;
+@dynamic quantity;
 
 
 
-- (int16_t)stateValue {
-	NSNumber *result = [self state];
+- (int32_t)quantityValue {
+	NSNumber *result = [self quantity];
+	return [result intValue];
+}
+
+- (void)setQuantityValue:(int32_t)value_ {
+	[self setQuantity:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveQuantityValue {
+	NSNumber *result = [self primitiveQuantity];
+	return [result intValue];
+}
+
+- (void)setPrimitiveQuantityValue:(int32_t)value_ {
+	[self setPrimitiveQuantity:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
+@dynamic stateID;
+
+
+
+- (int16_t)stateIDValue {
+	NSNumber *result = [self stateID];
 	return [result shortValue];
 }
 
-- (void)setStateValue:(int16_t)value_ {
-	[self setState:[NSNumber numberWithShort:value_]];
+- (void)setStateIDValue:(int16_t)value_ {
+	[self setStateID:[NSNumber numberWithShort:value_]];
 }
 
-- (int16_t)primitiveStateValue {
-	NSNumber *result = [self primitiveState];
+- (int16_t)primitiveStateIDValue {
+	NSNumber *result = [self primitiveStateID];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveStateValue:(int16_t)value_ {
-	[self setPrimitiveState:[NSNumber numberWithShort:value_]];
+- (void)setPrimitiveStateIDValue:(int16_t)value_ {
+	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
 }
 
 
@@ -166,6 +191,10 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 
 
+
+@dynamic address;
+
+	
 
 @dynamic food;
 

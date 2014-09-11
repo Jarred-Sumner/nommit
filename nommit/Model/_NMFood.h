@@ -5,11 +5,13 @@
 
 
 extern const struct NMFoodAttributes {
+	__unsafe_unretained NSString *details;
 	__unsafe_unretained NSString *endDate;
 	__unsafe_unretained NSString *headerImageURL;
 	__unsafe_unretained NSString *orderCount;
 	__unsafe_unretained NSString *orderGoal;
-	__unsafe_unretained NSString *state;
+	__unsafe_unretained NSString *price;
+	__unsafe_unretained NSString *stateID;
 	__unsafe_unretained NSString *subtitle;
 	__unsafe_unretained NSString *thumbnailImageURL;
 	__unsafe_unretained NSString *title;
@@ -17,10 +19,14 @@ extern const struct NMFoodAttributes {
 } NMFoodAttributes;
 
 extern const struct NMFoodRelationships {
+	__unsafe_unretained NSString *orders;
 } NMFoodRelationships;
 
 extern const struct NMFoodFetchedProperties {
 } NMFoodFetchedProperties;
+
+@class NMOrder;
+
 
 
 
@@ -41,6 +47,16 @@ extern const struct NMFoodFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (NMFoodID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* details;
+
+
+
+//- (BOOL)validateDetails:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -94,15 +110,25 @@ extern const struct NMFoodFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* state;
+@property (nonatomic, strong) NSDecimalNumber* price;
 
 
 
-@property int16_t stateValue;
-- (int16_t)stateValue;
-- (void)setStateValue:(int16_t)value_;
+//- (BOOL)validatePrice:(id*)value_ error:(NSError**)error_;
 
-//- (BOOL)validateState:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NSNumber* stateID;
+
+
+
+@property int16_t stateIDValue;
+- (int16_t)stateIDValue;
+- (void)setStateIDValue:(int16_t)value_;
+
+//- (BOOL)validateStateID:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -152,14 +178,32 @@ extern const struct NMFoodFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *orders;
+
+- (NSMutableSet*)ordersSet;
+
+
+
+
 
 @end
 
 @interface _NMFood (CoreDataGeneratedAccessors)
 
+- (void)addOrders:(NSSet*)value_;
+- (void)removeOrders:(NSSet*)value_;
+- (void)addOrdersObject:(NMOrder*)value_;
+- (void)removeOrdersObject:(NMOrder*)value_;
+
 @end
 
 @interface _NMFood (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSString*)primitiveDetails;
+- (void)setPrimitiveDetails:(NSString*)value;
+
+
 
 
 - (NSDate*)primitiveEndDate;
@@ -192,11 +236,17 @@ extern const struct NMFoodFetchedProperties {
 
 
 
-- (NSNumber*)primitiveState;
-- (void)setPrimitiveState:(NSNumber*)value;
+- (NSDecimalNumber*)primitivePrice;
+- (void)setPrimitivePrice:(NSDecimalNumber*)value;
 
-- (int16_t)primitiveStateValue;
-- (void)setPrimitiveStateValue:(int16_t)value_;
+
+
+
+- (NSNumber*)primitiveStateID;
+- (void)setPrimitiveStateID:(NSNumber*)value;
+
+- (int16_t)primitiveStateIDValue;
+- (void)setPrimitiveStateIDValue:(int16_t)value_;
 
 
 
@@ -226,6 +276,11 @@ extern const struct NMFoodFetchedProperties {
 - (void)setPrimitiveUidValue:(int64_t)value_;
 
 
+
+
+
+- (NSMutableSet*)primitiveOrders;
+- (void)setPrimitiveOrders:(NSMutableSet*)value;
 
 
 @end

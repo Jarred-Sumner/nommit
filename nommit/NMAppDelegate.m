@@ -16,6 +16,9 @@
 #import "NMMenuNavigationController.h"
 #import "NMLoginViewController.h"
 
+#import "CoreData+MagicalRecord.h"
+#import <MagicalRecord+ShorthandSupport.h>
+
 @interface NMAppDelegate ()
 
 @end
@@ -24,6 +27,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [MagicalRecord setupAutoMigratingCoreDataStack];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[NMFoodsViewController alloc] init]];
@@ -51,6 +56,10 @@
     [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
     
     return YES;
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    [MagicalRecord cleanUp];
 }
 
 @end

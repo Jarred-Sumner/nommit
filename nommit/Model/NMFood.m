@@ -10,6 +10,5 @@
 
 @implementation NMFood
 
-// Custom logic goes here.
 
 @end
