@@ -25,6 +25,7 @@
 		8D49F30819BE942600E60145 /* NMPaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30719BE942600E60145 /* NMPaymentsViewController.m */; };
 		8D49F30B19BEAF2B00E60145 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30A19BEAF2B00E60145 /* Constants.m */; };
 		8D49F30E19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30D19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.m */; };
+		8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F31019C0D65900E60145 /* NMCreateCampaignViewController.m */; };
 		8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D28F19B3A3DD00920F69 /* MEExpandableHeaderView.m */; };
 		8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29319B3A43F00920F69 /* UIImage+ImageEffects.m */; };
 		8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */; };
@@ -110,6 +111,8 @@
 		8D49F30A19BEAF2B00E60145 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Constants/Constants.m; sourceTree = "<group>"; };
 		8D49F30C19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryAddressTableViewCell.h; path = Cells/NMDeliveryAddressTableViewCell.h; sourceTree = "<group>"; };
 		8D49F30D19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryAddressTableViewCell.m; path = Cells/NMDeliveryAddressTableViewCell.m; sourceTree = "<group>"; };
+		8D49F30F19C0D65900E60145 /* NMCreateCampaignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCreateCampaignViewController.h; path = "untitled folder/NMCreateCampaignViewController.h"; sourceTree = "<group>"; };
+		8D49F31019C0D65900E60145 /* NMCreateCampaignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCreateCampaignViewController.m; path = "untitled folder/NMCreateCampaignViewController.m"; sourceTree = "<group>"; };
 		8D51D28E19B3A3DD00920F69 /* MEExpandableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MEExpandableHeaderView.h; path = Libraries/MEExpandableHeaderView.h; sourceTree = "<group>"; };
 		8D51D28F19B3A3DD00920F69 /* MEExpandableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MEExpandableHeaderView.m; path = Libraries/MEExpandableHeaderView.m; sourceTree = "<group>"; };
 		8D51D29219B3A43F00920F69 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Libraries/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -370,6 +373,8 @@
 				8D74819719B84269004A5090 /* NMAddressTableViewController.m */,
 				8D49F30619BE942600E60145 /* NMPaymentsViewController.h */,
 				8D49F30719BE942600E60145 /* NMPaymentsViewController.m */,
+				8D49F30F19C0D65900E60145 /* NMCreateCampaignViewController.h */,
+				8D49F31019C0D65900E60145 /* NMCreateCampaignViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -607,6 +612,7 @@
 				8D51D2BE19B6A92000920F69 /* CHDigitInput.m in Sources */,
 				8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */,
 				8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */,
+				8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */,
 				83D6A9E119B822B8009A6D9B /* _NMFood.m in Sources */,
 				8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */,
 				8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */,

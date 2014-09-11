@@ -29,7 +29,11 @@ static NSString *NMOrderFoodDeliveryAddressIdentifier = @"NMDeliveryAddressTable
 static NSString *NMOrderFoodDeliveryIdentifier = @"NMOrderFoodDeliveryDetailsCell";
 static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
-@interface NMOrderFoodViewController ()<APParallaxViewDelegate, NMOrderFoodProgressCell, NMOrderFoodOrderButtonCell>
+@interface NMOrderFoodViewController ()<APParallaxViewDelegate, NMOrderFoodProgressCell, NMOrderFoodOrderButtonCell> {
+    NSString *destAddress;
+    NSString *destTime;
+    NMDeliveryAddressTableViewCell *addressCell;
+}
 
 @property (nonatomic, strong) NMFoodItem *foodItem;
 
@@ -39,6 +43,14 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
 - (instancetype)initWithFoodItem:(NMFoodItem *)foodItem {
     self = [super initWithStyle:UITableViewStylePlain];
+    destAddress = @"2211 mission street, San Francisco, CA 15232";
+    destTime = @"Est 2 min";
+//    [self getAddressOfCurrentLocation:^(NSString *address, NSString *dTime) {
+//        destAddress = address;
+//        destTime = dTime;
+//        [self.tableView reloadData];
+//    }];
+    
     _foodItem = foodItem;
     
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -107,8 +119,9 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         return cell;
     } else if (indexPath.section == NMDeliveryAddressSection) {
         NMDeliveryAddressTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryAddressIdentifier];
-        cell.currentAddress.text = @"2211 mission street, San Francisco, CA 15232";
-        cell.estimatedTime.text = @"2 minutes";
+        addressCell = cell;
+        cell.currentAddress.text = destAddress;
+        cell.estimatedTime.text = destTime;
         return cell;
     } else if (indexPath.section == NMOrderDeliveryDetailsSection) {
         NMOrderFoodDeliveryDetailsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryIdentifier];
@@ -201,5 +214,14 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     [self presentViewController:addressSearchVC animated:YES completion:nil];
     
 }
+
+#pragma mark - AddressSearchViewController delegate methods
+- (void)setSelectedAddress:(NSString *)address {
+    destAddress = address;
+    addressCell.currentAddress.text = address;
+    [addressCell.currentAddress setNeedsDisplay];
+}
+
+
 
 @end
