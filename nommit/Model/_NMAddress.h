@@ -12,6 +12,7 @@ extern const struct NMAddressAttributes {
 	__unsafe_unretained NSString *instructions;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *phone;
+	__unsafe_unretained NSString *state;
 	__unsafe_unretained NSString *uid;
 	__unsafe_unretained NSString *zip;
 } NMAddressAttributes;
@@ -26,6 +27,7 @@ extern const struct NMAddressFetchedProperties {
 
 @class NMOrder;
 @class NMUser;
+
 
 
 
@@ -120,6 +122,16 @@ extern const struct NMAddressFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* state;
+
+
+
+//- (BOOL)validateState:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* uid;
 
 
@@ -206,6 +218,12 @@ extern const struct NMAddressFetchedProperties {
 
 - (NSString*)primitivePhone;
 - (void)setPrimitivePhone:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveState;
+- (void)setPrimitiveState:(NSString*)value;
 
 
 

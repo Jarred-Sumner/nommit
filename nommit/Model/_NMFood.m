@@ -10,7 +10,7 @@ const struct NMFoodAttributes NMFoodAttributes = {
 	.orderCount = @"orderCount",
 	.orderGoal = @"orderGoal",
 	.price = @"price",
-	.rawState = @"rawState",
+	.stateID = @"stateID",
 	.subtitle = @"subtitle",
 	.thumbnailImageURL = @"thumbnailImageURL",
 	.title = @"title",
@@ -60,8 +60,8 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"rawStateValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"rawState"];
+	if ([key isEqualToString:@"stateIDValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"stateID"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -157,26 +157,26 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 
 
 
-@dynamic rawState;
+@dynamic stateID;
 
 
 
-- (int16_t)rawStateValue {
-	NSNumber *result = [self rawState];
+- (int16_t)stateIDValue {
+	NSNumber *result = [self stateID];
 	return [result shortValue];
 }
 
-- (void)setRawStateValue:(int16_t)value_ {
-	[self setRawState:[NSNumber numberWithShort:value_]];
+- (void)setStateIDValue:(int16_t)value_ {
+	[self setStateID:[NSNumber numberWithShort:value_]];
 }
 
-- (int16_t)primitiveRawStateValue {
-	NSNumber *result = [self primitiveRawState];
+- (int16_t)primitiveStateIDValue {
+	NSNumber *result = [self primitiveStateID];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveRawStateValue:(int16_t)value_ {
-	[self setPrimitiveRawState:[NSNumber numberWithShort:value_]];
+- (void)setPrimitiveStateIDValue:(int16_t)value_ {
+	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
 }
 
 

@@ -17,7 +17,7 @@
     return @{
              @"uid" : @"id",
              @"subtitle" : @"place",
-             @"rawState" : @"state",
+             @"stateID" : @"state_id",
              @"endDate" : @"end_date",
              @"headerImageURL" : @"header_image_url",
              @"thumbnailImageURL" : @"thumbnail_image_url",

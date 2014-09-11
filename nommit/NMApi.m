@@ -15,7 +15,7 @@
     return @{
              @"users/*" : [NMUserApiModel class],
              @"sessions" : [NMUserApiModel class],
-             @"orders" : [NMOrderApiModel class],
+//             @"orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
              @"foods" : [NMFoodApiModel class]
      };

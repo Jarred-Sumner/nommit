@@ -15,14 +15,14 @@
 
 @property (nonatomic, strong) NSNumber *uid;
 @property (nonatomic, strong) NSNumber *quantity;
-@property (nonatomic, strong) NSNumber *rawState;
+@property (nonatomic, strong) NSNumber *stateID;
 @property (nonatomic, strong) NSNumber *priceInCents;
 @property (nonatomic, strong) NSDate *placedAt;
-@property (nonatomic, strong) NSDate *createdAt;
+@property (nonatomic, strong) NSDate *deliveredAt;
 
-@property (nonatomic, strong) NMAddressApiModel *address;
-@property (nonatomic, strong) NMFoodApiModel *food;
-@property (nonatomic, strong) NMUserApiModel *user;
+@property (nonatomic, strong, readonly) NMAddressApiModel *address;
+@property (nonatomic, strong, readonly) NMFoodApiModel *food;
+@property (nonatomic, strong, readonly) NMUserApiModel *user;
 
 
 @end

@@ -18,6 +18,6 @@
 @property (nonatomic, strong) NSString *thumbnailImageURL;
 @property (nonatomic, strong) NSNumber *orderGoal;
 @property (nonatomic, strong) NSNumber *orderCount;
-@property (nonatomic, strong) NSNumber *rawState;
+@property (nonatomic, strong) NSNumber *stateID;
 
 @end

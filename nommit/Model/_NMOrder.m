@@ -7,7 +7,8 @@ const struct NMOrderAttributes NMOrderAttributes = {
 	.deliveredAt = @"deliveredAt",
 	.placedAt = @"placedAt",
 	.priceInCents = @"priceInCents",
-	.rawState = @"rawState",
+	.quantity = @"quantity",
+	.stateID = @"stateID",
 	.uid = @"uid",
 };
 
@@ -51,8 +52,13 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"rawStateValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"rawState"];
+	if ([key isEqualToString:@"quantityValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"quantity"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"stateIDValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"stateID"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -108,26 +114,52 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 
 
-@dynamic rawState;
+@dynamic quantity;
 
 
 
-- (int16_t)rawStateValue {
-	NSNumber *result = [self rawState];
+- (int32_t)quantityValue {
+	NSNumber *result = [self quantity];
+	return [result intValue];
+}
+
+- (void)setQuantityValue:(int32_t)value_ {
+	[self setQuantity:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveQuantityValue {
+	NSNumber *result = [self primitiveQuantity];
+	return [result intValue];
+}
+
+- (void)setPrimitiveQuantityValue:(int32_t)value_ {
+	[self setPrimitiveQuantity:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
+@dynamic stateID;
+
+
+
+- (int16_t)stateIDValue {
+	NSNumber *result = [self stateID];
 	return [result shortValue];
 }
 
-- (void)setRawStateValue:(int16_t)value_ {
-	[self setRawState:[NSNumber numberWithShort:value_]];
+- (void)setStateIDValue:(int16_t)value_ {
+	[self setStateID:[NSNumber numberWithShort:value_]];
 }
 
-- (int16_t)primitiveRawStateValue {
-	NSNumber *result = [self primitiveRawState];
+- (int16_t)primitiveStateIDValue {
+	NSNumber *result = [self primitiveStateID];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveRawStateValue:(int16_t)value_ {
-	[self setPrimitiveRawState:[NSNumber numberWithShort:value_]];
+- (void)setPrimitiveStateIDValue:(int16_t)value_ {
+	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
 }
 
 

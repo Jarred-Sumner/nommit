@@ -11,6 +11,7 @@ const struct NMAddressAttributes NMAddressAttributes = {
 	.instructions = @"instructions",
 	.name = @"name",
 	.phone = @"phone",
+	.state = @"state",
 	.uid = @"uid",
 	.zip = @"zip",
 };
@@ -104,6 +105,13 @@ const struct NMAddressFetchedProperties NMAddressFetchedProperties = {
 
 
 @dynamic phone;
+
+
+
+
+
+
+@dynamic state;
 
 
 

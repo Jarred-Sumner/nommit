@@ -17,9 +17,12 @@
     return @{
              @"uid" : @"id",
              @"priceInCents" : @"price_in_cents",
-             @"createdAt" : @"created_at",
-             @"placedAt" : @"placed_at",
-             @"rawState" : @"state"
+             @"deliveredAt" : @"delivered_at",
+             @"placedAt" : @"created_at",
+             @"stateID" : @"state_id",
+             @"food" : @"food",
+             @"user" : @"user",
+             @"address" : @"address"
      };
 }
 
@@ -31,7 +34,7 @@
     }];
 }
 
-+ (NSValueTransformer *)createdAtJSONTransformer {
++ (NSValueTransformer *)deliveredAtJSONTransformer {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
         return [NMApi.dateFormatter dateFromString:str];
     } reverseBlock:^(NSDate *date) {
@@ -40,7 +43,7 @@
 }
 
 + (NSValueTransformer *)userJSONTransformer {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMUserApiModel class]];
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:NMUserApiModel.class];
 }
 
 + (NSValueTransformer *)addressJSONTransformer  {
@@ -50,7 +53,6 @@
 
 + (NSValueTransformer *)foodJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMFoodApiModel class]];
-
 }
 
 #pragma mark - MTLManagedObjectSerializing
@@ -66,5 +68,5 @@
 + (NSSet *)propertyKeysForManagedObjectUniquing {
     return [NSSet setWithObject:@"uid"];
 }
-
+    
 @end

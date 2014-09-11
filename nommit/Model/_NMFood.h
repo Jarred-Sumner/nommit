@@ -11,7 +11,7 @@ extern const struct NMFoodAttributes {
 	__unsafe_unretained NSString *orderCount;
 	__unsafe_unretained NSString *orderGoal;
 	__unsafe_unretained NSString *price;
-	__unsafe_unretained NSString *rawState;
+	__unsafe_unretained NSString *stateID;
 	__unsafe_unretained NSString *subtitle;
 	__unsafe_unretained NSString *thumbnailImageURL;
 	__unsafe_unretained NSString *title;
@@ -120,15 +120,15 @@ extern const struct NMFoodFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* rawState;
+@property (nonatomic, strong) NSNumber* stateID;
 
 
 
-@property int16_t rawStateValue;
-- (int16_t)rawStateValue;
-- (void)setRawStateValue:(int16_t)value_;
+@property int16_t stateIDValue;
+- (int16_t)stateIDValue;
+- (void)setStateIDValue:(int16_t)value_;
 
-//- (BOOL)validateRawState:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateStateID:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -242,11 +242,11 @@ extern const struct NMFoodFetchedProperties {
 
 
 
-- (NSNumber*)primitiveRawState;
-- (void)setPrimitiveRawState:(NSNumber*)value;
+- (NSNumber*)primitiveStateID;
+- (void)setPrimitiveStateID:(NSNumber*)value;
 
-- (int16_t)primitiveRawStateValue;
-- (void)setPrimitiveRawStateValue:(int16_t)value_;
+- (int16_t)primitiveStateIDValue;
+- (void)setPrimitiveStateIDValue:(int16_t)value_;
 
 
 

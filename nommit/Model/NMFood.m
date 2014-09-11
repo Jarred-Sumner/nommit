@@ -10,10 +10,5 @@
 
 @implementation NMFood
 
-- (NSFoodState)state {
-    return (NSFoodState)[self rawStateValue];
-}
-
-
 
 @end

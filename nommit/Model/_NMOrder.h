@@ -8,7 +8,8 @@ extern const struct NMOrderAttributes {
 	__unsafe_unretained NSString *deliveredAt;
 	__unsafe_unretained NSString *placedAt;
 	__unsafe_unretained NSString *priceInCents;
-	__unsafe_unretained NSString *rawState;
+	__unsafe_unretained NSString *quantity;
+	__unsafe_unretained NSString *stateID;
 	__unsafe_unretained NSString *uid;
 } NMOrderAttributes;
 
@@ -24,6 +25,7 @@ extern const struct NMOrderFetchedProperties {
 @class NMAddress;
 @class NMFood;
 @class NMUser;
+
 
 
 
@@ -78,15 +80,29 @@ extern const struct NMOrderFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* rawState;
+@property (nonatomic, strong) NSNumber* quantity;
 
 
 
-@property int16_t rawStateValue;
-- (int16_t)rawStateValue;
-- (void)setRawStateValue:(int16_t)value_;
+@property int32_t quantityValue;
+- (int32_t)quantityValue;
+- (void)setQuantityValue:(int32_t)value_;
 
-//- (BOOL)validateRawState:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateQuantity:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* stateID;
+
+
+
+@property int16_t stateIDValue;
+- (int16_t)stateIDValue;
+- (void)setStateIDValue:(int16_t)value_;
+
+//- (BOOL)validateStateID:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -158,11 +174,20 @@ extern const struct NMOrderFetchedProperties {
 
 
 
-- (NSNumber*)primitiveRawState;
-- (void)setPrimitiveRawState:(NSNumber*)value;
+- (NSNumber*)primitiveQuantity;
+- (void)setPrimitiveQuantity:(NSNumber*)value;
 
-- (int16_t)primitiveRawStateValue;
-- (void)setPrimitiveRawStateValue:(int16_t)value_;
+- (int32_t)primitiveQuantityValue;
+- (void)setPrimitiveQuantityValue:(int32_t)value_;
+
+
+
+
+- (NSNumber*)primitiveStateID;
+- (void)setPrimitiveStateID:(NSNumber*)value;
+
+- (int16_t)primitiveStateIDValue;
+- (void)setPrimitiveStateIDValue:(int16_t)value_;
 
 
 
