@@ -24,6 +24,7 @@
         _textField = [[UITextField alloc] init];
         _textField.font = [UIFont fontWithName:@"Avenir" size:16.f];
         _textField.translatesAutoresizingMaskIntoConstraints = NO;
+        _textField.delegate = self;
         
         [self.contentView addSubview:_textField];
         
@@ -33,6 +34,12 @@
 
     }
     return self;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)aTextField
+{
+    [aTextField resignFirstResponder];
+    return YES;
 }
 
 /*
