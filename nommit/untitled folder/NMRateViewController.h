@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RateView.h"
 
-@interface NMRateViewController : UIViewController
+@protocol NMRateViewControllerDelegate;
+
+@interface NMRateViewController : UIViewController<RateViewDelegate> {
+}
+
+@property (nonatomic, weak) id<NMRateViewControllerDelegate> delegate;
+@property (nonatomic, strong) RateView* rateVw;
+
+- (id)initWithPrice:(NSString *)price;
+
+@end
+
+@protocol NMRateViewControllerDelegate
+
+@required
+
+-(void)ratingDoneButtonPressed:(id)sender;
+-(void)updateRating:(float)rating;
 
 @end
