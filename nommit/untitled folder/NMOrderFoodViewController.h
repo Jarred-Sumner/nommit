@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "NMFoodItem.h"
 #import "NMAddressSearchViewController.h"
+#import "NMOrderFoodProgressCell.h"
 
 @interface NMOrderFoodViewController : UITableViewController<NMAddressSearchDelegate>
 
 @property (nonatomic, strong) NMFoodItem *foodItem;
+@property (nonatomic, strong) NMOrderFoodProgressCell *progressCell;
 
 - (id)initWithFoodItem:(NMFoodItem *)foodItem;
 

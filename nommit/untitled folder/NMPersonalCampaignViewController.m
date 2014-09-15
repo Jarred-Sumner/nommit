@@ -10,6 +10,7 @@
 #import "NMCampaignVisibilityTableViewCell.h"
 #import "NMFoodsViewController.h"
 #import "NMMenuNavigationController.h"
+#import "TYMProgressBarView.h"
 
 static NSString *NMCampaignVisibilityIdentifier = @"NMCampaignVisibilityTableViewCell";
 
@@ -38,7 +39,15 @@ static NSString *NMCampaignVisibilityIdentifier = @"NMCampaignVisibilityTableVie
     deleteButton.enabled = YES;
     self.navigationItem.rightBarButtonItem = deleteButton;
     
+    [self setupProgressBar];
+    
     return self;
+}
+
+- (void)setupProgressBar
+{
+    // Add it to your view
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -63,14 +72,14 @@ static NSString *NMCampaignVisibilityIdentifier = @"NMCampaignVisibilityTableVie
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
-        return 183;
-    }
     if (indexPath.section == 2) {
+        return 100;
+    }
+    if (indexPath.section == 3) {
         return 74;
     } else {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -79,7 +88,7 @@ static NSString *NMCampaignVisibilityIdentifier = @"NMCampaignVisibilityTableVie
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // TEST CREATE CM CAMPAIGN
-    if (indexPath.section == 2) {
+    if (indexPath.section == 3) {
         cvtvc = [[NMCampaignVisibilityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NMCampaignVisibilityIdentifier];
         cvtvc.campaignSwitch.on = [[self.foodItem isOn] boolValue];
         return cvtvc;
