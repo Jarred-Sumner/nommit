@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "NMFoodItem.h"
+#import "NMOrderFoodViewController.h"
 
-@interface NMPersonalCampaignViewController : UIViewController
+@interface NMPersonalCampaignViewController : NMOrderFoodViewController
 
 - (id)initWithCampaign:(NMFoodItem *)campaign;
 

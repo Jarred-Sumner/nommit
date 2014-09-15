@@ -12,6 +12,8 @@
 
 @interface NMOrderFoodViewController : UITableViewController<NMAddressSearchDelegate>
 
+@property (nonatomic, strong) NMFoodItem *foodItem;
+
 - (id)initWithFoodItem:(NMFoodItem *)foodItem;
 
 @end

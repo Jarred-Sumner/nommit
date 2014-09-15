@@ -35,8 +35,6 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     NMDeliveryAddressTableViewCell *addressCell;
 }
 
-@property (nonatomic, strong) NMFoodItem *foodItem;
-
 @end
 
 @implementation NMOrderFoodViewController

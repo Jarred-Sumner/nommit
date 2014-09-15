@@ -10,7 +10,7 @@
 
 @implementation NMFoodItem
 
-@synthesize itemsSold, headerImage, price, itemName, description, itemsTotal;
+@synthesize itemsSold, headerImage, price, itemName, description, itemsTotal, isOn;
 
 //@dynamic itemsSold;
 //@dynamic headerImage;
@@ -26,6 +26,7 @@
     self.headerImage = headerImage;
     self.itemsSold = sold;
     self.description = description;
+    self.isOn = [NSNumber numberWithBool:YES];
     return self;
 }
 

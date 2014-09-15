@@ -7,15 +7,37 @@
 //
 
 #import "NMPersonalCampaignViewController.h"
+#import "NMCampaignVisibilityTableViewCell.h"
+#import "NMFoodsViewController.h"
+#import "NMMenuNavigationController.h"
 
-@interface NMPersonalCampaignViewController ()
+static NSString *NMCampaignVisibilityIdentifier = @"NMCampaignVisibilityTableViewCell";
+
+@interface NMPersonalCampaignViewController () {
+    NMCampaignVisibilityTableViewCell *cvtvc;
+}
 
 @end
 
 @implementation NMPersonalCampaignViewController
 
 - (id)initWithCampaign:(NMFoodItem *)campaign {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [super initWithFoodItem:campaign];
+    [self.tableView registerClass:[NMCampaignVisibilityTableViewCell class] forCellReuseIdentifier:NMCampaignVisibilityIdentifier];
+    
+    // setup cancel button
+    UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:(NMMenuNavigationController *)self.navigationController
+                                                           action:@selector(showMenu)];
+    
+    lbb.tintColor = UIColorFromRGB(0xC3C3C3);
+    self.navigationItem.leftBarButtonItem = lbb;
+    
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonSystemItemEdit target:self action:@selector(delete:)];
+    deleteButton.enabled = YES;
+    self.navigationItem.rightBarButtonItem = deleteButton;
+    
     return self;
 }
 
@@ -40,15 +62,51 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        return 183;
+    }
+    if (indexPath.section == 2) {
+        return 74;
+    } else {
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // TEST CREATE CM CAMPAIGN
+    if (indexPath.section == 2) {
+        cvtvc = [[NMCampaignVisibilityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NMCampaignVisibilityIdentifier];
+        cvtvc.campaignSwitch.on = [[self.foodItem isOn] boolValue];
+        return cvtvc;
+    } else {
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+    
+    return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+- (void)cancel:(id)sender {
+//    [self.foodItem setObject:[NSNumber numberWithBool:cvtvc.campaignSwitch.on] forKey:@"isOn"];
+//    [self.foodItem saveInBackground];
+//    NMFoodsViewController *mainVC = [[NMFoodsViewController alloc] init];
+//    [self.navigationController pushViewController:mainVC animated:YES];
+}
+
+- (void)delete:(id)sender {
+    // TODO : DELETE
+//    [self.foodItem deleteInBackground];
+//    NMFoodsViewController *mainVC = [[NMFoodsViewController alloc] init];
+//    [self.navigationController pushViewController:mainVC animated:YES];
+}
 
 @end
