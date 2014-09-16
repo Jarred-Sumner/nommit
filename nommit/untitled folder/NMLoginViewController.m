@@ -108,29 +108,27 @@
     [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
         allowLoginUI:YES
         completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-
             if (error) {
                 NSLog(@"Error: %@", error);
-                
-            } else {
-                
-                
-                [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : session.accessTokenData.accessToken } completion:^(NMUser *response, NSError *error) {
-                    
-                    if (error) {
-                        NSLog(@"Error: %@", error);
-                    } else {
-                        [NMSession setAccessToken:session.accessTokenData.accessToken];
-                        [NMSession setUserID:session.accessTokenData.userID];
-                        NMFoodsViewController *foodsViewController = [[NMFoodsViewController alloc] init];
-                        [self.navigationController pushViewController:foodsViewController animated:YES];
-                    }
-                    
-                }];
-                
-            }
-
+            } else [self performLoginWithFBSession:session];
      }];
+}
+
+- (void)performLoginWithFBSession:(FBSession*)session {
+    [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : session.accessTokenData.accessToken } completion:^(OVCResponse *response, NSError *error) {
+        
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
+            [NMApi instance].session.configuration.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
+            
+            [NMSession setUserID:session.accessTokenData.userID];
+            NMFoodsViewController *foodsViewController = [[NMFoodsViewController alloc] init];
+            [self.navigationController pushViewController:foodsViewController animated:YES];
+        }
+        
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated

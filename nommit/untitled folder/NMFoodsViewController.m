@@ -102,7 +102,7 @@ static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
     __weak NMFoodsViewController *this = self;
     [self.refreshControl beginRefreshing];
     
-    [[NMApi instance] GET:@"foods" parameters:@{ @"access_token" : [NMSession accessToken] } completion:^(OVCResponse *response, NSError *error) {
+    [[NMApi instance] GET:@"foods" parameters:nil completion:^(OVCResponse *response, NSError *error) {
         if (error) {
             NSLog(@"Error Updating: %@", error);
         } else {

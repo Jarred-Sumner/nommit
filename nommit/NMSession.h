@@ -12,8 +12,8 @@
 
 + (BOOL)isUserLoggedIn;
 
-+ (NSString *)accessToken;
-+ (void)setAccessToken:(NSString *)accessToken;
++ (NSString *)sessionID;
++ (void)setSessionID:(NSString *)sessionID;
 
 + (NSString *)userID;
 + (void)setUserID:(NSString *)userID;

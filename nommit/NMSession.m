@@ -9,21 +9,21 @@
 #import "NMSession.h"
 #import <Lockbox.h>
 
-static NSString *NMSessionAccessTokenKey = @"NMSessionAccessTokenKey";
+static NSString *NMSessionIDKey = @"NMSessionIDKey";
 static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 
 @implementation NMSession
 
 + (BOOL)isUserLoggedIn {
-    return [self accessToken].length > 0;
+    return self.sessionID && self.sessionID.length > 0;
 }
 
-+ (NSString *)accessToken {
-    return [Lockbox stringForKey:NMSessionAccessTokenKey];
++ (NSString *)sessionID {
+    return [Lockbox stringForKey:NMSessionIDKey];
 }
 
-+ (void)setAccessToken:(NSString *)accessToken {
-    [Lockbox setString:accessToken forKey:NMSessionAccessTokenKey];
++ (void)setSessionID:(NSString *)sessionID {
+    [Lockbox setString:sessionID forKey:NMSessionIDKey];
 }
 
 + (NSString *)userID {
