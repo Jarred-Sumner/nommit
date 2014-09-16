@@ -49,6 +49,9 @@
 		8D51D2B819B66D0100920F69 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D51D2B719B66D0100920F69 /* Accelerate.framework */; };
 		8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */; };
 		8D51D2BE19B6A92000920F69 /* CHDigitInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2BD19B6A92000920F69 /* CHDigitInput.m */; };
+		8D5E561619C246F90001B531 /* NMPersonalCampaignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E561519C246F90001B531 /* NMPersonalCampaignViewController.m */; };
+		8D5E561919C249A80001B531 /* NMRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E561819C249A80001B531 /* NMRateViewController.m */; };
+		8D5E561C19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E561B19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m */; };
 		8D6DE41719B7B220008F64CE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D6DE41619B7B220008F64CE /* CoreLocation.framework */; };
 		8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE41919B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m */; };
 		8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE41B19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m */; };
@@ -165,6 +168,12 @@
 		8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRibbonCell.m; path = Cells/NMRibbonCell.m; sourceTree = "<group>"; };
 		8D51D2BC19B6A92000920F69 /* CHDigitInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHDigitInput.h; path = Libraries/CHDigitInput.h; sourceTree = "<group>"; };
 		8D51D2BD19B6A92000920F69 /* CHDigitInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHDigitInput.m; path = Libraries/CHDigitInput.m; sourceTree = "<group>"; };
+		8D5E561419C246F90001B531 /* NMPersonalCampaignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPersonalCampaignViewController.h; path = "untitled folder/NMPersonalCampaignViewController.h"; sourceTree = "<group>"; };
+		8D5E561519C246F90001B531 /* NMPersonalCampaignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPersonalCampaignViewController.m; path = "untitled folder/NMPersonalCampaignViewController.m"; sourceTree = "<group>"; };
+		8D5E561719C249A80001B531 /* NMRateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRateViewController.h; path = "untitled folder/NMRateViewController.h"; sourceTree = "<group>"; };
+		8D5E561819C249A80001B531 /* NMRateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRateViewController.m; path = "untitled folder/NMRateViewController.m"; sourceTree = "<group>"; };
+		8D5E561A19C249E00001B531 /* NMCampaignVisibilityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCampaignVisibilityTableViewCell.h; path = Cells/NMCampaignVisibilityTableViewCell.h; sourceTree = "<group>"; };
+		8D5E561B19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCampaignVisibilityTableViewCell.m; path = Cells/NMCampaignVisibilityTableViewCell.m; sourceTree = "<group>"; };
 		8D6DE41619B7B220008F64CE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8D6DE41819B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPGooglePlacesAutocompleteUtilities.h; path = Libraries/SPGooglePlacesAutocompleteUtilities.h; sourceTree = "<group>"; };
 		8D6DE41919B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesAutocompleteUtilities.m; path = Libraries/SPGooglePlacesAutocompleteUtilities.m; sourceTree = "<group>"; };
@@ -431,6 +440,10 @@
 				8D49F30719BE942600E60145 /* NMPaymentsViewController.m */,
 				8D49F30F19C0D65900E60145 /* NMCreateCampaignViewController.h */,
 				8D49F31019C0D65900E60145 /* NMCreateCampaignViewController.m */,
+				8D5E561419C246F90001B531 /* NMPersonalCampaignViewController.h */,
+				8D5E561519C246F90001B531 /* NMPersonalCampaignViewController.m */,
+				8D5E561719C249A80001B531 /* NMRateViewController.h */,
+				8D5E561819C249A80001B531 /* NMRateViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -487,6 +500,8 @@
 				8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */,
 				8D49F30C19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.h */,
 				8D49F30D19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.m */,
+				8D5E561A19C249E00001B531 /* NMCampaignVisibilityTableViewCell.h */,
+				8D5E561B19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -690,6 +705,7 @@
 				83EE765B19BBF9A6006FEDDF /* NMAddressApiModel.m in Sources */,
 				83D6A9E619B822B8009A6D9B /* NMUser.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
+				8D5E561C19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m in Sources */,
 				8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */,
 				83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */,
 				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
@@ -699,9 +715,11 @@
 				8D51D2A019B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
+				8D5E561919C249A80001B531 /* NMRateViewController.m in Sources */,
 				831B796819B283C0009B9948 /* NMFoodsViewController.m in Sources */,
 				8D51D2B319B6688200920F69 /* NMMenuViewController.m in Sources */,
 				8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */,
+				8D5E561619C246F90001B531 /* NMPersonalCampaignViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

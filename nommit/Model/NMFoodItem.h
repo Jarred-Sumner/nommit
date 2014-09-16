@@ -16,6 +16,7 @@
 @property (nonatomic) NSUInteger price;
 @property (nonatomic) NSUInteger itemsSold;
 @property (nonatomic) NSUInteger itemsTotal;
+@property (nonatomic, strong) NSNumber *isOn;
 
 - (id)initWithTotalItems:(NSUInteger)totalItems withPrice:(NSUInteger)price withName:(NSString *)name withDescription:(NSString *)description withImage:(UIImage *)headerImage withItemsSold:(NSUInteger)sold;
 

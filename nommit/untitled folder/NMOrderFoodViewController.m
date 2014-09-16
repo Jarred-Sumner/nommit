@@ -16,6 +16,7 @@
 #import "NMAddressSearchViewController.h"
 #import "NMDeliveryAddressTableViewCell.h"
 #import "NMMenuNavigationController.h"
+#import "NMRateViewController.h"
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMProgressSection = 1;
@@ -34,8 +35,6 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     NSString *destTime;
     NMDeliveryAddressTableViewCell *addressCell;
 }
-
-@property (nonatomic, strong) NMFoodItem *foodItem;
 
 @end
 
@@ -109,14 +108,14 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         
         return cell;
     } else if (indexPath.section == NMProgressSection) {
-        NMOrderFoodProgressCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodProgressIdentifier];
-        cell.delegate = self;
-        cell.progressBarView.progress = 0.5f;
+        _progressCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodProgressIdentifier];
+        _progressCell.delegate = self;
+        _progressCell.progressBarView.progress = 0.5f;
         NSNumber *left = [NSNumber numberWithInt:_foodItem.itemsTotal - _foodItem.itemsSold];
         NSNumber *total = [NSNumber numberWithInt:_foodItem.itemsTotal];
-        cell.leftSold = @[left, total];
+        _progressCell.leftSold = @[left, total];
         
-        return cell;
+        return _progressCell;
     } else if (indexPath.section == NMDeliveryAddressSection) {
         NMDeliveryAddressTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryAddressIdentifier];
         addressCell = cell;
@@ -210,8 +209,11 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 - (void)orderFoodButtonPressed:(id)sender
 {
     NSLog(@"Your food has been ordered!");
-    NMAddressSearchViewController *addressSearchVC = [[NMAddressSearchViewController alloc] init];
-    [self presentViewController:addressSearchVC animated:YES completion:nil];
+//    NMAddressSearchViewController *addressSearchVC = [[NMAddressSearchViewController alloc] init];
+//    [self presentViewController:addressSearchVC animated:YES completion:nil];
+    NMRateViewController *rateVC = [[NMRateViewController alloc] initWithPrice:@"12"];
+    
+    [self presentViewController:rateVC animated:YES completion:nil];
     
 }
 

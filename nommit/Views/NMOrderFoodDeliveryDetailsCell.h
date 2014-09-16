@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMOrderFoodDeliveryDetailsCell : UITableViewCell
+@interface NMOrderFoodDeliveryDetailsCell : UITableViewCell<UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *textField;
 

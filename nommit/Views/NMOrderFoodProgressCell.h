@@ -20,6 +20,7 @@
 
 @property (nonatomic, weak) id<NMOrderFoodProgressCell> delegate;
 
+
 @end
 
 @protocol NMOrderFoodProgressCell

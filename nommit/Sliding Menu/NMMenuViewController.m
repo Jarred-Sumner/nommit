@@ -13,6 +13,7 @@
 #import "NMFoodsViewController.h"
 #import "NMMenuNavigationController.h"
 #import "NMPaymentsViewController.h"
+#import "NMCreateCampaignViewController.h"
 
 @interface NMMenuViewController ()
 
@@ -35,12 +36,22 @@
         imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         imageView.image = [UIImage imageNamed:@"AvatarLucy"];
         imageView.layer.masksToBounds = YES;
-        imageView.layer.cornerRadius = 50.0;
-        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-        imageView.layer.borderWidth = 3.0f;
         imageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         imageView.layer.shouldRasterize = YES;
         imageView.clipsToBounds = YES;
+        
+        CAShapeLayer *circle = [CAShapeLayer layer];
+        // Make a circular shape
+        UIBezierPath *circularPath=[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, imageView.frame.size.width, imageView.frame.size.height) cornerRadius:MAX(imageView.frame.size.width, imageView.frame.size.height)];
+        
+        circle.path = circularPath.CGPath;
+        imageView.layer.mask = circle;
+        
+        // Configure the apperence of the circle
+        circle.fillColor = [UIColor blackColor].CGColor;
+        circle.strokeColor = [UIColor blackColor].CGColor;
+        circle.lineWidth = 0;
+        imageView.layer.mask = circle;
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 0, 24)];
         label.text = @"Lucy Guo";
@@ -106,6 +117,11 @@
         NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:paymentsVC];
         self.frostedViewController.contentViewController = navigationController;
         navigationController.navigationBar.translucent = NO;
+    } else if (indexPath.section == 0 && indexPath.row == 2) {
+        NMCreateCampaignViewController *createVC = [[NMCreateCampaignViewController alloc] init];
+        NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:createVC];
+        self.frostedViewController.contentViewController = navigationController;
+        navigationController.navigationBar.translucent = NO;
     } else {
         NMFoodsViewController *secondViewController = [[NMFoodsViewController alloc] init];
         NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:secondViewController];
@@ -145,7 +161,7 @@
     }
     
     if (indexPath.section == 0) {
-        NSArray *titles = @[@"Home", @"Payments", @"Chats"];
+        NSArray *titles = @[@"Home", @"Payments", @"Create a Campaign"];
         cell.textLabel.text = titles[indexPath.row];
     } else {
         NSArray *titles = @[@"Pepperoni Pizza", @"Dinosaur Nuggets", @"Pasta"];
