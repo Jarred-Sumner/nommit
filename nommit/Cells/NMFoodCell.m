@@ -10,12 +10,12 @@
 #import "NMColors.h"
 
 @interface NMFoodCell()
-{
-    UIImageView *itemImageView;
-    UILabel *itemsSoldLabel;
-    UILabel *itemNameLabel;
-    UILabel *itemPriceLabel;
-}
+
+@property (nonatomic, strong) UIImageView *foodImageView;
+@property (nonatomic, strong) UILabel *soldLabel;
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *priceLabel;
+@property (nonatomic, strong) TYMProgressBarView *progressBarView;
 
 @end
 
@@ -23,83 +23,89 @@
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    UIImageView *cellBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-    cellBackground.image = [UIImage imageNamed:@"FoodItemCell"];
-    self.backgroundView = cellBackground;
-    
-    itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.width)];
-
-    
-    [self addSubview:itemsSoldLabel];
-    [self addSubview:itemImageView];
-    
+    [self setupBackgroundView];
+    [self setupFoodImageView];
     [self setupNameLabel];
+    [self setupSoldLabel];
     [self setupPriceLabel];
-    
+    [self setupProgressBar];
     return self;
 }
 
-- (void)setItemImage:(UIImage *)itemImage
-{
-    itemImageView.image = itemImage;
+- (void)setFood:(NMFood *)food {
+    _food = food;
+    
+    _nameLabel.text  = food.title;
+    _priceLabel.text = [NSString stringWithFormat:@"$%@", food.price];
+    _soldLabel.text = [NSString stringWithFormat:@"%@/%@ left", food.orderCount, food.orderGoal];
+    [_foodImageView setImageWithURL:[food thumbnailImageAsURL]];
 }
 
-- (void)setItemName:(NSString *)itemName
-{
-    itemNameLabel.text = itemName;
+- (void)setupBackgroundView {
+    self.backgroundView = [[UIImageView alloc] initWithFrame:self.contentView.frame];
+    [(UIImageView*)self.backgroundView setImage:[UIImage imageNamed:@"FoodItemCell"]];
 }
 
-- (void)setItemPrice:(NSUInteger)itemPrice
-{
-    itemPriceLabel.text = [NSString stringWithFormat:@"$%d", itemPrice];
-}
-
-- (void)setItemsSoldAndTotal:(NSArray *)itemsSoldAndTotal {
-    self.itemsSold = itemsSoldAndTotal[0];
-    self.totalItems = itemsSoldAndTotal[1];
-    [self setupSoldLabel];
-    [self setupProgressBar];
+- (void)setupFoodImageView {
+    _foodImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.contentView.frame), CGRectGetWidth(self.contentView.frame))];
+    [self.contentView addSubview:_foodImageView];
 }
 
 - (void)setupNameLabel
 {
-    itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, itemImageView.frame.size.height, self.frame.size.width - 20, 21)];
-    itemNameLabel.font = [UIFont fontWithName:@"Avenir" size:12.0f];
-    itemNameLabel.textColor = UIColorFromRGB(0x3C3C3C);
-    [self addSubview:itemNameLabel];
+    _nameLabel = [[UILabel alloc] init];
+    _nameLabel.font = [UIFont fontWithName:@"Avenir" size:12.0f];
+    _nameLabel.textColor = UIColorFromRGB(0x3C3C3C);
+    _nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.contentView addSubview:_nameLabel];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-145-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel)]];
 }
 
 - (void)setupSoldLabel
 {
-    itemsSoldLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, itemNameLabel.frame.origin.y + itemNameLabel.frame.size.height, self.frame.size.width, 15)];
-    itemsSoldLabel.font = [UIFont fontWithName:@"Avenir-Light" size:10.0f];
-    itemsSoldLabel.textColor = UIColorFromRGB(0x717171);
-    itemsSoldLabel.text = [NSString stringWithFormat:@"%@/%@ left", self.itemsSold, self.totalItems];
-    [self addSubview:itemsSoldLabel];
+    _soldLabel = [[UILabel alloc] init];
+    _soldLabel.font = [UIFont fontWithName:@"Avenir-Light" size:10.0f];
+    _soldLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _soldLabel.textColor = UIColorFromRGB(0x717171);
+    
+    [self.contentView addSubview:_soldLabel];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_soldLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_soldLabel)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-145-[_nameLabel]-2-[_soldLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel, _soldLabel)]];
+
 }
 
 - (void)setupProgressBar
 {
     // Create a progress bar view and set its appearance
-    self.progressBarView = [[TYMProgressBarView alloc] initWithFrame:CGRectMake(10, itemImageView.frame.size.height + 38, self.frame.size.width - 20, 6.5f)];
-    self.progressBarView.barBorderWidth = 1.0f;
-    self.progressBarView.barBorderWidth = 0;
-    self.progressBarView.barBackgroundColor = UIColorFromRGB(0xDCDCDC);
-    self.progressBarView.barFillColor = UIColorFromRGB(0x42B7BB);
-    self.progressBarView.barInnerPadding = 0;
-    self.progressBarView.translatesAutoresizingMaskIntoConstraints = NO;
+    _progressBarView = [[TYMProgressBarView alloc] initWithFrame:CGRectMake(10, CGRectGetHeight(_foodImageView.frame) + 38, CGRectGetWidth(self.contentView.frame) - 20, 6.5f)];
+    _progressBarView.barBorderWidth = 1.0f;
+    _progressBarView.barBorderWidth = 0;
+    _progressBarView.barBackgroundColor = UIColorFromRGB(0xDCDCDC);
+    _progressBarView.barFillColor = UIColorFromRGB(0x42B7BB);
+    _progressBarView.barInnerPadding = 0;
+    _progressBarView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    // Add it to your view
-    [self addSubview:self.progressBarView];
+    [self.contentView addSubview:_progressBarView];
 }
 
 - (void)setupPriceLabel
 {
-    itemPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width - 20, itemNameLabel.frame.origin.y, 30, itemNameLabel.frame.size.height)];
-    itemPriceLabel.font = [UIFont fontWithName:@"Avenir-Medium" size:12.0f];
-    itemPriceLabel.textColor = UIColorFromRGB(0x60C4BE);
+    _priceLabel = [[UILabel alloc] init];
+    _priceLabel.font = [UIFont fontWithName:@"Avenir-Medium" size:12.0f];
+    _priceLabel.textAlignment = NSTextAlignmentRight;
+    _priceLabel.textColor = UIColorFromRGB(0x60C4BE);
+    _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self addSubview:itemPriceLabel];
+    
+    [self.contentView addSubview:_priceLabel];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-145-[_priceLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_priceLabel]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel)]];
+
 }
 
 

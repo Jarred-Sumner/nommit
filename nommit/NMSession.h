@@ -10,8 +10,12 @@
 
 @interface NMSession : NSObject
 
-+ (NMSession *)sharedSession;
++ (BOOL)isUserLoggedIn;
 
-@property (nonatomic, strong) NSString *accessToken;
++ (NSString *)accessToken;
++ (void)setAccessToken:(NSString *)accessToken;
+
++ (NSString *)userID;
++ (void)setUserID:(NSString *)userID;
 
 @end

@@ -11,13 +11,6 @@
 
 @interface NMFoodCell : UICollectionViewCell
 
-@property (strong, nonatomic) UIImage *itemImage;
-@property (strong, nonatomic) NSString *itemName;
-@property (strong, nonatomic) TYMProgressBarView *progressBarView;
-@property (nonatomic, strong) NSArray *itemsSoldAndTotal;
-@property (strong, nonatomic) NSNumber *itemsSold;
-@property (strong, nonatomic) NSNumber *totalItems;
-
-@property (nonatomic) NSUInteger itemPrice;
+@property (nonatomic, strong) NMFood *food;
 
 @end

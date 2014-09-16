@@ -21,11 +21,15 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - APParallaxHeader (0.1.6)
+  - Bolts (1.1.2)
   - DBCamera (2.3.4):
     - GPUImage (~> 0.1)
+  - Facebook-iOS-SDK (3.17.0):
+    - Bolts
   - GPUImage (0.1.5)
   - INTULocationManager (1.2.0)
   - JVFloatLabeledTextField (0.0.9)
+  - Lockbox (1.4.9)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
@@ -55,8 +59,10 @@ DEPENDENCIES:
   - AFNetworking
   - APParallaxHeader
   - DBCamera
+  - Facebook-iOS-SDK
   - INTULocationManager
   - JVFloatLabeledTextField
+  - Lockbox
   - MagicalRecord
   - MBProgressHUD (~> 0.8)
   - MGBoxKit
@@ -70,10 +76,13 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   APParallaxHeader: 6e7cc27c052be34e1a5655dc2fab6c40eecbbe55
+  Bolts: 2635e8698a630774689441047f3465d78c48d485
   DBCamera: d78a9f58aaf29d0a0811baa8cea747c7d7e80923
+  Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
   INTULocationManager: 596c57e35a00ca1ee9d59bf4cc2b63dc299b580e
   JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
+  Lockbox: cfe87dbbce6b5c6d7cfeefc3fe6594ef55919b11
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8

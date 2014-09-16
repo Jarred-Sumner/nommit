@@ -26,9 +26,13 @@ static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
 
 @interface NMFoodsViewController ()<APParallaxViewDelegate>
 
+@property (nonatomic, strong) NSArray *foods;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+
 @property (nonatomic, assign) NSInteger slide;
 @property (nonatomic, getter=isFullscreen) BOOL fullscreen;
 @property (nonatomic, getter=isTransitioning) BOOL transitioning;
+
 
 @end
 
@@ -76,6 +80,7 @@ static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
 
     [self.collectionView registerClass:[NMFoodCell class] forCellWithReuseIdentifier:NMFoodCellIdentifier];
     [self.collectionView registerClass:[NMRibbonCell class] forCellWithReuseIdentifier:NMRibbonCellIdentifier];
+    [self setupDataSource];
 }
 
 #pragma mark - UIColllectionViewDelegate
@@ -84,8 +89,32 @@ static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
 
 #pragma mark - UICollectionViewDataSource
 
+- (void)setupDataSource {
+    self.foods = [NMFood activeFoods];
+    _refreshControl = [[UIRefreshControl alloc] init];
+    [_refreshControl addTarget:self action:@selector(refreshFoods) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:_refreshControl];
+    
+    [self refreshFoods];
+}
+
+- (void)refreshFoods {
+    __weak NMFoodsViewController *this = self;
+    [self.refreshControl beginRefreshing];
+    
+    [[NMApi instance] GET:@"foods" parameters:@{ @"access_token" : [NMSession accessToken] } completion:^(OVCResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"Error Updating: %@", error);
+        } else {
+            this.foods = [NMFoodApiModel foodsForModels:response.result];
+        }
+        [this.refreshControl endRefreshing];
+        [this.collectionView reloadData];
+    }];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return NMFoodCount;
+    return self.foods.count + 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -96,21 +125,12 @@ static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
 //        banner.image = [UIImage imageNamed:@"HomeRibbon"];
 //        [cell addSubview:banner];
         return cell;
+    } else {
+        NMFoodCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
+        cell.food = self.foods[indexPath.row - 1];;
+        return cell;
     }
-    NMFoodCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor clearColor];
-    cell.clipsToBounds = YES;
 
-    
-    cell.itemImage = [UIImage imageNamed:@"PepperoniPizzaMini"];
-    cell.itemName = @"Pepperoni Pizza";
-    NSNumber *itemsLeft = [NSNumber numberWithInt:30];
-    NSNumber *itemsTotal = [NSNumber numberWithInt:60];
-    cell.itemsSoldAndTotal = [NSArray arrayWithObjects:itemsLeft, itemsTotal, nil];
-    cell.progressBarView.progress = .5f;
-    cell.itemPrice = 5;
-    
-    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -130,12 +150,12 @@ static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
 
 - (void)parallaxView:(APParallaxView *)view willChangeFrame:(CGRect)frame {
     // Do whatever you need to do to the parallaxView or your subview before its frame changes
-    NSLog(@"parallaxView:willChangeFrame: %@", NSStringFromCGRect(frame));
+//    NSLog(@"parallaxView:willChangeFrame: %@", NSStringFromCGRect(frame));
 }
 
 - (void)parallaxView:(APParallaxView *)view didChangeFrame:(CGRect)frame {
     // Do whatever you need to do to the parallaxView or your subview after its frame changed
-    NSLog(@"parallaxView:didChangeFrame: %@", NSStringFromCGRect(frame));
+//    NSLog(@"parallaxView:didChangeFrame: %@", NSStringFromCGRect(frame));
 }
 
 #pragma mark - nav bar

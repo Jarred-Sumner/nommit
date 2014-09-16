@@ -16,6 +16,8 @@ target "nommit" do
   pod 'DBCamera'
   pod 'Stripe'
   pod 'RateView'
+  pod 'Facebook-iOS-SDK'
+  pod 'Lockbox'
 end
 
 target "nommitTests" do

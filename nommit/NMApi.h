@@ -18,8 +18,11 @@
 #import "NMorder.h"
 #import "NMUser.h"
 
+#import "NMSession.h"
+
 @interface NMApi : OVCHTTPSessionManager
 
++ (NMApi *)instance;
 + (NSDateFormatter *)dateFormatter;
 
 @end

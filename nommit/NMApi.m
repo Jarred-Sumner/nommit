@@ -9,7 +9,20 @@
 #import "NMApi.h"
 
 
+
+static NSString *NMApiBaseURLString = @"http://getnommit.com";
+
+
 @implementation NMApi
+
++ (NMApi *)instance {
+    static NMApi *sharedApi = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        sharedApi = [[NMApi alloc] initWithBaseURL:[NSURL URLWithString:NMApiBaseURLString] managedObjectContext:[NSManagedObjectContext MR_defaultContext] sessionConfiguration:nil];
+    });
+    return sharedApi;
+}
 
 + (NSDictionary *)modelClassesByResourcePath {
     return @{

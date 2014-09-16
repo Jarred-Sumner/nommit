@@ -10,6 +10,19 @@
 
 @implementation NMFoodApiModel
 
++ (NSArray *)foodsForModels:(NSArray *)models {
+    NSMutableArray *foods = [[NSMutableArray alloc] init];
+    
+    NSError *error;
+    for (NMFoodApiModel *foodApiModel in models) {
+        NMFood *food = [MTLManagedObjectAdapter managedObjectFromModel:foodApiModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
+        [foods addObject:food];
+        NSLog(@"Error: %@", error);
+        NSLog(@"Food: %@", foodApiModel.title);
+    }
+    return foods;
+}
+
 #pragma mark - MTLJSONSerializing Protocol
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey
@@ -24,7 +37,7 @@
              @"orderGoal": @"goal",
              @"orderCount" : @"order_count",
              @"details" : @"description",
-             };
+    };
 }
 
 + (NSValueTransformer *)endDateJSONTransformer {
@@ -42,7 +55,8 @@
 }
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {
-    return @{};
+    return @{
+             @"title" : @"title"};
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {

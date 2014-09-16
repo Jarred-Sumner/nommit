@@ -12,6 +12,7 @@
 		83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0319B5242B00524801 /* CoreImage.framework */; };
 		83291B0619B5243600524801 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0519B5243600524801 /* Security.framework */; };
 		8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */; };
+		837FCA0819C7E10F00846C62 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837FCA0719C7E10F00846C62 /* AVFoundation.framework */; };
 		839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 839765B519BBCDF000EE8254 /* NMFoodApiModel.m */; };
 		839765B919BBCE0200EE8254 /* NMOrderApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 839765B819BBCE0200EE8254 /* NMOrderApiModel.m */; };
 		839765BC19BBCE0A00EE8254 /* NMUserApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 839765BB19BBCE0A00EE8254 /* NMUserApiModel.m */; };
@@ -95,6 +96,7 @@
 		83291B0319B5242B00524801 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		83291B0519B5243600524801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8332FC0E19B3D447000D56AB /* Current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Current.xcdatamodel; sourceTree = "<group>"; };
+		837FCA0719C7E10F00846C62 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		839765B419BBCDF000EE8254 /* NMFoodApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMFoodApiModel.h; sourceTree = "<group>"; };
 		839765B519BBCDF000EE8254 /* NMFoodApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMFoodApiModel.m; sourceTree = "<group>"; };
 		839765B719BBCE0200EE8254 /* NMOrderApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMOrderApiModel.h; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837FCA0819C7E10F00846C62 /* AVFoundation.framework in Frameworks */,
 				83C0EA0C19BB9594009A7BE0 /* Accounts.framework in Frameworks */,
 				83C0EA0A19BB958F009A7BE0 /* Social.framework in Frameworks */,
 				83D6A9E819B822F7009A6D9B /* CoreData.framework in Frameworks */,
@@ -341,6 +344,7 @@
 		8DD3FC2F19B2512900DAFCDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				837FCA0719C7E10F00846C62 /* AVFoundation.framework */,
 				83C0EA0B19BB9594009A7BE0 /* Accounts.framework */,
 				83C0EA0919BB958F009A7BE0 /* Social.framework */,
 				83D6A9E719B822F7009A6D9B /* CoreData.framework */,
@@ -490,12 +494,6 @@
 		8DEED52019B299C000EE227A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8D51D29519B3BA9900920F69 /* NMOrderFoodInfoCell.h */,
-				8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */,
-				8D51D29B19B509B400920F69 /* NMOrderFoodProgressCell.h */,
-				8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */,
-				8D51D29E19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.h */,
-				8D51D29F19B51E3000920F69 /* NMOrderFoodDeliveryDetailsCell.m */,
 				8D51D2AA19B6382D00920F69 /* NMMiniItemView.h */,
 				8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */,
 			);
