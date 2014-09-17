@@ -20,7 +20,7 @@
 #import "NMRibbonCell.h"
 
 static const NSInteger NMFoodCount = 5;
-static const NSInteger headerHeight = 187;
+static const NSInteger headerHeight = 227;
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
 
