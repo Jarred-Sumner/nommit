@@ -105,13 +105,17 @@
 
 - (void)loginFacebookTouched:(id)sender
 {
-    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
-        allowLoginUI:YES
-        completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-            if (error) {
-                NSLog(@"Error: %@", error);
-            } else [self performLoginWithFBSession:session];
-     }];
+    if (FBSession.activeSession.isOpen) {
+        [self performLoginWithFBSession:FBSession.activeSession];
+    } else {
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
+                                           allowLoginUI:YES
+                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                          if (error) {
+                                              NSLog(@"Error: %@", error);
+                                          } else [self performLoginWithFBSession:session];
+          }];
+    }
 }
 
 - (void)performLoginWithFBSession:(FBSession*)session {

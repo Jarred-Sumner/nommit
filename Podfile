@@ -18,6 +18,7 @@ target "nommit" do
   pod 'RateView'
   pod 'Facebook-iOS-SDK'
   pod 'Lockbox'
+  pod 'M13Checkbox', '~> 1.1.0'
 end
 
 target "nommitTests" do

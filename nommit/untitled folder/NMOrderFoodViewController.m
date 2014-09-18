@@ -10,7 +10,7 @@
 
 #import "NMOrderFoodInfoCell.h"
 #import "NMOrderFoodProgressCell.h"
-#import "NMOrderFoodDeliveryDetailsCell.h"
+#import "NMOrderFoodConfirmAddressCell.h"
 #import "NMOrderFoodOrderButtonCell.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMAddressSearchViewController.h"
@@ -21,46 +21,45 @@
 const NSInteger NMInfoSection = 0;
 const NSInteger NMProgressSection = 1;
 const NSInteger NMDeliveryAddressSection = 2;
-const NSInteger NMOrderDeliveryDetailsSection = 3;
+const NSInteger NMOrderFoodConfirmationSection = 3;
 const NSInteger NMOrderButtonSection = 4;
 
 static NSString *NMOrderFoodInfoIdentifier = @"NMOrderFoodInfoCell";
 static NSString *NMOrderFoodProgressIdentifier = @"NMOrderFoodProgressCell";
 static NSString *NMOrderFoodDeliveryAddressIdentifier = @"NMDeliveryAddressTableViewCell";
-static NSString *NMOrderFoodDeliveryIdentifier = @"NMOrderFoodDeliveryDetailsCell";
+static NSString *NMOrderFoodConfirmAddressCellIdentifier = @"NMOrderFoodConfirmAddressCell";
 static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
-@interface NMOrderFoodViewController ()<APParallaxViewDelegate, NMOrderFoodProgressCell, NMOrderFoodOrderButtonCell> {
-    NSString *destAddress;
-    NSString *destTime;
-    NMDeliveryAddressTableViewCell *addressCell;
-}
+@interface NMOrderFoodViewController ()<APParallaxViewDelegate>
+
+@property (nonatomic, strong) NMOrderFoodInfoCell *infoCell;
+@property (nonatomic, strong) NMDeliveryAddressTableViewCell *addressCell;
+@property (nonatomic, strong) NMOrderFoodProgressCell *progressCell;
+@property (nonatomic, strong) NMOrderFoodConfirmAddressCell *confirmAddressCell;
+@property (nonatomic, strong) NMFood *food;
 
 @end
 
 @implementation NMOrderFoodViewController
 
-- (instancetype)initWithFoodItem:(NMFoodItem *)foodItem {
+- (instancetype)initWithFood:(NMFood *)food {
     self = [super initWithStyle:UITableViewStylePlain];
-    destAddress = @"2211 mission street, San Francisco, CA 15232";
-    destTime = @"Est 2 min";
-//    [self getAddressOfCurrentLocation:^(NSString *address, NSString *dTime) {
-//        destAddress = address;
-//        destTime = dTime;
-//        [self.tableView reloadData];
-//    }];
     
-    _foodItem = foodItem;
+    _food = food;
+    _orderModel = [[NMOrderApiModel alloc] init];
+    _orderModel.food = [MTLManagedObjectAdapter modelOfClass:[NMFoodApiModel class] fromManagedObject:_food error:nil];
     
+
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.tableView registerClass:[NMOrderFoodInfoCell class] forCellReuseIdentifier:NMOrderFoodInfoIdentifier];
     [self.tableView registerClass:[NMOrderFoodProgressCell class] forCellReuseIdentifier:NMOrderFoodProgressIdentifier];
     [self.tableView registerClass:[NMDeliveryAddressTableViewCell class] forCellReuseIdentifier:NMOrderFoodDeliveryAddressIdentifier];
-    [self.tableView registerClass:[NMOrderFoodDeliveryDetailsCell class] forCellReuseIdentifier:NMOrderFoodDeliveryIdentifier];
+    [self.tableView registerClass:[NMOrderFoodConfirmAddressCell class] forCellReuseIdentifier:NMOrderFoodConfirmAddressCellIdentifier];
     [self.tableView registerClass:[NMOrderFoodOrderButtonCell class] forCellReuseIdentifier:NMOrderFoodButtonIdentifier];
     
-    [self.tableView addParallaxWithImage:foodItem.headerImage andHeight:150];
+    [self.tableView addParallaxWithImage:nil andHeight:150];
     [self.tableView.parallaxView setDelegate:self];
+    [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL];
     
     [self initNavBar];
     
@@ -76,7 +75,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         return 100;
     } else if (indexPath.section == NMProgressSection) {
         return 103;
-    } else if (indexPath.section == NMOrderDeliveryDetailsSection || indexPath.section == NMDeliveryAddressSection) {
+    } else if (indexPath.section == NMOrderFoodConfirmationSection || indexPath.section == NMDeliveryAddressSection) {
         return 50;
     } else if (indexPath.section == NMOrderButtonSection) {
         return 49;
@@ -91,7 +90,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         return 1;
     } else if (section == NMDeliveryAddressSection) {
         return 1;
-    } else if (section == NMOrderDeliveryDetailsSection) {
+    } else if (section == NMOrderFoodConfirmationSection) {
         return 1;
     } else if (section == NMOrderButtonSection) {
         return 1;
@@ -101,38 +100,38 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMInfoSection) {
-        NMOrderFoodInfoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodInfoIdentifier];
-        cell.nameLabel.text = _foodItem.itemName;
-        cell.descriptionLabel.text = _foodItem.description;
-        cell.priceLabel.text = [NSString stringWithFormat:@"$%d", _foodItem.price];
+        _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodInfoIdentifier];
         
-        return cell;
+        _infoCell.nameLabel.text = _food.title;
+        _infoCell.descriptionLabel.text = _food.details;
+        _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", _food.price];
+        
+        return _infoCell;
     } else if (indexPath.section == NMProgressSection) {
         _progressCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodProgressIdentifier];
+        
+        _progressCell.progressBarView.progress = @(_food.orderCount.floatValue / _food.orderGoal.floatValue).floatValue;
+        _progressCell.quantityInput.value = [_orderModel.quantity integerValue] || 1;
         _progressCell.delegate = self;
-        _progressCell.progressBarView.progress = 0.5f;
-        NSNumber *left = [NSNumber numberWithInt:_foodItem.itemsTotal - _foodItem.itemsSold];
-        NSNumber *total = [NSNumber numberWithInt:_foodItem.itemsTotal];
-        _progressCell.leftSold = @[left, total];
+        
+        _progressCell.progressLabel.text = [NSString stringWithFormat:@"%@ left", _food.remainingOrders];
+        _progressCell.progressLabel.textAlignment = NSTextAlignmentCenter;
         
         return _progressCell;
     } else if (indexPath.section == NMDeliveryAddressSection) {
-        NMDeliveryAddressTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryAddressIdentifier];
-        addressCell = cell;
-        cell.currentAddress.text = destAddress;
-        cell.estimatedTime.text = destTime;
-        return cell;
-    } else if (indexPath.section == NMOrderDeliveryDetailsSection) {
-        NMOrderFoodDeliveryDetailsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryIdentifier];
-        cell.textField.placeholder = @"Room #";
-        return cell;
+        _addressCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryAddressIdentifier];
+        
+        _addressCell.addressLabel.text = @"Enter an address";
+        return _addressCell;
+    } else if (indexPath.section == NMOrderFoodConfirmationSection) {
+        _confirmAddressCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodConfirmAddressCellIdentifier];
+        return _confirmAddressCell;
     } else if (indexPath.section == NMOrderButtonSection) {
         NMOrderFoodOrderButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodButtonIdentifier];
-        
+        [cell.orderButton addTarget:self action:@selector(orderFoodButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         return cell;
         
-    }
-    return nil;
+    } else return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -145,31 +144,10 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     }
 }
 
-
-#pragma mark - APParallaxViewDelegate
-
-- (void)parallaxView:(APParallaxView *)view willChangeFrame:(CGRect)frame {
-    // Do whatever you need to do to the parallaxView or your subview before its frame changes
-    NSLog(@"parallaxView:willChangeFrame: %@", NSStringFromCGRect(frame));
-}
-
-- (void)parallaxView:(APParallaxView *)view didChangeFrame:(CGRect)frame {
-    // Do whatever you need to do to the parallaxView or your subview after its frame changed
-    NSLog(@"parallaxView:didChangeFrame: %@", NSStringFromCGRect(frame));
-}
-
 #pragma mark - Navigation Bar Customization
 
 - (void)initNavBar
 {
-//    UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
-//                                                            style:UIBarButtonItemStylePlain
-//                                                           target:self
-//                                                           action:@selector(launchMenu)];
-//    
-//    lbb.tintColor = UIColorFromRGB(0xC3C3C3);
-//    self.navigationItem.leftBarButtonItem = lbb;
-    
     // Logo in the center of navigation bar
     UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 88, 21)];
     UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];
@@ -179,51 +157,26 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     
 }
 
-#pragma mark - digit input delegates
-
--(void)didBeginEditing:(id)sender
-{
-    CHDigitInput *input = (CHDigitInput *)sender;
-    NSLog(@"did begin editing %i",input.value);
-}
-
--(void)didEndEditing:(id)sender
-{
-    CHDigitInput *input = (CHDigitInput *)sender;
-    NSLog(@"did end editing %i",input.value);
-}
-
--(void)textDidChange:(id)sender
-{
-    CHDigitInput *input = (CHDigitInput *)sender;
-    NSLog(@"text did change %i",input.value);
-}
-
--(void)valueChanged:(id)sender
-{
-    CHDigitInput *input = (CHDigitInput *)sender;
-    NSLog(@"value changed %i",input.value);
-}
-
 #pragma mark - order food button
-- (void)orderFoodButtonPressed:(id)sender
+- (void)orderFoodButtonPressed
 {
     NSLog(@"Your food has been ordered!");
-//    NMAddressSearchViewController *addressSearchVC = [[NMAddressSearchViewController alloc] init];
-//    [self presentViewController:addressSearchVC animated:YES completion:nil];
+    //    NMAddressSearchViewController *addressSearchVC = [[NMAddressSearchViewController alloc] init];
+    //    [self presentViewController:addressSearchVC animated:YES completion:nil];
     NMRateViewController *rateVC = [[NMRateViewController alloc] initWithPrice:@"12"];
     
     [self presentViewController:rateVC animated:YES completion:nil];
     
 }
 
-#pragma mark - AddressSearchViewController delegate methods
-- (void)setSelectedAddress:(NSString *)address {
-    destAddress = address;
-    addressCell.currentAddress.text = address;
-    [addressCell.currentAddress setNeedsDisplay];
+# pragma mark - Respond to quantity changes
+
+- (void)quantityDidChange {
+    if (_progressCell.quantityInput.value < 1) _progressCell.quantityInput.value = 1;
+    
+    _orderModel.quantity = @(_progressCell.quantityInput.value);
+    
+    _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", @(_orderModel.quantity.floatValue * _food.price.floatValue)];
 }
-
-
 
 @end

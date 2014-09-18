@@ -13,19 +13,9 @@
 @interface NMDeliveryAddressTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIButton *addressButton;
-@property (nonatomic, strong) UILabel *currentAddress;
-@property (nonatomic, strong) UILabel *estimatedTime;
-@property (nonatomic, weak) id<NMDeliveryAddressTableViewCell> delegate;
+@property (nonatomic, strong) UILabel *estimatedTimeLabel;
+@property (nonatomic, strong) UILabel *addressLabel;
 
 @end
-
-@protocol CMDeliveryAddressTableViewCell
-
-@required
-
--(void)addressButtonPressed:(id)sender;
-
-@end
-
 
 

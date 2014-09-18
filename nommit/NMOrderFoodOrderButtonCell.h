@@ -13,13 +13,5 @@
 @interface NMOrderFoodOrderButtonCell : UITableViewCell
 
 @property (nonatomic, strong) UIButton *orderButton;
-@property (nonatomic, weak) id<NMOrderFoodOrderButtonCell> delegate;
-
-@end
-
-@protocol NMOrderFoodOrderButtonCell
-
-@required
--(void)orderFoodButtonPressed:(id)sender;
 
 @end

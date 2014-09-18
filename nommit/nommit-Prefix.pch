@@ -26,5 +26,7 @@
 #import <MagicalRecord+ShorthandSupport.h>
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "NMColors.h"
+
 
 #endif

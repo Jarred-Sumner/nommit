@@ -19,27 +19,12 @@
         UIImage *btnImage = [UIImage imageNamed:@"OrderButton"];
         [_orderButton setImage:btnImage forState:UIControlStateNormal];
         _orderButton.contentMode = UIViewContentModeScaleToFill;
-        _orderButton.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height + 10);
-        
-        [_orderButton addTarget:_delegate action:@selector(orderFoodButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        _orderButton.frame = CGRectMake(0, 0, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame) + 10);
         
         [self.contentView addSubview:_orderButton];
         
     }
     return self;
-}
-
-
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

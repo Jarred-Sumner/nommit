@@ -11,6 +11,7 @@ typedef NS_ENUM(NSInteger, NSFoodState) {
 
 @property (readonly) NSFoodState state;
 
+@property (readonly) NSNumber *remainingOrders;
 @property (readonly) NSURL *headerImageAsURL;
 @property (readonly) NSURL *thumbnailImageAsURL;
 

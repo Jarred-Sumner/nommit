@@ -10,7 +10,6 @@
 #import "NMFoodCell.h"
 #import "NMCollectionViewSmallLayout.h"
 #import "NMOrderFoodViewController.h"
-#import "NMFoodItem.h"
 #import "NMColors.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import <MGScrollView.h>
@@ -134,10 +133,10 @@ static NSString *NMRibbonCellIdentifier = @"RibbonCellIdentifier";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"hi");
-    // test code - DONT DELETE YET
-    NMFoodItem *foodItem = [[NMFoodItem alloc] initWithTotalItems:70 withPrice:5 withName:@"Pepperoni Pizza" withDescription:@"A delicious slice of pizza filled with crispy pepperoni and scrumptuous cheese." withImage:[UIImage imageNamed:@"PepperoniPizza"] withItemsSold:23];
-    NMOrderFoodViewController *orderFoodViewController = [[NMOrderFoodViewController alloc] initWithFoodItem:foodItem];
+    
+    NMFood *food = self.foods[indexPath.row - 1];
+    NMOrderFoodViewController *orderFoodViewController = [[NMOrderFoodViewController alloc] initWithFood:food];
+    
     [self.navigationController pushViewController:orderFoodViewController animated:YES];
 }
 

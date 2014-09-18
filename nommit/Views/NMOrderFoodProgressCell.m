@@ -10,14 +10,7 @@
 
 @interface NMOrderFoodProgressCell() {
     UIView *separator;
-    UILabel *progressLabel;
-    UILabel *quantityLabel;
 }
-
-- (void)didBeginEditing:(id)sender;
-- (void)didEndEditing:(id)sender;
-- (void)textDidChange:(id)sender;
-- (void)valueChanged:(id)sender;
 
 @end
 
@@ -59,27 +52,19 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[_progressBarView]-30-|" options:0 metrics:nil views:views ]];
 }
 
-- (void)setLeftSold:(NSArray *)leftSold
-{
-    NSNumber *left = leftSold[0];
-    NSNumber *total = leftSold[1];
-    progressLabel.text = [NSString stringWithFormat:@"%@/%@ sold", left, total];
-}
-
 - (void)setupProgressLabel
 {
-    progressLabel = [[UILabel alloc] init];
-    progressLabel.textColor = UIColorFromRGB(0x787878);
-    progressLabel.font = [UIFont fontWithName:@"Avenir" size:24.0f];
-    progressLabel.frame = CGRectMake(40, 15, 150, 50);
-    [self.contentView addSubview:progressLabel];
+    _progressLabel = [[UILabel alloc] init];
+    _progressLabel.textColor = UIColorFromRGB(0x787878);
+    _progressLabel.font = [UIFont fontWithName:@"Avenir" size:24.0f];
+    _progressLabel.frame = CGRectMake(40, 15, 150, 50);
+    [self.contentView addSubview:_progressLabel];
 }
 
 - (void)setupSeparator
 {
     separator = [[UIView alloc] init];
     separator.backgroundColor = UIColorFromRGB(0xD8D8D8);
-    // separator.backgroundColor = [UIColor redColor];
     separator.frame = CGRectMake(210, 0, 1, 103);
     [self.contentView addSubview:separator];
     
@@ -87,57 +72,47 @@
 
 - (void)setupQuantityLabel
 {
-    quantityLabel = [[UILabel alloc] initWithFrame:CGRectMake(separator.frame.origin.x + 35, 8, 50, 20)];
-    quantityLabel.font = [UIFont fontWithName:@"Avenir-Light" size:12.0f];
-    quantityLabel.textColor = UIColorFromRGB(0x494949);
-    quantityLabel.text = @"Quantity";
-    [self.contentView addSubview:quantityLabel];
+    _quantityLabel = [[UILabel alloc] initWithFrame:CGRectMake(separator.frame.origin.x + 35, 8, 50, 20)];
+    _quantityLabel.font = [UIFont fontWithName:@"Avenir-Light" size:12.0f];
+    _quantityLabel.textColor = UIColorFromRGB(0x494949);
+    _quantityLabel.text = @"Quantity";
+    [self.contentView addSubview:_quantityLabel];
 }
 
 - (void)setupDigitInput
 {
-    _digitInput = [[CHDigitInput alloc] initWithNumberOfDigits:1];
-    _digitInput.translatesAutoresizingMaskIntoConstraints = NO;
+    _quantityInput = [[CHDigitInput alloc] initWithNumberOfDigits:1];
+    _quantityInput.translatesAutoresizingMaskIntoConstraints = NO;
     
+    _quantityInput.digitOverlayImage = [UIImage imageNamed:@"digitOverlay"];
+    _quantityInput.digitBackgroundImage = [UIImage imageNamed:@"digitControlBG"];
     
-    _digitInput.digitOverlayImage = [UIImage imageNamed:@"digitOverlay"];
-    _digitInput.digitBackgroundImage = [UIImage imageNamed:@"digitControlBG"];
+    _quantityInput.placeHolderCharacter = @"1";
     
-    //digitInput.backgroundView = digitBGView;
+    _quantityInput.digitViewBackgroundColor = [UIColor clearColor];
+    _quantityInput.digitViewHighlightedBackgroundColor = [UIColor clearColor];
     
-    _digitInput.placeHolderCharacter = @"1";
-    
-    // we are using an overlayimage, so make the bg color clear color
-    
-    _digitInput.digitViewBackgroundColor = [UIColor clearColor];
-    _digitInput.digitViewHighlightedBackgroundColor = [UIColor clearColor];
-    
-    _digitInput.digitViewTextColor = [UIColor whiteColor];
-    _digitInput.digitViewHighlightedTextColor = UIColorFromRGB(0x42B7BB);
-    
-    // _digitInput.frame = CGRectMake(220, 20, 50, 53);
+    _quantityInput.digitViewTextColor = [UIColor whiteColor];
+    _quantityInput.digitViewHighlightedTextColor = UIColorFromRGB(0x42B7BB);
     
     // we changed the default settings, so call redrawControl
-    [_digitInput redrawControl];
+    [_quantityInput redrawControl];
     
-    [self.contentView addSubview:_digitInput];
+    [self.contentView addSubview:_quantityInput];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_progressBarView, _digitInput);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_progressBarView, _quantityInput);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_progressBarView]-45-[_digitInput]-20-|" options:0 metrics:nil views:views ]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[_digitInput]-15-|" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_progressBarView]-45-[_quantityInput]-20-|" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[_quantityInput]-15-|" options:0 metrics:nil views:views ]];
     
     // adding the target,actions for available events
-    [_digitInput addTarget:_delegate action:@selector(didBeginEditing:) forControlEvents:UIControlEventEditingDidBegin];
-    [_digitInput addTarget:_delegate action:@selector(didEndEditing:) forControlEvents:UIControlEventEditingDidEnd];
-    [_digitInput addTarget:_delegate action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [_digitInput addTarget:_delegate action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_quantityInput addTarget:_delegate action:@selector(quantityDidChange) forControlEvents:UIControlEventValueChanged];
 }
 
 // dismissing the keyboard
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [_digitInput resignFirstResponder];
+    [_quantityInput resignFirstResponder];
 }
 
 @end

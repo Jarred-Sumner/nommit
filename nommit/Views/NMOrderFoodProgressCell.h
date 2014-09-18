@@ -14,9 +14,10 @@
 
 @interface NMOrderFoodProgressCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *progressLabel;
+@property (nonatomic, strong) UILabel *quantityLabel;
 @property TYMProgressBarView *progressBarView;
-@property CHDigitInput *digitInput;
-@property (strong, nonatomic) NSArray *leftSold;
+@property CHDigitInput *quantityInput;
 
 @property (nonatomic, weak) id<NMOrderFoodProgressCell> delegate;
 
@@ -26,9 +27,6 @@
 @protocol NMOrderFoodProgressCell
 
 @required
--(void)didBeginEditing:(id)sender;
--(void)didEndEditing:(id)sender;
--(void)textDidChange:(id)sender;
--(void)valueChanged:(id)sender;
+-(void)quantityDidChange;
 
 @end

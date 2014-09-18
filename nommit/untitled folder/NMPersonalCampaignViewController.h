@@ -1,18 +1,16 @@
+////
+////  NMPersonalCampaignViewController.h
+////  nommit
+////
+////  Created by Lucy Guo on 9/11/14.
+////  Copyright (c) 2014 Lucy Guo. All rights reserved.
+////
 //
-//  NMPersonalCampaignViewController.h
-//  nommit
+//#import <UIKit/UIKit.h>
+//#import "NMOrderFoodViewController.h"
 //
-//  Created by Lucy Guo on 9/11/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//@interface NMPersonalCampaignViewController : NMOrderFoodViewController
 //
-
-#import <UIKit/UIKit.h>
-#import "NMFoodItem.h"
-#import "NMOrderFoodViewController.h"
-
-@interface NMPersonalCampaignViewController : NMOrderFoodViewController
-
-- (id)initWithCampaign:(NMFoodItem *)campaign;
-
-
-@end
+//- (instancetype)initWithFood:(NMFood *)food;
+//
+//@end

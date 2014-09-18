@@ -8,9 +8,9 @@
 
 #import "NMDeliveryAddressTableViewCell.h"
 
-@interface NMDeliveryAddressTableViewCell() {
-    UIImageView *pin;
-}
+@interface NMDeliveryAddressTableViewCell()
+
+@property (nonatomic, strong) UIImageView *pin;
 
 @end
 
@@ -25,7 +25,6 @@
         self.layer.borderColor = [UIColorFromRGB(0xD3D3D3) CGColor];
         self.layer.borderWidth = 1.0f;
         
-        
         [self setupPin];
         [self setupEstimatedTime];
         [self setupCurrentAddress];
@@ -35,54 +34,45 @@
 
 - (void)setupPin
 {
-    pin = [[UIImageView alloc] init];
-    pin.image = [UIImage imageNamed:@"Pin"];
-    pin.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:pin];
+    _pin = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Pin"]];
+    _pin.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:_pin];
     
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(pin);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_pin);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[pin]" options:0 metrics:nil views:views]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[pin]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_pin]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[_pin]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupEstimatedTime
 {
-    _estimatedTime = [[UILabel alloc] init];
+    _estimatedTimeLabel = [[UILabel alloc] init];
+    _estimatedTimeLabel.font = [UIFont fontWithName:@"Avenir" size:12.0f];
+    _estimatedTimeLabel.textColor = UIColorFromRGB(0x959595);
+    _estimatedTimeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:_estimatedTimeLabel];
     
-    _estimatedTime = [[UILabel alloc] init];
-    _estimatedTime.font = [UIFont fontWithName:@"Avenir" size:12.0f];
-    _estimatedTime.textColor = UIColorFromRGB(0x959595);
-    _estimatedTime.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:_estimatedTime];
+    NSDictionary *views = NSDictionaryOfVariableBindings(_estimatedTimeLabel);
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_estimatedTime);
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_estimatedTime]-20-|" options:0 metrics:nil views:views]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[_estimatedTime]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_estimatedTimeLabel]-20-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[_estimatedTimeLabel]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupCurrentAddress
 {
-    _currentAddress = [[UILabel alloc] init];
-    _currentAddress.font = [UIFont fontWithName:@"Avenir" size:15.0f];
-    _currentAddress.textColor = UIColorFromRGB(0x4E4E4E);
-    _currentAddress.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:_currentAddress];
+    _addressLabel = [[UILabel alloc] init];
+    _addressLabel.font = [UIFont fontWithName:@"Avenir" size:15.0f];
+    _addressLabel.textColor = UIColorFromRGB(0x4E4E4E);
+    _addressLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _addressLabel.text = @"Enter an Address";
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(pin, _currentAddress, _estimatedTime);
+    [self.contentView addSubview:_addressLabel];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[pin]-20-[_currentAddress]-20-[_estimatedTime]-20-|" options:0 metrics:nil views:views]];
+    NSDictionary *views = NSDictionaryOfVariableBindings(_pin, _addressLabel, _estimatedTimeLabel);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-13-[_currentAddress]" options:0 metrics:nil views:views]];
-}
-
-- (void)awakeFromNib
-{
-    // Initialization code
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_pin]-20-[_addressLabel]-20-[_estimatedTimeLabel]-20-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-13-[_addressLabel]" options:0 metrics:nil views:views]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -7,15 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NMFoodItem.h"
 #import "NMAddressSearchViewController.h"
 #import "NMOrderFoodProgressCell.h"
 
-@interface NMOrderFoodViewController : UITableViewController<NMAddressSearchDelegate>
+@interface NMOrderFoodViewController : UITableViewController<NMAddressSearchDelegate, NMOrderFoodProgressCell>
 
-@property (nonatomic, strong) NMFoodItem *foodItem;
-@property (nonatomic, strong) NMOrderFoodProgressCell *progressCell;
+@property (nonatomic, strong) NMOrderApiModel *orderModel;
 
-- (id)initWithFoodItem:(NMFoodItem *)foodItem;
+- (id)initWithFood:(NMFood*)food;
 
 @end

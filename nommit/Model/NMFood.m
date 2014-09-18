@@ -29,6 +29,8 @@
     return [NSURL URLWithString:self.thumbnailImageURL];
 }
 
-
+- (NSNumber *)remainingOrders {
+    return @(self.orderGoal.integerValue - self.orderCount.integerValue);
+}
 
 @end
