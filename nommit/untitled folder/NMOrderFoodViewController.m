@@ -17,6 +17,7 @@
 #import "NMDeliveryAddressTableViewCell.h"
 #import "NMMenuNavigationController.h"
 #import "NMRateViewController.h"
+#import "NMDeliveryViewController.h"
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMProgressSection = 1;
@@ -211,9 +212,10 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     NSLog(@"Your food has been ordered!");
 //    NMAddressSearchViewController *addressSearchVC = [[NMAddressSearchViewController alloc] init];
 //    [self presentViewController:addressSearchVC animated:YES completion:nil];
-    NMRateViewController *rateVC = [[NMRateViewController alloc] initWithPrice:@"12"];
+    NMDeliveryViewController *rateVC = [[NMDeliveryViewController alloc] initWithOrder:nil];
     
-    [self presentViewController:rateVC animated:YES completion:nil];
+    // [self presentViewController:rateVC animated:YES completion:nil];
+    [self.navigationController pushViewController:rateVC animated:YES];
     
 }
 
