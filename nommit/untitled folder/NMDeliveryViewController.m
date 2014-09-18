@@ -10,8 +10,8 @@
 #import "NMColors.h"
 
 @interface NMDeliveryViewController () {
-    UILabel *rateLabel;
-    UILabel *priceLabel;
+    UILabel *estimatedLabel;
+    UILabel *timeLabel;
     UILabel *placeLabel;
     UIImageView *avatar;
     UIImageView *foodAvatar;
@@ -29,7 +29,7 @@
         [self setupBanner];
         [self setupPersonAvatar];
         [self setupFoodAvatar];
-        [self setupRateLabel:[NSNumber numberWithInt:12]];
+        [self setupestimatedLabel:[NSNumber numberWithInt:12]];
         [self setupRating];
         [self setupDoneButton];
     }
@@ -87,39 +87,39 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-72-[foodAvatar]" options:0 metrics:nil views:views]];
 }
 
-- (void)setupRateLabel:price
+- (void)setupestimatedLabel:price
 {
-    rateLabel = [[UILabel alloc] init];
-    rateLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    rateLabel.font = [UIFont fontWithName:@"Avenir-Light" size:12.0f];
-    rateLabel.textColor = UIColorFromRGB(0xC9C9C9);
-    rateLabel.text = @"⎯⎯⎯⎯⎯⎯  Estimated Arrival  ⎯⎯⎯⎯⎯⎯";
-    rateLabel.layer.shadowColor = [[UIColor whiteColor] CGColor];
-    rateLabel.layer.shadowOffset = CGSizeMake(0, 1);
-    rateLabel.textAlignment = NSTextAlignmentCenter;
-    rateLabel.numberOfLines = 1;
-    [self.view addSubview:rateLabel];
+    estimatedLabel = [[UILabel alloc] init];
+    estimatedLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    estimatedLabel.font = [UIFont fontWithName:@"Avenir-Light" size:12.0f];
+    estimatedLabel.textColor = UIColorFromRGB(0xC9C9C9);
+    estimatedLabel.text = @"⎯⎯⎯⎯⎯⎯  Estimated Arrival  ⎯⎯⎯⎯⎯⎯";
+    estimatedLabel.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    estimatedLabel.layer.shadowOffset = CGSizeMake(0, 1);
+    estimatedLabel.textAlignment = NSTextAlignmentCenter;
+    estimatedLabel.numberOfLines = 1;
+    [self.view addSubview:estimatedLabel];
     
-    priceLabel = [[UILabel alloc] init];
-    priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    priceLabel.font = [UIFont fontWithName:@"Avenir" size:44.0f];
-    priceLabel.textColor = UIColorFromRGB(0x666666);
-    priceLabel.text = @"3 min";
-    priceLabel.layer.shadowColor = [[UIColor whiteColor] CGColor];
-    priceLabel.layer.shadowOffset = CGSizeMake(0, 1);
-    priceLabel.textAlignment = NSTextAlignmentCenter;
-    priceLabel.numberOfLines = 1;
-    [self.view addSubview:priceLabel];
+    timeLabel = [[UILabel alloc] init];
+    timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    timeLabel.font = [UIFont fontWithName:@"Avenir" size:44.0f];
+    timeLabel.textColor = UIColorFromRGB(0x666666);
+    timeLabel.text = @"3 min";
+    timeLabel.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    timeLabel.layer.shadowOffset = CGSizeMake(0, 1);
+    timeLabel.textAlignment = NSTextAlignmentCenter;
+    timeLabel.numberOfLines = 1;
+    [self.view addSubview:timeLabel];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(rateLabel, avatar, priceLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(estimatedLabel, avatar, timeLabel);
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-35-[rateLabel]-35-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-35-[priceLabel]-35-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-35-[estimatedLabel]-35-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-35-[timeLabel]-35-|" options:0 metrics:nil views:views]];
     if (iPhone5) {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[avatar]-20-[rateLabel]-5-[priceLabel]" options:0 metrics:nil views:views]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[avatar]-20-[estimatedLabel]-5-[timeLabel]" options:0 metrics:nil views:views]];
     } else {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[avatar]-10-[rateLabel]-5-[priceLabel]" options:0 metrics:nil views:views]];
-        priceLabel.font = [UIFont fontWithName:@"Avenir" size:38.0f];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[avatar]-10-[estimatedLabel]-5-[timeLabel]" options:0 metrics:nil views:views]];
+        timeLabel.font = [UIFont fontWithName:@"Avenir" size:38.0f];
     }
 }
 
@@ -147,15 +147,15 @@
     placeLabel.numberOfLines = 1;
     [self.view addSubview:placeLabel];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(placeLabel, rateDeliveryLabel, priceLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(placeLabel, rateDeliveryLabel, timeLabel);
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-35-[placeLabel]-35-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[rateDeliveryLabel]-25-|" options:0 metrics:nil views:views]];
     
     if (iPhone5)
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[priceLabel]-10-[rateDeliveryLabel]-10-[placeLabel]-130-|" options:0 metrics:nil views:views]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[timeLabel]-10-[rateDeliveryLabel]-10-[placeLabel]-130-|" options:0 metrics:nil views:views]];
     else {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[priceLabel]-10-[rateDeliveryLabel]-3-[placeLabel]-70-|" options:0 metrics:nil views:views]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[timeLabel]-10-[rateDeliveryLabel]-3-[placeLabel]-70-|" options:0 metrics:nil views:views]];
     }
 }
 
