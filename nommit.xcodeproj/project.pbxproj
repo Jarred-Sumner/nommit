@@ -60,6 +60,7 @@
 		8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819719B84269004A5090 /* NMAddressTableViewController.m */; };
 		8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819A19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m */; };
 		8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819C19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m */; };
+		8D7D00A119CA65A50006E5E6 /* NMDeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A019CA65A50006E5E6 /* NMDeliveryViewController.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -188,6 +189,8 @@
 		8D74819A19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesAutocompletePlace.m; path = Libraries/SPGooglePlacesAutocompletePlace.m; sourceTree = "<group>"; };
 		8D74819B19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPGooglePlacesAutocompleteQuery.h; path = Libraries/SPGooglePlacesAutocompleteQuery.h; sourceTree = "<group>"; };
 		8D74819C19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesAutocompleteQuery.m; path = Libraries/SPGooglePlacesAutocompleteQuery.m; sourceTree = "<group>"; };
+		8D7D009F19CA65A50006E5E6 /* NMDeliveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryViewController.h; path = "untitled folder/NMDeliveryViewController.h"; sourceTree = "<group>"; };
+		8D7D00A019CA65A50006E5E6 /* NMDeliveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryViewController.m; path = "untitled folder/NMDeliveryViewController.m"; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -441,6 +444,8 @@
 				8D5E561519C246F90001B531 /* NMPersonalCampaignViewController.m */,
 				8D5E561719C249A80001B531 /* NMRateViewController.h */,
 				8D5E561819C249A80001B531 /* NMRateViewController.m */,
+				8D7D009F19CA65A50006E5E6 /* NMDeliveryViewController.h */,
+				8D7D00A019CA65A50006E5E6 /* NMDeliveryViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -698,6 +703,7 @@
 				8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,
 				83EE765819BBE3CD006FEDDF /* NMSession.m in Sources */,
+				8D7D00A119CA65A50006E5E6 /* NMDeliveryViewController.m in Sources */,
 				83EE765B19BBF9A6006FEDDF /* NMAddressApiModel.m in Sources */,
 				83D6A9E619B822B8009A6D9B /* NMUser.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,

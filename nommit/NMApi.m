@@ -10,7 +10,7 @@
 
 
 
-static NSString *NMApiBaseURLString = @"http://localhost:3000";
+static NSString *NMApiBaseURLString = @"http://getnommit.com";
 
 @implementation NMApi
 

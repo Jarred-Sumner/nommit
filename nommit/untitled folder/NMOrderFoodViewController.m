@@ -17,6 +17,7 @@
 #import "NMDeliveryAddressTableViewCell.h"
 #import "NMMenuNavigationController.h"
 #import "NMRateViewController.h"
+#import "NMDeliveryViewController.h"
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMProgressSection = 1;
@@ -44,11 +45,11 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
 - (instancetype)initWithFood:(NMFood *)food {
     self = [super initWithStyle:UITableViewStylePlain];
-    
+
     _food = food;
     _orderModel = [[NMOrderApiModel alloc] init];
     _orderModel.food = [MTLManagedObjectAdapter modelOfClass:[NMFoodApiModel class] fromManagedObject:_food error:nil];
-    
+
 
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.tableView registerClass:[NMOrderFoodInfoCell class] forCellReuseIdentifier:NMOrderFoodInfoIdentifier];
@@ -56,13 +57,13 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     [self.tableView registerClass:[NMDeliveryAddressTableViewCell class] forCellReuseIdentifier:NMOrderFoodDeliveryAddressIdentifier];
     [self.tableView registerClass:[NMOrderFoodConfirmAddressCell class] forCellReuseIdentifier:NMOrderFoodConfirmAddressCellIdentifier];
     [self.tableView registerClass:[NMOrderFoodOrderButtonCell class] forCellReuseIdentifier:NMOrderFoodButtonIdentifier];
-    
+
     [self.tableView addParallaxWithImage:nil andHeight:150];
     [self.tableView.parallaxView setDelegate:self];
     [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL];
-    
+
     [self initNavBar];
-    
+
     return self;
 }
 
@@ -101,26 +102,26 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMInfoSection) {
         _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodInfoIdentifier];
-        
+
         _infoCell.nameLabel.text = _food.title;
         _infoCell.descriptionLabel.text = _food.details;
         _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", _food.price];
-        
+
         return _infoCell;
     } else if (indexPath.section == NMProgressSection) {
         _progressCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodProgressIdentifier];
-        
+
         _progressCell.progressBarView.progress = @(_food.orderCount.floatValue / _food.orderGoal.floatValue).floatValue;
         _progressCell.quantityInput.value = [_orderModel.quantity integerValue] || 1;
         _progressCell.delegate = self;
-        
+
         _progressCell.progressLabel.text = [NSString stringWithFormat:@"%@ left", _food.remainingOrders];
         _progressCell.progressLabel.textAlignment = NSTextAlignmentCenter;
-        
+
         return _progressCell;
     } else if (indexPath.section == NMDeliveryAddressSection) {
         _addressCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryAddressIdentifier];
-        
+
         _addressCell.addressLabel.text = @"Enter an address";
         return _addressCell;
     } else if (indexPath.section == NMOrderFoodConfirmationSection) {
@@ -130,7 +131,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         NMOrderFoodOrderButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodButtonIdentifier];
         [cell.orderButton addTarget:self action:@selector(orderFoodButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         return cell;
-        
+
     } else return nil;
 }
 
@@ -154,28 +155,24 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     titleImageView.frame = CGRectMake(0, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
     [logoView addSubview:titleImageView];
     self.navigationItem.titleView = logoView;
-    
+
 }
 
 #pragma mark - order food button
 - (void)orderFoodButtonPressed
 {
-    NSLog(@"Your food has been ordered!");
-    //    NMAddressSearchViewController *addressSearchVC = [[NMAddressSearchViewController alloc] init];
-    //    [self presentViewController:addressSearchVC animated:YES completion:nil];
-    NMRateViewController *rateVC = [[NMRateViewController alloc] initWithPrice:@"12"];
-    
-    [self presentViewController:rateVC animated:YES completion:nil];
-    
+    NMDeliveryViewController *rateVC = [[NMDeliveryViewController alloc] initWithOrder:nil];
+    [self.navigationController pushViewController:rateVC animated:YES];
+
 }
 
 # pragma mark - Respond to quantity changes
 
 - (void)quantityDidChange {
     if (_progressCell.quantityInput.value < 1) _progressCell.quantityInput.value = 1;
-    
+
     _orderModel.quantity = @(_progressCell.quantityInput.value);
-    
+
     _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", @(_orderModel.quantity.floatValue * _food.price.floatValue)];
 }
 
