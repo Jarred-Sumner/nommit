@@ -24,6 +24,7 @@ PODS:
   - Bolts (1.1.2)
   - DBCamera (2.3.4):
     - GPUImage (~> 0.1)
+  - DropdownMenu (1.0.0)
   - Facebook-iOS-SDK (3.17.0):
     - Bolts
   - GPUImage (0.1.5)
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - AFNetworking
   - APParallaxHeader
   - DBCamera
+  - DropdownMenu
   - Facebook-iOS-SDK
   - INTULocationManager
   - JVFloatLabeledTextField
@@ -80,6 +82,7 @@ SPEC CHECKSUMS:
   APParallaxHeader: 6e7cc27c052be34e1a5655dc2fab6c40eecbbe55
   Bolts: 2635e8698a630774689441047f3465d78c48d485
   DBCamera: d78a9f58aaf29d0a0811baa8cea747c7d7e80923
+  DropdownMenu: ad71a2fcb932cc04a4f7c29aadaf2e8ed0c08e42
   Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
   INTULocationManager: 596c57e35a00ca1ee9d59bf4cc2b63dc299b580e

@@ -66,6 +66,12 @@
 #define COCOAPODS_VERSION_MINOR_DBCamera 3
 #define COCOAPODS_VERSION_PATCH_DBCamera 4
 
+// DropdownMenu
+#define COCOAPODS_POD_AVAILABLE_DropdownMenu
+#define COCOAPODS_VERSION_MAJOR_DropdownMenu 1
+#define COCOAPODS_VERSION_MINOR_DropdownMenu 0
+#define COCOAPODS_VERSION_PATCH_DropdownMenu 0
+
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
