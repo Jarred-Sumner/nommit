@@ -11,6 +11,7 @@
 #import "NMColors.h"
 #import "NMMenuNavigationController.h"
 #import "NMFoodCellHeaderView.h"
+#import "RateView.h"
 
 @interface NMFoodTableViewCell()
 
@@ -18,8 +19,12 @@
 @property (nonatomic, strong) NMFoodCellHeaderView *headerView;
 @property (nonatomic, strong) UILabel *soldLabel;
 @property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *sellerLabel;
 @property (nonatomic, strong) UILabel *priceLabel;
 @property (nonatomic, strong) TYMProgressBarView *progressBarView;
+@property (nonatomic, strong) UIImageView *profileAvatar;
+@property (nonatomic, strong) RateView *rateVw;
+@property (nonatomic, strong) UILabel *timeLabel;
 
 @end
 
@@ -30,23 +35,50 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = UIColorFromRGB(0xFBFBFB);
+        
+        UIImageView *bg = [[UIImageView alloc] initWithFrame:CGRectMake(65, 38, 241, 200.5)];
+        bg.image = [UIImage imageNamed:@"NewsCell"];
+        [self.contentView addSubview:bg];
+        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        [self setupHeaderView];
+        // [self setupHeaderView];
+        [self setupAvatar];
+        [self setupNameLabel];
         [self setupFoodImageView];
         [self setupFoodLabel];
         [self setupPriceLabel];
         [self setupSoldLabel];
         [self setupProgressBar];
-        [self setupBorder];
+        [self setupRating];
+        [self setupTime];
+        // [self setupBorder];
     }
     return self;
 }
 
-- (void)setupHeaderView
+- (void)setupAvatar
 {
-    NMFoodCellHeaderView *headerView = [[NMFoodCellHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 53)];
-    headerView.nameLabel.text = @"Delta Delta Delta";
-    [self.contentView addSubview:headerView];
+    _profileAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(14, 18, 40, 40)];
+    _profileAvatar.layer.cornerRadius = _profileAvatar.bounds.size.width/2;
+    _profileAvatar.layer.masksToBounds = YES;
+    _profileAvatar.image = [UIImage imageNamed:@"AvatarLucySmall"];
+    [self.contentView addSubview:_profileAvatar];
+}
+
+- (void)setupNameLabel
+{
+    _sellerLabel = [[UILabel alloc] init];
+    _sellerLabel.numberOfLines = 1;
+    _sellerLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+    _sellerLabel.textColor = UIColorFromRGB(0x3C3C3C);
+    _sellerLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _sellerLabel.text = @"Delta Delta Delta";
+    [self.contentView addSubview:_sellerLabel];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_sellerLabel, _profileAvatar);
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_profileAvatar]-14-[_sellerLabel]" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_sellerLabel]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupFoodImageView
@@ -54,10 +86,25 @@
     _foodImageView = [[UIImageView alloc] init];
     _foodImageView.translatesAutoresizingMaskIntoConstraints = NO;
     _foodImageView.image = [UIImage imageNamed:@"PepperoniPizza2"];
+    _foodImageView.layer.masksToBounds = YES;
+    _foodImageView.layer.cornerRadius = 2;
     [self.contentView addSubview:_foodImageView];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_foodImageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-53-[_foodImageView]-88-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
+    // _foodImageView.frame = CGRectMake(67, 38, 241, 200.5);
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-67-[_foodImageView]-16-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-38-[_foodImageView]-75-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
+    
+    
+    
+    // setup white border
+//    UIView *borderView = [[UIView alloc] init];
+//    borderView.translatesAutoresizingMaskIntoConstraints = NO;
+//    borderView.backgroundColor = [UIColor whiteColor];
+//    [self.contentView addSubview:borderView];
+//    
+//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-67.21-[borderView]-16.3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
+//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-165-[borderView]-75-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
 }
 
 - (void)setupFoodLabel
@@ -70,7 +117,7 @@
     
     [self.contentView addSubview:_nameLabel];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-77-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel)]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_foodImageView]-7-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel, _foodImageView)]];
 }
 
@@ -87,7 +134,7 @@
     [self.contentView addSubview:_priceLabel];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_foodImageView]-7-[_priceLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel, _foodImageView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_priceLabel]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_priceLabel]-25-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel)]];
 }
 
 - (void)setupSoldLabel
@@ -100,7 +147,7 @@
     
     [self.contentView addSubview:_soldLabel];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_soldLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_soldLabel)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-77-[_soldLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_soldLabel)]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-3-[_soldLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel, _soldLabel)]];
     
 }
@@ -121,22 +168,51 @@
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_progressBarView, _soldLabel);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_progressBarView]-15-|" options:0 metrics:nil views:views ]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_soldLabel]-5-[_progressBarView]-30-|" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-77-[_progressBarView]-25-|" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_soldLabel]-5-[_progressBarView]-15-|" options:0 metrics:nil views:views ]];
 }
 
-- (void)setupBorder
+- (void)setupRating
 {
-    UIView *borderView = [[UIView alloc] init];
-    borderView.translatesAutoresizingMaskIntoConstraints = NO;
-    borderView.backgroundColor = UIColorFromRGB(0xFBFBFB);
-    borderView.layer.borderColor = [UIColorFromRGB(0xE9E9E9) CGColor];
-    borderView.layer.borderWidth = 1.0f;
+    _rateVw = [RateView rateViewWithRating:5.0f];
+    _rateVw.starFillMode = StarFillModeHorizontal;
+    _rateVw.canRate = NO;
+    _rateVw.tag = 88888;
+    _rateVw.starSize = 10;
+    _rateVw.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.contentView addSubview:borderView];
+    _rateVw.starFillColor = [NMColors mainColor];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[borderView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_progressBarView]-10-[borderView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressBarView, borderView)]];
+    
+    [self.contentView addSubview:_rateVw];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_rateVw, _nameLabel);
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_rateVw]-75-|" options:0 metrics:nil views:views]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-6-[_rateVw]" options:0 metrics:nil views:views]];
+}
+
+- (void)setupTime
+{
+    UIImageView *timeIcon = [[UIImageView alloc] init];
+    timeIcon.image = [UIImage imageNamed:@"TimeIcon"];
+    timeIcon.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:timeIcon];
+    
+    _timeLabel = [[UILabel alloc] init];
+    _timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _timeLabel.text = @"2 hrs left";
+    _timeLabel.font = [UIFont fontWithName:@"Avenir" size:12.0f];
+    _timeLabel.textColor = UIColorFromRGB(0x979797);
+    [self.contentView addSubview:_timeLabel];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(timeIcon, _timeLabel);
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[timeIcon]-5-[_timeLabel]-18-|" options:0 metrics:nil views:views]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-17-[timeIcon]" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_timeLabel]" options:0 metrics:nil views:views]];
     
 }
 
