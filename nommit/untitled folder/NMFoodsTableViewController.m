@@ -33,7 +33,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         self.view.backgroundColor = [NMColors lightGray];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self initNavBar];
-        // [self setupDataSource];
+        [self setupDataSource];
         
         [self.tableView registerClass:[NMFoodTableViewCell class] forCellReuseIdentifier:NMFoodCellIdentifier];
     }
@@ -116,6 +116,8 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     }];
 }
 
+#pragma mark - nav bar
+
 - (void)initNavBar
 {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
@@ -134,7 +136,5 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     self.navigationItem.titleView = logoView;
     
 }
-
-
 
 @end
