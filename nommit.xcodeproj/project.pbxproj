@@ -61,6 +61,10 @@
 		8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819A19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m */; };
 		8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819C19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m */; };
 		8D7D00A119CA65A50006E5E6 /* NMDeliveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A019CA65A50006E5E6 /* NMDeliveryViewController.m */; };
+		8D7D00A419CD0BDD0006E5E6 /* NMFoodsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A319CD0BDD0006E5E6 /* NMFoodsTableViewController.m */; };
+		8D7D00A719CD160B0006E5E6 /* NMFoodCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A619CD160B0006E5E6 /* NMFoodCellHeaderView.m */; };
+		8D7D00AA19CD168C0006E5E6 /* NMFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */; };
+		8D7D00AD19CD17940006E5E6 /* NMLocationDropdownTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00AC19CD17940006E5E6 /* NMLocationDropdownTableViewCell.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -191,6 +195,14 @@
 		8D74819C19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesAutocompleteQuery.m; path = Libraries/SPGooglePlacesAutocompleteQuery.m; sourceTree = "<group>"; };
 		8D7D009F19CA65A50006E5E6 /* NMDeliveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryViewController.h; path = "untitled folder/NMDeliveryViewController.h"; sourceTree = "<group>"; };
 		8D7D00A019CA65A50006E5E6 /* NMDeliveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryViewController.m; path = "untitled folder/NMDeliveryViewController.m"; sourceTree = "<group>"; };
+		8D7D00A219CD0BDD0006E5E6 /* NMFoodsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodsTableViewController.h; path = "untitled folder/NMFoodsTableViewController.h"; sourceTree = "<group>"; };
+		8D7D00A319CD0BDD0006E5E6 /* NMFoodsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodsTableViewController.m; path = "untitled folder/NMFoodsTableViewController.m"; sourceTree = "<group>"; };
+		8D7D00A519CD160B0006E5E6 /* NMFoodCellHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodCellHeaderView.h; path = Cells/NMFoodCellHeaderView.h; sourceTree = "<group>"; };
+		8D7D00A619CD160B0006E5E6 /* NMFoodCellHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodCellHeaderView.m; path = Cells/NMFoodCellHeaderView.m; sourceTree = "<group>"; };
+		8D7D00A819CD168C0006E5E6 /* NMFoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodTableViewCell.h; path = Cells/NMFoodTableViewCell.h; sourceTree = "<group>"; };
+		8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodTableViewCell.m; path = Cells/NMFoodTableViewCell.m; sourceTree = "<group>"; };
+		8D7D00AB19CD17940006E5E6 /* NMLocationDropdownTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLocationDropdownTableViewCell.h; path = Cells/NMLocationDropdownTableViewCell.h; sourceTree = "<group>"; };
+		8D7D00AC19CD17940006E5E6 /* NMLocationDropdownTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLocationDropdownTableViewCell.m; path = Cells/NMLocationDropdownTableViewCell.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -446,6 +458,8 @@
 				8D5E561819C249A80001B531 /* NMRateViewController.m */,
 				8D7D009F19CA65A50006E5E6 /* NMDeliveryViewController.h */,
 				8D7D00A019CA65A50006E5E6 /* NMDeliveryViewController.m */,
+				8D7D00A219CD0BDD0006E5E6 /* NMFoodsTableViewController.h */,
+				8D7D00A319CD0BDD0006E5E6 /* NMFoodsTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -504,6 +518,12 @@
 				8D5E561B19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m */,
 				83BE9B1D19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.h */,
 				83BE9B1E19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.m */,
+				8D7D00A519CD160B0006E5E6 /* NMFoodCellHeaderView.h */,
+				8D7D00A619CD160B0006E5E6 /* NMFoodCellHeaderView.m */,
+				8D7D00A819CD168C0006E5E6 /* NMFoodTableViewCell.h */,
+				8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */,
+				8D7D00AB19CD17940006E5E6 /* NMLocationDropdownTableViewCell.h */,
+				8D7D00AC19CD17940006E5E6 /* NMLocationDropdownTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -678,13 +698,16 @@
 				8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */,
 				8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */,
 				8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */,
+				8D7D00AD19CD17940006E5E6 /* NMLocationDropdownTableViewCell.m in Sources */,
 				83D6A9E119B822B8009A6D9B /* _NMFood.m in Sources */,
 				8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */,
 				8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */,
+				8D7D00AA19CD168C0006E5E6 /* NMFoodTableViewCell.m in Sources */,
 				8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */,
 				83D6A9E519B822B8009A6D9B /* NMOrder.m in Sources */,
 				8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */,
 				83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */,
+				8D7D00A419CD0BDD0006E5E6 /* NMFoodsTableViewController.m in Sources */,
 				8D6DE42119B7B5AB008F64CE /* NMAddressSearchViewController.m in Sources */,
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
@@ -698,6 +721,7 @@
 				83EE766119BBFE51006FEDDF /* NMAddress.m in Sources */,
 				8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */,
 				8D49F30B19BEAF2B00E60145 /* Constants.m in Sources */,
+				8D7D00A719CD160B0006E5E6 /* NMFoodCellHeaderView.m in Sources */,
 				8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
 				8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */,

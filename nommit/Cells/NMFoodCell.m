@@ -47,7 +47,9 @@
 }
 
 - (void)setupFoodImageView {
-    _foodImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.contentView.frame), CGRectGetWidth(self.contentView.frame))];
+    _foodImageView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, CGRectGetWidth(self.contentView.frame) - 4, CGRectGetWidth(self.contentView.frame))];
+    _foodImageView.layer.cornerRadius = 3;
+    _foodImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:_foodImageView];
 }
 

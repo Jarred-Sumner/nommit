@@ -15,6 +15,7 @@
 #import "NMMenuViewController.h"
 #import "NMMenuNavigationController.h"
 #import "NMLoginViewController.h"
+#import "NMFoodsTableViewController.h"
 
 #import "CoreData+MagicalRecord.h"
 #import <MagicalRecord+ShorthandSupport.h>
@@ -61,7 +62,7 @@
 
 - (UIViewController *)rootViewController {
     if ([NMSession isUserLoggedIn]) {
-        return [[NMFoodsViewController alloc] init];
+        return [[NMFoodsTableViewController alloc] init];
     } else return [[NMLoginViewController alloc] init];
 }
 

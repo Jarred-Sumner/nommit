@@ -19,6 +19,7 @@ target "nommit" do
   pod 'Facebook-iOS-SDK'
   pod 'Lockbox'
   pod 'M13Checkbox', '~> 1.1.0'
+  pod 'REMenu', '~> 1.10'
 end
 
 target "nommitTests" do
