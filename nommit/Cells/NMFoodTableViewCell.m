@@ -57,7 +57,7 @@
     [self.contentView addSubview:_foodImageView];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_foodImageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-53-[_foodImageView]-78-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-53-[_foodImageView]-88-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
 }
 
 - (void)setupFoodLabel
@@ -122,7 +122,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_progressBarView, _soldLabel);
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_progressBarView]-15-|" options:0 metrics:nil views:views ]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_soldLabel]-5-[_progressBarView]-20-|" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_soldLabel]-5-[_progressBarView]-30-|" options:0 metrics:nil views:views ]];
 }
 
 - (void)setupBorder
@@ -136,7 +136,7 @@
     [self.contentView addSubview:borderView];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[borderView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_progressBarView]-7-[borderView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressBarView, borderView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_progressBarView]-10-[borderView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressBarView, borderView)]];
     
 }
 
