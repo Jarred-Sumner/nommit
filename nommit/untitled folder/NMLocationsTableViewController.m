@@ -48,4 +48,10 @@ static NSString * CellIdentifier = @"CellIdentifier";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_delegate setSelectedAddress:[self.items objectAtIndex:indexPath.row]];
+}
+
 @end

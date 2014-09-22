@@ -19,10 +19,11 @@
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
-@interface NMFoodsTableViewController ()
+@interface NMFoodsTableViewController ()<NMLocationContainerViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray *foods;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NMLocationDropdownTableViewCell *headerView;
 
 @end
 
@@ -78,9 +79,9 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NMLocationDropdownTableViewCell *headerView = [[NMLocationDropdownTableViewCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 40)];
-    [headerView.locationButton addTarget:self action:@selector(locationButtonTouched) forControlEvents:UIControlEventTouchUpInside];
-    return headerView;
+    _headerView = [[NMLocationDropdownTableViewCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 40)];
+    [_headerView.locationButton addTarget:self action:@selector(locationButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+    return _headerView;
 }
 
 
@@ -143,9 +144,18 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 - (void)locationButtonTouched
 {
     NMLocationContainerViewController *locationView = [[NMLocationContainerViewController alloc] init];
+    locationView.delegate = self;
     NMMenuNavigationController *navController =
     [[NMMenuNavigationController alloc] initWithRootViewController:locationView];
     [self presentViewController:navController animated:YES completion:nil];
+}
+
+#pragma mark - NMLocationContainerViewControllerDelegate methods
+- (void)setSelectedAddress:(NSString *)address
+{
+    // _headerView.locationButton
+    NSString *titleString = [NSString stringWithFormat:@"Delivering to: %@", address];
+    [_headerView.locationButton setTitle:titleString forState:UIControlStateNormal];
 }
 
 @end

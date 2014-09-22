@@ -9,7 +9,7 @@
 #import "NMLocationContainerViewController.h"
 #import "NMLocationsTableViewController.h"
 
-@interface NMLocationContainerViewController ()
+@interface NMLocationContainerViewController ()<NMLocationsTableViewControllerDelegate>
 
 @property (nonatomic, strong) NMLocationsTableViewController *tableViewController;
 @property (nonatomic, strong) UISearchDisplayController *searchController;
@@ -25,6 +25,7 @@
     self.title = @"Search Location";
     
     self.tableViewController = [[NMLocationsTableViewController alloc] init];
+    self.tableViewController.delegate = self;
     [self nm_addChildViewController:self.tableViewController];
     
     self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:self.tableViewController.searchBar contentsController:self];
@@ -154,11 +155,20 @@
     [self.searchDisplayController.searchBar resignFirstResponder];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [self dismissSearchControllerWhileStayingActive];
     [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
     [self dismissViewControllerAnimated:YES completion:^{
-        [_delegate setSelectedAddress:@"Mudge"];
+        [_delegate setSelectedAddress:[searchResultsPlaces objectAtIndex:indexPath.row]];
+    }];
+}
+
+- (void)setSelectedAddress:(NSString *)address
+{
+    [self dismissSearchControllerWhileStayingActive];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [_delegate setSelectedAddress:address];
     }];
 }
 

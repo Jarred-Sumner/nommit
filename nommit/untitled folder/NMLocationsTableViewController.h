@@ -8,8 +8,17 @@
 
 #import "JCAutocompletingSearchViewController.h"
 
+@protocol NMLocationsTableViewControllerDelegate <NSObject>
+
+@required
+- (void) setSelectedAddress:(NSString*)address;
+
+@end
+
 @interface NMLocationsTableViewController : UITableViewController
 
 @property (nonatomic, strong) UISearchBar *searchBar;
+
+@property id<NMLocationsTableViewControllerDelegate> delegate;
 
 @end
