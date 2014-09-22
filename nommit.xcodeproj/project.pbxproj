@@ -78,6 +78,8 @@
 		8DD3FC5419B2512900DAFCDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3FC5219B2512900DAFCDB /* InfoPlist.strings */; };
 		8DD3FC5619B2512900DAFCDB /* nommitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3FC5519B2512900DAFCDB /* nommitTests.m */; };
 		8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3FC6B19B258F700DAFCDB /* NMColors.m */; };
+		8DD428F419D0B8F400332D5E /* NMLocationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD428F319D0B8F400332D5E /* NMLocationsTableViewController.m */; };
+		8DD428F719D0BB7F00332D5E /* NMLocationContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD428F619D0BB7F00332D5E /* NMLocationContainerViewController.m */; };
 		8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50419B2669F00EE227A /* NMCollectionViewSmallLayout.m */; };
 		8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50719B2673A00EE227A /* NMCollectionViewLargeLayout.m */; };
 		8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50C19B267A000EE227A /* HATransitionController.m */; };
@@ -221,6 +223,10 @@
 		8DD3FC5519B2512900DAFCDB /* nommitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nommitTests.m; sourceTree = "<group>"; };
 		8DD3FC6A19B258F700DAFCDB /* NMColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMColors.h; path = Constants/NMColors.h; sourceTree = "<group>"; };
 		8DD3FC6B19B258F700DAFCDB /* NMColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMColors.m; path = Constants/NMColors.m; sourceTree = "<group>"; };
+		8DD428F219D0B8F400332D5E /* NMLocationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLocationsTableViewController.h; path = "untitled folder/NMLocationsTableViewController.h"; sourceTree = "<group>"; };
+		8DD428F319D0B8F400332D5E /* NMLocationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLocationsTableViewController.m; path = "untitled folder/NMLocationsTableViewController.m"; sourceTree = "<group>"; };
+		8DD428F519D0BB7F00332D5E /* NMLocationContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLocationContainerViewController.h; path = "untitled folder/NMLocationContainerViewController.h"; sourceTree = "<group>"; };
+		8DD428F619D0BB7F00332D5E /* NMLocationContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLocationContainerViewController.m; path = "untitled folder/NMLocationContainerViewController.m"; sourceTree = "<group>"; };
 		8DEED50319B2669F00EE227A /* NMCollectionViewSmallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCollectionViewSmallLayout.h; path = "Custom Layout/NMCollectionViewSmallLayout.h"; sourceTree = "<group>"; };
 		8DEED50419B2669F00EE227A /* NMCollectionViewSmallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCollectionViewSmallLayout.m; path = "Custom Layout/NMCollectionViewSmallLayout.m"; sourceTree = "<group>"; };
 		8DEED50619B2673A00EE227A /* NMCollectionViewLargeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCollectionViewLargeLayout.h; path = "Custom Layout/NMCollectionViewLargeLayout.h"; sourceTree = "<group>"; };
@@ -460,6 +466,10 @@
 				8D7D00A019CA65A50006E5E6 /* NMDeliveryViewController.m */,
 				8D7D00A219CD0BDD0006E5E6 /* NMFoodsTableViewController.h */,
 				8D7D00A319CD0BDD0006E5E6 /* NMFoodsTableViewController.m */,
+				8DD428F219D0B8F400332D5E /* NMLocationsTableViewController.h */,
+				8DD428F319D0B8F400332D5E /* NMLocationsTableViewController.m */,
+				8DD428F519D0BB7F00332D5E /* NMLocationContainerViewController.h */,
+				8DD428F619D0BB7F00332D5E /* NMLocationContainerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -691,6 +701,7 @@
 				83D6A9E219B822B8009A6D9B /* _NMOrder.m in Sources */,
 				8D51D2A919B58DA500920F69 /* NMItemsCollectionViewController.m in Sources */,
 				8DEED51C19B270D700EE227A /* NMFoodCell.m in Sources */,
+				8DD428F719D0BB7F00332D5E /* NMLocationContainerViewController.m in Sources */,
 				8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */,
 				839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */,
 				8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
@@ -727,6 +738,7 @@
 				8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,
 				83EE765819BBE3CD006FEDDF /* NMSession.m in Sources */,
+				8DD428F419D0B8F400332D5E /* NMLocationsTableViewController.m in Sources */,
 				8D7D00A119CA65A50006E5E6 /* NMDeliveryViewController.m in Sources */,
 				83EE765B19BBF9A6006FEDDF /* NMAddressApiModel.m in Sources */,
 				83D6A9E619B822B8009A6D9B /* NMUser.m in Sources */,

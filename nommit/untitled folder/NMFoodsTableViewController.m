@@ -13,6 +13,7 @@
 #import "NMFoodCellHeaderView.h"
 #import "NMFood.h"
 #import <REFrostedViewController.h>
+#import "NMLocationContainerViewController.h"
 
 
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
@@ -78,6 +79,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NMLocationDropdownTableViewCell *headerView = [[NMLocationDropdownTableViewCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 40)];
+    [headerView.locationButton addTarget:self action:@selector(locationButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     return headerView;
 }
 
@@ -135,6 +137,15 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     [logoView addSubview:titleImageView];
     self.navigationItem.titleView = logoView;
     
+}
+
+#pragma mark - location button
+- (void)locationButtonTouched
+{
+    NMLocationContainerViewController *locationView = [[NMLocationContainerViewController alloc] init];
+    NMMenuNavigationController *navController =
+    [[NMMenuNavigationController alloc] initWithRootViewController:locationView];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 @end

@@ -20,6 +20,7 @@ target "nommit" do
   pod 'Lockbox'
   pod 'M13Checkbox', '~> 1.1.0'
   pod 'DropdownMenu'
+  pod 'JCAutocompletingSearch'
 end
 
 target "nommitTests" do

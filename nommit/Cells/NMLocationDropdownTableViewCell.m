@@ -14,6 +14,16 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        _locationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _locationButton.contentMode = UIViewContentModeScaleAspectFill;
+        _locationButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _locationButton.backgroundColor = [NMColors mainColor];
+        [self addSubview:_locationButton];
+        
+        NSDictionary *views = NSDictionaryOfVariableBindings(_locationButton);
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_locationButton]-0-|" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_locationButton]-0-|" options:0 metrics:nil views:views]];
         self.backgroundColor = [NMColors mainColor];
     }
     return self;

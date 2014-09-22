@@ -29,6 +29,7 @@ PODS:
     - Bolts
   - GPUImage (0.1.5)
   - INTULocationManager (1.2.0)
+  - JCAutocompletingSearch (0.9.6)
   - JVFloatLabeledTextField (0.0.9)
   - Lockbox (1.4.9)
   - M13Checkbox (1.1.2)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - DropdownMenu
   - Facebook-iOS-SDK
   - INTULocationManager
+  - JCAutocompletingSearch
   - JVFloatLabeledTextField
   - Lockbox
   - M13Checkbox (~> 1.1.0)
@@ -86,6 +88,7 @@ SPEC CHECKSUMS:
   Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
   INTULocationManager: 596c57e35a00ca1ee9d59bf4cc2b63dc299b580e
+  JCAutocompletingSearch: cf30ed8eded452d2ec52efd9c57c4b6467e5d266
   JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
   Lockbox: cfe87dbbce6b5c6d7cfeefc3fe6594ef55919b11
   M13Checkbox: e87ebe28627368b1c6d2233282d711a3854dfe3f

@@ -10,4 +10,6 @@
 
 @interface NMLocationDropdownTableViewCell : UIView
 
+@property (nonatomic, strong) UIButton *locationButton;
+
 @end
