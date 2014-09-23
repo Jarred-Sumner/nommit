@@ -170,6 +170,11 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     cell.food = [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NMFood *food = (NMFood*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+}
+
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
@@ -190,7 +195,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     [[NMApi instance] GET:@"places" parameters:nil completion:^(OVCResponse *response, NSError *error) {
         
         if (error) {
-            NSLog(@"Error Updating: %@", error);
+            [response.result handleError];
         } else {
             [NMPlaceApiModel placesForModels:response.result];
             this.place = [NMPlace activePlace];

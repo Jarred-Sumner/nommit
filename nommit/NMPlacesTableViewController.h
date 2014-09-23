@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NMFoodsTableViewController.h"
 
-@interface NMPlacesTableViewController : UITableViewController <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
+@interface NMPlacesTableViewController : UITableViewController <UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NMFoodsTableViewController *foodsVC;
 

@@ -12,7 +12,8 @@
 @interface NMPlacesTableViewController ()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) NSFetchedResultsController *filteredFetchedResultsController;
+//@property (nonatomic, strong) UISearchBar *searchBar;
+//@property (nonatomic, strong) UISearchDisplayController * searchController;
 
 @end
 
@@ -23,13 +24,21 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMPlaceTableViewCellKey];
+    [self.fetchedResultsController performFetch:nil];
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.fetchedResultsController performFetch:nil];
-}
+#pragma mark - Searching
+
+//- (void)setupSearchBar {
+//    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), 44.0f)];
+//    self.tableView.tableHeaderView = _searchBar;
+//    
+//    _searchController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
+//    _searchController.delegate = self;
+//    _searchController.searchResultsDataSource = self;
+//    _searchController.searchResultsDelegate = self;
+//}
 
 #pragma mark - NSFetchedResultsController
 

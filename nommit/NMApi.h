@@ -14,6 +14,7 @@
 #import "NMLocationApiModel.h"
 #import "NMPlaceApiModel.h"
 #import "NMSellerApiModel.h"
+#import "NMErrorApiModel.h"
 
 #import "NMLocation.h"
 #import "NMFood.h"

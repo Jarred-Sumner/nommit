@@ -20,9 +20,6 @@
              @"deliveredAt" : @"delivered_at",
              @"placedAt" : @"created_at",
              @"stateID" : @"state_id",
-             @"food" : @"food",
-             @"user" : @"user",
-             @"location" : @"location"
      };
 }
 
@@ -46,8 +43,8 @@
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:NMUserApiModel.class];
 }
 
-+ (NSValueTransformer *)locationJSONTransformer  {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMLocationApiModel class]];
++ (NSValueTransformer *)placeJSONTransformer  {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMPlaceApiModel class]];
 
 }
 

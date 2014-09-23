@@ -14,39 +14,39 @@
 #import "NMOrderFoodOrderButtonCell.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMAddressSearchViewController.h"
-#import "NMDeliveryAddressTableViewCell.h"
 #import "NMMenuNavigationController.h"
 #import "NMRateViewController.h"
 #import "NMDeliveryViewController.h"
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMProgressSection = 1;
-const NSInteger NMDeliveryAddressSection = 2;
 const NSInteger NMOrderFoodConfirmationSection = 3;
 const NSInteger NMOrderButtonSection = 4;
 
 static NSString *NMOrderFoodInfoIdentifier = @"NMOrderFoodInfoCell";
 static NSString *NMOrderFoodProgressIdentifier = @"NMOrderFoodProgressCell";
-static NSString *NMOrderFoodDeliveryAddressIdentifier = @"NMDeliveryAddressTableViewCell";
 static NSString *NMOrderFoodConfirmAddressCellIdentifier = @"NMOrderFoodConfirmAddressCell";
 static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 
 @interface NMOrderFoodViewController ()<APParallaxViewDelegate>
 
 @property (nonatomic, strong) NMOrderFoodInfoCell *infoCell;
-@property (nonatomic, strong) NMDeliveryAddressTableViewCell *addressCell;
 @property (nonatomic, strong) NMOrderFoodProgressCell *progressCell;
 @property (nonatomic, strong) NMOrderFoodConfirmAddressCell *confirmAddressCell;
+
 @property (nonatomic, strong) NMFood *food;
+@property (nonatomic, strong) NMPlace *place;
 
 @end
 
 @implementation NMOrderFoodViewController
 
-- (instancetype)initWithFood:(NMFood *)food {
+- (instancetype)initWithFood:(NMFood *)food place:(NMPlace *)place {
     self = [super initWithStyle:UITableViewStylePlain];
 
     _food = food;
+    _place = place;
+    
     _orderModel = [[NMOrderApiModel alloc] init];
     _orderModel.food = [MTLManagedObjectAdapter modelOfClass:[NMFoodApiModel class] fromManagedObject:_food error:nil];
 
@@ -54,7 +54,6 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.tableView registerClass:[NMOrderFoodInfoCell class] forCellReuseIdentifier:NMOrderFoodInfoIdentifier];
     [self.tableView registerClass:[NMOrderFoodProgressCell class] forCellReuseIdentifier:NMOrderFoodProgressIdentifier];
-    [self.tableView registerClass:[NMDeliveryAddressTableViewCell class] forCellReuseIdentifier:NMOrderFoodDeliveryAddressIdentifier];
     [self.tableView registerClass:[NMOrderFoodConfirmAddressCell class] forCellReuseIdentifier:NMOrderFoodConfirmAddressCellIdentifier];
     [self.tableView registerClass:[NMOrderFoodOrderButtonCell class] forCellReuseIdentifier:NMOrderFoodButtonIdentifier];
 
@@ -76,7 +75,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         return 100;
     } else if (indexPath.section == NMProgressSection) {
         return 103;
-    } else if (indexPath.section == NMOrderFoodConfirmationSection || indexPath.section == NMDeliveryAddressSection) {
+    } else if (indexPath.section == NMOrderFoodConfirmationSection) {
         return 50;
     } else if (indexPath.section == NMOrderButtonSection) {
         return 49;
@@ -88,8 +87,6 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
     if (section == NMInfoSection) {
         return 1;
     } else if (section == NMProgressSection) {
-        return 1;
-    } else if (section == NMDeliveryAddressSection) {
         return 1;
     } else if (section == NMOrderFoodConfirmationSection) {
         return 1;
@@ -119,11 +116,6 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
         _progressCell.progressLabel.textAlignment = NSTextAlignmentCenter;
 
         return _progressCell;
-    } else if (indexPath.section == NMDeliveryAddressSection) {
-        _addressCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDeliveryAddressIdentifier];
-
-        _addressCell.addressLabel.text = @"Enter an address";
-        return _addressCell;
     } else if (indexPath.section == NMOrderFoodConfirmationSection) {
         _confirmAddressCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodConfirmAddressCellIdentifier];
         return _confirmAddressCell;
@@ -136,13 +128,7 @@ static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == NMDeliveryAddressSection) {
-        NMAddressSearchViewController *addressSearchVC = [[NMAddressSearchViewController alloc] init];
-        addressSearchVC.delegate = self;
-        NMMenuNavigationController *navController =
-        [[NMMenuNavigationController alloc] initWithRootViewController:addressSearchVC];
-        [self presentViewController:navController animated:YES completion:nil];
-    }
+
 }
 
 #pragma mark - Navigation Bar Customization

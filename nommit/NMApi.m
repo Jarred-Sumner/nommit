@@ -7,10 +7,11 @@
 //
 
 #import "NMApi.h"
+#import "NMErrorApiModel.h"
 
 
 
-static NSString *NMApiBaseURLString = @"http://www.getnommit.com";
+static NSString *NMApiBaseURLString = @"http://localhost:3000";
 
 @implementation NMApi
 
@@ -46,6 +47,8 @@ static NSString *NMApiBaseURLString = @"http://www.getnommit.com";
              @"places/*" : [NMPlaceApiModel class]
      };
 }
+
++ (Class)errorModelClass { return [NMErrorApiModel class]; }
 
 + (NSDateFormatter *)dateFormatter {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

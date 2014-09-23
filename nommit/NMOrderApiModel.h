@@ -8,7 +8,7 @@
 
 #import "NMApi.h"
 
-@class NMLocationApiModel, NMFoodApiModel, NMUserApiModel;
+@class NMLocationApiModel, NMFoodApiModel, NMUserApiModel, NMPlaceApiModel;
 
 @interface NMOrderApiModel : MTLModel <MTLJSONSerializing, MTLManagedObjectSerializing>
 
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSDate *placedAt;
 @property (nonatomic, strong) NSDate *deliveredAt;
 
-@property (nonatomic, strong) NMLocationApiModel *location;
+@property (nonatomic, strong) NMPlaceApiModel *place;
 @property (nonatomic, strong) NMFoodApiModel *food;
 @property (nonatomic, strong) NMUserApiModel *user;
 

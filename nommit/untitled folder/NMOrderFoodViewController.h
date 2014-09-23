@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) NMOrderApiModel *orderModel;
 
-- (id)initWithFood:(NMFood*)food;
+- (id)initWithFood:(NMFood*)food place:(NMPlace*)place;
 
 @end

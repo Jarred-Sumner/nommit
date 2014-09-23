@@ -16,9 +16,10 @@
 		839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 839765B519BBCDF000EE8254 /* NMFoodApiModel.m */; };
 		839765B919BBCE0200EE8254 /* NMOrderApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 839765B819BBCE0200EE8254 /* NMOrderApiModel.m */; };
 		839765BC19BBCE0A00EE8254 /* NMUserApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 839765BB19BBCE0A00EE8254 /* NMUserApiModel.m */; };
-		83BE9B1F19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BE9B1E19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.m */; };
 		83C0EA0A19BB958F009A7BE0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0EA0919BB958F009A7BE0 /* Social.framework */; };
 		83C0EA0C19BB9594009A7BE0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0EA0B19BB9594009A7BE0 /* Accounts.framework */; };
+		83C3649719D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3649619D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.m */; };
+		83C3649A19D1F78F004B4F22 /* NMErrorApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3649919D1F78F004B4F22 /* NMErrorApiModel.m */; };
 		83C3A18519CE54380052B6F7 /* _NMPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A18219CE54380052B6F7 /* _NMPlace.m */; };
 		83C3A18619CE54380052B6F7 /* _NMSeller.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A18419CE54380052B6F7 /* _NMSeller.m */; };
 		83C3A18B19CE54420052B6F7 /* NMPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A18819CE54420052B6F7 /* NMPlace.m */; };
@@ -41,7 +42,6 @@
 		8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */; };
 		8D49F30819BE942600E60145 /* NMPaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30719BE942600E60145 /* NMPaymentsViewController.m */; };
 		8D49F30B19BEAF2B00E60145 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30A19BEAF2B00E60145 /* Constants.m */; };
-		8D49F30E19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30D19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.m */; };
 		8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F31019C0D65900E60145 /* NMCreateCampaignViewController.m */; };
 		8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D28F19B3A3DD00920F69 /* MEExpandableHeaderView.m */; };
 		8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D29319B3A43F00920F69 /* UIImage+ImageEffects.m */; };
@@ -117,10 +117,12 @@
 		839765B819BBCE0200EE8254 /* NMOrderApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMOrderApiModel.m; sourceTree = "<group>"; };
 		839765BA19BBCE0A00EE8254 /* NMUserApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMUserApiModel.h; sourceTree = "<group>"; };
 		839765BB19BBCE0A00EE8254 /* NMUserApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMUserApiModel.m; sourceTree = "<group>"; };
-		83BE9B1D19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMOrderFoodConfirmAddressCell.h; sourceTree = "<group>"; };
-		83BE9B1E19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMOrderFoodConfirmAddressCell.m; sourceTree = "<group>"; };
 		83C0EA0919BB958F009A7BE0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		83C0EA0B19BB9594009A7BE0 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		83C3649519D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMOrderFoodConfirmAddressCell.h; sourceTree = "<group>"; };
+		83C3649619D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMOrderFoodConfirmAddressCell.m; sourceTree = "<group>"; };
+		83C3649819D1F78F004B4F22 /* NMErrorApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMErrorApiModel.h; sourceTree = "<group>"; };
+		83C3649919D1F78F004B4F22 /* NMErrorApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMErrorApiModel.m; sourceTree = "<group>"; };
 		83C3A18019CE531E0052B6F7 /* V2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = V2.xcdatamodel; sourceTree = "<group>"; };
 		83C3A18119CE54380052B6F7 /* _NMPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMPlace.h; path = Model/_NMPlace.h; sourceTree = "<group>"; };
 		83C3A18219CE54380052B6F7 /* _NMPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMPlace.m; path = Model/_NMPlace.m; sourceTree = "<group>"; };
@@ -165,8 +167,6 @@
 		8D49F30719BE942600E60145 /* NMPaymentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPaymentsViewController.m; path = "untitled folder/NMPaymentsViewController.m"; sourceTree = "<group>"; };
 		8D49F30919BEAF2B00E60145 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Constants/Constants.h; sourceTree = "<group>"; };
 		8D49F30A19BEAF2B00E60145 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Constants/Constants.m; sourceTree = "<group>"; };
-		8D49F30C19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryAddressTableViewCell.h; path = Cells/NMDeliveryAddressTableViewCell.h; sourceTree = "<group>"; };
-		8D49F30D19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryAddressTableViewCell.m; path = Cells/NMDeliveryAddressTableViewCell.m; sourceTree = "<group>"; };
 		8D49F30F19C0D65900E60145 /* NMCreateCampaignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCreateCampaignViewController.h; path = "untitled folder/NMCreateCampaignViewController.h"; sourceTree = "<group>"; };
 		8D49F31019C0D65900E60145 /* NMCreateCampaignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCreateCampaignViewController.m; path = "untitled folder/NMCreateCampaignViewController.m"; sourceTree = "<group>"; };
 		8D51D28E19B3A3DD00920F69 /* MEExpandableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MEExpandableHeaderView.h; path = Libraries/MEExpandableHeaderView.h; sourceTree = "<group>"; };
@@ -328,6 +328,8 @@
 				83C3A18E19CE54660052B6F7 /* NMSellerApiModel.m */,
 				83C3A19019CE547A0052B6F7 /* NMPlaceApiModel.h */,
 				83C3A19119CE547A0052B6F7 /* NMPlaceApiModel.m */,
+				83C3649819D1F78F004B4F22 /* NMErrorApiModel.h */,
+				83C3649919D1F78F004B4F22 /* NMErrorApiModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -530,32 +532,30 @@
 		8DEED51919B270AE00EE227A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				8D51D2AD19B6418000920F69 /* NMCollectionHeaderView.h */,
-				8D51D2AE19B6418000920F69 /* NMCollectionHeaderView.m */,
-				8D51D29519B3BA9900920F69 /* NMOrderFoodInfoCell.h */,
-				8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */,
-				8D51D29B19B509B400920F69 /* NMOrderFoodProgressCell.h */,
-				8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */,
-				8DEED51A19B270D700EE227A /* NMFoodCell.h */,
-				8DEED51B19B270D700EE227A /* NMFoodCell.m */,
-				83FB6CFF19B57D6700B808B6 /* NMOrderFoodOrderButtonCell.h */,
-				83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */,
-				8D51D2B919B6A28700920F69 /* NMRibbonCell.h */,
-				8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */,
-				8D49F30C19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.h */,
-				8D49F30D19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.m */,
+				83C3649519D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.h */,
+				83C3649619D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.m */,
 				8D5E561A19C249E00001B531 /* NMCampaignVisibilityTableViewCell.h */,
 				8D5E561B19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m */,
-				83BE9B1D19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.h */,
-				83BE9B1E19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.m */,
+				8D51D2AD19B6418000920F69 /* NMCollectionHeaderView.h */,
+				8D51D2AE19B6418000920F69 /* NMCollectionHeaderView.m */,
+				8DEED51A19B270D700EE227A /* NMFoodCell.h */,
+				8DEED51B19B270D700EE227A /* NMFoodCell.m */,
 				8D7D00A519CD160B0006E5E6 /* NMFoodCellHeaderView.h */,
 				8D7D00A619CD160B0006E5E6 /* NMFoodCellHeaderView.m */,
 				8D7D00A819CD168C0006E5E6 /* NMFoodTableViewCell.h */,
 				8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */,
+				8D51D29519B3BA9900920F69 /* NMOrderFoodInfoCell.h */,
+				8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */,
+				83FB6CFF19B57D6700B808B6 /* NMOrderFoodOrderButtonCell.h */,
+				83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */,
+				8D51D29B19B509B400920F69 /* NMOrderFoodProgressCell.h */,
+				8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */,
 				8D7D00AB19CD17940006E5E6 /* NMPlaceDropdownTableViewCell.h */,
 				8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownTableViewCell.m */,
 				8DA5198619D0ED9100BBA8A0 /* NMPlaceTableViewCell.h */,
 				8DA5198719D0ED9100BBA8A0 /* NMPlaceTableViewCell.m */,
+				8D51D2B919B6A28700920F69 /* NMRibbonCell.h */,
+				8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -751,10 +751,10 @@
 				8D6DE42119B7B5AB008F64CE /* NMAddressSearchViewController.m in Sources */,
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
+				83C3649A19D1F78F004B4F22 /* NMErrorApiModel.m in Sources */,
 				83D6A9E419B822B8009A6D9B /* NMFood.m in Sources */,
 				83C3A19519D0C5E20052B6F7 /* _NMLocation.m in Sources */,
 				839765BC19BBCE0A00EE8254 /* NMUserApiModel.m in Sources */,
-				83BE9B1F19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.m in Sources */,
 				839765B919BBCE0200EE8254 /* NMOrderApiModel.m in Sources */,
 				8D6DE42419B8342A008F64CE /* NMLoginViewController.m in Sources */,
 				83C3A18F19CE54660052B6F7 /* NMSellerApiModel.m in Sources */,
@@ -779,11 +779,11 @@
 				83C3A18C19CE54420052B6F7 /* NMSeller.m in Sources */,
 				83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */,
 				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
-				8D49F30E19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.m in Sources */,
 				83D6A9E319B822B8009A6D9B /* _NMUser.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
 				8D5E561919C249A80001B531 /* NMRateViewController.m in Sources */,
+				83C3649719D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.m in Sources */,
 				8D51D2B319B6688200920F69 /* NMMenuViewController.m in Sources */,
 				8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */,
 				8D5E561619C246F90001B531 /* NMPersonalCampaignViewController.m in Sources */,

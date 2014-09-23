@@ -25,25 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [MagicalRecord setupAutoMigratingCoreDataStack];
-
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // create content and menu controllers
-    NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:self.rootViewController];
-    NMMenuViewController *menuController = [[NMMenuViewController alloc] initWithStyle:UITableViewStylePlain];
-    
-    // Create frosted view controller
-    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
-    frostedViewController.direction = REFrostedViewControllerDirectionLeft;
-    frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
-    frostedViewController.liveBlur = YES;
-    frostedViewController.delegate = self;
-    
-    // make it root view controller
-    self.window.rootViewController = frostedViewController;
-    
-    navigationController.navigationBar.translucent = NO;
-    
-    self.navigationController = navigationController;
+    [self resetUI];
     [self.window makeKeyAndVisible];
     
     [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
@@ -82,6 +64,36 @@
     // Handle the user leaving the app while the Facebook login dialog is being shown
     // For example: when the user presses the iOS "home" button while the login dialog is active
     [FBAppCall handleDidBecomeActive];
+}
+
+#pragma mark - UI Initialization
+
+- (void)resetUI
+{
+    // create content and menu controllers
+    NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:self.rootViewController];
+    NMMenuViewController *menuController = [[NMMenuViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    // Create frosted view controller
+    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
+    frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+    frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+    frostedViewController.liveBlur = YES;
+    frostedViewController.delegate = self;
+    
+    // make it root view controller
+    self.window.rootViewController = frostedViewController;
+    
+    navigationController.navigationBar.translucent = NO;
+    
+    self.navigationController = navigationController;
+}
+
+- (UIWindow*)window {
+    if (!_window) {
+        _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    }
+    return _window;
 }
 
 @end

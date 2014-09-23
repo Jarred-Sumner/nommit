@@ -13,12 +13,11 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
-    _checkbox = [[M13Checkbox alloc] initWithFrame:CGRectMake(20, 12, CGRectGetWidth(self.contentView.frame) - 40, 24) title:@"Blah blah blah" checkHeight:24];
+    _checkbox = [[M13Checkbox alloc] initWithFrame:CGRectMake(20, 12, CGRectGetWidth(self.contentView.frame) - 40, 24) title:@"I will be in the lobby two minutes before delivery" checkHeight:24];
     _checkbox.checkAlignment = M13CheckboxAlignmentLeft;
     _checkbox.titleLabel.font = [UIFont fontWithName:@"Avenir" size:15.0f];
     _checkbox.titleLabel.textColor = UIColorFromRGB(0x4E4E4E);
     _checkbox.translatesAutoresizingMaskIntoConstraints = NO;
-    _checkbox.titleLabel.text = @"This is the correct delivery building";
     _checkbox.strokeColor = [NMColors mainColor];
     _checkbox.checkColor  = [NMColors mainColor];
     
