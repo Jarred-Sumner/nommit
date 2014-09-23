@@ -18,7 +18,7 @@
 
 @implementation NMAddressTableViewController
 
-NSString * const CellIdentifier = @"CellIdentifier";
+static NSString * CellIdentifier = @"CellIdentifier";
 
 - (id)init {
     self = [super init];

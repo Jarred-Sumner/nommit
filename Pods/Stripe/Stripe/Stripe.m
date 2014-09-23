@@ -16,7 +16,7 @@ NSString *const kStripeiOSVersion = @"1.1.4";
 
 @implementation Stripe
 
-static NSString *defaultKey = @"pk_test_CbJfLmFFADyn0piYUJIgr7MQ";
+static NSString *defaultKey;
 static NSString *const apiURLBase = @"api.stripe.com";
 static NSString *const apiVersion = @"v1";
 static NSString *const tokenEndpoint = @"tokens";

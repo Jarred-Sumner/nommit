@@ -150,6 +150,12 @@
 #define COCOAPODS_VERSION_MINOR_INTULocationManager 2
 #define COCOAPODS_VERSION_PATCH_INTULocationManager 0
 
+// JCAutocompletingSearch
+#define COCOAPODS_POD_AVAILABLE_JCAutocompletingSearch
+#define COCOAPODS_VERSION_MAJOR_JCAutocompletingSearch 0
+#define COCOAPODS_VERSION_MINOR_JCAutocompletingSearch 9
+#define COCOAPODS_VERSION_PATCH_JCAutocompletingSearch 6
+
 // JVFloatLabeledTextField
 #define COCOAPODS_POD_AVAILABLE_JVFloatLabeledTextField
 #define COCOAPODS_VERSION_MAJOR_JVFloatLabeledTextField 0

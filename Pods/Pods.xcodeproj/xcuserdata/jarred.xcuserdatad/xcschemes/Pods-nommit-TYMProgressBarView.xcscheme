@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "114A0BA05B1E42C38422D609"
+               BlueprintIdentifier = "49BA0C6A28144B61821A32F1"
                BuildableName = "libPods-nommit-TYMProgressBarView.a"
                BlueprintName = "Pods-nommit-TYMProgressBarView"
                ReferencedContainer = "container:Pods.xcodeproj">

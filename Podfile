@@ -21,6 +21,7 @@ target "nommit" do
   pod 'M13Checkbox', '~> 1.1.0'
   pod 'DropdownMenu'
   pod 'FormatterKit'
+  pod 'JCAutocompletingSearch'
 end
 
 

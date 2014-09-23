@@ -14,7 +14,19 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [NMColors mainColor];
+        _locationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _locationButton.contentMode = UIViewContentModeScaleAspectFill;
+        _locationButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _locationButton.backgroundColor = [NMColors mainColor];
+        _locationButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _locationButton.titleLabel.textColor = [UIColor whiteColor];
+        [_locationButton setTitle:@"Delivering to: Mudge" forState:UIControlStateNormal];
+        [self addSubview:_locationButton];
+        
+        NSDictionary *views = NSDictionaryOfVariableBindings(_locationButton);
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_locationButton]-0-|" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_locationButton]-0-|" options:0 metrics:nil views:views]];
     }
     return self;
 }

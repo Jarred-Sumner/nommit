@@ -12,4 +12,6 @@ static NSInteger NMLocationDropdownTableViewCellHeight = 40;
 
 @interface NMLocationDropdownTableViewCell : UIView
 
+@property (nonatomic, strong) UIButton *locationButton;
+
 @end
