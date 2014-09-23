@@ -8,7 +8,7 @@
 
 #import "NMFoodsTableViewController.h"
 #import "NMFoodTableViewCell.h"
-#import "NMPlaceDropdownTableViewCell.h"
+#import "NMPlaceDropdownView.h"
 #import "NMMenuNavigationController.h"
 #import "NMFoodCellHeaderView.h"
 #import "NMFood.h"
@@ -23,7 +23,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 @interface NMFoodsTableViewController ()
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong) NMPlaceDropdownTableViewCell *headerView;
+@property (nonatomic, strong) NMPlaceDropdownView *headerView;
 
 @end
 
@@ -154,7 +154,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    _headerView = [[NMPlaceDropdownTableViewCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMPlaceDropdownTableViewCellHeight)];
+    _headerView = [[NMPlaceDropdownView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMPlaceDropdownTableViewCellHeight)];
     [_headerView.locationButton setTitle:[NSString stringWithFormat:@"Delivering to: %@", _place.name] forState:UIControlStateNormal];
     [_headerView.locationButton addTarget:self action:@selector(locationButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     return _headerView;
@@ -169,15 +169,14 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
-   //  NMOrderFoodViewController *orderFoodVC = [[NMOrderFoodViewController alloc] initWithFood:food];
-    // [self.navigationController pushViewController:orderFoodVC animated:YES];
+    NMFood *food = (NMFood*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    NMOrderFoodViewController *orderFoodVC = [[NMOrderFoodViewController alloc] initWithFood:food place:_place];
+    [self.navigationController pushViewController:orderFoodVC animated:YES];
 }
 
 - (void)configureCell:(NMFoodTableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
     cell.food = [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
-
 
 #pragma mark - NSFetchedResultsControllerDelegate
 

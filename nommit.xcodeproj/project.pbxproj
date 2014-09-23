@@ -70,7 +70,7 @@
 		8D7D00A419CD0BDD0006E5E6 /* NMFoodsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A319CD0BDD0006E5E6 /* NMFoodsTableViewController.m */; };
 		8D7D00A719CD160B0006E5E6 /* NMFoodCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A619CD160B0006E5E6 /* NMFoodCellHeaderView.m */; };
 		8D7D00AA19CD168C0006E5E6 /* NMFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */; };
-		8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownTableViewCell.m */; };
+		8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */; };
 		8DA5198819D0ED9100BBA8A0 /* NMPlaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198719D0ED9100BBA8A0 /* NMPlaceTableViewCell.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
@@ -221,8 +221,8 @@
 		8D7D00A619CD160B0006E5E6 /* NMFoodCellHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodCellHeaderView.m; path = Cells/NMFoodCellHeaderView.m; sourceTree = "<group>"; };
 		8D7D00A819CD168C0006E5E6 /* NMFoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodTableViewCell.h; path = Cells/NMFoodTableViewCell.h; sourceTree = "<group>"; };
 		8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodTableViewCell.m; path = Cells/NMFoodTableViewCell.m; sourceTree = "<group>"; };
-		8D7D00AB19CD17940006E5E6 /* NMPlaceDropdownTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPlaceDropdownTableViewCell.h; path = Cells/NMPlaceDropdownTableViewCell.h; sourceTree = "<group>"; };
-		8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPlaceDropdownTableViewCell.m; path = Cells/NMPlaceDropdownTableViewCell.m; sourceTree = "<group>"; };
+		8D7D00AB19CD17940006E5E6 /* NMPlaceDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPlaceDropdownView.h; path = Cells/NMPlaceDropdownView.h; sourceTree = "<group>"; };
+		8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPlaceDropdownView.m; path = Cells/NMPlaceDropdownView.m; sourceTree = "<group>"; };
 		8DA5198619D0ED9100BBA8A0 /* NMPlaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPlaceTableViewCell.h; path = Cells/NMPlaceTableViewCell.h; sourceTree = "<group>"; };
 		8DA5198719D0ED9100BBA8A0 /* NMPlaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPlaceTableViewCell.m; path = Cells/NMPlaceTableViewCell.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -550,8 +550,8 @@
 				83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */,
 				8D51D29B19B509B400920F69 /* NMOrderFoodProgressCell.h */,
 				8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */,
-				8D7D00AB19CD17940006E5E6 /* NMPlaceDropdownTableViewCell.h */,
-				8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownTableViewCell.m */,
+				8D7D00AB19CD17940006E5E6 /* NMPlaceDropdownView.h */,
+				8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */,
 				8DA5198619D0ED9100BBA8A0 /* NMPlaceTableViewCell.h */,
 				8DA5198719D0ED9100BBA8A0 /* NMPlaceTableViewCell.m */,
 				8D51D2B919B6A28700920F69 /* NMRibbonCell.h */,
@@ -737,7 +737,7 @@
 				8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */,
 				83C3A18519CE54380052B6F7 /* _NMPlace.m in Sources */,
 				8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */,
-				8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownTableViewCell.m in Sources */,
+				8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownView.m in Sources */,
 				83D6A9E119B822B8009A6D9B /* _NMFood.m in Sources */,
 				8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */,
 				8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */,

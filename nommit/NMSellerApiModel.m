@@ -31,6 +31,12 @@
     return @{};
 }
 
++ (NSDictionary *)relationshipModelClassesByPropertyKey {
+    return @{
+             @"foods" : [NMFoodApiModel class]
+     };
+}
+
 + (NSSet *)propertyKeysForManagedObjectUniquing {
     return [NSSet setWithObject:@"uid"];
 }
