@@ -28,23 +28,25 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     return self;
 }
 
-#pragma mark - Searching
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.fetchedResultsController performFetch:nil];
+    self.title = @"Delivery Location";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
+}
 
-//- (void)setupSearchBar {
-//    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), 44.0f)];
-//    self.tableView.tableHeaderView = _searchBar;
-//    
-//    _searchController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
-//    _searchController.delegate = self;
-//    _searchController.searchResultsDataSource = self;
-//    _searchController.searchResultsDelegate = self;
-//}
+- (void)cancel:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - NSFetchedResultsController
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
-    
+
     _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"foodCount" ascending:NO withPredicate:nil groupBy:nil delegate:self];
     return _fetchedResultsController;
 }
@@ -55,13 +57,13 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    
+
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                           withRowAnimation:UITableViewRowAnimationFade];
             break;
-            
+
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                           withRowAnimation:UITableViewRowAnimationFade];
@@ -72,25 +74,25 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
-    
+
     UITableView *tableView = self.tableView;
-    
+
     switch(type) {
-            
+
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
-            
+
         case NSFetchedResultsChangeDelete:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
-            
+
         case NSFetchedResultsChangeUpdate:
             [self configureCell:(NMPlaceTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
-            
+
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
@@ -106,6 +108,10 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 45;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.fetchedResultsController.sections.count;
@@ -125,17 +131,19 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 - (void)configureCell:(NMPlaceTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
+
     cell.textLabel.text = place.name;
+    cell.textLabel.textColor = UIColorFromRGB(0x757575);
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:16.0f];
     cell.numberOfFoodAvailableLabel.text = [NSString stringWithFormat:@"%@", place.foodCount];
     cell.iconImageView.hidden = !(place.foodCount.integerValue > 0);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     __weak NMPlace *place = (NMPlace*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     _foodsVC.place = place;
-    
+
     [self dismissViewControllerAnimated:YES completion:^{
         NMPlace.activePlace = place;
     }];
