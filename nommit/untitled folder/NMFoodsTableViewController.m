@@ -178,11 +178,6 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     cell.food = [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NMFood *food = (NMFood*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-}
-
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
