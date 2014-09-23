@@ -15,6 +15,7 @@
 #import <REFrostedViewController.h>
 #import <SVProgressHUD.h>
 #import "NMPlacesTableViewController.h"
+#import "NMOrderFoodViewController.h"
 
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
@@ -164,6 +165,13 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     NMFoodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
     [self configureCell:cell forIndexPath:indexPath];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
+   //  NMOrderFoodViewController *orderFoodVC = [[NMOrderFoodViewController alloc] initWithFood:food];
+    // [self.navigationController pushViewController:orderFoodVC animated:YES];
 }
 
 - (void)configureCell:(NMFoodTableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {

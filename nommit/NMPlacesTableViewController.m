@@ -29,6 +29,15 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.fetchedResultsController performFetch:nil];
+    self.title = @"Delivery Location";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
+}
+
+- (void)cancel:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - NSFetchedResultsController
@@ -98,6 +107,11 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 45;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.fetchedResultsController.sections.count;
 }
@@ -118,6 +132,8 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.textLabel.text = place.name;
+    cell.textLabel.textColor = UIColorFromRGB(0x757575);
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:16.0f];
     cell.numberOfFoodAvailableLabel.text = [NSString stringWithFormat:@"%@", place.foodCount];
     cell.iconImageView.hidden = !(place.foodCount.integerValue > 0);
 }

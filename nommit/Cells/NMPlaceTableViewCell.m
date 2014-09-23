@@ -22,7 +22,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_numberOfFoodAvailableLabel, _iconImageView);
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_iconImageView]-5-[_numberOfFoodAvailableLabel]-15-|" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-2-[_numberOfFoodAvailableLabel]-2-|" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_iconImageView]-10-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-14-[_iconImageView]-14-|" options:0 metrics:nil views:views]];
     
     return self;
 }
@@ -37,7 +37,7 @@
 - (void)setupLabel
 {
     _numberOfFoodAvailableLabel = [[UILabel alloc] init];
-    _numberOfFoodAvailableLabel.textColor = [NMColors mainColor];
+    _numberOfFoodAvailableLabel.textColor = UIColorFromRGB(0x009297);
     _numberOfFoodAvailableLabel.font = [UIFont fontWithName:@"Avenir" size:16];
     _numberOfFoodAvailableLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:_numberOfFoodAvailableLabel];
