@@ -139,7 +139,7 @@
         cell = [[NMLocationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.font = [UIFont fontWithName:@"GillSans" size:16.0];
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:16.0];
     cell.textLabel.text = [searchResultsPlaces objectAtIndex:indexPath.row];
     return cell;
 }

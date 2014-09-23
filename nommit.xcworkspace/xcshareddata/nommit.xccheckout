@@ -12,8 +12,6 @@
 	<dict>
 		<key>2DB029FC1DF9F25A7C93F4EB715CE174E74B8078</key>
 		<string>ssh://github.com/Jarred-Sumner/nommit.git</string>
-		<key>5511FE1EB59A3350090FCE26E324AD0CCD307D3F</key>
-		<string>/Users/jarred/Library/Caches/CocoaPods/GitHub/53becafb57a17086f72b174ac98ac8a8f2405761</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>nommit.xcworkspace</string>
@@ -21,8 +19,6 @@
 	<dict>
 		<key>2DB029FC1DF9F25A7C93F4EB715CE174E74B8078</key>
 		<string>..</string>
-		<key>5511FE1EB59A3350090FCE26E324AD0CCD307D3F</key>
-		<string>../Pods/SEHumanizedTimeDiff</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/Jarred-Sumner/nommit.git</string>
@@ -39,14 +35,6 @@
 			<string>2DB029FC1DF9F25A7C93F4EB715CE174E74B8078</string>
 			<key>IDESourceControlWCCName</key>
 			<string>nommit</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>5511FE1EB59A3350090FCE26E324AD0CCD307D3F</string>
-			<key>IDESourceControlWCCName</key>
-			<string>SEHumanizedTimeDiff</string>
 		</dict>
 	</array>
 </dict>

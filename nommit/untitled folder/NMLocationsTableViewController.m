@@ -50,6 +50,8 @@ static NSString * CellIdentifier = @"CellIdentifier";
         cell = [[NMLocationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 //    NMLocationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:16.0];
     cell.textLabel.text = self.items[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
