@@ -55,6 +55,11 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     [self.fetchedResultsController performFetch:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 #pragma mark - NSFetchedResultsController
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -213,6 +218,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     titleImageView.frame = CGRectMake(0, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
     [logoView addSubview:titleImageView];
     self.navigationItem.titleView = logoView;
+    self.navigationController.navigationBarHidden = NO;
     
 }
 

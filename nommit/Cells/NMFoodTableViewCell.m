@@ -224,6 +224,7 @@
 
 - (NSString *)timeLeftText {
     TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+    timeIntervalFormatter.futureDeicticExpression = @"left";
     return [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:self.food.endDate];
 }
 @end
