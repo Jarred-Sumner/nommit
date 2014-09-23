@@ -7,6 +7,8 @@
 //
 
 #import "NMLocationsTableViewController.h"
+#import "NMLocationTableViewCell.h"
+
 
 @interface NMLocationsTableViewController ()<UISearchBarDelegate>
 
@@ -23,7 +25,7 @@ static NSString * CellIdentifier = @"CellIdentifier";
     
     self.title = @"Table View";
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    [self.tableView registerClass:[NMLocationTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     
     self.searchBar = [[UISearchBar alloc] init];
     [self.searchBar sizeToFit];
@@ -43,7 +45,11 @@ static NSString * CellIdentifier = @"CellIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NMLocationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[NMLocationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+//    NMLocationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.textLabel.text = self.items[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

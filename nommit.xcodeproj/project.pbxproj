@@ -65,6 +65,7 @@
 		8D7D00A719CD160B0006E5E6 /* NMFoodCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A619CD160B0006E5E6 /* NMFoodCellHeaderView.m */; };
 		8D7D00AA19CD168C0006E5E6 /* NMFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */; };
 		8D7D00AD19CD17940006E5E6 /* NMLocationDropdownTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00AC19CD17940006E5E6 /* NMLocationDropdownTableViewCell.m */; };
+		8DA5198819D0ED9100BBA8A0 /* NMLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198719D0ED9100BBA8A0 /* NMLocationTableViewCell.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -205,6 +206,8 @@
 		8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodTableViewCell.m; path = Cells/NMFoodTableViewCell.m; sourceTree = "<group>"; };
 		8D7D00AB19CD17940006E5E6 /* NMLocationDropdownTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLocationDropdownTableViewCell.h; path = Cells/NMLocationDropdownTableViewCell.h; sourceTree = "<group>"; };
 		8D7D00AC19CD17940006E5E6 /* NMLocationDropdownTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLocationDropdownTableViewCell.m; path = Cells/NMLocationDropdownTableViewCell.m; sourceTree = "<group>"; };
+		8DA5198619D0ED9100BBA8A0 /* NMLocationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLocationTableViewCell.h; path = Cells/NMLocationTableViewCell.h; sourceTree = "<group>"; };
+		8DA5198719D0ED9100BBA8A0 /* NMLocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLocationTableViewCell.m; path = Cells/NMLocationTableViewCell.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -534,6 +537,8 @@
 				8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */,
 				8D7D00AB19CD17940006E5E6 /* NMLocationDropdownTableViewCell.h */,
 				8D7D00AC19CD17940006E5E6 /* NMLocationDropdownTableViewCell.m */,
+				8DA5198619D0ED9100BBA8A0 /* NMLocationTableViewCell.h */,
+				8DA5198719D0ED9100BBA8A0 /* NMLocationTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -704,6 +709,7 @@
 				8DD428F719D0BB7F00332D5E /* NMLocationContainerViewController.m in Sources */,
 				8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */,
 				839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */,
+				8DA5198819D0ED9100BBA8A0 /* NMLocationTableViewCell.m in Sources */,
 				8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
 				8D51D2BE19B6A92000920F69 /* CHDigitInput.m in Sources */,
 				8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */,

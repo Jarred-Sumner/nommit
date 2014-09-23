@@ -8,6 +8,7 @@
 
 #import "NMLocationContainerViewController.h"
 #import "NMLocationsTableViewController.h"
+#import "NMLocationTableViewCell.h"
 
 @interface NMLocationContainerViewController ()<NMLocationsTableViewControllerDelegate>
 
@@ -133,9 +134,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"SPGooglePlacesAutocompleteCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NMLocationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[NMLocationTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     cell.textLabel.font = [UIFont fontWithName:@"GillSans" size:16.0];
