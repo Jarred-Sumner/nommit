@@ -49,6 +49,12 @@
     return @{};
 }
 
++ (NSDictionary *)relationshipModelClassesByPropertyKey {
+    return @{
+             @"seller" : [NMSellerApiModel class]
+             };
+}
+
 + (NSSet *)propertyKeysForManagedObjectUniquing {
     return [NSSet setWithObject:@"uid"];
 }

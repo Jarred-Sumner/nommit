@@ -33,8 +33,8 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     [self.fetchedResultsController performFetch:nil];
     self.title = @"Delivery Location";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
-    self.navigationItem.rightBarButtonItem = rightBarButton;
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
 }
 
 - (void)cancel:(id)sender

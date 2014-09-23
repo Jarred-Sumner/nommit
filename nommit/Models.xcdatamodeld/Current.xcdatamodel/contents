@@ -41,7 +41,6 @@
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMOrder" syncable="YES"/>
         <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="location" inverseEntity="NMPlace" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="locations" inverseEntity="NMUser" syncable="YES"/>
         <compoundIndexes>
@@ -108,7 +107,7 @@
     </entity>
     <elements>
         <element name="NMFood" positionX="0" positionY="0" width="128" height="270"/>
-        <element name="NMLocation" positionX="0" positionY="0" width="128" height="268"/>
+        <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMOrder" positionX="0" positionY="0" width="128" height="208"/>
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="133"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="120"/>

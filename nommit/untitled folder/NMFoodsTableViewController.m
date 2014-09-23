@@ -169,19 +169,15 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
-   //  NMOrderFoodViewController *orderFoodVC = [[NMOrderFoodViewController alloc] initWithFood:food];
-    // [self.navigationController pushViewController:orderFoodVC animated:YES];
+    NMFood *food = (NMFood*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    NMOrderFoodViewController *orderFoodVC = [[NMOrderFoodViewController alloc] initWithFood:food place:_place];
+    [self.navigationController pushViewController:orderFoodVC animated:YES];
 }
 
 - (void)configureCell:(NMFoodTableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
     cell.food = [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NMFood *food = (NMFood*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-}
 
 
 #pragma mark - NSFetchedResultsControllerDelegate
