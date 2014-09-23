@@ -9,7 +9,7 @@ target "nommit" do
   pod 'APParallaxHeader'
   pod 'REFrostedViewController'
   pod 'Overcoat'
-  pod 'MBProgressHUD', '~> 0.8'
+  pod 'SVProgressHUD'
   pod 'JVFloatLabeledTextField'
   pod 'INTULocationManager'
   pod 'PaymentKit'
@@ -20,7 +20,9 @@ target "nommit" do
   pod 'Lockbox'
   pod 'M13Checkbox', '~> 1.1.0'
   pod 'DropdownMenu'
+  pod 'FormatterKit'
 end
+
 
 target "nommitTests" do
 

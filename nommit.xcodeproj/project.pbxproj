@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		831B796819B283C0009B9948 /* NMFoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831B796719B283C0009B9948 /* NMFoodsViewController.m */; };
 		83291B0219B5242500524801 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0119B5242500524801 /* CoreVideo.framework */; };
 		83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0319B5242B00524801 /* CoreImage.framework */; };
 		83291B0619B5243600524801 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0519B5243600524801 /* Security.framework */; };
@@ -19,6 +18,13 @@
 		83BE9B1F19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BE9B1E19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.m */; };
 		83C0EA0A19BB958F009A7BE0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0EA0919BB958F009A7BE0 /* Social.framework */; };
 		83C0EA0C19BB9594009A7BE0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C0EA0B19BB9594009A7BE0 /* Accounts.framework */; };
+		83C3A18519CE54380052B6F7 /* _NMPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A18219CE54380052B6F7 /* _NMPlace.m */; };
+		83C3A18619CE54380052B6F7 /* _NMSeller.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A18419CE54380052B6F7 /* _NMSeller.m */; };
+		83C3A18B19CE54420052B6F7 /* NMPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A18819CE54420052B6F7 /* NMPlace.m */; };
+		83C3A18C19CE54420052B6F7 /* NMSeller.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A18A19CE54420052B6F7 /* NMSeller.m */; };
+		83C3A18F19CE54660052B6F7 /* NMSellerApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A18E19CE54660052B6F7 /* NMSellerApiModel.m */; };
+		83C3A19219CE547A0052B6F7 /* NMPlaceApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A19119CE547A0052B6F7 /* NMPlaceApiModel.m */; };
+		83C3A19519D0C5E20052B6F7 /* _NMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A19419D0C5E20052B6F7 /* _NMLocation.m */; };
 		83D6A9E119B822B8009A6D9B /* _NMFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6A9D619B822B8009A6D9B /* _NMFood.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		83D6A9E219B822B8009A6D9B /* _NMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6A9D819B822B8009A6D9B /* _NMOrder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		83D6A9E319B822B8009A6D9B /* _NMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6A9DA19B822B8009A6D9B /* _NMUser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -28,9 +34,8 @@
 		83D6A9E819B822F7009A6D9B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D6A9E719B822F7009A6D9B /* CoreData.framework */; };
 		83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6A9EB19B82A5B009A6D9B /* NMApi.m */; };
 		83EE765819BBE3CD006FEDDF /* NMSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765719BBE3CD006FEDDF /* NMSession.m */; };
-		83EE765B19BBF9A6006FEDDF /* NMAddressApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765A19BBF9A6006FEDDF /* NMAddressApiModel.m */; };
-		83EE766019BBFE51006FEDDF /* _NMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765D19BBFE51006FEDDF /* _NMAddress.m */; };
-		83EE766119BBFE51006FEDDF /* NMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765F19BBFE51006FEDDF /* NMAddress.m */; };
+		83EE765B19BBF9A6006FEDDF /* NMLocationApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765A19BBF9A6006FEDDF /* NMLocationApiModel.m */; };
+		83EE766119BBFE51006FEDDF /* NMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765F19BBFE51006FEDDF /* NMLocation.m */; };
 		83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */; };
 		8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */; };
 		8D49F30819BE942600E60145 /* NMPaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30719BE942600E60145 /* NMPaymentsViewController.m */; };
@@ -97,8 +102,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		831B796619B283C0009B9948 /* NMFoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodsViewController.h; path = "untitled folder/NMFoodsViewController.h"; sourceTree = "<group>"; };
-		831B796719B283C0009B9948 /* NMFoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodsViewController.m; path = "untitled folder/NMFoodsViewController.m"; sourceTree = "<group>"; };
 		83291B0119B5242500524801 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		83291B0319B5242B00524801 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		83291B0519B5243600524801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -114,6 +117,21 @@
 		83BE9B1E19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMOrderFoodConfirmAddressCell.m; sourceTree = "<group>"; };
 		83C0EA0919BB958F009A7BE0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		83C0EA0B19BB9594009A7BE0 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		83C3A18019CE531E0052B6F7 /* V2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = V2.xcdatamodel; sourceTree = "<group>"; };
+		83C3A18119CE54380052B6F7 /* _NMPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMPlace.h; path = Model/_NMPlace.h; sourceTree = "<group>"; };
+		83C3A18219CE54380052B6F7 /* _NMPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMPlace.m; path = Model/_NMPlace.m; sourceTree = "<group>"; };
+		83C3A18319CE54380052B6F7 /* _NMSeller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMSeller.h; path = Model/_NMSeller.h; sourceTree = "<group>"; };
+		83C3A18419CE54380052B6F7 /* _NMSeller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMSeller.m; path = Model/_NMSeller.m; sourceTree = "<group>"; };
+		83C3A18719CE54420052B6F7 /* NMPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPlace.h; path = Model/NMPlace.h; sourceTree = "<group>"; };
+		83C3A18819CE54420052B6F7 /* NMPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPlace.m; path = Model/NMPlace.m; sourceTree = "<group>"; };
+		83C3A18919CE54420052B6F7 /* NMSeller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMSeller.h; path = Model/NMSeller.h; sourceTree = "<group>"; };
+		83C3A18A19CE54420052B6F7 /* NMSeller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMSeller.m; path = Model/NMSeller.m; sourceTree = "<group>"; };
+		83C3A18D19CE54660052B6F7 /* NMSellerApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMSellerApiModel.h; sourceTree = "<group>"; };
+		83C3A18E19CE54660052B6F7 /* NMSellerApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMSellerApiModel.m; sourceTree = "<group>"; };
+		83C3A19019CE547A0052B6F7 /* NMPlaceApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMPlaceApiModel.h; sourceTree = "<group>"; };
+		83C3A19119CE547A0052B6F7 /* NMPlaceApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMPlaceApiModel.m; sourceTree = "<group>"; };
+		83C3A19319D0C5E20052B6F7 /* _NMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMLocation.h; path = Model/_NMLocation.h; sourceTree = "<group>"; };
+		83C3A19419D0C5E20052B6F7 /* _NMLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMLocation.m; path = Model/_NMLocation.m; sourceTree = "<group>"; };
 		83D6A9D419B821BD009A6D9B /* V1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = V1.xcdatamodel; sourceTree = "<group>"; };
 		83D6A9D519B822B8009A6D9B /* _NMFood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMFood.h; path = Model/_NMFood.h; sourceTree = "<group>"; };
 		83D6A9D619B822B8009A6D9B /* _NMFood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMFood.m; path = Model/_NMFood.m; sourceTree = "<group>"; };
@@ -132,12 +150,10 @@
 		83D6A9EB19B82A5B009A6D9B /* NMApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMApi.m; sourceTree = "<group>"; };
 		83EE765619BBE3CD006FEDDF /* NMSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMSession.h; sourceTree = "<group>"; };
 		83EE765719BBE3CD006FEDDF /* NMSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMSession.m; sourceTree = "<group>"; };
-		83EE765919BBF9A6006FEDDF /* NMAddressApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMAddressApiModel.h; sourceTree = "<group>"; };
-		83EE765A19BBF9A6006FEDDF /* NMAddressApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMAddressApiModel.m; sourceTree = "<group>"; };
-		83EE765C19BBFE51006FEDDF /* _NMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMAddress.h; path = Model/_NMAddress.h; sourceTree = "<group>"; };
-		83EE765D19BBFE51006FEDDF /* _NMAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMAddress.m; path = Model/_NMAddress.m; sourceTree = "<group>"; };
-		83EE765E19BBFE51006FEDDF /* NMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMAddress.h; path = Model/NMAddress.h; sourceTree = "<group>"; };
-		83EE765F19BBFE51006FEDDF /* NMAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMAddress.m; path = Model/NMAddress.m; sourceTree = "<group>"; };
+		83EE765919BBF9A6006FEDDF /* NMLocationApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMLocationApiModel.h; sourceTree = "<group>"; };
+		83EE765A19BBF9A6006FEDDF /* NMLocationApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMLocationApiModel.m; sourceTree = "<group>"; };
+		83EE765E19BBFE51006FEDDF /* NMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLocation.h; path = Model/NMLocation.h; sourceTree = "<group>"; };
+		83EE765F19BBFE51006FEDDF /* NMLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLocation.m; path = Model/NMLocation.m; sourceTree = "<group>"; };
 		83FB6CFF19B57D6700B808B6 /* NMOrderFoodOrderButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMOrderFoodOrderButtonCell.h; sourceTree = "<group>"; };
 		83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMOrderFoodOrderButtonCell.m; sourceTree = "<group>"; };
 		8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nommit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,8 +289,12 @@
 		83C0EA0819B981FD009A7BE0 /* Machine Generated */ = {
 			isa = PBXGroup;
 			children = (
-				83EE765C19BBFE51006FEDDF /* _NMAddress.h */,
-				83EE765D19BBFE51006FEDDF /* _NMAddress.m */,
+				83C3A19319D0C5E20052B6F7 /* _NMLocation.h */,
+				83C3A19419D0C5E20052B6F7 /* _NMLocation.m */,
+				83C3A18119CE54380052B6F7 /* _NMPlace.h */,
+				83C3A18219CE54380052B6F7 /* _NMPlace.m */,
+				83C3A18319CE54380052B6F7 /* _NMSeller.h */,
+				83C3A18419CE54380052B6F7 /* _NMSeller.m */,
 				83D6A9D519B822B8009A6D9B /* _NMFood.h */,
 				83D6A9D619B822B8009A6D9B /* _NMFood.m */,
 				83D6A9D719B822B8009A6D9B /* _NMOrder.h */,
@@ -296,8 +316,12 @@
 				839765B819BBCE0200EE8254 /* NMOrderApiModel.m */,
 				839765BA19BBCE0A00EE8254 /* NMUserApiModel.h */,
 				839765BB19BBCE0A00EE8254 /* NMUserApiModel.m */,
-				83EE765919BBF9A6006FEDDF /* NMAddressApiModel.h */,
-				83EE765A19BBF9A6006FEDDF /* NMAddressApiModel.m */,
+				83EE765919BBF9A6006FEDDF /* NMLocationApiModel.h */,
+				83EE765A19BBF9A6006FEDDF /* NMLocationApiModel.m */,
+				83C3A18D19CE54660052B6F7 /* NMSellerApiModel.h */,
+				83C3A18E19CE54660052B6F7 /* NMSellerApiModel.m */,
+				83C3A19019CE547A0052B6F7 /* NMPlaceApiModel.h */,
+				83C3A19119CE547A0052B6F7 /* NMPlaceApiModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -436,8 +460,6 @@
 		8DD3FC5F19B2570D00DAFCDB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				831B796619B283C0009B9948 /* NMFoodsViewController.h */,
-				831B796719B283C0009B9948 /* NMFoodsViewController.m */,
 				8DEED51D19B299A000EE227A /* NMOrderFoodViewController.h */,
 				8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */,
 				8D51D2A719B58DA500920F69 /* NMItemsCollectionViewController.h */,
@@ -540,10 +562,14 @@
 		8DEED52419B29AFD00EE227A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				83C3A18719CE54420052B6F7 /* NMPlace.h */,
+				83C3A18819CE54420052B6F7 /* NMPlace.m */,
+				83C3A18919CE54420052B6F7 /* NMSeller.h */,
+				83C3A18A19CE54420052B6F7 /* NMSeller.m */,
 				83C0EA0819B981FD009A7BE0 /* Machine Generated */,
 				8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */,
-				83EE765E19BBFE51006FEDDF /* NMAddress.h */,
-				83EE765F19BBFE51006FEDDF /* NMAddress.m */,
+				83EE765E19BBFE51006FEDDF /* NMLocation.h */,
+				83EE765F19BBFE51006FEDDF /* NMLocation.m */,
 				83D6A9DB19B822B8009A6D9B /* NMFood.h */,
 				83D6A9DC19B822B8009A6D9B /* NMFood.m */,
 				83D6A9DD19B822B8009A6D9B /* NMOrder.h */,
@@ -695,8 +721,10 @@
 				839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */,
 				8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
 				8D51D2BE19B6A92000920F69 /* CHDigitInput.m in Sources */,
+				83C3A18B19CE54420052B6F7 /* NMPlace.m in Sources */,
 				8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */,
 				8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */,
+				83C3A18519CE54380052B6F7 /* _NMPlace.m in Sources */,
 				8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */,
 				8D7D00AD19CD17940006E5E6 /* NMLocationDropdownTableViewCell.m in Sources */,
 				83D6A9E119B822B8009A6D9B /* _NMFood.m in Sources */,
@@ -712,27 +740,31 @@
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
 				83D6A9E419B822B8009A6D9B /* NMFood.m in Sources */,
+				83C3A19519D0C5E20052B6F7 /* _NMLocation.m in Sources */,
 				839765BC19BBCE0A00EE8254 /* NMUserApiModel.m in Sources */,
 				83BE9B1F19CA52BC000CC79B /* NMOrderFoodConfirmAddressCell.m in Sources */,
 				839765B919BBCE0200EE8254 /* NMOrderApiModel.m in Sources */,
-				83EE766019BBFE51006FEDDF /* _NMAddress.m in Sources */,
 				8D6DE42419B8342A008F64CE /* NMLoginViewController.m in Sources */,
+				83C3A18F19CE54660052B6F7 /* NMSellerApiModel.m in Sources */,
 				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
-				83EE766119BBFE51006FEDDF /* NMAddress.m in Sources */,
+				83EE766119BBFE51006FEDDF /* NMLocation.m in Sources */,
 				8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */,
 				8D49F30B19BEAF2B00E60145 /* Constants.m in Sources */,
 				8D7D00A719CD160B0006E5E6 /* NMFoodCellHeaderView.m in Sources */,
+				83C3A18619CE54380052B6F7 /* _NMSeller.m in Sources */,
 				8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
 				8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,
 				83EE765819BBE3CD006FEDDF /* NMSession.m in Sources */,
 				8D7D00A119CA65A50006E5E6 /* NMDeliveryViewController.m in Sources */,
-				83EE765B19BBF9A6006FEDDF /* NMAddressApiModel.m in Sources */,
+				83C3A19219CE547A0052B6F7 /* NMPlaceApiModel.m in Sources */,
+				83EE765B19BBF9A6006FEDDF /* NMLocationApiModel.m in Sources */,
 				83D6A9E619B822B8009A6D9B /* NMUser.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
 				8D5E561C19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m in Sources */,
 				8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */,
+				83C3A18C19CE54420052B6F7 /* NMSeller.m in Sources */,
 				83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */,
 				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				8D49F30E19C0CEA000E60145 /* NMDeliveryAddressTableViewCell.m in Sources */,
@@ -740,7 +772,6 @@
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
 				8D5E561919C249A80001B531 /* NMRateViewController.m in Sources */,
-				831B796819B283C0009B9948 /* NMFoodsViewController.m in Sources */,
 				8D51D2B319B6688200920F69 /* NMMenuViewController.m in Sources */,
 				8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */,
 				8D5E561619C246F90001B531 /* NMPersonalCampaignViewController.m in Sources */,
@@ -967,6 +998,7 @@
 		8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				83C3A18019CE531E0052B6F7 /* V2.xcdatamodel */,
 				83D6A9D419B821BD009A6D9B /* V1.xcdatamodel */,
 				8332FC0E19B3D447000D56AB /* Current.xcdatamodel */,
 			);
