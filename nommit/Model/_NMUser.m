@@ -11,8 +11,9 @@ const struct NMUserAttributes NMUserAttributes = {
 };
 
 const struct NMUserRelationships NMUserRelationships = {
-	.addresses = @"addresses",
+	.locations = @"locations",
 	.orders = @"orders",
+	.seller = @"seller",
 };
 
 const struct NMUserFetchedProperties NMUserFetchedProperties = {
@@ -79,7 +80,7 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 
 
-@dynamic addresses;
+@dynamic locations;
 
 	
 
@@ -94,6 +95,10 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 	[self didAccessValueForKey:@"orders"];
 	return result;
 }
+	
+
+@dynamic seller;
+
 	
 
 

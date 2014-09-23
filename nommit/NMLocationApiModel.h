@@ -8,7 +8,7 @@
 
 #import <Overcoat.h>
 
-@interface NMAddressApiModel : MTLModel <MTLJSONSerializing, MTLManagedObjectSerializing>
+@interface NMLocationApiModel : MTLModel <MTLJSONSerializing, MTLManagedObjectSerializing>
 
 @property (nonatomic, strong) NSNumber *uid;
 @property (nonatomic, strong) NSString *name;
@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *zip;
 @property (nonatomic, strong) NSString *instructions;
+@property (nonatomic, strong) NSDecimalNumber *latitude;
+@property (nonatomic, strong) NSDecimalNumber *longitude;
 
 
 @end

@@ -10,6 +10,7 @@ const struct NMFoodAttributes NMFoodAttributes = {
 	.orderCount = @"orderCount",
 	.orderGoal = @"orderGoal",
 	.price = @"price",
+	.rating = @"rating",
 	.stateID = @"stateID",
 	.subtitle = @"subtitle",
 	.thumbnailImageURL = @"thumbnailImageURL",
@@ -19,6 +20,8 @@ const struct NMFoodAttributes NMFoodAttributes = {
 
 const struct NMFoodRelationships NMFoodRelationships = {
 	.orders = @"orders",
+	.places = @"places",
+	.seller = @"seller",
 };
 
 const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
@@ -57,6 +60,11 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 	}
 	if ([key isEqualToString:@"orderGoalValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"orderGoal"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"ratingValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"rating"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -157,6 +165,32 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 
 
 
+@dynamic rating;
+
+
+
+- (float)ratingValue {
+	NSNumber *result = [self rating];
+	return [result floatValue];
+}
+
+- (void)setRatingValue:(float)value_ {
+	[self setRating:[NSNumber numberWithFloat:value_]];
+}
+
+- (float)primitiveRatingValue {
+	NSNumber *result = [self primitiveRating];
+	return [result floatValue];
+}
+
+- (void)setPrimitiveRatingValue:(float)value_ {
+	[self setPrimitiveRating:[NSNumber numberWithFloat:value_]];
+}
+
+
+
+
+
 @dynamic stateID;
 
 
@@ -241,6 +275,23 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 	[self didAccessValueForKey:@"orders"];
 	return result;
 }
+	
+
+@dynamic places;
+
+	
+- (NSMutableSet*)placesSet {
+	[self willAccessValueForKey:@"places"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"places"];
+  
+	[self didAccessValueForKey:@"places"];
+	return result;
+}
+	
+
+@dynamic seller;
+
 	
 
 

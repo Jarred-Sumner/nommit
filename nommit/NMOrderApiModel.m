@@ -22,7 +22,7 @@
              @"stateID" : @"state_id",
              @"food" : @"food",
              @"user" : @"user",
-             @"address" : @"address"
+             @"location" : @"location"
      };
 }
 
@@ -46,8 +46,8 @@
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:NMUserApiModel.class];
 }
 
-+ (NSValueTransformer *)addressJSONTransformer  {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMAddressApiModel class]];
++ (NSValueTransformer *)locationJSONTransformer  {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMLocationApiModel class]];
 
 }
 

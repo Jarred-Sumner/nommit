@@ -38,6 +38,7 @@
     _nameLabel.text  = food.title;
     _priceLabel.text = [NSString stringWithFormat:@"$%@", food.price];
     _soldLabel.text = [NSString stringWithFormat:@"%@ left (%@ total)", @(food.orderGoal.integerValue - food.orderCount.integerValue), food.orderGoal];
+    
     [_foodImageView setImageWithURL:[food thumbnailImageAsURL]];
 }
 

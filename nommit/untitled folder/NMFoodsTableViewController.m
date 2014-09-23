@@ -13,6 +13,7 @@
 #import "NMFoodCellHeaderView.h"
 #import "NMFood.h"
 #import <REFrostedViewController.h>
+#import <SVProgressHUD.h>
 
 
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
@@ -20,7 +21,6 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 @interface NMFoodsTableViewController ()
 
-@property (nonatomic, strong) NSArray *foods;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
@@ -40,31 +40,101 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (id)initWithPlace:(NMPlace *)place {
+    self = [self init];
+    self.place = place;
+    return self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setPlace:(NMPlace *)place {
+    _place = place;
+    _fetchedResultsController = nil;
+    [self.tableView reloadData];
+    [self.fetchedResultsController performFetch:nil];
 }
+
+#pragma mark - NSFetchedResultsController
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController != nil) return _fetchedResultsController;
+    
+    NSPredicate *foodPredicate;
+    if (_place) {
+        foodPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND places CONTAINS %@", @(NMFoodStateActive), _place];
+    } else {
+        // Predicate that never returns anything ever, for empty data source.
+        foodPredicate = [NSPredicate predicateWithFormat:@"uid = %@", @(-1)];
+    }
+    
+    _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"endDate" ascending:NO withPredicate:foodPredicate groupBy:nil delegate: self];
+    return _fetchedResultsController;
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:(UITableViewCell*)[tableView cellForRowAtIndexPath:indexPath] forIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
+    return self.fetchedResultsController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 5;
+    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -72,47 +142,53 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40;
+    return NMLocationDropdownTableViewCellHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NMLocationDropdownTableViewCell *headerView = [[NMLocationDropdownTableViewCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 40)];
+    NMLocationDropdownTableViewCell *headerView = [[NMLocationDropdownTableViewCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMLocationDropdownTableViewCellHeight)];
     return headerView;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NMFoodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
-    
-    // cell.food = self.foods[indexPath.row - 1];;
+    [self configureCell:cell forIndexPath:indexPath];
     return cell;
 }
 
-
-#pragma mark - UICollectionViewDataSource
-
-- (void)setupDataSource {
-    self.foods = [NMFood activeFoods];
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refreshFoods) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:self.refreshControl];
-    
-    [self refreshFoods];
+- (void)configureCell:(NMFoodTableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
+    cell.food = [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
-- (void)refreshFoods {
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)setupDataSource {
+    if (!_place) _place = [NMPlace activePlace];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshPlaces) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    
+    [self refreshPlaces];
+}
+
+- (void)refreshPlaces {
     __weak NMFoodsTableViewController *this = self;
     [self.refreshControl beginRefreshing];
     
-    [[NMApi instance] GET:@"foods" parameters:nil completion:^(OVCResponse *response, NSError *error) {
+    [[NMApi instance] GET:@"places" parameters:nil completion:^(OVCResponse *response, NSError *error) {
+        
         if (error) {
             NSLog(@"Error Updating: %@", error);
         } else {
-            this.foods = [NMFoodApiModel foodsForModels:response.result];
+            [NMPlaceApiModel placesForModels:response.result];
+            this.place = [NMPlace activePlace];
+            NSLog(@"Place: %@", this.place);
         }
         [this.refreshControl endRefreshing];
-        [this.tableView reloadData];
     }];
 }
 

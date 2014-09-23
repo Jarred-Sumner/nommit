@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="14A343f" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="NMAddress" representedClassName="NMAddress" syncable="YES">
-        <attribute name="addressOne" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="addressTwo" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="address" inverseEntity="NMOrder" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="addresses" inverseEntity="NMUser" syncable="YES"/>
-        <compoundIndexes>
-            <compoundIndex>
-                <index value="uid"/>
-            </compoundIndex>
-        </compoundIndexes>
-    </entity>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="14A361c" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="NMFood" representedClassName="NMFood" syncable="YES">
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="endDate" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="headerImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="orderCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="orderGoal" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="food" inverseEntity="NMOrder" syncable="YES"/>
+        <relationship name="places" toMany="YES" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="foods" inverseEntity="NMPlace" syncable="YES"/>
+        <relationship name="seller" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMSeller" inverseName="foods" inverseEntity="NMSeller" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="uid"/>
@@ -44,15 +28,39 @@
             </compoundIndex>
         </compoundIndexes>
     </entity>
+    <entity name="NMLocation" representedClassName="NMLocation" syncable="YES">
+        <attribute name="addressOne" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressTwo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="location" inverseEntity="NMOrder" syncable="YES"/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="location" inverseEntity="NMPlace" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="locations" inverseEntity="NMUser" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="uid"/>
+            </compoundIndex>
+        </compoundIndexes>
+    </entity>
     <entity name="NMOrder" representedClassName="NMOrder" syncable="YES">
+        <attribute name="chargeStateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="deliveredAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="placedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="priceInCents" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
-        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMAddress" inverseName="order" inverseEntity="NMAddress" syncable="YES"/>
         <relationship name="food" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMFood" inverseName="orders" inverseEntity="NMFood" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="order" inverseEntity="NMLocation" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="orders" inverseEntity="NMUser" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
@@ -69,13 +77,28 @@
             </compoundIndex>
         </compoundIndexes>
     </entity>
+    <entity name="NMPlace" representedClassName="NMPlace" syncable="YES">
+        <attribute name="foodCount" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="uid" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <relationship name="foods" toMany="YES" deletionRule="Nullify" destinationEntity="NMFood" inverseName="places" inverseEntity="NMFood" syncable="YES"/>
+        <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="place" inverseEntity="NMLocation" syncable="YES"/>
+    </entity>
+    <entity name="NMSeller" representedClassName="NMSeller" syncable="YES">
+        <attribute name="logoURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="foods" toMany="YES" deletionRule="Nullify" destinationEntity="NMFood" inverseName="seller" inverseEntity="NMFood" syncable="YES"/>
+        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMUser" inverseName="seller" inverseEntity="NMUser" syncable="YES"/>
+    </entity>
     <entity name="NMUser" representedClassName="NMUser" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="facebookUID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="addresses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMAddress" inverseName="user" inverseEntity="NMAddress" syncable="YES"/>
+        <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="user" inverseEntity="NMLocation" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="user" inverseEntity="NMOrder" syncable="YES"/>
+        <relationship name="seller" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMSeller" inverseName="users" inverseEntity="NMSeller" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="facebookUID"/>
@@ -83,9 +106,11 @@
         </compoundIndexes>
     </entity>
     <elements>
-        <element name="NMAddress" positionX="-45" positionY="90" width="128" height="225"/>
-        <element name="NMFood" positionX="-63" positionY="-18" width="128" height="223"/>
-        <element name="NMOrder" positionX="-36" positionY="63" width="128" height="178"/>
-        <element name="NMUser" positionX="-54" positionY="54" width="128" height="133"/>
+        <element name="NMFood" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="NMLocation" positionX="0" positionY="0" width="128" height="268"/>
+        <element name="NMOrder" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="NMPlace" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="NMSeller" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="NMUser" positionX="0" positionY="0" width="128" height="150"/>
     </elements>
 </model>

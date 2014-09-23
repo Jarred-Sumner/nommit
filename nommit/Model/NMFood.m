@@ -12,13 +12,13 @@
 
 
 + (NSArray*)activeFoods {
-    NSPredicate *active = [NSPredicate predicateWithFormat:@"stateID = %@ AND endDate > %@", @(NSFoodStateActive), [NSDate date]];
+    NSPredicate *active = [NSPredicate predicateWithFormat:@"stateID = %@ AND endDate > %@", @(NMFoodStateActive), [NSDate date]];
     NSFetchRequest *request = [NMFood MR_requestAllWithPredicate:active];
     return [NMFood MR_executeFetchRequest:request];
 }
 
-- (NSFoodState)state {
-    return (NSFoodState)self.stateIDValue;
+- (NMFoodState)state {
+    return (NMFoodState)self.stateIDValue;
 }
 
 - (NSURL *)headerImageAsURL {

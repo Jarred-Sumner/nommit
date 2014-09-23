@@ -9,10 +9,10 @@
 #import "NMPaymentsViewController.h"
 #import "PKView.h"
 #import "NMColors.h"
-#import "NMFoodsViewController.h"
 #import "Stripe.h"
-#import "MBProgressHUD.h"
+#import "SVProgressHUD.h"
 #import "NMMenuNavigationController.h"
+#import "NMFoodsTableViewController.h"
 #import "Constants.h"
 
 #define PDefaultBoldFont [UIFont boldSystemFontOfSize:17]
@@ -119,7 +119,7 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
 }
 
 - (void)cancel:(id)sender {
-    NMFoodsViewController *mainVC = [[NMFoodsViewController alloc] init];
+    NMFoodsTableViewController *mainVC = [[NMFoodsTableViewController alloc] init];
     [self.navigationController pushViewController:mainVC animated:YES];
 }
 
@@ -132,11 +132,12 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
 
 - (IBAction)save:(id)sender {
     if (self.paymentView.hidden == YES) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [SVProgressHUD showWithStatus:@"Verifying..."];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         return;
     }
     if (![self.paymentView isValid]) {
+        [SVProgressHUD showErrorWithStatus:@"Invalid Credit Card! Please re-enter it and try again"];
         return;
     }
     // TODO : in stripe.m , define defaultKey  = @"pk_test_CbJfLmFFADyn0piYUJIgr7MQ"
@@ -149,14 +150,14 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
         [message show];
         return;
     }
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [SVProgressHUD showWithStatus:@"Verified. Updating!"];
     STPCard *card = [[STPCard alloc] init];
     card.number = self.paymentView.card.number;
     card.expMonth = self.paymentView.card.expMonth;
     card.expYear = self.paymentView.card.expYear;
     card.cvc = self.paymentView.card.cvc;
     [Stripe createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [SVProgressHUD showSuccessWithStatus:@"Updated!"];
         if (error) {
             [self hasError:error];
         } else {
@@ -197,40 +198,12 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
 
 - (void)hasToken:(STPToken *)token
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    //    NSDictionary *chargeParams = @{
-    //                                   @"token": token.tokenId,
-    //                                   @"currency": @"usd",
-    //                                   @"amount": @"1000", // this is in cents (i.e. $10)
-    //                                   };
-    
-//    if (![Parse getApplicationId] || ![Parse getClientKey]) {
-//        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Todo: Submit this token to your backend"
-//                                                          message:[NSString stringWithFormat:@"Good news! Stripe turned your credit card into a token: %@ \nYou can follow the instructions in the README to set up Parse as an example backend, or use this token to manually create charges at dashboard.stripe.com .", token.tokenId]
-//                                                         delegate:nil
-//                                                cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-//                                                otherButtonTitles:nil];
-    
-//        [message show];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    NMFoodsViewController *mainVC = [[NMFoodsViewController alloc] init];
+    [SVProgressHUD showSuccessWithStatus:@"Updated!"];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    NMFoodsTableViewController *mainVC = [[NMFoodsTableViewController alloc] init];
     [self.navigationController pushViewController:mainVC animated:YES];
         return;
     
-    }
-    
-    // This passes the token off to our payment backend, which will then actually complete charging the card using your account's
-    //    [PFCloud callFunctionInBackground:@"charge" withParameters:chargeParams block:^(id object, NSError *error) {
-    //        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    //        if (error) {
-    //            [self hasError:error];
-    //            return;
-    //        }
-    //        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-    //            [[[UIAlertView alloc] initWithTitle:@"Payment Succeeded" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
-    //        }];
-    //    }];
+}
 
 @end

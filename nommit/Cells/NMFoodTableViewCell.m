@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UILabel *sellerLabel;
 @property (nonatomic, strong) UILabel *priceLabel;
 @property (nonatomic, strong) TYMProgressBarView *progressBarView;
-@property (nonatomic, strong) UIImageView *profileAvatar;
+@property (nonatomic, strong) UIImageView *sellerLogoImageView;
 @property (nonatomic, strong) RateView *rateVw;
 @property (nonatomic, strong) UILabel *timeLabel;
 
@@ -41,8 +41,7 @@
         [self.contentView addSubview:bg];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        // [self setupHeaderView];
-        [self setupAvatar];
+        [self setupSellerLogoImageView];
         [self setupNameLabel];
         [self setupFoodImageView];
         [self setupFoodLabel];
@@ -51,18 +50,39 @@
         [self setupProgressBar];
         [self setupRating];
         [self setupTime];
-        // [self setupBorder];
     }
     return self;
 }
 
-- (void)setupAvatar
+- (void)setFood:(NMFood *)food {
+    _food = food;
+    
+    NSLog(@"Seller: %@", food.seller);
+    
+    [_sellerLogoImageView setImageWithURL:food.seller.logoAsURL];
+    [_foodImageView setImageWithURL:food.headerImageAsURL];
+    _sellerLabel.text = food.seller.name;
+    _timeLabel.text = [self timeLeftText];
+    
+    _nameLabel.text = food.title;
+    _priceLabel.text = [NSString stringWithFormat:@"$%@", food.price];
+    _soldLabel.text = [NSString stringWithFormat:@"%@/%@ sold", food.orderCount, food.orderGoal];
+    _progressBarView.progress = @(food.orderCount.floatValue / food.orderGoal.floatValue).floatValue;
+    
+    if (food.rating.integerValue > -1) {
+        _rateVw.rating = food.rating.floatValue;
+    }
+    
+}
+
+- (void)setupSellerLogoImageView
 {
-    _profileAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(14, 18, 40, 40)];
-    _profileAvatar.layer.cornerRadius = _profileAvatar.bounds.size.width/2;
-    _profileAvatar.layer.masksToBounds = YES;
-    _profileAvatar.image = [UIImage imageNamed:@"AvatarLucySmall"];
-    [self.contentView addSubview:_profileAvatar];
+    _sellerLogoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 18, 40, 40)];
+    _sellerLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _sellerLogoImageView.layer.cornerRadius = CGRectGetWidth(_sellerLogoImageView.bounds) / 2;
+    _sellerLogoImageView.layer.masksToBounds = YES;
+
+    [self.contentView addSubview:_sellerLogoImageView];
 }
 
 - (void)setupNameLabel
@@ -72,13 +92,12 @@
     _sellerLabel.font = [UIFont fontWithName:@"Avenir" size:12];
     _sellerLabel.textColor = UIColorFromRGB(0x3C3C3C);
     _sellerLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _sellerLabel.text = @"Delta Delta Delta";
     [self.contentView addSubview:_sellerLabel];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_sellerLabel, _profileAvatar);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_sellerLabel, _sellerLogoImageView);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_profileAvatar]-14-[_sellerLabel]" options:0 metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_sellerLabel]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_sellerLogoImageView]-14-[_sellerLabel]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_sellerLabel]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupFoodImageView
@@ -88,23 +107,14 @@
     _foodImageView.image = [UIImage imageNamed:@"PepperoniPizza2"];
     _foodImageView.layer.masksToBounds = YES;
     _foodImageView.layer.cornerRadius = 2;
+    _foodImageView.contentMode = UIViewContentModeScaleAspectFill;
+
     [self.contentView addSubview:_foodImageView];
     
     // _foodImageView.frame = CGRectMake(67, 38, 241, 200.5);
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-67-[_foodImageView]-16-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-38-[_foodImageView]-75-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
-    
-    
-    
-    // setup white border
-//    UIView *borderView = [[UIView alloc] init];
-//    borderView.translatesAutoresizingMaskIntoConstraints = NO;
-//    borderView.backgroundColor = [UIColor whiteColor];
-//    [self.contentView addSubview:borderView];
-//    
-//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-67.21-[borderView]-16.3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
-//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-165-[borderView]-75-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
 }
 
 - (void)setupFoodLabel
@@ -113,7 +123,6 @@
     _nameLabel.font = [UIFont fontWithName:@"Avenir" size:15.0f];
     _nameLabel.textColor = UIColorFromRGB(0x3C3C3C);
     _nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _nameLabel.text = @"Pepperoni Pizza";
     
     [self.contentView addSubview:_nameLabel];
     
@@ -128,8 +137,6 @@
     _priceLabel.textAlignment = NSTextAlignmentRight;
     _priceLabel.textColor = UIColorFromRGB(0x60C4BE);
     _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _priceLabel.text = @"$5";
-    
     
     [self.contentView addSubview:_priceLabel];
     
@@ -143,7 +150,6 @@
     _soldLabel.font = [UIFont fontWithName:@"Avenir-Light" size:12.0f];
     _soldLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _soldLabel.textColor = UIColorFromRGB(0x717171);
-    _soldLabel.text = @"12/50 left";
     
     [self.contentView addSubview:_soldLabel];
     
@@ -162,7 +168,6 @@
     _progressBarView.barFillColor = UIColorFromRGB(0x42B7BB);
     _progressBarView.barInnerPadding = 0;
     _progressBarView.translatesAutoresizingMaskIntoConstraints = NO;
-    _progressBarView.progress = .5f;
     
     [self.contentView addSubview:_progressBarView];
     
@@ -174,7 +179,7 @@
 
 - (void)setupRating
 {
-    _rateVw = [RateView rateViewWithRating:5.0f];
+    _rateVw = [RateView rateViewWithRating:0.f];
     _rateVw.starFillMode = StarFillModeHorizontal;
     _rateVw.canRate = NO;
     _rateVw.tag = 88888;
@@ -188,9 +193,9 @@
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_rateVw, _nameLabel);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_rateVw]-75-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_rateVw]-75-|" options:0 metrics:nil views:views]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-6-[_rateVw]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-6-[_rateVw]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupTime
@@ -202,28 +207,23 @@
     
     _timeLabel = [[UILabel alloc] init];
     _timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _timeLabel.text = @"2 hrs left";
     _timeLabel.font = [UIFont fontWithName:@"Avenir" size:12.0f];
     _timeLabel.textColor = UIColorFromRGB(0x979797);
     [self.contentView addSubview:_timeLabel];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(timeIcon, _timeLabel);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[timeIcon]-5-[_timeLabel]-18-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[timeIcon]-5-[_timeLabel]-18-|" options:0 metrics:nil views:views]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-17-[timeIcon]" options:0 metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_timeLabel]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-17-[timeIcon]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_timeLabel]" options:0 metrics:nil views:views]];
     
 }
 
+#pragma mark - Utility Methods
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (NSString *)timeLeftText {
+    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+    return [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:self.food.endDate];
 }
 @end

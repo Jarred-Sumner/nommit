@@ -24,9 +24,11 @@
 #define MR_SHORTHAND
 #import "CoreData+MagicalRecord.h"
 #import <MagicalRecord+ShorthandSupport.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "NMColors.h"
 
+#import <FormatterKit/TTTTimeIntervalFormatter.h>UIColor
 
 #endif

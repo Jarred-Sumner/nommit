@@ -7,7 +7,6 @@
 //
 
 #import "NMAppDelegate.h"
-#import "NMFoodsViewController.h"
 #import "NMItemsCollectionViewController.h"
 #import <REFrostedViewController.h>
 #import <REFrostedContainerViewController.h>
@@ -16,10 +15,6 @@
 #import "NMMenuNavigationController.h"
 #import "NMLoginViewController.h"
 #import "NMFoodsTableViewController.h"
-
-#import "CoreData+MagicalRecord.h"
-#import <MagicalRecord+ShorthandSupport.h>
-#import <FacebookSDK/FacebookSDK.h>
 
 @interface NMAppDelegate ()
 

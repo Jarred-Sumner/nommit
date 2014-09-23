@@ -5,26 +5,30 @@
 
 
 extern const struct NMOrderAttributes {
+	__unsafe_unretained NSString *chargeStateID;
 	__unsafe_unretained NSString *deliveredAt;
 	__unsafe_unretained NSString *placedAt;
 	__unsafe_unretained NSString *priceInCents;
 	__unsafe_unretained NSString *quantity;
+	__unsafe_unretained NSString *rating;
 	__unsafe_unretained NSString *stateID;
 	__unsafe_unretained NSString *uid;
 } NMOrderAttributes;
 
 extern const struct NMOrderRelationships {
-	__unsafe_unretained NSString *address;
 	__unsafe_unretained NSString *food;
+	__unsafe_unretained NSString *location;
 	__unsafe_unretained NSString *user;
 } NMOrderRelationships;
 
 extern const struct NMOrderFetchedProperties {
 } NMOrderFetchedProperties;
 
-@class NMAddress;
 @class NMFood;
+@class NMLocation;
 @class NMUser;
+
+
 
 
 
@@ -41,6 +45,20 @@ extern const struct NMOrderFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (NMOrderID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* chargeStateID;
+
+
+
+@property int16_t chargeStateIDValue;
+- (int16_t)chargeStateIDValue;
+- (void)setChargeStateIDValue:(int16_t)value_;
+
+//- (BOOL)validateChargeStateID:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -94,6 +112,20 @@ extern const struct NMOrderFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* rating;
+
+
+
+@property int16_t ratingValue;
+- (int16_t)ratingValue;
+- (void)setRatingValue:(int16_t)value_;
+
+//- (BOOL)validateRating:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* stateID;
 
 
@@ -122,16 +154,16 @@ extern const struct NMOrderFetchedProperties {
 
 
 
-@property (nonatomic, strong) NMAddress *address;
-
-//- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
-
-
-
-
 @property (nonatomic, strong) NMFood *food;
 
 //- (BOOL)validateFood:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NMLocation *location;
+
+//- (BOOL)validateLocation:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -151,6 +183,15 @@ extern const struct NMOrderFetchedProperties {
 @end
 
 @interface _NMOrder (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveChargeStateID;
+- (void)setPrimitiveChargeStateID:(NSNumber*)value;
+
+- (int16_t)primitiveChargeStateIDValue;
+- (void)setPrimitiveChargeStateIDValue:(int16_t)value_;
+
+
 
 
 - (NSDate*)primitiveDeliveredAt;
@@ -183,6 +224,15 @@ extern const struct NMOrderFetchedProperties {
 
 
 
+- (NSNumber*)primitiveRating;
+- (void)setPrimitiveRating:(NSNumber*)value;
+
+- (int16_t)primitiveRatingValue;
+- (void)setPrimitiveRatingValue:(int16_t)value_;
+
+
+
+
 - (NSNumber*)primitiveStateID;
 - (void)setPrimitiveStateID:(NSNumber*)value;
 
@@ -202,13 +252,13 @@ extern const struct NMOrderFetchedProperties {
 
 
 
-- (NMAddress*)primitiveAddress;
-- (void)setPrimitiveAddress:(NMAddress*)value;
-
-
-
 - (NMFood*)primitiveFood;
 - (void)setPrimitiveFood:(NMFood*)value;
+
+
+
+- (NMLocation*)primitiveLocation;
+- (void)setPrimitiveLocation:(NMLocation*)value;
 
 
 

@@ -10,7 +10,7 @@
 #import <REFrostedViewController.h>
 #import <REFrostedContainerViewController.h>
 //#import <UIViewController+REFrostedViewController.h>
-#import "NMFoodsViewController.h"
+#import "NMFoodsTableViewController.h"
 #import "NMMenuNavigationController.h"
 #import "NMPaymentsViewController.h"
 #import "NMCreateCampaignViewController.h"
@@ -109,7 +109,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0 && indexPath.row == 0) {
-        NMFoodsViewController *homeViewController = [[NMFoodsViewController alloc] init];
+        NMFoodsTableViewController *homeViewController = [[NMFoodsTableViewController alloc] init];
         NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:homeViewController];
         self.frostedViewController.contentViewController = navigationController;
         navigationController.navigationBar.translucent = NO;
@@ -127,7 +127,7 @@
         self.frostedViewController.contentViewController = navigationController;
         navigationController.navigationBar.translucent = NO;
     } else {
-        NMFoodsViewController *secondViewController = [[NMFoodsViewController alloc] init];
+        NMFoodsTableViewController *secondViewController = [[NMFoodsTableViewController alloc] init];
         NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:secondViewController];
         self.frostedViewController.contentViewController = navigationController;
         navigationController.navigationBar.translucent = NO;

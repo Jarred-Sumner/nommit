@@ -12,15 +12,17 @@ extern const struct NMUserAttributes {
 } NMUserAttributes;
 
 extern const struct NMUserRelationships {
-	__unsafe_unretained NSString *addresses;
+	__unsafe_unretained NSString *locations;
 	__unsafe_unretained NSString *orders;
+	__unsafe_unretained NSString *seller;
 } NMUserRelationships;
 
 extern const struct NMUserFetchedProperties {
 } NMUserFetchedProperties;
 
-@class NMAddress;
+@class NMLocation;
 @class NMOrder;
+@class NMSeller;
 
 
 
@@ -80,9 +82,9 @@ extern const struct NMUserFetchedProperties {
 
 
 
-@property (nonatomic, strong) NMAddress *addresses;
+@property (nonatomic, strong) NMLocation *locations;
 
-//- (BOOL)validateAddresses:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateLocations:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -90,6 +92,13 @@ extern const struct NMUserFetchedProperties {
 @property (nonatomic, strong) NSSet *orders;
 
 - (NSMutableSet*)ordersSet;
+
+
+
+
+@property (nonatomic, strong) NMSeller *seller;
+
+//- (BOOL)validateSeller:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -134,13 +143,18 @@ extern const struct NMUserFetchedProperties {
 
 
 
-- (NMAddress*)primitiveAddresses;
-- (void)setPrimitiveAddresses:(NMAddress*)value;
+- (NMLocation*)primitiveLocations;
+- (void)setPrimitiveLocations:(NMLocation*)value;
 
 
 
 - (NSMutableSet*)primitiveOrders;
 - (void)setPrimitiveOrders:(NSMutableSet*)value;
+
+
+
+- (NMSeller*)primitiveSeller;
+- (void)setPrimitiveSeller:(NMSeller*)value;
 
 
 @end

@@ -1,14 +1,16 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to NMAddress.m instead.
+// Make changes to NMLocation.m instead.
 
-#import "_NMAddress.h"
+#import "_NMLocation.h"
 
-const struct NMAddressAttributes NMAddressAttributes = {
+const struct NMLocationAttributes NMLocationAttributes = {
 	.addressOne = @"addressOne",
 	.addressTwo = @"addressTwo",
 	.city = @"city",
 	.country = @"country",
 	.instructions = @"instructions",
+	.latitude = @"latitude",
+	.longitude = @"longitude",
 	.name = @"name",
 	.phone = @"phone",
 	.state = @"state",
@@ -16,35 +18,36 @@ const struct NMAddressAttributes NMAddressAttributes = {
 	.zip = @"zip",
 };
 
-const struct NMAddressRelationships NMAddressRelationships = {
+const struct NMLocationRelationships NMLocationRelationships = {
 	.order = @"order",
+	.place = @"place",
 	.user = @"user",
 };
 
-const struct NMAddressFetchedProperties NMAddressFetchedProperties = {
+const struct NMLocationFetchedProperties NMLocationFetchedProperties = {
 };
 
-@implementation NMAddressID
+@implementation NMLocationID
 @end
 
-@implementation _NMAddress
+@implementation _NMLocation
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"NMAddress" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"NMLocation" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"NMAddress";
+	return @"NMLocation";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"NMAddress" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"NMLocation" inManagedObjectContext:moc_];
 }
 
-- (NMAddressID*)objectID {
-	return (NMAddressID*)[super objectID];
+- (NMLocationID*)objectID {
+	return (NMLocationID*)[super objectID];
 }
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
@@ -91,6 +94,20 @@ const struct NMAddressFetchedProperties NMAddressFetchedProperties = {
 
 
 @dynamic instructions;
+
+
+
+
+
+
+@dynamic latitude;
+
+
+
+
+
+
+@dynamic longitude;
 
 
 
@@ -152,6 +169,10 @@ const struct NMAddressFetchedProperties NMAddressFetchedProperties = {
 
 
 @dynamic order;
+
+	
+
+@dynamic place;
 
 	
 

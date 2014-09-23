@@ -7,6 +7,9 @@
 //
 
 #import <Overcoat.h>
+#import "NMApi.h"
+
+@class NMSellerApiModel;
 
 @interface NMFoodApiModel : MTLModel <MTLJSONSerializing, MTLManagedObjectSerializing>
 
@@ -21,7 +24,7 @@
 @property (nonatomic, strong) NSNumber *orderCount;
 @property (nonatomic, strong) NSNumber *price;
 @property (nonatomic, strong) NSNumber *stateID;
-
-+ (NSArray *)foodsForModels:(NSArray*)models;
+@property (nonatomic, strong) NSNumber *rating;
+@property (nonatomic, strong) NMSellerApiModel *seller;
 
 @end

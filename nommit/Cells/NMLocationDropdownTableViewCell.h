@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+static NSInteger NMLocationDropdownTableViewCellHeight = 40;
+
 @interface NMLocationDropdownTableViewCell : UIView
 
 @end

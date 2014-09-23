@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMAddressApiModel.h"
+#import "NMLocationApiModel.h"
 
-@implementation NMAddressApiModel
+@implementation NMLocationApiModel
 
 #pragma mark - MTLJSONSerializing Protocol
 
@@ -24,7 +24,7 @@
 #pragma mark - MTLManagedObjectSerializing
 
 + (NSString *)managedObjectEntityName {
-    return @"NMAddress";
+    return @"NMLocation";
 }
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {

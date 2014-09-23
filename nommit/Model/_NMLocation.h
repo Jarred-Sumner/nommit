@@ -1,31 +1,35 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to NMAddress.h instead.
+// Make changes to NMLocation.h instead.
 
 #import <CoreData/CoreData.h>
 
 
-extern const struct NMAddressAttributes {
+extern const struct NMLocationAttributes {
 	__unsafe_unretained NSString *addressOne;
 	__unsafe_unretained NSString *addressTwo;
 	__unsafe_unretained NSString *city;
 	__unsafe_unretained NSString *country;
 	__unsafe_unretained NSString *instructions;
+	__unsafe_unretained NSString *latitude;
+	__unsafe_unretained NSString *longitude;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *phone;
 	__unsafe_unretained NSString *state;
 	__unsafe_unretained NSString *uid;
 	__unsafe_unretained NSString *zip;
-} NMAddressAttributes;
+} NMLocationAttributes;
 
-extern const struct NMAddressRelationships {
+extern const struct NMLocationRelationships {
 	__unsafe_unretained NSString *order;
+	__unsafe_unretained NSString *place;
 	__unsafe_unretained NSString *user;
-} NMAddressRelationships;
+} NMLocationRelationships;
 
-extern const struct NMAddressFetchedProperties {
-} NMAddressFetchedProperties;
+extern const struct NMLocationFetchedProperties {
+} NMLocationFetchedProperties;
 
 @class NMOrder;
+@class NMPlace;
 @class NMUser;
 
 
@@ -39,14 +43,16 @@ extern const struct NMAddressFetchedProperties {
 
 
 
-@interface NMAddressID : NSManagedObjectID {}
+
+
+@interface NMLocationID : NSManagedObjectID {}
 @end
 
-@interface _NMAddress : NSManagedObject {}
+@interface _NMLocation : NSManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (NMAddressID*)objectID;
+- (NMLocationID*)objectID;
 
 
 
@@ -97,6 +103,26 @@ extern const struct NMAddressFetchedProperties {
 
 
 //- (BOOL)validateInstructions:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSDecimalNumber* latitude;
+
+
+
+//- (BOOL)validateLatitude:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSDecimalNumber* longitude;
+
+
+
+//- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -163,6 +189,13 @@ extern const struct NMAddressFetchedProperties {
 
 
 
+@property (nonatomic, strong) NMPlace *place;
+
+//- (BOOL)validatePlace:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, strong) NMUser *user;
 
 //- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
@@ -173,11 +206,11 @@ extern const struct NMAddressFetchedProperties {
 
 @end
 
-@interface _NMAddress (CoreDataGeneratedAccessors)
+@interface _NMLocation (CoreDataGeneratedAccessors)
 
 @end
 
-@interface _NMAddress (CoreDataGeneratedPrimitiveAccessors)
+@interface _NMLocation (CoreDataGeneratedPrimitiveAccessors)
 
 
 - (NSString*)primitiveAddressOne;
@@ -206,6 +239,18 @@ extern const struct NMAddressFetchedProperties {
 
 - (NSString*)primitiveInstructions;
 - (void)setPrimitiveInstructions:(NSString*)value;
+
+
+
+
+- (NSDecimalNumber*)primitiveLatitude;
+- (void)setPrimitiveLatitude:(NSDecimalNumber*)value;
+
+
+
+
+- (NSDecimalNumber*)primitiveLongitude;
+- (void)setPrimitiveLongitude:(NSDecimalNumber*)value;
 
 
 
@@ -246,6 +291,11 @@ extern const struct NMAddressFetchedProperties {
 
 - (NMOrder*)primitiveOrder;
 - (void)setPrimitiveOrder:(NMOrder*)value;
+
+
+
+- (NMPlace*)primitivePlace;
+- (void)setPrimitivePlace:(NMPlace*)value;
 
 
 

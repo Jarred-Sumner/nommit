@@ -10,7 +10,7 @@
 
 
 
-static NSString *NMApiBaseURLString = @"http://getnommit.com";
+static NSString *NMApiBaseURLString = @"http://localhost:3000";
 
 @implementation NMApi
 
@@ -41,15 +41,17 @@ static NSString *NMApiBaseURLString = @"http://getnommit.com";
              @"sessions" : [NMUserApiModel class],
              @"orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
-             @"foods" : [NMFoodApiModel class]
+             @"foods/*" : [NMFoodApiModel class],
+             @"places" : [NMPlaceApiModel class],
+             @"places/*" : [NMPlaceApiModel class]
      };
 }
 
 + (NSDateFormatter *)dateFormatter {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-    return dateFormatter;
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+     return dateFormatter;
 }
 
 @end

@@ -11,6 +11,7 @@ extern const struct NMFoodAttributes {
 	__unsafe_unretained NSString *orderCount;
 	__unsafe_unretained NSString *orderGoal;
 	__unsafe_unretained NSString *price;
+	__unsafe_unretained NSString *rating;
 	__unsafe_unretained NSString *stateID;
 	__unsafe_unretained NSString *subtitle;
 	__unsafe_unretained NSString *thumbnailImageURL;
@@ -20,12 +21,17 @@ extern const struct NMFoodAttributes {
 
 extern const struct NMFoodRelationships {
 	__unsafe_unretained NSString *orders;
+	__unsafe_unretained NSString *places;
+	__unsafe_unretained NSString *seller;
 } NMFoodRelationships;
 
 extern const struct NMFoodFetchedProperties {
 } NMFoodFetchedProperties;
 
 @class NMOrder;
+@class NMPlace;
+@class NMSeller;
+
 
 
 
@@ -120,6 +126,20 @@ extern const struct NMFoodFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* rating;
+
+
+
+@property float ratingValue;
+- (float)ratingValue;
+- (void)setRatingValue:(float)value_;
+
+//- (BOOL)validateRating:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* stateID;
 
 
@@ -185,6 +205,20 @@ extern const struct NMFoodFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *places;
+
+- (NSMutableSet*)placesSet;
+
+
+
+
+@property (nonatomic, strong) NMSeller *seller;
+
+//- (BOOL)validateSeller:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -194,6 +228,11 @@ extern const struct NMFoodFetchedProperties {
 - (void)removeOrders:(NSSet*)value_;
 - (void)addOrdersObject:(NMOrder*)value_;
 - (void)removeOrdersObject:(NMOrder*)value_;
+
+- (void)addPlaces:(NSSet*)value_;
+- (void)removePlaces:(NSSet*)value_;
+- (void)addPlacesObject:(NMPlace*)value_;
+- (void)removePlacesObject:(NMPlace*)value_;
 
 @end
 
@@ -242,6 +281,15 @@ extern const struct NMFoodFetchedProperties {
 
 
 
+- (NSNumber*)primitiveRating;
+- (void)setPrimitiveRating:(NSNumber*)value;
+
+- (float)primitiveRatingValue;
+- (void)setPrimitiveRatingValue:(float)value_;
+
+
+
+
 - (NSNumber*)primitiveStateID;
 - (void)setPrimitiveStateID:(NSNumber*)value;
 
@@ -281,6 +329,16 @@ extern const struct NMFoodFetchedProperties {
 
 - (NSMutableSet*)primitiveOrders;
 - (void)setPrimitiveOrders:(NSMutableSet*)value;
+
+
+
+- (NSMutableSet*)primitivePlaces;
+- (void)setPrimitivePlaces:(NSMutableSet*)value;
+
+
+
+- (NMSeller*)primitiveSeller;
+- (void)setPrimitiveSeller:(NMSeller*)value;
 
 
 @end

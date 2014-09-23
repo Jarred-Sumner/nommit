@@ -7,7 +7,7 @@
 //
 
 #import "NMLoginViewController.h"
-#import "NMFoodsViewController.h"
+#import "NMFoodsTableViewController.h"
 #import "NMAppDelegate.h"
 
 @interface NMLoginViewController () {
@@ -124,11 +124,14 @@
         if (error) {
             NSLog(@"Error: %@", error);
         } else {
+            // Authenticated.
             [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
             [NMApi instance].session.configuration.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
             
             [NMSession setUserID:session.accessTokenData.userID];
-            NMFoodsViewController *foodsViewController = [[NMFoodsViewController alloc] init];
+            
+            
+            NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
             [self.navigationController pushViewController:foodsViewController animated:YES];
         }
         
