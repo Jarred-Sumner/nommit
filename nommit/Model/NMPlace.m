@@ -20,4 +20,8 @@ static NSString *NMActivePlaceKey = @"ActivePlace";
     }
 }
 
++ (void)setActivePlace:(NMPlace*)place {
+    [[NSUserDefaults standardUserDefaults] setObject:place.uid forKey:NMActivePlaceKey];
+}
+
 @end

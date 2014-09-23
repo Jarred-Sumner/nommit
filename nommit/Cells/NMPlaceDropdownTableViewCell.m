@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMLocationDropdownTableViewCell.h"
+#import "NMPlaceDropdownTableViewCell.h"
 #import "NMColors.h"
 
-@implementation NMLocationDropdownTableViewCell
+@implementation NMPlaceDropdownTableViewCell
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -20,7 +20,8 @@
         _locationButton.backgroundColor = [NMColors mainColor];
         _locationButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         _locationButton.titleLabel.textColor = [UIColor whiteColor];
-        [_locationButton setTitle:@"Delivering to: Mudge" forState:UIControlStateNormal];
+        _locationButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        _locationButton.titleEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 15);
         [self addSubview:_locationButton];
         
         NSDictionary *views = NSDictionaryOfVariableBindings(_locationButton);

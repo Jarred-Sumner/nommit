@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-static NSInteger NMLocationDropdownTableViewCellHeight = 40;
+static NSInteger NMPlaceDropdownTableViewCellHeight = 40;
 
-@interface NMLocationDropdownTableViewCell : UIView
+@interface NMPlaceDropdownTableViewCell : UIView
 
 @property (nonatomic, strong) UIButton *locationButton;
 

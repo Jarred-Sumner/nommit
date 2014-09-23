@@ -1,4 +1,4 @@
-//
+    //
 //  NMFoodsTableViewController.m
 //  nommit
 //
@@ -8,22 +8,21 @@
 
 #import "NMFoodsTableViewController.h"
 #import "NMFoodTableViewCell.h"
-#import "NMLocationDropdownTableViewCell.h"
+#import "NMPlaceDropdownTableViewCell.h"
 #import "NMMenuNavigationController.h"
 #import "NMFoodCellHeaderView.h"
 #import "NMFood.h"
 #import <REFrostedViewController.h>
 #import <SVProgressHUD.h>
-#import "NMLocationContainerViewController.h"
-
+#import "NMPlacesTableViewController.h"
 
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
-@interface NMFoodsTableViewController ()<NMLocationContainerViewControllerDelegate>
+@interface NMFoodsTableViewController ()
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong) NMLocationDropdownTableViewCell *headerView;
+@property (nonatomic, strong) NMPlaceDropdownTableViewCell *headerView;
 
 @end
 
@@ -149,12 +148,13 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return NMLocationDropdownTableViewCellHeight;
+    return NMPlaceDropdownTableViewCellHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    _headerView = [[NMLocationDropdownTableViewCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMLocationDropdownTableViewCellHeight)];
+    _headerView = [[NMPlaceDropdownTableViewCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMPlaceDropdownTableViewCellHeight)];
+    [_headerView.locationButton setTitle:[NSString stringWithFormat:@"Delivering to: %@", _place.name] forState:UIControlStateNormal];
     [_headerView.locationButton addTarget:self action:@selector(locationButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     return _headerView;
 }
@@ -205,9 +205,9 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 - (void)initNavBar
 {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
-                                                            style:UIBarButtonItemStylePlain
-                                                           target:(NMMenuNavigationController *)self.navigationController
-                                                           action:@selector(showMenu)];
+            style:UIBarButtonItemStylePlain
+            target:(NMMenuNavigationController *)self.navigationController
+            action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;
@@ -225,19 +225,13 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 #pragma mark - location button
 - (void)locationButtonTouched
 {
-    NMLocationContainerViewController *locationView = [[NMLocationContainerViewController alloc] init];
-    locationView.delegate = self;
+    NMPlacesTableViewController *placesVC = [[NMPlacesTableViewController alloc] init];
+    placesVC.foodsVC = self;
+    
     NMMenuNavigationController *navController =
-    [[NMMenuNavigationController alloc] initWithRootViewController:locationView];
+    [[NMMenuNavigationController alloc] initWithRootViewController:placesVC];
     [self presentViewController:navController animated:YES completion:nil];
 }
 
-#pragma mark - NMLocationContainerViewControllerDelegate methods
-- (void)setSelectedAddress:(NSString *)address
-{
-    // _headerView.locationButton
-    NSString *titleString = [NSString stringWithFormat:@"Delivering to: %@", address];
-    [_headerView.locationButton setTitle:titleString forState:UIControlStateNormal];
-}
 
 @end
