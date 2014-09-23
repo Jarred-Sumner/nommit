@@ -17,7 +17,7 @@ extern const struct NMOrderAttributes {
 
 extern const struct NMOrderRelationships {
 	__unsafe_unretained NSString *food;
-	__unsafe_unretained NSString *location;
+	__unsafe_unretained NSString *place;
 	__unsafe_unretained NSString *user;
 } NMOrderRelationships;
 
@@ -25,7 +25,7 @@ extern const struct NMOrderFetchedProperties {
 } NMOrderFetchedProperties;
 
 @class NMFood;
-@class NMLocation;
+@class NMPlace;
 @class NMUser;
 
 
@@ -161,9 +161,9 @@ extern const struct NMOrderFetchedProperties {
 
 
 
-@property (nonatomic, strong) NMLocation *location;
+@property (nonatomic, strong) NMPlace *place;
 
-//- (BOOL)validateLocation:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validatePlace:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -257,8 +257,8 @@ extern const struct NMOrderFetchedProperties {
 
 
 
-- (NMLocation*)primitiveLocation;
-- (void)setPrimitiveLocation:(NMLocation*)value;
+- (NMPlace*)primitivePlace;
+- (void)setPrimitivePlace:(NMPlace*)value;
 
 
 

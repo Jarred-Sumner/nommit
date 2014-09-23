@@ -72,9 +72,9 @@ extern const struct NMSellerFetchedProperties {
 
 
 
-@property (nonatomic, strong) NMFood *foods;
+@property (nonatomic, strong) NSSet *foods;
 
-//- (BOOL)validateFoods:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)foodsSet;
 
 
 
@@ -90,6 +90,11 @@ extern const struct NMSellerFetchedProperties {
 @end
 
 @interface _NMSeller (CoreDataGeneratedAccessors)
+
+- (void)addFoods:(NSSet*)value_;
+- (void)removeFoods:(NSSet*)value_;
+- (void)addFoodsObject:(NMFood*)value_;
+- (void)removeFoodsObject:(NMFood*)value_;
 
 - (void)addUsers:(NSSet*)value_;
 - (void)removeUsers:(NSSet*)value_;
@@ -123,8 +128,8 @@ extern const struct NMSellerFetchedProperties {
 
 
 
-- (NMFood*)primitiveFoods;
-- (void)setPrimitiveFoods:(NMFood*)value;
+- (NSMutableSet*)primitiveFoods;
+- (void)setPrimitiveFoods:(NSMutableSet*)value;
 
 
 

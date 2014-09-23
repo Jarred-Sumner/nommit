@@ -16,7 +16,7 @@ const struct NMOrderAttributes NMOrderAttributes = {
 
 const struct NMOrderRelationships NMOrderRelationships = {
 	.food = @"food",
-	.location = @"location",
+	.place = @"place",
 	.user = @"user",
 };
 
@@ -260,7 +260,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 	
 
-@dynamic location;
+@dynamic place;
 
 	
 

@@ -13,6 +13,7 @@ extern const struct NMPlaceAttributes {
 extern const struct NMPlaceRelationships {
 	__unsafe_unretained NSString *foods;
 	__unsafe_unretained NSString *location;
+	__unsafe_unretained NSString *orders;
 } NMPlaceRelationships;
 
 extern const struct NMPlaceFetchedProperties {
@@ -20,6 +21,7 @@ extern const struct NMPlaceFetchedProperties {
 
 @class NMFood;
 @class NMLocation;
+@class NMOrder;
 
 
 
@@ -90,6 +92,13 @@ extern const struct NMPlaceFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *orders;
+
+- (NSMutableSet*)ordersSet;
+
+
+
+
 
 @end
 
@@ -99,6 +108,11 @@ extern const struct NMPlaceFetchedProperties {
 - (void)removeFoods:(NSSet*)value_;
 - (void)addFoodsObject:(NMFood*)value_;
 - (void)removeFoodsObject:(NMFood*)value_;
+
+- (void)addOrders:(NSSet*)value_;
+- (void)removeOrders:(NSSet*)value_;
+- (void)addOrdersObject:(NMOrder*)value_;
+- (void)removeOrdersObject:(NMOrder*)value_;
 
 @end
 
@@ -137,6 +151,11 @@ extern const struct NMPlaceFetchedProperties {
 
 - (NMLocation*)primitiveLocation;
 - (void)setPrimitiveLocation:(NMLocation*)value;
+
+
+
+- (NSMutableSet*)primitiveOrders;
+- (void)setPrimitiveOrders:(NSMutableSet*)value;
 
 
 @end
