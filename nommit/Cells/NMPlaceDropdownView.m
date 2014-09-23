@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMPlaceDropdownTableViewCell.h"
+#import "NMPlaceDropdownView.h"
 #import "NMColors.h"
 
-@implementation NMPlaceDropdownTableViewCell
+@implementation NMPlaceDropdownView
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
