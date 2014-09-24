@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UILabel *soldLabel;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *sellerLabel;
+@property (nonatomic, strong) UILabel *sellerIsDeliveringLabel;
 @property (nonatomic, strong) UILabel *priceLabel;
 @property (nonatomic, strong) TYMProgressBarView *progressBarView;
 @property (nonatomic, strong) UIImageView *sellerLogoImageView;
@@ -42,14 +43,15 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupSellerLogoImageView];
-        [self setupNameLabel];
+        [self setupTime];
+        [self setupSellerLabel];
+        [self setupSellerIsDeliveringLabel];
         [self setupFoodImageView];
         [self setupFoodLabel];
         [self setupPriceLabel];
         [self setupSoldLabel];
         [self setupProgressBar];
         [self setupRating];
-        [self setupTime];
     }
     return self;
 }
@@ -57,11 +59,9 @@
 - (void)setFood:(NMFood *)food {
     _food = food;
     
-    NSLog(@"Seller: %@", food.seller);
-    
     [_sellerLogoImageView setImageWithURL:food.seller.logoAsURL];
     [_foodImageView setImageWithURL:food.headerImageAsURL];
-    _sellerLabel.text = food.seller.name;
+    _sellerLabel.text = @"Delta Delta Delta";
     _timeLabel.text = [self timeLeftText];
     
     _nameLabel.text = food.title;
@@ -78,26 +78,44 @@
 - (void)setupSellerLogoImageView
 {
     _sellerLogoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 18, 40, 40)];
-    _sellerLogoImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _sellerLogoImageView.contentMode = UIViewContentModeScaleAspectFill;
     _sellerLogoImageView.layer.cornerRadius = CGRectGetWidth(_sellerLogoImageView.bounds) / 2;
     _sellerLogoImageView.layer.masksToBounds = YES;
 
     [self.contentView addSubview:_sellerLogoImageView];
 }
 
-- (void)setupNameLabel
+- (void)setupSellerLabel
 {
     _sellerLabel = [[UILabel alloc] init];
     _sellerLabel.numberOfLines = 1;
     _sellerLabel.font = [UIFont fontWithName:@"Avenir" size:12];
     _sellerLabel.textColor = UIColorFromRGB(0x3C3C3C);
     _sellerLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [_sellerLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+    [_sellerLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     [self.contentView addSubview:_sellerLabel];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_sellerLabel, _sellerLogoImageView);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_sellerLogoImageView]-14-[_sellerLabel]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_sellerLogoImageView]-14-[_sellerLabel(<=142)]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_sellerLabel]" options:0 metrics:nil views:views]];
+}
+
+- (void)setupSellerIsDeliveringLabel
+{
+    _sellerIsDeliveringLabel = [[UILabel alloc] init];
+    _sellerIsDeliveringLabel.numberOfLines = 1;
+    _sellerIsDeliveringLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+    _sellerIsDeliveringLabel.textColor = UIColorFromRGB(0x979797);
+    _sellerIsDeliveringLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _sellerIsDeliveringLabel.text = @"is delivering";
+    [self.contentView addSubview:_sellerIsDeliveringLabel];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_sellerLabel, _sellerLogoImageView, _sellerIsDeliveringLabel);
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_sellerLogoImageView]-14-[_sellerLabel]-5-[_sellerIsDeliveringLabel]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_sellerIsDeliveringLabel]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupFoodImageView
@@ -203,6 +221,8 @@
     UIImageView *timeIcon = [[UIImageView alloc] init];
     timeIcon.image = [UIImage imageNamed:@"TimeIcon"];
     timeIcon.translatesAutoresizingMaskIntoConstraints = NO;
+    [timeIcon setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+    [timeIcon setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     [self.contentView addSubview:timeIcon];
     
     _timeLabel = [[UILabel alloc] init];
@@ -214,6 +234,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(timeIcon, _timeLabel);
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[timeIcon]-5-[_timeLabel]-18-|" options:0 metrics:nil views:views]];
+
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-17-[timeIcon]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_timeLabel]" options:0 metrics:nil views:views]];

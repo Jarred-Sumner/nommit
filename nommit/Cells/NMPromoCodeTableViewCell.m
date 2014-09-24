@@ -23,6 +23,8 @@
     _textField = [[UITextField alloc] init];
     _textField.font = [UIFont fontWithName:@"Avenir" size:16.f];
     _textField.translatesAutoresizingMaskIntoConstraints = NO;
+    _textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _textField.autocorrectionType = UITextAutocorrectionTypeNo;
     _textField.delegate = self;
     _textField.placeholder = @"Enter Promo Code";
     
@@ -40,6 +42,13 @@
 {
     [aTextField resignFirstResponder];
     return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSCharacterSet *invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqsrtuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-"] invertedSet];
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
+    return [string isEqualToString:filtered];
 }
 
 - (void)awakeFromNib {

@@ -29,6 +29,7 @@
 {
     _profileAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(14, 9, 35, 35)];
     _profileAvatar.layer.cornerRadius = _profileAvatar.bounds.size.width/2;
+    _profileAvatar.contentMode = UIViewContentModeScaleAspectFit;
     _profileAvatar.layer.masksToBounds = YES;
     _profileAvatar.image = [UIImage imageNamed:@"AvatarLucySmall"];
     [self addSubview:_profileAvatar];
