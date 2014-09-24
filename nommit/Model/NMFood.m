@@ -21,6 +21,10 @@
     return (NMFoodState)self.stateIDValue;
 }
 
+- (BOOL)isActive {
+    return self.state == NMFoodStateActive && self.endDate.timeIntervalSinceNow > 0.0;
+}
+
 - (NSURL *)headerImageAsURL {
     return [NSURL URLWithString:self.headerImageURL];
 }

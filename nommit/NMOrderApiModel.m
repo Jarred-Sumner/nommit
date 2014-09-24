@@ -15,11 +15,15 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey
 {
     return @{
-             @"uid" : @"id",
-             @"priceInCents" : @"price_in_cents",
-             @"deliveredAt" : @"delivered_at",
-             @"placedAt" : @"created_at",
-             @"stateID" : @"state_id",
+        @"uid" : @"id",
+        @"priceInCents" : @"price_in_cents",
+        @"discountInCents" : @"discount_in_cents",
+        @"deliveredAt" : @"delivered_at",
+        @"placedAt" : @"created_at",
+        @"stateID" : @"state_id",
+        @"chargeStateID" : @"charge_state_id",
+        @"promoCode" : @"promo_code",
+        @"confirmed": NSNull.null
      };
 }
 
@@ -64,6 +68,12 @@
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {
     return [NSSet setWithObject:@"uid"];
+}
+
+#pragma mark - Validations
+
+- (BOOL)isValid {
+    return self.confirmed.boolValue && self.place && self.food.isActive;
 }
     
 @end

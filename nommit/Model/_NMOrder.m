@@ -6,8 +6,10 @@
 const struct NMOrderAttributes NMOrderAttributes = {
 	.chargeStateID = @"chargeStateID",
 	.deliveredAt = @"deliveredAt",
+	.discountInCents = @"discountInCents",
 	.placedAt = @"placedAt",
 	.priceInCents = @"priceInCents",
+	.promoCode = @"promoCode",
 	.quantity = @"quantity",
 	.rating = @"rating",
 	.stateID = @"stateID",
@@ -51,6 +53,11 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 	
 	if ([key isEqualToString:@"chargeStateIDValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"chargeStateID"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"discountInCentsValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"discountInCents"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -119,6 +126,32 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 
 
+@dynamic discountInCents;
+
+
+
+- (int64_t)discountInCentsValue {
+	NSNumber *result = [self discountInCents];
+	return [result longLongValue];
+}
+
+- (void)setDiscountInCentsValue:(int64_t)value_ {
+	[self setDiscountInCents:[NSNumber numberWithLongLong:value_]];
+}
+
+- (int64_t)primitiveDiscountInCentsValue {
+	NSNumber *result = [self primitiveDiscountInCents];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveDiscountInCentsValue:(int64_t)value_ {
+	[self setPrimitiveDiscountInCents:[NSNumber numberWithLongLong:value_]];
+}
+
+
+
+
+
 @dynamic placedAt;
 
 
@@ -147,6 +180,13 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 - (void)setPrimitivePriceInCentsValue:(int64_t)value_ {
 	[self setPrimitivePriceInCents:[NSNumber numberWithLongLong:value_]];
 }
+
+
+
+
+
+@dynamic promoCode;
+
 
 
 

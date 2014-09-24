@@ -29,6 +29,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "NMColors.h"
 
-#import <FormatterKit/TTTTimeIntervalFormatter.h>UIColor
+#import <FormatterKit/TTTTimeIntervalFormatter.h>
+#import <SVProgressHUD.h>
 
 #endif

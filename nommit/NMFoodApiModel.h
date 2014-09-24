@@ -27,4 +27,6 @@
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, strong) NMSellerApiModel *seller;
 
+- (BOOL)isActive;
+
 @end

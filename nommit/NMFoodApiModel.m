@@ -60,6 +60,16 @@
 }
 
 
+#pragma mark - Utility Methods
+
+- (BOOL)isActive {
+    return [[self backingFood] isActive];
+}
+
+- (NMFood*)backingFood {
+    return [NMFood findFirstByAttribute:@"uid" withValue:self.uid];
+}
+
 
 
 @end

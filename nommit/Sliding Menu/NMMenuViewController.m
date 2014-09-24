@@ -69,6 +69,10 @@
     });
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
 #pragma mark -
 #pragma mark UITableView Delegate
 

@@ -17,4 +17,6 @@ typedef NS_ENUM(NSInteger, NMFoodState) {
 
 + (NSArray*)activeFoods;
 
+- (BOOL)isActive;
+
 @end

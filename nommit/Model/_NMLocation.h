@@ -20,7 +20,6 @@ extern const struct NMLocationAttributes {
 } NMLocationAttributes;
 
 extern const struct NMLocationRelationships {
-	__unsafe_unretained NSString *order;
 	__unsafe_unretained NSString *place;
 	__unsafe_unretained NSString *user;
 } NMLocationRelationships;
@@ -28,7 +27,6 @@ extern const struct NMLocationRelationships {
 extern const struct NMLocationFetchedProperties {
 } NMLocationFetchedProperties;
 
-@class NMOrder;
 @class NMPlace;
 @class NMUser;
 
@@ -182,13 +180,6 @@ extern const struct NMLocationFetchedProperties {
 
 
 
-@property (nonatomic, strong) NMOrder *order;
-
-//- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
-
-
-
-
 @property (nonatomic, strong) NMPlace *place;
 
 //- (BOOL)validatePlace:(id*)value_ error:(NSError**)error_;
@@ -286,11 +277,6 @@ extern const struct NMLocationFetchedProperties {
 - (void)setPrimitiveZip:(NSString*)value;
 
 
-
-
-
-- (NMOrder*)primitiveOrder;
-- (void)setPrimitiveOrder:(NMOrder*)value;
 
 
 

@@ -37,7 +37,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 @property (nonatomic, strong) NMOrderFoodInfoCell *infoCell;
 @property (nonatomic, strong) NMOrderFoodProgressCell *progressCell;
 @property (nonatomic, strong) NMOrderFoodConfirmAddressCell *confirmAddressCell;
-@property (nonatomic, strong) NMOrderFoodProgressCell *promoCell;
+@property (nonatomic, strong) NMPromoCodeTableViewCell *promoCell;
 
 @property (nonatomic, strong) NMFood *food;
 @property (nonatomic, strong) NMPlace *place;
@@ -159,8 +159,15 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 #pragma mark - order food button
 - (void)orderFoodButtonPressed
 {
-    NMDeliveryViewController *rateVC = [[NMDeliveryViewController alloc] initWithOrder:nil];
-    [self.navigationController pushViewController:rateVC animated:YES];
+    _orderModel.promoCode = _promoCell.textField.text;
+    _orderModel.confirmed = @(_confirmAddressCell.checkbox.checkState == M13CheckboxStateChecked);
+    if (_orderModel.isValid) {
+        NMDeliveryViewController *rateVC = [[NMDeliveryViewController alloc] initWithOrder:nil];
+        [self.navigationController pushViewController:rateVC animated:YES];
+    } else {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD showErrorWithStatus:@"Please confirm that you will meet in the lobby for delivery"];
+    }
 
 }
 

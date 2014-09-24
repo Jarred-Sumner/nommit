@@ -20,7 +20,6 @@
 @property (nonatomic, strong) UILabel *soldLabel;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *sellerLabel;
-@property (nonatomic, strong) UILabel *sellerIsDeliveringLabel;
 @property (nonatomic, strong) UILabel *priceLabel;
 @property (nonatomic, strong) TYMProgressBarView *progressBarView;
 @property (nonatomic, strong) UIImageView *sellerLogoImageView;
@@ -45,7 +44,6 @@
         [self setupSellerLogoImageView];
         [self setupTime];
         [self setupSellerLabel];
-        [self setupSellerIsDeliveringLabel];
         [self setupFoodImageView];
         [self setupFoodLabel];
         [self setupPriceLabel];
@@ -61,7 +59,7 @@
     
     [_sellerLogoImageView setImageWithURL:food.seller.logoAsURL];
     [_foodImageView setImageWithURL:food.headerImageAsURL];
-    _sellerLabel.text = @"Delta Delta Delta";
+    _sellerLabel.text = food.seller.name;
     _timeLabel.text = [self timeLeftText];
     
     _nameLabel.text = food.title;
@@ -100,22 +98,6 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_sellerLogoImageView]-14-[_sellerLabel(<=142)]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_sellerLabel]" options:0 metrics:nil views:views]];
-}
-
-- (void)setupSellerIsDeliveringLabel
-{
-    _sellerIsDeliveringLabel = [[UILabel alloc] init];
-    _sellerIsDeliveringLabel.numberOfLines = 1;
-    _sellerIsDeliveringLabel.font = [UIFont fontWithName:@"Avenir" size:12];
-    _sellerIsDeliveringLabel.textColor = UIColorFromRGB(0x979797);
-    _sellerIsDeliveringLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _sellerIsDeliveringLabel.text = @"is delivering";
-    [self.contentView addSubview:_sellerIsDeliveringLabel];
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(_sellerLabel, _sellerLogoImageView, _sellerIsDeliveringLabel);
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_sellerLogoImageView]-14-[_sellerLabel]-5-[_sellerIsDeliveringLabel]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_sellerIsDeliveringLabel]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupFoodImageView

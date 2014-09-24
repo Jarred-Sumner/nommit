@@ -52,8 +52,10 @@
     <entity name="NMOrder" representedClassName="NMOrder" syncable="YES">
         <attribute name="chargeStateID" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="deliveredAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="discountInCents" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="placedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="priceInCents" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="promoCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quantity" attributeType="Integer 32" defaultValueString="1" syncable="YES"/>
         <attribute name="rating" attributeType="Integer 16" defaultValueString="4" syncable="YES"/>
         <attribute name="stateID" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
@@ -108,7 +110,7 @@
     <elements>
         <element name="NMFood" positionX="0" positionY="0" width="128" height="270"/>
         <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
-        <element name="NMOrder" positionX="0" positionY="0" width="128" height="208"/>
+        <element name="NMOrder" positionX="0" positionY="0" width="128" height="240"/>
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="133"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="120"/>
         <element name="NMUser" positionX="0" positionY="0" width="128" height="150"/>

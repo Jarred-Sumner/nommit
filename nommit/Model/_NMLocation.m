@@ -19,7 +19,6 @@ const struct NMLocationAttributes NMLocationAttributes = {
 };
 
 const struct NMLocationRelationships NMLocationRelationships = {
-	.order = @"order",
 	.place = @"place",
 	.user = @"user",
 };
@@ -167,10 +166,6 @@ const struct NMLocationFetchedProperties NMLocationFetchedProperties = {
 
 
 
-
-@dynamic order;
-
-	
 
 @dynamic place;
 
