@@ -13,6 +13,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
+    
     _checkbox = [[M13Checkbox alloc] initWithFrame:CGRectMake(20, 12, CGRectGetWidth(self.contentView.frame) - 40, 24) title:@"I will meet in the lobby for delivery" checkHeight:24];
     _checkbox.checkAlignment = M13CheckboxAlignmentLeft;
     _checkbox.titleLabel.font = [UIFont fontWithName:@"Avenir" size:15.0f];
