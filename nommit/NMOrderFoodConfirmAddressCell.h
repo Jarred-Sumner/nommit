@@ -12,5 +12,6 @@
 @interface NMOrderFoodConfirmAddressCell : UITableViewCell
 
 @property (nonatomic, strong) M13Checkbox *checkbox;
+@property (readonly) BOOL confirmed;
 
 @end

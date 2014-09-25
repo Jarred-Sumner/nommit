@@ -23,7 +23,6 @@
         @"stateID" : @"state_id",
         @"chargeStateID" : @"charge_state_id",
         @"promoCode" : @"promo_code",
-        @"confirmed": NSNull.null
      };
 }
 
@@ -66,6 +65,14 @@
     return @{};
 }
 
++ (NSDictionary *)relationshipModelClassesByPropertyKey {
+    return @{
+             @"food" : [NMFoodApiModel class],
+             @"place" : [NMPlaceApiModel class],
+             @"user" : [NMUserApiModel class]
+             };
+}
+
 + (NSSet *)propertyKeysForManagedObjectUniquing {
     return [NSSet setWithObject:@"uid"];
 }
@@ -73,7 +80,20 @@
 #pragma mark - Validations
 
 - (BOOL)isValid {
-    return self.confirmed.boolValue && self.place && self.food.isActive;
+    return self.place && self.food.isActive;
 }
-    
+
+#pragma mark - Create Params
+
+- (NSDictionary*)createParams {
+    if (!_promoCode) _promoCode = @"";
+    if (!_quantity || _quantity.integerValue < 1) _quantity = @1;
+    return @{
+             @"quantity" : _quantity,
+             @"promo_code" : _promoCode,
+             @"place_id" : _place.uid,
+             @"food_id" : _food.uid
+             };
+}
+
 @end

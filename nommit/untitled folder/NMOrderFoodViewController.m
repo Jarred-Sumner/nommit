@@ -160,10 +160,30 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 - (void)orderFoodButtonPressed
 {
     _orderModel.promoCode = _promoCell.textField.text;
-    _orderModel.confirmed = @(_confirmAddressCell.checkbox.checkState == M13CheckboxStateChecked);
+
+    __weak NMOrderFoodViewController *this = self;
     if (_orderModel.isValid) {
-        NMDeliveryViewController *rateVC = [[NMDeliveryViewController alloc] initWithOrder:nil];
-        [self.navigationController pushViewController:rateVC animated:YES];
+        [SVProgressHUD showWithStatus:@"Placing Order..." maskType:SVProgressHUDMaskTypeBlack];
+        [[NMApi instance] POST:@"orders" parameters:_orderModel.createParams completion:^(OVCResponse *response, NSError *error) {
+            if (response.result) {
+                NSLog(@"Result: %@", response.result);
+                if ([response.result class] == [NMErrorApiModel class]) {
+                    [response.result handleError];
+                } else {
+                    [SVProgressHUD showSuccessWithStatus:@"Order Placed!"];
+
+                    NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
+
+                    NMDeliveryViewController *rateVC = [[NMDeliveryViewController alloc] initWithOrder:order];
+                    
+                    [this presentViewController:rateVC animated:YES completion:^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
+                }
+            } else if (error) {
+                NSLog(@"Error: %@", error);
+            }
+        }];
     } else {
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
         [SVProgressHUD showErrorWithStatus:@"Please confirm that you will meet in the lobby for delivery"];

@@ -67,7 +67,7 @@
 }
 
 - (NMFood*)backingFood {
-    return [NMFood findFirstByAttribute:@"uid" withValue:self.uid];
+    return [NMFood MR_findFirstByAttribute:@"uid" withValue:self.uid];
 }
 
 

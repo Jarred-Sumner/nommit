@@ -22,12 +22,12 @@
 @property (nonatomic, strong) NSString *promoCode;
 @property (nonatomic, strong) NSNumber *discountInCents;
 @property (nonatomic, strong) NSDate *deliveredAt;
-@property (nonatomic, strong) NSNumber *confirmed;
 
 @property (nonatomic, strong) NMPlaceApiModel *place;
 @property (nonatomic, strong) NMFoodApiModel *food;
 @property (nonatomic, strong) NMUserApiModel *user;
 
 - (BOOL)isValid;
+- (NSDictionary*)createParams;
 
 @end
