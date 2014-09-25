@@ -33,6 +33,14 @@ static NSString *NMPickPlaceCellIdentifier = @"NMPickPlaceCell";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
+    
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
+}
+
+- (void)done:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)cancel:(id)sender
@@ -81,7 +89,9 @@ static NSString *NMPickPlaceCellIdentifier = @"NMPickPlaceCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    // [self dismissViewControllerAnimated:YES completion:nil];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    (cell.accessoryType == UITableViewCellAccessoryNone) ? (cell.accessoryType = UITableViewCellAccessoryCheckmark) : (cell.accessoryType = UITableViewCellAccessoryNone) ;
 }
 
 
