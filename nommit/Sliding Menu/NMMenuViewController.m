@@ -17,6 +17,7 @@
 #import "NMLoginViewController.h"
 #import "NMColors.h"
 #import "NMFoodOrdersTableViewController.h"
+#import "NMPickPlacesTableViewController.h"
 
 @interface NMMenuViewController ()
 
@@ -132,6 +133,14 @@
         self.frostedViewController.contentViewController = navigationController;
         navigationController.navigationBar.translucent = NO;
     } else if (indexPath.section == 0 && indexPath.row == 3) {
+        BOOL selectedLocations = NO;
+        if (!selectedLocations) {
+            NMPickPlacesTableViewController *pickPlacesTVC = [[NMPickPlacesTableViewController alloc] initWithStyle:UITableViewStylePlain];
+            NMMenuNavigationController *navController =
+            [[NMMenuNavigationController alloc] initWithRootViewController:pickPlacesTVC];
+            [self presentViewController:navController animated:YES completion:nil];
+
+        }
         NMFoodOrdersTableViewController *ordersVC = [[NMFoodOrdersTableViewController alloc] init];
         NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:ordersVC];
         self.frostedViewController.contentViewController = navigationController;

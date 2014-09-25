@@ -41,6 +41,12 @@ install_resource()
       ;;
   esac
 }
+install_resource "AMSmoothAlert/AMSmoothAlert/assets/checkMark.png"
+install_resource "AMSmoothAlert/AMSmoothAlert/assets/checkMark@2x.png"
+install_resource "AMSmoothAlert/AMSmoothAlert/assets/crossMark.png"
+install_resource "AMSmoothAlert/AMSmoothAlert/assets/crossMark@2x.png"
+install_resource "AMSmoothAlert/AMSmoothAlert/assets/info.png"
+install_resource "AMSmoothAlert/AMSmoothAlert/assets/info@2x.png"
 install_resource "DBCamera/DBCamera/Resources/DBCameraImages.xcassets"
 install_resource "DBCamera/DBCamera/Localizations/en.lproj"
 install_resource "DBCamera/DBCamera/Localizations/es.lproj"
@@ -306,6 +312,7 @@ install_resource "PaymentKit/PaymentKit/Resources/Cards/visa@2x.png"
 install_resource "PaymentKit/PaymentKit/Resources/gradient@2x.png"
 install_resource "PaymentKit/PaymentKit/Resources/textfield.png"
 install_resource "PaymentKit/PaymentKit/Resources/textfield@2x.png"
+install_resource "SIAlertView/SIAlertView/SIAlertView.bundle"
 install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
