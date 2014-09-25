@@ -16,6 +16,7 @@
 #import "NMCreateCampaignViewController.h"
 #import "NMLoginViewController.h"
 #import "NMColors.h"
+#import "NMFoodOrdersTableViewController.h"
 
 @interface NMMenuViewController ()
 
@@ -130,6 +131,12 @@
         NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:loginVC];
         self.frostedViewController.contentViewController = navigationController;
         navigationController.navigationBar.translucent = NO;
+    } else if (indexPath.section == 0 && indexPath.row == 3) {
+        NMFoodOrdersTableViewController *ordersVC = [[NMFoodOrdersTableViewController alloc] init];
+        NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:ordersVC];
+        self.frostedViewController.contentViewController = navigationController;
+        navigationController.navigationBar.translucent = NO;
+        
     } else {
         NMFoodsTableViewController *secondViewController = [[NMFoodsTableViewController alloc] init];
         NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:secondViewController];
@@ -155,6 +162,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
+    if (sectionIndex == 0) return 4;
     return 3;
 }
 
@@ -169,7 +177,7 @@
     }
     
     if (indexPath.section == 0) {
-        NSArray *titles = @[@"Home", @"Payments", @"Logout"];
+        NSArray *titles = @[@"Home", @"Payments", @"Logout", @"Orders"];
         cell.textLabel.text = titles[indexPath.row];
     } else {
         NSArray *titles = @[@"Pepperoni Pizza", @"Dinosaur Nuggets", @"Pasta"];
