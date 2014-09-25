@@ -42,4 +42,8 @@
     _checkbox.titleLabel.frame = CGRectInset(_checkbox.titleLabel.frame, 3, 0);
 }
 
+- (BOOL)isConfirmed {
+    return _checkbox.checkState == M13CheckboxStateChecked;
+}
+
 @end

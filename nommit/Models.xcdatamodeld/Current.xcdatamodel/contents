@@ -7,7 +7,7 @@
         <attribute name="orderCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="orderGoal" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="4" syncable="YES"/>
         <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -57,7 +57,7 @@
         <attribute name="priceInCents" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="promoCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quantity" attributeType="Integer 32" defaultValueString="1" syncable="YES"/>
-        <attribute name="rating" attributeType="Integer 16" defaultValueString="4" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Float" syncable="YES"/>
         <attribute name="stateID" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="food" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMFood" inverseName="orders" inverseEntity="NMFood" syncable="YES"/>
@@ -110,7 +110,7 @@
     <elements>
         <element name="NMFood" positionX="0" positionY="0" width="128" height="270"/>
         <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
-        <element name="NMOrder" positionX="0" positionY="0" width="128" height="240"/>
+        <element name="NMOrder" positionX="0" positionY="0" width="128" height="238"/>
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="133"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="120"/>
         <element name="NMUser" positionX="0" positionY="0" width="128" height="150"/>

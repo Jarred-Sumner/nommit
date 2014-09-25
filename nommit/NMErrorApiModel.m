@@ -26,7 +26,7 @@
         
         [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] resetUI];
         [self flashError];
-    } else if (_status.integerValue == 500) [self flashError];
+    } else if (_status.integerValue == 500 || _status.integerValue == 400 || _status.integerValue == 422) [self flashError];
 }
 
 @end

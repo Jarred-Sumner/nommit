@@ -13,7 +13,7 @@
 
 @interface NMFoodApiModel : MTLModel <MTLJSONSerializing, MTLManagedObjectSerializing>
 
-@property (nonatomic, strong) NSString *uid;
+@property (nonatomic, strong) NSNumber *uid;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subtitle;
 @property (nonatomic, strong) NSString *details;
