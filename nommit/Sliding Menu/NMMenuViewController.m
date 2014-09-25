@@ -18,7 +18,13 @@
 #import "NMColors.h"
 #import "NMFoodOrdersTableViewController.h"
 
+static NSInteger NMStaticSection = 0;
+static NSInteger NMOrdersSection = 1;
+
 @interface NMMenuViewController ()
+
+@property (nonatomic, strong) FBProfilePictureView *pictureView;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -34,37 +40,46 @@
     self.tableView.opaque = NO;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = ({
+        
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 184.0f)];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, 100, 100)];
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        imageView.image = [UIImage imageNamed:@"AvatarLucy"];
-        imageView.layer.masksToBounds = YES;
-        imageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
-        imageView.layer.shouldRasterize = YES;
-        imageView.clipsToBounds = YES;
+        _pictureView = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(0, 40, 100, 100)];
+        
+        _pictureView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        _pictureView.layer.masksToBounds = YES;
+        _pictureView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        _pictureView.profileID = [NMSession userID];
+        _pictureView.layer.shouldRasterize = YES;
+        _pictureView.clipsToBounds = YES;
         
         CAShapeLayer *circle = [CAShapeLayer layer];
         // Make a circular shape
-        UIBezierPath *circularPath=[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, imageView.frame.size.width, imageView.frame.size.height) cornerRadius:MAX(imageView.frame.size.width, imageView.frame.size.height)];
+        
+        CGRect pathRect = CGRectMake(0, 0, CGRectGetWidth(_pictureView.frame), CGRectGetHeight(_pictureView.frame));
+        CGFloat pathRadius = MAX(CGRectGetWidth(_pictureView.frame), CGRectGetHeight(_pictureView.frame));
+                                 
+        UIBezierPath *circularPath=[UIBezierPath bezierPathWithRoundedRect:pathRect cornerRadius:pathRadius];
         
         circle.path = circularPath.CGPath;
-        imageView.layer.mask = circle;
+        _pictureView.layer.mask = circle;
         
         // Configure the apperence of the circle
         circle.fillColor = [UIColor blackColor].CGColor;
         circle.strokeColor = [UIColor blackColor].CGColor;
         circle.lineWidth = 0;
-        imageView.layer.mask = circle;
+        _pictureView.layer.mask = circle;
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 0, 24)];
-        label.text = @"Lucy Guo";
+        label.text = [[NMUser currentUser] name];
+        NSLog(@"User; %@", [NMUser MR_findFirst]);
+        
+        
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor colorWithRed:62/255.0f green:68/255.0f blue:75/255.0f alpha:1.0f];
         [label sizeToFit];
         label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         
-        [view addSubview:imageView];
+        [view addSubview:_pictureView];
         [view addSubview:label];
         view;
     });
@@ -86,13 +101,12 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)sectionIndex
 {
-    if (sectionIndex == 0)
-        return nil;
+    if (sectionIndex == 0) return nil;
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 34)];
     view.backgroundColor = [NMColors mainColor];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 0, 0)];
-    label.text = @"Food Ordered";
+    label.text = @"Active Orders";
     label.font = [UIFont systemFontOfSize:15];
     label.textColor = [UIColor whiteColor];
     label.backgroundColor = [UIColor clearColor];
@@ -104,48 +118,95 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)sectionIndex
 {
-    if (sectionIndex == 0)
-        return 0;
-    
+    if (sectionIndex == 0) return 0;
     return 34;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        NMFoodsTableViewController *homeViewController = [[NMFoodsTableViewController alloc] init];
-        NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:homeViewController];
-        self.frostedViewController.contentViewController = navigationController;
-        navigationController.navigationBar.translucent = NO;
-    } else if (indexPath.section == 0 && indexPath.row == 1) {
-        NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] init];
-        NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:paymentsVC];
-        self.frostedViewController.contentViewController = navigationController;
-        navigationController.navigationBar.translucent = NO;
-    } else if (indexPath.section == 0 && indexPath.row == 2) {
-        [NMSession setSessionID:nil];
-        [NMSession setUserID:nil];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            [self showMenu];
+        } else if (indexPath.row == 1) {
+            [self showOrders];
+        } else if (indexPath.row == 2) {
+            [self showAccount];
+        } else if (indexPath.row == 3) {
+            [self showLogout];
+        }
+    } else if (indexPath.section == 1) {
         
-        NMLoginViewController *loginVC = [[NMLoginViewController alloc] init];
-        NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:loginVC];
-        self.frostedViewController.contentViewController = navigationController;
-        navigationController.navigationBar.translucent = NO;
-    } else if (indexPath.section == 0 && indexPath.row == 3) {
-        NMFoodOrdersTableViewController *ordersVC = [[NMFoodOrdersTableViewController alloc] init];
-        NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:ordersVC];
-        self.frostedViewController.contentViewController = navigationController;
-        navigationController.navigationBar.translucent = NO;
-        
-    } else {
-        NMFoodsTableViewController *secondViewController = [[NMFoodsTableViewController alloc] init];
-        NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:secondViewController];
-        self.frostedViewController.contentViewController = navigationController;
-        navigationController.navigationBar.translucent = NO;
     }
-    
-    [self.frostedViewController hideMenuViewController];
 }
+
+#pragma mark - NSFetchedResultsController
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController != nil) return _fetchedResultsController;
+    
+    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@", @0];
+    
+    _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:ordersPredicate groupBy:nil delegate: self];
+    return _fetchedResultsController;
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureOrderCell:(UITableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
+
 
 #pragma mark -
 #pragma mark UITableView Datasource
@@ -163,7 +224,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
     if (sectionIndex == 0) return 4;
-    return 3;
+    
+    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -177,14 +240,53 @@
     }
     
     if (indexPath.section == 0) {
-        NSArray *titles = @[@"Home", @"Payments", @"Logout", @"Orders"];
+        NSArray *titles = @[@"Menu", @"Deliver", @"Account", @"Logout"];
         cell.textLabel.text = titles[indexPath.row];
     } else {
-        NSArray *titles = @[@"Pepperoni Pizza", @"Dinosaur Nuggets", @"Pasta"];
-        cell.textLabel.text = titles[indexPath.row];
+        [self configureOrderCell:cell atIndexPath:indexPath];
     }
     
     return cell;
+}
+
+- (void)configureOrderCell:(UITableViewCell*) cell atIndexPath:(NSIndexPath *)indexPath {
+    indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+    
+    NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = order.food.title;
+}
+
+#pragma mark - Navigate to Controllers
+
+- (void)showMenu {
+    NMFoodsTableViewController *menuVC = [[NMFoodsTableViewController alloc] init];
+    [self navigateTo:menuVC];
+}
+
+- (void)showOrders {
+    NMFoodOrdersTableViewController *ordersVC = [[NMFoodOrdersTableViewController alloc] init];
+    [self navigateTo:ordersVC];
+}
+
+- (void)showAccount {
+    
+}
+
+- (void)showLogout {
+    [NMSession setSessionID:nil];
+    [NMSession setUserID:nil];
+    
+    NMLoginViewController *loginVC = [[NMLoginViewController alloc] init];
+    [self navigateTo:loginVC];
+
+}
+
+- (void)navigateTo:(UIViewController*)viewController {
+    NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:viewController];
+    navigationController.navigationBar.translucent = NO;
+    
+    self.frostedViewController.contentViewController = navigationController;
+    [self.frostedViewController hideMenuViewController];
 }
 
 @end

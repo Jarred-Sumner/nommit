@@ -33,7 +33,8 @@
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
     return @{
-             @"foods" : [NMFoodApiModel class]
+             @"foods" : [NMFoodApiModel class],
+             @"couriers" : [NMCourierApiModel class]
      };
 }
 

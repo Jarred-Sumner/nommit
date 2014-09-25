@@ -16,6 +16,7 @@
 {
     return @{
              @"facebookUID": @"id",
+             @"isCourier" : @"is_courier"
     };
 }
 

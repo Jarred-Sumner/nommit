@@ -3,6 +3,7 @@
 
 @interface NMUser : _NMUser
 
-@property NSString *accessToken;
++ (NMUser*)currentUser;
++ (void)setCurrentUser:(NMUser*)currentUser;
 
 @end

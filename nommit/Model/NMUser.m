@@ -3,14 +3,19 @@
 
 @implementation NMUser
 
-- (NSString*)accessToken {
-    return @"";
+static id NMCurrentUser;
+
++ (NMUser *)currentUser {
+    if (!NMCurrentUser) {
+        NSLog(@"Users: %@", [NMSession userID]);
+        NMCurrentUser = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID]];
+    }
+    return NMCurrentUser;
 }
 
-- (void)setAccessToken:(NSString *)accessToken {
++ (void)setCurrentUser:(NMUser*)currentUser {
+    NMCurrentUser = currentUser;
 }
-
-
 
 
 

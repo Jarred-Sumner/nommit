@@ -15,6 +15,7 @@
 #import "NMPlaceApiModel.h"
 #import "NMSellerApiModel.h"
 #import "NMErrorApiModel.h"
+#import "NMCourierApiModel.h"
 
 #import "NMLocation.h"
 #import "NMFood.h"
@@ -22,6 +23,7 @@
 #import "NMUser.h"
 #import "NMPlace.h"
 #import "NMSeller.h"
+#import "NMCourier.h"
 
 #import "NMSession.h"
 

@@ -11,6 +11,7 @@ extern const struct NMPlaceAttributes {
 } NMPlaceAttributes;
 
 extern const struct NMPlaceRelationships {
+	__unsafe_unretained NSString *couriers;
 	__unsafe_unretained NSString *foods;
 	__unsafe_unretained NSString *location;
 	__unsafe_unretained NSString *orders;
@@ -19,6 +20,7 @@ extern const struct NMPlaceRelationships {
 extern const struct NMPlaceFetchedProperties {
 } NMPlaceFetchedProperties;
 
+@class NMCourier;
 @class NMFood;
 @class NMLocation;
 @class NMOrder;
@@ -78,6 +80,13 @@ extern const struct NMPlaceFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *couriers;
+
+- (NSMutableSet*)couriersSet;
+
+
+
+
 @property (nonatomic, strong) NSSet *foods;
 
 - (NSMutableSet*)foodsSet;
@@ -103,6 +112,11 @@ extern const struct NMPlaceFetchedProperties {
 @end
 
 @interface _NMPlace (CoreDataGeneratedAccessors)
+
+- (void)addCouriers:(NSSet*)value_;
+- (void)removeCouriers:(NSSet*)value_;
+- (void)addCouriersObject:(NMCourier*)value_;
+- (void)removeCouriersObject:(NMCourier*)value_;
 
 - (void)addFoods:(NSSet*)value_;
 - (void)removeFoods:(NSSet*)value_;
@@ -141,6 +155,11 @@ extern const struct NMPlaceFetchedProperties {
 - (void)setPrimitiveUidValue:(int32_t)value_;
 
 
+
+
+
+- (NSMutableSet*)primitiveCouriers;
+- (void)setPrimitiveCouriers:(NSMutableSet*)value;
 
 
 

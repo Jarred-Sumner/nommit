@@ -10,6 +10,6 @@
 #import <REFrostedViewController.h>
 
 
-@interface NMMenuViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface NMMenuViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @end

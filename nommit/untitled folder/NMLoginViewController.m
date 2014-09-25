@@ -128,7 +128,9 @@
             [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
             [NMApi instance].session.configuration.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
             
-            [NMSession setUserID:session.accessTokenData.userID];
+            NSLog(@"Result: %@", response.result);
+            
+            [NMSession setUserID:[response.result facebookUID]];
             
             
             NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];

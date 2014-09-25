@@ -6,14 +6,15 @@
 const struct NMUserAttributes NMUserAttributes = {
 	.email = @"email",
 	.facebookUID = @"facebookUID",
+	.isCourier = @"isCourier",
 	.name = @"name",
 	.phone = @"phone",
 };
 
 const struct NMUserRelationships NMUserRelationships = {
+	.couriers = @"couriers",
 	.locations = @"locations",
 	.orders = @"orders",
-	.seller = @"seller",
 };
 
 const struct NMUserFetchedProperties NMUserFetchedProperties = {
@@ -45,6 +46,11 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"isCourierValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isCourier"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -66,6 +72,32 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 
 
+@dynamic isCourier;
+
+
+
+- (BOOL)isCourierValue {
+	NSNumber *result = [self isCourier];
+	return [result boolValue];
+}
+
+- (void)setIsCourierValue:(BOOL)value_ {
+	[self setIsCourier:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveIsCourierValue {
+	NSNumber *result = [self primitiveIsCourier];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIsCourierValue:(BOOL)value_ {
+	[self setPrimitiveIsCourier:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
 @dynamic name;
 
 
@@ -79,6 +111,19 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 
 
+
+@dynamic couriers;
+
+	
+- (NSMutableSet*)couriersSet {
+	[self willAccessValueForKey:@"couriers"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"couriers"];
+  
+	[self didAccessValueForKey:@"couriers"];
+	return result;
+}
+	
 
 @dynamic locations;
 
@@ -95,10 +140,6 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 	[self didAccessValueForKey:@"orders"];
 	return result;
 }
-	
-
-@dynamic seller;
-
 	
 
 

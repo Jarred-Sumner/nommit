@@ -7,22 +7,24 @@
 extern const struct NMUserAttributes {
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *facebookUID;
+	__unsafe_unretained NSString *isCourier;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *phone;
 } NMUserAttributes;
 
 extern const struct NMUserRelationships {
+	__unsafe_unretained NSString *couriers;
 	__unsafe_unretained NSString *locations;
 	__unsafe_unretained NSString *orders;
-	__unsafe_unretained NSString *seller;
 } NMUserRelationships;
 
 extern const struct NMUserFetchedProperties {
 } NMUserFetchedProperties;
 
+@class NMCourier;
 @class NMLocation;
 @class NMOrder;
-@class NMSeller;
+
 
 
 
@@ -62,6 +64,20 @@ extern const struct NMUserFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* isCourier;
+
+
+
+@property BOOL isCourierValue;
+- (BOOL)isCourierValue;
+- (void)setIsCourierValue:(BOOL)value_;
+
+//- (BOOL)validateIsCourier:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* name;
 
 
@@ -82,6 +98,13 @@ extern const struct NMUserFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *couriers;
+
+- (NSMutableSet*)couriersSet;
+
+
+
+
 @property (nonatomic, strong) NMLocation *locations;
 
 //- (BOOL)validateLocations:(id*)value_ error:(NSError**)error_;
@@ -96,17 +119,15 @@ extern const struct NMUserFetchedProperties {
 
 
 
-@property (nonatomic, strong) NMSeller *seller;
-
-//- (BOOL)validateSeller:(id*)value_ error:(NSError**)error_;
-
-
-
-
 
 @end
 
 @interface _NMUser (CoreDataGeneratedAccessors)
+
+- (void)addCouriers:(NSSet*)value_;
+- (void)removeCouriers:(NSSet*)value_;
+- (void)addCouriersObject:(NMCourier*)value_;
+- (void)removeCouriersObject:(NMCourier*)value_;
 
 - (void)addOrders:(NSSet*)value_;
 - (void)removeOrders:(NSSet*)value_;
@@ -130,6 +151,15 @@ extern const struct NMUserFetchedProperties {
 
 
 
+- (NSNumber*)primitiveIsCourier;
+- (void)setPrimitiveIsCourier:(NSNumber*)value;
+
+- (BOOL)primitiveIsCourierValue;
+- (void)setPrimitiveIsCourierValue:(BOOL)value_;
+
+
+
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
@@ -143,6 +173,11 @@ extern const struct NMUserFetchedProperties {
 
 
 
+- (NSMutableSet*)primitiveCouriers;
+- (void)setPrimitiveCouriers:(NSMutableSet*)value;
+
+
+
 - (NMLocation*)primitiveLocations;
 - (void)setPrimitiveLocations:(NMLocation*)value;
 
@@ -150,11 +185,6 @@ extern const struct NMUserFetchedProperties {
 
 - (NSMutableSet*)primitiveOrders;
 - (void)setPrimitiveOrders:(NSMutableSet*)value;
-
-
-
-- (NMSeller*)primitiveSeller;
-- (void)setPrimitiveSeller:(NMSeller*)value;
 
 
 @end

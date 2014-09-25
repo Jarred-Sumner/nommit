@@ -8,6 +8,7 @@
 
 #import "NMSession.h"
 #import <Lockbox.h>
+#import "NMUser.h"
 
 static NSString *NMSessionIDKey = @"NMSessionIDKey";
 static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
@@ -31,6 +32,7 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 }
 
 + (void)setUserID:(NSString *)userID {
-    [Lockbox setString:userID forKey:NMSessionUserIDKey];
+    [Lockbox setString:[NSString stringWithFormat:@"%@", userID] forKey:NMSessionUserIDKey];
+    [NMUser setCurrentUser:[NMUser MR_findFirstByAttribute:@"facebookUID" withValue:userID]];
 }
 @end

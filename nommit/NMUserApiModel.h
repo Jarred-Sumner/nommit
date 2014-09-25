@@ -15,4 +15,6 @@
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *name;
 
+@property (nonatomic, strong) NSNumber *isCourier;
+
 @end

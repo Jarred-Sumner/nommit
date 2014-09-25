@@ -18,6 +18,7 @@ extern const struct NMOrderAttributes {
 } NMOrderAttributes;
 
 extern const struct NMOrderRelationships {
+	__unsafe_unretained NSString *courier;
 	__unsafe_unretained NSString *food;
 	__unsafe_unretained NSString *place;
 	__unsafe_unretained NSString *user;
@@ -26,6 +27,7 @@ extern const struct NMOrderRelationships {
 extern const struct NMOrderFetchedProperties {
 } NMOrderFetchedProperties;
 
+@class NMCourier;
 @class NMFood;
 @class NMPlace;
 @class NMUser;
@@ -144,9 +146,9 @@ extern const struct NMOrderFetchedProperties {
 
 
 
-@property int16_t ratingValue;
-- (int16_t)ratingValue;
-- (void)setRatingValue:(int16_t)value_;
+@property float ratingValue;
+- (float)ratingValue;
+- (void)setRatingValue:(float)value_;
 
 //- (BOOL)validateRating:(id*)value_ error:(NSError**)error_;
 
@@ -178,6 +180,13 @@ extern const struct NMOrderFetchedProperties {
 
 //- (BOOL)validateUid:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
+@property (nonatomic, strong) NMCourier *courier;
+
+//- (BOOL)validateCourier:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -270,8 +279,8 @@ extern const struct NMOrderFetchedProperties {
 - (NSNumber*)primitiveRating;
 - (void)setPrimitiveRating:(NSNumber*)value;
 
-- (int16_t)primitiveRatingValue;
-- (void)setPrimitiveRatingValue:(int16_t)value_;
+- (float)primitiveRatingValue;
+- (void)setPrimitiveRatingValue:(float)value_;
 
 
 
@@ -292,6 +301,11 @@ extern const struct NMOrderFetchedProperties {
 - (void)setPrimitiveUidValue:(int64_t)value_;
 
 
+
+
+
+- (NMCourier*)primitiveCourier;
+- (void)setPrimitiveCourier:(NMCourier*)value;
 
 
 

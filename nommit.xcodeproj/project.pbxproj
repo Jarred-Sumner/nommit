@@ -12,6 +12,9 @@
 		83291B0619B5243600524801 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0519B5243600524801 /* Security.framework */; };
 		83291CE519D129CE00A29B3C /* NMPlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83291CE419D129CE00A29B3C /* NMPlacesTableViewController.m */; };
 		8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */; };
+		836E358519D3DF66004208A6 /* NMCourierApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 836E358419D3DF66004208A6 /* NMCourierApiModel.m */; };
+		836E358A19D3E039004208A6 /* _NMCourier.m in Sources */ = {isa = PBXBuildFile; fileRef = 836E358719D3E039004208A6 /* _NMCourier.m */; };
+		836E358B19D3E039004208A6 /* NMCourier.m in Sources */ = {isa = PBXBuildFile; fileRef = 836E358919D3E039004208A6 /* NMCourier.m */; };
 		837FCA0819C7E10F00846C62 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837FCA0719C7E10F00846C62 /* AVFoundation.framework */; };
 		839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 839765B519BBCDF000EE8254 /* NMFoodApiModel.m */; };
 		839765B919BBCE0200EE8254 /* NMOrderApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 839765B819BBCE0200EE8254 /* NMOrderApiModel.m */; };
@@ -114,6 +117,12 @@
 		83291CE319D129CE00A29B3C /* NMPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMPlacesTableViewController.h; sourceTree = "<group>"; };
 		83291CE419D129CE00A29B3C /* NMPlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMPlacesTableViewController.m; sourceTree = "<group>"; };
 		8332FC0E19B3D447000D56AB /* Current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Current.xcdatamodel; sourceTree = "<group>"; };
+		836E358319D3DF66004208A6 /* NMCourierApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMCourierApiModel.h; sourceTree = "<group>"; };
+		836E358419D3DF66004208A6 /* NMCourierApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMCourierApiModel.m; sourceTree = "<group>"; };
+		836E358619D3E039004208A6 /* _NMCourier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMCourier.h; path = Model/_NMCourier.h; sourceTree = "<group>"; };
+		836E358719D3E039004208A6 /* _NMCourier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMCourier.m; path = Model/_NMCourier.m; sourceTree = "<group>"; };
+		836E358819D3E039004208A6 /* NMCourier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCourier.h; path = Model/NMCourier.h; sourceTree = "<group>"; };
+		836E358919D3E039004208A6 /* NMCourier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCourier.m; path = Model/NMCourier.m; sourceTree = "<group>"; };
 		837FCA0719C7E10F00846C62 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		839765B419BBCDF000EE8254 /* NMFoodApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMFoodApiModel.h; sourceTree = "<group>"; };
 		839765B519BBCDF000EE8254 /* NMFoodApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMFoodApiModel.m; sourceTree = "<group>"; };
@@ -307,6 +316,8 @@
 		83C0EA0819B981FD009A7BE0 /* Machine Generated */ = {
 			isa = PBXGroup;
 			children = (
+				836E358619D3E039004208A6 /* _NMCourier.h */,
+				836E358719D3E039004208A6 /* _NMCourier.m */,
 				83C3A19319D0C5E20052B6F7 /* _NMLocation.h */,
 				83C3A19419D0C5E20052B6F7 /* _NMLocation.m */,
 				83C3A18119CE54380052B6F7 /* _NMPlace.h */,
@@ -342,6 +353,8 @@
 				83C3A19119CE547A0052B6F7 /* NMPlaceApiModel.m */,
 				83C3649819D1F78F004B4F22 /* NMErrorApiModel.h */,
 				83C3649919D1F78F004B4F22 /* NMErrorApiModel.m */,
+				836E358319D3DF66004208A6 /* NMCourierApiModel.h */,
+				836E358419D3DF66004208A6 /* NMCourierApiModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -592,6 +605,8 @@
 		8DEED52419B29AFD00EE227A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				836E358819D3E039004208A6 /* NMCourier.h */,
+				836E358919D3E039004208A6 /* NMCourier.m */,
 				83C3A18719CE54420052B6F7 /* NMPlace.h */,
 				83C3A18819CE54420052B6F7 /* NMPlace.m */,
 				83C3A18919CE54420052B6F7 /* NMSeller.h */,
@@ -778,11 +793,14 @@
 				839765B919BBCE0200EE8254 /* NMOrderApiModel.m in Sources */,
 				8D6DE42419B8342A008F64CE /* NMLoginViewController.m in Sources */,
 				83C3A18F19CE54660052B6F7 /* NMSellerApiModel.m in Sources */,
+				836E358519D3DF66004208A6 /* NMCourierApiModel.m in Sources */,
+				836E358A19D3E039004208A6 /* _NMCourier.m in Sources */,
 				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
 				83EE766119BBFE51006FEDDF /* NMLocation.m in Sources */,
 				8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */,
 				8D49F30B19BEAF2B00E60145 /* Constants.m in Sources */,
 				8DA5198B19D24C4900BBA8A0 /* NMPromoCodeTableViewCell.m in Sources */,
+				836E358B19D3E039004208A6 /* NMCourier.m in Sources */,
 				8D7D00A719CD160B0006E5E6 /* NMFoodCellHeaderView.m in Sources */,
 				83C3A18619CE54380052B6F7 /* _NMSeller.m in Sources */,
 				8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */,

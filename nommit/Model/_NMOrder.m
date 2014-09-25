@@ -17,6 +17,7 @@ const struct NMOrderAttributes NMOrderAttributes = {
 };
 
 const struct NMOrderRelationships NMOrderRelationships = {
+	.courier = @"courier",
 	.food = @"food",
 	.place = @"place",
 	.user = @"user",
@@ -222,22 +223,22 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 
 
-- (int16_t)ratingValue {
+- (float)ratingValue {
 	NSNumber *result = [self rating];
-	return [result shortValue];
+	return [result floatValue];
 }
 
-- (void)setRatingValue:(int16_t)value_ {
-	[self setRating:[NSNumber numberWithShort:value_]];
+- (void)setRatingValue:(float)value_ {
+	[self setRating:[NSNumber numberWithFloat:value_]];
 }
 
-- (int16_t)primitiveRatingValue {
+- (float)primitiveRatingValue {
 	NSNumber *result = [self primitiveRating];
-	return [result shortValue];
+	return [result floatValue];
 }
 
-- (void)setPrimitiveRatingValue:(int16_t)value_ {
-	[self setPrimitiveRating:[NSNumber numberWithShort:value_]];
+- (void)setPrimitiveRatingValue:(float)value_ {
+	[self setPrimitiveRating:[NSNumber numberWithFloat:value_]];
 }
 
 
@@ -295,6 +296,10 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 
 
+
+@dynamic courier;
+
+	
 
 @dynamic food;
 

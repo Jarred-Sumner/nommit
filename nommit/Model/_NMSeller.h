@@ -11,15 +11,15 @@ extern const struct NMSellerAttributes {
 } NMSellerAttributes;
 
 extern const struct NMSellerRelationships {
+	__unsafe_unretained NSString *couriers;
 	__unsafe_unretained NSString *foods;
-	__unsafe_unretained NSString *users;
 } NMSellerRelationships;
 
 extern const struct NMSellerFetchedProperties {
 } NMSellerFetchedProperties;
 
+@class NMCourier;
 @class NMFood;
-@class NMUser;
 
 
 
@@ -72,16 +72,16 @@ extern const struct NMSellerFetchedProperties {
 
 
 
+@property (nonatomic, strong) NMCourier *couriers;
+
+//- (BOOL)validateCouriers:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, strong) NSSet *foods;
 
 - (NSMutableSet*)foodsSet;
-
-
-
-
-@property (nonatomic, strong) NSSet *users;
-
-- (NSMutableSet*)usersSet;
 
 
 
@@ -95,11 +95,6 @@ extern const struct NMSellerFetchedProperties {
 - (void)removeFoods:(NSSet*)value_;
 - (void)addFoodsObject:(NMFood*)value_;
 - (void)removeFoodsObject:(NMFood*)value_;
-
-- (void)addUsers:(NSSet*)value_;
-- (void)removeUsers:(NSSet*)value_;
-- (void)addUsersObject:(NMUser*)value_;
-- (void)removeUsersObject:(NMUser*)value_;
 
 @end
 
@@ -128,13 +123,13 @@ extern const struct NMSellerFetchedProperties {
 
 
 
+- (NMCourier*)primitiveCouriers;
+- (void)setPrimitiveCouriers:(NMCourier*)value;
+
+
+
 - (NSMutableSet*)primitiveFoods;
 - (void)setPrimitiveFoods:(NSMutableSet*)value;
-
-
-
-- (NSMutableSet*)primitiveUsers;
-- (void)setPrimitiveUsers:(NSMutableSet*)value;
 
 
 @end

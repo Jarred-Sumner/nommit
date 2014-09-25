@@ -16,6 +16,7 @@
 
 - (void)flashError {
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    if (!_message) _message = @"Oops! Something broke. Sit tight -- our team has been notified. Try again repeatedly :)";
     [SVProgressHUD showErrorWithStatus:_message];
 }
 

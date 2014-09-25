@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="14A361c" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="NMCourier" representedClassName="NMCourier" syncable="YES">
+        <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="courier" inverseEntity="NMOrder" syncable="YES"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="couriers" inverseEntity="NMPlace" syncable="YES"/>
+        <relationship name="seller" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMSeller" inverseName="couriers" inverseEntity="NMSeller" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="couriers" inverseEntity="NMUser" syncable="YES"/>
+    </entity>
     <entity name="NMFood" representedClassName="NMFood" syncable="YES">
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" attributeType="Date" indexed="YES" syncable="YES"/>
@@ -60,6 +68,7 @@
         <attribute name="rating" optional="YES" attributeType="Float" syncable="YES"/>
         <attribute name="stateID" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <relationship name="courier" maxCount="1" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="orders" inverseEntity="NMCourier" syncable="YES"/>
         <relationship name="food" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMFood" inverseName="orders" inverseEntity="NMFood" syncable="YES"/>
         <relationship name="place" maxCount="1" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="orders" inverseEntity="NMPlace" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="orders" inverseEntity="NMUser" syncable="YES"/>
@@ -82,6 +91,7 @@
         <attribute name="foodCount" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <relationship name="couriers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="places" inverseEntity="NMCourier" syncable="YES"/>
         <relationship name="foods" toMany="YES" deletionRule="Nullify" destinationEntity="NMFood" inverseName="places" inverseEntity="NMFood" syncable="YES"/>
         <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="place" inverseEntity="NMLocation" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="place" inverseEntity="NMOrder" syncable="YES"/>
@@ -90,17 +100,18 @@
         <attribute name="logoURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="couriers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="seller" inverseEntity="NMCourier" syncable="YES"/>
         <relationship name="foods" toMany="YES" deletionRule="Nullify" destinationEntity="NMFood" inverseName="seller" inverseEntity="NMFood" syncable="YES"/>
-        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMUser" inverseName="seller" inverseEntity="NMUser" syncable="YES"/>
     </entity>
     <entity name="NMUser" representedClassName="NMUser" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="facebookUID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="isCourier" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="couriers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="user" inverseEntity="NMCourier" syncable="YES"/>
         <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="user" inverseEntity="NMLocation" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="user" inverseEntity="NMOrder" syncable="YES"/>
-        <relationship name="seller" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMSeller" inverseName="users" inverseEntity="NMSeller" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="facebookUID"/>
@@ -110,9 +121,10 @@
     <elements>
         <element name="NMFood" positionX="0" positionY="0" width="128" height="270"/>
         <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
-        <element name="NMOrder" positionX="0" positionY="0" width="128" height="238"/>
-        <element name="NMPlace" positionX="0" positionY="0" width="128" height="133"/>
-        <element name="NMSeller" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="NMUser" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="NMOrder" positionX="0" positionY="0" width="128" height="253"/>
+        <element name="NMPlace" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="NMUser" positionX="0" positionY="0" width="128" height="163"/>
+        <element name="NMCourier" positionX="9" positionY="117" width="128" height="133"/>
     </elements>
 </model>

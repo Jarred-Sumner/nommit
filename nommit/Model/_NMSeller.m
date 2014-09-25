@@ -10,8 +10,8 @@ const struct NMSellerAttributes NMSellerAttributes = {
 };
 
 const struct NMSellerRelationships NMSellerRelationships = {
+	.couriers = @"couriers",
 	.foods = @"foods",
-	.users = @"users",
 };
 
 const struct NMSellerFetchedProperties NMSellerFetchedProperties = {
@@ -95,6 +95,10 @@ const struct NMSellerFetchedProperties NMSellerFetchedProperties = {
 
 
 
+@dynamic couriers;
+
+	
+
 @dynamic foods;
 
 	
@@ -104,19 +108,6 @@ const struct NMSellerFetchedProperties NMSellerFetchedProperties = {
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"foods"];
   
 	[self didAccessValueForKey:@"foods"];
-	return result;
-}
-	
-
-@dynamic users;
-
-	
-- (NSMutableSet*)usersSet {
-	[self willAccessValueForKey:@"users"];
-  
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"users"];
-  
-	[self didAccessValueForKey:@"users"];
 	return result;
 }
 	
