@@ -15,5 +15,7 @@ static NSInteger NMOrderLocationViewHeight = 54;
 @property (nonatomic, strong) UIView *locationView;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *nextLabel;
+@property (nonatomic, strong) UIButton *rightArrow;
+@property (nonatomic, strong) UIButton *leftArrow;
 
 @end
