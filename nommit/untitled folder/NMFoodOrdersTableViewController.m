@@ -70,6 +70,10 @@ static NSString *NMFoodOrderCellIdentifier = @"FoodOrderCellIdentifier";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     _locationView = [[NMOrderLocationView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMOrderLocationViewHeight)];
+    _locationView.nameLabel.text = @"Stay in Mudge for: 4:59";
+    _locationView.nextLabel.text = @"Next Stop: Stever";
+    [_locationView.rightArrow addTarget:self action:@selector(nextStop) forControlEvents:UIControlEventTouchUpInside];
+    [_locationView.leftArrow addTarget:self action:@selector(previousStop) forControlEvents:UIControlEventTouchUpInside];
     return _locationView;
 }
 
@@ -138,6 +142,18 @@ static NSString *NMFoodOrderCellIdentifier = @"FoodOrderCellIdentifier";
 - (void)orderComplete
 {
     // TODO: DELETE CELL AND MARK ORDER COMPLETE
+}
+
+- (void)nextStop
+{
+    _locationView.nameLabel.text = @"Be at Stever in: 4:59";
+    _locationView.nextLabel.text = @"Next Stop: Morewood";
+}
+
+- (void)previousStop
+{
+    _locationView.nameLabel.text = @"Stay in Mudge for: 4:59";
+    _locationView.nextLabel.text = @"Next Stop: Stever";
 }
 
 

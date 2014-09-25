@@ -20,6 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AMSmoothAlert (1.1):
+    - GPUImage
   - APParallaxHeader (0.1.6)
   - Bolts (1.1.2)
   - DBCamera (2.3.4):
@@ -73,12 +75,14 @@ PODS:
   - PaymentKit (1.0.5)
   - RateView (1.1)
   - REFrostedViewController (2.4.6)
+  - SIAlertView (1.3)
   - Stripe (1.2)
   - SVProgressHUD (1.0)
   - TYMProgressBarView (0.3.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - AMSmoothAlert
   - APParallaxHeader
   - DBCamera
   - DropdownMenu
@@ -95,12 +99,14 @@ DEPENDENCIES:
   - PaymentKit
   - RateView
   - REFrostedViewController
+  - SIAlertView
   - Stripe
   - SVProgressHUD
   - TYMProgressBarView
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
+  AMSmoothAlert: 1b4bf6688b698a606a963c336b5060490f4d3db2
   APParallaxHeader: 6e7cc27c052be34e1a5655dc2fab6c40eecbbe55
   Bolts: 2635e8698a630774689441047f3465d78c48d485
   DBCamera: d78a9f58aaf29d0a0811baa8cea747c7d7e80923
@@ -122,6 +128,7 @@ SPEC CHECKSUMS:
   PaymentKit: 14b54835f57ae9e2bf5628140fcd67001740cba2
   RateView: 4142c146bd42fe7715adc3365fa2ffd71ff327e0
   REFrostedViewController: 0f6bb16aeb4b384da25cc3c97bc1a16926583c62
+  SIAlertView: d00609a1faa9d82f17b9f0b4eede64e84a577b10
   Stripe: 332d4942590c9b57a52d2b62a140cc2088907db8
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
   TYMProgressBarView: 3798cb41cb7eea63714d5db5793c06f31e37b4d5

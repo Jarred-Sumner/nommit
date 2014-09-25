@@ -22,6 +22,8 @@ target "nommit" do
   pod 'DropdownMenu'
   pod 'FormatterKit'
   pod 'JCAutocompletingSearch'
+  pod 'AMSmoothAlert'
+  pod 'SIAlertView'
 end
 
 

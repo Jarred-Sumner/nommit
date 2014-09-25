@@ -17,6 +17,7 @@
 #import "NMLoginViewController.h"
 #import "NMColors.h"
 #import "NMFoodOrdersTableViewController.h"
+#import "NMPickPlacesTableViewController.h"
 
 static NSInteger NMStaticSection = 0;
 static NSInteger NMOrdersSection = 1;
@@ -136,7 +137,6 @@ static NSInteger NMOrdersSection = 1;
             [self showLogout];
         }
     } else if (indexPath.section == 1) {
-        
     }
 }
 
