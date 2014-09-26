@@ -57,8 +57,13 @@
     _progressLabel = [[UILabel alloc] init];
     _progressLabel.textColor = UIColorFromRGB(0x787878);
     _progressLabel.font = [UIFont fontWithName:@"Avenir" size:24.0f];
-    _progressLabel.frame = CGRectMake(40, 15, 150, 50);
+    _progressLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    // _progressLabel.frame = CGRectMake(40, 15, 150, 50);
+
     [self.contentView addSubview:_progressLabel];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-27-[_progressLabel]-130-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressLabel)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_progressLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressLabel) ]];
 }
 
 - (void)setupSeparator

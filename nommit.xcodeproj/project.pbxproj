@@ -87,6 +87,7 @@
 		8DCE836319D4D69E00D770D0 /* NMPromoCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836219D4D69E00D770D0 /* NMPromoCodeTableViewCell.m */; };
 		8DCE836619D4D7E600D770D0 /* NMAccountPromoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836519D4D7E600D770D0 /* NMAccountPromoTableViewCell.m */; };
 		8DCE836B19D50B2E00D770D0 /* NMPromoTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836A19D50B2E00D770D0 /* NMPromoTextField.m */; };
+		8DCE836E19D53AF700D770D0 /* NMNoFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836D19D53AF700D770D0 /* NMNoFoodView.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -270,6 +271,8 @@
 		8DCE836519D4D7E600D770D0 /* NMAccountPromoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMAccountPromoTableViewCell.m; path = Cells/NMAccountPromoTableViewCell.m; sourceTree = "<group>"; };
 		8DCE836919D50B2E00D770D0 /* NMPromoTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPromoTextField.h; path = "Custom Components/NMPromoTextField.h"; sourceTree = "<group>"; };
 		8DCE836A19D50B2E00D770D0 /* NMPromoTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPromoTextField.m; path = "Custom Components/NMPromoTextField.m"; sourceTree = "<group>"; };
+		8DCE836C19D53AF700D770D0 /* NMNoFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNoFoodView.h; path = Views/NMNoFoodView.h; sourceTree = "<group>"; };
+		8DCE836D19D53AF700D770D0 /* NMNoFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNoFoodView.m; path = Views/NMNoFoodView.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -646,6 +649,8 @@
 				8DA5199019D3829C00BBA8A0 /* NMOrderLocationView.m */,
 				8DCE835819D4D5C900D770D0 /* NMTableSeparatorView.h */,
 				8DCE835919D4D5C900D770D0 /* NMTableSeparatorView.m */,
+				8DCE836C19D53AF700D770D0 /* NMNoFoodView.h */,
+				8DCE836D19D53AF700D770D0 /* NMNoFoodView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -810,6 +815,7 @@
 				83D6A9E219B822B8009A6D9B /* _NMOrder.m in Sources */,
 				8D51D2A919B58DA500920F69 /* NMItemsCollectionViewController.m in Sources */,
 				8DEED51C19B270D700EE227A /* NMFoodCell.m in Sources */,
+				8DCE836E19D53AF700D770D0 /* NMNoFoodView.m in Sources */,
 				8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */,
 				839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */,
 				8DA5198819D0ED9100BBA8A0 /* NMPlaceTableViewCell.m in Sources */,
