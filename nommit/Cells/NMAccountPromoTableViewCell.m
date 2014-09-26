@@ -27,7 +27,7 @@
 
 - (void)setupTextField
 {
-    _textField = [[UITextField alloc] init];
+    _textField = [[NMPromoTextField alloc] init];
     _textField.font = [UIFont fontWithName:@"Avenir" size:16.f];
     _textField.translatesAutoresizingMaskIntoConstraints = NO;
     _textField.autocapitalizationType = UITextAutocapitalizationTypeNone;

@@ -86,6 +86,7 @@
 		8DCE836019D4D68F00D770D0 /* NMYourCardsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835F19D4D68F00D770D0 /* NMYourCardsTableViewCell.m */; };
 		8DCE836319D4D69E00D770D0 /* NMPromoCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836219D4D69E00D770D0 /* NMPromoCodeTableViewCell.m */; };
 		8DCE836619D4D7E600D770D0 /* NMAccountPromoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836519D4D7E600D770D0 /* NMAccountPromoTableViewCell.m */; };
+		8DCE836B19D50B2E00D770D0 /* NMPromoTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836A19D50B2E00D770D0 /* NMPromoTextField.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -267,6 +268,8 @@
 		8DCE836219D4D69E00D770D0 /* NMPromoCodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPromoCodeTableViewCell.m; path = Cells/NMPromoCodeTableViewCell.m; sourceTree = "<group>"; };
 		8DCE836419D4D7E600D770D0 /* NMAccountPromoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMAccountPromoTableViewCell.h; path = Cells/NMAccountPromoTableViewCell.h; sourceTree = "<group>"; };
 		8DCE836519D4D7E600D770D0 /* NMAccountPromoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMAccountPromoTableViewCell.m; path = Cells/NMAccountPromoTableViewCell.m; sourceTree = "<group>"; };
+		8DCE836919D50B2E00D770D0 /* NMPromoTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPromoTextField.h; path = "Custom Components/NMPromoTextField.h"; sourceTree = "<group>"; };
+		8DCE836A19D50B2E00D770D0 /* NMPromoTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPromoTextField.m; path = "Custom Components/NMPromoTextField.m"; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -420,6 +423,15 @@
 			name = "Google Places";
 			sourceTree = "<group>";
 		};
+		8DCE836819D50B1200D770D0 /* Custom Components */ = {
+			isa = PBXGroup;
+			children = (
+				8DCE836919D50B2E00D770D0 /* NMPromoTextField.h */,
+				8DCE836A19D50B2E00D770D0 /* NMPromoTextField.m */,
+			);
+			name = "Custom Components";
+			sourceTree = "<group>";
+		};
 		8DD3FC2419B2512900DAFCDB = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +476,7 @@
 		8DD3FC3619B2512900DAFCDB /* nommit */ = {
 			isa = PBXGroup;
 			children = (
+				8DCE836819D50B1200D770D0 /* Custom Components */,
 				83D6A9E919B82A47009A6D9B /* API */,
 				8D51D2B019B6686E00920F69 /* Sliding Menu */,
 				8D51D28D19B3A3C200920F69 /* Libraries */,
@@ -859,6 +872,7 @@
 				8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */,
 				8DA5199419D3846800BBA8A0 /* NMFoodOrderTableViewCell.m in Sources */,
 				83C3A18C19CE54420052B6F7 /* NMSeller.m in Sources */,
+				8DCE836B19D50B2E00D770D0 /* NMPromoTextField.m in Sources */,
 				8DCE836019D4D68F00D770D0 /* NMYourCardsTableViewCell.m in Sources */,
 				83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */,
 				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NMPromoTextField.h"
 
 @interface NMAccountPromoTableViewCell : UITableViewCell<UITextFieldDelegate>
 
-@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) NMPromoTextField *textField;
 
 @property (nonatomic, strong) UIButton *submitButton;
 @property (nonatomic, strong) UILabel *creditLabel;
