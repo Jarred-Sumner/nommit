@@ -168,23 +168,28 @@
 
 - (void)setupDoneButton
 {
-    UIButton *ratingDoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    ratingDoneButton.translatesAutoresizingMaskIntoConstraints = NO;
+    _ratingDoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _ratingDoneButton.translatesAutoresizingMaskIntoConstraints = NO;
 //    [ratingDoneButton addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImage *btnImage = [UIImage imageNamed:@"RatingDoneButton"];
-    [ratingDoneButton setImage:btnImage forState:UIControlStateNormal];
-    ratingDoneButton.contentMode = UIViewContentModeScaleToFill;
+    // UIImage *btnImage = [UIImage imageNamed:@"RatingDoneButton"];
+    // [ratingDoneButton setImage:btnImage forState:UIControlStateNormal];
+    _ratingDoneButton.contentMode = UIViewContentModeScaleToFill;
+    _ratingDoneButton.backgroundColor = [NMColors mainColor];
+    [_ratingDoneButton setTitle:@"Call Lucy" forState:UIControlStateNormal];
+    [_ratingDoneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _ratingDoneButton.titleLabel.font = [UIFont fontWithName:@"Avenir" size:24];
+    _ratingDoneButton.layer.cornerRadius = 2;
     
-    [self.view addSubview:ratingDoneButton];
+    [self.view addSubview:_ratingDoneButton];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(ratingDoneButton);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_ratingDoneButton, _placeLabel);
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[ratingDoneButton]-5-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-26-[_ratingDoneButton]-26-|" options:0 metrics:nil views:views]];
     if (iPhone5) {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[ratingDoneButton]-55-|" options:0 metrics:nil views:views]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_placeLabel]-30-[_ratingDoneButton]-55-|" options:0 metrics:nil views:views]];
     } else {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[ratingDoneButton]-10-|" options:0 metrics:nil views:views]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_placeLabel]-30-[_ratingDoneButton]-10-|" options:0 metrics:nil views:views]];
     }
     
 }

@@ -12,6 +12,7 @@
 
 @interface NMDeliveryViewController : UIViewController
 
+@property (nonatomic, strong) UIButton *ratingDoneButton;
 - (id)initWithOrder:(NMOrder *)order;
 
 
