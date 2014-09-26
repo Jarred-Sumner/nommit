@@ -15,11 +15,10 @@
 		<string>HelveticaNeue</string>
 		<string>HelveticaNeue-Medium</string>
 		<string>Avenir-Light</string>
-		<string>Avenir-Black</string>
 		<string>Avenir-LightOblique</string>
 	</array>
 	<key>length</key>
-	<integer>36646480</integer>
+	<integer>36624910</integer>
 	<key>version</key>
 	<integer>37</integer>
 </dict>
