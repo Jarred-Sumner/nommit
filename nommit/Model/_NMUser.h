@@ -5,10 +5,13 @@
 
 
 extern const struct NMUserAttributes {
+	__unsafe_unretained NSString *cardType;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *facebookUID;
 	__unsafe_unretained NSString *isCourier;
+	__unsafe_unretained NSString *lastFour;
 	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *paymentAuthorized;
 	__unsafe_unretained NSString *phone;
 	__unsafe_unretained NSString *referralCode;
 	__unsafe_unretained NSString *referralCredit;
@@ -35,6 +38,9 @@ extern const struct NMUserFetchedProperties {
 
 
 
+
+
+
 @interface NMUserID : NSManagedObjectID {}
 @end
 
@@ -43,6 +49,16 @@ extern const struct NMUserFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (NMUserID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* cardType;
+
+
+
+//- (BOOL)validateCardType:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -82,11 +98,35 @@ extern const struct NMUserFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* lastFour;
+
+
+
+//- (BOOL)validateLastFour:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* name;
 
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* paymentAuthorized;
+
+
+
+@property BOOL paymentAuthorizedValue;
+- (BOOL)paymentAuthorizedValue;
+- (void)setPaymentAuthorizedValue:(BOOL)value_;
+
+//- (BOOL)validatePaymentAuthorized:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -167,6 +207,12 @@ extern const struct NMUserFetchedProperties {
 @interface _NMUser (CoreDataGeneratedPrimitiveAccessors)
 
 
+- (NSString*)primitiveCardType;
+- (void)setPrimitiveCardType:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveEmail;
 - (void)setPrimitiveEmail:(NSString*)value;
 
@@ -188,8 +234,23 @@ extern const struct NMUserFetchedProperties {
 
 
 
+- (NSString*)primitiveLastFour;
+- (void)setPrimitiveLastFour:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitivePaymentAuthorized;
+- (void)setPrimitivePaymentAuthorized:(NSNumber*)value;
+
+- (BOOL)primitivePaymentAuthorizedValue;
+- (void)setPrimitivePaymentAuthorizedValue:(BOOL)value_;
 
 
 

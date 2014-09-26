@@ -4,10 +4,13 @@
 #import "_NMUser.h"
 
 const struct NMUserAttributes NMUserAttributes = {
+	.cardType = @"cardType",
 	.email = @"email",
 	.facebookUID = @"facebookUID",
 	.isCourier = @"isCourier",
+	.lastFour = @"lastFour",
 	.name = @"name",
+	.paymentAuthorized = @"paymentAuthorized",
 	.phone = @"phone",
 	.referralCode = @"referralCode",
 	.referralCredit = @"referralCredit",
@@ -53,6 +56,11 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"paymentAuthorizedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"paymentAuthorized"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"referralCreditValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"referralCredit"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -61,6 +69,13 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic cardType;
+
+
 
 
 
@@ -105,8 +120,41 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 
 
+@dynamic lastFour;
+
+
+
+
+
+
 @dynamic name;
 
+
+
+
+
+
+@dynamic paymentAuthorized;
+
+
+
+- (BOOL)paymentAuthorizedValue {
+	NSNumber *result = [self paymentAuthorized];
+	return [result boolValue];
+}
+
+- (void)setPaymentAuthorizedValue:(BOOL)value_ {
+	[self setPaymentAuthorized:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitivePaymentAuthorizedValue {
+	NSNumber *result = [self primitivePaymentAuthorized];
+	return [result boolValue];
+}
+
+- (void)setPrimitivePaymentAuthorizedValue:(BOOL)value_ {
+	[self setPrimitivePaymentAuthorized:[NSNumber numberWithBool:value_]];
+}
 
 
 

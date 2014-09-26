@@ -20,4 +20,8 @@
 
 @property (nonatomic, strong) NSNumber *isCourier;
 
+@property (nonatomic, strong) NSNumber *lastFour;
+@property (nonatomic, strong) NSString *cardType;
+@property (nonatomic, strong) NSNumber *paymentAuthorized;
+
 @end

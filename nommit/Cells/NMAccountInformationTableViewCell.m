@@ -26,8 +26,9 @@
 
 - (void)setupAvatar
 {
-    _avatar = [[UIImageView alloc] initWithFrame:CGRectMake(24, 15, 53, 53)];
-    _avatar.image = [UIImage imageNamed:@"AvatarLucySmall"];
+    _avatar = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(24, 15, 53, 53)];
+    _avatar.layer.cornerRadius = CGRectGetWidth(_avatar.bounds) / 2;
+    _avatar.layer.masksToBounds = YES;
     [self.contentView addSubview:_avatar];
 }
 

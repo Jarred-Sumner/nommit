@@ -1,5 +1,6 @@
 #import "NMUser.h"
 
+#import "ECPhoneNumberFormatter.h"
 
 @implementation NMUser
 
@@ -17,6 +18,11 @@ static id NMCurrentUser;
     NMCurrentUser = currentUser;
 }
 
+
+- (NSString *)formattedPhone {
+    ECPhoneNumberFormatter *formatter = [[ECPhoneNumberFormatter alloc] init];
+    return [formatter stringForObjectValue:self.phone];
+}
 
 
 

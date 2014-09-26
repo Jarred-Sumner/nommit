@@ -11,27 +11,28 @@
 #import "NMTableSeparatorView.h"
 #import "NMAccountInformationTableViewCell.h"
 #import "NMAccountPromoTableViewCell.h"
-#import "NMYourCardsTableViewCell.h"
+#import "NMPaymentMethodTableViewCell.h"
 #import "NMMenuNavigationController.h"
 #import "NMPaymentsViewController.h"
 
-@interface NMAccountTableViewController ()
+@interface NMAccountTableViewController() <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NMAccountInformationTableViewCell *infoCell;
-@property (nonatomic, strong) NMYourCardsTableViewCell *cardCell;
+@property (nonatomic, strong) NMPaymentMethodTableViewCell *cardCell;
 @property (nonatomic, strong) NMAccountPromoTableViewCell *promoCell;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
 @implementation NMAccountTableViewController
 
 const NSInteger NMAccountInformationSection = 0;
-const NSInteger NMYourCardsSection = 1;
+const NSInteger NMPaymentMethodSection = 1;
 const NSInteger NMAccountPromoSection = 2;
 
 static NSString *NMAccountInformationTableViewCellKey = @"NMAcountInformationTableViewCell";
 static NSString *NMAccountPromoTableViewCellKey = @"NMAccountPromoTableViewCell";
-static NSString *NMYourCardsTableViewCellKey = @"NMYourCardsTableViewCell";
+static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCellKey";
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -42,25 +43,11 @@ static NSString *NMYourCardsTableViewCellKey = @"NMYourCardsTableViewCell";
         self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         [self.tableView registerClass:[NMAccountInformationTableViewCell class] forCellReuseIdentifier:NMAccountInformationTableViewCellKey];
         [self.tableView registerClass:[NMAccountPromoTableViewCell class] forCellReuseIdentifier:NMAccountPromoTableViewCellKey];
-        [self.tableView registerClass:[NMYourCardsTableViewCell class] forCellReuseIdentifier:NMYourCardsTableViewCellKey];
-
+        [self.tableView registerClass:[NMPaymentMethodTableViewCell class] forCellReuseIdentifier:NMPaymentMethodTableViewCellKey];
+        
+        [self.fetchedResultsController performFetch:nil];
     }
     return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -82,7 +69,7 @@ static NSString *NMYourCardsTableViewCellKey = @"NMYourCardsTableViewCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMAccountInformationSection) {
         return 76;
-    } else if (indexPath.section == NMYourCardsSection) {
+    } else if (indexPath.section == NMPaymentMethodSection) {
         return 65;
     } else if (indexPath.section == NMAccountPromoSection) {
         return 75;
@@ -95,8 +82,8 @@ static NSString *NMYourCardsTableViewCellKey = @"NMYourCardsTableViewCell";
     NMTableSeparatorView *separatorView = [[NMTableSeparatorView alloc] initWithFrame:CGRectMake(0, 0, 273, 17)];
     if (section == NMAccountInformationSection) {
         separatorView.sectionLabel.text = @"ACCOUNT INFORMATION";
-    } else if (section == NMYourCardsSection) {
-        separatorView.sectionLabel.text = @"YOUR CARDS";
+    } else if (section == NMPaymentMethodSection) {
+        separatorView.sectionLabel.text = @"YOUR CARD";
     } else if (section == NMAccountPromoSection) {
         separatorView.sectionLabel.text = @"PROMOS";
     }
@@ -107,20 +94,15 @@ static NSString *NMYourCardsTableViewCellKey = @"NMYourCardsTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMAccountInformationSection) {
         _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMAccountInformationTableViewCellKey];
-        
-        _infoCell.nameLabel.text = @"Lucy Guo";
-        _infoCell.emailLabel.text = @"lucyguo@cmu.edu";
-        _infoCell.phoneLabel.text = @"(925) 596 8005";
+        [self configureCellForIndexPath:indexPath];
         return _infoCell;
-    } else if (indexPath.section == NMYourCardsSection) {
-        _cardCell = [self.tableView dequeueReusableCellWithIdentifier:NMYourCardsTableViewCellKey];
-        _cardCell.cardLabel.text = @"● ● ● ● 4242";
-        
+    } else if (indexPath.section == NMPaymentMethodSection) {
+        _cardCell = [self.tableView dequeueReusableCellWithIdentifier:NMPaymentMethodTableViewCellKey];
+        [self configureCellForIndexPath:indexPath];
         return _cardCell;
     } else if (indexPath.section == NMAccountPromoSection) {
         _promoCell = [self.tableView dequeueReusableCellWithIdentifier:NMAccountPromoTableViewCellKey];
-        [_promoCell.submitButton addTarget:self action:@selector(submitPromoCode:) forControlEvents:UIControlEventTouchUpInside];
-        _promoCell.creditLabel.text = @"Account Credit: $25";
+        [self configureCellForIndexPath:indexPath];
         return _promoCell;
     } else {
         return nil;
@@ -129,45 +111,11 @@ static NSString *NMYourCardsTableViewCellKey = @"NMYourCardsTableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == NMYourCardsSection) {
+    if (indexPath.section == NMPaymentMethodSection) {
         NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] init];
         [self.navigationController pushViewController:paymentsVC animated:YES];
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - submit button
 
@@ -198,4 +146,95 @@ static NSString *NMYourCardsTableViewCellKey = @"NMYourCardsTableViewCell";
     self.navigationController.navigationBarHidden = NO;
     
 }
+
+#pragma mark - NSFetchedResultsController
+
+- (void)configureCellForIndexPath:(NSIndexPath*)indexPath {
+    NMUser *user = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    
+    switch (indexPath.section) {
+        case NMAccountInformationSection:
+            _infoCell.avatar.profileID = user.facebookUID;
+            _infoCell.nameLabel.text = user.name;
+            _infoCell.emailLabel.text = user.email;
+            _infoCell.phoneLabel.text = user.formattedPhone;
+            break;
+        case NMPaymentMethodSection:
+            if ([user.lastFour length] > 0) {
+                _cardCell.cardLabel.text = [NSString stringWithFormat:@"• • • • %@", user.lastFour];
+            } else {
+                _cardCell.cardLabel.text = @"• • • •";
+            }
+            break;
+        case NMAccountPromoSection:
+            [_promoCell.submitButton addTarget:self action:@selector(submitPromoCode:) forControlEvents:UIControlEventTouchUpInside];
+            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@", user.referralCredit];
+        default:
+            break;
+    }
+
+}
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController != nil) return _fetchedResultsController;
+    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"facebookUID == %@", NMSession.userID];
+    _fetchedResultsController = [NMUser MR_fetchAllSortedBy:@"facebookUID" ascending:NO withPredicate:userPredicate groupBy:nil delegate:self];
+    return _fetchedResultsController;
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCellForIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMYourCardsTableViewCell.h"
+#import "NMPaymentMethodTableViewCell.h"
 
-@implementation NMYourCardsTableViewCell
+@implementation NMPaymentMethodTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

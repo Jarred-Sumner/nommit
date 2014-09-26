@@ -10,7 +10,7 @@
 
 @interface NMAccountInformationTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView *avatar;
+@property (nonatomic, strong) FBProfilePictureView *avatar;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *emailLabel;
 @property (nonatomic, strong) UILabel *phoneLabel;

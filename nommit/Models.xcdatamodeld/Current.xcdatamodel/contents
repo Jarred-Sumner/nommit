@@ -104,10 +104,13 @@
         <relationship name="foods" toMany="YES" deletionRule="Nullify" destinationEntity="NMFood" inverseName="seller" inverseEntity="NMFood" syncable="YES"/>
     </entity>
     <entity name="NMUser" representedClassName="NMUser" syncable="YES">
+        <attribute name="cardType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="facebookUID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="isCourier" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastFour" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paymentAuthorized" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referralCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referralCredit" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -127,6 +130,6 @@
         <element name="NMOrder" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="150"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
-        <element name="NMUser" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="NMUser" positionX="0" positionY="0" width="128" height="238"/>
     </elements>
 </model>

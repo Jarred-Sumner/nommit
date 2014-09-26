@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMYourCardsTableViewCell : UITableViewCell
+@interface NMPaymentMethodTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *cardLabel;
 @property (nonatomic, strong) UIImageView *cardImage;
