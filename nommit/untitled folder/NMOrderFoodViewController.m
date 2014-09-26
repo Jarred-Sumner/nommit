@@ -175,8 +175,11 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
                     NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
 
                     NMDeliveryViewController *rateVC = [[NMDeliveryViewController alloc] initWithOrder:order];
+                    NMMenuNavigationController *navController =
+                    [[NMMenuNavigationController alloc] initWithRootViewController:rateVC];
+                    navController.navigationBar.translucent = NO;
                     
-                    [this presentViewController:rateVC animated:YES completion:^{
+                    [this presentViewController:navController animated:YES completion:^{
                         [self.navigationController popViewControllerAnimated:YES];
                     }];
                 }
