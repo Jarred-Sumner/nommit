@@ -10,6 +10,8 @@ extern const struct NMUserAttributes {
 	__unsafe_unretained NSString *isCourier;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *phone;
+	__unsafe_unretained NSString *referralCode;
+	__unsafe_unretained NSString *referralCredit;
 } NMUserAttributes;
 
 extern const struct NMUserRelationships {
@@ -24,6 +26,8 @@ extern const struct NMUserFetchedProperties {
 @class NMCourier;
 @class NMLocation;
 @class NMOrder;
+
+
 
 
 
@@ -93,6 +97,30 @@ extern const struct NMUserFetchedProperties {
 
 
 //- (BOOL)validatePhone:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* referralCode;
+
+
+
+//- (BOOL)validateReferralCode:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* referralCredit;
+
+
+
+@property double referralCreditValue;
+- (double)referralCreditValue;
+- (void)setReferralCreditValue:(double)value_;
+
+//- (BOOL)validateReferralCredit:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -168,6 +196,21 @@ extern const struct NMUserFetchedProperties {
 
 - (NSString*)primitivePhone;
 - (void)setPrimitivePhone:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveReferralCode;
+- (void)setPrimitiveReferralCode:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveReferralCredit;
+- (void)setPrimitiveReferralCredit:(NSNumber*)value;
+
+- (double)primitiveReferralCreditValue;
+- (void)setPrimitiveReferralCreditValue:(double)value_;
 
 
 

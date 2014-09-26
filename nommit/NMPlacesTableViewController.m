@@ -46,8 +46,9 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
-
-    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"foodCount" ascending:NO withPredicate:nil groupBy:nil delegate:self];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"foodCount > 0"];
+    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"foodCount" ascending:NO withPredicate:predicate groupBy:nil delegate:self];
     return _fetchedResultsController;
 }
 
@@ -133,8 +134,6 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     cell.textLabel.text = place.name;
-    cell.textLabel.textColor = UIColorFromRGB(0x757575);
-    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:16.0f];
     cell.numberOfFoodAvailableLabel.text = [NSString stringWithFormat:@"%@", place.foodCount];
     cell.iconImageView.hidden = !(place.foodCount.integerValue > 0);
 }

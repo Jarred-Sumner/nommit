@@ -9,9 +9,7 @@
 #import "NMApi.h"
 #import "NMErrorApiModel.h"
 
-
-
-static NSString *NMApiBaseURLString = @"http://www.getnommit.com";
+static NSString *NMApiBaseURLString = @"http://localhost:3000";
 
 @implementation NMApi
 

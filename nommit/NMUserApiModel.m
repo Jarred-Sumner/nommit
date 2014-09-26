@@ -16,7 +16,9 @@
 {
     return @{
              @"facebookUID": @"id",
-             @"isCourier" : @"is_courier"
+             @"isCourier" : @"is_courier",
+             @"referralCode" : @"referral_code",
+             @"referralCredit" : @"referral_credit"
     };
 }
 

@@ -72,9 +72,9 @@ extern const struct NMSellerFetchedProperties {
 
 
 
-@property (nonatomic, strong) NMCourier *couriers;
+@property (nonatomic, strong) NSSet *couriers;
 
-//- (BOOL)validateCouriers:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)couriersSet;
 
 
 
@@ -90,6 +90,11 @@ extern const struct NMSellerFetchedProperties {
 @end
 
 @interface _NMSeller (CoreDataGeneratedAccessors)
+
+- (void)addCouriers:(NSSet*)value_;
+- (void)removeCouriers:(NSSet*)value_;
+- (void)addCouriersObject:(NMCourier*)value_;
+- (void)removeCouriersObject:(NMCourier*)value_;
 
 - (void)addFoods:(NSSet*)value_;
 - (void)removeFoods:(NSSet*)value_;
@@ -123,8 +128,8 @@ extern const struct NMSellerFetchedProperties {
 
 
 
-- (NMCourier*)primitiveCouriers;
-- (void)setPrimitiveCouriers:(NMCourier*)value;
+- (NSMutableSet*)primitiveCouriers;
+- (void)setPrimitiveCouriers:(NSMutableSet*)value;
 
 
 

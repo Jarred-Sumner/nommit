@@ -68,10 +68,10 @@
         <attribute name="rating" optional="YES" attributeType="Float" syncable="YES"/>
         <attribute name="stateID" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
-        <relationship name="courier" maxCount="1" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="orders" inverseEntity="NMCourier" syncable="YES"/>
-        <relationship name="food" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMFood" inverseName="orders" inverseEntity="NMFood" syncable="YES"/>
+        <relationship name="courier" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="orders" inverseEntity="NMCourier" syncable="YES"/>
+        <relationship name="food" maxCount="1" deletionRule="Nullify" destinationEntity="NMFood" inverseName="orders" inverseEntity="NMFood" syncable="YES"/>
         <relationship name="place" maxCount="1" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="orders" inverseEntity="NMPlace" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="orders" inverseEntity="NMUser" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="orders" inverseEntity="NMUser" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="uid"/>
@@ -109,6 +109,8 @@
         <attribute name="isCourier" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referralCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referralCredit" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="couriers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="user" inverseEntity="NMCourier" syncable="YES"/>
         <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="user" inverseEntity="NMLocation" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="user" inverseEntity="NMOrder" syncable="YES"/>
@@ -119,12 +121,12 @@
         </compoundIndexes>
     </entity>
     <elements>
+        <element name="NMCourier" positionX="9" positionY="117" width="128" height="133"/>
         <element name="NMFood" positionX="0" positionY="0" width="128" height="270"/>
         <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMOrder" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="150"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
-        <element name="NMUser" positionX="0" positionY="0" width="128" height="163"/>
-        <element name="NMCourier" positionX="9" positionY="117" width="128" height="133"/>
+        <element name="NMUser" positionX="0" positionY="0" width="128" height="195"/>
     </elements>
 </model>

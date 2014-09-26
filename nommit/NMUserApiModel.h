@@ -15,6 +15,9 @@
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *name;
 
+@property (nonatomic, strong) NSNumber *referralCredit;
+@property (nonatomic, strong) NSString *referralCode;
+
 @property (nonatomic, strong) NSNumber *isCourier;
 
 @end

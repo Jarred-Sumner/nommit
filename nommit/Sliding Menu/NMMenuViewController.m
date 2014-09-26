@@ -69,19 +69,16 @@ static NSInteger NMOrdersSection = 1;
         circle.lineWidth = 0;
         _pictureView.layer.mask = circle;
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 0, 24)];
-        label.text = [[NMUser currentUser] name];
-        NSLog(@"User; %@", [NMUser MR_findFirst]);
-        
-        
-        label.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
-        label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor colorWithRed:62/255.0f green:68/255.0f blue:75/255.0f alpha:1.0f];
-        [label sizeToFit];
-        label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        
+        UILabel *usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 0, 24)];
+        usernameLabel.text = [[NMUser currentUser] name];
+        usernameLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
+        usernameLabel.backgroundColor = [UIColor clearColor];
+        usernameLabel.textColor = [UIColor colorWithRed:62/255.0f green:68/255.0f blue:75/255.0f alpha:1.0f];
+        [usernameLabel sizeToFit];
+        usernameLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+
         [view addSubview:_pictureView];
-        [view addSubview:label];
+        [view addSubview:usernameLabel];
         view;
     });
 }
@@ -127,15 +124,26 @@ static NSInteger NMOrdersSection = 1;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            [self showMenu];
-        } else if (indexPath.row == 1) {
-            [self showOrders];
-        } else if (indexPath.row == 2) {
-            [self showAccount];
-        } else if (indexPath.row == 3) {
-            [self showLogout];
+        if ([[NMUser currentUser] isCourierValue]) {
+            if (indexPath.row == 0) {
+                [self showMenu];
+            } else if (indexPath.row == 1) {
+                [self showOrders];
+            } else if (indexPath.row == 2) {
+                [self showAccount];
+            } else if (indexPath.row == 3) {
+                [self showLogout];
+            }
+        } else {
+            if (indexPath.row == 0) {
+                [self showMenu];
+            } else if (indexPath.row == 1) {
+                [self showAccount];
+            } else if (indexPath.row == 2) {
+                [self showLogout];
+            }
         }
+
     } else if (indexPath.section == 1) {
     }
 }
@@ -223,7 +231,13 @@ static NSInteger NMOrdersSection = 1;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    if (sectionIndex == 0) return 4;
+    if (sectionIndex == 0) {
+        if ([NMUser currentUser].isCourierValue) {
+            return 4;
+        } else {
+            return 3;
+        }
+    }
     
     id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
     return [sectionInfo numberOfObjects];
@@ -240,7 +254,12 @@ static NSInteger NMOrdersSection = 1;
     }
     
     if (indexPath.section == 0) {
-        NSArray *titles = @[@"Menu", @"Deliver", @"Account", @"Logout"];
+        NSArray *titles;
+        if ([[NMUser currentUser] isCourierValue]) {
+            titles = @[@"Menu", @"Deliver", @"Account", @"Logout"];
+        } else {
+            titles = @[@"Menu", @"Account", @"Logout"];
+        }
         cell.textLabel.text = titles[indexPath.row];
     } else {
         [self configureOrderCell:cell atIndexPath:indexPath];

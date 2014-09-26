@@ -98,6 +98,15 @@ const struct NMSellerFetchedProperties NMSellerFetchedProperties = {
 @dynamic couriers;
 
 	
+- (NSMutableSet*)couriersSet {
+	[self willAccessValueForKey:@"couriers"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"couriers"];
+  
+	[self didAccessValueForKey:@"couriers"];
+	return result;
+}
+	
 
 @dynamic foods;
 

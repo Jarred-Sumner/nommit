@@ -8,141 +8,213 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Pods-nommit-AMSmoothAlert.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>27</integer>
 		</dict>
 		<key>Pods-nommit-APParallaxHeader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-nommit-Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-nommit-DBCamera.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-nommit-DropdownMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Pods-nommit-Facebook-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>Pods-nommit-FormatterKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>Pods-nommit-GPUImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Pods-nommit-INTULocationManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>Pods-nommit-JCAutocompletingSearch.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>Pods-nommit-JVFloatLabeledTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 		<key>Pods-nommit-Lockbox.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
 		</dict>
 		<key>Pods-nommit-M13Checkbox.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>14</integer>
 		</dict>
 		<key>Pods-nommit-MGBoxKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>17</integer>
 		</dict>
 		<key>Pods-nommit-MGEvents.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>18</integer>
 		</dict>
 		<key>Pods-nommit-MGMushParser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>19</integer>
 		</dict>
 		<key>Pods-nommit-MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>15</integer>
 		</dict>
 		<key>Pods-nommit-Mantle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>16</integer>
 		</dict>
 		<key>Pods-nommit-Overcoat.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>20</integer>
 		</dict>
 		<key>Pods-nommit-PaymentKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>21</integer>
 		</dict>
 		<key>Pods-nommit-REFrostedViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>23</integer>
 		</dict>
 		<key>Pods-nommit-RateView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>22</integer>
+		</dict>
+		<key>Pods-nommit-SIAlertView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>28</integer>
 		</dict>
 		<key>Pods-nommit-SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>25</integer>
 		</dict>
 		<key>Pods-nommit-Stripe.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>24</integer>
 		</dict>
 		<key>Pods-nommit-TYMProgressBarView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>26</integer>
 		</dict>
 		<key>Pods-nommit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>03342F92CE9F4000AA423112</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>06CB2F2616014CB797C0A378</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>098C749346EB4951A650A218</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0BE7DBB520544DDE837C3DD0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -177,12 +249,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>2DC1663149224519B4DB50B3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>30E990C58DAC47BE9A248814</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>33723975239E4F58909239FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>366E0FCD2DC24E5CAD574E09</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -217,6 +299,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>400BE22AE65441FC9E3112BA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4171E0C03F9F4E3E827F8886</key>
 		<dict>
 			<key>primary</key>
@@ -237,12 +324,42 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4F43AD39B8F14A689475B6BC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4F8C594F917640F5AA3443B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>51E5988DC64242938D6E213D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>52134B4187D3461A87C24A85</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5416FF6695324DF4A7286C9A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5682F627D57841699B8942EC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5D9810A945CA4962B8F7DE19</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>62ED8DAFA81D404ABAA5F45D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -253,6 +370,11 @@
 			<true/>
 		</dict>
 		<key>63ECB765882E433AA5FB3FF0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>65EF124802F3465CB77290EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -277,6 +399,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8346ACC4BA564F0DADC31C32</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>83AF154469AB47EBA2350763</key>
 		<dict>
 			<key>primary</key>
@@ -287,7 +414,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>83D1FBDEFAFF42A8B4E8F305</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>87A9E56240C0418CA988D8BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8953F4A4C05247969C8CAF9B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8CEBF0D621F04A88AEA1947D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8D0D5245FD7E41358E46EDB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -312,7 +459,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A3A624F080504D1B8CAD9066</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A3ED4852C6B843878BB5BAC0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A7067BF4769E493583614278</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B20BF16C53334BC1A0D5AA21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B7C96BD3000F4CB4AD820B98</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -327,12 +494,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BF2D845A291B4DF0AE928B10</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BFD199AC1BE54161AC6035D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C0823CF94F2D45829F0B76A9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C236371347C940CEBD847261</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C294BC34BD254E57BF4A993B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -387,12 +569,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>E9D64A2A18904E279E542C64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EB9E79EC16D043748C21B95F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>EE70699680D34BCABAB9529D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F123C8C438CD49C2A0B2DF71</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3ABA47CC03B4D9ABA0B78A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE9EA8B9D6B6445C89593809</key>
 		<dict>
 			<key>primary</key>
 			<true/>

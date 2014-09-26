@@ -9,6 +9,8 @@ const struct NMUserAttributes NMUserAttributes = {
 	.isCourier = @"isCourier",
 	.name = @"name",
 	.phone = @"phone",
+	.referralCode = @"referralCode",
+	.referralCredit = @"referralCredit",
 };
 
 const struct NMUserRelationships NMUserRelationships = {
@@ -48,6 +50,11 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 	
 	if ([key isEqualToString:@"isCourierValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"isCourier"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"referralCreditValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"referralCredit"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -107,6 +114,39 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 @dynamic phone;
 
+
+
+
+
+
+@dynamic referralCode;
+
+
+
+
+
+
+@dynamic referralCredit;
+
+
+
+- (double)referralCreditValue {
+	NSNumber *result = [self referralCredit];
+	return [result doubleValue];
+}
+
+- (void)setReferralCreditValue:(double)value_ {
+	[self setReferralCredit:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveReferralCreditValue {
+	NSNumber *result = [self primitiveReferralCredit];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveReferralCreditValue:(double)value_ {
+	[self setPrimitiveReferralCredit:[NSNumber numberWithDouble:value_]];
+}
 
 
 
