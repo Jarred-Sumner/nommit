@@ -18,6 +18,7 @@
 #import "NMColors.h"
 #import "NMFoodOrdersTableViewController.h"
 #import "NMPickPlacesTableViewController.h"
+#import "NMAccountTableViewController.h"
 
 static NSInteger NMStaticSection = 0;
 static NSInteger NMOrdersSection = 1;
@@ -264,12 +265,24 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showOrders {
+    BOOL selectedPlaces = NO;
+    
     NMFoodOrdersTableViewController *ordersVC = [[NMFoodOrdersTableViewController alloc] init];
     [self navigateTo:ordersVC];
+    
+    if (!selectedPlaces) {
+        NMPickPlacesTableViewController *pickPlacesTVC = [[NMPickPlacesTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        
+        NMMenuNavigationController *navController =
+        [[NMMenuNavigationController alloc] initWithRootViewController:pickPlacesTVC];
+        [self presentViewController:navController animated:YES completion:nil];
+    }
 }
 
 - (void)showAccount {
-    
+    // NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] init];
+    NMAccountTableViewController *accountTableVC = [[NMAccountTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self navigateTo:accountTableVC];
 }
 
 - (void)showLogout {
