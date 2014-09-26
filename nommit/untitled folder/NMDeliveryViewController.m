@@ -67,29 +67,31 @@
 - (void)setupSellerImage
 {
     _sellerImage = [[UIImageView alloc] init];
-    _sellerImage.layer.cornerRadius = CGRectGetWidth(_sellerImage.bounds) / 2;
+    _sellerImage.layer.cornerRadius = 105 / 2;
     _sellerImage.layer.masksToBounds = YES;
     _sellerImage.translatesAutoresizingMaskIntoConstraints = NO;
+    _sellerImage.contentMode = UIViewContentModeScaleAspectFill;
     [_sellerImage setImageWithURL:_order.food.seller.logoAsURL];
     [self.view addSubview:_sellerImage];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-42-[_sellerImage]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_sellerImage)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-72-[_sellerImage]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_sellerImage)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-42-[_sellerImage(105)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_sellerImage)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-72-[_sellerImage(105)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_sellerImage)]];
 }
 
 - (void)setupFoodImage
 {
     _foodImage = [[UIImageView alloc] init];
-    _foodImage.layer.cornerRadius = CGRectGetWidth(_foodImage.bounds) / 2;
+    _foodImage.layer.cornerRadius = 105 / 2;
     _foodImage.layer.masksToBounds = YES;
+    _foodImage.contentMode = UIViewContentModeScaleAspectFill;
     _foodImage.translatesAutoresizingMaskIntoConstraints = NO;
     [_foodImage setImageWithURL:_order.food.thumbnailImageAsURL];
     [self.view addSubview:_foodImage];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_foodImage, _sellerImage);
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_sellerImage]-26-[_foodImage]" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-72-[_foodImage]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_sellerImage(105)]-26-[_foodImage(105)]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-72-[_foodImage(105)]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupETALabels;
@@ -190,7 +192,10 @@
 - (NSString *)timeLabelText {
     TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
     timeIntervalFormatter.futureDeicticExpression = @"";
-    return [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:_order.deliveredAt];
+    
+    NSString *text = [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:_order.deliveredAt];
+    if (!text) text = @"~15 min";
+    return text;
 }
 
 

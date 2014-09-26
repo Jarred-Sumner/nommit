@@ -9,16 +9,16 @@
 #import "NMMenuViewController.h"
 #import <REFrostedViewController.h>
 #import <REFrostedContainerViewController.h>
-//#import <UIViewController+REFrostedViewController.h>
 #import "NMFoodsTableViewController.h"
 #import "NMMenuNavigationController.h"
-#import "NMPaymentsViewController.h"
-#import "NMCreateCampaignViewController.h"
-#import "NMLoginViewController.h"
 #import "NMColors.h"
+
 #import "NMFoodOrdersTableViewController.h"
 #import "NMPickPlacesTableViewController.h"
 #import "NMAccountTableViewController.h"
+#import "NMDeliveryViewController.h"
+
+#import "NMLoginViewController.h"
 
 static NSInteger NMStaticSection = 0;
 static NSInteger NMOrdersSection = 1;
@@ -146,6 +146,13 @@ static NSInteger NMOrdersSection = 1;
         }
 
     } else if (indexPath.section == 1) {
+        // Correct the indexPath to account for only one section in fetched results controller
+        indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+        
+        NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        NMDeliveryViewController *deliveryVC = [[NMDeliveryViewController alloc] initWithOrder:order];
+        [self navigateTo:deliveryVC];
     }
 }
 
