@@ -307,7 +307,7 @@ static NSInteger NMOrdersSection = 1;
 
 - (void)showAccount {
     // NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] init];
-    NMAccountTableViewController *accountTableVC = [[NMAccountTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    NMAccountTableViewController *accountTableVC = [[NMAccountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self navigateTo:accountTableVC];
 }
 
