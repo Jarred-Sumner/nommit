@@ -220,9 +220,9 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     self.navigationItem.leftBarButtonItem = lbb;
     
     // Logo in the center of navigation bar
-    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 88, 21)];
+    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 86.5*1.3, 21*1.3)];
     UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];
-    titleImageView.frame = CGRectMake(0, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
+    titleImageView.frame = CGRectMake(15, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
     [logoView addSubview:titleImageView];
     self.navigationItem.titleView = logoView;
     self.navigationController.navigationBarHidden = NO;
