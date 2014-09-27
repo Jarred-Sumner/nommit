@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0BE7DBB520544DDE837C3DD0"
+               BlueprintIdentifier = "E6AD2359072A4B63B2466A6E"
                BuildableName = "libPods-nommit-JCAutocompletingSearch.a"
                BlueprintName = "Pods-nommit-JCAutocompletingSearch"
                ReferencedContainer = "container:Pods.xcodeproj">

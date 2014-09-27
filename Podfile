@@ -24,6 +24,7 @@ target "nommit" do
   pod 'JCAutocompletingSearch'
   pod 'AMSmoothAlert'
   pod 'SIAlertView'
+  pod 'AKNumericFormatter'
 end
 
 

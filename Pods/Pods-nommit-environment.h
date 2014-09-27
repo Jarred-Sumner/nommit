@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
+// AKNumericFormatter
+#define COCOAPODS_POD_AVAILABLE_AKNumericFormatter
+#define COCOAPODS_VERSION_MAJOR_AKNumericFormatter 0
+#define COCOAPODS_VERSION_MINOR_AKNumericFormatter 0
+#define COCOAPODS_VERSION_PATCH_AKNumericFormatter 1
+
 // AMSmoothAlert
 #define COCOAPODS_POD_AVAILABLE_AMSmoothAlert
 #define COCOAPODS_VERSION_MAJOR_AMSmoothAlert 1

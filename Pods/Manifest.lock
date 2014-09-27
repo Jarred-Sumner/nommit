@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AKNumericFormatter (0.0.1)
   - AMSmoothAlert (1.1):
     - GPUImage
   - APParallaxHeader (0.1.6)
@@ -82,6 +83,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - AKNumericFormatter
   - AMSmoothAlert
   - APParallaxHeader
   - DBCamera
@@ -106,6 +108,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
+  AKNumericFormatter: 9106b01691382063dd40b83c8f09be40dcf55854
   AMSmoothAlert: 1b4bf6688b698a606a963c336b5060490f4d3db2
   APParallaxHeader: 6e7cc27c052be34e1a5655dc2fab6c40eecbbe55
   Bolts: 2635e8698a630774689441047f3465d78c48d485
