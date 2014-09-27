@@ -18,6 +18,7 @@
 #import "NMMenuNavigationController.h"
 #import "NMFoodsTableViewController.h"
 #import "Constants.h"
+#import "NMVerifyPhoneNumberViewController.h"
 
 
 @interface NMRegistrationSetupTableViewController ()<PKViewDelegate>
@@ -58,7 +59,7 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
     [super viewDidLoad];
     
     // Setup save button
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
     saveButton.enabled = NO;
     self.navigationItem.rightBarButtonItem = saveButton;
     
@@ -199,6 +200,9 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 }
 
 - (IBAction)save:(id)sender {
+    NMVerifyPhoneNumberViewController *verifyPhoneNumberVC = [[NMVerifyPhoneNumberViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:verifyPhoneNumberVC animated:YES];
+    // SAVING ACTIONS :
     if (_paymentCell.paymentView.hidden == YES) {
         [SVProgressHUD showWithStatus:@"Verifying..."];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -253,6 +257,8 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
             [self hasToken:token];
         }
     }];
+    
+    // Push to next controller
 }
 
 - (void)hasError:(NSError *)error {

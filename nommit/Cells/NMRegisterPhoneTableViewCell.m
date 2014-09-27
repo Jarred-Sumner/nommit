@@ -41,7 +41,8 @@
     [self.contentView addSubview:_textField];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[_textField]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_textField)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[_textField]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_textField)]];}
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[_textField]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_textField)]];
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField*)aTextField
 {

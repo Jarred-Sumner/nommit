@@ -41,7 +41,7 @@
 - (UIViewController *)rootViewController {
     if ([NMSession isUserLoggedIn]) {
         return [[NMFoodsTableViewController alloc] init];
-//        return [[NMRegistrationSetupTableViewController alloc] initWithStyle:UITableViewStylePlain];
+//        return [[NMRegistrationSetupTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     } else return [[NMLoginViewController alloc] init];
 }
 

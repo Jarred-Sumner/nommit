@@ -88,7 +88,7 @@ static NSString *const kPKOldLocalizedStringsTableName = @"STPaymentLocalizable"
 //            resizableImageWithCapInsets:UIEdgeInsetsMake(0, 8, 0, 8)];
 //    [self addSubview:backgroundImageView];
     
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width - 24, self.bounds.size.height)];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width - 20, self.bounds.size.height)];
     backgroundView.backgroundColor = [UIColor whiteColor];
     backgroundView.layer.borderWidth = 1.0f;
     backgroundView.layer.borderColor = [UIColorFromRGB(0xE9E9E9) CGColor];

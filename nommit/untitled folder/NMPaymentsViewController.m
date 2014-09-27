@@ -53,7 +53,7 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
     self.navigationItem.leftBarButtonItem = lbb;
     
     // Setup checkout
-    PKView *paymentView = [[PKView alloc] initWithFrame:CGRectMake(15, 20, 290, 55)];
+    PKView *paymentView = [[PKView alloc] initWithFrame:CGRectMake(24, 20, 290, 55)];
     paymentView.delegate = self;
     self.paymentView = paymentView;
     [self.view addSubview:paymentView];

@@ -91,6 +91,8 @@
 		8DD32FAA19D63A42009485C2 /* NMRegistrationSetupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FA919D63A42009485C2 /* NMRegistrationSetupTableViewController.m */; };
 		8DD32FAD19D6628D009485C2 /* NMRegisterPhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FAC19D6628D009485C2 /* NMRegisterPhoneTableViewCell.m */; };
 		8DD32FB019D662A4009485C2 /* NMRegisterPaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FAF19D662A4009485C2 /* NMRegisterPaymentTableViewCell.m */; };
+		8DD32FB319D690E2009485C2 /* NMVerifyPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FB219D690E2009485C2 /* NMVerifyPhoneNumberViewController.m */; };
+		8DD32FB619D73595009485C2 /* NMVerifyPhoneNumerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FB519D73595009485C2 /* NMVerifyPhoneNumerTableViewCell.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -282,6 +284,10 @@
 		8DD32FAC19D6628D009485C2 /* NMRegisterPhoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRegisterPhoneTableViewCell.m; path = Cells/NMRegisterPhoneTableViewCell.m; sourceTree = "<group>"; };
 		8DD32FAE19D662A4009485C2 /* NMRegisterPaymentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRegisterPaymentTableViewCell.h; path = Cells/NMRegisterPaymentTableViewCell.h; sourceTree = "<group>"; };
 		8DD32FAF19D662A4009485C2 /* NMRegisterPaymentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRegisterPaymentTableViewCell.m; path = Cells/NMRegisterPaymentTableViewCell.m; sourceTree = "<group>"; };
+		8DD32FB119D690E2009485C2 /* NMVerifyPhoneNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMVerifyPhoneNumberViewController.h; path = "untitled folder/NMVerifyPhoneNumberViewController.h"; sourceTree = "<group>"; };
+		8DD32FB219D690E2009485C2 /* NMVerifyPhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMVerifyPhoneNumberViewController.m; path = "untitled folder/NMVerifyPhoneNumberViewController.m"; sourceTree = "<group>"; };
+		8DD32FB419D73595009485C2 /* NMVerifyPhoneNumerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMVerifyPhoneNumerTableViewCell.h; path = Cells/NMVerifyPhoneNumerTableViewCell.h; sourceTree = "<group>"; };
+		8DD32FB519D73595009485C2 /* NMVerifyPhoneNumerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMVerifyPhoneNumerTableViewCell.m; path = Cells/NMVerifyPhoneNumerTableViewCell.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -571,6 +577,8 @@
 				8DCE835619D4D56700D770D0 /* NMAccountTableViewController.m */,
 				8DD32FA819D63A42009485C2 /* NMRegistrationSetupTableViewController.h */,
 				8DD32FA919D63A42009485C2 /* NMRegistrationSetupTableViewController.m */,
+				8DD32FB119D690E2009485C2 /* NMVerifyPhoneNumberViewController.h */,
+				8DD32FB219D690E2009485C2 /* NMVerifyPhoneNumberViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -651,6 +659,8 @@
 				8DD32FAC19D6628D009485C2 /* NMRegisterPhoneTableViewCell.m */,
 				8DD32FAE19D662A4009485C2 /* NMRegisterPaymentTableViewCell.h */,
 				8DD32FAF19D662A4009485C2 /* NMRegisterPaymentTableViewCell.m */,
+				8DD32FB419D73595009485C2 /* NMVerifyPhoneNumerTableViewCell.h */,
+				8DD32FB519D73595009485C2 /* NMVerifyPhoneNumerTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -858,6 +868,7 @@
 				8D6DE42119B7B5AB008F64CE /* NMAddressSearchViewController.m in Sources */,
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
+				8DD32FB319D690E2009485C2 /* NMVerifyPhoneNumberViewController.m in Sources */,
 				83C3649A19D1F78F004B4F22 /* NMErrorApiModel.m in Sources */,
 				83D6A9E419B822B8009A6D9B /* NMFood.m in Sources */,
 				83C3A19519D0C5E20052B6F7 /* _NMLocation.m in Sources */,
@@ -891,6 +902,7 @@
 				8DCE836319D4D69E00D770D0 /* NMPromoCodeTableViewCell.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
 				8D5E561C19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m in Sources */,
+				8DD32FB619D73595009485C2 /* NMVerifyPhoneNumerTableViewCell.m in Sources */,
 				8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */,
 				8DD32FB019D662A4009485C2 /* NMRegisterPaymentTableViewCell.m in Sources */,
 				8DA5199419D3846800BBA8A0 /* NMFoodOrderTableViewCell.m in Sources */,
