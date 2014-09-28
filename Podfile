@@ -25,6 +25,7 @@ target "nommit" do
   pod 'AMSmoothAlert'
   pod 'SIAlertView'
   pod 'libPhoneNumber-iOS', '~> 0.7'
+  pod 'AKNumericFormatter'
 end
 
 

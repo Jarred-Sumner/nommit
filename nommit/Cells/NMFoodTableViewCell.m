@@ -79,6 +79,7 @@
     _sellerLogoImageView.contentMode = UIViewContentModeScaleAspectFill;
     _sellerLogoImageView.layer.cornerRadius = CGRectGetWidth(_sellerLogoImageView.bounds) / 2;
     _sellerLogoImageView.layer.masksToBounds = YES;
+    _sellerLogoImageView.image = [UIImage imageNamed:@"LoadingSeller"];
 
     [self.contentView addSubview:_sellerLogoImageView];
 }
@@ -104,7 +105,7 @@
 {
     _foodImageView = [[UIImageView alloc] init];
     _foodImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    _foodImageView.image = [UIImage imageNamed:@"PepperoniPizza2"];
+    _foodImageView.image = [UIImage imageNamed:@"LoadingImage"];
     _foodImageView.layer.masksToBounds = YES;
     _foodImageView.layer.cornerRadius = 2;
     _foodImageView.contentMode = UIViewContentModeScaleAspectFill;
