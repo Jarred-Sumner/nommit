@@ -2,9 +2,46 @@ body {
   padding-top: 50px;
   background-color: #F8F8F8;
 }
+
+h2 {
+    font-family: "Avenir-Light";
+    font-size: 19px;   
+    color: #767676; 
+}
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;
+}
+
+.navbar-header {
+    background-color: white;
+    border-color: #DCDCDC;
+}
+
+.navbar-collapse {
+    background-color: white;
+    border-color: #DCDCDC;
+}
+
+.navbar-nav {
+    background-color: white;
+    border-color: #DCDCDC;
+}
+
+.nav .navbar-nav {
+    background-color: white;
+    border-color: #DCDCDC;
+}
+
+.nav> li {
+    background-color: white;
+    border-color: #DCDCDC;
+}
+
+.navbar-fixed-top {
+    background-color: white;
+    border-color: #DCDCDC;
 }
 
 /* Seller Name */
@@ -16,39 +53,38 @@ body {
     margin-top: -55px;
 }
 
+.row {
+}
 
-.main-card {
-    position: relative;
-    height: 469.7px;
+.row .span6 {
+    display: inline-block;
+}
+
+.food-container {
+    margin: 0 auto;
+    text-align: left;
     width: 326.9px;
     background-size: 100% 100%;
     background-image: url('../images/main_card.png');
 }
 
-.main_card_header {
-    position: absolute; 
-    top: .2%; 
-    width: 326.9px;
+.food-container .food-preview {
+    width: 100%;
     border-top-right-radius: 2px;
     border-top-left-radius: 2px;
-    left: 0%;
 }
 
-.main_card_title {
-    position: absolute; 
-    top: 41%; 
-    left: 8%; 
-    width: 96%; 
+.food-container .food {
+    margin: 16px;
+}
+
+.food-container .title {
+    margin: 0;
+    padding: 0px;
     text-align: left;
-    font-family: "Avenir-Light";
-    font-size: 19px;   
-    color: #767676; 
 }
 
-.main_card_sold {
-    position: absolute; 
-    top: 47%; 
-    left: 8%; 
+.food-container .sold {
     width: 96%; 
     text-align: left;
     font-family: "Avenir-Light";
@@ -56,21 +92,13 @@ body {
     color: #828282; 
 }
 
-.main_card_description {
-    position: absolute; 
-    top: 60%; 
-    left: 8%; 
-    width: 80%; 
-    text-align: left;
+.food-container .description {
     font-family: "Avenir-Light";
     font-size: 13px;   
     color: #565656;
 }
 
-.main_card_price {
-    position: absolute; 
-    top: 73%; 
-    left: 8%; 
+.food-container .price {
     width: 80%; 
     text-align: left;
     font-family: "Avenir-Light";
@@ -78,10 +106,7 @@ body {
     color: #42B7BB;
 }
 
-.main_card_quantity_label {
-    position: absolute; 
-    top: 75%; 
-    left: 62%; 
+.food-container .quantity-label {
     width: 18%; 
     text-align: left;
     font-family: "Avenir-Light";
@@ -89,22 +114,16 @@ body {
     color: #888888;
 }
 
-.main_card_select {
-    position: absolute; 
-    top: 73%; 
-    left: 72%; 
+.main_card .quantity-select {
     width: 18%; 
     text-align: left;
     font-family: "Avenir-Light";
     font-size: 18px;   
 }
 
-.main_card_order_button {
-    position: absolute; 
-    top: 73%; 
-    left: 72%; 
+.order-button {
     width: 18%; 
-    text-align: left;
+    text-align: center;
     font-family: "Avenir-Light";
     font-size: 23px;
     color: white;
@@ -141,9 +160,6 @@ body {
   color: #ffffff; 
   background-color: #42B7BB; 
   border-color: #39A4A8;
-  position: absolute; 
-  top: 86%; 
-  left: 8%; 
   width: 83%;  
   font-size: 20px;
   font-family: "Avenir-Light";
