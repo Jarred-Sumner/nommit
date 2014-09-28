@@ -1,0 +1,190 @@
+body {
+  padding-top: 50px;
+  background-color: #F8F8F8;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+/* Seller Name */
+.seller-name {
+    font-size: 20;
+    font-family: Avenir;
+    color: #404040;
+    margin-left: 170px;
+    margin-top: -55px;
+}
+
+
+.main-card {
+    position: relative;
+    height: 469.7px;
+    width: 326.9px;
+    background-size: 100% 100%;
+    background-image: url('../images/main_card.png');
+}
+
+.main_card_header {
+    position: absolute; 
+    top: .2%; 
+    width: 326.9px;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    left: 0%;
+}
+
+.main_card_title {
+    position: absolute; 
+    top: 41%; 
+    left: 8%; 
+    width: 96%; 
+    text-align: left;
+    font-family: "Avenir-Light";
+    font-size: 19px;   
+    color: #767676; 
+}
+
+.main_card_sold {
+    position: absolute; 
+    top: 47%; 
+    left: 8%; 
+    width: 96%; 
+    text-align: left;
+    font-family: "Avenir-Light";
+    font-size: 12px;   
+    color: #828282; 
+}
+
+.main_card_description {
+    position: absolute; 
+    top: 60%; 
+    left: 8%; 
+    width: 80%; 
+    text-align: left;
+    font-family: "Avenir-Light";
+    font-size: 13px;   
+    color: #565656;
+}
+
+.main_card_price {
+    position: absolute; 
+    top: 73%; 
+    left: 8%; 
+    width: 80%; 
+    text-align: left;
+    font-family: "Avenir-Light";
+    font-size: 24px;   
+    color: #42B7BB;
+}
+
+.main_card_quantity_label {
+    position: absolute; 
+    top: 75%; 
+    left: 62%; 
+    width: 18%; 
+    text-align: left;
+    font-family: "Avenir-Light";
+    font-size: 12px; 
+    color: #888888;
+}
+
+.main_card_select {
+    position: absolute; 
+    top: 73%; 
+    left: 72%; 
+    width: 18%; 
+    text-align: left;
+    font-family: "Avenir-Light";
+    font-size: 18px;   
+}
+
+.main_card_order_button {
+    position: absolute; 
+    top: 73%; 
+    left: 72%; 
+    width: 18%; 
+    text-align: left;
+    font-family: "Avenir-Light";
+    font-size: 23px;
+    color: white;
+    background-color: #42B7BB;
+}
+
+
+/* Circle Avatar Styles */
+
+.circle {
+    line-height: 0;     /* remove line-height */ 
+    display: inline-block;  /* circle wraps image */
+    margin: 5px;
+  border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 50%; /* relative value */
+    /*box-shadow: 0px 0px 5px rgba(0,0,0,0.4);*/
+    transition: linear 0.25s;
+  height: 50px;
+  width: 50px;
+  position:  relative;
+}
+.circle img {
+    border-radius: 50%; /* relative value for
+                   adjustable image size */
+}
+.circle:hover {
+    transition: ease-out 0.2s;
+  border: 2px solid rgba(255,255,255,0.8);
+  -webkit-transition: ease-out 0.2s;
+}
+
+/* order button */
+.order-button { 
+  color: #ffffff; 
+  background-color: #42B7BB; 
+  border-color: #39A4A8;
+  position: absolute; 
+  top: 86%; 
+  left: 8%; 
+  width: 83%;  
+  font-size: 20px;
+  font-family: "Avenir-Light";
+} 
+ 
+.order-button:hover, 
+.order-button:focus, 
+.order-button:active, 
+.order-button.active, 
+.open .dropdown-toggle.order-button { 
+  color: #ffffff; 
+  background-color: #388E91; 
+  border-color: #39A4A8; 
+} 
+ 
+.order-button:active, 
+.order-button.active, 
+.open .dropdown-toggle.order-button { 
+  background-image: none; 
+} 
+ 
+.order-button.disabled, 
+.order-button[disabled], 
+fieldset[disabled] .order-button, 
+.order-button.disabled:hover, 
+.order-button[disabled]:hover, 
+fieldset[disabled] .order-button:hover, 
+.order-button.disabled:focus, 
+.order-button[disabled]:focus, 
+fieldset[disabled] .order-button:focus, 
+.order-button.disabled:active, 
+.order-button[disabled]:active, 
+fieldset[disabled] .order-button:active, 
+.order-button.disabled.active, 
+.order-button[disabled].active, 
+fieldset[disabled] .order-button.active { 
+  background-color: #42B7BB; 
+  border-color: #39A4A8; 
+} 
+ 
+.order-button .badge { 
+  color: #42B7BB; 
+  background-color: #ffffff; 
+}
