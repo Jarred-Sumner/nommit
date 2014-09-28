@@ -3,6 +3,7 @@
     <entity name="NMCourier" representedClassName="NMCourier" syncable="YES">
         <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="foodDeliveryPlaces" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMFoodDeliveryPlace" inverseName="courier" inverseEntity="NMFoodDeliveryPlace" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="courier" inverseEntity="NMOrder" syncable="YES"/>
         <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="couriers" inverseEntity="NMPlace" syncable="YES"/>
         <relationship name="seller" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMSeller" inverseName="couriers" inverseEntity="NMSeller" syncable="YES"/>
@@ -21,8 +22,8 @@
         <attribute name="thumbnailImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <relationship name="foodDeliveryPlaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMFoodDeliveryPlace" inverseName="food" inverseEntity="NMFoodDeliveryPlace" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="food" inverseEntity="NMOrder" syncable="YES"/>
-        <relationship name="places" toMany="YES" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="foods" inverseEntity="NMPlace" syncable="YES"/>
         <relationship name="seller" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMSeller" inverseName="foods" inverseEntity="NMSeller" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
@@ -35,6 +36,15 @@
                 <index value="stateID"/>
             </compoundIndex>
         </compoundIndexes>
+    </entity>
+    <entity name="NMFoodDeliveryPlace" representedClassName="NMFoodDeliveryPlace" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="stateID" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="uid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="waitInterval" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="courier" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="foodDeliveryPlaces" inverseEntity="NMCourier" syncable="YES"/>
+        <relationship name="food" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMFood" inverseName="foodDeliveryPlaces" inverseEntity="NMFood" syncable="YES"/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="foodDeliveryPlaces" inverseEntity="NMPlace" syncable="YES"/>
     </entity>
     <entity name="NMLocation" representedClassName="NMLocation" syncable="YES">
         <attribute name="addressOne" optional="YES" attributeType="String" syncable="YES"/>
@@ -88,11 +98,11 @@
         </compoundIndexes>
     </entity>
     <entity name="NMPlace" representedClassName="NMPlace" syncable="YES">
-        <attribute name="foodCount" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="foodCount" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="couriers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="places" inverseEntity="NMCourier" syncable="YES"/>
-        <relationship name="foods" toMany="YES" deletionRule="Nullify" destinationEntity="NMFood" inverseName="places" inverseEntity="NMFood" syncable="YES"/>
+        <relationship name="foodDeliveryPlaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMFoodDeliveryPlace" inverseName="place" inverseEntity="NMFoodDeliveryPlace" syncable="YES"/>
         <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="place" inverseEntity="NMLocation" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="place" inverseEntity="NMOrder" syncable="YES"/>
     </entity>
@@ -124,12 +134,13 @@
         </compoundIndexes>
     </entity>
     <elements>
-        <element name="NMCourier" positionX="9" positionY="117" width="128" height="133"/>
-        <element name="NMFood" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="NMCourier" positionX="9" positionY="117" width="128" height="148"/>
+        <element name="NMFood" positionX="0" positionY="0" width="128" height="268"/>
         <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMOrder" positionX="0" positionY="0" width="128" height="253"/>
-        <element name="NMPlace" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="NMPlace" positionX="0" positionY="0" width="128" height="148"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
         <element name="NMUser" positionX="0" positionY="0" width="128" height="238"/>
+        <element name="NMFoodDeliveryPlace" positionX="9" positionY="117" width="128" height="148"/>
     </elements>
 </model>

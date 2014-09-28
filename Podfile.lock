@@ -27,6 +27,7 @@ PODS:
   - DBCamera (2.3.4):
     - GPUImage (~> 0.1)
   - DropdownMenu (1.0.0)
+  - ECPhoneNumberFormatter (0.1.1)
   - Facebook-iOS-SDK (3.17.0):
     - Bolts
   - FormatterKit (1.7.0):
@@ -86,6 +87,7 @@ DEPENDENCIES:
   - APParallaxHeader
   - DBCamera
   - DropdownMenu
+  - ECPhoneNumberFormatter
   - Facebook-iOS-SDK
   - FormatterKit
   - INTULocationManager
@@ -111,6 +113,7 @@ SPEC CHECKSUMS:
   Bolts: 2635e8698a630774689441047f3465d78c48d485
   DBCamera: d78a9f58aaf29d0a0811baa8cea747c7d7e80923
   DropdownMenu: ad71a2fcb932cc04a4f7c29aadaf2e8ed0c08e42
+  ECPhoneNumberFormatter: 5e178027d1d43472187c3f623e7b69b89fdb3187
   Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   FormatterKit: 846ca773b9daaa13b50ae0df1f4a328d030d859c
   GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04

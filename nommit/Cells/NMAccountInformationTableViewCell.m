@@ -68,14 +68,5 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_nameLabel]-1-[_emailLabel]-1-[_phoneLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel, _phoneLabel, _emailLabel)]];
 }
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

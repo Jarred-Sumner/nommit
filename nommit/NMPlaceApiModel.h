@@ -13,7 +13,6 @@
 @property (nonatomic, strong) NSNumber *uid;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *foodCount;
-@property (nonatomic, strong) NSArray *foods;
 @property (nonatomic, strong) NMLocationApiModel *location;
 
 + (NSArray *)placesForModels:(NSArray *)models;

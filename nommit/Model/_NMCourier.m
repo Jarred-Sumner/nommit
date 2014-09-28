@@ -9,6 +9,7 @@ const struct NMCourierAttributes NMCourierAttributes = {
 };
 
 const struct NMCourierRelationships NMCourierRelationships = {
+	.foodDeliveryPlaces = @"foodDeliveryPlaces",
 	.orders = @"orders",
 	.places = @"places",
 	.seller = @"seller",
@@ -112,6 +113,10 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 
 
 
+
+@dynamic foodDeliveryPlaces;
+
+	
 
 @dynamic orders;
 

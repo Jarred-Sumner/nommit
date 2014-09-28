@@ -83,7 +83,7 @@
 		8DCE835719D4D56700D770D0 /* NMAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835619D4D56700D770D0 /* NMAccountTableViewController.m */; };
 		8DCE835A19D4D5C900D770D0 /* NMTableSeparatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835919D4D5C900D770D0 /* NMTableSeparatorView.m */; };
 		8DCE835D19D4D67B00D770D0 /* NMAccountInformationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835C19D4D67B00D770D0 /* NMAccountInformationTableViewCell.m */; };
-		8DCE836019D4D68F00D770D0 /* NMYourCardsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835F19D4D68F00D770D0 /* NMYourCardsTableViewCell.m */; };
+		8DCE836019D4D68F00D770D0 /* NMPaymentMethodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835F19D4D68F00D770D0 /* NMPaymentMethodTableViewCell.m */; };
 		8DCE836319D4D69E00D770D0 /* NMPromoCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836219D4D69E00D770D0 /* NMPromoCodeTableViewCell.m */; };
 		8DCE836619D4D7E600D770D0 /* NMAccountPromoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836519D4D7E600D770D0 /* NMAccountPromoTableViewCell.m */; };
 		8DCE836B19D50B2E00D770D0 /* NMPromoTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836A19D50B2E00D770D0 /* NMPromoTextField.m */; };
@@ -263,8 +263,8 @@
 		8DCE835919D4D5C900D770D0 /* NMTableSeparatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMTableSeparatorView.m; path = Views/NMTableSeparatorView.m; sourceTree = "<group>"; };
 		8DCE835B19D4D67B00D770D0 /* NMAccountInformationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMAccountInformationTableViewCell.h; path = Cells/NMAccountInformationTableViewCell.h; sourceTree = "<group>"; };
 		8DCE835C19D4D67B00D770D0 /* NMAccountInformationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMAccountInformationTableViewCell.m; path = Cells/NMAccountInformationTableViewCell.m; sourceTree = "<group>"; };
-		8DCE835E19D4D68F00D770D0 /* NMYourCardsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMYourCardsTableViewCell.h; path = Cells/NMYourCardsTableViewCell.h; sourceTree = "<group>"; };
-		8DCE835F19D4D68F00D770D0 /* NMYourCardsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMYourCardsTableViewCell.m; path = Cells/NMYourCardsTableViewCell.m; sourceTree = "<group>"; };
+		8DCE835E19D4D68F00D770D0 /* NMPaymentMethodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPaymentMethodTableViewCell.h; path = Cells/NMPaymentMethodTableViewCell.h; sourceTree = "<group>"; };
+		8DCE835F19D4D68F00D770D0 /* NMPaymentMethodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPaymentMethodTableViewCell.m; path = Cells/NMPaymentMethodTableViewCell.m; sourceTree = "<group>"; };
 		8DCE836119D4D69E00D770D0 /* NMPromoCodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPromoCodeTableViewCell.h; path = Cells/NMPromoCodeTableViewCell.h; sourceTree = "<group>"; };
 		8DCE836219D4D69E00D770D0 /* NMPromoCodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPromoCodeTableViewCell.m; path = Cells/NMPromoCodeTableViewCell.m; sourceTree = "<group>"; };
 		8DCE836419D4D7E600D770D0 /* NMAccountPromoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMAccountPromoTableViewCell.h; path = Cells/NMAccountPromoTableViewCell.h; sourceTree = "<group>"; };
@@ -630,8 +630,8 @@
 				8DCE835319D4C85500D770D0 /* NMPickPlaceTableViewCell.m */,
 				8DCE835B19D4D67B00D770D0 /* NMAccountInformationTableViewCell.h */,
 				8DCE835C19D4D67B00D770D0 /* NMAccountInformationTableViewCell.m */,
-				8DCE835E19D4D68F00D770D0 /* NMYourCardsTableViewCell.h */,
-				8DCE835F19D4D68F00D770D0 /* NMYourCardsTableViewCell.m */,
+				8DCE835E19D4D68F00D770D0 /* NMPaymentMethodTableViewCell.h */,
+				8DCE835F19D4D68F00D770D0 /* NMPaymentMethodTableViewCell.m */,
 				8DCE836119D4D69E00D770D0 /* NMPromoCodeTableViewCell.h */,
 				8DCE836219D4D69E00D770D0 /* NMPromoCodeTableViewCell.m */,
 				8DCE836419D4D7E600D770D0 /* NMAccountPromoTableViewCell.h */,
@@ -879,7 +879,7 @@
 				8DA5199419D3846800BBA8A0 /* NMFoodOrderTableViewCell.m in Sources */,
 				83C3A18C19CE54420052B6F7 /* NMSeller.m in Sources */,
 				8DCE836B19D50B2E00D770D0 /* NMPromoTextField.m in Sources */,
-				8DCE836019D4D68F00D770D0 /* NMYourCardsTableViewCell.m in Sources */,
+				8DCE836019D4D68F00D770D0 /* NMPaymentMethodTableViewCell.m in Sources */,
 				83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */,
 				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				8DA5198E19D3823000BBA8A0 /* NMFoodOrdersTableViewController.m in Sources */,

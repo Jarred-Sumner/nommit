@@ -11,7 +11,7 @@ const struct NMPlaceAttributes NMPlaceAttributes = {
 
 const struct NMPlaceRelationships NMPlaceRelationships = {
 	.couriers = @"couriers",
-	.foods = @"foods",
+	.foodDeliveryPlaces = @"foodDeliveryPlaces",
 	.location = @"location",
 	.orders = @"orders",
 };
@@ -134,15 +134,15 @@ const struct NMPlaceFetchedProperties NMPlaceFetchedProperties = {
 }
 	
 
-@dynamic foods;
+@dynamic foodDeliveryPlaces;
 
 	
-- (NSMutableSet*)foodsSet {
-	[self willAccessValueForKey:@"foods"];
+- (NSMutableSet*)foodDeliveryPlacesSet {
+	[self willAccessValueForKey:@"foodDeliveryPlaces"];
   
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"foods"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"foodDeliveryPlaces"];
   
-	[self didAccessValueForKey:@"foods"];
+	[self didAccessValueForKey:@"foodDeliveryPlaces"];
 	return result;
 }
 	

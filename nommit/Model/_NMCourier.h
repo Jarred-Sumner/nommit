@@ -10,6 +10,7 @@ extern const struct NMCourierAttributes {
 } NMCourierAttributes;
 
 extern const struct NMCourierRelationships {
+	__unsafe_unretained NSString *foodDeliveryPlaces;
 	__unsafe_unretained NSString *orders;
 	__unsafe_unretained NSString *places;
 	__unsafe_unretained NSString *seller;
@@ -19,6 +20,7 @@ extern const struct NMCourierRelationships {
 extern const struct NMCourierFetchedProperties {
 } NMCourierFetchedProperties;
 
+@class NMFoodDeliveryPlace;
 @class NMOrder;
 @class NMPlace;
 @class NMSeller;
@@ -64,6 +66,13 @@ extern const struct NMCourierFetchedProperties {
 
 //- (BOOL)validateUid:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
+@property (nonatomic, strong) NMFoodDeliveryPlace *foodDeliveryPlaces;
+
+//- (BOOL)validateFoodDeliveryPlaces:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -132,6 +141,11 @@ extern const struct NMCourierFetchedProperties {
 - (void)setPrimitiveUidValue:(int64_t)value_;
 
 
+
+
+
+- (NMFoodDeliveryPlace*)primitiveFoodDeliveryPlaces;
+- (void)setPrimitiveFoodDeliveryPlaces:(NMFoodDeliveryPlace*)value;
 
 
 

@@ -29,12 +29,8 @@
 {
     return @{
              @"uid": @"id",
-             @"foodCount" : @"food_count"
+             @"foodCount" : @"food_count",
     };
-}
-
-+ (NSValueTransformer *)foodsJSONTransformer  {
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMFoodApiModel class]];
 }
 
 

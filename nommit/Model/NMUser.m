@@ -1,6 +1,6 @@
 #import "NMUser.h"
 
-#import "ECPhoneNumberFormatter.h"
+#import <libPhoneNumber-iOS/NBPhoneNumberUtil.h>
 
 @implementation NMUser
 
@@ -8,7 +8,6 @@ static id NMCurrentUser;
 
 + (NMUser *)currentUser {
     if (!NMCurrentUser) {
-        NSLog(@"Users: %@", [NMSession userID]);
         NMCurrentUser = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID]];
     }
     return NMCurrentUser;
@@ -20,8 +19,13 @@ static id NMCurrentUser;
 
 
 - (NSString *)formattedPhone {
-    ECPhoneNumberFormatter *formatter = [[ECPhoneNumberFormatter alloc] init];
-    return [formatter stringForObjectValue:self.phone];
+    NBPhoneNumberUtil *util = [NBPhoneNumberUtil sharedInstance];
+    return [util format:[self phoneNumber] numberFormat:NBEPhoneNumberFormatNATIONAL error:nil];
+}
+
+- (NBPhoneNumber*)phoneNumber {
+    NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
+    return [phoneUtil parse:self.phone defaultRegion:@"US" error:nil];
 }
 
 

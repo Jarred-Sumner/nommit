@@ -7,5 +7,4 @@
 + (void)setCurrentUser:(NMUser*)currentUser;
 
 @property (readonly) NSString *formattedPhone;
-
 @end
