@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMFoodOrdersTableViewController : UITableViewController
+@interface NMFoodDeliveryPlaceTableViewController : UITableViewController<NSFetchedResultsControllerDelegate>
 
 @end

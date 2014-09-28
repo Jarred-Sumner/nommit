@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMFoodOrderTableViewCell : UITableViewCell
+@interface NMOrderTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIButton *callButton;
 @property (nonatomic, strong) UIButton *doneButton;
-@property (nonatomic, strong) UIImageView *profileAvatar;
+@property (nonatomic, strong) FBProfilePictureView *profileAvatar;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *orderName;
 

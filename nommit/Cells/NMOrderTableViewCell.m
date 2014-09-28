@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMFoodOrderTableViewCell.h"
+#import "NMOrderTableViewCell.h"
 #import "NMColors.h"
 
 @interface NMOrderFoodTableViewCell
 
 @end
 
-@implementation NMFoodOrderTableViewCell
+@implementation NMOrderTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,11 +29,10 @@
 
 - (void)setupAvatar
 {
-    _profileAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(20.5, 7.5, 35.25, 35.25)];
+    _profileAvatar = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(20.5, 7.5, 35.25, 35.25)];
     _profileAvatar.layer.cornerRadius = _profileAvatar.bounds.size.width/2;
     _profileAvatar.contentMode = UIViewContentModeScaleAspectFit;
     _profileAvatar.layer.masksToBounds = YES;
-    _profileAvatar.image = [UIImage imageNamed:@"AvatarLucySmall"];
     [self.contentView addSubview:_profileAvatar];
 }
 
