@@ -24,7 +24,7 @@ target "nommit" do
   pod 'JCAutocompletingSearch'
   pod 'AMSmoothAlert'
   pod 'SIAlertView'
-  pod 'ECPhoneNumberFormatter'
+  pod 'libPhoneNumber-iOS', '~> 0.7'
 end
 
 

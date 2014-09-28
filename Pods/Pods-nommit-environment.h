@@ -78,12 +78,6 @@
 #define COCOAPODS_VERSION_MINOR_DropdownMenu 0
 #define COCOAPODS_VERSION_PATCH_DropdownMenu 0
 
-// ECPhoneNumberFormatter
-#define COCOAPODS_POD_AVAILABLE_ECPhoneNumberFormatter
-#define COCOAPODS_VERSION_MAJOR_ECPhoneNumberFormatter 0
-#define COCOAPODS_VERSION_MINOR_ECPhoneNumberFormatter 1
-#define COCOAPODS_VERSION_PATCH_ECPhoneNumberFormatter 1
-
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
@@ -287,4 +281,10 @@
 #define COCOAPODS_VERSION_MAJOR_TYMProgressBarView 0
 #define COCOAPODS_VERSION_MINOR_TYMProgressBarView 3
 #define COCOAPODS_VERSION_PATCH_TYMProgressBarView 0
+
+// libPhoneNumber-iOS
+#define COCOAPODS_POD_AVAILABLE_libPhoneNumber_iOS
+#define COCOAPODS_VERSION_MAJOR_libPhoneNumber_iOS 0
+#define COCOAPODS_VERSION_MINOR_libPhoneNumber_iOS 7
+#define COCOAPODS_VERSION_PATCH_libPhoneNumber_iOS 3
 

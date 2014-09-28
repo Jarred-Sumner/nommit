@@ -38,6 +38,9 @@
 		83D6A9E619B822B8009A6D9B /* NMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6A9E019B822B8009A6D9B /* NMUser.m */; };
 		83D6A9E819B822F7009A6D9B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D6A9E719B822F7009A6D9B /* CoreData.framework */; };
 		83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6A9EB19B82A5B009A6D9B /* NMApi.m */; };
+		83D6B1D019D76EA60016E7A0 /* _NMFoodDeliveryPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6B1CD19D76EA60016E7A0 /* _NMFoodDeliveryPlace.m */; };
+		83D6B1D119D76EA60016E7A0 /* NMFoodDeliveryPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6B1CF19D76EA60016E7A0 /* NMFoodDeliveryPlace.m */; };
+		83D6B1D419D76ECA0016E7A0 /* NMFoodDeliveryPlaceApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6B1D319D76ECA0016E7A0 /* NMFoodDeliveryPlaceApiModel.m */; };
 		83EE765819BBE3CD006FEDDF /* NMSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765719BBE3CD006FEDDF /* NMSession.m */; };
 		83EE765B19BBF9A6006FEDDF /* NMLocationApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765A19BBF9A6006FEDDF /* NMLocationApiModel.m */; };
 		83EE766119BBFE51006FEDDF /* NMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765F19BBFE51006FEDDF /* NMLocation.m */; };
@@ -176,6 +179,12 @@
 		83D6A9E719B822F7009A6D9B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		83D6A9EA19B82A5B009A6D9B /* NMApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMApi.h; sourceTree = "<group>"; };
 		83D6A9EB19B82A5B009A6D9B /* NMApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMApi.m; sourceTree = "<group>"; };
+		83D6B1CC19D76EA60016E7A0 /* _NMFoodDeliveryPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMFoodDeliveryPlace.h; path = Model/_NMFoodDeliveryPlace.h; sourceTree = "<group>"; };
+		83D6B1CD19D76EA60016E7A0 /* _NMFoodDeliveryPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMFoodDeliveryPlace.m; path = Model/_NMFoodDeliveryPlace.m; sourceTree = "<group>"; };
+		83D6B1CE19D76EA60016E7A0 /* NMFoodDeliveryPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodDeliveryPlace.h; path = Model/NMFoodDeliveryPlace.h; sourceTree = "<group>"; };
+		83D6B1CF19D76EA60016E7A0 /* NMFoodDeliveryPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodDeliveryPlace.m; path = Model/NMFoodDeliveryPlace.m; sourceTree = "<group>"; };
+		83D6B1D219D76ECA0016E7A0 /* NMFoodDeliveryPlaceApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMFoodDeliveryPlaceApiModel.h; sourceTree = "<group>"; };
+		83D6B1D319D76ECA0016E7A0 /* NMFoodDeliveryPlaceApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMFoodDeliveryPlaceApiModel.m; sourceTree = "<group>"; };
 		83EE765619BBE3CD006FEDDF /* NMSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMSession.h; sourceTree = "<group>"; };
 		83EE765719BBE3CD006FEDDF /* NMSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMSession.m; sourceTree = "<group>"; };
 		83EE765919BBF9A6006FEDDF /* NMLocationApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMLocationApiModel.h; sourceTree = "<group>"; };
@@ -343,6 +352,8 @@
 		83C0EA0819B981FD009A7BE0 /* Machine Generated */ = {
 			isa = PBXGroup;
 			children = (
+				83D6B1CC19D76EA60016E7A0 /* _NMFoodDeliveryPlace.h */,
+				83D6B1CD19D76EA60016E7A0 /* _NMFoodDeliveryPlace.m */,
 				836E358619D3E039004208A6 /* _NMCourier.h */,
 				836E358719D3E039004208A6 /* _NMCourier.m */,
 				83C3A19319D0C5E20052B6F7 /* _NMLocation.h */,
@@ -382,6 +393,8 @@
 				83C3649919D1F78F004B4F22 /* NMErrorApiModel.m */,
 				836E358319D3DF66004208A6 /* NMCourierApiModel.h */,
 				836E358419D3DF66004208A6 /* NMCourierApiModel.m */,
+				83D6B1D219D76ECA0016E7A0 /* NMFoodDeliveryPlaceApiModel.h */,
+				83D6B1D319D76ECA0016E7A0 /* NMFoodDeliveryPlaceApiModel.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -664,6 +677,8 @@
 				83C3A18819CE54420052B6F7 /* NMPlace.m */,
 				83C3A18919CE54420052B6F7 /* NMSeller.h */,
 				83C3A18A19CE54420052B6F7 /* NMSeller.m */,
+				83D6B1CE19D76EA60016E7A0 /* NMFoodDeliveryPlace.h */,
+				83D6B1CF19D76EA60016E7A0 /* NMFoodDeliveryPlace.m */,
 				83C0EA0819B981FD009A7BE0 /* Machine Generated */,
 				8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */,
 				83EE765E19BBFE51006FEDDF /* NMLocation.h */,
@@ -852,11 +867,13 @@
 				836E358519D3DF66004208A6 /* NMCourierApiModel.m in Sources */,
 				836E358A19D3E039004208A6 /* _NMCourier.m in Sources */,
 				8DCE835119D4C6FD00D770D0 /* NMPickPlacesTableViewController.m in Sources */,
+				83D6B1D419D76ECA0016E7A0 /* NMFoodDeliveryPlaceApiModel.m in Sources */,
 				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
 				83EE766119BBFE51006FEDDF /* NMLocation.m in Sources */,
 				8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */,
 				8D49F30B19BEAF2B00E60145 /* Constants.m in Sources */,
 				836E358B19D3E039004208A6 /* NMCourier.m in Sources */,
+				83D6B1D119D76EA60016E7A0 /* NMFoodDeliveryPlace.m in Sources */,
 				8DCE835A19D4D5C900D770D0 /* NMTableSeparatorView.m in Sources */,
 				8D7D00A719CD160B0006E5E6 /* NMFoodCellHeaderView.m in Sources */,
 				83C3A18619CE54380052B6F7 /* _NMSeller.m in Sources */,
@@ -875,6 +892,7 @@
 				8DCE836319D4D69E00D770D0 /* NMPromoCodeTableViewCell.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
 				8D5E561C19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m in Sources */,
+				83D6B1D019D76EA60016E7A0 /* _NMFoodDeliveryPlace.m in Sources */,
 				8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */,
 				8DA5199419D3846800BBA8A0 /* NMFoodOrderTableViewCell.m in Sources */,
 				83C3A18C19CE54420052B6F7 /* NMSeller.m in Sources */,
