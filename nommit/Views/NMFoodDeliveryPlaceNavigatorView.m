@@ -33,6 +33,9 @@ typedef NS_ENUM(NSInteger, NMFoodDeliveryState) {
         self.backgroundColor = [NMColors mainColor];
         [self setupNameLabel];
         [self setupNextLabel];
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8.5-[_nameLabel]-0-[_nextLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel, _nextLabel)]];
+        
         [self setupArrows];
         
         [self startUpdatingPlaceText];
@@ -51,8 +54,7 @@ typedef NS_ENUM(NSInteger, NMFoodDeliveryState) {
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_nameLabel);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_nameLabel]-15-|" options:0 metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8.5-[_nameLabel]" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_nameLabel]|" options:0 metrics:nil views:views]];
 }
 
 - (void)setupNextLabel
@@ -66,8 +68,7 @@ typedef NS_ENUM(NSInteger, NMFoodDeliveryState) {
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_nextLabel, _nameLabel);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_nextLabel]-15-|" options:0 metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8.5-[_nameLabel]-0-[_nextLabel]" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_nextLabel]|" options:0 metrics:nil views:views]];
 }
 
 - (void)setupArrows
