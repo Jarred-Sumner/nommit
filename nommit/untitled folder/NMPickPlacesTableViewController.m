@@ -34,7 +34,7 @@ static NSString *NMPickPlaceCellIdentifier = @"NMPickPlaceCell";
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
     
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
     
     self.navigationItem.rightBarButtonItem = rightBarButton;
 }

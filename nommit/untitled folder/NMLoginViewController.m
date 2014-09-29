@@ -93,7 +93,7 @@
     message.lineBreakMode = NSLineBreakByWordWrapping;
     message.numberOfLines = 0;
     message.translatesAutoresizingMaskIntoConstraints = NO;
-    message.text = @"To use nommit, please sign in with Facebook.";
+    message.text = @"To use nommit, please sign in with Facebook. Only available to CMU students.";
     
     [self.view addSubview:message];
     

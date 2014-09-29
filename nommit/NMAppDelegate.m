@@ -16,6 +16,7 @@
 #import "NMLoginViewController.h"
 #import "NMFoodsTableViewController.h"
 #import "NMRegistrationSetupTableViewController.h"
+#import "NMRateViewController.h"
 
 @interface NMAppDelegate ()
 

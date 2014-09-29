@@ -26,6 +26,7 @@ target "nommit" do
   pod 'SIAlertView'
   pod 'libPhoneNumber-iOS', '~> 0.7'
   pod 'AKNumericFormatter'
+  pod 'ParallaxBlur'
 end
 
 

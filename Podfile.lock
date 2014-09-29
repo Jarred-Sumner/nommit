@@ -49,6 +49,7 @@ PODS:
   - FormatterKit/TimeIntervalFormatter (1.7.0)
   - FormatterKit/UnitOfInformationFormatter (1.7.0)
   - FormatterKit/URLRequestFormatter (1.7.0)
+  - FXBlurView (1.6.2)
   - GPUImage (0.1.5)
   - INTULocationManager (1.2.0)
   - JCAutocompletingSearch (0.9.6)
@@ -74,6 +75,8 @@ PODS:
     - Mantle (~> 1.3)
   - Overcoat/NSURLSession (2.0.2):
     - Overcoat/Core
+  - ParallaxBlur (0.1.4):
+    - FXBlurView (~> 1.6.2)
   - PaymentKit (1.0.5)
   - RateView (1.1)
   - REFrostedViewController (2.4.6)
@@ -100,6 +103,7 @@ DEPENDENCIES:
   - MagicalRecord
   - MGBoxKit
   - Overcoat
+  - ParallaxBlur
   - PaymentKit
   - RateView
   - REFrostedViewController
@@ -118,6 +122,7 @@ SPEC CHECKSUMS:
   DropdownMenu: ad71a2fcb932cc04a4f7c29aadaf2e8ed0c08e42
   Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   FormatterKit: 846ca773b9daaa13b50ae0df1f4a328d030d859c
+  FXBlurView: 47496afc9160097fa34af35fc4b310bd85d65dca
   GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
   INTULocationManager: 596c57e35a00ca1ee9d59bf4cc2b63dc299b580e
   JCAutocompletingSearch: cf30ed8eded452d2ec52efd9c57c4b6467e5d266
@@ -131,6 +136,7 @@ SPEC CHECKSUMS:
   MGEvents: e6254d7873bcb90b266801d171f9948194010927
   MGMushParser: 2c28a4e5c5938da9dcc1fbb090347e5ff575fc5b
   Overcoat: a9504cd1f0389641526ba1784592503c012c4b5f
+  ParallaxBlur: 149ea077dec9264fc12bc04490cd05ff0e170e1d
   PaymentKit: 14b54835f57ae9e2bf5628140fcd67001740cba2
   RateView: 4142c146bd42fe7715adc3365fa2ffd71ff327e0
   REFrostedViewController: 0f6bb16aeb4b384da25cc3c97bc1a16926583c62
