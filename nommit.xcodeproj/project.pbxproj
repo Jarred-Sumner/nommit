@@ -99,6 +99,10 @@
 		8DD32FB919D8E804009485C2 /* NMFoodDeliveryPlaceFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FB819D8E804009485C2 /* NMFoodDeliveryPlaceFooter.m */; };
 		8DD32FBC19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FBB19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.m */; };
 		8DD32FBF19D93415009485C2 /* NMOrderFoodDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FBE19D93415009485C2 /* NMOrderFoodDescriptionTableViewCell.m */; };
+		8DD32FC219D94777009485C2 /* NMDeliveryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FC119D94777009485C2 /* NMDeliveryTableViewController.m */; };
+		8DD32FC519D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FC419D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m */; };
+		8DD32FC819D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FC719D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m */; };
+		8DD32FCB19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FCA19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -306,6 +310,14 @@
 		8DD32FBB19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMOrderFoodBasicInfoTableViewCell.m; sourceTree = "<group>"; };
 		8DD32FBD19D93415009485C2 /* NMOrderFoodDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodDescriptionTableViewCell.h; path = Cells/NMOrderFoodDescriptionTableViewCell.h; sourceTree = "<group>"; };
 		8DD32FBE19D93415009485C2 /* NMOrderFoodDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodDescriptionTableViewCell.m; path = Cells/NMOrderFoodDescriptionTableViewCell.m; sourceTree = "<group>"; };
+		8DD32FC019D94777009485C2 /* NMDeliveryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryTableViewController.h; path = "untitled folder/NMDeliveryTableViewController.h"; sourceTree = "<group>"; };
+		8DD32FC119D94777009485C2 /* NMDeliveryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryTableViewController.m; path = "untitled folder/NMDeliveryTableViewController.m"; sourceTree = "<group>"; };
+		8DD32FC319D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryAvatarsTableViewCell.h; path = Cells/NMDeliveryAvatarsTableViewCell.h; sourceTree = "<group>"; };
+		8DD32FC419D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryAvatarsTableViewCell.m; path = Cells/NMDeliveryAvatarsTableViewCell.m; sourceTree = "<group>"; };
+		8DD32FC619D9C197009485C2 /* NMDeliveryCountdownTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryCountdownTableViewCell.h; path = Cells/NMDeliveryCountdownTableViewCell.h; sourceTree = "<group>"; };
+		8DD32FC719D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryCountdownTableViewCell.m; path = Cells/NMDeliveryCountdownTableViewCell.m; sourceTree = "<group>"; };
+		8DD32FC919D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryCallButtonTableViewCell.h; path = Cells/NMDeliveryCallButtonTableViewCell.h; sourceTree = "<group>"; };
+		8DD32FCA19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryCallButtonTableViewCell.m; path = Cells/NMDeliveryCallButtonTableViewCell.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -601,6 +613,8 @@
 				8DD32FA919D63A42009485C2 /* NMRegistrationSetupTableViewController.m */,
 				8DD32FB119D690E2009485C2 /* NMVerifyPhoneNumberViewController.h */,
 				8DD32FB219D690E2009485C2 /* NMVerifyPhoneNumberViewController.m */,
+				8DD32FC019D94777009485C2 /* NMDeliveryTableViewController.h */,
+				8DD32FC119D94777009485C2 /* NMDeliveryTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -687,6 +701,12 @@
 				8DD32FBB19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.m */,
 				8DD32FBD19D93415009485C2 /* NMOrderFoodDescriptionTableViewCell.h */,
 				8DD32FBE19D93415009485C2 /* NMOrderFoodDescriptionTableViewCell.m */,
+				8DD32FC319D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.h */,
+				8DD32FC419D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m */,
+				8DD32FC619D9C197009485C2 /* NMDeliveryCountdownTableViewCell.h */,
+				8DD32FC719D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m */,
+				8DD32FC919D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.h */,
+				8DD32FCA19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -878,6 +898,7 @@
 				8DA5198819D0ED9100BBA8A0 /* NMPlaceTableViewCell.m in Sources */,
 				8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
 				8D51D2BE19B6A92000920F69 /* CHDigitInput.m in Sources */,
+				8DD32FC219D94777009485C2 /* NMDeliveryTableViewController.m in Sources */,
 				83C3A18B19CE54420052B6F7 /* NMPlace.m in Sources */,
 				8DD32FBF19D93415009485C2 /* NMOrderFoodDescriptionTableViewCell.m in Sources */,
 				8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */,
@@ -897,6 +918,7 @@
 				8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */,
 				83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */,
 				8D7D00A419CD0BDD0006E5E6 /* NMFoodsTableViewController.m in Sources */,
+				8DD32FC819D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m in Sources */,
 				8D6DE42119B7B5AB008F64CE /* NMAddressSearchViewController.m in Sources */,
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
@@ -911,6 +933,7 @@
 				836E358519D3DF66004208A6 /* NMCourierApiModel.m in Sources */,
 				836E358A19D3E039004208A6 /* _NMCourier.m in Sources */,
 				8DCE835119D4C6FD00D770D0 /* NMPickPlacesTableViewController.m in Sources */,
+				8DD32FCB19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m in Sources */,
 				83D6B1D419D76ECA0016E7A0 /* NMFoodDeliveryPlaceApiModel.m in Sources */,
 				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
 				83EE766119BBFE51006FEDDF /* NMLocation.m in Sources */,
@@ -928,6 +951,7 @@
 				8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,
 				8DA5199119D3829C00BBA8A0 /* NMOrderLocationView.m in Sources */,
+				8DD32FC519D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m in Sources */,
 				83EE765819BBE3CD006FEDDF /* NMSession.m in Sources */,
 				8DD32FBC19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.m in Sources */,
 				8D7D00A119CA65A50006E5E6 /* NMDeliveryViewController.m in Sources */,

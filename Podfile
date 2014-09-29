@@ -27,6 +27,7 @@ target "nommit" do
   pod 'libPhoneNumber-iOS', '~> 0.7'
   pod 'AKNumericFormatter'
   pod 'ParallaxBlur'
+  pod 'MZTimerLabel'
 end
 
 

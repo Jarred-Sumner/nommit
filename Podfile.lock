@@ -50,7 +50,7 @@ PODS:
   - FormatterKit/UnitOfInformationFormatter (1.7.0)
   - FormatterKit/URLRequestFormatter (1.7.0)
   - FXBlurView (1.6.2)
-  - GPUImage (0.1.5)
+  - GPUImage (0.1.6)
   - INTULocationManager (1.2.0)
   - JCAutocompletingSearch (0.9.6)
   - JVFloatLabeledTextField (0.0.9)
@@ -68,6 +68,7 @@ PODS:
     - MGMushParser
   - MGEvents (1.0.3)
   - MGMushParser (1.0.0)
+  - MZTimerLabel (0.4.4)
   - Overcoat (2.0.2):
     - Overcoat/NSURLSession
   - Overcoat/Core (2.0.2):
@@ -102,6 +103,7 @@ DEPENDENCIES:
   - M13Checkbox (~> 1.1.0)
   - MagicalRecord
   - MGBoxKit
+  - MZTimerLabel
   - Overcoat
   - ParallaxBlur
   - PaymentKit
@@ -123,7 +125,7 @@ SPEC CHECKSUMS:
   Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   FormatterKit: 846ca773b9daaa13b50ae0df1f4a328d030d859c
   FXBlurView: 47496afc9160097fa34af35fc4b310bd85d65dca
-  GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
+  GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
   INTULocationManager: 596c57e35a00ca1ee9d59bf4cc2b63dc299b580e
   JCAutocompletingSearch: cf30ed8eded452d2ec52efd9c57c4b6467e5d266
   JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
@@ -135,6 +137,7 @@ SPEC CHECKSUMS:
   MGBoxKit: 86493ff76fb2164a32426418a1a900c84edd0ffa
   MGEvents: e6254d7873bcb90b266801d171f9948194010927
   MGMushParser: 2c28a4e5c5938da9dcc1fbb090347e5ff575fc5b
+  MZTimerLabel: e3088c90eb78bdda642651b818ec8ed22e0a8f4d
   Overcoat: a9504cd1f0389641526ba1784592503c012c4b5f
   ParallaxBlur: 149ea077dec9264fc12bc04490cd05ff0e170e1d
   PaymentKit: 14b54835f57ae9e2bf5628140fcd67001740cba2
