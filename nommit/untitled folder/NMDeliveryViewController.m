@@ -201,7 +201,7 @@
     timeIntervalFormatter.futureDeicticExpression = @"";
     
     NSString *text = [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:_order.deliveredAt];
-    if (!text) text = @"~15 min";
+    if (!text) text = @"15 min";
     return text;
 }
 

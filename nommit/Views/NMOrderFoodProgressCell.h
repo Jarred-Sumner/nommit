@@ -8,25 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <TYMProgressBarView.h>
-#import "CHDigitInput.h"
-
-@protocol NMOrderFoodProgressCell;
+#import "RateView.h"
 
 @interface NMOrderFoodProgressCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *progressLabel;
-@property (nonatomic, strong) UILabel *quantityLabel;
 @property TYMProgressBarView *progressBarView;
-@property CHDigitInput *quantityInput;
-
-@property (nonatomic, weak) id<NMOrderFoodProgressCell> delegate;
+@property (nonatomic, strong) RateView *rateVw;
 
 
 @end
 
-@protocol NMOrderFoodProgressCell
-
-@required
--(void)quantityDidChange;
-
-@end

@@ -16,9 +16,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.backgroundColor = UIColorFromRGB(0xFBFBFB);
-    self.layer.borderColor = [UIColorFromRGB(0xD3D3D3) CGColor];
-    self.layer.borderWidth = 1.0f;
+    self.backgroundColor = [UIColor whiteColor];
     
     _textField = [[UITextField alloc] init];
     _textField.font = [UIFont fontWithName:@"Avenir" size:16.f];
@@ -33,9 +31,22 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_textField);
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_textField]-15-|" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_textField]-0-|" options:0 metrics:nil views:views]];
+    
+    [self addBorder];
 
     
     return self;
+}
+
+- (void)addBorder
+{
+    UIView *borderView = [[UIView alloc] init];
+    borderView.backgroundColor = UIColorFromRGB(0xDFDFDF);
+    borderView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:borderView];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[borderView(1)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[borderView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField*)aTextField
