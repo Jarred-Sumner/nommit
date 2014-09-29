@@ -19,11 +19,12 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 @interface NMFoodDeliveryPlaceTableViewController() <NMFoodDeliveryPlaceNavigatorDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NMFoodDeliveryPlace *deliveryPlace;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NMFoodDeliveryPlaceNavigatorView *placeNavigatorView;
+@property (nonatomic, strong) NMFoodDeliveryPlaceFooter *footerView;
 
 @property (nonatomic, strong) NSTimer *orderFetchTimer;
+
 
 @end
 
@@ -33,50 +34,50 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [super loadView];
     [self initNavBar];
     
+    self.places = [[NSMutableSet alloc] init];
+    [[self deliveryPlaces] enumerateObjectsUsingBlock:^(NMFoodDeliveryPlace *deliveryPlace, NSUInteger idx, BOOL *stop) {
+        [self.places addObject:deliveryPlace.place];
+    }];
+    
     self.view.backgroundColor = [NMColors lightGray];
     
-    self.tableView = [[UITableView alloc] init];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.tableView];
     
-    NMFoodDeliveryPlaceFooter *footerView = [[NMFoodDeliveryPlaceFooter alloc] init];
-    footerView.translatesAutoresizingMaskIntoConstraints = NO;
-    footerView.revenueLabel.text = @"Total Delivered: $550";
-    [self.view addSubview:footerView];
+    _footerView = [[NMFoodDeliveryPlaceFooter alloc] init];
+    _footerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_footerView];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[footerView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(footerView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_footerView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_footerView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[footerView]|" options:(NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight) metrics:nil views:NSDictionaryOfVariableBindings(_tableView, footerView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_tableView]|" options:(NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight) metrics:nil views:NSDictionaryOfVariableBindings(_tableView, footerView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_footerView]|" options:(NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight) metrics:nil views:NSDictionaryOfVariableBindings(_tableView, _footerView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView, _footerView)]];
 
     
     
     [self.tableView registerClass:[NMOrderTableViewCell class] forCellReuseIdentifier:NMOrderTableViewCellIdentifier];
     [self setTableViewHeader];
-    [self startFetchingOrders];
 }
 
 - (void)setTableViewHeader {
     _placeNavigatorView = [[NMFoodDeliveryPlaceNavigatorView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMOrderLocationViewHeight)];
-    _placeNavigatorView.deliveryPlaces = [NMFoodDeliveryPlace placesForCourier:NMCourier.currentCourier];
+    _placeNavigatorView.nameLabel.text = self.place.name;
+    _placeNavigatorView.deliveryPlaces = self.deliveryPlaces;
     _placeNavigatorView.delegate = self;
     self.tableView.tableHeaderView = _placeNavigatorView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self startFetchingOrders];
+    [self updateRevenueText];
+    
     [self.fetchedResultsController performFetch:nil];
-}
-
-- (NMFoodDeliveryPlace*)deliveryPlace {
-    if (!_deliveryPlace) {
-        _deliveryPlace = [NMFoodDeliveryPlace currentPlace];
-    }
-    return _deliveryPlace;
 }
 
 #pragma mark - Table view data source
@@ -137,13 +138,24 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
     NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    NSString *path = [NSString stringWithFormat:@"food_delivery_places/%@/orders/%@", self.deliveryPlace.uid, order.uid];
+    NSString *path = [NSString stringWithFormat:@"orders/%@", order.uid];
+    
+    __block NMFoodDeliveryPlaceTableViewController *this = self;
     [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMOrderStateDelivered) } completion:^(OVCResponse *response, NSError *error) {
         if ([response.result class] == [NMErrorApiModel class]) [response.result handleError];
+        [this updateRevenueText];
     }];
 }
 
 #pragma mark - Place-specific actions
+
+- (NMPlace*)place {
+    return [[self.places allObjects] firstObject];
+}
+
+- (NSArray*)deliveryPlaces {
+    return [NMFoodDeliveryPlace placesForCourier:NMCourier.currentCourier];
+}
 
 
 #pragma mark - Navigation
@@ -174,7 +186,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     
-    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND place = %@ AND courier = %@", @(NMOrderStateActive), self.deliveryPlace.place, self.deliveryPlace.courier];
+    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND place = %@ AND courier = %@", @(NMOrderStateActive), self.place, NMCourier.currentCourier];
     
     _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:ordersPredicate groupBy:nil delegate:self];
     return _fetchedResultsController;
@@ -205,7 +217,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
-    
+
     UITableView *tableView = self.tableView;
     NMOrderTableViewCell *cell = (NMOrderTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
@@ -222,20 +234,33 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
             break;
             
         case NSFetchedResultsChangeUpdate:
+            [self updateRevenueText];
             [self configureCell:cell atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView moveRowAtIndexPath:indexPath toIndexPath:indexPath];
+            break;
+        default:
             break;
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
+}
+
+#pragma mark - Revenue Text
+
+- (void)updateRevenueText {
+    __block double revenue = 0;
+    __block NMPlace *place = [self place];
+    [self.place.foods enumerateObjectsUsingBlock:^(NMFood *food, NSUInteger idx, BOOL *stop) {
+        NSPredicate *deliverPredicate = [NSPredicate predicateWithFormat:@"food = %@ AND stateID = %@ AND place = %@", food, @(NMOrderStateDelivered), place];
+        NSNumber *deliverCount = @([NMOrder MR_countOfEntitiesWithPredicate:deliverPredicate]);
+        revenue += deliverCount.doubleValue * food.price.doubleValue;
+    }];
+    self.footerView.revenueLabel.text = [NSString stringWithFormat:@"Total Delivered: $%@", @(revenue)];
 }
 
 #pragma mark - Fetch Orders
@@ -246,7 +271,11 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 }
 
 - (void)fetchOrders {
-    [[NMApi instance] GET:[NSString stringWithFormat:@"food_delivery_places/%@/orders", self.deliveryPlace.uid] parameters:nil completion:NULL];
+    __block NMFoodDeliveryPlaceTableViewController *this = self;
+    [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@/orders", self.place.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
+        [this.fetchedResultsController performFetch:nil];
+        [this updateRevenueText];
+    }];
 }
 
 #pragma mark - De-alloc
@@ -254,9 +283,10 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (void)dealloc {
     [_orderFetchTimer invalidate];
     _orderFetchTimer = nil;
-    _deliveryPlace = nil;
+    _places = nil;
     _placeNavigatorView.delegate = nil;
     _placeNavigatorView = nil;
+    _fetchedResultsController.delegate = nil;
     _fetchedResultsController = nil;
 }
 

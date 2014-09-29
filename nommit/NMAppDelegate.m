@@ -32,7 +32,7 @@
     
     [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
 
-    [self checkForPendingDeliveries];
+    if ([NMSession isUserLoggedIn]) [self checkForPendingDeliveries];
     return YES;
 }
 

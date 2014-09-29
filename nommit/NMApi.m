@@ -41,9 +41,9 @@ static NSString *NMApiBaseURLString = @"http://localhost:3000";
              @"orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
              @"foods/*" : [NMFoodApiModel class],
+             @"places/*/orders" : [NMOrderApiModel class],
              @"places" : [NMPlaceApiModel class],
              @"places/*" : [NMPlaceApiModel class],
-             @"food_delivery_places/*/orders" : [NMOrderApiModel class],
              @"food_delivery_places" : [NMFoodDeliveryPlaceApiModel class],
              @"food_delivery_places/*" : [NMFoodDeliveryPlaceApiModel class],
              @"seller/food_delivery_places" : [NMFoodDeliveryPlaceApiModel class]

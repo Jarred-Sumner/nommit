@@ -73,7 +73,8 @@
     return @{
              @"food" : [NMFoodApiModel class],
              @"place" : [NMPlaceApiModel class],
-             @"user" : [NMUserApiModel class]
+             @"user" : [NMUserApiModel class],
+             @"courier" : [NMCourierApiModel class]
              };
 }
 

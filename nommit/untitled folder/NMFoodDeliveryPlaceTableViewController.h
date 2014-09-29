@@ -10,4 +10,7 @@
 
 @interface NMFoodDeliveryPlaceTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
+@property (readonly) NMPlace *place;
+@property (nonatomic, strong) NSMutableSet *places;
+
 @end

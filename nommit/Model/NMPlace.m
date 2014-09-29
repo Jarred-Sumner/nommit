@@ -24,4 +24,12 @@ static NSString *NMActivePlaceKey = @"ActivePlace";
     [[NSUserDefaults standardUserDefaults] setObject:place.uid forKey:NMActivePlaceKey];
 }
 
+- (NSArray*)foods {
+    NSMutableArray *foods = [[NSMutableArray alloc] init];
+    [[NMFoodDeliveryPlace MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"place = %@", self]] enumerateObjectsUsingBlock:^(NMFoodDeliveryPlace *deliveryPlace, NSUInteger idx, BOOL *stop) {
+        [foods addObject:deliveryPlace.food];
+    }];
+    return foods;
+}
+
 @end

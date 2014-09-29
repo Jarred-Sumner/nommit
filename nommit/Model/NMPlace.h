@@ -5,4 +5,6 @@
 + (NMPlace *)activePlace;
 + (void)setActivePlace:(NMPlace*)place;
 
+@property (readonly) NSArray *foods;
+
 @end

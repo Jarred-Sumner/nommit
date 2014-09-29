@@ -122,10 +122,9 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMInfoSection) {
         _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodInfoIdentifier];
-
+        
+        [_infoCell.avatar setImageWithURL:_food.seller.logoAsURL];
         _infoCell.nameLabel.text = [NSString stringWithFormat:@"By %@", _food.seller.name];
-//        _infoCell.nameLabel.text = _food.title;
-//        _infoCell.descriptionLabel.text = _food.details;
         _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", _food.price];
         _infoCell.quantityInput.value = [_orderModel.quantity integerValue] || 1;
 

@@ -9,11 +9,19 @@
 #import "NMFoodDeliveryPlaceNavigatorView.h"
 #import "NMColors.h"
 
+typedef NS_ENUM(NSInteger, NMFoodDeliveryState) {
+    NMFoodDeliveryStateOntimeWithDeliveries = 0,
+    NMFoodDeliveryStateOntimeWithoutDeliveries = 1,
+    NMFoodDeliveryStateLateWithDeliveries = 2,
+    NMFoodDeliveryStateLateWithoutDeliveries = 3
+};
+
 @interface NMFoodDeliveryPlaceNavigatorView ()
 
 @property (nonatomic, copy) NSTimer *updateTimer;
 
 @property (readonly) NMFoodDeliveryPlace *deliveryPlace;
+@property (nonatomic) NMFoodDeliveryState state;
 
 @end
 
@@ -59,7 +67,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_nextLabel, _nameLabel);
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_nextLabel]-15-|" options:0 metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-0-[_nextLabel]" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8.5-[_nameLabel]-0-[_nextLabel]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupArrows
@@ -98,8 +106,8 @@
 }
 
 - (void)startUpdatingPlaceText {
-    _updateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updatePlaceText) userInfo:nil repeats:YES];
-    [self updatePlaceText];
+    _updateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNavigatorState) userInfo:nil repeats:YES];
+    [self updateNavigatorState];
 }
 
 
@@ -113,25 +121,49 @@
 
  
 */
-- (void)updatePlaceText {
-    NSTimeInterval arrivalETA = [self.deliveryPlace.eta timeIntervalSinceNow];
+- (void)updateNavigatorState {
     
-    if (arrivalETA > 0) {
+    NSTimeInterval arrivalETA = [self.deliveryPlace.eta timeIntervalSinceNow];
+
+    if (arrivalETA > 0 && self.deliveryPlaces.count > 1) {
+        self.state = NMFoodDeliveryStateOntimeWithDeliveries;
+    } else if (arrivalETA < 0 && self.deliveryPlaces.count > 1) {
+        self.state = NMFoodDeliveryStateLateWithDeliveries;
+    } else if (arrivalETA > 0) {
+        self.state = NMFoodDeliveryStateOntimeWithoutDeliveries;
+    } else {
+        self.state = NMFoodDeliveryStateLateWithoutDeliveries;
+    }
+    
+}
+
+- (void)setState:(NMFoodDeliveryState)state {
+    _state = state;
+    
+    _nameLabel.text = self.deliveryPlace.place.name;
+    _rightArrow.hidden = NO;
+    _leftArrow.hidden = NO;
+    
+    if (state == NMFoodDeliveryStateLateWithDeliveries) {
+        _nameLabel.text = [NSString stringWithFormat:@"You're late!"];
+        _nextLabel.text = [NSString stringWithFormat:@"Get to %@ ASAP!", [self.deliveryPlaces[1] place].name];
+        self.backgroundColor = UIColorFromRGB(0xE75050);
+    } else if (state == NMFoodDeliveryStateLateWithoutDeliveries) {
+        _nextLabel.text = @"Shift is over";
+        _rightArrow.hidden = YES;
+        _leftArrow.hidden = YES;
+    } else if (state == NMFoodDeliveryStateOntimeWithDeliveries) {
+        NSTimeInterval arrivalETA = [self.deliveryPlace.eta timeIntervalSinceNow];
         int minutes = floor(arrivalETA / 60);
         int seconds = round(arrivalETA - minutes * 60);
         
         NSString *clock = [NSString stringWithFormat:@"%02d:%02d", abs(minutes), abs(seconds)];
-        
-        _nameLabel.text = [NSString stringWithFormat:@"Stay at %@ for %@", self.deliveryPlace.place.name, clock];
-    } else {
-        _nameLabel.text = [NSString stringWithFormat:@"%@ ", self.deliveryPlace.place.name];
+        _nextLabel.text = [NSString stringWithFormat:@"Be at %@ in %@", self.deliveryPlaces[1], clock];
+    } else if (state == NMFoodDeliveryStateOntimeWithoutDeliveries) {
+        _nextLabel.text = @"Last Stop";
+        _rightArrow.hidden = YES;
     }
-    
-    if (self.deliveryPlaces.count > 1) {
-        _nextLabel.text = [NSString stringWithFormat:@"Next Stop: %@", [(NMFoodDeliveryPlace*)self.deliveryPlaces[1] place].name];
-    } else {
-        _nextLabel.text = @"Last Stop!";
-    }
+
 }
 
 

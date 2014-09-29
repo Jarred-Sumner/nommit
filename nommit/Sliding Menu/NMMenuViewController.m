@@ -245,10 +245,10 @@ static NSInteger NMOrdersSection = 1;
         } else {
             return 3;
         }
-    }
-    
-    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
-    return [sectionInfo numberOfObjects];
+    } else if (sectionIndex == 1) {
+        id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+        return [sectionInfo numberOfObjects];
+    } else return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

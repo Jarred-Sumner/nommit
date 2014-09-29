@@ -19,4 +19,6 @@ typedef NS_ENUM(NSInteger, NMFoodState) {
 
 - (BOOL)isActive;
 
++ (NSNumber*)revenueForFood:(NMFood*)food;
+
 @end
