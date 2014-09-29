@@ -70,9 +70,9 @@ extern const struct NMCourierFetchedProperties {
 
 
 
-@property (nonatomic, strong) NMFoodDeliveryPlace *foodDeliveryPlaces;
+@property (nonatomic, strong) NSSet *foodDeliveryPlaces;
 
-//- (BOOL)validateFoodDeliveryPlaces:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)foodDeliveryPlacesSet;
 
 
 
@@ -110,6 +110,11 @@ extern const struct NMCourierFetchedProperties {
 
 @interface _NMCourier (CoreDataGeneratedAccessors)
 
+- (void)addFoodDeliveryPlaces:(NSSet*)value_;
+- (void)removeFoodDeliveryPlaces:(NSSet*)value_;
+- (void)addFoodDeliveryPlacesObject:(NMFoodDeliveryPlace*)value_;
+- (void)removeFoodDeliveryPlacesObject:(NMFoodDeliveryPlace*)value_;
+
 - (void)addOrders:(NSSet*)value_;
 - (void)removeOrders:(NSSet*)value_;
 - (void)addOrdersObject:(NMOrder*)value_;
@@ -144,8 +149,8 @@ extern const struct NMCourierFetchedProperties {
 
 
 
-- (NMFoodDeliveryPlace*)primitiveFoodDeliveryPlaces;
-- (void)setPrimitiveFoodDeliveryPlaces:(NMFoodDeliveryPlace*)value;
+- (NSMutableSet*)primitiveFoodDeliveryPlaces;
+- (void)setPrimitiveFoodDeliveryPlaces:(NSMutableSet*)value;
 
 
 

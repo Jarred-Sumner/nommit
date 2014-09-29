@@ -33,12 +33,6 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (void)loadView {
     [super loadView];
     [self initNavBar];
-    
-    self.places = [[NSMutableSet alloc] init];
-    [[self deliveryPlaces] enumerateObjectsUsingBlock:^(NMFoodDeliveryPlace *deliveryPlace, NSUInteger idx, BOOL *stop) {
-        [self.places addObject:deliveryPlace.place];
-    }];
-    
     self.view.backgroundColor = [NMColors lightGray];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
@@ -98,7 +92,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@" courier IN %@ AND place = %@ AND stateID = %@", [[NMUser currentUser] couriers], self.place, @(NMOrderStateActive)];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"courier IN %@ AND place = %@ AND stateID = %@", [[NMUser currentUser] couriers], self.place, @(NMOrderStateActive)];
     _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:predicate groupBy:nil delegate: self inContext:[NSManagedObjectContext MR_defaultContext]];
     return _fetchedResultsController;
 }
@@ -141,6 +135,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
+    [self updateRevenueText];
 }
 
 
@@ -212,8 +207,19 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 #pragma mark - Place-specific actions
 
+- (NSArray*)places {
+    if (!_places) {
+        __block NSMutableSet *places = [[NSMutableSet alloc] init];
+        [[self deliveryPlaces] enumerateObjectsUsingBlock:^(NMFoodDeliveryPlace *deliveryPlace, NSUInteger idx, BOOL *stop) {
+            [places addObject:deliveryPlace.place];
+        }];
+        _places = [places allObjects];
+    }
+    return _places;
+}
+
 - (NMPlace*)place {
-    return [[self.places allObjects] firstObject];
+    return self.places[0];
 }
 
 - (NSArray*)deliveryPlaces {
@@ -264,10 +270,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 }
 
 - (void)fetchOrders {
-    __block NMFoodDeliveryPlaceTableViewController *this = self;
-    [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@/orders", self.place.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
-        NSLog(@"Retrieved latest orders. Count: %d", [response.result count]);
-    }];
+    [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@/orders", self.place.uid] parameters:nil completion:NULL];
 }
 
 #pragma mark - De-alloc

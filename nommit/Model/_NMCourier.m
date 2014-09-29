@@ -117,6 +117,15 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 @dynamic foodDeliveryPlaces;
 
 	
+- (NSMutableSet*)foodDeliveryPlacesSet {
+	[self willAccessValueForKey:@"foodDeliveryPlaces"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"foodDeliveryPlaces"];
+  
+	[self didAccessValueForKey:@"foodDeliveryPlaces"];
+	return result;
+}
+	
 
 @dynamic orders;
 
