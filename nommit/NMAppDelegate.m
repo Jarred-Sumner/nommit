@@ -16,6 +16,7 @@
 #import "NMLoginViewController.h"
 #import "NMFoodsTableViewController.h"
 #import "NMRegistrationSetupTableViewController.h"
+#import "NMRateViewController.h"
 
 @interface NMAppDelegate ()
 
@@ -42,6 +43,7 @@
     if ([NMSession isUserLoggedIn]) {
         return [[NMFoodsTableViewController alloc] init];
 //        return [[NMRegistrationSetupTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//        return [[NMRateViewController alloc] init];
     } else return [[NMLoginViewController alloc] init];
 }
 
