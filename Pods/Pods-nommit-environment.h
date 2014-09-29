@@ -84,6 +84,12 @@
 #define COCOAPODS_VERSION_MINOR_DropdownMenu 0
 #define COCOAPODS_VERSION_PATCH_DropdownMenu 0
 
+// FXBlurView
+#define COCOAPODS_POD_AVAILABLE_FXBlurView
+#define COCOAPODS_VERSION_MAJOR_FXBlurView 1
+#define COCOAPODS_VERSION_MINOR_FXBlurView 6
+#define COCOAPODS_VERSION_PATCH_FXBlurView 2
+
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
@@ -245,6 +251,12 @@
 #define COCOAPODS_VERSION_MAJOR_Overcoat_NSURLSession 2
 #define COCOAPODS_VERSION_MINOR_Overcoat_NSURLSession 0
 #define COCOAPODS_VERSION_PATCH_Overcoat_NSURLSession 2
+
+// ParallaxBlur
+#define COCOAPODS_POD_AVAILABLE_ParallaxBlur
+#define COCOAPODS_VERSION_MAJOR_ParallaxBlur 0
+#define COCOAPODS_VERSION_MINOR_ParallaxBlur 1
+#define COCOAPODS_VERSION_PATCH_ParallaxBlur 4
 
 // PaymentKit
 #define COCOAPODS_POD_AVAILABLE_PaymentKit

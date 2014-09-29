@@ -10,11 +10,13 @@
 #import "NMOrderLocationView.h"
 #import "NMOrderTableViewCell.h"
 #import "NMMenuNavigationController.h"
+#import "NMFoodDeliveryPlaceFooter.h"
 
 static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifier";
 
 @interface NMFoodDeliveryPlaceTableViewController ()
 
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NMFoodDeliveryPlace *deliveryPlace;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NMOrderLocationView *locationView;
@@ -23,16 +25,32 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 @implementation NMFoodDeliveryPlaceTableViewController
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        [self initNavBar];
-        
-        self.view.backgroundColor = [NMColors lightGray];
-        [self.tableView registerClass:[NMOrderTableViewCell class] forCellReuseIdentifier:NMOrderTableViewCellIdentifier];
+- (void)loadView {
+    [super loadView];
+    [self initNavBar];
+    
+    self.view.backgroundColor = [NMColors lightGray];
+    
+    self.tableView = [[UITableView alloc] init];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.tableView];
+    
+    NMFoodDeliveryPlaceFooter *footerView = [[NMFoodDeliveryPlaceFooter alloc] init];
+    footerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:footerView];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[footerView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(footerView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[footerView]|" options:(NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight) metrics:nil views:NSDictionaryOfVariableBindings(_tableView, footerView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_tableView]|" options:(NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight) metrics:nil views:NSDictionaryOfVariableBindings(_tableView, footerView)]];
 
-    }
-    return self;
+    
+    
+    [self.tableView registerClass:[NMOrderTableViewCell class] forCellReuseIdentifier:NMOrderTableViewCellIdentifier];
 }
 
 - (void)viewDidLoad {
