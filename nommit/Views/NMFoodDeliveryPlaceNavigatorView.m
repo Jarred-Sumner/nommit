@@ -54,6 +54,9 @@ typedef NS_ENUM(NSInteger, NMFoodDeliveryState) {
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_nameLabel);
     
+    // TODO: Prevent _nameLabel and _nextLabel from overlapping with the arrows when the length of the text is too long.
+    // Do this by adding margin, 15px or so, to each side.
+    // But, make it work with visual format.
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_nameLabel]|" options:0 metrics:nil views:views]];
 }
 

@@ -74,11 +74,75 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self startFetchingOrders];
-    [self updateRevenueText];
-    
     [self.fetchedResultsController performFetch:nil];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self startFetchingOrders];
+    [self updateRevenueText];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    self.fetchedResultsController.delegate = nil;
+    _fetchedResultsController = nil;
+    
+    [_orderFetchTimer invalidate];
+    _orderFetchTimer = nil;
+}
+
+#pragma mark - NSFetchedResultsController
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController != nil) return _fetchedResultsController;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@" courier IN %@ AND place = %@ AND stateID = %@", [[NMUser currentUser] couriers], self.place, @(NMOrderStateActive)];
+    _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:predicate groupBy:nil delegate: self inContext:[NSManagedObjectContext MR_defaultContext]];
+    return _fetchedResultsController;
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = self.tableView;
+    NMOrderTableViewCell *cell = (NMOrderTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:cell atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
 
 #pragma mark - Table view data source
 
@@ -143,7 +207,6 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     __block NMFoodDeliveryPlaceTableViewController *this = self;
     [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMOrderStateDelivered) } completion:^(OVCResponse *response, NSError *error) {
         if ([response.result class] == [NMErrorApiModel class]) [response.result handleError];
-        [this updateRevenueText];
     }];
 }
 
@@ -180,76 +243,6 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     
 }
 
-
-#pragma mark - NSFetchedResultsController
-
-- (NSFetchedResultsController *)fetchedResultsController {
-    if (_fetchedResultsController != nil) return _fetchedResultsController;
-    
-    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND place = %@ AND courier = %@", @(NMOrderStateActive), self.place, NMCourier.currentCourier];
-    
-    _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:ordersPredicate groupBy:nil delegate:self];
-    return _fetchedResultsController;
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationFade];
-            break;
-        default:
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath {
-
-    UITableView *tableView = self.tableView;
-    NMOrderTableViewCell *cell = (NMOrderTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-    
-    switch(type) {
-            
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self updateRevenueText];
-            [self configureCell:cell atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView moveRowAtIndexPath:indexPath toIndexPath:indexPath];
-            break;
-        default:
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView endUpdates];
-}
-
 #pragma mark - Revenue Text
 
 - (void)updateRevenueText {
@@ -273,8 +266,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (void)fetchOrders {
     __block NMFoodDeliveryPlaceTableViewController *this = self;
     [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@/orders", self.place.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
-        [this.fetchedResultsController performFetch:nil];
-        [this updateRevenueText];
+        NSLog(@"Retrieved latest orders. Count: %d", [response.result count]);
     }];
 }
 

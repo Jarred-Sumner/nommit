@@ -24,6 +24,6 @@
 + (NSArray*)placesForCourier:(NMCourier*)courier {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"courier = %@ AND (stateID = %@ OR stateID = %@)", courier,@(NMFoodDeliveryPlaceStateActive),@(NMFoodDeliveryPlaceStateReady)];
 
-    return [NMFoodDeliveryPlace MR_findAllSortedBy:@"index" ascending:YES withPredicate:predicate];
+    return [NMFoodDeliveryPlace MR_findAllSortedBy:@"index" ascending:NO withPredicate:predicate];
 }
 @end

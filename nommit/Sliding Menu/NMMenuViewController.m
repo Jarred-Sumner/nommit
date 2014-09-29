@@ -161,7 +161,7 @@ static NSInteger NMOrdersSection = 1;
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     
-    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@", @0];
+    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND user = %@", @(NMOrderStateActive), NMUser.currentUser];
     
     _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:ordersPredicate groupBy:nil delegate: self];
     return _fetchedResultsController;
@@ -190,6 +190,10 @@ static NSInteger NMOrdersSection = 1;
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    // Section is offset by 1 for the fetchedResultsController
+    indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
+    newIndexPath = [NSIndexPath indexPathForRow:newIndexPath.row inSection:1];
     
     UITableView *tableView = self.tableView;
     
