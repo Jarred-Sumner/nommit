@@ -19,6 +19,7 @@
 #import "NMDeliveryViewController.h"
 #import "NMPromoCodeTableViewCell.h"
 #import "NMOrderFoodDescriptionTableViewCell.h"
+#import "NMDeliveryTableViewController.h"
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMDescriptionSecton = 1;
@@ -193,7 +194,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
                     NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
 
-                    NMDeliveryViewController *rateVC = [[NMDeliveryViewController alloc] initWithOrder:order];
+                    NMDeliveryTableViewController *rateVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
                     NMMenuNavigationController *navController =
                     [[NMMenuNavigationController alloc] initWithRootViewController:rateVC];
                     navController.navigationBar.translucent = NO;
