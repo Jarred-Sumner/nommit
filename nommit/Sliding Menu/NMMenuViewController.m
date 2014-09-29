@@ -20,6 +20,7 @@
 
 #import "NMLoginViewController.h"
 #import "NMDeliveryTableViewController.h"
+#import "NMRateTableViewController.h"
 
 static NSInteger NMStaticSection = 0;
 static NSInteger NMOrdersSection = 1;
@@ -152,8 +153,9 @@ static NSInteger NMOrdersSection = 1;
         
         NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-//        NMDeliveryViewController *deliveryVC = [[NMDeliveryViewController alloc] initWithOrder:order];
         NMDeliveryTableViewController *deliveryVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
+//        NMRateTableViewController *deliveryVC = [[NMRateTableViewController alloc] initWithOrder:order];
+//        [self presentViewController:deliveryVC animated:YES completion:nil];
         [self navigateTo:deliveryVC];
     }
 }

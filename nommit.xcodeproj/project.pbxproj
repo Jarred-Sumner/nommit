@@ -103,6 +103,8 @@
 		8DD32FC519D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FC419D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m */; };
 		8DD32FC819D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FC719D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m */; };
 		8DD32FCB19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FCA19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m */; };
+		8DD32FCE19D9D77B009485C2 /* NMRateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FCD19D9D77B009485C2 /* NMRateTableViewController.m */; };
+		8DD32FD119D9E0EE009485C2 /* NMReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FD019D9E0EE009485C2 /* NMReceiptTableViewCell.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
 		8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3419B2512900DAFCDB /* UIKit.framework */; };
@@ -318,6 +320,10 @@
 		8DD32FC719D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryCountdownTableViewCell.m; path = Cells/NMDeliveryCountdownTableViewCell.m; sourceTree = "<group>"; };
 		8DD32FC919D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryCallButtonTableViewCell.h; path = Cells/NMDeliveryCallButtonTableViewCell.h; sourceTree = "<group>"; };
 		8DD32FCA19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryCallButtonTableViewCell.m; path = Cells/NMDeliveryCallButtonTableViewCell.m; sourceTree = "<group>"; };
+		8DD32FCC19D9D77B009485C2 /* NMRateTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRateTableViewController.h; path = "untitled folder/NMRateTableViewController.h"; sourceTree = "<group>"; };
+		8DD32FCD19D9D77B009485C2 /* NMRateTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRateTableViewController.m; path = "untitled folder/NMRateTableViewController.m"; sourceTree = "<group>"; };
+		8DD32FCF19D9E0EE009485C2 /* NMReceiptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMReceiptTableViewCell.h; path = Cells/NMReceiptTableViewCell.h; sourceTree = "<group>"; };
+		8DD32FD019D9E0EE009485C2 /* NMReceiptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMReceiptTableViewCell.m; path = Cells/NMReceiptTableViewCell.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD3FC3019B2512900DAFCDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -615,6 +621,8 @@
 				8DD32FB219D690E2009485C2 /* NMVerifyPhoneNumberViewController.m */,
 				8DD32FC019D94777009485C2 /* NMDeliveryTableViewController.h */,
 				8DD32FC119D94777009485C2 /* NMDeliveryTableViewController.m */,
+				8DD32FCC19D9D77B009485C2 /* NMRateTableViewController.h */,
+				8DD32FCD19D9D77B009485C2 /* NMRateTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -707,6 +715,8 @@
 				8DD32FC719D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m */,
 				8DD32FC919D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.h */,
 				8DD32FCA19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m */,
+				8DD32FCF19D9E0EE009485C2 /* NMReceiptTableViewCell.h */,
+				8DD32FD019D9E0EE009485C2 /* NMReceiptTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -922,6 +932,8 @@
 				8D6DE42119B7B5AB008F64CE /* NMAddressSearchViewController.m in Sources */,
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
+				8DD32FD119D9E0EE009485C2 /* NMReceiptTableViewCell.m in Sources */,
+				8DD32FCE19D9D77B009485C2 /* NMRateTableViewController.m in Sources */,
 				8DD32FB319D690E2009485C2 /* NMVerifyPhoneNumberViewController.m in Sources */,
 				83C3649A19D1F78F004B4F22 /* NMErrorApiModel.m in Sources */,
 				83D6A9E419B822B8009A6D9B /* NMFood.m in Sources */,
