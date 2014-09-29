@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) UIButton *hereButton;
 @property (nonatomic, strong) UIButton *doneButton;
+@property (nonatomic, strong) UILabel *revenueLabel;
 
 @end

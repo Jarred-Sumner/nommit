@@ -44,6 +44,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     
     NMFoodDeliveryPlaceFooter *footerView = [[NMFoodDeliveryPlaceFooter alloc] init];
     footerView.translatesAutoresizingMaskIntoConstraints = NO;
+    footerView.revenueLabel.text = @"Total Delivered: $550";
     [self.view addSubview:footerView];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[footerView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(footerView)]];
