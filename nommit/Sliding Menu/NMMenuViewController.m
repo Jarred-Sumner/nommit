@@ -291,12 +291,11 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showOrders {
-    BOOL selectedPlaces = NO;
     
     NMFoodDeliveryPlaceTableViewController *ordersVC = [[NMFoodDeliveryPlaceTableViewController alloc] init];
     [self navigateTo:ordersVC];
     
-    if (!selectedPlaces) {
+    if (![[NMUser currentUser] hasActiveDeliveries]) {
         NMPickPlacesTableViewController *pickPlacesTVC = [[NMPickPlacesTableViewController alloc] initWithStyle:UITableViewStylePlain];
         
         NMMenuNavigationController *navController =
@@ -306,7 +305,6 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showAccount {
-    // NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] init];
     NMAccountTableViewController *accountTableVC = [[NMAccountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self navigateTo:accountTableVC];
 }

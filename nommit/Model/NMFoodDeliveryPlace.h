@@ -7,5 +7,11 @@ typedef NS_ENUM(NSInteger, NMFoodDeliveryPlaceState) {
 };
 
 @interface NMFoodDeliveryPlace : _NMFoodDeliveryPlace {}
-// Custom logic goes here.
+
++ (NMFoodDeliveryPlace *)previousPlace;
++ (NMFoodDeliveryPlace *)currentPlace;
++ (NMFoodDeliveryPlace *)nextPlace;
+
++ (NSArray*)placesForCourier:(NMCourier*)courier;
+
 @end

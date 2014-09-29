@@ -10,6 +10,8 @@
 
 @implementation NMCourier
 
-// Custom logic goes here.
++ (NMCourier *)currentCourier {
+    return [NMCourier MR_findFirstByAttribute:@"user" withValue:NMUser.currentUser];
+}
 
 @end

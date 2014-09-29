@@ -5,6 +5,7 @@
 
 
 extern const struct NMFoodDeliveryPlaceAttributes {
+	__unsafe_unretained NSString *eta;
 	__unsafe_unretained NSString *index;
 	__unsafe_unretained NSString *stateID;
 	__unsafe_unretained NSString *uid;
@@ -29,6 +30,7 @@ extern const struct NMFoodDeliveryPlaceFetchedProperties {
 
 
 
+
 @interface NMFoodDeliveryPlaceID : NSManagedObjectID {}
 @end
 
@@ -37,6 +39,16 @@ extern const struct NMFoodDeliveryPlaceFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (NMFoodDeliveryPlaceID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSDate* eta;
+
+
+
+//- (BOOL)validateEta:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -127,6 +139,12 @@ extern const struct NMFoodDeliveryPlaceFetchedProperties {
 @end
 
 @interface _NMFoodDeliveryPlace (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSDate*)primitiveEta;
+- (void)setPrimitiveEta:(NSDate*)value;
+
+
 
 
 - (NSNumber*)primitiveIndex;

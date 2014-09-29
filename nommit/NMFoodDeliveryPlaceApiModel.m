@@ -21,6 +21,14 @@
              };
 }
 
++ (NSValueTransformer *)etaJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [NMApi.dateFormatter dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [NMApi.dateFormatter stringFromDate:date];
+    }];
+}
+
 + (NSValueTransformer *)placeJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMPlaceApiModel class]];
 }

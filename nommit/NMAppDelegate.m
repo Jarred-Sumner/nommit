@@ -30,8 +30,16 @@
     [self.window makeKeyAndVisible];
     
     [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
-    
+
+    [self checkForPendingDeliveries];
     return YES;
+}
+
+- (void)checkForPendingDeliveries {
+    [[NMApi instance] GET:@"seller/food_delivery_places" parameters:nil completion:^(OVCResponse *response, NSError *error) {
+        NSLog(@"Result: %@", @([response.result count]));
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -41,7 +49,6 @@
 - (UIViewController *)rootViewController {
     if ([NMSession isUserLoggedIn]) {
         return [[NMFoodsTableViewController alloc] init];
-//        return [[NMRegistrationSetupTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     } else return [[NMLoginViewController alloc] init];
 }
 

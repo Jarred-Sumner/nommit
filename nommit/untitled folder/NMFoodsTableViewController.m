@@ -64,7 +64,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
-    
+        
     NSPredicate *foodPredicate;
     if (_place) {
         foodPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND (ANY foodDeliveryPlaces.stateID = %@ AND ANY foodDeliveryPlaces.place = %@)",@(NMFoodStateActive), @(NMFoodDeliveryPlaceStateActive), _place];

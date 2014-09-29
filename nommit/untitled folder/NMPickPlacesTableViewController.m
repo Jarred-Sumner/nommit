@@ -58,23 +58,19 @@ static NSString *NMPickPlaceCellIdentifier = @"NMPickPlaceCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return self.fetchedResultsController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 10;
+    id rows = self.fetchedResultsController.sections[section];
+    return [rows numberOfObjects];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
      NMPickPlaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMPickPlaceCellIdentifier];
-
-    cell.textLabel.text = @"Mudge";
-    cell.textLabel.textColor = UIColorFromRGB(0x757575);
-    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:16.0f];
-
-    
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -82,6 +78,12 @@ static NSString *NMPickPlaceCellIdentifier = @"NMPickPlaceCell";
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     (cell.accessoryType == UITableViewCellAccessoryNone) ? (cell.accessoryType = UITableViewCellAccessoryCheckmark) : (cell.accessoryType = UITableViewCellAccessoryNone) ;
+}
+
+- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
+    cell.textLabel.text = @"Mudge";
+    cell.textLabel.textColor = UIColorFromRGB(0x757575);
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:16.0f];
 }
 
 

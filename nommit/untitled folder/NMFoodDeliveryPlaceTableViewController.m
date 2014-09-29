@@ -7,17 +7,21 @@
 //
 
 #import "NMFoodDeliveryPlaceTableViewController.h"
-#import "NMOrderLocationView.h"
+#import "NMFoodDeliveryPlaceNavigatorView.h"
 #import "NMOrderTableViewCell.h"
 #import "NMMenuNavigationController.h"
 
+static NSTimeInterval NMOrderFetchInterval = 5;
+
 static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifier";
 
-@interface NMFoodDeliveryPlaceTableViewController ()
+@interface NMFoodDeliveryPlaceTableViewController() <NMFoodDeliveryPlaceNavigatorDelegate>
 
 @property (nonatomic, strong) NMFoodDeliveryPlace *deliveryPlace;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) NMOrderLocationView *locationView;
+@property (nonatomic, strong) NMFoodDeliveryPlaceNavigatorView *placeNavigatorView;
+
+@property (nonatomic, strong) NSTimer *orderFetchTimer;
 
 @end
 
@@ -27,12 +31,19 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     self = [super init];
     if (self) {
         [self initNavBar];
-        
         self.view.backgroundColor = [NMColors lightGray];
         [self.tableView registerClass:[NMOrderTableViewCell class] forCellReuseIdentifier:NMOrderTableViewCellIdentifier];
-
+        [self setTableViewHeader];
+        [self startFetchingOrders];
     }
     return self;
+}
+
+- (void)setTableViewHeader {
+    _placeNavigatorView = [[NMFoodDeliveryPlaceNavigatorView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMOrderLocationViewHeight)];
+    _placeNavigatorView.deliveryPlaces = [NMFoodDeliveryPlace placesForCourier:NMCourier.currentCourier];
+    _placeNavigatorView.delegate = self;
+    self.tableView.tableHeaderView = _placeNavigatorView;
 }
 
 - (void)viewDidLoad {
@@ -40,9 +51,11 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [self.fetchedResultsController performFetch:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NMFoodDeliveryPlace*)deliveryPlace {
+    if (!_deliveryPlace) {
+        _deliveryPlace = [NMFoodDeliveryPlace currentPlace];
+    }
+    return _deliveryPlace;
 }
 
 #pragma mark - Table view data source
@@ -60,29 +73,24 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     return 50;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return NMOrderLocationViewHeight;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    _locationView = [[NMOrderLocationView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMOrderLocationViewHeight)];
-    _locationView.nameLabel.text = @"Stay in Mudge for: 4:59";
-    _locationView.nextLabel.text = @"Next Stop: Stever";
-    [_locationView.rightArrow addTarget:self action:@selector(nextStop) forControlEvents:UIControlEventTouchUpInside];
-    [_locationView.leftArrow addTarget:self action:@selector(previousStop) forControlEvents:UIControlEventTouchUpInside];
-    return _locationView;
-}
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NMOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMOrderTableViewCellIdentifier forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
+- (void)configureCell:(NMOrderTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
+    NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    cell.nameLabel.text = order.user.name;
+    cell.orderName.text = [NSString stringWithFormat:@"%@ - %@", order.quantity, order.food.title];
+    cell.profileAvatar.profileID = order.user.facebookUID;
+    
+    [cell.callButton addTarget:self action:@selector(callUser:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.doneButton addTarget:self action:@selector(orderComplete:) forControlEvents:UIControlEventTouchUpInside];
+}
 
-#pragma mark - Button Methods
+#pragma mark - Order-specific actions
 
 - (void)callUser:(id)sender
 {
@@ -108,25 +116,13 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
     NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    
-    NSString *path = [NSString stringWithFormat:@"couriers/%@/orders/%@", _deliveryPlace.courier.uid, order.uid];
+    NSString *path = [NSString stringWithFormat:@"food_delivery_places/%@/orders/%@", self.deliveryPlace.uid, order.uid];
     [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMOrderStateDelivered) } completion:^(OVCResponse *response, NSError *error) {
         if ([response.result class] == [NMErrorApiModel class]) [response.result handleError];
-        
     }];
 }
 
-- (void)nextStop
-{
-    _locationView.nameLabel.text = @"Be at Stever in: 4:59";
-    _locationView.nextLabel.text = @"Next Stop: Morewood";
-}
-
-- (void)previousStop
-{
-    _locationView.nameLabel.text = @"Stay in Mudge for: 4:59";
-    _locationView.nextLabel.text = @"Next Stop: Stever";
-}
+#pragma mark - Place-specific actions
 
 
 #pragma mark - Navigation
@@ -134,9 +130,9 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (void)initNavBar
 {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
-                                                            style:UIBarButtonItemStylePlain
-                                                           target:(NMMenuNavigationController *)self.navigationController
-                                                           action:@selector(showMenu)];
+                                                style:UIBarButtonItemStylePlain
+                                                   target:(NMMenuNavigationController *)self.navigationController
+                                                   action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;
@@ -157,9 +153,9 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     
-    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND place = %@ AND courier = %@", @(NMOrderStateActive), _deliveryPlace.place, _deliveryPlace.courier];
+    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND place = %@ AND courier = %@", @(NMOrderStateActive), self.deliveryPlace.place, self.deliveryPlace.courier];
     
-    _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:ordersPredicate groupBy:nil delegate: self];
+    _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:ordersPredicate groupBy:nil delegate:self];
     return _fetchedResultsController;
 }
 
@@ -217,19 +213,30 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     }
 }
 
-- (void)configureCell:(NMOrderTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
-    NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    cell.nameLabel.text = order.user.name;
-    cell.orderName.text = [NSString stringWithFormat:@"%@ - %@", order.quantity, order.food.title];
-    cell.profileAvatar.profileID = order.user.facebookUID;
-    
-    [cell.callButton addTarget:self action:@selector(callUser:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.doneButton addTarget:self action:@selector(orderComplete:) forControlEvents:UIControlEventTouchUpInside];
-}
-
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
+}
+
+#pragma mark - Fetch Orders
+
+- (void)startFetchingOrders {
+    _orderFetchTimer = [NSTimer scheduledTimerWithTimeInterval:NMOrderFetchInterval target:self selector:@selector(fetchOrders) userInfo:nil repeats:YES];
+    [self fetchOrders];
+}
+
+- (void)fetchOrders {
+    [[NMApi instance] GET:[NSString stringWithFormat:@"food_delivery_places/%@/orders", self.deliveryPlace.uid] parameters:nil completion:NULL];
+}
+
+#pragma mark - De-alloc
+
+- (void)dealloc {
+    [_orderFetchTimer invalidate];
+    _orderFetchTimer = nil;
+    _deliveryPlace = nil;
+    _placeNavigatorView.delegate = nil;
+    _placeNavigatorView = nil;
+    _fetchedResultsController = nil;
 }
 
 

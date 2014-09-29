@@ -4,6 +4,7 @@
 #import "_NMFoodDeliveryPlace.h"
 
 const struct NMFoodDeliveryPlaceAttributes NMFoodDeliveryPlaceAttributes = {
+	.eta = @"eta",
 	.index = @"index",
 	.stateID = @"stateID",
 	.uid = @"uid",
@@ -68,6 +69,13 @@ const struct NMFoodDeliveryPlaceFetchedProperties NMFoodDeliveryPlaceFetchedProp
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic eta;
+
+
 
 
 

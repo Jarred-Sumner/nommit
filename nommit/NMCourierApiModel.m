@@ -24,7 +24,6 @@
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMPlaceApiModel class]];
 }
 
-
 + (NSValueTransformer *)userJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMUserApiModel class]];
 }

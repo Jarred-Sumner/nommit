@@ -38,6 +38,7 @@
         </compoundIndexes>
     </entity>
     <entity name="NMFoodDeliveryPlace" representedClassName="NMFoodDeliveryPlace" syncable="YES">
+        <attribute name="eta" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="stateID" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
@@ -136,11 +137,11 @@
     <elements>
         <element name="NMCourier" positionX="9" positionY="117" width="128" height="148"/>
         <element name="NMFood" positionX="0" positionY="0" width="128" height="268"/>
+        <element name="NMFoodDeliveryPlace" positionX="9" positionY="117" width="128" height="165"/>
         <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMOrder" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="148"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
         <element name="NMUser" positionX="0" positionY="0" width="128" height="238"/>
-        <element name="NMFoodDeliveryPlace" positionX="9" positionY="117" width="128" height="148"/>
     </elements>
 </model>
