@@ -23,7 +23,7 @@
 @property (nonatomic, strong) NMDeliveryAvatarsTableViewCell *avatarsCell;
 @property (nonatomic, strong) NMDeliveryCallButtonTableViewCell *callButtonCell;
 @property (nonatomic, strong) NMReceiptTableViewCell *receiptCell;
-@property (nonatomic) NSInteger tipAmount;
+@property (nonatomic) NSInteger totalAmount;
 
 @end
 
@@ -43,7 +43,8 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         self.view.backgroundColor = [NMColors lightGray];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _order = order;
-        _tipAmount = 0;
+        int price = (int)[_order.priceInCents integerValue]/100;
+        _totalAmount = price;
         
         [self.tableView addParallaxWithImage:nil andHeight:90];
         [self.tableView.parallaxView setDelegate:self];
@@ -111,6 +112,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         _receiptCell = [self.tableView dequeueReusableCellWithIdentifier:NMRateReceiptInfoIdentifier];
         [_receiptCell.plusButton addTarget:self action:@selector(addOneToTip) forControlEvents:UIControlEventTouchUpInside];
         [_receiptCell.minusButton addTarget:self action:@selector(minusOneFromTip) forControlEvents:UIControlEventTouchUpInside];
+        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%d", _totalAmount];
         [self enableMinusButton];
         return _receiptCell;
     } else if (indexPath.section == NMRateCallButtonSection) {
@@ -123,7 +125,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 }
 
 - (void)enableMinusButton {
-    if (_tipAmount > 0) {
+    if (_totalAmount > (int)[_order.priceInCents integerValue]/100) {
         _receiptCell.minusButton.alpha = 1.0f;
         _receiptCell.minusButton.enabled = YES;
     } else {
@@ -133,14 +135,14 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 }
 
 - (void)addOneToTip {
-    _tipAmount++;
-    _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%d", _tipAmount];
+    _totalAmount++;
+    _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%d", _totalAmount];
     [self enableMinusButton];
 }
 
 - (void)minusOneFromTip {
-    _tipAmount--;
-    _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%d", _tipAmount];
+    _totalAmount--;
+    _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%d", _totalAmount];
     [self enableMinusButton];
 }
 

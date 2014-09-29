@@ -31,7 +31,7 @@
     addTip.translatesAutoresizingMaskIntoConstraints = NO;
     addTip.font = [UIFont fontWithName:@"Avenir" size:18.0f];
     addTip.textColor = UIColorFromRGB(0xC9C9C9);
-    addTip.text = @"Add a tip to say thanks!";
+    addTip.text = @"Your total with tip included is:";
     addTip.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:addTip];
     
@@ -39,7 +39,6 @@
     _tipLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _tipLabel.font = [UIFont fontWithName:@"Avenir" size:60];
     _tipLabel.textColor = UIColorFromRGB(0x696969);
-    _tipLabel.text = @"$0";
     _tipLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_tipLabel];
     
