@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "NMAddressSearchViewController.h"
 #import "NMOrderFoodProgressCell.h"
+#import "NMOrderFoodBasicInfoTableViewCell.h"
 
-@interface NMOrderFoodViewController : UITableViewController<NMAddressSearchDelegate, NMOrderFoodProgressCell>
+@interface NMOrderFoodViewController : UITableViewController<NMAddressSearchDelegate, NMOrderFoodBasicInfoTableViewCellDelegate>
 
 @property (nonatomic, strong) NMOrderApiModel *orderModel;
 

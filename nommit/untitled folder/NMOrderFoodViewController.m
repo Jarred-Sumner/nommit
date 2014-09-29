@@ -18,14 +18,17 @@
 #import "NMRateViewController.h"
 #import "NMDeliveryViewController.h"
 #import "NMPromoCodeTableViewCell.h"
+#import "NMOrderFoodDescriptionTableViewCell.h"
 
 const NSInteger NMInfoSection = 0;
-const NSInteger NMProgressSection = 1;
-const NSInteger NMOrderFoodConfirmationSection = 3;
-const NSInteger NMOrderButtonSection = 4;
-const NSInteger NMOrderPromoSection = 2;
+const NSInteger NMDescriptionSecton = 1;
+const NSInteger NMProgressSection = 2;
+const NSInteger NMOrderFoodConfirmationSection = 4;
+const NSInteger NMOrderButtonSection = 5;
+const NSInteger NMOrderPromoSection = 3;
 
 static NSString *NMOrderFoodInfoIdentifier = @"NMOrderFoodInfoCell";
+static NSString *NMOrderFoodDescriptionIdentifier = @"NMOrderFoodDescriptionCell";
 static NSString *NMOrderFoodProgressIdentifier = @"NMOrderFoodProgressCell";
 static NSString *NMOrderFoodConfirmAddressCellIdentifier = @"NMOrderFoodConfirmAddressCell";
 static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
@@ -34,7 +37,9 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
 @interface NMOrderFoodViewController ()<APParallaxViewDelegate>
 
-@property (nonatomic, strong) NMOrderFoodInfoCell *infoCell;
+// @property (nonatomic, strong) NMOrderFoodInfoCell *infoCell;
+@property (nonatomic, strong) NMOrderFoodBasicInfoTableViewCell *infoCell;
+@property (nonatomic, strong) NMOrderFoodDescriptionTableViewCell *descriptionCell;
 @property (nonatomic, strong) NMOrderFoodProgressCell *progressCell;
 @property (nonatomic, strong) NMOrderFoodConfirmAddressCell *confirmAddressCell;
 @property (nonatomic, strong) NMPromoCodeTableViewCell *promoCell;
@@ -58,7 +63,9 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
 
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.tableView registerClass:[NMOrderFoodInfoCell class] forCellReuseIdentifier:NMOrderFoodInfoIdentifier];
+    // [self.tableView registerClass:[NMOrderFoodInfoCell class] forCellReuseIdentifier:NMOrderFoodInfoIdentifier];
+    [self.tableView registerClass:[NMOrderFoodBasicInfoTableViewCell class] forCellReuseIdentifier:NMOrderFoodInfoIdentifier];
+    [self.tableView registerClass:[NMOrderFoodDescriptionTableViewCell class] forCellReuseIdentifier:NMOrderFoodDescriptionIdentifier];
     [self.tableView registerClass:[NMOrderFoodProgressCell class] forCellReuseIdentifier:NMOrderFoodProgressIdentifier];
     [self.tableView registerClass:[NMOrderFoodConfirmAddressCell class] forCellReuseIdentifier:NMOrderFoodConfirmAddressCellIdentifier];
     [self.tableView registerClass:[NMOrderFoodOrderButtonCell class] forCellReuseIdentifier:NMOrderFoodButtonIdentifier];
@@ -67,6 +74,8 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [self.tableView addParallaxWithImage:nil andHeight:150];
     [self.tableView.parallaxView setDelegate:self];
     [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL];
+    [self.tableView addBlackOverlayToParallaxView];
+    [self.tableView addTitleToParallaxView:_food.title];
 
     [self initNavBar];
 
@@ -74,16 +83,19 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 6;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // make total 302
     if (indexPath.section == NMInfoSection) {
-        return 100;
+        return 68;
+    } else if (indexPath.section == NMDescriptionSecton) {
+        return 83;
     } else if (indexPath.section == NMProgressSection) {
-        return 103;
+        return 69;
     } else if (indexPath.section == NMOrderFoodConfirmationSection || indexPath.section == NMOrderPromoSection) {
-        return 50;
+        return 42.5;
     } else if (indexPath.section == NMOrderButtonSection) {
         return 49;
     }
@@ -92,6 +104,8 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == NMInfoSection) {
+        return 1;
+    } else if (section == NMDescriptionSecton) {
         return 1;
     } else if (section == NMProgressSection) {
         return 1;
@@ -109,20 +123,25 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     if (indexPath.section == NMInfoSection) {
         _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodInfoIdentifier];
 
-        _infoCell.nameLabel.text = _food.title;
-        _infoCell.descriptionLabel.text = _food.details;
+        _infoCell.nameLabel.text = [NSString stringWithFormat:@"By %@", _food.seller.name];
+//        _infoCell.nameLabel.text = _food.title;
+//        _infoCell.descriptionLabel.text = _food.details;
         _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", _food.price];
+        _infoCell.quantityInput.value = [_orderModel.quantity integerValue] || 1;
 
         return _infoCell;
+    } else if (indexPath.section == NMDescriptionSecton) {
+        _descriptionCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDescriptionIdentifier];
+        _descriptionCell.descriptionLabel.text = _food.details;
+        return _descriptionCell;
     } else if (indexPath.section == NMProgressSection) {
         _progressCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodProgressIdentifier];
 
         _progressCell.progressBarView.progress = @(_food.orderCount.floatValue / _food.orderGoal.floatValue).floatValue;
-        _progressCell.quantityInput.value = [_orderModel.quantity integerValue] || 1;
-        _progressCell.delegate = self;
 
         _progressCell.progressLabel.text = [NSString stringWithFormat:@"%@ left", _food.remainingOrders];
         _progressCell.progressLabel.textAlignment = NSTextAlignmentCenter;
+        _progressCell.rateVw.rating = [_food.rating floatValue];
 
         return _progressCell;
     } else if (indexPath.section == NMOrderFoodConfirmationSection) {
@@ -197,9 +216,9 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 # pragma mark - Respond to quantity changes
 
 - (void)quantityDidChange {
-    if (_progressCell.quantityInput.value < 1) _progressCell.quantityInput.value = 1;
+    if (_infoCell.quantityInput.value < 1) _infoCell.quantityInput.value = 1;
 
-    _orderModel.quantity = @(_progressCell.quantityInput.value);
+    _orderModel.quantity = @(_infoCell.quantityInput.value);
 
     _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", @(_orderModel.quantity.floatValue * _food.price.floatValue)];
 }
