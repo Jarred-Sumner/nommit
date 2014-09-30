@@ -85,7 +85,7 @@
 		8DA5198819D0ED9100BBA8A0 /* NMPlaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198719D0ED9100BBA8A0 /* NMPlaceTableViewCell.m */; };
 		8DA5198E19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198D19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m */; };
 		8DA5199419D3846800BBA8A0 /* NMOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5199319D3846800BBA8A0 /* NMOrderTableViewCell.m */; };
-		8DCE835119D4C6FD00D770D0 /* NMPickPlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835019D4C6FD00D770D0 /* NMPickPlacesTableViewController.m */; };
+		8DCE835119D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835019D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m */; };
 		8DCE835419D4C85500D770D0 /* NMPickPlaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835319D4C85500D770D0 /* NMPickPlaceTableViewCell.m */; };
 		8DCE835719D4D56700D770D0 /* NMAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835619D4D56700D770D0 /* NMAccountTableViewController.m */; };
 		8DCE835A19D4D5C900D770D0 /* NMTableSeparatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835919D4D5C900D770D0 /* NMTableSeparatorView.m */; };
@@ -284,8 +284,8 @@
 		8DA5199019D3829C00BBA8A0 /* NMDeliveryPlaceNavigatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryPlaceNavigatorView.m; path = Views/NMDeliveryPlaceNavigatorView.m; sourceTree = "<group>"; };
 		8DA5199219D3846800BBA8A0 /* NMOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderTableViewCell.h; path = Cells/NMOrderTableViewCell.h; sourceTree = "<group>"; };
 		8DA5199319D3846800BBA8A0 /* NMOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderTableViewCell.m; path = Cells/NMOrderTableViewCell.m; sourceTree = "<group>"; };
-		8DCE834F19D4C6FD00D770D0 /* NMPickPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPickPlacesTableViewController.h; path = "untitled folder/NMPickPlacesTableViewController.h"; sourceTree = "<group>"; };
-		8DCE835019D4C6FD00D770D0 /* NMPickPlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPickPlacesTableViewController.m; path = "untitled folder/NMPickPlacesTableViewController.m"; sourceTree = "<group>"; };
+		8DCE834F19D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlacesTableViewController.h; path = "untitled folder/NMDeliveryPlacesTableViewController.h"; sourceTree = "<group>"; };
+		8DCE835019D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryPlacesTableViewController.m; path = "untitled folder/NMDeliveryPlacesTableViewController.m"; sourceTree = "<group>"; };
 		8DCE835219D4C85500D770D0 /* NMPickPlaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPickPlaceTableViewCell.h; path = Cells/NMPickPlaceTableViewCell.h; sourceTree = "<group>"; };
 		8DCE835319D4C85500D770D0 /* NMPickPlaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPickPlaceTableViewCell.m; path = Cells/NMPickPlaceTableViewCell.m; sourceTree = "<group>"; };
 		8DCE835519D4D56700D770D0 /* NMAccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMAccountTableViewController.h; path = "untitled folder/NMAccountTableViewController.h"; sourceTree = "<group>"; };
@@ -623,8 +623,8 @@
 				83291CE419D129CE00A29B3C /* NMPlacesTableViewController.m */,
 				8DA5198C19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.h */,
 				8DA5198D19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m */,
-				8DCE834F19D4C6FD00D770D0 /* NMPickPlacesTableViewController.h */,
-				8DCE835019D4C6FD00D770D0 /* NMPickPlacesTableViewController.m */,
+				8DCE834F19D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.h */,
+				8DCE835019D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m */,
 				8DCE835519D4D56700D770D0 /* NMAccountTableViewController.h */,
 				8DCE835619D4D56700D770D0 /* NMAccountTableViewController.m */,
 				8DD32FA819D63A42009485C2 /* NMRegistrationSetupTableViewController.h */,
@@ -826,7 +826,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = NM;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Lucy Guo";
 				TargetAttributes = {
 					8DD3FC4719B2512900DAFCDB = {
@@ -962,7 +962,7 @@
 				836E358519D3DF66004208A6 /* NMCourierApiModel.m in Sources */,
 				83454F4E19DA39B6005CEA8C /* NMShift.m in Sources */,
 				836E358A19D3E039004208A6 /* _NMCourier.m in Sources */,
-				8DCE835119D4C6FD00D770D0 /* NMPickPlacesTableViewController.m in Sources */,
+				8DCE835119D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m in Sources */,
 				8DD32FCB19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m in Sources */,
 				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
 				83EE766119BBFE51006FEDDF /* NMLocation.m in Sources */,
@@ -1124,7 +1124,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D2FDA88EF48045A4AE4BAF69 /* Pods-nommit.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1143,7 +1142,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D2FDA88EF48045A4AE4BAF69 /* Pods-nommit.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -20,6 +20,10 @@
     [SVProgressHUD showErrorWithStatus:_message];
 }
 
+- (NSSet*)errorCodes {
+    return [NSSet setWithObjects:@500, @400, @422, @403, @404, nil];
+}
+
 - (void)handleError {
     if (_status.integerValue == 401) {
         [NMSession setSessionID:nil];
@@ -27,7 +31,13 @@
         
         [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] resetUI];
         [self flashError];
-    } else if (_status.integerValue == 500 || _status.integerValue == 400 || _status.integerValue == 422) [self flashError];
+    } else if ([[self errorCodes] member:_status]) [self flashError];
+}
+
++ (void)handleGenericError {
+    NMErrorApiModel *error = [[NMErrorApiModel alloc] init];
+    error.status = @500;
+    [error flashError];
 }
 
 @end
