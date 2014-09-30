@@ -158,6 +158,12 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
     _state = state;
     _nameLabel.text = self.deliveryPlace.place.name;
     
+    NSTimeInterval arrivalETA = [self.deliveryPlace.arrivesAt timeIntervalSinceNow];
+    int minutes = floor(arrivalETA / 60);
+    int seconds = round(arrivalETA - minutes * 60);
+    
+    NSString *clock = [NSString stringWithFormat:@"%02d:%02d", abs(minutes), abs(seconds)];
+    
     [UIView animateWithDuration:0.1 animations:^{
 
         if (state == NMDeliveryStateLateWithDeliveries) {
@@ -168,15 +174,10 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
             self.backgroundColor = UIColorFromRGB(0xE75050);
         } else if (state == NMDeliveryStateOntimeWithDeliveries) {
             self.backgroundColor = [NMColors mainColor];
-            NSTimeInterval arrivalETA = [self.deliveryPlace.arrivesAt timeIntervalSinceNow];
-            int minutes = floor(arrivalETA / 60);
-            int seconds = round(arrivalETA - minutes * 60);
-            
-            NSString *clock = [NSString stringWithFormat:@"%02d:%02d", abs(minutes), abs(seconds)];
-            _nextLabel.text = [NSString stringWithFormat:@"Be at %@ in %@", self.deliveryPlaces[_index + 1], clock];
+            _nextLabel.text = [NSString stringWithFormat:@"Be at %@ in %@", [self.deliveryPlaces[_index + 1] place].name, clock];
         } else if (state == NMDeliveryStateOntimeWithoutDeliveries) {
             self.backgroundColor = [NMColors mainColor];
-            _nextLabel.text = @"Last Stop";
+            _nextLabel.text = [NSString stringWithFormat:@"Finish Deliveries within %@", clock];
         }
         [self resetArrows];
     }];

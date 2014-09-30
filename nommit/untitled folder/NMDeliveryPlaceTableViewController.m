@@ -137,7 +137,6 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    NSLog(@"Updated Content!");
     [self.tableView endUpdates];
     [self updateRevenueText];
 }
@@ -267,13 +266,13 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)updateRevenueText {
     __block double revenue = 0;
-    __block NMPlace *place = [self place];
-    [self.place.foods enumerateObjectsUsingBlock:^(NMFood *food, NSUInteger idx, BOOL *stop) {
-        NSPredicate *deliverPredicate = [NSPredicate predicateWithFormat:@"food = %@ AND stateID = %@ AND place = %@", food, @(NMOrderStateDelivered), place];
-        NSNumber *deliverCount = @([NMOrder MR_countOfEntitiesWithPredicate:deliverPredicate]);
-        revenue += deliverCount.doubleValue * food.price.doubleValue;
-    }];
-    self.footerView.revenueLabel.text = [NSString stringWithFormat:@"Total Delivered: $%@", @(revenue)];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"food in %@ AND stateID = %@", self.place.foods, @(NMOrderStateDelivered)];
+    NSArray *orders = [NMOrder MR_findAllWithPredicate:predicate];
+    for (NMOrder *order in orders) {
+        revenue += [order.priceInCents doubleValue];
+    }
+    
+    self.footerView.revenueLabel.text = [NSString stringWithFormat:@"Total Delivered: $%@", @(revenue / 100)];
 }
 
 #pragma mark - Fetch Orders
