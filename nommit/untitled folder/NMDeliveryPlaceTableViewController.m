@@ -266,7 +266,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)updateRevenueText {
     __block double revenue = 0;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"food in %@ AND stateID = %@", self.place.foods, @(NMOrderStateDelivered)];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"food in %@ AND stateID = %@ AND courier = %@", self.place.foods, @(NMOrderStateDelivered), NMCourier.currentCourier];
     NSArray *orders = [NMOrder MR_findAllWithPredicate:predicate];
     for (NMOrder *order in orders) {
         revenue += [order.priceInCents doubleValue];

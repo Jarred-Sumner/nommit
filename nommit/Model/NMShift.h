@@ -8,6 +8,6 @@ typedef NS_ENUM(NSInteger, NMShiftState) {
 
 @interface NMShift : _NMShift {}
 
-@property (readony) NMShiftState state;
+@property (readonly) NMShiftState state;
 
 @end

@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (strong, nonatomic) UILabel *numberOfFoodAvailableLabel;
+@property (strong, nonatomic) UILabel *placeLabel;
 
 @end

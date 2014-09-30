@@ -209,7 +209,6 @@ static id performInContext(NSManagedObjectContext *context, id (^block)(void)) {
 		BOOL (^deserializeProperty)(NSPropertyDescription *) = ^(NSPropertyDescription *propertyDescription) {
 			if (propertyDescription == nil) {
 				if (error != NULL) {
-
 					NSString *failureReason = [NSString stringWithFormat:NSLocalizedString(@"No property by name \"%@\" exists on the entity.", @""), managedObjectKey];
 
 					NSDictionary *userInfo = @{

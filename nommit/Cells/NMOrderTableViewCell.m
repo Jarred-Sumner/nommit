@@ -74,11 +74,11 @@
     [_callButton setImage:[UIImage imageNamed:@"PhoneIcon"] forState:UIControlStateNormal];
     [self.contentView addSubview:_callButton];
     
-    _endShiftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _doneButton.contentMode = UIViewContentModeScaleAspectFill;
     _doneButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_endShiftButton setImage:[UIImage imageNamed:@"CheckMarkIcon"] forState:UIControlStateNormal];
-    [self.contentView addSubview:_endShiftButton];
+    [_doneButton setImage:[UIImage imageNamed:@"CheckMarkIcon"] forState:UIControlStateNormal];
+    [self.contentView addSubview:_doneButton];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_callButton, _doneButton);
     

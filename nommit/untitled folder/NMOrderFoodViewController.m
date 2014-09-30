@@ -16,9 +16,11 @@
 #import "NMAddressSearchViewController.h"
 #import "NMMenuNavigationController.h"
 #import "NMRateViewController.h"
-#import "NMDeliveryViewController.h"
+#import "NMDeliveryTableViewController.h"
 #import "NMPromoCodeTableViewCell.h"
 #import "NMOrderFoodDescriptionTableViewCell.h"
+#import "NMDeliveryTableViewController.h"
+#import "NMApi.h"
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMDescriptionSecton = 1;
@@ -74,8 +76,8 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [self.tableView addParallaxWithImage:nil andHeight:150];
     [self.tableView.parallaxView setDelegate:self];
     [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL];
-    [self.tableView addBlackOverlayToParallaxView];
-    [self.tableView addTitleToParallaxView:_food.title];
+//    [self.tableView addBlackOverlayToParallaxView];
+//    [self.tableView addTitleToParallaxView:_food.title];
 
     [self initNavBar];
 
@@ -87,7 +89,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // make total 302
+    // make total 354
     if (indexPath.section == NMInfoSection) {
         return 68;
     } else if (indexPath.section == NMDescriptionSecton) {
@@ -127,7 +129,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
         _infoCell.nameLabel.text = [NSString stringWithFormat:@"By %@", _food.seller.name];
         _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", _food.price];
         _infoCell.quantityInput.value = [_orderModel.quantity integerValue] || 1;
-
+        [_infoCell setupAvatarWithImage:_food.seller.logoAsURL];
         return _infoCell;
     } else if (indexPath.section == NMDescriptionSecton) {
         _descriptionCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDescriptionIdentifier];
@@ -192,7 +194,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
                     NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
 
-                    NMDeliveryViewController *rateVC = [[NMDeliveryViewController alloc] initWithOrder:order];
+                    NMDeliveryTableViewController *rateVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
                     NMMenuNavigationController *navController =
                     [[NMMenuNavigationController alloc] initWithRootViewController:rateVC];
                     navController.navigationBar.translucent = NO;
