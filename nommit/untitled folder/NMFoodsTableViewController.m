@@ -64,10 +64,10 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
-    
+        
     NSPredicate *foodPredicate;
     if (_place) {
-        foodPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND (ANY foodDeliveryPlaces.stateID = %@ AND ANY foodDeliveryPlaces.place = %@)",@(NMFoodStateActive), @(NMFoodDeliveryPlaceStateActive), _place];
+        foodPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND ( (ANY deliveryPlaces.stateID = %@) OR (ANY deliveryPlaces.stateID = %@) ) AND ANY deliveryPlaces.place = %@",@(NMFoodStateActive), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateArrived), _place];
     } else {
         // Predicate that never returns anything ever, for empty data source.
         foodPredicate = [NSPredicate predicateWithFormat:@"uid = %@", @(-1)];
@@ -194,8 +194,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     __weak NMFoodsTableViewController *this = self;
     [self.refreshControl beginRefreshing];
     
-    [[NMApi instance] GET:@"food_delivery_places" parameters:nil completion:^(OVCResponse *response, NSError *error) {
-
+    [[NMApi instance] GET:@"foods" parameters:nil completion:^(OVCResponse *response, NSError *error) {
         if (error) {
             [response.result handleError];
         } else {

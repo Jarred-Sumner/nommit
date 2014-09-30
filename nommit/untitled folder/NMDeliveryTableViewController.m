@@ -7,17 +7,21 @@
 //
 
 #import "NMDeliveryTableViewController.h"
-#import "NMOrder.h"
 #import "NMMenuNavigationController.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMDeliveryAvatarsTableViewCell.h"
 #import "NMDeliveryCountdownTableViewCell.h"
 #import "NMDeliveryCallButtonTableViewCell.h"
 
+static NSTimeInterval NMOrderFetchInterval = 10;
 
-@interface NMDeliveryTableViewController ()<APParallaxViewDelegate>
+
+@interface NMDeliveryTableViewController ()<APParallaxViewDelegate, NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, copy) NSTimer *fetchOrderTimer;
 
 @property (nonatomic, strong) NMOrder *order;
+
 @property (nonatomic, strong) NMDeliveryAvatarsTableViewCell *avatarsCell;
 @property (nonatomic, strong) NMDeliveryCountdownTableViewCell *countdownCell;
 @property (nonatomic, strong) NMDeliveryCallButtonTableViewCell *callButtonCell;
@@ -46,7 +50,8 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         [self.tableView addParallaxWithImage:nil andHeight:150];
         [self.tableView.parallaxView setDelegate:self];
         [self.tableView.parallaxView.imageView setImageWithURL:order.food.headerImageAsURL];
-        [self.tableView addBlackOverlayToParallaxView];
+//        [self.tableView addBlackOverlayToParallaxView];
+        
         
         // register table view cells
         [self.tableView registerClass:[NMDeliveryAvatarsTableViewCell class] forCellReuseIdentifier:NMAvatarsInfoIdentifier];
@@ -56,21 +61,6 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         [self initNavBar];
     }
     return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -103,14 +93,14 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         _avatarsCell = [self.tableView dequeueReusableCellWithIdentifier:NMAvatarsInfoIdentifier];
         int price = (int)[_order.priceInCents integerValue]/100;
         _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%d", price];
-        _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ is delivering %@ orders of %@ from %@  to you for $%d.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
+        _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ is delivering %@ orders of %@ from %@ to you for $%d.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
         [_avatarsCell setupCourierAvatarWithProfileId:_order.courier.user.facebookUID];
         [_avatarsCell.avatarSeller setImageWithURL:_order.food.seller.logoAsURL];
         return _avatarsCell;
     } else if (indexPath.section == NMCountdownSection) {
         _countdownCell = [self.tableView dequeueReusableCellWithIdentifier:NMCountDownInfoIdentifier];
         _countdownCell.deliveryPlace.text = [NSString stringWithFormat:@"Arriving at %@ in", _order.place.name];
-        [_countdownCell.timerLabel setCountDownTime:900];
+        [_countdownCell.timerLabel setCountDownToDate:_order.deliveredAt];
         [_countdownCell.timerLabel start];
         return _countdownCell;
     } else if (indexPath.section == NMCallButtonSection) {
@@ -120,6 +110,12 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         return _callButtonCell;
     }
     return nil;
+}
+
+- (void)updateCells {
+    [_countdownCell.timerLabel pause];
+    [_countdownCell.timerLabel setCountDownToDate:_order.deliveredAt];
+    [_countdownCell.timerLabel start];
 }
 
 #pragma mark - call courier
@@ -157,6 +153,23 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     self.navigationItem.titleView = logoView;
     self.navigationController.navigationBarHidden = NO;
     
+}
+
+#pragma mark - Update Delivery Times
+
+- (void)startFetchingOrderStatus {
+    _fetchOrderTimer = [NSTimer scheduledTimerWithTimeInterval:NMOrderFetchInterval target:self selector:@selector(fetchOrderStatus) userInfo:nil repeats:YES];
+    [self fetchOrderStatus];
+}
+
+- (void)fetchOrderStatus {
+    __block NMDeliveryTableViewController *this = self;
+    [[NMApi instance] GET:[NSString stringWithFormat:@"orders/%@", _order.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
+        if ([response.result class] == [NMOrderApiModel class]) {
+            this.order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
+            [this updateCells];
+        }
+    }];
 }
 
 @end

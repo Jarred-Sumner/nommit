@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "16E50886AEAA43E0BE0DA15A"
+               BlueprintIdentifier = "A8B989A926E24F34AFC6651D"
                BuildableName = "libPods-nommit-JVFloatLabeledTextField.a"
                BlueprintName = "Pods-nommit-JVFloatLabeledTextField"
                ReferencedContainer = "container:Pods.xcodeproj">

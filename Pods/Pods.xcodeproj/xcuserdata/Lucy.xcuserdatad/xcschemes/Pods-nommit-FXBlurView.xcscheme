@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0600"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFB64E318A814623A66B026D"
+               BlueprintIdentifier = "3D94A761B1954D47BFD8D3BC"
                BuildableName = "libPods-nommit-FXBlurView.a"
                BlueprintName = "Pods-nommit-FXBlurView"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,6 +39,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3D94A761B1954D47BFD8D3BC"
+            BuildableName = "libPods-nommit-FXBlurView.a"
+            BlueprintName = "Pods-nommit-FXBlurView"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -48,6 +57,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3D94A761B1954D47BFD8D3BC"
+            BuildableName = "libPods-nommit-FXBlurView.a"
+            BlueprintName = "Pods-nommit-FXBlurView"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA31CCA1EB59444DB26DCF0C"
+               BlueprintIdentifier = "272BE1B848FD45E4AF9E3318"
                BuildableName = "libPods-nommit-DropdownMenu.a"
                BlueprintName = "Pods-nommit-DropdownMenu"
                ReferencedContainer = "container:Pods.xcodeproj">

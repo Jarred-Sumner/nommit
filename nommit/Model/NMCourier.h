@@ -1,5 +1,9 @@
 #import "_NMCourier.h"
 
 @interface NMCourier : _NMCourier {}
-// Custom logic goes here.
+
++ (NMCourier *)currentCourier;
+
+@property (readonly) NSArray *deliveryPlaces;
+
 @end

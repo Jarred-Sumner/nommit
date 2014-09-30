@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9BFCF7A5E16F40C086491505"
+               BlueprintIdentifier = "F2512CC87EFF42349CB53D1B"
                BuildableName = "libPods-nommit-MGMushParser.a"
                BlueprintName = "Pods-nommit-MGMushParser"
                ReferencedContainer = "container:Pods.xcodeproj">

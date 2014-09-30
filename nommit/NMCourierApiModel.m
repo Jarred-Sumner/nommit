@@ -20,11 +20,6 @@
              };
 }
 
-+ (NSValueTransformer *)placesJSONTransformer  {
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMPlaceApiModel class]];
-}
-
-
 + (NSValueTransformer *)userJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMUserApiModel class]];
 }
@@ -45,7 +40,6 @@
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
     return @{
-             @"places" : [NMPlaceApiModel class],
              @"seller" : [NMSellerApiModel class],
              @"user" : [NMUserApiModel class]
      };

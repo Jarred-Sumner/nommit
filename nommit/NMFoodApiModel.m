@@ -24,11 +24,16 @@
              @"orderGoal": @"goal",
              @"orderCount" : @"order_count",
              @"details" : @"description",
+             @"deliveryPlaces": @"delivery_places"
     };
 }
 
 + (NSValueTransformer *)sellerJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMSellerApiModel class]];
+}
+
++ (NSValueTransformer *)deliveryPlacesJSONTransformer  {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMDeliveryPlaceApiModel class]];
 }
 
 + (NSValueTransformer *)endDateJSONTransformer {
@@ -51,7 +56,8 @@
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
     return @{
-             @"seller" : [NMSellerApiModel class]
+             @"seller" : [NMSellerApiModel class],
+             @"deliveryPlaces" : [NMDeliveryPlaceApiModel class]
              };
 }
 

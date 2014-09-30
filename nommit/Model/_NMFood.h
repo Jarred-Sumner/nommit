@@ -20,7 +20,7 @@ extern const struct NMFoodAttributes {
 } NMFoodAttributes;
 
 extern const struct NMFoodRelationships {
-	__unsafe_unretained NSString *foodDeliveryPlaces;
+	__unsafe_unretained NSString *deliveryPlaces;
 	__unsafe_unretained NSString *orders;
 	__unsafe_unretained NSString *seller;
 } NMFoodRelationships;
@@ -28,7 +28,7 @@ extern const struct NMFoodRelationships {
 extern const struct NMFoodFetchedProperties {
 } NMFoodFetchedProperties;
 
-@class NMFoodDeliveryPlace;
+@class NMDeliveryPlace;
 @class NMOrder;
 @class NMSeller;
 
@@ -198,9 +198,9 @@ extern const struct NMFoodFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *foodDeliveryPlaces;
+@property (nonatomic, strong) NSSet *deliveryPlaces;
 
-- (NSMutableSet*)foodDeliveryPlacesSet;
+- (NSMutableSet*)deliveryPlacesSet;
 
 
 
@@ -224,10 +224,10 @@ extern const struct NMFoodFetchedProperties {
 
 @interface _NMFood (CoreDataGeneratedAccessors)
 
-- (void)addFoodDeliveryPlaces:(NSSet*)value_;
-- (void)removeFoodDeliveryPlaces:(NSSet*)value_;
-- (void)addFoodDeliveryPlacesObject:(NMFoodDeliveryPlace*)value_;
-- (void)removeFoodDeliveryPlacesObject:(NMFoodDeliveryPlace*)value_;
+- (void)addDeliveryPlaces:(NSSet*)value_;
+- (void)removeDeliveryPlaces:(NSSet*)value_;
+- (void)addDeliveryPlacesObject:(NMDeliveryPlace*)value_;
+- (void)removeDeliveryPlacesObject:(NMDeliveryPlace*)value_;
 
 - (void)addOrders:(NSSet*)value_;
 - (void)removeOrders:(NSSet*)value_;
@@ -327,8 +327,8 @@ extern const struct NMFoodFetchedProperties {
 
 
 
-- (NSMutableSet*)primitiveFoodDeliveryPlaces;
-- (void)setPrimitiveFoodDeliveryPlaces:(NSMutableSet*)value;
+- (NSMutableSet*)primitiveDeliveryPlaces;
+- (void)setPrimitiveDeliveryPlaces:(NSMutableSet*)value;
 
 
 

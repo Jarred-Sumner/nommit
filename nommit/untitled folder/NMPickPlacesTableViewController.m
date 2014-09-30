@@ -62,25 +62,22 @@ static NSString *NMPickPlaceCellIdentifier = @"NMPickPlaceCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return self.fetchedResultsController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 10;
+    id rows = self.fetchedResultsController.sections[section];
+    return [rows numberOfObjects];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 58;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
      NMPlaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMPickPlaceCellIdentifier];
-
-    cell.placeLabel.text = @"Mudge";
-    cell.iconImageView.hidden = YES;
-    
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -93,6 +90,12 @@ static NSString *NMPickPlaceCellIdentifier = @"NMPickPlaceCell";
 
     
     
+}
+
+- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
+    cell.textLabel.text = @"Mudge";
+    cell.textLabel.textColor = UIColorFromRGB(0x757575);
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:16.0f];
 }
 
 

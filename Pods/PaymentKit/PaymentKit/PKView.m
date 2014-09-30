@@ -7,8 +7,6 @@
 //
 
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-
 #define DarkGreyColor RGB(0,0,0)
 #define RedColor RGB(253,0,17)
 #define DefaultBoldFont [UIFont boldSystemFontOfSize:17]
@@ -87,13 +85,7 @@ static NSString *const kPKOldLocalizedStringsTableName = @"STPaymentLocalizable"
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     backgroundImageView.image = [[UIImage imageNamed:@"textfield"]
             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 8, 0, 8)];
-    // [self addSubview:backgroundImageView];
-    
-    UIView *whiteBox = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width - 20, self.bounds.size.height)];
-    whiteBox.backgroundColor = [UIColor whiteColor];
-    whiteBox.layer.borderColor = [UIColorFromRGB(0xE9E9E9) CGColor];
-    whiteBox.layer.borderWidth = 1.0f;
-    [self addSubview:whiteBox];
+    [self addSubview:backgroundImageView];
 
     self.innerView = [[UIView alloc] initWithFrame:CGRectMake(40, 12, self.frame.size.width - 40, 20)];
     self.innerView.clipsToBounds = YES;

@@ -16,11 +16,12 @@
 #import "NMAddressSearchViewController.h"
 #import "NMMenuNavigationController.h"
 #import "NMRateViewController.h"
-#import "NMDeliveryViewController.h"
+#import "NMDeliveryTableViewController.h"
 #import "NMPromoCodeTableViewCell.h"
 #import "NMOrderFoodDescriptionTableViewCell.h"
 #import "NMDeliveryTableViewController.h"
 #import "UIScrollView+NMParallaxHeader.h"
+#import "NMApi.h"
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMDescriptionSecton = 1;
@@ -76,8 +77,8 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [self.tableView addParallaxWithImage:nil andHeight:150];
     [self.tableView.parallaxView setDelegate:self];
     [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL];
-    [self.tableView addBlackOverlayToParallaxView];
-    [self.tableView addTitleToParallaxView:_food.title];
+//    [self.tableView addBlackOverlayToParallaxView];
+//    [self.tableView addTitleToParallaxView:_food.title];
 
     [self initNavBar];
 
@@ -124,10 +125,9 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMInfoSection) {
         _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodInfoIdentifier];
-
+        
+        [_infoCell.avatar setImageWithURL:_food.seller.logoAsURL];
         _infoCell.nameLabel.text = [NSString stringWithFormat:@"By %@", _food.seller.name];
-//        _infoCell.nameLabel.text = _food.title;
-//        _infoCell.descriptionLabel.text = _food.details;
         _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", _food.price];
         _infoCell.quantityInput.value = [_orderModel.quantity integerValue] || 1;
         [_infoCell setupAvatarWithImage:_food.seller.logoAsURL];

@@ -30,7 +30,7 @@
 - (void)setupAvatar
 {
     _profileAvatar = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(20.5, 7.5, 35.25, 35.25)];
-    _profileAvatar.layer.cornerRadius = _profileAvatar.bounds.size.width/2;
+    _profileAvatar.layer.cornerRadius = CGRectGetWidth(_profileAvatar.bounds) / 2;
     _profileAvatar.contentMode = UIViewContentModeScaleAspectFit;
     _profileAvatar.layer.masksToBounds = YES;
     [self.contentView addSubview:_profileAvatar];

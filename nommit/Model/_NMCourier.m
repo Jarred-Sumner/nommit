@@ -9,10 +9,9 @@ const struct NMCourierAttributes NMCourierAttributes = {
 };
 
 const struct NMCourierRelationships NMCourierRelationships = {
-	.foodDeliveryPlaces = @"foodDeliveryPlaces",
 	.orders = @"orders",
-	.places = @"places",
 	.seller = @"seller",
+	.shifts = @"shifts",
 	.user = @"user",
 };
 
@@ -114,10 +113,6 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 
 
 
-@dynamic foodDeliveryPlaces;
-
-	
-
 @dynamic orders;
 
 	
@@ -131,21 +126,21 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 }
 	
 
-@dynamic places;
-
-	
-- (NSMutableSet*)placesSet {
-	[self willAccessValueForKey:@"places"];
-  
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"places"];
-  
-	[self didAccessValueForKey:@"places"];
-	return result;
-}
-	
-
 @dynamic seller;
 
+	
+
+@dynamic shifts;
+
+	
+- (NSMutableSet*)shiftsSet {
+	[self willAccessValueForKey:@"shifts"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"shifts"];
+  
+	[self didAccessValueForKey:@"shifts"];
+	return result;
+}
 	
 
 @dynamic user;

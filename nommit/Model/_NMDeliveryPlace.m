@@ -1,45 +1,45 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to NMFoodDeliveryPlace.m instead.
+// Make changes to NMDeliveryPlace.m instead.
 
-#import "_NMFoodDeliveryPlace.h"
+#import "_NMDeliveryPlace.h"
 
-const struct NMFoodDeliveryPlaceAttributes NMFoodDeliveryPlaceAttributes = {
+const struct NMDeliveryPlaceAttributes NMDeliveryPlaceAttributes = {
+	.arrivesAt = @"arrivesAt",
 	.index = @"index",
 	.stateID = @"stateID",
 	.uid = @"uid",
-	.waitInterval = @"waitInterval",
 };
 
-const struct NMFoodDeliveryPlaceRelationships NMFoodDeliveryPlaceRelationships = {
-	.courier = @"courier",
-	.food = @"food",
+const struct NMDeliveryPlaceRelationships NMDeliveryPlaceRelationships = {
+	.foods = @"foods",
 	.place = @"place",
+	.shift = @"shift",
 };
 
-const struct NMFoodDeliveryPlaceFetchedProperties NMFoodDeliveryPlaceFetchedProperties = {
+const struct NMDeliveryPlaceFetchedProperties NMDeliveryPlaceFetchedProperties = {
 };
 
-@implementation NMFoodDeliveryPlaceID
+@implementation NMDeliveryPlaceID
 @end
 
-@implementation _NMFoodDeliveryPlace
+@implementation _NMDeliveryPlace
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"NMFoodDeliveryPlace" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"NMDeliveryPlace" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"NMFoodDeliveryPlace";
+	return @"NMDeliveryPlace";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"NMFoodDeliveryPlace" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"NMDeliveryPlace" inManagedObjectContext:moc_];
 }
 
-- (NMFoodDeliveryPlaceID*)objectID {
-	return (NMFoodDeliveryPlaceID*)[super objectID];
+- (NMDeliveryPlaceID*)objectID {
+	return (NMDeliveryPlaceID*)[super objectID];
 }
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
@@ -60,14 +60,16 @@ const struct NMFoodDeliveryPlaceFetchedProperties NMFoodDeliveryPlaceFetchedProp
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"waitIntervalValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"waitInterval"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic arrivesAt;
+
+
 
 
 
@@ -150,41 +152,24 @@ const struct NMFoodDeliveryPlaceFetchedProperties NMFoodDeliveryPlaceFetchedProp
 
 
 
-@dynamic waitInterval;
-
-
-
-- (int32_t)waitIntervalValue {
-	NSNumber *result = [self waitInterval];
-	return [result intValue];
-}
-
-- (void)setWaitIntervalValue:(int32_t)value_ {
-	[self setWaitInterval:[NSNumber numberWithInt:value_]];
-}
-
-- (int32_t)primitiveWaitIntervalValue {
-	NSNumber *result = [self primitiveWaitInterval];
-	return [result intValue];
-}
-
-- (void)setPrimitiveWaitIntervalValue:(int32_t)value_ {
-	[self setPrimitiveWaitInterval:[NSNumber numberWithInt:value_]];
-}
-
-
-
-
-
-@dynamic courier;
+@dynamic foods;
 
 	
-
-@dynamic food;
-
+- (NSMutableSet*)foodsSet {
+	[self willAccessValueForKey:@"foods"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"foods"];
+  
+	[self didAccessValueForKey:@"foods"];
+	return result;
+}
 	
 
 @dynamic place;
+
+	
+
+@dynamic shift;
 
 	
 

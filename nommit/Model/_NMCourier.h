@@ -10,20 +10,18 @@ extern const struct NMCourierAttributes {
 } NMCourierAttributes;
 
 extern const struct NMCourierRelationships {
-	__unsafe_unretained NSString *foodDeliveryPlaces;
 	__unsafe_unretained NSString *orders;
-	__unsafe_unretained NSString *places;
 	__unsafe_unretained NSString *seller;
+	__unsafe_unretained NSString *shifts;
 	__unsafe_unretained NSString *user;
 } NMCourierRelationships;
 
 extern const struct NMCourierFetchedProperties {
 } NMCourierFetchedProperties;
 
-@class NMFoodDeliveryPlace;
 @class NMOrder;
-@class NMPlace;
 @class NMSeller;
+@class NMShift;
 @class NMUser;
 
 
@@ -70,13 +68,6 @@ extern const struct NMCourierFetchedProperties {
 
 
 
-@property (nonatomic, strong) NMFoodDeliveryPlace *foodDeliveryPlaces;
-
-//- (BOOL)validateFoodDeliveryPlaces:(id*)value_ error:(NSError**)error_;
-
-
-
-
 @property (nonatomic, strong) NSSet *orders;
 
 - (NSMutableSet*)ordersSet;
@@ -84,16 +75,16 @@ extern const struct NMCourierFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *places;
-
-- (NSMutableSet*)placesSet;
-
-
-
-
 @property (nonatomic, strong) NMSeller *seller;
 
 //- (BOOL)validateSeller:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NSSet *shifts;
+
+- (NSMutableSet*)shiftsSet;
 
 
 
@@ -115,10 +106,10 @@ extern const struct NMCourierFetchedProperties {
 - (void)addOrdersObject:(NMOrder*)value_;
 - (void)removeOrdersObject:(NMOrder*)value_;
 
-- (void)addPlaces:(NSSet*)value_;
-- (void)removePlaces:(NSSet*)value_;
-- (void)addPlacesObject:(NMPlace*)value_;
-- (void)removePlacesObject:(NMPlace*)value_;
+- (void)addShifts:(NSSet*)value_;
+- (void)removeShifts:(NSSet*)value_;
+- (void)addShiftsObject:(NMShift*)value_;
+- (void)removeShiftsObject:(NMShift*)value_;
 
 @end
 
@@ -144,23 +135,18 @@ extern const struct NMCourierFetchedProperties {
 
 
 
-- (NMFoodDeliveryPlace*)primitiveFoodDeliveryPlaces;
-- (void)setPrimitiveFoodDeliveryPlaces:(NMFoodDeliveryPlace*)value;
-
-
-
 - (NSMutableSet*)primitiveOrders;
 - (void)setPrimitiveOrders:(NSMutableSet*)value;
 
 
 
-- (NSMutableSet*)primitivePlaces;
-- (void)setPrimitivePlaces:(NSMutableSet*)value;
-
-
-
 - (NMSeller*)primitiveSeller;
 - (void)setPrimitiveSeller:(NMSeller*)value;
+
+
+
+- (NSMutableSet*)primitiveShifts;
+- (void)setPrimitiveShifts:(NSMutableSet*)value;
 
 
 

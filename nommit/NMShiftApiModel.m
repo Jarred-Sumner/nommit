@@ -1,14 +1,14 @@
 //
-//  NMFoodDeliveryPlaceApiModel.m
+//  NMShiftApiModel.m
 //  nommit
 //
-//  Created by Jarred Sumner on 9/27/14.
+//  Created by Jarred Sumner on 9/29/14.
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMFoodDeliveryPlaceApiModel.h"
+#import "NMShiftApiModel.h"
 
-@implementation NMFoodDeliveryPlaceApiModel
+@implementation NMShiftApiModel
 
 #pragma mark - MTLJSONSerializing
 
@@ -17,43 +17,40 @@
     return @{
              @"uid": @"id",
              @"stateID" : @"state_id",
-             @"waitInterval" : @"wait_interval"
+             @"deliveryPlaces" : @"delivery_places",
+             @"places" : NSNull.null
              };
 }
-
-+ (NSValueTransformer *)placeJSONTransformer  {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMPlaceApiModel class]];
-}
-
 
 + (NSValueTransformer *)courierJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMCourierApiModel class]];
 }
 
-+ (NSValueTransformer *)foodJSONTransformer  {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMFoodApiModel class]];
++ (NSValueTransformer *)deliveryPlacesJSONTransformer  {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMDeliveryPlaceApiModel class]];
 }
+
 
 #pragma mark - MTLManagedObjectSerializing
 
 + (NSString *)managedObjectEntityName {
-    return @"NMFoodDeliveryPlace";
+    return @"NMShift";
+}
+
++ (NSDictionary *)relationshipModelClassesByPropertyKey {
+    return @{
+             @"courier" : [NMCourierApiModel class],
+             @"deliveryPlaces" : [NMDeliveryPlaceApiModel class],
+             };
 }
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {
     return @{};
 }
 
-+ (NSDictionary *)relationshipModelClassesByPropertyKey {
-    return @{
-             @"place" : [NMPlaceApiModel class],
-             @"courier" : [NMCourierApiModel class],
-             @"food" : [NMFoodApiModel class]
-             };
-}
-
 + (NSSet *)propertyKeysForManagedObjectUniquing {
     return [NSSet setWithObject:@"uid"];
 }
+
 
 @end

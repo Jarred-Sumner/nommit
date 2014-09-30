@@ -51,6 +51,10 @@
 
 }
 
++ (NSValueTransformer *)courierJSONTransformer  {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMCourierApiModel class]];
+}
+
 + (NSValueTransformer *)foodJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMFoodApiModel class]];
 }
@@ -69,7 +73,8 @@
     return @{
              @"food" : [NMFoodApiModel class],
              @"place" : [NMPlaceApiModel class],
-             @"user" : [NMUserApiModel class]
+             @"user" : [NMUserApiModel class],
+             @"courier" : [NMCourierApiModel class]
              };
 }
 

@@ -10,6 +10,9 @@
 
 @implementation NMFood
 
++ (NSNumber*)revenueForFood:(NMFood*)food {
+    return @(food.orderCount.doubleValue * food.price.doubleValue);
+}
 
 + (NSArray*)activeFoods {
     NSPredicate *active = [NSPredicate predicateWithFormat:@"stateID = %@ AND endDate > %@", @(NMFoodStateActive), [NSDate date]];

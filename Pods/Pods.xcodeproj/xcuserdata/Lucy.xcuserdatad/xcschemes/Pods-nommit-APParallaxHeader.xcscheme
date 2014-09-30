@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0600"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DAB81C1C08684DB58A1455AA"
+               BlueprintIdentifier = "1FE9EFCD86044216896C7DC6"
                BuildableName = "libPods-nommit-APParallaxHeader.a"
                BlueprintName = "Pods-nommit-APParallaxHeader"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,6 +39,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1FE9EFCD86044216896C7DC6"
+            BuildableName = "libPods-nommit-APParallaxHeader.a"
+            BlueprintName = "Pods-nommit-APParallaxHeader"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -48,6 +57,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1FE9EFCD86044216896C7DC6"
+            BuildableName = "libPods-nommit-APParallaxHeader.a"
+            BlueprintName = "Pods-nommit-APParallaxHeader"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

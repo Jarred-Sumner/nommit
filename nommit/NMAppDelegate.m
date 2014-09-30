@@ -31,8 +31,13 @@
     [self.window makeKeyAndVisible];
     
     [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
-    
+
+    if ([NMSession isUserLoggedIn]) [self checkForPendingDeliveries];
     return YES;
+}
+
+- (void)checkForPendingDeliveries {
+    [[NMApi instance] GET:@"shifts" parameters:nil completion:NULL];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -42,8 +47,6 @@
 - (UIViewController *)rootViewController {
     if ([NMSession isUserLoggedIn]) {
         return [[NMFoodsTableViewController alloc] init];
-//        return [[NMRegistrationSetupTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//        return [[NMRateViewController alloc] init];
     } else return [[NMLoginViewController alloc] init];
 }
 

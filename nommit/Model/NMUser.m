@@ -28,6 +28,11 @@ static id NMCurrentUser;
     return [phoneUtil parse:self.phone defaultRegion:@"US" error:nil];
 }
 
+- (BOOL)hasActiveDeliveries {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND (courier IN %@)", @(NMShiftStateActive), self.couriers.allObjects];
+    return [NMShift MR_countOfEntitiesWithPredicate:predicate] > 0;
+}
+
 
 
 @end

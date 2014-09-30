@@ -13,13 +13,12 @@
 #import "NMMenuNavigationController.h"
 #import "NMColors.h"
 
-#import "NMFoodDeliveryPlaceTableViewController.h"
+#import "NMDeliveryPlaceTableViewController.h"
 #import "NMPickPlacesTableViewController.h"
 #import "NMAccountTableViewController.h"
-#import "NMDeliveryViewController.h"
+#import "NMDeliveryTableViewController.h"
 
 #import "NMLoginViewController.h"
-#import "NMDeliveryTableViewController.h"
 #import "NMRateTableViewController.h"
 
 static NSInteger NMStaticSection = 0;
@@ -165,7 +164,7 @@ static NSInteger NMOrdersSection = 1;
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     
-    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@", @0];
+    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND user = %@", @(NMOrderStateActive), NMUser.currentUser];
     
     _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:ordersPredicate groupBy:nil delegate: self];
     return _fetchedResultsController;
@@ -194,6 +193,10 @@ static NSInteger NMOrdersSection = 1;
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    // Section is offset by 1 for the fetchedResultsController
+    indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:1];
+    newIndexPath = [NSIndexPath indexPathForRow:newIndexPath.row inSection:1];
     
     UITableView *tableView = self.tableView;
     
@@ -249,10 +252,10 @@ static NSInteger NMOrdersSection = 1;
         } else {
             return 3;
         }
-    }
-    
-    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
-    return [sectionInfo numberOfObjects];
+    } else if (sectionIndex == 1) {
+        id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+        return [sectionInfo numberOfObjects];
+    } else return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -295,12 +298,11 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showOrders {
-    BOOL selectedPlaces = NO;
     
-    NMFoodDeliveryPlaceTableViewController *ordersVC = [[NMFoodDeliveryPlaceTableViewController alloc] init];
+    NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] init];
     [self navigateTo:ordersVC];
     
-    if (!selectedPlaces) {
+    if (![[NMUser currentUser] hasActiveDeliveries]) {
         NMPickPlacesTableViewController *pickPlacesTVC = [[NMPickPlacesTableViewController alloc] initWithStyle:UITableViewStylePlain];
         
         NMMenuNavigationController *navController =
@@ -310,7 +312,6 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showAccount {
-    // NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] init];
     NMAccountTableViewController *accountTableVC = [[NMAccountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self navigateTo:accountTableVC];
 }

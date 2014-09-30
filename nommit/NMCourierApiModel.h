@@ -15,7 +15,6 @@
 @property (nonatomic, strong) NSNumber *uid;
 @property (nonatomic, strong) NSNumber *stateID;
 
-@property (nonatomic, strong) NSArray *places;
 @property (nonatomic, strong) NMUserApiModel *user;
 @property (nonatomic, strong) NMSellerApiModel *seller;
 

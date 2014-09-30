@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMFoodDeliveryPlaceFooter : UIView
+@interface NMDeliveryPlaceFooter : UIView
 
 @property (nonatomic, strong) UIButton *hereButton;
-@property (nonatomic, strong) UIButton *doneButton;
+@property (nonatomic, strong) UIButton *endShiftButton;
 @property (nonatomic, strong) UILabel *revenueLabel;
 
 @end
