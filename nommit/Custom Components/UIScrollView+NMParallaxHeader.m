@@ -12,34 +12,6 @@
 
 @implementation UIScrollView (NMParallaxHeader)
 
-- (void)addParallaxWithImageSubviewed:(UIImage *)image andHeight:(CGFloat)height andShadow:(BOOL)shadow {
-    if(self.parallaxView) {
-        if(self.parallaxView.currentSubView) {
-            [self.parallaxView.currentSubView removeFromSuperview];
-        }
-        [self.parallaxView.imageView setImage:image];
-    }
-    else
-    {
-        APParallaxView *view = [[APParallaxView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, height) andShadow:shadow];
-        [view setClipsToBounds:YES];
-        [view.imageView setImage:image];
-        
-        view.scrollView = self;
-        view.parallaxHeight = height;
-        [self insertSubview:view atIndex:0];
-        
-        view.originalTopInset = self.contentInset.top;
-        
-        UIEdgeInsets newInset = self.contentInset;
-        newInset.top = height;
-        self.contentInset = newInset;
-        
-        self.parallaxView = view;
-        self.showsParallax = YES;
-    }
-}
-
 - (void)addTitleToParallaxView:(NSString *)title
 {
     UILabel *eventName = [[UILabel alloc] init];

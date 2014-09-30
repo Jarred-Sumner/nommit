@@ -13,6 +13,5 @@
 
 - (void)addTitleToParallaxView:(NSString *)title;
 - (void)addBlackOverlayToParallaxView;
-- (void)addParallaxWithImageSubviewed:(UIImage *)image andHeight:(CGFloat)height andShadow:(BOOL)shadow;
 
 @end
