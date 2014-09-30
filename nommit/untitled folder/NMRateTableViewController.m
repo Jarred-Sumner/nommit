@@ -50,7 +50,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         [self.tableView addParallaxWithImage:nil andHeight:90];
         [self.tableView.parallaxView setDelegate:self];
         [self.tableView.parallaxView.imageView setImageWithURL:order.food.headerImageAsURL];
-//        [self.tableView addBlackOverlayToParallaxView];
+        [self.tableView addBlackOverlayToParallaxView];
         
         // register table view cells
         [self.tableView registerClass:[NMDeliveryAvatarsTableViewCell class] forCellReuseIdentifier:NMRateAvatarsInfoIdentifier];

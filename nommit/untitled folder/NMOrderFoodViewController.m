@@ -77,8 +77,8 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [self.tableView addParallaxWithImage:nil andHeight:150];
     [self.tableView.parallaxView setDelegate:self];
     [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL];
-//    [self.tableView addBlackOverlayToParallaxView];
-//    [self.tableView addTitleToParallaxView:_food.title];
+    [self.tableView addBlackOverlayToParallaxView];
+    [self.tableView addTitleToParallaxView:_food.title];
 
     [self initNavBar];
 
