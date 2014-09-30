@@ -20,6 +20,7 @@
 #import "NMPromoCodeTableViewCell.h"
 #import "NMOrderFoodDescriptionTableViewCell.h"
 #import "NMDeliveryTableViewController.h"
+#import "UIScrollView+NMParallaxHeader.h"
 #import "NMApi.h"
 
 const NSInteger NMInfoSection = 0;
@@ -76,8 +77,8 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [self.tableView addParallaxWithImage:nil andHeight:150];
     [self.tableView.parallaxView setDelegate:self];
     [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL];
-//    [self.tableView addBlackOverlayToParallaxView];
-//    [self.tableView addTitleToParallaxView:_food.title];
+    [self.tableView addBlackOverlayToParallaxView];
+    [self.tableView addTitleToParallaxView:_food.title];
 
     [self initNavBar];
 

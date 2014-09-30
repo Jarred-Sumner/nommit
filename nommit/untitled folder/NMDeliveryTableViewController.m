@@ -8,10 +8,10 @@
 
 #import "NMDeliveryTableViewController.h"
 #import "NMMenuNavigationController.h"
-#import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMDeliveryAvatarsTableViewCell.h"
 #import "NMDeliveryCountdownTableViewCell.h"
 #import "NMDeliveryCallButtonTableViewCell.h"
+#import "UIScrollView+NMParallaxHeader.h"
 
 static NSTimeInterval NMOrderFetchInterval = 10;
 
@@ -51,7 +51,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         [self.tableView addParallaxWithImage:nil andHeight:150];
         [self.tableView.parallaxView setDelegate:self];
         [self.tableView.parallaxView.imageView setImageWithURL:order.food.headerImageAsURL];
-//        [self.tableView addBlackOverlayToParallaxView];
+        [self.tableView addBlackOverlayToParallaxView];
         
         
         // register table view cells
