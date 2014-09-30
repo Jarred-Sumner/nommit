@@ -29,9 +29,8 @@ static id NMCurrentUser;
 }
 
 - (BOOL)hasActiveDeliveries {
-    NMCourier *courier = [self.couriers anyObject];
-    NSPredicate *deliveries = [NSPredicate predicateWithFormat:@"stateID = %@ AND courier = %@", @(NMFoodDeliveryPlaceStateActive), courier];
-    return [NMFoodDeliveryPlace MR_countOfEntitiesWithPredicate:deliveries] > 0;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND (courier IN %@)", @(NMShiftStateActive), self.couriers.allObjects];
+    return [NMShift MR_countOfEntitiesWithPredicate:predicate] > 0;
 }
 
 

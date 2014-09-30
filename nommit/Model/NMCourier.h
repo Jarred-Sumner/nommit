@@ -4,4 +4,6 @@
 
 + (NMCourier *)currentCourier;
 
+@property (readonly) NSArray *deliveryPlaces;
+
 @end

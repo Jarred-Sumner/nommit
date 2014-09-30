@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMFoodDeliveryPlaceTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface NMDeliveryPlaceTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (readonly) NMPlace *place;
 @property (nonatomic, strong) NSArray *places;

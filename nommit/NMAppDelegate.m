@@ -37,10 +37,7 @@
 }
 
 - (void)checkForPendingDeliveries {
-    [[NMApi instance] GET:@"seller/food_delivery_places" parameters:nil completion:^(OVCResponse *response, NSError *error) {
-        NSLog(@"Result: %@", @([response.result count]));
-        NSLog(@"Error: %@", error);
-    }];
+    [[NMApi instance] GET:@"shifts" parameters:nil completion:NULL];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

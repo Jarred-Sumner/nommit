@@ -13,7 +13,7 @@
 #import "NMMenuNavigationController.h"
 #import "NMColors.h"
 
-#import "NMFoodDeliveryPlaceTableViewController.h"
+#import "NMDeliveryPlaceTableViewController.h"
 #import "NMPickPlacesTableViewController.h"
 #import "NMAccountTableViewController.h"
 #import "NMDeliveryViewController.h"
@@ -296,7 +296,7 @@ static NSInteger NMOrdersSection = 1;
 
 - (void)showOrders {
     
-    NMFoodDeliveryPlaceTableViewController *ordersVC = [[NMFoodDeliveryPlaceTableViewController alloc] init];
+    NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] init];
     [self navigateTo:ordersVC];
     
     if (![[NMUser currentUser] hasActiveDeliveries]) {

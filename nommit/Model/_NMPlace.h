@@ -11,8 +11,7 @@ extern const struct NMPlaceAttributes {
 } NMPlaceAttributes;
 
 extern const struct NMPlaceRelationships {
-	__unsafe_unretained NSString *couriers;
-	__unsafe_unretained NSString *foodDeliveryPlaces;
+	__unsafe_unretained NSString *deliveryPlaces;
 	__unsafe_unretained NSString *location;
 	__unsafe_unretained NSString *orders;
 } NMPlaceRelationships;
@@ -20,8 +19,7 @@ extern const struct NMPlaceRelationships {
 extern const struct NMPlaceFetchedProperties {
 } NMPlaceFetchedProperties;
 
-@class NMCourier;
-@class NMFoodDeliveryPlace;
+@class NMDeliveryPlace;
 @class NMLocation;
 @class NMOrder;
 
@@ -80,16 +78,9 @@ extern const struct NMPlaceFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *couriers;
+@property (nonatomic, strong) NSSet *deliveryPlaces;
 
-- (NSMutableSet*)couriersSet;
-
-
-
-
-@property (nonatomic, strong) NSSet *foodDeliveryPlaces;
-
-- (NSMutableSet*)foodDeliveryPlacesSet;
+- (NSMutableSet*)deliveryPlacesSet;
 
 
 
@@ -113,15 +104,10 @@ extern const struct NMPlaceFetchedProperties {
 
 @interface _NMPlace (CoreDataGeneratedAccessors)
 
-- (void)addCouriers:(NSSet*)value_;
-- (void)removeCouriers:(NSSet*)value_;
-- (void)addCouriersObject:(NMCourier*)value_;
-- (void)removeCouriersObject:(NMCourier*)value_;
-
-- (void)addFoodDeliveryPlaces:(NSSet*)value_;
-- (void)removeFoodDeliveryPlaces:(NSSet*)value_;
-- (void)addFoodDeliveryPlacesObject:(NMFoodDeliveryPlace*)value_;
-- (void)removeFoodDeliveryPlacesObject:(NMFoodDeliveryPlace*)value_;
+- (void)addDeliveryPlaces:(NSSet*)value_;
+- (void)removeDeliveryPlaces:(NSSet*)value_;
+- (void)addDeliveryPlacesObject:(NMDeliveryPlace*)value_;
+- (void)removeDeliveryPlacesObject:(NMDeliveryPlace*)value_;
 
 - (void)addOrders:(NSSet*)value_;
 - (void)removeOrders:(NSSet*)value_;
@@ -158,13 +144,8 @@ extern const struct NMPlaceFetchedProperties {
 
 
 
-- (NSMutableSet*)primitiveCouriers;
-- (void)setPrimitiveCouriers:(NSMutableSet*)value;
-
-
-
-- (NSMutableSet*)primitiveFoodDeliveryPlaces;
-- (void)setPrimitiveFoodDeliveryPlaces:(NSMutableSet*)value;
+- (NSMutableSet*)primitiveDeliveryPlaces;
+- (void)setPrimitiveDeliveryPlaces:(NSMutableSet*)value;
 
 
 

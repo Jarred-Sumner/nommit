@@ -10,13 +10,17 @@
 
 static NSInteger NMOrderLocationViewHeight = 54;
 
-@protocol NMFoodDeliveryPlaceNavigatorDelegate <NSObject>
+typedef NS_ENUM(NSInteger, NMDeliveryPlaceNavigatorDirection) {
+    NMDeliveryPlaceNavigatorDirectionPrevious = -1,
+    NMDeliveryPlaceNavigatorDirectionNext = 1,
+};
 
-- (void)didChangeFoodDeliveryPlace:(NMFoodDeliveryPlace*)deliveryPlace;
+@protocol NMDeliveryPlaceNavigatorDelegate <NSObject>
 
+- (void)didNavigateToDeliveryPlaceAtIndex:(NSUInteger)index;
 @end
 
-@interface NMFoodDeliveryPlaceNavigatorView : UIView
+@interface NMDeliveryPlaceNavigatorView : UIView
 
 @property (nonatomic, strong) UIView *locationView;
 @property (nonatomic, strong) UILabel *nameLabel;
@@ -26,6 +30,8 @@ static NSInteger NMOrderLocationViewHeight = 54;
 
 @property (nonatomic, strong) NSArray *deliveryPlaces;
 
-@property (nonatomic, strong) NSObject<NMFoodDeliveryPlaceNavigatorDelegate> *delegate;
+@property (nonatomic, strong) NSObject<NMDeliveryPlaceNavigatorDelegate> *delegate;
+
+- (id)initWithFrame:(CGRect)frame deliveryPlaces:(NSArray*)deliveryPlaces;
 
 @end

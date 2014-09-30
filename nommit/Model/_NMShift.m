@@ -1,44 +1,43 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to NMCourier.m instead.
+// Make changes to NMShift.m instead.
 
-#import "_NMCourier.h"
+#import "_NMShift.h"
 
-const struct NMCourierAttributes NMCourierAttributes = {
+const struct NMShiftAttributes NMShiftAttributes = {
+	.places = @"places",
 	.stateID = @"stateID",
 	.uid = @"uid",
 };
 
-const struct NMCourierRelationships NMCourierRelationships = {
-	.orders = @"orders",
-	.seller = @"seller",
-	.shifts = @"shifts",
-	.user = @"user",
+const struct NMShiftRelationships NMShiftRelationships = {
+	.courier = @"courier",
+	.deliveryPlaces = @"deliveryPlaces",
 };
 
-const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
+const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 };
 
-@implementation NMCourierID
+@implementation NMShiftID
 @end
 
-@implementation _NMCourier
+@implementation _NMShift
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"NMCourier" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"NMShift" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"NMCourier";
+	return @"NMShift";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"NMCourier" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"NMShift" inManagedObjectContext:moc_];
 }
 
-- (NMCourierID*)objectID {
-	return (NMCourierID*)[super objectID];
+- (NMShiftID*)objectID {
+	return (NMShiftID*)[super objectID];
 }
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
@@ -61,26 +60,33 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 
 
 
+@dynamic places;
+
+
+
+
+
+
 @dynamic stateID;
 
 
 
-- (int16_t)stateIDValue {
+- (int64_t)stateIDValue {
 	NSNumber *result = [self stateID];
-	return [result shortValue];
+	return [result longLongValue];
 }
 
-- (void)setStateIDValue:(int16_t)value_ {
-	[self setStateID:[NSNumber numberWithShort:value_]];
+- (void)setStateIDValue:(int64_t)value_ {
+	[self setStateID:[NSNumber numberWithLongLong:value_]];
 }
 
-- (int16_t)primitiveStateIDValue {
+- (int64_t)primitiveStateIDValue {
 	NSNumber *result = [self primitiveStateID];
-	return [result shortValue];
+	return [result longLongValue];
 }
 
-- (void)setPrimitiveStateIDValue:(int16_t)value_ {
-	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
+- (void)setPrimitiveStateIDValue:(int64_t)value_ {
+	[self setPrimitiveStateID:[NSNumber numberWithLongLong:value_]];
 }
 
 
@@ -113,38 +119,21 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 
 
 
-@dynamic orders;
+@dynamic courier;
 
 	
-- (NSMutableSet*)ordersSet {
-	[self willAccessValueForKey:@"orders"];
+
+@dynamic deliveryPlaces;
+
+	
+- (NSMutableSet*)deliveryPlacesSet {
+	[self willAccessValueForKey:@"deliveryPlaces"];
   
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orders"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"deliveryPlaces"];
   
-	[self didAccessValueForKey:@"orders"];
+	[self didAccessValueForKey:@"deliveryPlaces"];
 	return result;
 }
-	
-
-@dynamic seller;
-
-	
-
-@dynamic shifts;
-
-	
-- (NSMutableSet*)shiftsSet {
-	[self willAccessValueForKey:@"shifts"];
-  
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"shifts"];
-  
-	[self didAccessValueForKey:@"shifts"];
-	return result;
-}
-	
-
-@dynamic user;
-
 	
 
 

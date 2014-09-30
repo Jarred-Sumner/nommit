@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMFoodDeliveryPlaceFooter.h"
+#import "NMDeliveryPlaceFooter.h"
 #import "NMColors.h"
 
-@implementation NMFoodDeliveryPlaceFooter
+@implementation NMDeliveryPlaceFooter
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
