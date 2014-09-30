@@ -7,7 +7,7 @@
 //
 
 #import "NMPickPlacesTableViewController.h"
-#import "NMPickPlaceTableViewCell.h"
+#import "NMPlaceTableViewCell.h"
 
 @interface NMPickPlacesTableViewController ()
 
@@ -21,7 +21,9 @@ static NSString *NMPickPlaceCellIdentifier = @"NMPickPlaceCell";
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
-    [self.tableView registerClass:[NMPickPlaceTableViewCell class] forCellReuseIdentifier:NMPickPlaceCellIdentifier];
+    self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMPickPlaceCellIdentifier];
     [self.fetchedResultsController performFetch:nil];
     return self;
 }
@@ -52,6 +54,8 @@ static NSString *NMPickPlaceCellIdentifier = @"NMPickPlaceCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.fetchedResultsController performFetch:nil];
+    UIEdgeInsets inset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.tableView.contentInset = inset;
 }
 
 #pragma mark - Table view data source
@@ -66,22 +70,29 @@ static NSString *NMPickPlaceCellIdentifier = @"NMPickPlaceCell";
     return 10;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 58;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     NMPickPlaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMPickPlaceCellIdentifier];
+     NMPlaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMPickPlaceCellIdentifier];
 
-    cell.textLabel.text = @"Mudge";
-    cell.textLabel.textColor = UIColorFromRGB(0x757575);
-    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:16.0f];
-
+    cell.placeLabel.text = @"Mudge";
+    cell.iconImageView.hidden = YES;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    (cell.accessoryType == UITableViewCellAccessoryNone) ? (cell.accessoryType = UITableViewCellAccessoryCheckmark) : (cell.accessoryType = UITableViewCellAccessoryNone) ;
+    NMPlaceTableViewCell *cell = (NMPlaceTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+//    (cell.accessoryType == UITableViewCellAccessoryNone) ? (cell.accessoryType = UITableViewCellAccessoryCheckmark) : (cell.accessoryType = UITableViewCellAccessoryNone) ;
+    
+    (cell.iconImageView.hidden == YES) ? (cell.iconImageView.hidden = NO) : (cell.iconImageView.hidden = YES) ;
+
+    
+    
 }
 
 

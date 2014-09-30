@@ -23,6 +23,7 @@
     self.backgroundColor = [UIColor clearColor];
     self.textLabel.textColor = UIColorFromRGB(0x757575);
     self.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:16.0f];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     [self setupWhiteBackground];
     [self setupPlaceLabel];
