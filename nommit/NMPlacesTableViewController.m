@@ -23,6 +23,8 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
+    self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMPlaceTableViewCellKey];
     [self.fetchedResultsController performFetch:nil];
     return self;
@@ -35,6 +37,11 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
+}
+
+- (void)viewDidLoad {
+    UIEdgeInsets inset = UIEdgeInsetsMake(20, 0, 0, 0);
+    self.tableView.contentInset = inset;
 }
 
 - (void)cancel:(id)sender
@@ -111,7 +118,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 45;
+    return 58;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -133,7 +140,12 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 - (void)configureCell:(NMPlaceTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    cell.textLabel.text = place.name;
+    NSString *placeString = place.name;
+    if ([placeString length] > 24) {
+        placeString = [placeString substringToIndex:24];
+    }
+    
+    cell.placeLabel.text = placeString;
     cell.numberOfFoodAvailableLabel.text = [NSString stringWithFormat:@"%@", place.foodCount];
     cell.iconImageView.hidden = !(place.foodCount.integerValue > 0);
 }
