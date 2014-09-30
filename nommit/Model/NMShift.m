@@ -10,6 +10,8 @@
 
 @implementation NMShift
 
-// Custom logic goes here.
+- (NMShiftState)state {
+    return [self.stateID integerValue];
+}
 
 @end

@@ -25,7 +25,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 @property (nonatomic, strong) NSTimer *orderFetchTimer;
 
-@property (nonatomic) NSUInteger deliveryPlaceIndex;
+@property (nonatomic) NSUInteger placeIndex;
 
 @end
 
@@ -45,6 +45,10 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     
     _footerView = [[NMDeliveryPlaceFooter alloc] init];
     _footerView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [_footerView.endShiftButton addTarget:self action:@selector(endShift) forControlEvents:UIControlEventTouchUpInside];
+    [_footerView.hereButton addTarget:self action:@selector(imHere) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:_footerView];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_footerView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_footerView)]];
@@ -209,30 +213,26 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 #pragma mark - Place-specific actions
 
-- (NSArray*)places {
-    if (!_places) {
-        __block NSMutableSet *places = [[NSMutableSet alloc] init];
-        [[self deliveryPlaces] enumerateObjectsUsingBlock:^(NMDeliveryPlace *deliveryPlace, NSUInteger idx, BOOL *stop) {
-            [places addObject:deliveryPlace.place];
-        }];
-        _places = [places allObjects];
-    }
-    return _places;
-}
-
 - (NMPlace*)place {
-    return [self.places objectAtIndex:_deliveryPlaceIndex];
+    return self.deliveryPlace.place;
 }
 
 - (NSArray*)deliveryPlaces {
-    return NMCourier.currentCourier.deliveryPlaces;
+    if (!_deliveryPlaces) {
+        _deliveryPlaces = NMCourier.currentCourier.deliveryPlaces;
+    }
+    return _deliveryPlaces;
+}
+
+- (NMDeliveryPlace*)deliveryPlace {
+    return self.deliveryPlaces[_placeIndex];
 }
 
 - (void)didNavigateToDeliveryPlaceAtIndex:(NSUInteger)index {
     _fetchedResultsController.delegate = nil;
     _fetchedResultsController = nil;
     
-    _deliveryPlaceIndex = index;
+    _placeIndex = index;
     
     [self fetchOrders];
     [self.fetchedResultsController performFetch:nil];
@@ -262,7 +262,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     
 }
 
-#pragma mark - Revenue Text
+#pragma mark - Footer View
 
 - (void)updateRevenueText {
     __block double revenue = 0;
@@ -273,6 +273,44 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     }
     
     self.footerView.revenueLabel.text = [NSString stringWithFormat:@"Total Delivered: $%@", @(revenue / 100)];
+}
+
+- (void)endShift {
+    if (_shift.state == NMShiftStateActive) {
+        [SVProgressHUD showWithStatus:@"Preventing New Orders..." maskType:SVProgressHUDMaskTypeBlack];
+        [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"state_id" : @(NMShiftStateHalted) } completion:^(OVCResponse *response, NSError *error) {
+            if ([response.result class] == [NMErrorApiModel class]) [response.result handleError]; else {
+            }
+        }];
+    } else if (_shift.state == NMShiftStateHalted) {
+        [SVProgressHUD showWithStatus:@"Ending Shift..." maskType:SVProgressHUDMaskTypeBlack];
+        [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"state_id" : @(NMShiftStateEnded) } completion:^(OVCResponse *response, NSError *error) {
+            if ([response.result class] == [NMErrorApiModel class]){
+                [response.result handleError];
+            }
+            else {
+                [SVProgressHUD showSuccessWithStatus:@"Shift Ended!"];
+            }
+        }];
+    }
+    
+}
+
+- (void)imHere {
+    [SVProgressHUD showWithStatus:@"Notifying Customers..." maskType:SVProgressHUDMaskTypeBlack];
+    [[NMApi instance] PUT:[NSString stringWithFormat:@"delivery_places/%@", self.deliveryPlace.uid] parameters:@{ @"state_id": @(NMDeliveryPlaceStateArrived) } completion:^(OVCResponse * response, NSError *error) {
+        if ([response.result class] == [NMErrorApiModel class]) {
+            [response.result handleError];
+        } else {
+            
+            // There might be a better place to do this.
+            // Update the state of the shift also.
+            [[NMApi instance] GET:@"shifts" parameters:nil completion:NULL];
+            
+            
+            [SVProgressHUD showSuccessWithStatus:@"Notified!"];
+        }
+    }];
 }
 
 #pragma mark - Fetch Orders
@@ -291,7 +329,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (void)dealloc {
     [_orderFetchTimer invalidate];
     _orderFetchTimer = nil;
-    _places = nil;
+    _deliveryPlaces = nil;
     _placeNavigatorView.delegate = nil;
     _placeNavigatorView = nil;
     _fetchedResultsController.delegate = nil;

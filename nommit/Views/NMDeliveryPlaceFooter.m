@@ -16,7 +16,7 @@
     if (self) {
         [self setupHereButton];
         [self setupDoneButton];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_hereButton(160)]-0-[_doneButton(160)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hereButton, _doneButton)]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_hereButton(160)]-0-[_endShiftButton(160)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hereButton, _endShiftButton)]];
         [self setupRevenueLabel];
     }
     return self;
@@ -27,7 +27,7 @@
     _hereButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _hereButton.backgroundColor = [NMColors mainColor];
     _hereButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_hereButton setTitle:@"I'm here" forState:UIControlStateNormal];
+    [_hereButton setTitle:@"I'm Here" forState:UIControlStateNormal];
     [_hereButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [self addSubview:_hereButton];
@@ -36,15 +36,15 @@
 
 - (void)setupDoneButton
 {
-    _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _doneButton.backgroundColor = UIColorFromRGB(0xF0F0F0);
-    [_doneButton setTitle:@"End Shift" forState:UIControlStateNormal];
-    [_doneButton setTitleColor:UIColorFromRGB(0x404040) forState:UIControlStateNormal];
-    _doneButton.translatesAutoresizingMaskIntoConstraints = NO;
+    _endShiftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _endShiftButton.backgroundColor = UIColorFromRGB(0xF0F0F0);
+    [_endShiftButton setTitle:@"End Shift" forState:UIControlStateNormal];
+    [_endShiftButton setTitleColor:UIColorFromRGB(0x404040) forState:UIControlStateNormal];
+    _endShiftButton.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self addSubview:_doneButton];
+    [self addSubview:_endShiftButton];
 
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[_doneButton(44)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_doneButton)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[_endShiftButton(44)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_endShiftButton)]];
 }
 
 - (void)setupRevenueLabel

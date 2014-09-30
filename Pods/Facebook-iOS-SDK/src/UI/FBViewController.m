@@ -92,7 +92,7 @@
     [super dealloc];
 
     [_cancelButton release];
-    [_doneButton release];
+    [_endShiftButton release];
     [_navigationBar release];
     [_canvasView release];
     [_handler release];
@@ -241,9 +241,9 @@
 }
 
 - (void)setDoneButton:(UIBarButtonItem *)doneButton {
-    if (_doneButton != doneButton) {
-        [_doneButton release];
-        _doneButton = [doneButton retain];
+    if (_endShiftButton != doneButton) {
+        [_endShiftButton release];
+        _endShiftButton = [doneButton retain];
         [self updateBar];
     }
 }

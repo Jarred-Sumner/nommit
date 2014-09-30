@@ -10,7 +10,9 @@
 
 @interface NMDeliveryPlaceTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
+@property (nonatomic, strong) NMShift *shift;
 @property (readonly) NMPlace *place;
-@property (nonatomic, strong) NSArray *places;
+@property (readonly) NMDeliveryPlace *deliveryPlace;
+@property (nonatomic, strong) NSArray *deliveryPlaces;
 
 @end
