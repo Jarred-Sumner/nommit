@@ -10,7 +10,7 @@
 
 @interface NMDeliveryAvatarsTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView *avatarCourier;
+@property (nonatomic, strong) FBProfilePictureView *avatarCourier;
 
 @property (nonatomic, strong) UIImageView *avatarSeller;
 
@@ -20,5 +20,6 @@
 
 @property (nonatomic, strong) UILabel *updateLabel;
 
+- (void)setupCourierAvatarWithProfileId:(NSString *)profileId;
 
 @end

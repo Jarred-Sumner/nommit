@@ -26,7 +26,6 @@
     [self setupDescriptionLabel];
     
     // NEW STUFF
-    [self setupAvatar];
     [self setupDigitInput];
     [self addBorder];
     
@@ -34,22 +33,19 @@
 }
 
 #pragma mark - Avatar Image View
-- (void)setupAvatar
+- (void)setupAvatarWithImage:(NSURL *)sellerImageURL
 {
     _avatar = [[UIImageView alloc] initWithFrame:CGRectMake(16, -35, 80, 80)];
     _avatar.layer.cornerRadius = 80 / 2;
-    _avatar.layer.masksToBounds = NO;
-    _avatar.layer.borderColor = [[UIColor whiteColor] CGColor];
-    _avatar.layer.borderWidth = 2.5f;
+    _avatar.layer.masksToBounds = YES;
     _avatar.contentMode = UIViewContentModeScaleAspectFill;
-    [_avatar setImage:[UIImage imageNamed:@"AvatarLucySmall"]];
-    _avatar.layer.shadowColor = [UIColorFromRGB(0x808080) CGColor];
-    _avatar.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
-    _avatar.layer.shadowOpacity = .5f;
-    _avatar.layer.shadowRadius = 2.0f;
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRoundedRect:_avatar.bounds cornerRadius:80/2];
-    _avatar.layer.shadowPath = shadowPath.CGPath;
+    [_avatar setImageWithURL:sellerImageURL];
+    
+    UIImageView *avatarBorder = [[UIImageView alloc] initWithFrame:CGRectMake(11, -39, 90, 90)];
+    avatarBorder.image = [UIImage imageNamed:@"AvatarBorder"];
+    
     [self.contentView addSubview:_avatar];
+    [self.contentView addSubview:avatarBorder];
 }
 
 

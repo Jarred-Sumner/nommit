@@ -129,7 +129,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 //        _infoCell.descriptionLabel.text = _food.details;
         _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", _food.price];
         _infoCell.quantityInput.value = [_orderModel.quantity integerValue] || 1;
-        // [_infoCell.avatar setImageWithURL:_food.seller.logoAsURL];
+        [_infoCell setupAvatarWithImage:_food.seller.logoAsURL];
         return _infoCell;
     } else if (indexPath.section == NMDescriptionSecton) {
         _descriptionCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDescriptionIdentifier];

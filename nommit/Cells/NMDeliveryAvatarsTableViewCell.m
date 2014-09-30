@@ -22,7 +22,6 @@
     self.contentView.layer.masksToBounds = NO;
     self.layer.masksToBounds = NO;
     
-    [self setupCourierAvatar];
     [self setupAvatarSeller];
     [self setupAvatarPrice];
     [self addBorder];
@@ -32,11 +31,19 @@
 }
 
 #pragma mark - Avatar Image View
-- (void)setupCourierAvatar
+- (void)setupCourierAvatarWithProfileId:(NSString *)profileId
 {
-    _avatarCourier = [self createCircleAvatarWithFrame:CGRectMake(20, -35, 80, 80)];
-    [_avatarCourier setImage:[UIImage imageNamed:@"AvatarLucySmall"]];
+    _avatarCourier = [[FBProfilePictureView alloc] initWithProfileID:profileId pictureCropping:FBProfilePictureCroppingSquare];
+    _avatarCourier.frame = CGRectMake(20, -35, 80, 80);
+    _avatarCourier.layer.cornerRadius = 80 / 2;
+    _avatarCourier.layer.masksToBounds = YES;
+    _avatarCourier.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:_avatarCourier];
+    
+    UIImageView *avatarBorder = [[UIImageView alloc] initWithFrame:CGRectMake(14, -39, 90, 90)];
+    avatarBorder.image = [UIImage imageNamed:@"AvatarBorder"];
+    
+    [self.contentView addSubview:avatarBorder];
 }
 
 - (void)setupAvatarSeller
@@ -44,6 +51,11 @@
     _avatarSeller = [self createCircleAvatarWithFrame:CGRectMake(121, -35, 80, 80)];
     [_avatarSeller setImage:[UIImage imageNamed:@"TriDeltaBadge"]];
     [self.contentView addSubview:_avatarSeller];
+    
+    UIImageView *avatarBorder = [[UIImageView alloc] initWithFrame:CGRectMake(121 -6, -39, 90, 90)];
+    avatarBorder.image = [UIImage imageNamed:@"AvatarBorder"];
+    
+    [self.contentView addSubview:avatarBorder];
 }
 
 - (void)setupAvatarPrice
@@ -51,6 +63,11 @@
     _avatarPrice = [self createCircleAvatarWithFrame:CGRectMake(222, -35, 80, 80)];
     _avatarPrice.backgroundColor = [NMColors mainColor];
     [self.contentView addSubview:_avatarPrice];
+    
+    UIImageView *avatarBorder = [[UIImageView alloc] initWithFrame:CGRectMake(222 -6, -39, 90, 90)];
+    avatarBorder.image = [UIImage imageNamed:@"AvatarBorder"];
+    
+    [self.contentView addSubview:avatarBorder];
     
     _priceLabel = [[UILabel alloc] init];
     _priceLabel.font = [UIFont fontWithName:@"Avenir" size:30];
@@ -81,16 +98,8 @@
     UIImageView *avatar = [[UIImageView alloc] initWithFrame:frame];
     
     avatar.layer.cornerRadius = CGRectGetWidth(frame) / 2;
-    avatar.layer.masksToBounds = NO;
-    avatar.layer.borderColor = [[UIColor whiteColor] CGColor];
-    avatar.layer.borderWidth = 2.5f;
+    avatar.layer.masksToBounds = YES;
     avatar.contentMode = UIViewContentModeScaleAspectFill;
-    avatar.layer.shadowColor = [UIColorFromRGB(0x808080) CGColor];
-    avatar.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
-    avatar.layer.shadowOpacity = .5f;
-    avatar.layer.shadowRadius = 2.0f;
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRoundedRect:avatar.bounds cornerRadius:CGRectGetWidth(frame)/2];
-    avatar.layer.shadowPath = shadowPath.CGPath;
     
     return avatar;
 }

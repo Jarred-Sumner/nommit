@@ -104,7 +104,8 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         int price = (int)[_order.priceInCents integerValue]/100;
         _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%d", price];
         _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ is delivering %@ orders of %@ from %@  to you for $%d.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
-        
+        [_avatarsCell setupCourierAvatarWithProfileId:_order.courier.user.facebookUID];
+        [_avatarsCell.avatarSeller setImageWithURL:_order.food.seller.logoAsURL];
         return _avatarsCell;
     } else if (indexPath.section == NMCountdownSection) {
         _countdownCell = [self.tableView dequeueReusableCellWithIdentifier:NMCountDownInfoIdentifier];

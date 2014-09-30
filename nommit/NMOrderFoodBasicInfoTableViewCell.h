@@ -23,6 +23,7 @@
 
 @property (nonatomic, weak) id<NMOrderFoodBasicInfoTableViewCellDelegate> delegate;
 
+- (void)setupAvatarWithImage:(NSURL *)sellerImageURL;
 @end
 
 @protocol NMOrderFoodBasicInfoTableViewCellDelegate
