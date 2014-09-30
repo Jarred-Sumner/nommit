@@ -16,6 +16,7 @@
 #import "NMDeliveryCallButtonTableViewCell.h"
 #import "NMMenuNavigationController.h"
 #import "NMReceiptTableViewCell.h"
+#import "UIScrollView+NMParallaxHeader.h"
 
 @interface NMRateTableViewController ()<APParallaxViewDelegate>
 

@@ -20,6 +20,7 @@
 #import "NMPromoCodeTableViewCell.h"
 #import "NMOrderFoodDescriptionTableViewCell.h"
 #import "NMDeliveryTableViewController.h"
+#import "UIScrollView+NMParallaxHeader.h"
 
 const NSInteger NMInfoSection = 0;
 const NSInteger NMDescriptionSecton = 1;
