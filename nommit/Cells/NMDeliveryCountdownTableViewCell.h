@@ -13,5 +13,6 @@
 
 @property (nonatomic, strong) UILabel *deliveryPlace;
 @property (nonatomic, strong) MZTimerLabel *timerLabel;
+@property (nonatomic, strong) UILabel *statusText;
 
 @end

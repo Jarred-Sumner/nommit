@@ -23,6 +23,7 @@
     
     [self setupDeliveryPlace];
     [self setupTimerLabel];
+    [self setupStatusText];
     
     return self;
 }
@@ -57,6 +58,22 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_timerLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_timerLabel)]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_timerLabel]-35-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_timerLabel)]];
+}
+
+- (void)setupStatusText
+{
+    _statusText = [[UILabel alloc] init];
+    _statusText.translatesAutoresizingMaskIntoConstraints = NO;
+    _statusText.textColor = UIColorFromRGB(0x696969);
+    _statusText.textAlignment = NSTextAlignmentCenter;
+    _statusText.lineBreakMode = NSLineBreakByWordWrapping;
+    _statusText.numberOfLines = 0;
+    _statusText.font = [UIFont fontWithName:@"Avenir" size:26];
+    [self.contentView addSubview:_statusText];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[_statusText]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_statusText)]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_statusText]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_statusText)]];
 }
 
 - (void)awakeFromNib {
