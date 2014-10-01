@@ -90,7 +90,7 @@ DEPENDENCIES:
   - AFNetworking
   - AKNumericFormatter
   - AMSmoothAlert
-  - APParallaxHeader
+  - APParallaxHeader (from `https://github.com/loopyz/APParallaxHeader.git`)
   - DBCamera
   - DropdownMenu
   - Facebook-iOS-SDK
@@ -114,11 +114,15 @@ DEPENDENCIES:
   - SVProgressHUD
   - TYMProgressBarView
 
+EXTERNAL SOURCES:
+  APParallaxHeader:
+    :git: https://github.com/loopyz/APParallaxHeader.git
+
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   AKNumericFormatter: 9106b01691382063dd40b83c8f09be40dcf55854
   AMSmoothAlert: 1b4bf6688b698a606a963c336b5060490f4d3db2
-  APParallaxHeader: 6e7cc27c052be34e1a5655dc2fab6c40eecbbe55
+  APParallaxHeader: 5369815639059caa4e195a178c020f8e2b998336
   Bolts: 2635e8698a630774689441047f3465d78c48d485
   DBCamera: d78a9f58aaf29d0a0811baa8cea747c7d7e80923
   DropdownMenu: ad71a2fcb932cc04a4f7c29aadaf2e8ed0c08e42

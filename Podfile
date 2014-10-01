@@ -6,7 +6,7 @@ target "nommit" do
   pod 'AFNetworking'
   pod 'MagicalRecord'
   pod 'MGBoxKit'
-  pod 'APParallaxHeader'
+  pod 'APParallaxHeader', git: "https://github.com/loopyz/APParallaxHeader.git"
   pod 'REFrostedViewController'
   pod 'Overcoat'
   pod 'SVProgressHUD'
