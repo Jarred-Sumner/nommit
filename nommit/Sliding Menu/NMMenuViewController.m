@@ -134,16 +134,12 @@ static NSInteger NMOrdersSection = 1;
                 [self showOrders];
             } else if (indexPath.row == 2) {
                 [self showAccount];
-            } else if (indexPath.row == 3) {
-                [self showLogout];
             }
         } else {
             if (indexPath.row == 0) {
                 [self showMenu];
             } else if (indexPath.row == 1) {
                 [self showAccount];
-            } else if (indexPath.row == 2) {
-                [self showLogout];
             }
         }
 
@@ -255,9 +251,9 @@ static NSInteger NMOrdersSection = 1;
 {
     if (sectionIndex == 0) {
         if ([NMUser currentUser].isCourierValue) {
-            return 4;
-        } else {
             return 3;
+        } else {
+            return 2;
         }
     } else if (sectionIndex == 1) {
         id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
@@ -278,9 +274,9 @@ static NSInteger NMOrdersSection = 1;
     if (indexPath.section == 0) {
         NSArray *titles;
         if ([[NMUser currentUser] isCourierValue]) {
-            titles = @[@"Menu", @"Deliver", @"Account", @"Logout"];
+            titles = @[@"Menu", @"Deliver", @"Account"];
         } else {
-            titles = @[@"Menu", @"Account", @"Logout"];
+            titles = @[@"Menu", @"Account"];
         }
         cell.textLabel.text = titles[indexPath.row];
     } else {
@@ -321,15 +317,6 @@ static NSInteger NMOrdersSection = 1;
 - (void)showAccount {
     NMAccountTableViewController *accountTableVC = [[NMAccountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self navigateTo:accountTableVC];
-}
-
-- (void)showLogout {
-    [NMSession setSessionID:nil];
-    [NMSession setUserID:nil];
-    
-    NMLoginViewController *loginVC = [[NMLoginViewController alloc] init];
-    [self navigateTo:loginVC];
-
 }
 
 - (void)navigateTo:(UIViewController*)viewController {

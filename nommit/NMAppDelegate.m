@@ -83,6 +83,7 @@
     
     // Create frosted view controller
     REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
+    
     frostedViewController.direction = REFrostedViewControllerDirectionLeft;
     frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
     frostedViewController.liveBlur = YES;
@@ -90,10 +91,8 @@
     
     // make it root view controller
     self.window.rootViewController = frostedViewController;
-    
+
     navigationController.navigationBar.translucent = NO;
-    
-    self.navigationController = navigationController;
 }
 
 - (UIWindow*)window {

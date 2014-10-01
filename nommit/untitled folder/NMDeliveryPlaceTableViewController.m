@@ -342,6 +342,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
             }
             else {
                 [SVProgressHUD showSuccessWithStatus:@"Shift Ended!"];
+                [this.navigationController dismissViewControllerAnimated:YES completion:NULL];
             }
         }];
     }

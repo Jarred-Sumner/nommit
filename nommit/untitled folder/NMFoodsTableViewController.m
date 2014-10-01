@@ -16,12 +16,14 @@
 #import <SVProgressHUD.h>
 #import "NMPlacesTableViewController.h"
 #import "NMOrderFoodViewController.h"
+#import "NMNoFoodView.h"
 
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 @interface NMFoodsTableViewController ()
 
+@property (nonatomic, strong) NMNoFoodView *noFoodView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NMPlaceDropdownView *headerView;
 
@@ -40,6 +42,13 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         [self.tableView registerClass:[NMFoodTableViewCell class] forCellReuseIdentifier:NMFoodCellIdentifier];
     }
     return self;
+}
+
+- (void)loadView {
+    [super loadView];
+    _noFoodView = [[NMNoFoodView alloc] initWithFrame:CGRectInset(self.tableView.bounds, 0, NMPlaceDropdownTableViewCellHeight)];
+    _noFoodView.hidden = YES;
+    [self.tableView addSubview:_noFoodView];
 }
 
 - (id)initWithPlace:(NMPlace *)place {
@@ -141,6 +150,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    _noFoodView.hidden = [sectionInfo numberOfObjects] != 0;
     return [sectionInfo numberOfObjects];
 }
 

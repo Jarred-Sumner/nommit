@@ -10,6 +10,8 @@
 
 @interface NMMenuNavigationController : UINavigationController
 
+@property BOOL disabledMenu;
+
 - (void)showMenu;
 
 @end

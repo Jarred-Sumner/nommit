@@ -23,6 +23,7 @@
     UIImageView *chef = [[UIImageView alloc] init];
     chef.translatesAutoresizingMaskIntoConstraints = NO;
     chef.image = [UIImage imageNamed:@"Chef"];
+    chef.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:chef];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-78-[chef]-78-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(chef)]];

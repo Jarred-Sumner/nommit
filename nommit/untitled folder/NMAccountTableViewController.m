@@ -16,6 +16,7 @@
 #import "NMPaymentsViewController.h"
 #import "NMLogoutButtonCell.h"
 #import "NMLoginViewController.h"
+#import "NMAppDelegate.h"
 
 @interface NMAccountTableViewController() <NSFetchedResultsControllerDelegate>
 
@@ -139,8 +140,7 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
     [NMSession setSessionID:nil];
     [NMSession setUserID:nil];
     
-    NMLoginViewController *loginVC = [[NMLoginViewController alloc] init];
-    [self.navigationController pushViewController:loginVC animated:YES];
+    [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] resetUI];
 }
 
 #pragma mark - submit button

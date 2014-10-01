@@ -127,14 +127,12 @@
             // Authenticated.
             [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
             [NMApi instance].session.configuration.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
-            
-            NSLog(@"Result: %@", response.result);
-            
             [NMSession setUserID:[response.result facebookUID]];
             
             
             NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
             [self.navigationController pushViewController:foodsViewController animated:YES];
+            [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
         }
         
     }];
@@ -144,6 +142,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
 }
 
 - (void)viewDidLoad

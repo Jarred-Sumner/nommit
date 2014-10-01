@@ -1,4 +1,3 @@
-//
 // REFrostedViewController.m
 // REFrostedViewController
 //

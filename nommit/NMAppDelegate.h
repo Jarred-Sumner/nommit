@@ -14,7 +14,7 @@
 @interface NMAppDelegate : UIResponder <UIApplicationDelegate, REFrostedViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) NMMenuNavigationController *navigationController;
+@property (readonly) UIViewController *rootViewController;
 
 - (void)resetUI;
 
