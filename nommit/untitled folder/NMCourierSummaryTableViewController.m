@@ -89,8 +89,8 @@ static NSString *NMCourierSummaryIdentifier = @"NMCourierSummaryTableViewCell";
         _avatarsCell = [self.tableView dequeueReusableCellWithIdentifier:NMCourierAvatarsInfoIdentifier];
         _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%d", 210];
         _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"You worked %d hours and made $%d on behalf of %@ ", 3, 210, @"Delta Delta Delta"];
-        // [_avatarsCell setupCourierAvatarWithProfileId:_shift];
-        [_avatarsCell.avatarSeller setImage:[UIImage imageNamed:@"TriDeltaBadge"]];
+        [_avatarsCell setupCourierAvatarWithProfileId:_shift.courier.user.facebookUID];
+        [_avatarsCell.avatarSeller setImageWithURL:_shift.courier.seller.logoAsURL];
         return _avatarsCell;
     } else if (indexPath.section == NMCourierSummarySection) {
         NMCourierSummaryTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMCourierSummaryIdentifier];
