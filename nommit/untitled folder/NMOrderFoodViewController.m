@@ -200,9 +200,12 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
                     [[NMMenuNavigationController alloc] initWithRootViewController:rateVC];
                     navController.navigationBar.translucent = NO;
                     
-                    [this presentViewController:navController animated:YES completion:^{
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }];
+                    [this.navigationController pushViewController:rateVC animated:YES];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+//                    [this presentViewController:navController animated:YES completion:^{
+//                        [self.navigationController popViewControllerAnimated:YES];
+//                    }];
                 }
             } else if (error) {
                 NSLog(@"Error: %@", error);

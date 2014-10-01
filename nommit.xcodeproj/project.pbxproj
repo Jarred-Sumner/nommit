@@ -88,6 +88,7 @@
 		8DA5198819D0ED9100BBA8A0 /* NMPlaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198719D0ED9100BBA8A0 /* NMPlaceTableViewCell.m */; };
 		8DA5198E19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198D19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m */; };
 		8DA5199419D3846800BBA8A0 /* NMOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5199319D3846800BBA8A0 /* NMOrderTableViewCell.m */; };
+		8DC5335719DC5D4D00A841EB /* NMLogoutButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */; };
 		8DCE835119D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835019D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m */; };
 		8DCE835419D4C85500D770D0 /* NMPickPlaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835319D4C85500D770D0 /* NMPickPlaceTableViewCell.m */; };
 		8DCE835719D4D56700D770D0 /* NMAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835619D4D56700D770D0 /* NMAccountTableViewController.m */; };
@@ -293,6 +294,8 @@
 		8DA5199019D3829C00BBA8A0 /* NMDeliveryPlaceNavigatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryPlaceNavigatorView.m; path = Views/NMDeliveryPlaceNavigatorView.m; sourceTree = "<group>"; };
 		8DA5199219D3846800BBA8A0 /* NMOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderTableViewCell.h; path = Cells/NMOrderTableViewCell.h; sourceTree = "<group>"; };
 		8DA5199319D3846800BBA8A0 /* NMOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderTableViewCell.m; path = Cells/NMOrderTableViewCell.m; sourceTree = "<group>"; };
+		8DC5335519DC5D4D00A841EB /* NMLogoutButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLogoutButtonCell.h; path = Cells/NMLogoutButtonCell.h; sourceTree = "<group>"; };
+		8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLogoutButtonCell.m; path = Cells/NMLogoutButtonCell.m; sourceTree = "<group>"; };
 		8DCE834F19D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlacesTableViewController.h; path = "untitled folder/NMDeliveryPlacesTableViewController.h"; sourceTree = "<group>"; };
 		8DCE835019D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryPlacesTableViewController.m; path = "untitled folder/NMDeliveryPlacesTableViewController.m"; sourceTree = "<group>"; };
 		8DCE835219D4C85500D770D0 /* NMPickPlaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPickPlaceTableViewCell.h; path = Cells/NMPickPlaceTableViewCell.h; sourceTree = "<group>"; };
@@ -744,6 +747,8 @@
 				8DD32FD019D9E0EE009485C2 /* NMReceiptTableViewCell.m */,
 				8D3D052F19DB688900B02677 /* NMCourierSummaryTableViewCell.h */,
 				8D3D053019DB688900B02677 /* NMCourierSummaryTableViewCell.m */,
+				8DC5335519DC5D4D00A841EB /* NMLogoutButtonCell.h */,
+				8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -993,6 +998,7 @@
 				83454F5119DA3A02005CEA8C /* NMShiftApiModel.m in Sources */,
 				8DCE835419D4C85500D770D0 /* NMPickPlaceTableViewCell.m in Sources */,
 				8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */,
+				8DC5335719DC5D4D00A841EB /* NMLogoutButtonCell.m in Sources */,
 				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
 				8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,

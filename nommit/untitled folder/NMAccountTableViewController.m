@@ -14,6 +14,8 @@
 #import "NMPaymentMethodTableViewCell.h"
 #import "NMMenuNavigationController.h"
 #import "NMPaymentsViewController.h"
+#import "NMLogoutButtonCell.h"
+#import "NMLoginViewController.h"
 
 @interface NMAccountTableViewController() <NSFetchedResultsControllerDelegate>
 
@@ -21,6 +23,7 @@
 @property (nonatomic, strong) NMPaymentMethodTableViewCell *cardCell;
 @property (nonatomic, strong) NMAccountPromoTableViewCell *promoCell;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NMLogoutButtonCell *logoutCell;
 
 @end
 
@@ -29,10 +32,12 @@
 const NSInteger NMAccountInformationSection = 0;
 const NSInteger NMPaymentMethodSection = 1;
 const NSInteger NMAccountPromoSection = 2;
+const NSInteger NMLogoutButtonSection = 3;
 
 static NSString *NMAccountInformationTableViewCellKey = @"NMAcountInformationTableViewCell";
 static NSString *NMAccountPromoTableViewCellKey = @"NMAccountPromoTableViewCell";
 static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCellKey";
+static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -44,6 +49,7 @@ static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCel
         [self.tableView registerClass:[NMAccountInformationTableViewCell class] forCellReuseIdentifier:NMAccountInformationTableViewCellKey];
         [self.tableView registerClass:[NMAccountPromoTableViewCell class] forCellReuseIdentifier:NMAccountPromoTableViewCellKey];
         [self.tableView registerClass:[NMPaymentMethodTableViewCell class] forCellReuseIdentifier:NMPaymentMethodTableViewCellKey];
+        [self.tableView registerClass:[NMLogoutButtonCell class] forCellReuseIdentifier:NMLogoutButtonTableViewCellKey];
         
         [self.fetchedResultsController performFetch:nil];
     }
@@ -54,7 +60,7 @@ static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCel
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -73,6 +79,8 @@ static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCel
         return 65;
     } else if (indexPath.section == NMAccountPromoSection) {
         return 75;
+    } else if (indexPath.section == NMLogoutButtonSection) {
+        return 44;
     }
     return 0;
 }
@@ -86,6 +94,8 @@ static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCel
         separatorView.sectionLabel.text = @"YOUR CARD";
     } else if (section == NMAccountPromoSection) {
         separatorView.sectionLabel.text = @"PROMOS";
+    } else if (section == NMLogoutButtonSection) {
+        return nil;
     }
     return separatorView;
 }
@@ -104,6 +114,11 @@ static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCel
         _promoCell = [self.tableView dequeueReusableCellWithIdentifier:NMAccountPromoTableViewCellKey];
         [self configureCellForIndexPath:indexPath];
         return _promoCell;
+    } else if (indexPath.section == NMLogoutButtonSection) {
+        _logoutCell = [self.tableView dequeueReusableCellWithIdentifier:NMLogoutButtonTableViewCellKey];
+        [_logoutCell.logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
+        [_logoutCell.logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+        return _logoutCell;
     } else {
         return nil;
     }
@@ -115,6 +130,17 @@ static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCel
         NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] init];
         [self.navigationController pushViewController:paymentsVC animated:YES];
     }
+}
+
+#pragma mark - Logout
+
+- (void)logout
+{
+    [NMSession setSessionID:nil];
+    [NMSession setUserID:nil];
+    
+    NMLoginViewController *loginVC = [[NMLoginViewController alloc] init];
+    [self.navigationController pushViewController:loginVC animated:YES];
 }
 
 #pragma mark - submit button
