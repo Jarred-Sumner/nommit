@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMPickPlacesTableViewController : UITableViewController<UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
+@interface NMDeliveryPlacesTableViewController : UITableViewController<UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
 
 @end

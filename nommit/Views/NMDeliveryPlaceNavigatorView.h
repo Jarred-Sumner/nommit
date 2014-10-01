@@ -34,4 +34,7 @@ typedef NS_ENUM(NSInteger, NMDeliveryPlaceNavigatorDirection) {
 
 - (id)initWithFrame:(CGRect)frame deliveryPlaces:(NSArray*)deliveryPlaces;
 
+- (void)startUpdating;
+- (void)stopUpdating;
+
 @end

@@ -7,11 +7,22 @@
 
 @end
 
+static id currentCourier;
 
 @implementation NMCourier
 
 + (NMCourier *)currentCourier {
-    return [NMCourier MR_findFirstByAttribute:@"user" withValue:NMUser.currentUser];
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        currentCourier = [NMCourier MR_findFirstByAttribute:@"user" withValue:NMUser.currentUser];
+    });
+    return currentCourier;
+    
+}
+
+- (NMShift *)currentShift {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(stateID = %@ OR stateID = %@) AND courier = %@", @(NMShiftStateActive), @(NMShiftStateHalted), self];
+    return [NMShift MR_findFirstWithPredicate:predicate];
 }
 
 - (NSArray*)deliveryPlaces {

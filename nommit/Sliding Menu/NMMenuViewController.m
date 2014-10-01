@@ -14,7 +14,7 @@
 #import "NMColors.h"
 
 #import "NMDeliveryPlaceTableViewController.h"
-#import "NMPickPlacesTableViewController.h"
+#import "NMDeliveryPlacesTableViewController.h"
 #import "NMAccountTableViewController.h"
 #import "NMDeliveryTableViewController.h"
 
@@ -305,12 +305,13 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showOrders {
+    NMShift *currentShift = [[NMCourier currentCourier] currentShift];
     
-    NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] init];
-    [self navigateTo:ordersVC];
-    
-    if (![[NMUser currentUser] hasActiveDeliveries]) {
-        NMPickPlacesTableViewController *pickPlacesTVC = [[NMPickPlacesTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    if (currentShift) {
+        NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:[NMCourier currentCourier].currentShift];
+        [self navigateTo:ordersVC];
+    } else {
+        NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithStyle:UITableViewStylePlain];
         
         NMMenuNavigationController *navController =
         [[NMMenuNavigationController alloc] initWithRootViewController:pickPlacesTVC];

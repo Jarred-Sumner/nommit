@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSNumber *uid;
 @property (nonatomic, strong) NSNumber *stateID;
 @property (nonatomic, strong) NSDate *arrivesAt;
+@property (nonatomic, strong) NSNumber *index;
 
 @property (nonatomic, strong) NMPlaceApiModel *place;
 

@@ -10,10 +10,10 @@
 #import "NMColors.h"
 
 typedef NS_ENUM(NSInteger, NMDeliveryState) {
-    NMDeliveryStateOntimeWithDeliveries = 0,
-    NMDeliveryStateOntimeWithoutDeliveries = 1,
-    NMDeliveryStateLateWithDeliveries = 2,
-    NMDeliveryStateLateWithoutDeliveries = 3
+    NMDeliveryStateLateLastPlace = 0,
+    NMDeliveryStateLateMorePlaces,
+    NMDeliveryStateOntimeMorePlaces,
+    NMDeliveryStateOntimeLastPlace
 };
 
 @interface NMDeliveryPlaceNavigatorView ()
@@ -31,7 +31,8 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
 - (id)initWithFrame:(CGRect)frame deliveryPlaces:(NSArray*)deliveryPlaces {
     self = [super initWithFrame:frame];
     if (self) {
-        _deliveryPlaces = deliveryPlaces;
+        self.deliveryPlaces = deliveryPlaces;
+        NSLog(@"Courier: %@", [_deliveryPlaces[0] shift].courier);
         self.backgroundColor = [NMColors mainColor];
         [self setupNameLabel];
         [self setupNextLabel];
@@ -39,9 +40,14 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8.5-[_nameLabel]-0-[_nextLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel, _nextLabel)]];
         
         [self setupArrows];
-        [self startUpdatingPlaceText];
+        [self startUpdating];
     }
     return self;
+}
+
+- (void)setDeliveryPlaces:(NSArray *)deliveryPlaces {
+    _deliveryPlaces = deliveryPlaces;
+    _index = 0;
 }
 
 - (void)setupNameLabel
@@ -121,10 +127,14 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
     if (oldIndex != index) [self.delegate didNavigateToDeliveryPlaceAtIndex:index];
 }
 
-- (void)startUpdatingPlaceText {
+- (void)startUpdating {
     _updateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNavigatorState) userInfo:nil repeats:YES];
     [self setDeliveryPlaceIndex:0];
     [self updateNavigatorState];
+}
+
+- (void)stopUpdating {
+    [_updateTimer invalidate];
 }
 
 - (void)resetArrows {
@@ -143,13 +153,13 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
     NSTimeInterval arrivalETA = [self.deliveryPlace.arrivesAt timeIntervalSinceNow];
     
     if (arrivalETA > 0 && _index < self.deliveryPlaces.count - 1) {
-        self.state = NMDeliveryStateOntimeWithDeliveries;
+        self.state = NMDeliveryStateOntimeMorePlaces;
     } else if (arrivalETA < 0 && _index < self.deliveryPlaces.count - 1) {
-        self.state = NMDeliveryStateLateWithDeliveries;
+        self.state = NMDeliveryStateLateMorePlaces;
     } else if (arrivalETA > 0) {
-        self.state = NMDeliveryStateOntimeWithoutDeliveries;
+        self.state = NMDeliveryStateOntimeLastPlace;
     } else {
-        self.state = NMDeliveryStateLateWithoutDeliveries;
+        self.state = NMDeliveryStateLateLastPlace;
     }
     
 }
@@ -157,27 +167,27 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
 - (void)setState:(NMDeliveryState)state {
     _state = state;
     _nameLabel.text = self.deliveryPlace.place.name;
-    
-    NSTimeInterval arrivalETA = [self.deliveryPlace.arrivesAt timeIntervalSinceNow];
-    int minutes = floor(arrivalETA / 60);
-    int seconds = round(arrivalETA - minutes * 60);
-    
-    NSString *clock = [NSString stringWithFormat:@"%02d:%02d", abs(minutes), abs(seconds)];
+
     
     [UIView animateWithDuration:0.1 animations:^{
 
-        if (state == NMDeliveryStateLateWithDeliveries) {
-            _nextLabel.text = [NSString stringWithFormat:@"Get to %@, ASAP!", [self.deliveryPlaces[_index + 1] place].name];
+        if (state == NMDeliveryStateLateMorePlaces) {
+            NMDeliveryPlace *nextPlace = _deliveryPlaces[_index + 1];
+            _nextLabel.text = [NSString stringWithFormat:@"Get to %@, ASAP!", nextPlace.place.name];
             self.backgroundColor = UIColorFromRGB(0xE75050);
-        } else if (state == NMDeliveryStateLateWithoutDeliveries) {
+        } else if (state == NMDeliveryStateLateLastPlace) {
             _nextLabel.text = @"Last Stop";
             self.backgroundColor = UIColorFromRGB(0xE75050);
-        } else if (state == NMDeliveryStateOntimeWithDeliveries) {
+        } else if (state == NMDeliveryStateOntimeMorePlaces) {
             self.backgroundColor = [NMColors mainColor];
-            _nextLabel.text = [NSString stringWithFormat:@"Be at %@ in %@", [self.deliveryPlaces[_index + 1] place].name, clock];
-        } else if (state == NMDeliveryStateOntimeWithoutDeliveries) {
+            NMDeliveryPlace *nextPlace = _deliveryPlaces[_index + 1];
+            _nextLabel.text = [NSString stringWithFormat:@"Be at %@ in %@",
+                   nextPlace.place.name,
+                   [self countdownForPlace:nextPlace]
+            ];
+        } else if (state == NMDeliveryStateOntimeLastPlace) {
             self.backgroundColor = [NMColors mainColor];
-            _nextLabel.text = [NSString stringWithFormat:@"Finish Deliveries within %@", clock];
+            _nextLabel.text = [NSString stringWithFormat:@"Begin deliveries at %@", [self countdownForPlace:self.deliveryPlace]];
         }
         [self resetArrows];
     }];
@@ -187,6 +197,16 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
 
 - (NMDeliveryPlace*)deliveryPlace {
     return self.deliveryPlaces[_index];
+}
+
+#pragma mark - Utility Methods
+
+- (NSString*)countdownForPlace:(NMDeliveryPlace*)place {
+    NSTimeInterval arrivalETA = [self.deliveryPlace.arrivesAt timeIntervalSinceNow];
+    int minutes = floor(arrivalETA / 60);
+    int seconds = round(arrivalETA - minutes * 60);
+    
+    return [NSString stringWithFormat:@"%02d:%02d", abs(minutes), abs(seconds)];
 }
 
 @end

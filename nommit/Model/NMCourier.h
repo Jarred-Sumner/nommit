@@ -5,5 +5,6 @@
 + (NMCourier *)currentCourier;
 
 @property (readonly) NSArray *deliveryPlaces;
+@property (readonly) NMShift *currentShift;
 
 @end

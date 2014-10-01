@@ -9,5 +9,9 @@ typedef NS_ENUM(NSInteger, NMShiftState) {
 @interface NMShift : _NMShift {}
 
 @property (readonly) NMShiftState state;
+@property (readonly) BOOL hasPendingDeliveries;
+@property (readonly) NSNumber *countOfPendingDeliveries;
+
+- (NSArray*)sortedDeliveryPlaces;
 
 @end

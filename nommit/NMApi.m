@@ -44,6 +44,7 @@ static NSString *NMApiBaseURLString = @"http://www.getnommit.com";
              @"places/*/orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
              @"shifts" : [NMShiftApiModel class],
+             @"shifts/*" : [NMShiftApiModel class],
              @"delivery_places/*": [NMDeliveryPlaceApiModel class]
      };
 }

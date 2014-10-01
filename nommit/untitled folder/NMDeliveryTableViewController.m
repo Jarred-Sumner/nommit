@@ -18,6 +18,7 @@ static NSTimeInterval NMOrderFetchInterval = 10;
 
 @interface NMDeliveryTableViewController ()<APParallaxViewDelegate, NSFetchedResultsControllerDelegate>
 
+@property (nonatomic, strong) NSDate *countdownDate;
 @property (nonatomic, copy) NSTimer *fetchOrderTimer;
 
 @property (nonatomic, strong) NMOrder *order;
@@ -59,6 +60,8 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         [self.tableView registerClass:[NMDeliveryCallButtonTableViewCell class] forCellReuseIdentifier:NMCallButtonInfoIdentifier];
         
         [self initNavBar];
+        
+        [self startFetchingOrderStatus];
     }
     return self;
 }
@@ -100,8 +103,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     } else if (indexPath.section == NMCountdownSection) {
         _countdownCell = [self.tableView dequeueReusableCellWithIdentifier:NMCountDownInfoIdentifier];
         _countdownCell.deliveryPlace.text = [NSString stringWithFormat:@"Arriving at %@ in", _order.place.name];
-        [_countdownCell.timerLabel setCountDownToDate:_order.deliveredAt];
-        [_countdownCell.timerLabel start];
+        [self setCountdownDate:_order.deliveredAt];
         return _countdownCell;
     } else if (indexPath.section == NMCallButtonSection) {
         _callButtonCell = [self.tableView dequeueReusableCellWithIdentifier:NMCallButtonInfoIdentifier];
@@ -112,10 +114,12 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     return nil;
 }
 
-- (void)updateCells {
-    [_countdownCell.timerLabel pause];
-    [_countdownCell.timerLabel setCountDownToDate:_order.deliveredAt];
-    [_countdownCell.timerLabel start];
+- (void)setCountdownDate:(NSDate*)date {
+    if (!_countdownDate || ![_countdownDate isEqualToDate:date]) {
+        [_countdownCell.timerLabel setCountDownToDate:date];
+        [_countdownCell.timerLabel start];
+        _countdownDate = date;
+    }
 }
 
 #pragma mark - call courier
@@ -167,7 +171,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     [[NMApi instance] GET:[NSString stringWithFormat:@"orders/%@", _order.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
         if ([response.result class] == [NMOrderApiModel class]) {
             this.order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
-            [this updateCells];
+            [this setCountdownDate:this.order.deliveredAt];
         }
     }];
 }
