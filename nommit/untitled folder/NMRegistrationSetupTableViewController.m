@@ -11,7 +11,7 @@
 #import "NMTableSeparatorView.h"
 #import "NMRegisterPhoneTableViewCell.h"
 #import "NMRegisterPaymentTableViewCell.h"
-#import "PKView.h"
+#import "PTKView.h"
 #import "NMColors.h"
 #import "Stripe.h"
 #import "SVProgressHUD.h"
@@ -21,7 +21,7 @@
 #import "NMVerifyPhoneNumberViewController.h"
 
 
-@interface NMRegistrationSetupTableViewController ()<PKViewDelegate>
+@interface NMRegistrationSetupTableViewController ()<PTKViewDelegate>
 
 @property (nonatomic, strong) NMAccountInformationTableViewCell *infoCell;
 @property (nonatomic, strong) NMRegisterPaymentTableViewCell *paymentCell;
@@ -185,8 +185,8 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 
 #pragma mark - payments information
 
-- (void)paymentView:(PKView *)paymentView
-           withCard:(PKCard *)card
+- (void)paymentView:(PTKView *)paymentView
+           withCard:(PTKCard *)card
             isValid:(BOOL)valid {
     // Enable save button if the Checkout is valid
     if ([_phoneCell.textField.text length] > 0) {

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0E44ED607CD44D5A9E977187"
+               BlueprintIdentifier = "5863BF391F3A42EBA159A3AE"
                BuildableName = "libPods-nommit-AMSmoothAlert.a"
                BlueprintName = "Pods-nommit-AMSmoothAlert"
                ReferencedContainer = "container:Pods.xcodeproj">

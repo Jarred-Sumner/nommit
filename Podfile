@@ -12,7 +12,7 @@ target "nommit" do
   pod 'SVProgressHUD'
   pod 'JVFloatLabeledTextField'
   pod 'INTULocationManager'
-  pod 'PaymentKit'
+  pod 'PaymentKit', git: "https://github.com/loopyz/PaymentKit.git"
   pod 'DBCamera'
   pod 'Stripe'
   pod 'RateView'

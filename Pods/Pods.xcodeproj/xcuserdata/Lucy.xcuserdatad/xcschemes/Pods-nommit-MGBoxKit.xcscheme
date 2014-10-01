@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0BA0D2260B9E45288F0869B4"
+               BlueprintIdentifier = "A76F882EF1E64D6A8B9DE026"
                BuildableName = "libPods-nommit-MGBoxKit.a"
                BlueprintName = "Pods-nommit-MGBoxKit"
                ReferencedContainer = "container:Pods.xcodeproj">

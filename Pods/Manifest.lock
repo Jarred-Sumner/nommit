@@ -78,7 +78,7 @@ PODS:
     - Overcoat/Core
   - ParallaxBlur (0.1.4):
     - FXBlurView (~> 1.6.2)
-  - PaymentKit (1.0.5)
+  - PaymentKit (1.1)
   - RateView (1.1)
   - REFrostedViewController (2.4.6)
   - SIAlertView (1.3)
@@ -106,7 +106,7 @@ DEPENDENCIES:
   - MZTimerLabel
   - Overcoat
   - ParallaxBlur
-  - PaymentKit
+  - PaymentKit (from `https://github.com/loopyz/PaymentKit.git`)
   - RateView
   - REFrostedViewController
   - SIAlertView
@@ -117,6 +117,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   APParallaxHeader:
     :git: https://github.com/loopyz/APParallaxHeader.git
+  PaymentKit:
+    :git: https://github.com/loopyz/PaymentKit.git
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
@@ -144,7 +146,7 @@ SPEC CHECKSUMS:
   MZTimerLabel: e3088c90eb78bdda642651b818ec8ed22e0a8f4d
   Overcoat: a9504cd1f0389641526ba1784592503c012c4b5f
   ParallaxBlur: 149ea077dec9264fc12bc04490cd05ff0e170e1d
-  PaymentKit: 14b54835f57ae9e2bf5628140fcd67001740cba2
+  PaymentKit: 9c74e84fdf906b4ec5ee822c3dc6a19ae18df194
   RateView: 4142c146bd42fe7715adc3365fa2ffd71ff327e0
   REFrostedViewController: 0f6bb16aeb4b384da25cc3c97bc1a16926583c62
   SIAlertView: d00609a1faa9d82f17b9f0b4eede64e84a577b10

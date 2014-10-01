@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PKView.h"
+#import "PTKView.h"
 #import "STPToken.h"
 
 static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
 
 @interface NMRegisterPaymentTableViewCell : UITableViewCell
 
-@property(weak, nonatomic) PKView *paymentView;
+@property(weak, nonatomic) PTKView *paymentView;
 @property (nonatomic, strong) UILabel *hiddenCardLabel;
 @property (nonatomic, strong) NSString *sCard;
 @property (nonatomic, strong) STPToken *sToken;

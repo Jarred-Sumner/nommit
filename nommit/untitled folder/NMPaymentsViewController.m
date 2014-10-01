@@ -7,7 +7,7 @@
 //
 
 #import "NMPaymentsViewController.h"
-#import "PKView.h"
+#import "PTKView.h"
 #import "NMColors.h"
 #import "Stripe.h"
 #import "SVProgressHUD.h"
@@ -18,13 +18,13 @@
 #define PDefaultBoldFont [UIFont boldSystemFontOfSize:17]
 static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
 
-@interface NMPaymentsViewController ()<PKViewDelegate> {
+@interface NMPaymentsViewController ()<PTKViewDelegate> {
     UILabel *hiddenCardLabel;
     UIButton *hiddenCardButton;
     STPToken *sToken;
     NSString *sCard;
 }
-@property(weak, nonatomic) PKView *paymentView;
+@property(weak, nonatomic) PTKView *paymentView;
 @end
 
 @implementation NMPaymentsViewController
@@ -53,7 +53,7 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
     self.navigationItem.leftBarButtonItem = lbb;
     
     // Setup checkout
-    PKView *paymentView = [[PKView alloc] initWithFrame:CGRectMake(24, 20, 300, 55)];
+    PTKView *paymentView = [[PTKView alloc] initWithFrame:CGRectMake(24, 20, 300, 55)];
     paymentView.delegate = self;
     self.paymentView = paymentView;
     [self.view addSubview:paymentView];
@@ -111,8 +111,8 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [NMColors mainColor]};
 }
 
-- (void)paymentView:(PKView *)paymentView
-           withCard:(PKCard *)card
+- (void)paymentView:(PTKView *)paymentView
+           withCard:(PTKCard *)card
             isValid:(BOOL)valid {
     // Enable save button if the Checkout is valid
     self.navigationItem.rightBarButtonItem.enabled = valid;

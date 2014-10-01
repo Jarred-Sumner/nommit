@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA8AB43CF7C44D36A55992F1"
+               BlueprintIdentifier = "EFC35B36F09B4E4990798EAD"
                BuildableName = "libPods-nommit-PaymentKit.a"
                BlueprintName = "Pods-nommit-PaymentKit"
                ReferencedContainer = "container:Pods.xcodeproj">

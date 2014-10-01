@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B3573AE3CB674CAB8D9CB4AA"
+               BlueprintIdentifier = "A5C1839E254B41B3AF4AE05B"
                BuildableName = "libPods-nommit-Mantle.a"
                BlueprintName = "Pods-nommit-Mantle"
                ReferencedContainer = "container:Pods.xcodeproj">

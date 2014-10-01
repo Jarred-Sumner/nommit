@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607823B6A066428C8BC60A47"
+               BlueprintIdentifier = "B9FF25CF541740388980297A"
                BuildableName = "libPods-nommit-M13Checkbox.a"
                BlueprintName = "Pods-nommit-M13Checkbox"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -7,7 +7,7 @@
 //
 
 #import "NMRegisterPaymentTableViewCell.h"
-#import "PKView.h"
+#import "PTKView.h"
 
 
 @interface NMRegisterPaymentTableViewCell() {
@@ -28,7 +28,7 @@
         self.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
         // Setup checkout
-        PKView *paymentView = [[PKView alloc] initWithFrame:CGRectMake(24, 20, 290, 45)];
+        PTKView *paymentView = [[PTKView alloc] initWithFrame:CGRectMake(24, 20, 290, 45)];
         self.paymentView = paymentView;
         [self.contentView addSubview:paymentView];
         
