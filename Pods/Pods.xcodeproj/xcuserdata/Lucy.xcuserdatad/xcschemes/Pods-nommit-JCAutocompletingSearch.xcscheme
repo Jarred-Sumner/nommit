@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6153818FBAFE4F2CB5CB2FBC"
+               BlueprintIdentifier = "28A94865E54D4188ACCF8704"
                BuildableName = "libPods-nommit-JCAutocompletingSearch.a"
                BlueprintName = "Pods-nommit-JCAutocompletingSearch"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6153818FBAFE4F2CB5CB2FBC"
-            BuildableName = "libPods-nommit-JCAutocompletingSearch.a"
-            BlueprintName = "Pods-nommit-JCAutocompletingSearch"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -57,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6153818FBAFE4F2CB5CB2FBC"
-            BuildableName = "libPods-nommit-JCAutocompletingSearch.a"
-            BlueprintName = "Pods-nommit-JCAutocompletingSearch"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
