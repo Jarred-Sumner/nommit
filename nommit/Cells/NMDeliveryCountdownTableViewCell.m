@@ -56,7 +56,7 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_timerLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_timerLabel)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_deliveryPlace]-25-[_timerLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_timerLabel, _deliveryPlace)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_timerLabel]-35-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_timerLabel)]];
 }
 
 - (void)awakeFromNib {
