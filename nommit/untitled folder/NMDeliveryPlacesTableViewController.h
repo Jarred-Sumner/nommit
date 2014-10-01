@@ -10,4 +10,6 @@
 
 @interface NMDeliveryPlacesTableViewController : UITableViewController<UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
 
+- (id)initWithShift:(NMShift*)shift;
+
 @end

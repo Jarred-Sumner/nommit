@@ -36,7 +36,6 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (id)initWithShift:(NMShift *)shift {
     self = [super init];
     _shift = shift;
-    [self fetchShift];
     return self;
 }
 
@@ -226,7 +225,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 #pragma mark - Shift
 
 - (void)setShift:(NMShift *)shift {
-    if (shift) {
+    if (shift && shift.state != NMShiftStateEnded) {
         _deliveryPlaces = nil;
         _shift = shift;
         
@@ -234,8 +233,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
         _placeNavigatorView.deliveryPlaces = self.deliveryPlaces;
         [_placeNavigatorView startUpdating];
     } else {
-        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Shift Ended" andMessage:@"Your shift ended! You can always start a new shift if food is being offered."];
-        [alert show];
+        [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
     }
 
 }
@@ -284,14 +282,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)initNavBar
 {
-    UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
-                                                style:UIBarButtonItemStylePlain
-                                                   target:(NMMenuNavigationController *)self.navigationController
-                                                   action:@selector(showMenu)];
-    
-    lbb.tintColor = UIColorFromRGB(0xC3C3C3);
-    self.navigationItem.leftBarButtonItem = lbb;
-    
+    self.navigationController.navigationBar.topItem.title = @"Places";
     // Logo in the center of navigation bar
     UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 88, 21)];
     UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];

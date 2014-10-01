@@ -307,16 +307,15 @@ static NSInteger NMOrdersSection = 1;
 - (void)showOrders {
     NMShift *currentShift = [[NMCourier currentCourier] currentShift];
     
+    NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:currentShift];
+    
+    NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:currentShift];
+    
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
     if (currentShift) {
-        NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:[NMCourier currentCourier].currentShift];
-        [self navigateTo:ordersVC];
-    } else {
-        NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithStyle:UITableViewStylePlain];
-        
-        NMMenuNavigationController *navController =
-        [[NMMenuNavigationController alloc] initWithRootViewController:pickPlacesTVC];
-        [self presentViewController:navController animated:YES completion:nil];
+        [navVC pushViewController:ordersVC animated:NO];
     }
+    [self presentViewController:navVC animated:YES completion:nil];
 }
 
 - (void)showAccount {

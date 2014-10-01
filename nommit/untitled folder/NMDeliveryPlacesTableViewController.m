@@ -7,10 +7,15 @@
 //
 
 #import "NMDeliveryPlacesTableViewController.h"
+#import "NMDeliveryPlaceTableViewController.h"
 #import "NMPlaceTableViewCell.h"
+
+#import <SIAlertView/SIAlertView.h>
 
 @interface NMDeliveryPlacesTableViewController ()
 
+@property (nonatomic, strong) NMShift *shift;
+@property (nonatomic, strong) NSMutableOrderedSet *placeIDs;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
@@ -19,8 +24,9 @@
 
 static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
+- (id)initWithShift:(NMShift *)shift {
+    self = [super initWithStyle:UITableViewStylePlain];
+    self.shift = shift;
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];
@@ -32,20 +38,27 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     [super viewWillAppear:animated];
     self.title = @"Pick Delivery Places";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(didTapCancel:)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
     
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleDone target:self action:@selector(didTapStartShift:)];
     
     self.navigationItem.rightBarButtonItem = rightBarButton;
 }
 
-- (void)done:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)setShift:(NMShift *)shift {
+    _shift = shift;
+    self.placeIDs = [[NSMutableOrderedSet alloc] initWithCapacity:1];
+    if (shift) {
+        NSArray *places = [NMDeliveryPlace MR_findAllSortedBy:@"index" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"shift = %@", shift]];
+        for (NMDeliveryPlace *dp in places) {
+            [self.placeIDs addObject:dp.place.uid];
+        }
+    }
+    
 }
 
-- (void)cancel:(id)sender
+- (void)didTapCancel:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -96,7 +109,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     // They don't have a courier part of the seller
     // AND
     // The deliveryPlace state is not ready and not arrived
-    NSPredicate *deliveryPlaces = [NSPredicate predicateWithFormat:@"(deliveryPlaces.@count == 0) OR  (SUBQUERY(deliveryPlaces, $dp, $dp.shift.courier IN %@ && $dp.shift.stateID == %@).@count == 0 AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID == %@ OR $dp.stateID == %@).@count == 0)", NMCourier.currentCourier.seller.couriers, @(NMShiftStateActive), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateArrived)];
+    NSPredicate *deliveryPlaces = [NSPredicate predicateWithFormat:@"(deliveryPlaces.@count == 0) OR  (SUBQUERY(deliveryPlaces, $dp, $dp.shift.courier IN %@ AND $dp.shift.courier != %@ AND ($dp.stateID == %@ OR $dp.stateID == %@) AND $dp.shift.stateID == %@).@count == 0)", NMCourier.currentCourier.seller.couriers, NMCourier.currentCourier, @(NMShiftStateActive), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateArrived)];
     
     _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:deliveryPlaces groupBy:nil delegate: self];
     return _fetchedResultsController;
@@ -182,18 +195,92 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NMPlaceTableViewCell *cell = (NMPlaceTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-//    (cell.accessoryType == UITableViewCellAccessoryNone) ? (cell.accessoryType = UITableViewCellAccessoryCheckmark) : (cell.accessoryType = UITableViewCellAccessoryNone) ;
-    
-    (cell.iconImageView.hidden == YES) ? (cell.iconImageView.hidden = NO) : (cell.iconImageView.hidden = YES) ;
+    NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
+    if ([self isCellActiveAtIndexPath:indexPath]) {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Can't Stop Deliveries" andMessage:[NSString stringWithFormat:@"Can't stop delivering to %@ until your shift ends.", place.name]];
+        [alert addButtonWithTitle:@"Close" type:SIAlertViewButtonTypeDestructive handler:NULL];
+        [alert show];
+        return;
+    }
     
-    
+    if (![self.placeIDs containsObject:place.uid]) {
+        cell.iconImageView.hidden = NO;
+        [self.placeIDs addObject:place.uid];
+    } else {
+        cell.iconImageView.hidden = YES;
+        [self.placeIDs removeObject:place.uid];
+
+    }
+
 }
 
 - (void)configureCell:(NMPlaceTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.placeLabel.text = place.name;
-    cell.iconImageView.hidden = YES;
+    
+
+    if ([self isCellActiveAtIndexPath:indexPath] || [self.placeIDs containsObject:place.uid]) {
+        [self.placeIDs addObject:place.uid];
+        cell.iconImageView.hidden = NO;
+    } else if (!cell.selected) {
+        cell.iconImageView.hidden = YES;
+    }
+    
+}
+
+- (BOOL)isCellActiveAtIndexPath:(NSIndexPath*)indexPath {
+    NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"place = %@ AND shift.courier = %@ AND (shift.stateID = %@ OR shift.stateID = %@)", place, [NMCourier currentCourier], @(NMShiftStateActive), @(NMShiftStateHalted)];
+    return [NMDeliveryPlace MR_countOfEntitiesWithPredicate:predicate] > 0;
+}
+
+#pragma mark - Shifts
+
+- (void)didTapStartShift:(id)sender
+{
+    if (_shift) {
+        [self updateShift];
+    } else {
+        [self createShift];
+    }
+    
+}
+
+- (void)createShift {
+    [SVProgressHUD showWithStatus:@"Starting Shift..." maskType:SVProgressHUDMaskTypeBlack];
+    __block NMDeliveryPlacesTableViewController *this = self;
+    
+    [[NMApi instance] POST:@"shifts" parameters:@{ @"place_ids": [self.placeIDs array] } completion:^(OVCResponse *response, NSError *error) {
+        if (error) {
+            [response.result handleError];
+        } else {
+            NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
+            this.shift = shift;
+            
+            NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+            [self.navigationController pushViewController:dpTV animated:YES];
+            [SVProgressHUD showSuccessWithStatus:@"Started Shift!"];
+        }
+    }];
+}
+
+- (void)updateShift {
+    [SVProgressHUD showWithStatus:@"Updating Shift..." maskType:SVProgressHUDMaskTypeBlack];
+    __block NMDeliveryPlacesTableViewController *this = self;
+    
+    [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"place_ids": [self.placeIDs array] } completion:^(OVCResponse *response, NSError *error) {
+        if (error) {
+            [response.result handleError];
+        } else {
+            NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
+            this.shift = shift;
+            
+            NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+            [self.navigationController pushViewController:dpTV animated:YES];
+            [SVProgressHUD showSuccessWithStatus:@"Updated Shift!"];
+        }
+    }];
 }
 
 
