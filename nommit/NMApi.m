@@ -9,7 +9,7 @@
 #import "NMApi.h"
 #import "NMErrorApiModel.h"
 
-static NSString *NMApiBaseURLString = @"http://www.getnommit.com";
+static NSString *NMApiBaseURLString = @"http://localhost:3000";
 
 @implementation NMApi
 
@@ -41,6 +41,7 @@ static NSString *NMApiBaseURLString = @"http://www.getnommit.com";
              @"orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
              @"foods" : [NMFoodApiModel class],
+             @"places": [NMPlaceApiModel class],
              @"places/*/orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
              @"shifts" : [NMShiftApiModel class],

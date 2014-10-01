@@ -32,8 +32,8 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
     self = [super initWithFrame:frame];
     if (self) {
         self.deliveryPlaces = deliveryPlaces;
-        NSLog(@"Courier: %@", [_deliveryPlaces[0] shift].courier);
         self.backgroundColor = [NMColors mainColor];
+
         [self setupNameLabel];
         [self setupNextLabel];
         
@@ -128,7 +128,7 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
 }
 
 - (void)startUpdating {
-    _updateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNavigatorState) userInfo:nil repeats:YES];
+    _updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.75 target:self selector:@selector(updateNavigatorState) userInfo:nil repeats:YES];
     [self setDeliveryPlaceIndex:0];
     [self updateNavigatorState];
 }
@@ -169,7 +169,7 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
     _nameLabel.text = self.deliveryPlace.place.name;
 
     
-    [UIView animateWithDuration:0.1 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
 
         if (state == NMDeliveryStateLateMorePlaces) {
             NMDeliveryPlace *nextPlace = _deliveryPlaces[_index + 1];
@@ -187,7 +187,7 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
             ];
         } else if (state == NMDeliveryStateOntimeLastPlace) {
             self.backgroundColor = [NMColors mainColor];
-            _nextLabel.text = [NSString stringWithFormat:@"Begin deliveries at %@", [self countdownForPlace:self.deliveryPlace]];
+            _nextLabel.text = [NSString stringWithFormat:@"Start delivering in %@", [self countdownForPlace:self.deliveryPlace]];
         }
         [self resetArrows];
     }];

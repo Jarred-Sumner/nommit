@@ -12,6 +12,8 @@
 #import "NMMenuNavigationController.h"
 #import "NMDeliveryPlaceFooter.h"
 
+#import <SIAlertView/SIAlertView.h>
+
 static NSTimeInterval NMOrderFetchInterval = 5;
 
 static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifier";
@@ -34,6 +36,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (id)initWithShift:(NMShift *)shift {
     self = [super init];
     _shift = shift;
+    [self fetchShift];
     return self;
 }
 
@@ -63,7 +66,6 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_footerView]|" options:(NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight) metrics:nil views:NSDictionaryOfVariableBindings(_tableView, _footerView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView, _footerView)]];
 
-    
     
     [self.tableView registerClass:[NMOrderTableViewCell class] forCellReuseIdentifier:NMOrderTableViewCellIdentifier];
     [self setTableViewHeader];
@@ -221,15 +223,32 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     }];
 }
 
-#pragma mark - Set Shift
+#pragma mark - Shift
 
 - (void)setShift:(NMShift *)shift {
-    _deliveryPlaces = nil;
-    _shift = shift;
+    if (shift) {
+        _deliveryPlaces = nil;
+        _shift = shift;
+        
+        [_placeNavigatorView stopUpdating];
+        _placeNavigatorView.deliveryPlaces = self.deliveryPlaces;
+        [_placeNavigatorView startUpdating];
+    } else {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Shift Ended" andMessage:@"Your shift ended! You can always start a new shift if food is being offered."];
+        [alert show];
+    }
+
+}
+
+- (void)fetchShift {
     
-    [_placeNavigatorView stopUpdating];
-    _placeNavigatorView.deliveryPlaces = self.deliveryPlaces;
-    [_placeNavigatorView startUpdating];
+    __block NMDeliveryPlaceTableViewController *this = self;
+    [[NMApi instance] GET:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
+        if (!error) {
+            this.shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
+        }
+        
+    }];
 }
 
 #pragma mark - Place-specific actions
@@ -300,20 +319,22 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     __block NMDeliveryPlaceTableViewController *this = self;
     if (_shift.state == NMShiftStateActive) {
         [SVProgressHUD showWithStatus:@"Preventing New Orders..." maskType:SVProgressHUDMaskTypeBlack];
-        [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"state_id" : @(NMShiftStateHalted) } completion:^(OVCResponse *response, NSError *error) {
+        
+        NSString *path = [NSString stringWithFormat:@"shifts/%@", _shift.uid];
+        [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMShiftStateHalted) } completion:^(OVCResponse *response, NSError *error) {
             
             if ([response.result class] == [NMErrorApiModel class]) {
                 [response.result handleError];
             } else if (error) {
                 [NMErrorApiModel handleGenericError];
             } else {
-                //TODO: Add fancy alert view telling them to finish deliveries and then try ending shift again.
                 if ([_shift hasPendingDeliveries]) {
                     [SVProgressHUD dismiss];
                     
-                    NSNumber *pendingOrders = [_shift countOfPendingDeliveries];
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pending Deliveries" message:[NSString stringWithFormat:@"Please deliver the remaining %@ orders before ending your shift", pendingOrders]  preferredStyle:UIAlertControllerStyleAlert];
-                    [this presentViewController:alert animated:YES completion:NULL];
+                    NSNumber *pendingOrders = [self.shift countOfPendingDeliveries];
+                    NSString *message = [NSString stringWithFormat:@"Stopped new orders, but please deliver the remaining %@ orders", pendingOrders];
+                    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Finish Deliveries"andMessage:message];
+                    [alert show];
                 } else {
                     [this endShift];
                 }

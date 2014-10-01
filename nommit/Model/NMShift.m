@@ -23,7 +23,8 @@
     return @([NMShift MR_countOfEntitiesWithPredicate:[self pendingDeliveryPredicate]]);
 }
 
-- (BOOL)pendingDeliveries {
+- (BOOL)hasPendingDeliveries {
+    NSLog(@"Count: %@", self.countOfPendingDeliveries);
     return self.countOfPendingDeliveries.integerValue > 0;
 }
 

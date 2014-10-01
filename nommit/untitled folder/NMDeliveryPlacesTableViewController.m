@@ -24,6 +24,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];
+    [self setupRefreshing];
     return self;
 }
 
@@ -57,17 +58,47 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
 }
 
+#pragma mark - Refresh
+
+- (void)setupRefreshing {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshPlaces) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    
+    [self refreshPlaces];
+}
+
+- (void)refreshPlaces {
+    __weak NMDeliveryPlacesTableViewController *this = self;
+    [self.refreshControl beginRefreshing];
+    
+    [[NMApi instance] GET:@"places" parameters:nil completion:^(OVCResponse *response, NSError *error) {
+        if (error) {
+            [response.result handleError];
+        }
+        [this.refreshControl endRefreshing];
+    }];
+}
+
 #pragma mark - NSFetchedResultsController
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
 
-    // Places a courier can deliver to:
-    // - Have no deliveryPlace
-    // - OR, shift is over/halted
-//    NSPredicate *deliveryPlaces = [NSPredicate predicateWithFormat:@"deliveryPlaces.stateID != %@ AND seller = %@ AND ]
+    // We want to show all the places the Seller could be delivering to, but isn't.
+    // Those are defined as Places without active deliveryPlaces associated with the seller
     
-//    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:NO withPredicate:foodPredicate groupBy:nil delegate: self];
+    // YUCK
+    
+    // Places that:
+    // Have no deliveryPlaces
+    // OR
+    // They don't have a courier part of the seller
+    // AND
+    // The deliveryPlace state is not ready and not arrived
+    NSPredicate *deliveryPlaces = [NSPredicate predicateWithFormat:@"(deliveryPlaces.@count == 0) OR  (SUBQUERY(deliveryPlaces, $dp, $dp.shift.courier IN %@ && $dp.shift.stateID == %@).@count == 0 AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID == %@ OR $dp.stateID == %@).@count == 0)", NMCourier.currentCourier.seller.couriers, @(NMShiftStateActive), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateArrived)];
+    
+    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:deliveryPlaces groupBy:nil delegate: self];
     return _fetchedResultsController;
 }
 
@@ -161,10 +192,8 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
 - (void)configureCell:(NMPlaceTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    cell.textLabel.text = place.name;
-    cell.textLabel.textColor = UIColorFromRGB(0x757575);
-    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:16.0f];
+    cell.placeLabel.text = place.name;
+    cell.iconImageView.hidden = YES;
 }
 
 

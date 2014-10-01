@@ -8,6 +8,7 @@
 
 #import "NMErrorApiModel.h"
 #import <SVProgressHUD.h>
+#import <SIAlertView.h>
 #import "NMAppDelegate.h"
 
 @implementation NMErrorApiModel
@@ -15,9 +16,14 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey { return @{}; }
 
 - (void)flashError {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD dismiss];
     if (!_message) _message = @"Oops! Something broke. Sit tight -- our team has been notified. Try again repeatedly :)";
-    [SVProgressHUD showErrorWithStatus:_message];
+
+    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"An error occurred" andMessage:_message];
+    [alert  addButtonWithTitle:@"Okay"
+            type:SIAlertViewButtonTypeDestructive
+            handler:NULL];
+    [alert show];
 }
 
 - (NSSet*)errorCodes {
