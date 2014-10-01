@@ -3,7 +3,8 @@
 typedef NS_ENUM(NSInteger, NMDeliveryPlaceState) {
     NMDeliveryPlaceStateReady = 0,
     NMDeliveryPlaceStateArrived = 1,
-    NMDeliveryPlaceStateEnded = 2
+    NMDeliveryPlaceStateHalted = 2, 
+    NMDeliveryPlaceStateEnded = 3
 };
 
 @interface NMDeliveryPlace : _NMDeliveryPlace {}

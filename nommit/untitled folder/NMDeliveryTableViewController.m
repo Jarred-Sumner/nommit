@@ -60,10 +60,18 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         [self.tableView registerClass:[NMDeliveryCallButtonTableViewCell class] forCellReuseIdentifier:NMCallButtonInfoIdentifier];
         
         [self initNavBar];
-        
-        [self startFetchingOrderStatus];
     }
     return self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self stopFetchingOrderStatus];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self startFetchingOrderStatus];
 }
 
 #pragma mark - Table view data source
@@ -174,6 +182,10 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
             [this setCountdownDate:this.order.deliveredAt];
         }
     }];
+}
+
+- (void)stopFetchingOrderStatus {
+    [_fetchOrderTimer invalidate];
 }
 
 @end
