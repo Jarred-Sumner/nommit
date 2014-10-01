@@ -21,6 +21,7 @@
 #import "NMLoginViewController.h"
 #import "NMRateTableViewController.h"
 #import "NMCourierSummaryTableViewController.h"
+#import "THContactPickerViewController.h"
 
 static NSInteger NMStaticSection = 0;
 static NSInteger NMOrdersSection = 1;
@@ -134,12 +135,16 @@ static NSInteger NMOrdersSection = 1;
                 [self showOrders];
             } else if (indexPath.row == 2) {
                 [self showAccount];
+            } else if (indexPath.row == 3) {
+                [self showInvite];
             }
         } else {
             if (indexPath.row == 0) {
                 [self showMenu];
             } else if (indexPath.row == 1) {
                 [self showAccount];
+            } else if (indexPath.row == 2) {
+                [self showInvite];
             }
         }
 
@@ -251,9 +256,9 @@ static NSInteger NMOrdersSection = 1;
 {
     if (sectionIndex == 0) {
         if ([NMUser currentUser].isCourierValue) {
-            return 3;
+            return 4;
         } else {
-            return 2;
+            return 3;
         }
     } else if (sectionIndex == 1) {
         id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
@@ -274,9 +279,9 @@ static NSInteger NMOrdersSection = 1;
     if (indexPath.section == 0) {
         NSArray *titles;
         if ([[NMUser currentUser] isCourierValue]) {
-            titles = @[@"Menu", @"Deliver", @"Account"];
+            titles = @[@"Menu", @"Deliver", @"Account", @"Invite"];
         } else {
-            titles = @[@"Menu", @"Account"];
+            titles = @[@"Menu", @"Account", @"Invite"];
         }
         cell.textLabel.text = titles[indexPath.row];
     } else {
@@ -317,6 +322,11 @@ static NSInteger NMOrdersSection = 1;
 - (void)showAccount {
     NMAccountTableViewController *accountTableVC = [[NMAccountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self navigateTo:accountTableVC];
+}
+
+- (void)showInvite {
+    THContactPickerViewController *inviteVC = [[THContactPickerViewController alloc] initWithNibName:nil bundle:nil];
+    [self navigateTo:inviteVC];
 }
 
 - (void)navigateTo:(UIViewController*)viewController {

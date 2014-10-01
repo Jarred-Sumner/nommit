@@ -89,6 +89,23 @@
 		8DA5198E19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198D19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m */; };
 		8DA5199419D3846800BBA8A0 /* NMOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5199319D3846800BBA8A0 /* NMOrderTableViewCell.m */; };
 		8DC5335719DC5D4D00A841EB /* NMLogoutButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */; };
+		8DC5338019DCBAF500A841EB /* icon-avatar-60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5336519DCBAF500A841EB /* icon-avatar-60x60.png */; };
+		8DC5338119DCBAF500A841EB /* icon-avatar-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5336619DCBAF500A841EB /* icon-avatar-60x60@2x.png */; };
+		8DC5338219DCBAF500A841EB /* icon-checkbox-selected-green-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5336719DCBAF500A841EB /* icon-checkbox-selected-green-25x25.png */; };
+		8DC5338319DCBAF500A841EB /* icon-checkbox-selected-green-25x25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5336819DCBAF500A841EB /* icon-checkbox-selected-green-25x25@2x.png */; };
+		8DC5338419DCBAF500A841EB /* icon-checkbox-unselected-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5336919DCBAF500A841EB /* icon-checkbox-unselected-25x25.png */; };
+		8DC5338519DCBAF500A841EB /* icon-checkbox-unselected-25x25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5336A19DCBAF500A841EB /* icon-checkbox-unselected-25x25@2x.png */; };
+		8DC5338719DCBAF500A841EB /* THBubbleColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5336D19DCBAF500A841EB /* THBubbleColor.m */; };
+		8DC5338819DCBAF500A841EB /* THContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5336F19DCBAF500A841EB /* THContact.m */; };
+		8DC5338919DCBAF500A841EB /* THContactBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5337119DCBAF500A841EB /* THContactBubble.m */; };
+		8DC5338A19DCBAF500A841EB /* THContactPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5337319DCBAF500A841EB /* THContactPickerTableViewCell.m */; };
+		8DC5338B19DCBAF500A841EB /* THContactPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5337419DCBAF500A841EB /* THContactPickerTableViewCell.xib */; };
+		8DC5338C19DCBAF500A841EB /* THContactPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5337619DCBAF500A841EB /* THContactPickerView.m */; };
+		8DC5338D19DCBAF500A841EB /* THContactPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5337819DCBAF500A841EB /* THContactPickerViewController.m */; };
+		8DC5338E19DCBAF500A841EB /* THContactPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5337919DCBAF500A841EB /* THContactPickerViewController.xib */; };
+		8DC5339219DCBCCB00A841EB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5338F19DCBCCB00A841EB /* Default-568h@2x.png */; };
+		8DC5339319DCBCCB00A841EB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5339019DCBCCB00A841EB /* Default.png */; };
+		8DC5339419DCBCCB00A841EB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5339119DCBCCB00A841EB /* Default@2x.png */; };
 		8DCE835119D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835019D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m */; };
 		8DCE835419D4C85500D770D0 /* NMPickPlaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835319D4C85500D770D0 /* NMPickPlaceTableViewCell.m */; };
 		8DCE835719D4D56700D770D0 /* NMAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE835619D4D56700D770D0 /* NMAccountTableViewController.m */; };
@@ -296,6 +313,29 @@
 		8DA5199319D3846800BBA8A0 /* NMOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderTableViewCell.m; path = Cells/NMOrderTableViewCell.m; sourceTree = "<group>"; };
 		8DC5335519DC5D4D00A841EB /* NMLogoutButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLogoutButtonCell.h; path = Cells/NMLogoutButtonCell.h; sourceTree = "<group>"; };
 		8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLogoutButtonCell.m; path = Cells/NMLogoutButtonCell.m; sourceTree = "<group>"; };
+		8DC5336519DCBAF500A841EB /* icon-avatar-60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-avatar-60x60.png"; sourceTree = "<group>"; };
+		8DC5336619DCBAF500A841EB /* icon-avatar-60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-avatar-60x60@2x.png"; sourceTree = "<group>"; };
+		8DC5336719DCBAF500A841EB /* icon-checkbox-selected-green-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkbox-selected-green-25x25.png"; sourceTree = "<group>"; };
+		8DC5336819DCBAF500A841EB /* icon-checkbox-selected-green-25x25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkbox-selected-green-25x25@2x.png"; sourceTree = "<group>"; };
+		8DC5336919DCBAF500A841EB /* icon-checkbox-unselected-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkbox-unselected-25x25.png"; sourceTree = "<group>"; };
+		8DC5336A19DCBAF500A841EB /* icon-checkbox-unselected-25x25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkbox-unselected-25x25@2x.png"; sourceTree = "<group>"; };
+		8DC5336C19DCBAF500A841EB /* THBubbleColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THBubbleColor.h; sourceTree = "<group>"; };
+		8DC5336D19DCBAF500A841EB /* THBubbleColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THBubbleColor.m; sourceTree = "<group>"; };
+		8DC5336E19DCBAF500A841EB /* THContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContact.h; sourceTree = "<group>"; };
+		8DC5336F19DCBAF500A841EB /* THContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContact.m; sourceTree = "<group>"; };
+		8DC5337019DCBAF500A841EB /* THContactBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactBubble.h; sourceTree = "<group>"; };
+		8DC5337119DCBAF500A841EB /* THContactBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactBubble.m; sourceTree = "<group>"; };
+		8DC5337219DCBAF500A841EB /* THContactPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactPickerTableViewCell.h; sourceTree = "<group>"; };
+		8DC5337319DCBAF500A841EB /* THContactPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactPickerTableViewCell.m; sourceTree = "<group>"; };
+		8DC5337419DCBAF500A841EB /* THContactPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THContactPickerTableViewCell.xib; sourceTree = "<group>"; };
+		8DC5337519DCBAF500A841EB /* THContactPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactPickerView.h; sourceTree = "<group>"; };
+		8DC5337619DCBAF500A841EB /* THContactPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactPickerView.m; sourceTree = "<group>"; };
+		8DC5337719DCBAF500A841EB /* THContactPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THContactPickerViewController.h; sourceTree = "<group>"; };
+		8DC5337819DCBAF500A841EB /* THContactPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THContactPickerViewController.m; sourceTree = "<group>"; };
+		8DC5337919DCBAF500A841EB /* THContactPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THContactPickerViewController.xib; sourceTree = "<group>"; };
+		8DC5338F19DCBCCB00A841EB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8DC5339019DCBCCB00A841EB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		8DC5339119DCBCCB00A841EB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8DCE834F19D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlacesTableViewController.h; path = "untitled folder/NMDeliveryPlacesTableViewController.h"; sourceTree = "<group>"; };
 		8DCE835019D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryPlacesTableViewController.m; path = "untitled folder/NMDeliveryPlacesTableViewController.m"; sourceTree = "<group>"; };
 		8DCE835219D4C85500D770D0 /* NMPickPlaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPickPlaceTableViewCell.h; path = Cells/NMPickPlaceTableViewCell.h; sourceTree = "<group>"; };
@@ -469,6 +509,7 @@
 		8D51D28D19B3A3C200920F69 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8DC5335B19DCBAF500A841EB /* ContactPicker */,
 				8D6DE41E19B7B3CE008F64CE /* Google Places */,
 				8D51D29219B3A43F00920F69 /* UIImage+ImageEffects.h */,
 				8D51D29319B3A43F00920F69 /* UIImage+ImageEffects.m */,
@@ -504,6 +545,37 @@
 				8D6DE41B19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m */,
 			);
 			name = "Google Places";
+			sourceTree = "<group>";
+		};
+		8DC5335B19DCBAF500A841EB /* ContactPicker */ = {
+			isa = PBXGroup;
+			children = (
+				8DC5338F19DCBCCB00A841EB /* Default-568h@2x.png */,
+				8DC5339019DCBCCB00A841EB /* Default.png */,
+				8DC5339119DCBCCB00A841EB /* Default@2x.png */,
+				8DC5336519DCBAF500A841EB /* icon-avatar-60x60.png */,
+				8DC5336619DCBAF500A841EB /* icon-avatar-60x60@2x.png */,
+				8DC5336719DCBAF500A841EB /* icon-checkbox-selected-green-25x25.png */,
+				8DC5336819DCBAF500A841EB /* icon-checkbox-selected-green-25x25@2x.png */,
+				8DC5336919DCBAF500A841EB /* icon-checkbox-unselected-25x25.png */,
+				8DC5336A19DCBAF500A841EB /* icon-checkbox-unselected-25x25@2x.png */,
+				8DC5336C19DCBAF500A841EB /* THBubbleColor.h */,
+				8DC5336D19DCBAF500A841EB /* THBubbleColor.m */,
+				8DC5336E19DCBAF500A841EB /* THContact.h */,
+				8DC5336F19DCBAF500A841EB /* THContact.m */,
+				8DC5337019DCBAF500A841EB /* THContactBubble.h */,
+				8DC5337119DCBAF500A841EB /* THContactBubble.m */,
+				8DC5337219DCBAF500A841EB /* THContactPickerTableViewCell.h */,
+				8DC5337319DCBAF500A841EB /* THContactPickerTableViewCell.m */,
+				8DC5337419DCBAF500A841EB /* THContactPickerTableViewCell.xib */,
+				8DC5337519DCBAF500A841EB /* THContactPickerView.h */,
+				8DC5337619DCBAF500A841EB /* THContactPickerView.m */,
+				8DC5337719DCBAF500A841EB /* THContactPickerViewController.h */,
+				8DC5337819DCBAF500A841EB /* THContactPickerViewController.m */,
+				8DC5337919DCBAF500A841EB /* THContactPickerViewController.xib */,
+			);
+			name = ContactPicker;
+			path = Libraries/ContactPicker;
 			sourceTree = "<group>";
 		};
 		8DCE836819D50B1200D770D0 /* Custom Components */ = {
@@ -878,7 +950,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD3FC3B19B2512900DAFCDB /* InfoPlist.strings in Resources */,
+				8DC5339219DCBCCB00A841EB /* Default-568h@2x.png in Resources */,
 				8DD3FC4319B2512900DAFCDB /* Images.xcassets in Resources */,
+				8DC5338019DCBAF500A841EB /* icon-avatar-60x60.png in Resources */,
+				8DC5339419DCBCCB00A841EB /* Default@2x.png in Resources */,
+				8DC5338219DCBAF500A841EB /* icon-checkbox-selected-green-25x25.png in Resources */,
+				8DC5338B19DCBAF500A841EB /* THContactPickerTableViewCell.xib in Resources */,
+				8DC5338319DCBAF500A841EB /* icon-checkbox-selected-green-25x25@2x.png in Resources */,
+				8DC5339319DCBCCB00A841EB /* Default.png in Resources */,
+				8DC5338519DCBAF500A841EB /* icon-checkbox-unselected-25x25@2x.png in Resources */,
+				8DC5338119DCBAF500A841EB /* icon-avatar-60x60@2x.png in Resources */,
+				8DC5338419DCBAF500A841EB /* icon-checkbox-unselected-25x25.png in Resources */,
+				8DC5338E19DCBAF500A841EB /* THContactPickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,6 +1035,7 @@
 				8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */,
 				8DCE835719D4D56700D770D0 /* NMAccountTableViewController.m in Sources */,
 				83C3A18519CE54380052B6F7 /* _NMPlace.m in Sources */,
+				8DC5338819DCBAF500A841EB /* THContact.m in Sources */,
 				8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */,
 				8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownView.m in Sources */,
 				83D6A9E119B822B8009A6D9B /* _NMFood.m in Sources */,
@@ -974,11 +1058,13 @@
 				8DD32FCE19D9D77B009485C2 /* NMRateTableViewController.m in Sources */,
 				8DD32FB319D690E2009485C2 /* NMVerifyPhoneNumberViewController.m in Sources */,
 				83C3649A19D1F78F004B4F22 /* NMErrorApiModel.m in Sources */,
+				8DC5338719DCBAF500A841EB /* THBubbleColor.m in Sources */,
 				83D6A9E419B822B8009A6D9B /* NMFood.m in Sources */,
 				83C3A19519D0C5E20052B6F7 /* _NMLocation.m in Sources */,
 				839765BC19BBCE0A00EE8254 /* NMUserApiModel.m in Sources */,
 				839765B919BBCE0200EE8254 /* NMOrderApiModel.m in Sources */,
 				8D6DE42419B8342A008F64CE /* NMLoginViewController.m in Sources */,
+				8DC5338C19DCBAF500A841EB /* THContactPickerView.m in Sources */,
 				8D3D053119DB688900B02677 /* NMCourierSummaryTableViewCell.m in Sources */,
 				83C3A18F19CE54660052B6F7 /* NMSellerApiModel.m in Sources */,
 				836E358519D3DF66004208A6 /* NMCourierApiModel.m in Sources */,
@@ -1002,6 +1088,7 @@
 				8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */,
 				8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				8D51D29719B3BA9900920F69 /* NMOrderFoodInfoCell.m in Sources */,
+				8DC5338919DCBAF500A841EB /* THContactBubble.m in Sources */,
 				8DD32FC519D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m in Sources */,
 				83EE765819BBE3CD006FEDDF /* NMSession.m in Sources */,
 				8DD32FBC19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.m in Sources */,
@@ -1014,6 +1101,7 @@
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
 				8D5E561C19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m in Sources */,
 				8DD32FB619D73595009485C2 /* NMVerifyPhoneNumerTableViewCell.m in Sources */,
+				8DC5338A19DCBAF500A841EB /* THContactPickerTableViewCell.m in Sources */,
 				8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */,
 				8DD32FB019D662A4009485C2 /* NMRegisterPaymentTableViewCell.m in Sources */,
 				8DA5199419D3846800BBA8A0 /* NMOrderTableViewCell.m in Sources */,
@@ -1033,6 +1121,7 @@
 				8D51D2B319B6688200920F69 /* NMMenuViewController.m in Sources */,
 				8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */,
 				8D5E561619C246F90001B531 /* NMPersonalCampaignViewController.m in Sources */,
+				8DC5338D19DCBAF500A841EB /* THContactPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
