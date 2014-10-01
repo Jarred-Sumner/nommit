@@ -24,10 +24,17 @@
         _locationButton.titleEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 15);
         [self addSubview:_locationButton];
         
-        NSDictionary *views = NSDictionaryOfVariableBindings(_locationButton);
+        UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ArrowIcon"]];
+        arrow.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:arrow];
+        
+        NSDictionary *views = NSDictionaryOfVariableBindings(_locationButton, arrow);
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_locationButton]-0-|" options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_locationButton]-0-|" options:0 metrics:nil views:views]];
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[arrow]-15-|" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[arrow]" options:0 metrics:nil views:views]];
     }
     return self;
 }
