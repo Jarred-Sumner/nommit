@@ -13,6 +13,7 @@
 		83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0319B5242B00524801 /* CoreImage.framework */; };
 		83291B0619B5243600524801 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0519B5243600524801 /* Security.framework */; };
 		83291CE519D129CE00A29B3C /* NMPlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83291CE419D129CE00A29B3C /* NMPlacesTableViewController.m */; };
+		8331FA4119DD402200D78ECD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8331FA4019DD402100D78ECD /* AudioToolbox.framework */; };
 		8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */; };
 		83454F4719DA398C005CEA8C /* _NMDeliveryPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83454F4419DA398C005CEA8C /* _NMDeliveryPlace.m */; };
 		83454F4819DA398C005CEA8C /* _NMShift.m in Sources */ = {isa = PBXBuildFile; fileRef = 83454F4619DA398C005CEA8C /* _NMShift.m */; };
@@ -70,7 +71,6 @@
 		8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */; };
 		8D51D2BE19B6A92000920F69 /* CHDigitInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2BD19B6A92000920F69 /* CHDigitInput.m */; };
 		8D5E561619C246F90001B531 /* NMPersonalCampaignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E561519C246F90001B531 /* NMPersonalCampaignViewController.m */; };
-		8D5E561919C249A80001B531 /* NMRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E561819C249A80001B531 /* NMRateViewController.m */; };
 		8D5E561C19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E561B19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m */; };
 		8D695D2219DB3AEF00EF6EB1 /* UIScrollView+NMParallaxHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D695D2119DB3AEF00EF6EB1 /* UIScrollView+NMParallaxHeader.m */; };
 		8D6DE41719B7B220008F64CE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D6DE41619B7B220008F64CE /* CoreLocation.framework */; };
@@ -131,7 +131,7 @@
 		8DD32FC519D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FC419D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m */; };
 		8DD32FC819D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FC719D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m */; };
 		8DD32FCB19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FCA19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m */; };
-		8DD32FCE19D9D77B009485C2 /* NMRateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FCD19D9D77B009485C2 /* NMRateTableViewController.m */; };
+		8DD32FCE19D9D77B009485C2 /* NMRateOrderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FCD19D9D77B009485C2 /* NMRateOrderTableViewController.m */; };
 		8DD32FD119D9E0EE009485C2 /* NMReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FD019D9E0EE009485C2 /* NMReceiptTableViewCell.m */; };
 		8DD3FC3119B2512900DAFCDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3019B2512900DAFCDB /* Foundation.framework */; };
 		8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD3FC3219B2512900DAFCDB /* CoreGraphics.framework */; };
@@ -171,6 +171,7 @@
 		83291B0519B5243600524801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		83291CE319D129CE00A29B3C /* NMPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMPlacesTableViewController.h; sourceTree = "<group>"; };
 		83291CE419D129CE00A29B3C /* NMPlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMPlacesTableViewController.m; sourceTree = "<group>"; };
+		8331FA4019DD402100D78ECD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8332FC0E19B3D447000D56AB /* Current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Current.xcdatamodel; sourceTree = "<group>"; };
 		83454F4319DA398C005CEA8C /* _NMDeliveryPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMDeliveryPlace.h; path = Model/_NMDeliveryPlace.h; sourceTree = "<group>"; };
 		83454F4419DA398C005CEA8C /* _NMDeliveryPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMDeliveryPlace.m; path = Model/_NMDeliveryPlace.m; sourceTree = "<group>"; };
@@ -278,8 +279,6 @@
 		8D51D2BD19B6A92000920F69 /* CHDigitInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHDigitInput.m; path = Libraries/CHDigitInput.m; sourceTree = "<group>"; };
 		8D5E561419C246F90001B531 /* NMPersonalCampaignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPersonalCampaignViewController.h; path = "untitled folder/NMPersonalCampaignViewController.h"; sourceTree = "<group>"; };
 		8D5E561519C246F90001B531 /* NMPersonalCampaignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPersonalCampaignViewController.m; path = "untitled folder/NMPersonalCampaignViewController.m"; sourceTree = "<group>"; };
-		8D5E561719C249A80001B531 /* NMRateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRateViewController.h; path = "untitled folder/NMRateViewController.h"; sourceTree = "<group>"; };
-		8D5E561819C249A80001B531 /* NMRateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRateViewController.m; path = "untitled folder/NMRateViewController.m"; sourceTree = "<group>"; };
 		8D5E561A19C249E00001B531 /* NMCampaignVisibilityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCampaignVisibilityTableViewCell.h; path = Cells/NMCampaignVisibilityTableViewCell.h; sourceTree = "<group>"; };
 		8D5E561B19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCampaignVisibilityTableViewCell.m; path = Cells/NMCampaignVisibilityTableViewCell.m; sourceTree = "<group>"; };
 		8D695D2019DB3AEF00EF6EB1 /* UIScrollView+NMParallaxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+NMParallaxHeader.h"; path = "Custom Components/UIScrollView+NMParallaxHeader.h"; sourceTree = "<group>"; };
@@ -392,8 +391,8 @@
 		8DD32FC719D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryCountdownTableViewCell.m; path = Cells/NMDeliveryCountdownTableViewCell.m; sourceTree = "<group>"; };
 		8DD32FC919D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryCallButtonTableViewCell.h; path = Cells/NMDeliveryCallButtonTableViewCell.h; sourceTree = "<group>"; };
 		8DD32FCA19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryCallButtonTableViewCell.m; path = Cells/NMDeliveryCallButtonTableViewCell.m; sourceTree = "<group>"; };
-		8DD32FCC19D9D77B009485C2 /* NMRateTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRateTableViewController.h; path = "untitled folder/NMRateTableViewController.h"; sourceTree = "<group>"; };
-		8DD32FCD19D9D77B009485C2 /* NMRateTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRateTableViewController.m; path = "untitled folder/NMRateTableViewController.m"; sourceTree = "<group>"; };
+		8DD32FCC19D9D77B009485C2 /* NMRateOrderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRateOrderTableViewController.h; path = "untitled folder/NMRateOrderTableViewController.h"; sourceTree = "<group>"; };
+		8DD32FCD19D9D77B009485C2 /* NMRateOrderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRateOrderTableViewController.m; path = "untitled folder/NMRateOrderTableViewController.m"; sourceTree = "<group>"; };
 		8DD32FCF19D9E0EE009485C2 /* NMReceiptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMReceiptTableViewCell.h; path = Cells/NMReceiptTableViewCell.h; sourceTree = "<group>"; };
 		8DD32FD019D9E0EE009485C2 /* NMReceiptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMReceiptTableViewCell.m; path = Cells/NMReceiptTableViewCell.m; sourceTree = "<group>"; };
 		8DD3FC2D19B2512900DAFCDB /* nommit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nommit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -434,6 +433,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8331FA4119DD402200D78ECD /* AudioToolbox.framework in Frameworks */,
 				830067A319DACE4A00AA89D0 /* CoreMedia.framework in Frameworks */,
 				837FCA0819C7E10F00846C62 /* AVFoundation.framework in Frameworks */,
 				83C0EA0C19BB9594009A7BE0 /* Accounts.framework in Frameworks */,
@@ -622,6 +622,7 @@
 		8DD3FC2F19B2512900DAFCDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8331FA4019DD402100D78ECD /* AudioToolbox.framework */,
 				830067A219DACE4A00AA89D0 /* CoreMedia.framework */,
 				837FCA0719C7E10F00846C62 /* AVFoundation.framework */,
 				83C0EA0B19BB9594009A7BE0 /* Accounts.framework */,
@@ -711,8 +712,6 @@
 				8D49F31019C0D65900E60145 /* NMCreateCampaignViewController.m */,
 				8D5E561419C246F90001B531 /* NMPersonalCampaignViewController.h */,
 				8D5E561519C246F90001B531 /* NMPersonalCampaignViewController.m */,
-				8D5E561719C249A80001B531 /* NMRateViewController.h */,
-				8D5E561819C249A80001B531 /* NMRateViewController.m */,
 				8D7D00A219CD0BDD0006E5E6 /* NMFoodsTableViewController.h */,
 				8D7D00A319CD0BDD0006E5E6 /* NMFoodsTableViewController.m */,
 				83291CE319D129CE00A29B3C /* NMPlacesTableViewController.h */,
@@ -729,8 +728,8 @@
 				8DD32FB219D690E2009485C2 /* NMVerifyPhoneNumberViewController.m */,
 				8DD32FC019D94777009485C2 /* NMDeliveryTableViewController.h */,
 				8DD32FC119D94777009485C2 /* NMDeliveryTableViewController.m */,
-				8DD32FCC19D9D77B009485C2 /* NMRateTableViewController.h */,
-				8DD32FCD19D9D77B009485C2 /* NMRateTableViewController.m */,
+				8DD32FCC19D9D77B009485C2 /* NMRateOrderTableViewController.h */,
+				8DD32FCD19D9D77B009485C2 /* NMRateOrderTableViewController.m */,
 				8D3D052C19DB5C3400B02677 /* NMCourierSummaryTableViewController.h */,
 				8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */,
 				8DC5339519DCCF5D00A841EB /* NMInviteCodeViewController.h */,
@@ -1078,7 +1077,7 @@
 				8D51D29D19B509B400920F69 /* NMOrderFoodProgressCell.m in Sources */,
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
 				8DD32FD119D9E0EE009485C2 /* NMReceiptTableViewCell.m in Sources */,
-				8DD32FCE19D9D77B009485C2 /* NMRateTableViewController.m in Sources */,
+				8DD32FCE19D9D77B009485C2 /* NMRateOrderTableViewController.m in Sources */,
 				8DD32FB319D690E2009485C2 /* NMVerifyPhoneNumberViewController.m in Sources */,
 				83C3649A19D1F78F004B4F22 /* NMErrorApiModel.m in Sources */,
 				8DC5338719DCBAF500A841EB /* THBubbleColor.m in Sources */,
@@ -1137,7 +1136,6 @@
 				83D6A9E319B822B8009A6D9B /* _NMUser.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
-				8D5E561919C249A80001B531 /* NMRateViewController.m in Sources */,
 				83C3649719D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.m in Sources */,
 				83454F4719DA398C005CEA8C /* _NMDeliveryPlace.m in Sources */,
 				83454F4D19DA39B6005CEA8C /* NMDeliveryPlace.m in Sources */,
