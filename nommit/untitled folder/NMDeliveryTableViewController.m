@@ -60,7 +60,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         
         [self.tableView addParallaxWithImage:nil andHeight:150];
         [self.tableView.parallaxView setDelegate:self];
-        [self.tableView.parallaxView.imageView setImageWithURL:order.food.headerImageAsURL];
+        [self.tableView.parallaxView.imageView setImageWithURL:order.food.headerImageAsURL placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
         [self.tableView addBlackOverlayToParallaxView];
         
         
@@ -121,7 +121,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
             _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ is delivering an order of %@ from %@ to you for $%d.", _order.courier.user.name, _order.food.title, _order.food.seller.name, price];
         }
         [_avatarsCell setupCourierAvatarWithProfileId:_order.courier.user.facebookUID];
-        [_avatarsCell.avatarSeller setImageWithURL:_order.food.seller.logoAsURL];
+        [_avatarsCell.avatarSeller setImageWithURL:_order.food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
         return _avatarsCell;
     } else if (indexPath.section == NMCountdownSection) {
         _countdownCell = [self.tableView dequeueReusableCellWithIdentifier:NMCountDownInfoIdentifier];

@@ -26,6 +26,12 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.title = @"Invite Your Friends";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
+}
+
 - (void)inviteButtonTouched {
     THContactPickerViewController *contactPicker = [[THContactPickerViewController alloc] init];
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:contactPicker];
@@ -42,12 +48,6 @@
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;
     
-    // Logo in the center of navigation bar
-    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 86.5*1.3, 21*1.3)];
-    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];
-    titleImageView.frame = CGRectMake(15, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
-    [logoView addSubview:titleImageView];
-    self.navigationItem.titleView = logoView;
     self.navigationController.navigationBarHidden = NO;
     
 }

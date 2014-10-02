@@ -41,7 +41,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)loadView {
     [super loadView];
-    [self initNavBar];
+    // [self initNavBar];
     self.view.backgroundColor = [NMColors lightGray];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
@@ -85,6 +85,8 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [super viewWillAppear:animated];
     [self startFetchingOrders];
     [self updateRevenueText];
+    self.title = @"Current Orders";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
 
     [_placeNavigatorView startUpdating];
 }

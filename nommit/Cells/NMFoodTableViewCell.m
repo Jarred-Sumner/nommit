@@ -57,8 +57,8 @@
 - (void)setFood:(NMFood *)food {
     _food = food;
     
-    [_sellerLogoImageView setImageWithURL:food.seller.logoAsURL];
-    [_foodImageView setImageWithURL:food.headerImageAsURL];
+    [_sellerLogoImageView setImageWithURL:food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
+    [_foodImageView setImageWithURL:food.headerImageAsURL placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
     _sellerLabel.text = food.seller.name;
     _timeLabel.text = [self timeLeftText];
     
@@ -80,6 +80,9 @@
     _sellerLogoImageView.layer.cornerRadius = CGRectGetWidth(_sellerLogoImageView.bounds) / 2;
     _sellerLogoImageView.layer.masksToBounds = YES;
     _sellerLogoImageView.image = [UIImage imageNamed:@"LoadingSeller"];
+    
+    _sellerLabel.layer.borderColor = [UIColorFromRGB(0xE4E4E4) CGColor];
+    _sellerLabel.layer.borderWidth = 2.0f;
 
     [self.contentView addSubview:_sellerLogoImageView];
 }

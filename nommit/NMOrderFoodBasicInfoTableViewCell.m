@@ -21,9 +21,9 @@
     self.contentView.layer.masksToBounds = NO;
     self.layer.masksToBounds = NO;
     
+    [self setupAvatar];
     [self setupNameLabel];
     [self setupPriceLabel];
-    [self setupDescriptionLabel];
     
     // NEW STUFF
     [self setupDigitInput];
@@ -33,13 +33,13 @@
 }
 
 #pragma mark - Avatar Image View
-- (void)setupAvatarWithImage:(NSURL *)sellerImageURL
+- (void)setupAvatar
 {
     _avatar = [[UIImageView alloc] initWithFrame:CGRectMake(16, -35, 80, 80)];
     _avatar.layer.cornerRadius = 80 / 2;
     _avatar.layer.masksToBounds = YES;
     _avatar.contentMode = UIViewContentModeScaleAspectFill;
-    [_avatar setImageWithURL:sellerImageURL];
+    _avatar.image = [UIImage imageNamed:@"LoadingSeller"];
     
     UIImageView *avatarBorder = [[UIImageView alloc] initWithFrame:CGRectMake(11, -39, 90, 90)];
     avatarBorder.image = [UIImage imageNamed:@"AvatarBorder"];
@@ -64,20 +64,6 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-106-[_nameLabel(<=230)]" options:0 metrics:nil views:views]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-7-[_nameLabel]" options:0 metrics:nil views:views]];
-}
-
-- (void)setupDescriptionLabel {
-    _descriptionLabel = [[UILabel alloc] init];
-    _descriptionLabel.numberOfLines = 2;
-    _descriptionLabel.font = [UIFont fontWithName:@"Avenir" size:11];
-    _descriptionLabel.textColor = UIColorFromRGB(0x5D5D5D);
-    _descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:_descriptionLabel];
-    
-//    NSDictionary *views = NSDictionaryOfVariableBindings(_descriptionLabel);
-//    
-//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_descriptionLabel]-15-|" options:0 metrics:nil views:views]];
 }
 
 - (void)setupPriceLabel {
@@ -121,7 +107,6 @@
     _quantityInput = [[CHDigitInput alloc] initWithNumberOfDigits:1];
     _quantityInput.translatesAutoresizingMaskIntoConstraints = NO;
     
-//    _quantityInput.digitOverlayImage = [UIImage imageNamed:@"DigitOverlay2"];
     _quantityInput.digitBackgroundImage = [UIImage imageNamed:@"DigitOverlay2"];
     
     _quantityInput.placeHolderCharacter = @"1";
@@ -142,7 +127,7 @@
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_nameLabel, _quantityInput, quantityLabel);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_nameLabel]-105-[_quantityInput]-16-|" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_nameLabel]-25-[_quantityInput]-16-|" options:0 metrics:nil views:views ]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_nameLabel]-120-[quantityLabel]" options:0 metrics:nil views:views ]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[quantityLabel]-0-[_quantityInput]-7-|" options:0 metrics:nil views:views ]];
     

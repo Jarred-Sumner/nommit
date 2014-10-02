@@ -119,10 +119,12 @@
 }
 
 - (void)performLoginWithFBSession:(FBSession*)session {
+    [SVProgressHUD showWithStatus:@"Logging in..." maskType:SVProgressHUDMaskTypeBlack];
     [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : session.accessTokenData.accessToken } completion:^(OVCResponse *response, NSError *error) {
         
-        if (error) {
+        if (error || [response.result class] == [NMErrorApiModel class]) {
             NSLog(@"Error: %@", error);
+            [response.result handleError];
         } else {
             // Authenticated.
             [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
