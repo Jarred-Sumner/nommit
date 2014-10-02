@@ -172,7 +172,7 @@ static NSInteger NMOrdersSection = 1;
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     
-    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND user = %@", @(NMOrderStateActive), NMUser.currentUser];
+    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID IN %@ AND user = %@", @[@(NMOrderStateActive), @(NMorderStateArrived)], NMUser.currentUser];
     
     _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:ordersPredicate groupBy:nil delegate: self];
     return _fetchedResultsController;

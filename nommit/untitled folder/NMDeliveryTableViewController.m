@@ -89,9 +89,9 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // make total 354
     if (indexPath.section == NMAvatarsSection) {
-        return 120;
+        return 140;
     } else if (indexPath.section == NMCountdownSection) {
-        return 184;
+        return 164;
     } else if (indexPath.section == NMCallButtonSection) {
         return 50;
     }
@@ -104,14 +104,19 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         _avatarsCell = [self.tableView dequeueReusableCellWithIdentifier:NMAvatarsInfoIdentifier];
         int price = (int)[_order.priceInCents integerValue]/100;
         _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%d", price];
-        _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ is delivering %@ orders of %@ from %@ to you for $%d.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
+        if ([_order.quantity integerValue] > 1) {
+            _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ is delivering %@ orders of %@ from %@ to you for $%d.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
+            
+        } else {
+            _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ is delivering an order of %@ from %@ to you for $%d.", _order.courier.user.name, _order.food.title, _order.food.seller.name, price];
+        }
         [_avatarsCell setupCourierAvatarWithProfileId:_order.courier.user.facebookUID];
         [_avatarsCell.avatarSeller setImageWithURL:_order.food.seller.logoAsURL];
         return _avatarsCell;
     } else if (indexPath.section == NMCountdownSection) {
         _countdownCell = [self.tableView dequeueReusableCellWithIdentifier:NMCountDownInfoIdentifier];
-        _countdownCell.deliveryPlace.text = [NSString stringWithFormat:@"Arriving at %@ in", _order.place.name];
-        [self setCountdownDate:_order.deliveredAt];
+        _countdownCell.deliveryPlaceLabel.text = [NSString stringWithFormat:@"Arriving at %@ in", _order.place.name];
+        _countdownCell.arrivalEstimate = _order.deliveredAt;
         return _countdownCell;
     } else if (indexPath.section == NMCallButtonSection) {
         _callButtonCell = [self.tableView dequeueReusableCellWithIdentifier:NMCallButtonInfoIdentifier];
@@ -120,14 +125,6 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         return _callButtonCell;
     }
     return nil;
-}
-
-- (void)setCountdownDate:(NSDate*)date {
-    if (!_countdownDate || ![_countdownDate isEqualToDate:date]) {
-        [_countdownCell.timerLabel setCountDownToDate:date];
-        [_countdownCell.timerLabel start];
-        _countdownDate = date;
-    }
 }
 
 #pragma mark - call courier
@@ -179,7 +176,14 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     [[NMApi instance] GET:[NSString stringWithFormat:@"orders/%@", _order.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
         if ([response.result class] == [NMOrderApiModel class]) {
             this.order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
-            [this setCountdownDate:this.order.deliveredAt];
+            if (this.order.state == NMOrderStateActive) {
+                this.countdownCell.arrivalEstimate = this.order.deliveredAt;
+            } else if (this.order.state == NMorderStateArrived) {
+                this.countdownCell.state = NMDeliveryCountdownStateArrived;
+            } else {
+                // YAY DELIVERY
+            }
+            
         }
     }];
 }

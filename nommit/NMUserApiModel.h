@@ -25,4 +25,6 @@
 @property (nonatomic, strong) NSString *cardType;
 @property (nonatomic, strong) NSNumber *paymentAuthorized;
 
+@property (nonatomic, strong) NSArray *orders;
+
 @end

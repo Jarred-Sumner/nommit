@@ -9,10 +9,20 @@
 #import <UIKit/UIKit.h>
 #import  "MZTimerLabel.h"
 
+typedef NS_ENUM(NSInteger, NMDeliveryCountdownState) {
+    NMDeliveryCountdownStateCounting,
+    NMDeliveryCountdownStateArrivingSoon,
+    NMDeliveryCountdownStateArrived
+};
+
 @interface NMDeliveryCountdownTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *deliveryPlace;
+@property (nonatomic, strong) NSDate *arrivalEstimate;
+
+@property (nonatomic, strong) UILabel *deliveryPlaceLabel;
 @property (nonatomic, strong) MZTimerLabel *timerLabel;
-@property (nonatomic, strong) UILabel *statusText;
+@property (nonatomic, strong) UILabel *statusLabel;
+
+@property (nonatomic) NMDeliveryCountdownState state;
 
 @end

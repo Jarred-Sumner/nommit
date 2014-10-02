@@ -216,7 +216,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
         }];
     } else {
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-        [SVProgressHUD showErrorWithStatus:@"Please confirm that you will meet in the lobby for delivery"];
+        [SVProgressHUD showErrorWithStatus:@"Please confirm that you will meet in the lobby for pickup"];
     }
 
 }

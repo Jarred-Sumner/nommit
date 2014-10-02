@@ -26,6 +26,10 @@
     };
 }
 
++ (NSValueTransformer *)ordersJSONTransformer  {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMOrderApiModel class]];
+}
+
 
 #pragma mark - MTLManagedObjectSerializing
 
@@ -35,6 +39,12 @@
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {
     return @{};
+}
+
++ (NSDictionary *)relationshipModelClassesByPropertyKey {
+    return @{
+             @"orders" : [NMOrderApiModel class],
+             };
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {

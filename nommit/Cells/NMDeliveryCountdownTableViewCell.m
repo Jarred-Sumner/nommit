@@ -30,18 +30,18 @@
 
 - (void)setupDeliveryPlace
 {
-    _deliveryPlace = [[UILabel alloc] init];
-    _deliveryPlace.translatesAutoresizingMaskIntoConstraints = NO;
-    _deliveryPlace.textColor = UIColorFromRGB(0xC9C9C9);
-    _deliveryPlace.textAlignment = NSTextAlignmentCenter;
-    _deliveryPlace.lineBreakMode = NSLineBreakByWordWrapping;
-    _deliveryPlace.numberOfLines = 0;
-    _deliveryPlace.font = [UIFont fontWithName:@"Avenir" size:18];
-    [self.contentView addSubview:_deliveryPlace];
+    _deliveryPlaceLabel = [[UILabel alloc] init];
+    _deliveryPlaceLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _deliveryPlaceLabel.textColor = UIColorFromRGB(0xC9C9C9);
+    _deliveryPlaceLabel.textAlignment = NSTextAlignmentCenter;
+    _deliveryPlaceLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _deliveryPlaceLabel.numberOfLines = 0;
+    _deliveryPlaceLabel.font = [UIFont fontWithName:@"Avenir" size:18];
+    [self.contentView addSubview:_deliveryPlaceLabel];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_deliveryPlace]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_deliveryPlace)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_deliveryPlaceLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_deliveryPlaceLabel)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-22-[_deliveryPlace]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_deliveryPlace)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-42-[_deliveryPlaceLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_deliveryPlaceLabel)]];
 }
 
 - (void)setupTimerLabel
@@ -62,28 +62,55 @@
 
 - (void)setupStatusText
 {
-    _statusText = [[UILabel alloc] init];
-    _statusText.translatesAutoresizingMaskIntoConstraints = NO;
-    _statusText.textColor = UIColorFromRGB(0x696969);
-    _statusText.textAlignment = NSTextAlignmentCenter;
-    _statusText.lineBreakMode = NSLineBreakByWordWrapping;
-    _statusText.numberOfLines = 0;
-    _statusText.font = [UIFont fontWithName:@"Avenir" size:26];
-    [self.contentView addSubview:_statusText];
+    _statusLabel = [[UILabel alloc] init];
+    _statusLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _statusLabel.textColor = UIColorFromRGB(0x696969);
+    _statusLabel.textAlignment = NSTextAlignmentCenter;
+    _statusLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _statusLabel.numberOfLines = 0;
+    _statusLabel.font = [UIFont fontWithName:@"Avenir" size:26];
+    [self.contentView addSubview:_statusLabel];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[_statusText]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_statusText)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[_statusLabel]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_statusLabel)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_statusText]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_statusText)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_statusLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_statusLabel)]];
 }
 
-- (void)awakeFromNib {
-    // Initialization code
+- (void)setState:(NMDeliveryCountdownState)state {
+    _state = state;
+    __block NMDeliveryCountdownTableViewCell *this = self;
+    if (state == NMDeliveryCountdownStateArrived) {
+        self.timerLabel.hidden = YES;
+        [self.timerLabel pause];
+        self.statusLabel.hidden = NO;
+        self.statusLabel.text = @"Waiting in the lobby.";
+    } else if (state == NMDeliveryCountdownStateArrivingSoon) {
+        self.timerLabel.hidden = YES;
+        [self.timerLabel pause];
+        self.statusLabel.hidden = NO;
+        self.statusLabel.text = @"Arriving Now";
+    } else if (state == NMDeliveryCountdownStateCounting) {
+        self.timerLabel.hidden = NO;
+        self.statusLabel.hidden = YES;
+        [self.timerLabel startWithEndingBlock:^(NSTimeInterval countTime) {
+            this.state = NMDeliveryCountdownStateArrivingSoon;
+        }];
+        
+    }
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setArrivalEstimate:(NSDate *)arrivalEstimate {
+    if (![arrivalEstimate isEqualToDate:_arrivalEstimate]) {
+        [self.timerLabel setCountDownToDate:arrivalEstimate];
+        _arrivalEstimate = arrivalEstimate;
+        
+        if ([arrivalEstimate timeIntervalSinceNow] > 0) {
+            self.state = NMDeliveryCountdownStateCounting;
+        } else {
+            self.state = NMDeliveryCountdownStateArrivingSoon;
+        }
+    }
 }
+
 
 @end

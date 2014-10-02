@@ -107,7 +107,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     if (_fetchedResultsController) return _fetchedResultsController;
     NSLog(@"Reloading Fetch Results Controller!");
 
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"courier IN %@ AND place = %@ AND stateID = %@", [[NMUser currentUser] couriers], self.place, @(NMOrderStateActive)];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"courier IN %@ AND place = %@ AND stateID IN %@", [[NMUser currentUser] couriers], self.place, @[@(NMOrderStateActive), @(NMorderStateArrived)]];
     NSFetchRequest *request = [NMOrder MR_requestAllSortedBy:@"placedAt" ascending:NO withPredicate:predicate];
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:[NSManagedObjectContext MR_defaultContext] sectionNameKeyPath:nil cacheName:nil];
     _fetchedResultsController.delegate = self;
