@@ -18,6 +18,7 @@
         @"uid" : @"id",
         @"priceInCents" : @"price_in_cents",
         @"discountInCents" : @"discount_in_cents",
+        @"tipInCents" : @"tip_in_cents",
         @"deliveredAt" : @"delivered_at",
         @"placedAt" : @"created_at",
         @"stateID" : @"state_id",

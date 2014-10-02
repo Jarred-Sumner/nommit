@@ -133,11 +133,19 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
     [self enableMinusButton];
 }
 
-- (void)done
-{
-    // TODO : DOSOMETHING WITH RATING
-    float rating = _receiptCell.rateVw.rating;
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)done {
+    NSString *path = [NSString stringWithFormat:@"orders/%@", _order.uid];
+    NSNumber *tip = @(_totalAmount.intValue * 100 - _order.priceInCents.intValue);
+    NSDictionary *params = @{ @"tip_in_cents" : tip, @"rating" : @(_receiptCell.rateVw.rating), @"state_id" : @(NMOrderStateRated) };
+    
+    [[NMApi instance] PUT:path parameters:params completion:^(OVCResponse *response, NSError *error) {
+
+        if (error) {
+            [response.result handleError];
+        }
+    }];
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 -(BOOL)prefersStatusBarHidden { return YES; }

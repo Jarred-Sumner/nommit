@@ -4,7 +4,8 @@
 typedef NS_ENUM(NSInteger, NMFoodState) {
     NMFoodStateUnknown = 0,
     NMFoodStateActive = 1,
-    NMFoodStateEnded = 2
+    NMFoodStateHalted = 2,
+    NMFoodStateEnded = 3,
 };
 
 @interface NMFood : _NMFood

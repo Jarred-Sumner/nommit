@@ -14,6 +14,7 @@ extern const struct NMOrderAttributes {
 	__unsafe_unretained NSString *quantity;
 	__unsafe_unretained NSString *rating;
 	__unsafe_unretained NSString *stateID;
+	__unsafe_unretained NSString *tipInCents;
 	__unsafe_unretained NSString *uid;
 } NMOrderAttributes;
 
@@ -31,6 +32,7 @@ extern const struct NMOrderFetchedProperties {
 @class NMFood;
 @class NMPlace;
 @class NMUser;
+
 
 
 
@@ -170,6 +172,20 @@ extern const struct NMOrderFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* tipInCents;
+
+
+
+@property int64_t tipInCentsValue;
+- (int64_t)tipInCentsValue;
+- (void)setTipInCentsValue:(int64_t)value_;
+
+//- (BOOL)validateTipInCents:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* uid;
 
 
@@ -290,6 +306,15 @@ extern const struct NMOrderFetchedProperties {
 
 - (int16_t)primitiveStateIDValue;
 - (void)setPrimitiveStateIDValue:(int16_t)value_;
+
+
+
+
+- (NSNumber*)primitiveTipInCents;
+- (void)setPrimitiveTipInCents:(NSNumber*)value;
+
+- (int64_t)primitiveTipInCentsValue;
+- (void)setPrimitiveTipInCentsValue:(int64_t)value_;
 
 
 

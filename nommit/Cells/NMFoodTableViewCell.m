@@ -64,7 +64,7 @@
     
     _nameLabel.text = food.title;
     _priceLabel.text = [NSString stringWithFormat:@"$%@", food.price];
-    _soldLabel.text = [NSString stringWithFormat:@"%@/%@ sold", food.orderCount, food.orderGoal];
+    _soldLabel.text = [NSString stringWithFormat:@"%@ left (%@ sold)", food.remainingOrders, food.orderCount];
     _progressBarView.progress = @(food.orderCount.floatValue / food.orderGoal.floatValue).floatValue;
     
     if (food.rating.integerValue > -1) {

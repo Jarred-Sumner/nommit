@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, strong) NSString *promoCode;
 @property (nonatomic, strong) NSNumber *discountInCents;
+@property (nonatomic, strong) NSNumber *tipInCents;
 @property (nonatomic, strong) NSDate *deliveredAt;
 
 @property (nonatomic, strong) NMPlaceApiModel *place;

@@ -13,6 +13,7 @@ const struct NMOrderAttributes NMOrderAttributes = {
 	.quantity = @"quantity",
 	.rating = @"rating",
 	.stateID = @"stateID",
+	.tipInCents = @"tipInCents",
 	.uid = @"uid",
 };
 
@@ -79,6 +80,11 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 	}
 	if ([key isEqualToString:@"stateIDValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"stateID"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"tipInCentsValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"tipInCents"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -265,6 +271,32 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 - (void)setPrimitiveStateIDValue:(int16_t)value_ {
 	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
+}
+
+
+
+
+
+@dynamic tipInCents;
+
+
+
+- (int64_t)tipInCentsValue {
+	NSNumber *result = [self tipInCents];
+	return [result longLongValue];
+}
+
+- (void)setTipInCentsValue:(int64_t)value_ {
+	[self setTipInCents:[NSNumber numberWithLongLong:value_]];
+}
+
+- (int64_t)primitiveTipInCentsValue {
+	NSNumber *result = [self primitiveTipInCents];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveTipInCentsValue:(int64_t)value_ {
+	[self setPrimitiveTipInCents:[NSNumber numberWithLongLong:value_]];
 }
 
 
