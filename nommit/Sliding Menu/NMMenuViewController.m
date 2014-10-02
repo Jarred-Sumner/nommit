@@ -22,6 +22,7 @@
 #import "NMRateTableViewController.h"
 #import "NMCourierSummaryTableViewController.h"
 #import "THContactPickerViewController.h"
+#import "NMInviteCodeViewController.h"
 
 static NSInteger NMStaticSection = 0;
 static NSInteger NMOrdersSection = 1;
@@ -325,7 +326,8 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showInvite {
-    THContactPickerViewController *inviteVC = [[THContactPickerViewController alloc] initWithNibName:nil bundle:nil];
+//    THContactPickerViewController *inviteVC = [[THContactPickerViewController alloc] initWithNibName:nil bundle:nil];
+    NMInviteCodeViewController *inviteVC = [[NMInviteCodeViewController alloc] init];
     [self navigateTo:inviteVC];
 }
 
