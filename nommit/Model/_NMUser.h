@@ -8,6 +8,7 @@ extern const struct NMUserAttributes {
 	__unsafe_unretained NSString *cardType;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *facebookUID;
+	__unsafe_unretained NSString *fullName;
 	__unsafe_unretained NSString *isCourier;
 	__unsafe_unretained NSString *lastFour;
 	__unsafe_unretained NSString *name;
@@ -29,6 +30,7 @@ extern const struct NMUserFetchedProperties {
 @class NMCourier;
 @class NMLocation;
 @class NMOrder;
+
 
 
 
@@ -79,6 +81,16 @@ extern const struct NMUserFetchedProperties {
 
 
 //- (BOOL)validateFacebookUID:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* fullName;
+
+
+
+//- (BOOL)validateFullName:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -221,6 +233,12 @@ extern const struct NMUserFetchedProperties {
 
 - (NSString*)primitiveFacebookUID;
 - (void)setPrimitiveFacebookUID:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveFullName;
+- (void)setPrimitiveFullName:(NSString*)value;
 
 
 

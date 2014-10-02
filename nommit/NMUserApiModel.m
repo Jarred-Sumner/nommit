@@ -21,7 +21,8 @@
              @"referralCredit" : @"referral_credit",
              @"lastFour" : @"last_four",
              @"cardType" : @"card_type",
-             @"paymentAuthorized" : @"payment_authorized"
+             @"paymentAuthorized" : @"payment_authorized",
+             @"fullName" : @"full_name"
     };
 }
 

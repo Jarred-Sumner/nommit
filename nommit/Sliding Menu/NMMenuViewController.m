@@ -74,7 +74,7 @@ static NSInteger NMOrdersSection = 1;
         _pictureView.layer.mask = circle;
         
         UILabel *usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 0, 24)];
-        usernameLabel.text = [[NMUser currentUser] name];
+        usernameLabel.text = [[NMUser currentUser] fullName];
         usernameLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
         usernameLabel.backgroundColor = [UIColor clearColor];
         usernameLabel.textColor = [UIColor colorWithRed:62/255.0f green:68/255.0f blue:75/255.0f alpha:1.0f];

@@ -181,7 +181,7 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
     switch (indexPath.section) {
         case NMAccountInformationSection:
             _infoCell.avatar.profileID = user.facebookUID;
-            _infoCell.nameLabel.text = user.name;
+            _infoCell.nameLabel.text = user.fullName;
             _infoCell.emailLabel.text = user.email;
             _infoCell.phoneLabel.text = user.formattedPhone;
             break;

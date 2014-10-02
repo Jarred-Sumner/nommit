@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *fullName;
 
 @property (nonatomic, strong) NSNumber *referralCredit;
 @property (nonatomic, strong) NSString *referralCode;
