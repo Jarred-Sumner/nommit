@@ -58,15 +58,23 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 }
 
 - (void)setPlace:(NMPlace *)place {
-    _place = place;
-    _fetchedResultsController = nil;
-    [self.tableView reloadData];
-    [self.fetchedResultsController performFetch:nil];
+    if (place) {
+        _place = place;
+        _fetchedResultsController = nil;
+        [self.tableView reloadData];
+        [self.fetchedResultsController performFetch:nil];
+    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self refreshPlaces];
 }
 
 #pragma mark - NSFetchedResultsController
@@ -76,7 +84,8 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         
     NSPredicate *foodPredicate;
     if (_place) {
-        foodPredicate = [NSPredicate predicateWithFormat:@"stateID = %@ AND ( (ANY deliveryPlaces.stateID = %@) OR (ANY deliveryPlaces.stateID = %@) ) AND ANY deliveryPlaces.place = %@",@(NMFoodStateActive), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateArrived), _place];
+        NSArray *states = @[@(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateArrived)];
+        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND (ANY deliveryPlaces.stateID IN %@) AND stateID = %@", _place, states, @(NMFoodStateActive)];
     } else {
         // Predicate that never returns anything ever, for empty data source.
         foodPredicate = [NSPredicate predicateWithFormat:@"uid = %@", @(-1)];

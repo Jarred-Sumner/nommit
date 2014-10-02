@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="14A361c" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="14A379a" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="NMCourier" representedClassName="NMCourier" syncable="YES">
         <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -122,6 +122,7 @@
         <attribute name="cardType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="facebookUID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isCourier" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastFour" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -140,13 +141,13 @@
     </entity>
     <elements>
         <element name="NMCourier" positionX="9" positionY="117" width="128" height="133"/>
+        <element name="NMDeliveryPlace" positionX="9" positionY="117" width="128" height="148"/>
         <element name="NMFood" positionX="0" positionY="0" width="128" height="268"/>
         <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMOrder" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="133"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
-        <element name="NMUser" positionX="0" positionY="0" width="128" height="238"/>
-        <element name="NMDeliveryPlace" positionX="9" positionY="117" width="128" height="148"/>
         <element name="NMShift" positionX="18" positionY="153" width="128" height="118"/>
+        <element name="NMUser" positionX="0" positionY="0" width="128" height="255"/>
     </elements>
 </model>

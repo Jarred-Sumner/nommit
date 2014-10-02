@@ -7,6 +7,7 @@ const struct NMUserAttributes NMUserAttributes = {
 	.cardType = @"cardType",
 	.email = @"email",
 	.facebookUID = @"facebookUID",
+	.fullName = @"fullName",
 	.isCourier = @"isCourier",
 	.lastFour = @"lastFour",
 	.name = @"name",
@@ -88,6 +89,13 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 
 @dynamic facebookUID;
+
+
+
+
+
+
+@dynamic fullName;
 
 
 

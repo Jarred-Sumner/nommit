@@ -143,6 +143,7 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
     
     if (_index == 0) {
         _leftArrow.hidden = YES;
+        _rightArrow.hidden = _deliveryPlaces.count == 1;
     } else if (_index == _deliveryPlaces.count - 1) {
         _rightArrow.hidden = YES;
     }

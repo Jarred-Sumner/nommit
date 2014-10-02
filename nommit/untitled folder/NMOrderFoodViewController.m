@@ -21,6 +21,7 @@
 #import "NMOrderFoodDescriptionTableViewCell.h"
 #import "NMDeliveryTableViewController.h"
 #import "UIScrollView+NMParallaxHeader.h"
+#import <SIAlertView/SIAlertView.h>
 #import "NMApi.h"
 
 const NSInteger NMInfoSection = 0;
@@ -180,6 +181,16 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 #pragma mark - order food button
 - (void)orderFoodButtonPressed
 {
+    if (_confirmAddressCell.checkbox.checkState != M13CheckboxStateChecked) {
+        __block NMOrderFoodViewController *this = self;
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Confirm Pickup Location" andMessage:[NSString stringWithFormat:@"Please confirm you will meet in the lobby of %@ to pick up your order.", _place.name]];
+        [alert addButtonWithTitle:@"Confirm" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+            [_confirmAddressCell.checkbox setCheckState:M13CheckboxStateChecked];
+            [this orderFoodButtonPressed];
+        }];
+        [alert show];
+        return;
+    }
     _orderModel.promoCode = _promoCell.textField.text;
 
     __weak NMOrderFoodViewController *this = self;
@@ -195,17 +206,9 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
                     NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
 
-                    NMDeliveryTableViewController *rateVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
-                    NMMenuNavigationController *navController =
-                    [[NMMenuNavigationController alloc] initWithRootViewController:rateVC];
-                    navController.navigationBar.translucent = NO;
+                    NMDeliveryTableViewController *deliverVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
                     
-                    [this.navigationController pushViewController:rateVC animated:YES];
-                    [self.navigationController popViewControllerAnimated:YES];
-                    
-//                    [this presentViewController:navController animated:YES completion:^{
-//                        [self.navigationController popViewControllerAnimated:YES];
-//                    }];
+                    [this.navigationController pushViewController:deliverVC animated:YES];
                 }
             } else if (error) {
                 NSLog(@"Error: %@", error);
