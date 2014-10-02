@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMRateTableViewController.h"
+#import "NMRateOrderTableViewController.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMDeliveryAvatarsTableViewCell.h"
 #import "NMDeliveryCallButtonTableViewCell.h"
@@ -18,17 +18,17 @@
 #import "NMReceiptTableViewCell.h"
 #import "UIScrollView+NMParallaxHeader.h"
 
-@interface NMRateTableViewController ()<APParallaxViewDelegate>
+@interface NMRateOrderTableViewController ()<APParallaxViewDelegate>
 
 @property (nonatomic, strong) NMOrder *order;
 @property (nonatomic, strong) NMDeliveryAvatarsTableViewCell *avatarsCell;
 @property (nonatomic, strong) NMDeliveryCallButtonTableViewCell *callButtonCell;
 @property (nonatomic, strong) NMReceiptTableViewCell *receiptCell;
-@property (nonatomic) NSInteger totalAmount;
+@property (nonatomic, strong) NSNumber *totalAmount;
 
 @end
 
-@implementation NMRateTableViewController
+@implementation NMRateOrderTableViewController
 
 const NSInteger NMRateAvatarsSection = 0;
 const NSInteger NMRateReceiptSection = 1;
@@ -44,8 +44,8 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         self.view.backgroundColor = [NMColors lightGray];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _order = order;
-        int price = (int)[_order.priceInCents integerValue]/100;
-        _totalAmount = price;
+        _totalAmount = @([_order.priceInCents integerValue] / 100);
+        
         
         [self.tableView addParallaxWithImage:nil andHeight:90];
         [self.tableView.parallaxView setDelegate:self];
@@ -60,21 +60,6 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         [self initNavBar];
     }
     return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -114,7 +99,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         _receiptCell = [self.tableView dequeueReusableCellWithIdentifier:NMRateReceiptInfoIdentifier];
         [_receiptCell.plusButton addTarget:self action:@selector(addOneToTip) forControlEvents:UIControlEventTouchUpInside];
         [_receiptCell.minusButton addTarget:self action:@selector(minusOneFromTip) forControlEvents:UIControlEventTouchUpInside];
-        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%d", _totalAmount];
+        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
         [self enableMinusButton];
         return _receiptCell;
     } else if (indexPath.section == NMRateCallButtonSection) {
@@ -127,7 +112,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 }
 
 - (void)enableMinusButton {
-    if (_totalAmount > (int)[_order.priceInCents integerValue]/100) {
+    if ([_totalAmount integerValue] > (int)[_order.priceInCents integerValue] / 100) {
         _receiptCell.minusButton.alpha = 1.0f;
         _receiptCell.minusButton.enabled = YES;
     } else {
@@ -137,14 +122,14 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 }
 
 - (void)addOneToTip {
-    _totalAmount++;
-    _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%d", _totalAmount];
+    _totalAmount = @(_totalAmount.intValue + 1);
+    _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
     [self enableMinusButton];
 }
 
 - (void)minusOneFromTip {
-    _totalAmount--;
-    _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%d", _totalAmount];
+    _totalAmount = @(_totalAmount.intValue - 1);
+    _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
     [self enableMinusButton];
 }
 

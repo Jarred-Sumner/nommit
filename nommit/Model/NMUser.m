@@ -33,6 +33,11 @@ static id NMCurrentUser;
     return [NMShift MR_countOfEntitiesWithPredicate:predicate] > 0;
 }
 
+- (BOOL)hasOrdersPendingRating {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user = %@ and stateID = %@", self, @(NMOrderStateDelivered)];
+    return [NMOrder MR_countOfEntitiesWithPredicate:predicate] > 0;
+}
+
 
 
 @end

@@ -9,5 +9,6 @@
 @property (readonly) NSString *formattedPhone;
 
 - (BOOL)hasActiveDeliveries;
+- (BOOL)hasOrdersPendingRating;
 
 @end

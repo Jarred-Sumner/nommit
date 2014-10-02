@@ -3,7 +3,7 @@
 typedef NS_ENUM(NSInteger, NMOrderState) {
     NMOrderStateCancelled = -1,
     NMOrderStateActive = 0,
-    NMorderStateArrived = 1,
+    NMOrderStateArrived = 1,
     NMOrderStateDelivered = 2,
     NMOrderStateRated = 3
 };

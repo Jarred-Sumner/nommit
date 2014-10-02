@@ -15,7 +15,6 @@
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMAddressSearchViewController.h"
 #import "NMMenuNavigationController.h"
-#import "NMRateViewController.h"
 #import "NMDeliveryTableViewController.h"
 #import "NMPromoCodeTableViewCell.h"
 #import "NMOrderFoodDescriptionTableViewCell.h"

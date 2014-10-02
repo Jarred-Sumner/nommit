@@ -8,17 +8,27 @@
 
 #import "NMDeliveryTableViewController.h"
 #import "NMMenuNavigationController.h"
+#import "NMMenuViewController.h"
+#import "NMRateOrderTableViewController.h"
 #import "NMDeliveryAvatarsTableViewCell.h"
 #import "NMDeliveryCountdownTableViewCell.h"
 #import "NMDeliveryCallButtonTableViewCell.h"
 #import "UIScrollView+NMParallaxHeader.h"
+#import <AudioToolbox/AudioServices.h>
+
+typedef NS_ENUM(NSInteger, NMDeliveryCountdownState) {
+    NMDeliveryCountdownStateCounting,
+    NMDeliveryCountdownStateArrivingSoon,
+    NMDeliveryCountdownStateArrived,
+};
 
 static NSTimeInterval NMOrderFetchInterval = 10;
 
 
 @interface NMDeliveryTableViewController ()<APParallaxViewDelegate, NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) NSDate *countdownDate;
+@property (nonatomic) NMDeliveryCountdownState state;
+@property (nonatomic, strong) NSDate *arrivalEstimate;
 @property (nonatomic, copy) NSTimer *fetchOrderTimer;
 
 @property (nonatomic, strong) NMOrder *order;
@@ -115,8 +125,8 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         return _avatarsCell;
     } else if (indexPath.section == NMCountdownSection) {
         _countdownCell = [self.tableView dequeueReusableCellWithIdentifier:NMCountDownInfoIdentifier];
-        _countdownCell.deliveryPlaceLabel.text = [NSString stringWithFormat:@"Arriving at %@ in", _order.place.name];
-        _countdownCell.arrivalEstimate = _order.deliveredAt;
+        // Reset state
+        self.order = self.order;
         return _countdownCell;
     } else if (indexPath.section == NMCallButtonSection) {
         _callButtonCell = [self.tableView dequeueReusableCellWithIdentifier:NMCallButtonInfoIdentifier];
@@ -164,6 +174,70 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     
 }
 
+#pragma mark - Countdown State
+
+- (void)setOrder:(NMOrder *)order {
+    if (order.state == NMOrderStateActive) {
+        self.arrivalEstimate = order.deliveredAt;
+    } else if (order.state == NMOrderStateArrived) {
+        self.state = NMDeliveryCountdownStateArrived;
+    } else if (order.state == NMOrderStateDelivered) {
+        [self stopFetchingOrderStatus];
+        
+        __block NMMenuViewController *vc = (NMMenuViewController*)[[(NMMenuNavigationController*)[self navigationController] frostedViewController] menuViewController];
+        
+        NMRateOrderTableViewController *rateVC = [[NMRateOrderTableViewController alloc] initWithOrder:order];
+        [self.navigationController presentViewController:rateVC animated:YES completion:^{
+            [vc showMenu];
+        }];
+    }
+    _order = order;
+}
+
+- (void)setState:(NMDeliveryCountdownState)state {
+    if (!_countdownCell) return;
+    
+    __block NMDeliveryTableViewController *this = self;
+    if (state == NMDeliveryCountdownStateArrived) {
+        _countdownCell.timerLabel.hidden = YES;
+        [_countdownCell.timerLabel pause];
+        _countdownCell.statusLabel.hidden = NO;
+        
+        _countdownCell.deliveryPlaceLabel.text = [NSString stringWithFormat:@"%@ arrived at %@", _order.courier.user.name, _order.place.name];
+        _countdownCell.statusLabel.text = [NSString stringWithFormat:@"Pick up in Lobby Now"];
+    } else if (state == NMDeliveryCountdownStateArrivingSoon) {
+        _countdownCell.timerLabel.hidden = YES;
+        [_countdownCell.timerLabel pause];
+        _countdownCell.statusLabel.hidden = NO;
+        _countdownCell.deliveryPlaceLabel.text = [NSString stringWithFormat:@"Arriving at %@ in", _order.place.name];
+        _countdownCell.statusLabel.text = @"Any Moment";
+    } else if (state == NMDeliveryCountdownStateCounting) {
+        _countdownCell.timerLabel.hidden = NO;
+        _countdownCell.statusLabel.hidden = YES;
+        _countdownCell.deliveryPlaceLabel.text = [NSString stringWithFormat:@"Arriving at %@ in", _order.place.name];
+        [_countdownCell.timerLabel startWithEndingBlock:^(NSTimeInterval countTime) {
+            this.state = NMDeliveryCountdownStateArrivingSoon;
+        }];
+    }
+    if (state == NMDeliveryCountdownStateArrived && _state != NMDeliveryCountdownStateArrived) {
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    }
+    _state = state;
+}
+
+- (void)setArrivalEstimate:(NSDate *)arrivalEstimate {
+    if (![arrivalEstimate isEqualToDate:_arrivalEstimate]) {
+        [_countdownCell.timerLabel setCountDownToDate:arrivalEstimate];
+        _arrivalEstimate = arrivalEstimate;
+        
+        if ([arrivalEstimate timeIntervalSinceNow] > 0) {
+            self.state = NMDeliveryCountdownStateCounting;
+        } else {
+            self.state = NMDeliveryCountdownStateArrivingSoon;
+        }
+    }
+}
+
 #pragma mark - Update Delivery Times
 
 - (void)startFetchingOrderStatus {
@@ -176,13 +250,6 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     [[NMApi instance] GET:[NSString stringWithFormat:@"orders/%@", _order.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
         if ([response.result class] == [NMOrderApiModel class]) {
             this.order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
-            if (this.order.state == NMOrderStateActive) {
-                this.countdownCell.arrivalEstimate = this.order.deliveredAt;
-            } else if (this.order.state == NMorderStateArrived) {
-                this.countdownCell.state = NMDeliveryCountdownStateArrived;
-            } else {
-                // YAY DELIVERY
-            }
             
         }
     }];

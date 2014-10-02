@@ -16,7 +16,7 @@
 #import "NMLoginViewController.h"
 #import "NMFoodsTableViewController.h"
 #import "NMRegistrationSetupTableViewController.h"
-#import "NMRateViewController.h"
+#import "NMRateOrderTableViewController.h"
 
 @interface NMAppDelegate ()
 
@@ -44,7 +44,21 @@
 }
 
 - (void)checkForActiveOrders {
-    [[NMApi instance] GET:@"orders" parameters:nil completion:NULL];
+    __block NMAppDelegate *this = self;
+    [[NMApi instance] GET:@"orders" parameters:nil completion:^(OVCResponse *response, NSError *error) {
+        
+        if ([[NMUser currentUser] hasOrdersPendingRating]) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user = %@ and stateID = %@", NMUser.currentUser, @(NMOrderStateDelivered)];
+            NMOrder *order = [NMOrder MR_findFirstWithPredicate:predicate];
+            
+            if (order) {
+                NMRateOrderTableViewController *rateVC = [[NMRateOrderTableViewController alloc] initWithOrder:order];
+                
+                [this.window.rootViewController presentViewController:rateVC animated:YES completion:NULL];
+            }
+
+        }
+    }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

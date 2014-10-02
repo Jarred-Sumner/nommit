@@ -19,7 +19,7 @@
 #import "NMDeliveryTableViewController.h"
 
 #import "NMLoginViewController.h"
-#import "NMRateTableViewController.h"
+#import "NMRateOrderTableViewController.h"
 #import "NMCourierSummaryTableViewController.h"
 #import "THContactPickerViewController.h"
 #import "NMInviteCodeViewController.h"
@@ -37,10 +37,8 @@ static NSInteger NMOrdersSection = 1;
 
 @implementation NMMenuViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
+- (void)loadView {
+    [super loadView];
     self.tableView.separatorColor = [UIColor colorWithRed:150/255.0f green:161/255.0f blue:177/255.0f alpha:1.0f];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -63,7 +61,7 @@ static NSInteger NMOrdersSection = 1;
         
         CGRect pathRect = CGRectMake(0, 0, CGRectGetWidth(_pictureView.frame), CGRectGetHeight(_pictureView.frame));
         CGFloat pathRadius = MAX(CGRectGetWidth(_pictureView.frame), CGRectGetHeight(_pictureView.frame));
-                                 
+        
         UIBezierPath *circularPath=[UIBezierPath bezierPathWithRoundedRect:pathRect cornerRadius:pathRadius];
         
         circle.path = circularPath.CGPath;
@@ -82,11 +80,12 @@ static NSInteger NMOrdersSection = 1;
         usernameLabel.textColor = [UIColor colorWithRed:62/255.0f green:68/255.0f blue:75/255.0f alpha:1.0f];
         [usernameLabel sizeToFit];
         usernameLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-
+        
         [view addSubview:_pictureView];
         [view addSubview:usernameLabel];
         view;
     });
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -178,7 +177,7 @@ static NSInteger NMOrdersSection = 1;
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     
-    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID IN %@ AND user = %@", @[@(NMOrderStateActive), @(NMorderStateArrived)], NMUser.currentUser];
+    NSPredicate *ordersPredicate = [NSPredicate predicateWithFormat:@"stateID IN %@ AND user = %@", @[@(NMOrderStateActive), @(NMOrderStateArrived)], NMUser.currentUser];
     
     _fetchedResultsController = [NMOrder MR_fetchAllSortedBy:@"placedAt" ascending:NO withPredicate:ordersPredicate groupBy:nil delegate: self];
     return _fetchedResultsController;

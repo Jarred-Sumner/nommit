@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
         NMInviteCodeView *inviteView = [[NMInviteCodeView alloc] initWithFrame:self.view.frame];
-        inviteView.inviteCode.text = @"LG432";
+        inviteView.inviteCode.text = [[NMUser currentUser] referralCode];
         [inviteView.inviteButton addTarget:self action:@selector(inviteButtonTouched) forControlEvents:UIControlEventTouchUpInside];
         self.view = inviteView;
         
@@ -27,7 +27,8 @@
 }
 
 - (void)inviteButtonTouched {
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:[[THContactPickerViewController alloc] init]];
+    THContactPickerViewController *contactPicker = [[THContactPickerViewController alloc] init];
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:contactPicker];
     [self presentViewController:navVC animated:YES completion:nil];
 }
 

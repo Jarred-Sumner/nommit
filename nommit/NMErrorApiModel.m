@@ -10,6 +10,7 @@
 #import <SVProgressHUD.h>
 #import <SIAlertView.h>
 #import "NMAppDelegate.h"
+#import "NMSession.h"
 
 @implementation NMErrorApiModel
 
@@ -32,10 +33,7 @@
 
 - (void)handleError {
     if (_status.integerValue == 401) {
-        [NMSession setSessionID:nil];
-        [NMSession setUserID:nil];
-        
-        [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] resetUI];
+        [NMSession logout];
         [self flashError];
     } else if ([[self errorCodes] member:_status]) [self flashError];
 }

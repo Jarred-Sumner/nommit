@@ -18,4 +18,6 @@
 + (NSString *)userID;
 + (void)setUserID:(NSString *)userID;
 
++ (void)logout;
+
 @end

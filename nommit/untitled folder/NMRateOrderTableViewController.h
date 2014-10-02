@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMRateTableViewController : UITableViewController
+@interface NMRateOrderTableViewController : UITableViewController
 
 - (id)initWithOrder:(NMOrder *)order;
 

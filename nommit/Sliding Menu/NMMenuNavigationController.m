@@ -7,8 +7,6 @@
 //
 
 #import "NMMenuNavigationController.h"
-#import <REFrostedViewController.h>
-#import "NMMenuNavigationController.h"
 
 @interface NMMenuNavigationController ()
 

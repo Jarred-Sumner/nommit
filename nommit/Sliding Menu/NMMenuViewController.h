@@ -12,4 +12,6 @@
 
 @interface NMMenuViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
+- (void)showMenu;
+
 @end

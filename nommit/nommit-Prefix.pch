@@ -32,4 +32,6 @@
 #import <FormatterKit/TTTTimeIntervalFormatter.h>
 #import <SVProgressHUD.h>
 
+#import <REFrostedViewController.h>
+
 #endif

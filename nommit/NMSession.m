@@ -9,6 +9,7 @@
 #import "NMSession.h"
 #import <Lockbox.h>
 #import "NMUser.h"
+#import "NMAppDelegate.h"
 
 static NSString *NMSessionIDKey = @"NMSessionIDKey";
 static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
@@ -34,5 +35,23 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 + (void)setUserID:(NSString *)userID {
     [Lockbox setString:[NSString stringWithFormat:@"%@", userID] forKey:NMSessionUserIDKey];
     [NMUser setCurrentUser:[NMUser MR_findFirstByAttribute:@"facebookUID" withValue:userID]];
+}
+
++ (void)logout {
+    
+    [NMSession setSessionID:nil];
+    [NMSession setUserID:nil];
+    
+    [NMUser MR_truncateAll];
+    [NMShift MR_truncateAll];
+    [NMOrder MR_truncateAll];
+    [NMDeliveryPlace MR_truncateAll];
+    [NMCourier MR_truncateAll];
+    [NMPlace MR_truncateAll];
+    [NMFood MR_truncateAll];
+    [NMSeller MR_truncateAll];
+    [NMLocation MR_truncateAll];
+    
+    [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] resetUI];
 }
 @end
