@@ -22,6 +22,8 @@
 #import "NMRateTableViewController.h"
 #import "NMCourierSummaryTableViewController.h"
 #import "THContactPickerViewController.h"
+#import "NMInviteCodeViewController.h"
+#import "NMSupportViewController.h"
 
 static NSInteger NMStaticSection = 0;
 static NSInteger NMOrdersSection = 1;
@@ -137,6 +139,8 @@ static NSInteger NMOrdersSection = 1;
                 [self showAccount];
             } else if (indexPath.row == 3) {
                 [self showInvite];
+            } else if (indexPath.row == 4) {
+                [self showSupport];
             }
         } else {
             if (indexPath.row == 0) {
@@ -145,6 +149,8 @@ static NSInteger NMOrdersSection = 1;
                 [self showAccount];
             } else if (indexPath.row == 2) {
                 [self showInvite];
+            } else if (indexPath.row == 3) {
+                [self showSupport];
             }
         }
 
@@ -256,9 +262,9 @@ static NSInteger NMOrdersSection = 1;
 {
     if (sectionIndex == 0) {
         if ([NMUser currentUser].isCourierValue) {
-            return 4;
+            return 5;
         } else {
-            return 3;
+            return 4;
         }
     } else if (sectionIndex == 1) {
         id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
@@ -279,9 +285,9 @@ static NSInteger NMOrdersSection = 1;
     if (indexPath.section == 0) {
         NSArray *titles;
         if ([[NMUser currentUser] isCourierValue]) {
-            titles = @[@"Menu", @"Deliver", @"Account", @"Invite"];
+            titles = @[@"Menu", @"Deliver", @"Account", @"Invite", @"Support"];
         } else {
-            titles = @[@"Menu", @"Account", @"Invite"];
+            titles = @[@"Menu", @"Account", @"Invite", @"Support"];
         }
         cell.textLabel.text = titles[indexPath.row];
     } else {
@@ -325,8 +331,14 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showInvite {
-    THContactPickerViewController *inviteVC = [[THContactPickerViewController alloc] initWithNibName:nil bundle:nil];
+//    THContactPickerViewController *inviteVC = [[THContactPickerViewController alloc] initWithNibName:nil bundle:nil];
+    NMInviteCodeViewController *inviteVC = [[NMInviteCodeViewController alloc] init];
     [self navigateTo:inviteVC];
+}
+
+- (void)showSupport {
+    NMSupportViewController *supportVC = [[NMSupportViewController alloc] init];
+    [self navigateTo:supportVC];
 }
 
 - (void)navigateTo:(UIViewController*)viewController {
