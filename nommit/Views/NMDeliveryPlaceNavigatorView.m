@@ -57,6 +57,7 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
     _nameLabel.textColor = [UIColor whiteColor];
     _nameLabel.font = [UIFont fontWithName:@"Avenir" size:17];
     _nameLabel.textAlignment = NSTextAlignmentCenter;
+    _nameLabel.userInteractionEnabled = NO;
     [self addSubview:_nameLabel];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_nameLabel);
@@ -74,6 +75,7 @@ typedef NS_ENUM(NSInteger, NMDeliveryState) {
     _nextLabel.textColor = [UIColor whiteColor];
     _nextLabel.font = [UIFont fontWithName:@"Avenir-LightOblique" size:12];
     _nextLabel.textAlignment = NSTextAlignmentCenter;
+    _nextLabel.userInteractionEnabled = NO;
     [self addSubview:_nextLabel];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_nextLabel, _nameLabel);
