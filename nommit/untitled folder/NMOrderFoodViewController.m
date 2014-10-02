@@ -76,9 +76,9 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
     [self.tableView addParallaxWithImage:nil andHeight:150];
     [self.tableView.parallaxView setDelegate:self];
-    [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL];
     [self.tableView addBlackOverlayToParallaxView];
     [self.tableView addTitleToParallaxView:_food.title];
+    [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
 
     [self initNavBar];
 
@@ -130,7 +130,6 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
         _infoCell.nameLabel.text = [NSString stringWithFormat:@"By %@", _food.seller.name];
         _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", _food.price];
         _infoCell.quantityInput.value = [_orderModel.quantity integerValue] || 1;
-        [_infoCell setupAvatarWithImage:_food.seller.logoAsURL];
         return _infoCell;
     } else if (indexPath.section == NMDescriptionSecton) {
         _descriptionCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDescriptionIdentifier];
@@ -169,12 +168,18 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 - (void)initNavBar
 {
     // Logo in the center of navigation bar
-    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 88, 21)];
-    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];
-    titleImageView.frame = CGRectMake(0, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
-    [logoView addSubview:titleImageView];
-    self.navigationItem.titleView = logoView;
+//    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 88, 21)];
+//    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];
+//    titleImageView.frame = CGRectMake(0, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
+//    [logoView addSubview:titleImageView];
+//    self.navigationItem.titleView = logoView;
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.title = _food.title;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
 }
 
 #pragma mark - order food button

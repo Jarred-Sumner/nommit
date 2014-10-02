@@ -59,6 +59,8 @@
     _creditLabel.font = [UIFont fontWithName:@"Avenir" size:12.5f];
     _creditLabel.textColor = UIColorFromRGB(0x616161);
     _creditLabel.textAlignment = NSTextAlignmentCenter;
+    _creditLabel.numberOfLines = 0;
+    _creditLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.contentView addSubview:_creditLabel];
 }
 

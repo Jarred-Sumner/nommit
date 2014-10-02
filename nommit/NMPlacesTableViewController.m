@@ -118,7 +118,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 58;
+    return 48;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -141,8 +141,8 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     NSString *placeString = place.name;
-    if ([placeString length] > 24) {
-        placeString = [placeString substringToIndex:24];
+    if ([placeString length] > 21) {
+        placeString = [NSString stringWithFormat:@"%@...", [placeString substringToIndex:21]];
     }
     
     cell.placeLabel.text = placeString;

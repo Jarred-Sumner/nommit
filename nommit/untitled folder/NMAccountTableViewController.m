@@ -57,6 +57,12 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.title = @"Your Account";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -153,12 +159,6 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;
     
-    // Logo in the center of navigation bar
-    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 88, 21)];
-    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];
-    titleImageView.frame = CGRectMake(0, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
-    [logoView addSubview:titleImageView];
-    self.navigationItem.titleView = logoView;
     self.navigationController.navigationBarHidden = NO;
     
 }
@@ -184,7 +184,7 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
             break;
         case NMAccountPromoSection:
             [_promoCell.submitButton addTarget:self action:@selector(submitPromoCode:) forControlEvents:UIControlEventTouchUpInside];
-            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@", user.referralCredit];
+            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@\nShare your code with friends: %@", user.referralCredit, @"LG236"];
         default:
             break;
     }

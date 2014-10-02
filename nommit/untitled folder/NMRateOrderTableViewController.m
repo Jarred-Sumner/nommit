@@ -50,7 +50,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         
         [self.tableView addParallaxWithImage:nil andHeight:90];
         [self.tableView.parallaxView setDelegate:self];
-        [self.tableView.parallaxView.imageView setImageWithURL:order.food.headerImageAsURL];
+        [self.tableView.parallaxView.imageView setImageWithURL:order.food.headerImageAsURL placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
         [self.tableView addBlackOverlayToParallaxView];
         
         // register table view cells
@@ -94,7 +94,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%d", price];
         _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ delivered %@ orders of %@ from %@  to you for $%d.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
         [_avatarsCell setupCourierAvatarWithProfileId:_order.courier.user.facebookUID];
-        [_avatarsCell.avatarSeller setImageWithURL:_order.food.seller.logoAsURL];
+        [_avatarsCell.avatarSeller setImageWithURL:_order.food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
         return _avatarsCell;
     } else if (indexPath.section == NMRateReceiptSection) {
         _receiptCell = [self.tableView dequeueReusableCellWithIdentifier:NMRateReceiptInfoIdentifier];

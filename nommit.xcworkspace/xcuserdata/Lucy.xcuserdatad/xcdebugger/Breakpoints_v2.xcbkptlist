@@ -343,7 +343,7 @@
                   symbolName = "-[NMTableSeparatorView sectionLabel]"
                   moduleName = "nommit"
                   urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/Views/NMTableSeparatorView.h"
-                  timestampString = "433804185.719917"
+                  timestampString = "433927790.813073"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -357,7 +357,7 @@
                   symbolName = "-[NMTableSeparatorView setSectionLabel:]"
                   moduleName = "nommit"
                   urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/Views/NMTableSeparatorView.h"
-                  timestampString = "433804185.720125"
+                  timestampString = "433927790.813294"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -380,6 +380,68 @@
             startingLineNumber = "17"
             endingLineNumber = "17"
             landmarkName = "-initWithFrame:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "nommit/untitled folder/NMLoginViewController.m"
+            timestampString = "433927576.998743"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-performLoginWithFBSession:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[NMLoginViewController performLoginWithFBSession:]"
+                  moduleName = "nommit"
+                  urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/untitled%20folder/NMLoginViewController.m"
+                  timestampString = "433927481.271205"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__51-[NMLoginViewController performLoginWithFBSession:]_block_invoke"
+                  moduleName = "nommit"
+                  urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/untitled%20folder/NMLoginViewController.m"
+                  timestampString = "433927481.271863"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "nommit/untitled folder/NMLoginViewController.m"
+            timestampString = "433927576.998743"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-performLoginWithFBSession:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -45,7 +45,7 @@
     [self.contentView addSubview:_whiteBackground];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_whiteBackground]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_whiteBackground)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_whiteBackground]-5-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_whiteBackground)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_whiteBackground]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_whiteBackground)]];
 }
 
 - (void)setupPlaceLabel {

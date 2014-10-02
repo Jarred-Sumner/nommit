@@ -15,7 +15,6 @@
 
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UILabel *nameLabel;
-@property (nonatomic, strong) UILabel *descriptionLabel;
 @property (nonatomic, strong) UILabel *priceLabel;
 
 @property (nonatomic, strong) UIImageView *avatar;
@@ -23,7 +22,6 @@
 
 @property (nonatomic, weak) id<NMOrderFoodBasicInfoTableViewCellDelegate> delegate;
 
-- (void)setupAvatarWithImage:(NSURL *)sellerImageURL;
 @end
 
 @protocol NMOrderFoodBasicInfoTableViewCellDelegate

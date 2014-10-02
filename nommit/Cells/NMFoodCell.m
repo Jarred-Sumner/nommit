@@ -39,7 +39,7 @@
     _priceLabel.text = [NSString stringWithFormat:@"$%@", food.price];
     _soldLabel.text = [NSString stringWithFormat:@"%@ left (%@ total)", @(food.orderGoal.integerValue - food.orderCount.integerValue), food.orderGoal];
     
-    [_foodImageView setImageWithURL:[food thumbnailImageAsURL]];
+    [_foodImageView setImageWithURL:[food thumbnailImageAsURL] placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
 }
 
 - (void)setupBackgroundView {
