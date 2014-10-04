@@ -184,7 +184,7 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
             break;
         case NMAccountPromoSection:
             [_promoCell.submitButton addTarget:self action:@selector(submitPromoCode:) forControlEvents:UIControlEventTouchUpInside];
-            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@\nShare your code with friends: %@", user.referralCredit, @"LG236"];
+            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@\nShare your code with friends: %@", user.referralCredit, user.referralCode];
         default:
             break;
     }

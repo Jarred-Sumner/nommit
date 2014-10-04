@@ -13,17 +13,17 @@
 #import "SVProgressHUD.h"
 #import "NMMenuNavigationController.h"
 #import "NMFoodsTableViewController.h"
+#import <SIAlertView/SIAlertView.h>
 
 #define PDefaultBoldFont [UIFont boldSystemFontOfSize:17]
 static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
 
-@interface NMPaymentsViewController ()<PTKViewDelegate> {
-    UILabel *hiddenCardLabel;
-    UIButton *hiddenCardButton;
-    STPToken *sToken;
-    NSString *sCard;
-}
-@property(weak, nonatomic) PTKView *paymentView;
+@interface NMPaymentsViewController ()<PTKViewDelegate>
+
+@property (nonatomic, strong) PTKView *paymentView;
+@property (nonatomic, strong) UILabel *hiddenCardLabel;
+@property (nonatomic, strong) UIButton *hiddenCardButton;
+
 @end
 
 @implementation NMPaymentsViewController
@@ -44,65 +44,37 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
     
     // setup cancel button
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
-                                                            style:UIBarButtonItemStylePlain
-                                                           target:(NMMenuNavigationController *)self.navigationController
-                                                           action:@selector(showMenu)];
+                style:UIBarButtonItemStylePlain
+               target:(NMMenuNavigationController *)self.navigationController
+               action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;
     
     // Setup checkout
-    PTKView *paymentView = [[PTKView alloc] initWithFrame:CGRectMake(24, 20, 300, 55)];
-    paymentView.delegate = self;
-    self.paymentView = paymentView;
-    [self.view addSubview:paymentView];
+    _paymentView = [[PTKView alloc] initWithFrame:CGRectMake(24, 20, 300, 55)];
+    _paymentView.delegate = self;
+    [self.view addSubview:_paymentView];
     
     // Setup editable checkout
-    hiddenCardLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 22, 238, 38)];
-    hiddenCardLabel.backgroundColor = UIColorFromRGB(0xf7f7f7);
-    hiddenCardLabel.text = [NSString stringWithFormat:@"%@4242", hiddenCardNums];
-    hiddenCardLabel.textColor = UIColorFromRGB(0xcecece);
-    hiddenCardLabel.font = PDefaultBoldFont;
-    hiddenCardLabel.layer.cornerRadius = 10;
-    hiddenCardLabel.layer.masksToBounds = YES;
+    _hiddenCardLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 22, 238, 38)];
+    _hiddenCardLabel.backgroundColor = UIColorFromRGB(0xf7f7f7);
+    _hiddenCardLabel.text = [NSString stringWithFormat:@"%@4242", hiddenCardNums];
+    _hiddenCardLabel.textColor = UIColorFromRGB(0xcecece);
+    _hiddenCardLabel.font = PDefaultBoldFont;
+    _hiddenCardLabel.layer.cornerRadius = 10;
+    _hiddenCardLabel.layer.masksToBounds = YES;
     
-    [self.view addSubview:hiddenCardLabel];
-    hiddenCardButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 20, 290, 55)];
-    hiddenCardButton.backgroundColor = [UIColor clearColor];
-    [hiddenCardButton addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:hiddenCardButton];
+    [self.view addSubview:_hiddenCardLabel];
     
-    // NSString *sTokenId = [[PFUser currentUser] objectForKey:@"sToken"];
-    NSString *sTokenId = @"";
-    if (sTokenId) {
-//        [Stripe requestTokenWithID:[[PFUser currentUser] objectForKey:@"sToken"] completion:^(STPToken *token, NSError *error) {
-//            
-//            if (!error) {
-//                sToken = token;
-//                sCard = [[PFUser currentUser] objectForKey:@"sCard"];
-//                hiddenCardLabel.text = [NSString stringWithFormat:@"%@%@", hiddenCardNums, sCard];
-//                hiddenCardLabel.hidden = NO;
-//                hiddenCardButton.hidden = NO;
-//            } else {
-//                sCard = @"4242";
-//                hiddenCardLabel.hidden = YES;
-//                hiddenCardButton.hidden = YES;
-//                self.paymentView.hidden = NO;
-//            }
-//        }];
-        sCard = @"4242";
-        hiddenCardLabel.hidden = YES;
-        hiddenCardButton.hidden = YES;
-        self.paymentView.hidden = NO;
-
-        
-    } else {
-        sCard = @"4242";
-        hiddenCardLabel.hidden = YES;
-        hiddenCardButton.hidden = YES;
-        self.paymentView.hidden = NO;
-    }
+    _hiddenCardButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 20, 290, 55)];
+    _hiddenCardButton.backgroundColor = [UIColor clearColor];
+    [_hiddenCardButton addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_hiddenCardButton];
     
+    _hiddenCardLabel.hidden = YES;
+    _hiddenCardButton.hidden = YES;
+    _paymentView.hidden = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -113,70 +85,69 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
 - (void)paymentView:(PTKView *)paymentView
            withCard:(PTKCard *)card
             isValid:(BOOL)valid {
-    // Enable save button if the Checkout is valid
     self.navigationItem.rightBarButtonItem.enabled = valid;
 }
 
 - (void)cancel:(id)sender {
-    NMFoodsTableViewController *mainVC = [[NMFoodsTableViewController alloc] init];
-    [self.navigationController pushViewController:mainVC animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)edit:(id)sender {
-    NSLog(@"editing now");
-    self.paymentView.hidden = NO;
-    hiddenCardButton.hidden = YES;
-    hiddenCardLabel.hidden = YES;
+    _paymentView.hidden = NO;
+    _hiddenCardButton.hidden = YES;
+    _hiddenCardLabel.hidden = YES;
 }
 
 - (IBAction)save:(id)sender {
-    if (self.paymentView.hidden == YES) {
-        [SVProgressHUD showWithStatus:@"Verifying..."];
+    if (_paymentView.hidden == YES) {
+        [SVProgressHUD showWithStatus:@"Validating..." maskType:SVProgressHUDMaskTypeBlack];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         return;
     }
-    if (![self.paymentView isValid]) {
-        [SVProgressHUD showErrorWithStatus:@"Invalid Credit Card! Please re-enter it and try again"];
+    if (![_paymentView isValid]) {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"" andMessage:@"Please re-enter it and try again"];
+        [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+        [alert show];
         return;
     }
-    [SVProgressHUD showWithStatus:@"Verified. Updating!"];
+    [Stripe setDefaultPublishableKey:STRIPE_KEY];
+    
+    [SVProgressHUD showWithStatus:@"Saving..." maskType:SVProgressHUDMaskTypeBlack];
+    
     STPCard *card = [[STPCard alloc] init];
-    card.number = self.paymentView.card.number;
-    card.expMonth = self.paymentView.card.expMonth;
-    card.expYear = self.paymentView.card.expYear;
-    card.cvc = self.paymentView.card.cvc;
+    card.number = _paymentView.card.number;
+    card.expMonth = _paymentView.card.expMonth;
+    card.expYear = _paymentView.card.expYear;
+    card.cvc = _paymentView.card.cvc;
+    
     [Stripe createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
-        [SVProgressHUD showSuccessWithStatus:@"Updated!"];
+        
         if (error) {
-            [self hasError:error];
+            [SVProgressHUD dismiss];
+            SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Error while saving card" andMessage:@"Please re-enter it and try again"];
+            [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+            [alert show];
         } else {
-            sCard = [card.number substringFromIndex:[card.number length] - 4] ;
-            sToken = token;
-            hiddenCardLabel.text = [NSString stringWithFormat:@"%@%@", hiddenCardNums, sCard];
-            hiddenCardLabel.hidden = NO;
-            hiddenCardButton.hidden = NO;
-            [self hasToken:token];
+            NSDictionary *params = @{ @"stripe_token" : token.tokenId };
+            
+            NSString *path = [NSString stringWithFormat:@"users/%@", NMUser.currentUser.facebookUID];
+            
+            [[NMApi instance] PUT:path parameters:params completion:^(OVCResponse *response, NSError *error) {
+                if ([response.result class] == [NMErrorApiModel class]) {
+                    [response.result handleError];
+                } else if (error) {
+                    [NMErrorApiModel handleGenericError];
+                } else {
+                    [SVProgressHUD showSuccessWithStatus:@"Saved!"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                
+            }];
+            
+            
         }
     }];
 }
 
-- (void)hasError:(NSError *)error {
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error")
-                                                      message:[error localizedDescription]
-                                                     delegate:nil
-                                            cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                            otherButtonTitles:nil];
-    [message show];
-}
-
-- (void)hasToken:(STPToken *)token
-{
-    [SVProgressHUD showSuccessWithStatus:@"Updated!"];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    NMFoodsTableViewController *mainVC = [[NMFoodsTableViewController alloc] init];
-    [self.navigationController pushViewController:mainVC animated:YES];
-        return;
-    
-}
 
 @end
