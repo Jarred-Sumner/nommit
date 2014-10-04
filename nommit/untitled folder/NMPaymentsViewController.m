@@ -42,15 +42,6 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
     saveButton.enabled = NO;
     self.navigationItem.rightBarButtonItem = saveButton;
     
-    // setup cancel button
-    UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
-                style:UIBarButtonItemStylePlain
-               target:(NMMenuNavigationController *)self.navigationController
-               action:@selector(showMenu)];
-    
-    lbb.tintColor = UIColorFromRGB(0xC3C3C3);
-    self.navigationItem.leftBarButtonItem = lbb;
-    
     // Setup checkout
     _paymentView = [[PTKView alloc] initWithFrame:CGRectMake(24, 20, 300, 55)];
     _paymentView.delegate = self;

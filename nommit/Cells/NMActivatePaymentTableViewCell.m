@@ -32,20 +32,20 @@
         self.paymentView = paymentView;
         [self.contentView addSubview:paymentView];
         
-        // Setup editable checkout
-        _hiddenCardLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 22, 238, 38)];
-        _hiddenCardLabel.backgroundColor = UIColorFromRGB(0xf7f7f7);
-        _hiddenCardLabel.text = [NSString stringWithFormat:@"%@4242", hiddenCardNums];
-        _hiddenCardLabel.textColor = UIColorFromRGB(0xcecece);
-        _hiddenCardLabel.font = PDefaultBoldFont;
-        _hiddenCardLabel.layer.cornerRadius = 10;
-        _hiddenCardLabel.layer.masksToBounds = YES;
-        
-        [self.contentView addSubview:_hiddenCardLabel];
-        hiddenCardButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 20, 290, 55)];
-        hiddenCardButton.backgroundColor = [UIColor clearColor];
-        [hiddenCardButton addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:hiddenCardButton];
+//        // Setup editable checkout
+//        _hiddenCardLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 22, 238, 38)];
+//        _hiddenCardLabel.backgroundColor = UIColorFromRGB(0xf7f7f7);
+//        _hiddenCardLabel.text = [NSString stringWithFormat:@"%@4242", hiddenCardNums];
+//        _hiddenCardLabel.textColor = UIColorFromRGB(0xcecece);
+//        _hiddenCardLabel.font = PDefaultBoldFont;
+//        _hiddenCardLabel.layer.cornerRadius = 10;
+//        _hiddenCardLabel.layer.masksToBounds = YES;
+//        
+//        [self.contentView addSubview:_hiddenCardLabel];
+//        hiddenCardButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 20, 290, 55)];
+//        hiddenCardButton.backgroundColor = [UIColor clearColor];
+//        [hiddenCardButton addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.contentView addSubview:hiddenCardButton];
         
         // NSString *sTokenId = [[PFUser currentUser] objectForKey:@"sToken"];
         NSString *sTokenId = @"";

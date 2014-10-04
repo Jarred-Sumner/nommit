@@ -34,7 +34,7 @@ static NSString *NMVerifyPhoneNumberTableViewCellKey = @"NMVerifyPhoneNumberTabl
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Verify Phone";
+    self.title = @"Confirm Phone";
     // Do any additional setup after loading the view.
     
     // Setup save button
@@ -45,11 +45,6 @@ static NSString *NMVerifyPhoneNumberTableViewCellKey = @"NMVerifyPhoneNumberTabl
     SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Confirm Phone Number" andMessage:@"You've been texted a six digit confirm code. Please enter it to get started ordering food with Nommit."];
     [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
     [alert show];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -89,7 +84,7 @@ static NSString *NMVerifyPhoneNumberTableViewCellKey = @"NMVerifyPhoneNumberTabl
 {
     if ([_verifyPhoneNumberTableViewCell.textField.text length] == 6) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
-    } else self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 - (void)done:(id)button

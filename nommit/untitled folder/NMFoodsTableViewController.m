@@ -46,6 +46,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (void)loadView {
     [super loadView];
+    
     _noFoodView = [[NMNoFoodView alloc] initWithFrame:CGRectInset(self.tableView.bounds, 0, NMPlaceDropdownTableViewCellHeight)];
     _noFoodView.hidden = YES;
     [self.tableView addSubview:_noFoodView];
@@ -234,13 +235,8 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;
-    
-    // Logo in the center of navigation bar
-    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 86.5*1.3, 21*1.3)];
-    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];
-    titleImageView.frame = CGRectMake(15, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
-    [logoView addSubview:titleImageView];
-    self.navigationItem.titleView = logoView;
+    self.title = @"Menu";
+
     self.navigationController.navigationBarHidden = NO;
     
 }

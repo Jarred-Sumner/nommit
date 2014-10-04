@@ -80,9 +80,22 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [self.tableView addTitleToParallaxView:_food.title];
     [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
 
-    [self initNavBar];
-
     return self;
+}
+
+
+// The pan gesture recognizer messes with iOS 7 swipe to go back.
+// So, we disable the menu for this page.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.title = _food.title;
+    
+    [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -158,29 +171,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     } else return nil;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-}
-
-#pragma mark - Navigation Bar Customization
-
-- (void)initNavBar
-{
-    // Logo in the center of navigation bar
-//    UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 88, 21)];
-//    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavLogo"]];
-//    titleImageView.frame = CGRectMake(0, 0, titleImageView.frame.size.width, titleImageView.frame.size.height);
-//    [logoView addSubview:titleImageView];
-//    self.navigationItem.titleView = logoView;
-
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.title = _food.title;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
-}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {}
 
 #pragma mark - order food button
 - (void)orderFoodButtonPressed
@@ -188,11 +179,11 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     if (_confirmAddressCell.checkbox.checkState != M13CheckboxStateChecked) {
         __block NMOrderFoodViewController *this = self;
         SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Confirm Pickup Location" andMessage:[NSString stringWithFormat:@"Please confirm you will meet in the lobby of %@ to pick up your order.", _place.name]];
+        [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
         [alert addButtonWithTitle:@"Confirm" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
             [_confirmAddressCell.checkbox setCheckState:M13CheckboxStateChecked];
             [this orderFoodButtonPressed];
         }];
-        [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
         [alert show];
         return;
     }
@@ -217,6 +208,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
                 }
             } else if (error) {
                 NSLog(@"Error: %@", error);
+                [NMErrorApiModel handleGenericError];
             }
         }];
     } else {

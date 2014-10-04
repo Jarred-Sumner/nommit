@@ -52,17 +52,9 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
         [self.tableView registerClass:[NMPaymentMethodTableViewCell class] forCellReuseIdentifier:NMPaymentMethodTableViewCellKey];
         [self.tableView registerClass:[NMLogoutButtonCell class] forCellReuseIdentifier:NMLogoutButtonTableViewCellKey];
         
-        [self.fetchedResultsController performFetch:nil];
     }
     return self;
 }
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.title = @"Your Account";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -139,6 +131,11 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
+}
+
 #pragma mark - submit button
 
 - (void)submitPromoCode:(id)button
@@ -151,6 +148,8 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
 
 - (void)initNavBar
 {
+    self.title = @"Your Account";
+
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
                                                             style:UIBarButtonItemStylePlain
                                                            target:(NMMenuNavigationController *)self.navigationController
@@ -176,8 +175,10 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
             _infoCell.phoneLabel.text = user.formattedPhone;
             break;
         case NMPaymentMethodSection:
+            
             if ([user.lastFour length] > 0) {
                 _cardCell.cardLabel.text = [NSString stringWithFormat:@"• • • • %@", user.lastFour];
+                _cardCell.cardImage.image = [UIImage imageNamed:user.cardType];
             } else {
                 _cardCell.cardLabel.text = @"• • • •";
             }
@@ -257,5 +258,4 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
     _fetchedResultsController = nil;
     [NMSession logout];
 }
-
 @end
