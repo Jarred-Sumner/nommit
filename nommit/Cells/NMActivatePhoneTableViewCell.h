@@ -11,7 +11,7 @@
 
 @protocol NMRegisterPhoneTableViewCellDelegate;
 
-@interface NMRegisterPhoneTableViewCell : UITableViewCell<UITextFieldDelegate>
+@interface NMActivatePhoneTableViewCell : UITableViewCell<UITextFieldDelegate>
 
 @property (nonatomic, strong) NMPromoTextField *textField;
 @property (nonatomic, weak) id<NMRegisterPhoneTableViewCellDelegate> delegate;

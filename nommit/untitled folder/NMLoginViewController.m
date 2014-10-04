@@ -8,6 +8,7 @@
 
 #import "NMLoginViewController.h"
 #import "NMFoodsTableViewController.h"
+#import "NMActivateAccountTableViewController.h"
 #import "NMAppDelegate.h"
 
 @interface NMLoginViewController () {
@@ -131,10 +132,19 @@
             [NMApi instance].session.configuration.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
             [NMSession setUserID:[response.result facebookUID]];
             
+            [SVProgressHUD showSuccessWithStatus:@"Logged in!"];
+            if ([NMUser currentUser].state == NMUserStateActivated) {
+                NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
+                [self.navigationController pushViewController:foodsViewController animated:YES];
+                [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
+                
+            } else if ([NMUser currentUser].state == NMUserStateRegistered) {
+                NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
+                
+                [self.navigationController pushViewController:activateVC animated:YES];
+            }
             
-            NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
-            [self.navigationController pushViewController:foodsViewController animated:YES];
-            [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
+
         }
         
     }];

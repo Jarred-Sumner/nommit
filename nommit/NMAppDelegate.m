@@ -15,7 +15,7 @@
 #import "NMMenuNavigationController.h"
 #import "NMLoginViewController.h"
 #import "NMFoodsTableViewController.h"
-#import "NMRegistrationSetupTableViewController.h"
+#import "NMActivateAccountTableViewController.h"
 #import "NMRateOrderTableViewController.h"
 
 @interface NMAppDelegate ()
@@ -67,7 +67,16 @@
 
 - (UIViewController *)rootViewController {
     if ([NMSession isUserLoggedIn]) {
-        return [[NMFoodsTableViewController alloc] init];
+        if ([NMUser currentUser].state == NMUserStateRegistered) {
+            
+            NMActivateAccountTableViewController *accountVC = [[NMActivateAccountTableViewController alloc] init];
+            return accountVC;
+            
+        } else if ([NMUser currentUser].state == NMUserStateActivated) {
+            
+            return [[NMFoodsTableViewController alloc] init];
+        } else return nil;
+        
     } else return [[NMLoginViewController alloc] init];
 }
 

@@ -15,6 +15,7 @@ const struct NMUserAttributes NMUserAttributes = {
 	.phone = @"phone",
 	.referralCode = @"referralCode",
 	.referralCredit = @"referralCredit",
+	.stateID = @"stateID",
 };
 
 const struct NMUserRelationships NMUserRelationships = {
@@ -64,6 +65,11 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 	}
 	if ([key isEqualToString:@"referralCreditValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"referralCredit"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"stateIDValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"stateID"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -202,6 +208,32 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 - (void)setPrimitiveReferralCreditValue:(double)value_ {
 	[self setPrimitiveReferralCredit:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic stateID;
+
+
+
+- (int16_t)stateIDValue {
+	NSNumber *result = [self stateID];
+	return [result shortValue];
+}
+
+- (void)setStateIDValue:(int16_t)value_ {
+	[self setStateID:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveStateIDValue {
+	NSNumber *result = [self primitiveStateID];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveStateIDValue:(int16_t)value_ {
+	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
 }
 
 

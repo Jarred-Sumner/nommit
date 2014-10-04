@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMRegisterPaymentTableViewCell.h"
+#import "NMActivatePaymentTableViewCell.h"
 #import "PTKView.h"
 
 
-@interface NMRegisterPaymentTableViewCell() {
+@interface NMActivatePaymentTableViewCell() {
     UIButton *hiddenCardButton;
 }
 
 @end
 
-@implementation NMRegisterPaymentTableViewCell
+@implementation NMActivatePaymentTableViewCell
 
 #define PDefaultBoldFont [UIFont boldSystemFontOfSize:17]
 

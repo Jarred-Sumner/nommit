@@ -124,7 +124,7 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
     } else if (indexPath.section == NMLogoutButtonSection) {
         _logoutCell = [self.tableView dequeueReusableCellWithIdentifier:NMLogoutButtonTableViewCellKey];
         [_logoutCell.logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
-        [_logoutCell.logoutButton addTarget:[NMSession class] action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+        [_logoutCell.logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
         return _logoutCell;
     } else {
         return nil;
@@ -251,6 +251,11 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
+}
+
+- (void)logout {
+    _fetchedResultsController = nil;
+    [NMSession logout];
 }
 
 @end

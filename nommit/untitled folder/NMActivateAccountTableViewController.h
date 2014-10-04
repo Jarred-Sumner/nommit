@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PTKView.h"
-#import "NMRegisterPhoneTableViewCell.h"
+#import "NMActivatePhoneTableViewCell.h"
 
-@interface NMRegistrationSetupTableViewController : UITableViewController <NMRegisterPhoneTableViewCellDelegate>
+@interface NMActivateAccountTableViewController : UITableViewController <NMRegisterPhoneTableViewCellDelegate>
 
 - (IBAction)save:(id)sender;
 

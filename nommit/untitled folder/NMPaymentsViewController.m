@@ -13,7 +13,6 @@
 #import "SVProgressHUD.h"
 #import "NMMenuNavigationController.h"
 #import "NMFoodsTableViewController.h"
-#import "Constants.h"
 
 #define PDefaultBoldFont [UIFont boldSystemFontOfSize:17]
 static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
@@ -140,16 +139,6 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
         [SVProgressHUD showErrorWithStatus:@"Invalid Credit Card! Please re-enter it and try again"];
         return;
     }
-    // TODO : in stripe.m , define defaultKey  = @"pk_test_CbJfLmFFADyn0piYUJIgr7MQ"
-    if (![Stripe defaultPublishableKey]) {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"No Publishable Key"
-                                                          message:@"Please specify a Stripe Publishable Key in Constants.m"
-                                                         delegate:nil
-                                                cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                                otherButtonTitles:nil];
-        [message show];
-        return;
-    }
     [SVProgressHUD showWithStatus:@"Verified. Updating!"];
     STPCard *card = [[STPCard alloc] init];
     card.number = self.paymentView.card.number;
@@ -162,23 +151,7 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
             [self hasError:error];
         } else {
             sCard = [card.number substringFromIndex:[card.number length] - 4] ;
-            // [[PFUser currentUser] setObject:sCard forKey:@"sCard"];
             sToken = token;
-//            [[PFUser currentUser] setObject:[token tokenId] forKey:@"sToken"];
-//            [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                if (!succeeded) {
-//                    NSLog(@"Error setting Stripe Token: %@", error);
-//                }
-//            }];
-//            NSDictionary *chargeParams = @{
-//                                           @"card": [token tokenId],
-//                                           @"objectId": [[PFUser currentUser] objectId]
-//                                           };
-//            [PFCloud callFunctionInBackground:@"register" withParameters:chargeParams block:^(id object, NSError *error) {
-//                NSLog(@"%@", error);
-//                [[PFUser currentUser] setObject:(NSString *)object forKey:@"sCustomerId"];
-//                [[PFUser currentUser] saveInBackground];
-//            }];
             hiddenCardLabel.text = [NSString stringWithFormat:@"%@%@", hiddenCardNums, sCard];
             hiddenCardLabel.hidden = NO;
             hiddenCardButton.hidden = NO;

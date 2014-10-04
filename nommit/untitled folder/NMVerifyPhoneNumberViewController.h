@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import"NMPromoTextField.h"
-#import "NMVerifyPhoneNumerTableViewCell.h"
+#import "NMVerifyPhoneNumberTableViewCell.h"
 
 @interface NMVerifyPhoneNumberViewController : UITableViewController<UITextFieldDelegate, NMVerifyPhoneNumerTableViewCellDelegate>
 

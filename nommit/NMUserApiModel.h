@@ -24,5 +24,6 @@
 @property (nonatomic, strong) NSNumber *lastFour;
 @property (nonatomic, strong) NSString *cardType;
 @property (nonatomic, strong) NSNumber *paymentAuthorized;
+@property (nonatomic, strong) NSNumber *stateID;
 
 @end

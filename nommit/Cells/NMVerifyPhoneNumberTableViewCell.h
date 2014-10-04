@@ -11,7 +11,7 @@
 
 @protocol NMVerifyPhoneNumerTableViewCellDelegate;
 
-@interface NMVerifyPhoneNumerTableViewCell : UITableViewCell<UITextFieldDelegate>
+@interface NMVerifyPhoneNumberTableViewCell : UITableViewCell<UITextFieldDelegate>
 
 @property (nonatomic, strong) NMPromoTextField *textField;
 @property (nonatomic, weak) id<NMVerifyPhoneNumerTableViewCellDelegate> delegate;

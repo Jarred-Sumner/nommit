@@ -16,6 +16,7 @@ extern const struct NMUserAttributes {
 	__unsafe_unretained NSString *phone;
 	__unsafe_unretained NSString *referralCode;
 	__unsafe_unretained NSString *referralCredit;
+	__unsafe_unretained NSString *stateID;
 } NMUserAttributes;
 
 extern const struct NMUserRelationships {
@@ -30,6 +31,7 @@ extern const struct NMUserFetchedProperties {
 @class NMCourier;
 @class NMLocation;
 @class NMOrder;
+
 
 
 
@@ -178,6 +180,20 @@ extern const struct NMUserFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* stateID;
+
+
+
+@property int16_t stateIDValue;
+- (int16_t)stateIDValue;
+- (void)setStateIDValue:(int16_t)value_;
+
+//- (BOOL)validateStateID:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSSet *couriers;
 
 - (NSMutableSet*)couriersSet;
@@ -290,6 +306,15 @@ extern const struct NMUserFetchedProperties {
 
 - (double)primitiveReferralCreditValue;
 - (void)setPrimitiveReferralCreditValue:(double)value_;
+
+
+
+
+- (NSNumber*)primitiveStateID;
+- (void)setPrimitiveStateID:(NSNumber*)value;
+
+- (int16_t)primitiveStateIDValue;
+- (void)setPrimitiveStateIDValue:(int16_t)value_;
 
 
 

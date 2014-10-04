@@ -192,6 +192,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
             [_confirmAddressCell.checkbox setCheckState:M13CheckboxStateChecked];
             [this orderFoodButtonPressed];
         }];
+        [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
         [alert show];
         return;
     }

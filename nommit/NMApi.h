@@ -33,6 +33,8 @@
 
 @interface NMApi : OVCHTTPSessionManager
 
+//@property (nonatomic, strong) NSManagedObjectContext *context;
+
 + (NMApi *)instance;
 + (NSDateFormatter *)dateFormatter;
 

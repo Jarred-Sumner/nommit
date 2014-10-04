@@ -12,7 +12,7 @@
 
 static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
 
-@interface NMRegisterPaymentTableViewCell : UITableViewCell
+@interface NMActivatePaymentTableViewCell : UITableViewCell
 
 @property(weak, nonatomic) PTKView *paymentView;
 @property (nonatomic, strong) UILabel *hiddenCardLabel;

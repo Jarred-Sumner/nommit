@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMRegisterPhoneTableViewCell.h"
+#import "NMActivatePhoneTableViewCell.h"
 #import "AKNumericFormatter.h"
 #import "UITextField+AKNumericFormatter.h"
 
-@implementation NMRegisterPhoneTableViewCell
+@implementation NMActivatePhoneTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

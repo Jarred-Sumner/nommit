@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMVerifyPhoneNumerTableViewCell.h"
+#import "NMVerifyPhoneNumberTableViewCell.h"
 #import "UITextField+AKNumericFormatter.h"
 #import "AKNumericFormatter.h"
 
 
-@implementation NMVerifyPhoneNumerTableViewCell
+@implementation NMVerifyPhoneNumberTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -33,12 +33,12 @@
     _textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     _textField.autocorrectionType = UITextAutocorrectionTypeNo;
     _textField.delegate = self;
-    _textField.placeholder = @"Enter Verification Code";
+    _textField.placeholder = @"Enter Confirm Code";
     _textField.layer.borderWidth = 1.0f;
     _textField.layer.borderColor = [UIColorFromRGB(0xE9E9E9) CGColor];
     _textField.backgroundColor = [UIColor whiteColor];
     _textField.keyboardType = UIKeyboardTypeNumberPad;
-    _textField.numericFormatter = [AKNumericFormatter formatterWithMask:@"****"
+    _textField.numericFormatter = [AKNumericFormatter formatterWithMask:@"******"
                                                    placeholderCharacter:'*'];
     
     [self.contentView addSubview:_textField];

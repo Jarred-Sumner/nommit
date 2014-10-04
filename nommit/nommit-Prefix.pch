@@ -34,4 +34,6 @@
 
 #import <REFrostedViewController.h>
 
+#import "NMConstants.h"
+
 #endif

@@ -8,10 +8,12 @@
 
 #import "NMVerifyPhoneNumberViewController.h"
 #import "NMTableSeparatorView.h"
+#import "NMFoodsTableViewController.h"
+#import <SIAlertView.h>
 
 @interface NMVerifyPhoneNumberViewController ()
 
-@property (nonatomic, strong) NMVerifyPhoneNumerTableViewCell *verifyPhoneNumberTableViewCell;
+@property (nonatomic, strong) NMVerifyPhoneNumberTableViewCell *verifyPhoneNumberTableViewCell;
 
 @end
 
@@ -25,19 +27,24 @@ static NSString *NMVerifyPhoneNumberTableViewCellKey = @"NMVerifyPhoneNumberTabl
         self.tableView.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
         self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-        [self.tableView registerClass:[NMVerifyPhoneNumerTableViewCell class] forCellReuseIdentifier:NMVerifyPhoneNumberTableViewCellKey];
+        [self.tableView registerClass:[NMVerifyPhoneNumberTableViewCell class] forCellReuseIdentifier:NMVerifyPhoneNumberTableViewCellKey];
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Verify Phone";
     // Do any additional setup after loading the view.
     
     // Setup save button
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
     saveButton.enabled = NO;
     self.navigationItem.rightBarButtonItem = saveButton;
+    
+    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Confirm Phone Number" andMessage:@"You've been texted a six digit confirm code. Please enter it to get started ordering food with Nommit."];
+    [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,7 +73,7 @@ static NSString *NMVerifyPhoneNumberTableViewCellKey = @"NMVerifyPhoneNumberTabl
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     NMTableSeparatorView *separatorView = [[NMTableSeparatorView alloc] initWithFrame:CGRectMake(0, 0, 273, 17)];
-    separatorView.sectionLabel.text = @"Verify Phone Number";
+    separatorView.sectionLabel.text = @"Confirm Code";
     return separatorView;
 }
 
@@ -74,30 +81,34 @@ static NSString *NMVerifyPhoneNumberTableViewCellKey = @"NMVerifyPhoneNumberTabl
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     _verifyPhoneNumberTableViewCell = [self.tableView dequeueReusableCellWithIdentifier:NMVerifyPhoneNumberTableViewCellKey];
     _verifyPhoneNumberTableViewCell.delegate = self;
+    [_verifyPhoneNumberTableViewCell.textField becomeFirstResponder];
     return _verifyPhoneNumberTableViewCell;
 }
 
 - (void)verifyCodeFormat
 {
-    if ([_verifyPhoneNumberTableViewCell.textField.text length] == 4) {
+    if ([_verifyPhoneNumberTableViewCell.textField.text length] == 6) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
-    }
+    } else self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)done:(id)button
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [SVProgressHUD showWithStatus:@"Verifying..." maskType:SVProgressHUDMaskTypeBlack];
+    NSString *path = [NSString stringWithFormat:@"users/%@", NMUser.currentUser.facebookUID];
+    
+    [[NMApi instance] PUT:path parameters:@{ @"confirm_code" : _verifyPhoneNumberTableViewCell.textField.text } completion:^(OVCResponse *response, NSError *error) {
+        if ([response.result class] == [NMErrorApiModel class]) {
+            [response.result handleError];
+        } else {
+            [SVProgressHUD showSuccessWithStatus:@"Verified!"];
+            NMFoodsTableViewController *ftv = [[NMFoodsTableViewController alloc] init];
+            [self.navigationController pushViewController:ftv animated:YES];
+        }
+    }];
+    
+   
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

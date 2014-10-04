@@ -38,20 +38,22 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 }
 
 + (void)logout {
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        [NMUser MR_truncateAll];
+        [NMShift MR_truncateAll];
+        [NMOrder MR_truncateAll];
+        [NMDeliveryPlace MR_truncateAll];
+        [NMCourier MR_truncateAll];
+        [NMPlace MR_truncateAll];
+        [NMFood MR_truncateAll];
+        [NMSeller MR_truncateAll];
+        [NMLocation MR_truncateAll];
+    } completion:^(BOOL success, NSError *error) {
+        [NMSession setSessionID:nil];
+        [NMSession setUserID:nil];
+        
+        [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] resetUI];
+    }];
     
-    [NMSession setSessionID:nil];
-    [NMSession setUserID:nil];
-    
-    [NMUser MR_truncateAll];
-    [NMShift MR_truncateAll];
-    [NMOrder MR_truncateAll];
-    [NMDeliveryPlace MR_truncateAll];
-    [NMCourier MR_truncateAll];
-    [NMPlace MR_truncateAll];
-    [NMFood MR_truncateAll];
-    [NMSeller MR_truncateAll];
-    [NMLocation MR_truncateAll];
-    
-    [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] resetUI];
 }
 @end

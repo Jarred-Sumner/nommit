@@ -17,6 +17,7 @@ static id NMCurrentUser;
     NMCurrentUser = currentUser;
 }
 
+- (NMUserState)state { return (NMUserState)self.stateID.integerValue; }
 
 - (NSString *)formattedPhone {
     NBPhoneNumberUtil *util = [NBPhoneNumberUtil sharedInstance];
