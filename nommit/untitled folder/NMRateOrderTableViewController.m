@@ -41,7 +41,6 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 - (id)initWithOrder:(NMOrder *)order {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
-        self.tableView.scrollEnabled = NO;
         self.view.backgroundColor = [NMColors lightGray];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _order = order;

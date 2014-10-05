@@ -25,6 +25,10 @@
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMFoodApiModel class]];
 }
 
++ (NSValueTransformer *)placeJSONTransformer  {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMPlaceApiModel class]];
+}
+
 + (NSValueTransformer *)arrivesAtJSONTransformer {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
         return [NMApi.dateFormatter dateFromString:str];
@@ -44,7 +48,10 @@
 }
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
-    return @{ @"foods" : [NMFoodApiModel class]  };
+    return @{
+             @"foods" : [NMFoodApiModel class],
+             @"place" : [NMPlaceApiModel class]
+    };
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {

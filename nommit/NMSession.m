@@ -17,7 +17,7 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 @implementation NMSession
 
 + (BOOL)isUserLoggedIn {
-    return self.sessionID && self.sessionID.length > 0;
+    return self.sessionID && self.sessionID.length > 0 && [NMUser currentUser];
 }
 
 + (NSString *)sessionID {
