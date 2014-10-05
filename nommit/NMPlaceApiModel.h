@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *foodCount;
 @property (nonatomic, strong) NMLocationApiModel *location;
-
+@property (nonatomic, strong) NSArray *deliveryPlaces;
 + (NSArray *)placesForModels:(NSArray *)models;
 
 @end

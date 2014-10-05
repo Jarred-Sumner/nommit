@@ -11,6 +11,7 @@ typedef NS_ENUM(NSInteger, NMUserState) {
 + (NMUser*)currentUser;
 + (void)setCurrentUser:(NMUser*)currentUser;
 
+@property (nonatomic, readonly) NSNumber *credit;
 @property (readonly) NSString *formattedPhone;
 @property (readonly) NMUserState state;
 

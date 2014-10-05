@@ -6,7 +6,7 @@
 
 extern const struct NMUserAttributes {
 	__unsafe_unretained NSString *cardType;
-	__unsafe_unretained NSString *credit;
+	__unsafe_unretained NSString *creditInCents;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *facebookUID;
 	__unsafe_unretained NSString *fullName;
@@ -68,15 +68,15 @@ extern const struct NMUserFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* credit;
+@property (nonatomic, strong) NSNumber* creditInCents;
 
 
 
-@property double creditValue;
-- (double)creditValue;
-- (void)setCreditValue:(double)value_;
+@property int64_t creditInCentsValue;
+- (int64_t)creditInCentsValue;
+- (void)setCreditInCentsValue:(int64_t)value_;
 
-//- (BOOL)validateCredit:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateCreditInCents:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -241,11 +241,11 @@ extern const struct NMUserFetchedProperties {
 
 
 
-- (NSNumber*)primitiveCredit;
-- (void)setPrimitiveCredit:(NSNumber*)value;
+- (NSNumber*)primitiveCreditInCents;
+- (void)setPrimitiveCreditInCents:(NSNumber*)value;
 
-- (double)primitiveCreditValue;
-- (void)setPrimitiveCreditValue:(double)value_;
+- (int64_t)primitiveCreditInCentsValue;
+- (void)setPrimitiveCreditInCentsValue:(int64_t)value_;
 
 
 

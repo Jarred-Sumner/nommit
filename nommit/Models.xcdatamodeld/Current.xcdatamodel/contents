@@ -121,7 +121,7 @@
     </entity>
     <entity name="NMUser" representedClassName="NMUser" syncable="YES">
         <attribute name="cardType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="credit" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="creditInCents" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="facebookUID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>

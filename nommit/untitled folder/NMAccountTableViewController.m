@@ -146,9 +146,12 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
 
 - (void)submitPromoCode:(id)button {
     if (_promoCell.textField.text.length > 0) {
+        __block NMAccountTableViewController *this = self;
+        
         [SVProgressHUD showWithStatus:@"Applying..." maskType:SVProgressHUDMaskTypeBlack];
         [[NMApi instance] POST:[NSString stringWithFormat:@"users/%@/promos", self.user.facebookUID] parameters:@{ @"code" : _promoCell.textField.text } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
             [SVProgressHUD showSuccessWithStatus:@"Applied!"];
+            [this.tableView reloadData];
         }];
     } else {
         SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"No Promo Code" andMessage:@"Please enter a promo code and try again"];

@@ -22,7 +22,8 @@
              @"cardType" : @"card_type",
              @"paymentAuthorized" : @"payment_authorized",
              @"fullName" : @"full_name",
-             @"stateID" : @"state_id"
+             @"stateID" : @"state_id",
+             @"creditInCents" : @"credit_in_cents"
     };
 }
 

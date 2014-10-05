@@ -5,7 +5,7 @@
 
 const struct NMUserAttributes NMUserAttributes = {
 	.cardType = @"cardType",
-	.credit = @"credit",
+	.creditInCents = @"creditInCents",
 	.email = @"email",
 	.facebookUID = @"facebookUID",
 	.fullName = @"fullName",
@@ -53,8 +53,8 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
-	if ([key isEqualToString:@"creditValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"credit"];
+	if ([key isEqualToString:@"creditInCentsValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"creditInCents"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -87,26 +87,26 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 
 
-@dynamic credit;
+@dynamic creditInCents;
 
 
 
-- (double)creditValue {
-	NSNumber *result = [self credit];
-	return [result doubleValue];
+- (int64_t)creditInCentsValue {
+	NSNumber *result = [self creditInCents];
+	return [result longLongValue];
 }
 
-- (void)setCreditValue:(double)value_ {
-	[self setCredit:[NSNumber numberWithDouble:value_]];
+- (void)setCreditInCentsValue:(int64_t)value_ {
+	[self setCreditInCents:[NSNumber numberWithLongLong:value_]];
 }
 
-- (double)primitiveCreditValue {
-	NSNumber *result = [self primitiveCredit];
-	return [result doubleValue];
+- (int64_t)primitiveCreditInCentsValue {
+	NSNumber *result = [self primitiveCreditInCents];
+	return [result longLongValue];
 }
 
-- (void)setPrimitiveCreditValue:(double)value_ {
-	[self setPrimitiveCredit:[NSNumber numberWithDouble:value_]];
+- (void)setPrimitiveCreditInCentsValue:(int64_t)value_ {
+	[self setPrimitiveCreditInCents:[NSNumber numberWithLongLong:value_]];
 }
 
 

@@ -75,10 +75,10 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self refreshPlaces];
+    [self refreshPlace];
 }
 
-#pragma mark - NSFetchedResultsController
+#pragma mark - NSFetchedResultsControllerDelegate
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
@@ -94,6 +94,24 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     
     _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"endDate" ascending:NO withPredicate:foodPredicate groupBy:nil delegate: self];
     return _fetchedResultsController;
+}
+
+- (void)setupDataSource {
+    if (!_place) _place = [NMPlace activePlace];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshPlace) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+}
+
+- (void)refreshPlace {
+    __weak NMFoodsTableViewController *this = self;
+    [self.refreshControl beginRefreshing];
+    
+    [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@", _place.uid] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        this.place = [NMPlace activePlace];
+        [this.refreshControl endRefreshing];
+    }];
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
@@ -196,28 +214,6 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (void)configureCell:(NMFoodTableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
     cell.food = [self.fetchedResultsController objectAtIndexPath:indexPath];
-}
-
-#pragma mark - NSFetchedResultsControllerDelegate
-
-- (void)setupDataSource {
-    if (!_place) _place = [NMPlace activePlace];
-    
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refreshPlaces) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:self.refreshControl];
-    
-    [self refreshPlaces];
-}
-
-- (void)refreshPlaces {
-    __weak NMFoodsTableViewController *this = self;
-    [self.refreshControl beginRefreshing];
-    
-    [[NMApi instance] GET:@"foods" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        this.place = [NMPlace activePlace];
-        [this.refreshControl endRefreshing];
-    }];
 }
 
 #pragma mark - nav bar

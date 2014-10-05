@@ -24,6 +24,10 @@ static id NMCurrentUser;
     return [util format:[self phoneNumber] numberFormat:NBEPhoneNumberFormatNATIONAL error:nil];
 }
 
+- (NSNumber*)credit {
+    return @([self.creditInCents intValue] / 100);
+}
+
 - (NBPhoneNumber*)phoneNumber {
     NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
     return [phoneUtil parse:self.phone defaultRegion:@"US" error:nil];

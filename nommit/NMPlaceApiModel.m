@@ -30,12 +30,17 @@
     return @{
              @"uid": @"id",
              @"foodCount" : @"food_count",
+             @"deliveryPlaces" : @"delivery_places"
     };
 }
 
 
 + (NSValueTransformer *)locationJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMLocationApiModel class]];
+}
+
++ (NSValueTransformer *)deliveryPlacesJSONTransformer  {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMDeliveryPlaceApiModel class]];
 }
 
 #pragma mark - MTLManagedObjectSerializing
@@ -53,7 +58,8 @@
              @"foods" : [NMFoodApiModel class],
              @"orders" : [NMOrderApiModel class],
              @"couriers" : [NMCourierApiModel class],
-             @"location" : [NMLocationApiModel class]
+             @"location" : [NMLocationApiModel class],
+             @"deliveryPlaces" : [NMDeliveryPlaceApiModel class]
              };
 }
 

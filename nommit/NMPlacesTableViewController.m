@@ -23,16 +23,15 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
+    [self setupRefreshing];
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMPlaceTableViewCellKey];
-    [self.fetchedResultsController performFetch:nil];
     return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.fetchedResultsController performFetch:nil];
     self.title = @"Delivery Location";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
@@ -42,11 +41,30 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 - (void)viewDidLoad {
     UIEdgeInsets inset = UIEdgeInsetsMake(20, 0, 0, 0);
     self.tableView.contentInset = inset;
+    [self.fetchedResultsController performFetch:nil];
+    [self refreshPlaces];
 }
 
 - (void)cancel:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Refresh Places
+
+- (void)setupRefreshing {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshPlaces) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+}
+
+- (void)refreshPlaces {
+    __weak NMPlacesTableViewController *this = self;
+    [self.refreshControl beginRefreshing];
+    
+    [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        [this.refreshControl endRefreshing];
+    }];
 }
 
 #pragma mark - NSFetchedResultsController
