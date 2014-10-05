@@ -16,8 +16,8 @@
 
 + (NSArray*)activeFoods {
     NSPredicate *active = [NSPredicate predicateWithFormat:@"stateID = %@ AND endDate > %@", @(NMFoodStateActive), [NSDate date]];
-    NSFetchRequest *request = [NMFood MR_requestAllWithPredicate:active];
-    return [NMFood MR_executeFetchRequest:request];
+    NSFetchRequest *request = [NMFood requestAllWithPredicate:active];
+    return [NMFood executeFetchRequest:request];
 }
 
 - (NMFoodState)state {

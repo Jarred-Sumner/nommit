@@ -21,8 +21,8 @@
              };
 }
 
-+ (NSValueTransformer *)placeJSONTransformer  {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMPlaceApiModel class]];
++ (NSValueTransformer *)foodsJSONTransformer  {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMFoodApiModel class]];
 }
 
 + (NSValueTransformer *)arrivesAtJSONTransformer {
@@ -44,7 +44,7 @@
 }
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
-    return @{ @"place" : [NMPlaceApiModel class] };
+    return @{ @"foods" : [NMFoodApiModel class]  };
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {

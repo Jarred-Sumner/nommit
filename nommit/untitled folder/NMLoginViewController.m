@@ -117,22 +117,22 @@
         [NMApi instance].session.configuration.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
         [NMSession setUserID:[response.result facebookUID]];
         
-        [SVProgressHUD showSuccessWithStatus:@"Logged in!"];
-
-        if ([NMUser currentUser].state == NMUserStateActivated) {
-            NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
-            [self.navigationController pushViewController:foodsViewController animated:YES];
-            [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
+        [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+            [SVProgressHUD showSuccessWithStatus:@"Logged in!"];
             
-        } else if ([NMUser currentUser].state == NMUserStateRegistered) {
-            NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
-            
-            [self.navigationController pushViewController:activateVC animated:YES];
-        }
+            if ([NMUser currentUser].state == NMUserStateActivated) {
+                NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
+                [self.navigationController pushViewController:foodsViewController animated:YES];
+                [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
+                
+            } else if ([NMUser currentUser].state == NMUserStateRegistered) {
+                NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
+                
+                [self.navigationController pushViewController:activateVC animated:YES];
+            }
+            [[NMApi instance] GET:@"shifts" parameters:nil completion:NULL];
+        }];
         
-        // Fetch orders and pending deliveries.
-        [[NMApi instance] GET:@"orders" parameters:nil completion:NULL];
-        [[NMApi instance] GET:@"shifts" parameters:nil completion:NULL];
         
     }];
 }
@@ -141,6 +141,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationItem setHidesBackButton:YES];
     [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
 }
 

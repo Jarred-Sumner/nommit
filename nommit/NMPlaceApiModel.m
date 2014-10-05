@@ -15,7 +15,7 @@
     
     NSError *error;
     for (NMPlaceApiModel *placeApiModel in models) {
-        NMPlace *place = [MTLManagedObjectAdapter managedObjectFromModel:placeApiModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
+        NMPlace *place = [MTLManagedObjectAdapter managedObjectFromModel:placeApiModel insertingIntoContext:[[NMApi instance] managedObjectContext] error:&error];
         [places addObject:place];
         NSLog(@"Error: %@", error);
         NSLog(@"Place: %@", placeApiModel.name);

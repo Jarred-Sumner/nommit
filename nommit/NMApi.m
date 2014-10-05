@@ -9,7 +9,11 @@
 #import "NMApi.h"
 #import "NMErrorApiModel.h"
 
+@interface NMApi () {
+    NSManagedObjectContext *_managedObjectContext;
+}
 
+@end
 static NSString *NMApiBaseURLString = API_URL;
 
 @implementation NMApi
@@ -26,11 +30,27 @@ static NSString *NMApiBaseURLString = API_URL;
     return sessionConfig;
 }
 
+- (NSManagedObjectContextConcurrencyType)concurrencyType {
+    return [[self managedObjectContext] concurrencyType];
+}
+
+- (NSManagedObjectContext*)managedObjectContext {
+    if (!_managedObjectContext) {
+        _managedObjectContext = [NSManagedObjectContext MR_contextWithParent:[NSManagedObjectContext MR_defaultContext]];
+    }
+    return _managedObjectContext;
+}
+
+- (instancetype)init {
+    self = [super initWithBaseURL:[NSURL URLWithString:NMApiBaseURLString] managedObjectContext:nil sessionConfiguration:[NMApi sessionConfiguration]];
+    return self;
+}
+
 + (NMApi *)instance {
     static NMApi *sharedApi = nil;
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
-        sharedApi = [[NMApi alloc] initWithBaseURL:[NSURL URLWithString:NMApiBaseURLString] managedObjectContext:[NSManagedObjectContext MR_defaultContext] sessionConfiguration:NMApi.sessionConfiguration];
+        sharedApi = [[NMApi alloc] init];
     });
     return sharedApi;
 }
@@ -44,6 +64,7 @@ static NSString *NMApiBaseURLString = API_URL;
              @"orders/*" : [NMOrderApiModel class],
              @"foods" : [NMFoodApiModel class],
              @"places": [NMPlaceApiModel class],
+             @"places/*": [NMPlaceApiModel class],
              @"places/*/orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
              @"shifts" : [NMShiftApiModel class],
@@ -70,7 +91,7 @@ static NSString *NMApiBaseURLString = API_URL;
         } else if (error) {
             [NMErrorApiModel handleGenericError];
         } else {
-            completion(response, error);
+            if (completion) completion(response, error);
         }
         
     };
@@ -96,4 +117,5 @@ static NSString *NMApiBaseURLString = API_URL;
 - (NSURLSessionDataTask*)PATCH:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
     return [self PATCH:URLString parameters:parameters completion:[NMApi completionWithErrorHandling:completion]];
 }
+
 @end

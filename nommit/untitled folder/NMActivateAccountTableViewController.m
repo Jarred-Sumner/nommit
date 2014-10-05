@@ -43,6 +43,7 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
+
         self.tableView.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
         self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;

@@ -6,6 +6,8 @@
 
 #import <Availability.h>
 
+#define MR_SHORTHAND 1
+
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."
 #endif
@@ -21,9 +23,9 @@
 #import "NMApi.h"
 #import <FacebookSDK/FacebookSDK.h>
 
-#define MR_SHORTHAND
-#import "CoreData+MagicalRecord.h"
-#import <MagicalRecord+ShorthandSupport.h>
+
+#import <CoreData+MagicalRecord.h>
+
 #import <FacebookSDK/FacebookSDK.h>
 
 #import <AFNetworking/UIImageView+AFNetworking.h>

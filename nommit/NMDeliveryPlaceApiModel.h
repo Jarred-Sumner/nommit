@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSDate *arrivesAt;
 @property (nonatomic, strong) NSNumber *index;
 
-@property (nonatomic, strong) NMPlaceApiModel *place;
+@property (nonatomic, strong) NSArray *foods;
 
 
 @end

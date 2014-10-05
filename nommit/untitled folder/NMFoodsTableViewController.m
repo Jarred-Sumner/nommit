@@ -111,6 +111,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@", _place.uid] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         this.place = [NMPlace activePlace];
         [this.refreshControl endRefreshing];
+        [this.fetchedResultsController performFetch:nil];
     }];
 }
 
