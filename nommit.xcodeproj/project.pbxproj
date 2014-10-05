@@ -121,8 +121,8 @@
 		8DD32FAA19D63A42009485C2 /* NMActivateAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FA919D63A42009485C2 /* NMActivateAccountTableViewController.m */; };
 		8DD32FAD19D6628D009485C2 /* NMActivatePhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FAC19D6628D009485C2 /* NMActivatePhoneTableViewCell.m */; };
 		8DD32FB019D662A4009485C2 /* NMActivatePaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FAF19D662A4009485C2 /* NMActivatePaymentTableViewCell.m */; };
-		8DD32FB319D690E2009485C2 /* NMVerifyPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FB219D690E2009485C2 /* NMVerifyPhoneNumberViewController.m */; };
-		8DD32FB619D73595009485C2 /* NMVerifyPhoneNumberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FB519D73595009485C2 /* NMVerifyPhoneNumberTableViewCell.m */; };
+		8DD32FB319D690E2009485C2 /* NMConfirmNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FB219D690E2009485C2 /* NMConfirmNumberViewController.m */; };
+		8DD32FB619D73595009485C2 /* NMConfirmPhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FB519D73595009485C2 /* NMConfirmPhoneTableViewCell.m */; };
 		8DD32FB919D8E804009485C2 /* NMDeliveryPlaceFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FB819D8E804009485C2 /* NMDeliveryPlaceFooter.m */; };
 		8DD32FBC19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FBB19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.m */; };
 		8DD32FBF19D93415009485C2 /* NMOrderFoodDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FBE19D93415009485C2 /* NMOrderFoodDescriptionTableViewCell.m */; };
@@ -371,10 +371,10 @@
 		8DD32FAC19D6628D009485C2 /* NMActivatePhoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMActivatePhoneTableViewCell.m; path = Cells/NMActivatePhoneTableViewCell.m; sourceTree = "<group>"; };
 		8DD32FAE19D662A4009485C2 /* NMActivatePaymentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMActivatePaymentTableViewCell.h; path = Cells/NMActivatePaymentTableViewCell.h; sourceTree = "<group>"; };
 		8DD32FAF19D662A4009485C2 /* NMActivatePaymentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMActivatePaymentTableViewCell.m; path = Cells/NMActivatePaymentTableViewCell.m; sourceTree = "<group>"; };
-		8DD32FB119D690E2009485C2 /* NMVerifyPhoneNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMVerifyPhoneNumberViewController.h; path = "untitled folder/NMVerifyPhoneNumberViewController.h"; sourceTree = "<group>"; };
-		8DD32FB219D690E2009485C2 /* NMVerifyPhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMVerifyPhoneNumberViewController.m; path = "untitled folder/NMVerifyPhoneNumberViewController.m"; sourceTree = "<group>"; };
-		8DD32FB419D73595009485C2 /* NMVerifyPhoneNumberTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMVerifyPhoneNumberTableViewCell.h; path = Cells/NMVerifyPhoneNumberTableViewCell.h; sourceTree = "<group>"; };
-		8DD32FB519D73595009485C2 /* NMVerifyPhoneNumberTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMVerifyPhoneNumberTableViewCell.m; path = Cells/NMVerifyPhoneNumberTableViewCell.m; sourceTree = "<group>"; };
+		8DD32FB119D690E2009485C2 /* NMConfirmNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMConfirmNumberViewController.h; path = "untitled folder/NMConfirmNumberViewController.h"; sourceTree = "<group>"; };
+		8DD32FB219D690E2009485C2 /* NMConfirmNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMConfirmNumberViewController.m; path = "untitled folder/NMConfirmNumberViewController.m"; sourceTree = "<group>"; };
+		8DD32FB419D73595009485C2 /* NMConfirmPhoneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMConfirmPhoneTableViewCell.h; path = Cells/NMConfirmPhoneTableViewCell.h; sourceTree = "<group>"; };
+		8DD32FB519D73595009485C2 /* NMConfirmPhoneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMConfirmPhoneTableViewCell.m; path = Cells/NMConfirmPhoneTableViewCell.m; sourceTree = "<group>"; };
 		8DD32FB719D8E804009485C2 /* NMDeliveryPlaceFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlaceFooter.h; path = Views/NMDeliveryPlaceFooter.h; sourceTree = "<group>"; };
 		8DD32FB819D8E804009485C2 /* NMDeliveryPlaceFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryPlaceFooter.m; path = Views/NMDeliveryPlaceFooter.m; sourceTree = "<group>"; };
 		8DD32FBA19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMOrderFoodBasicInfoTableViewCell.h; sourceTree = "<group>"; };
@@ -722,8 +722,8 @@
 				8DCE835619D4D56700D770D0 /* NMAccountTableViewController.m */,
 				8DD32FA819D63A42009485C2 /* NMActivateAccountTableViewController.h */,
 				8DD32FA919D63A42009485C2 /* NMActivateAccountTableViewController.m */,
-				8DD32FB119D690E2009485C2 /* NMVerifyPhoneNumberViewController.h */,
-				8DD32FB219D690E2009485C2 /* NMVerifyPhoneNumberViewController.m */,
+				8DD32FB119D690E2009485C2 /* NMConfirmNumberViewController.h */,
+				8DD32FB219D690E2009485C2 /* NMConfirmNumberViewController.m */,
 				8DD32FC019D94777009485C2 /* NMDeliveryTableViewController.h */,
 				8DD32FC119D94777009485C2 /* NMDeliveryTableViewController.m */,
 				8DD32FCC19D9D77B009485C2 /* NMRateOrderTableViewController.h */,
@@ -813,8 +813,8 @@
 				8DD32FAC19D6628D009485C2 /* NMActivatePhoneTableViewCell.m */,
 				8DD32FAE19D662A4009485C2 /* NMActivatePaymentTableViewCell.h */,
 				8DD32FAF19D662A4009485C2 /* NMActivatePaymentTableViewCell.m */,
-				8DD32FB419D73595009485C2 /* NMVerifyPhoneNumberTableViewCell.h */,
-				8DD32FB519D73595009485C2 /* NMVerifyPhoneNumberTableViewCell.m */,
+				8DD32FB419D73595009485C2 /* NMConfirmPhoneTableViewCell.h */,
+				8DD32FB519D73595009485C2 /* NMConfirmPhoneTableViewCell.m */,
 				8DD32FBA19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.h */,
 				8DD32FBB19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.m */,
 				8DD32FBD19D93415009485C2 /* NMOrderFoodDescriptionTableViewCell.h */,
@@ -1075,7 +1075,7 @@
 				8DD3FC3D19B2512900DAFCDB /* main.m in Sources */,
 				8DD32FD119D9E0EE009485C2 /* NMReceiptTableViewCell.m in Sources */,
 				8DD32FCE19D9D77B009485C2 /* NMRateOrderTableViewController.m in Sources */,
-				8DD32FB319D690E2009485C2 /* NMVerifyPhoneNumberViewController.m in Sources */,
+				8DD32FB319D690E2009485C2 /* NMConfirmNumberViewController.m in Sources */,
 				83C3649A19D1F78F004B4F22 /* NMErrorApiModel.m in Sources */,
 				8DC5338719DCBAF500A841EB /* THBubbleColor.m in Sources */,
 				83D6A9E419B822B8009A6D9B /* NMFood.m in Sources */,
@@ -1118,7 +1118,7 @@
 				8D695D2219DB3AEF00EF6EB1 /* UIScrollView+NMParallaxHeader.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
 				8D5E561C19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m in Sources */,
-				8DD32FB619D73595009485C2 /* NMVerifyPhoneNumberTableViewCell.m in Sources */,
+				8DD32FB619D73595009485C2 /* NMConfirmPhoneTableViewCell.m in Sources */,
 				8DC5338A19DCBAF500A841EB /* THContactPickerTableViewCell.m in Sources */,
 				8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */,
 				8DD32FB019D662A4009485C2 /* NMActivatePaymentTableViewCell.m in Sources */,

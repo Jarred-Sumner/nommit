@@ -6,6 +6,7 @@
 
 extern const struct NMUserAttributes {
 	__unsafe_unretained NSString *cardType;
+	__unsafe_unretained NSString *credit;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *facebookUID;
 	__unsafe_unretained NSString *fullName;
@@ -15,7 +16,6 @@ extern const struct NMUserAttributes {
 	__unsafe_unretained NSString *paymentAuthorized;
 	__unsafe_unretained NSString *phone;
 	__unsafe_unretained NSString *referralCode;
-	__unsafe_unretained NSString *referralCredit;
 	__unsafe_unretained NSString *stateID;
 } NMUserAttributes;
 
@@ -63,6 +63,20 @@ extern const struct NMUserFetchedProperties {
 
 
 //- (BOOL)validateCardType:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* credit;
+
+
+
+@property double creditValue;
+- (double)creditValue;
+- (void)setCreditValue:(double)value_;
+
+//- (BOOL)validateCredit:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -166,20 +180,6 @@ extern const struct NMUserFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* referralCredit;
-
-
-
-@property double referralCreditValue;
-- (double)referralCreditValue;
-- (void)setReferralCreditValue:(double)value_;
-
-//- (BOOL)validateReferralCredit:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) NSNumber* stateID;
 
 
@@ -241,6 +241,15 @@ extern const struct NMUserFetchedProperties {
 
 
 
+- (NSNumber*)primitiveCredit;
+- (void)setPrimitiveCredit:(NSNumber*)value;
+
+- (double)primitiveCreditValue;
+- (void)setPrimitiveCreditValue:(double)value_;
+
+
+
+
 - (NSString*)primitiveEmail;
 - (void)setPrimitiveEmail:(NSString*)value;
 
@@ -297,15 +306,6 @@ extern const struct NMUserFetchedProperties {
 
 - (NSString*)primitiveReferralCode;
 - (void)setPrimitiveReferralCode:(NSString*)value;
-
-
-
-
-- (NSNumber*)primitiveReferralCredit;
-- (void)setPrimitiveReferralCredit:(NSNumber*)value;
-
-- (double)primitiveReferralCreditValue;
-- (void)setPrimitiveReferralCreditValue:(double)value_;
 
 
 

@@ -11,97 +11,87 @@
 #import "NMActivateAccountTableViewController.h"
 #import "NMAppDelegate.h"
 
-@interface NMLoginViewController () {
-    UIImageView *signView;
-    UIImageView *logoView;
-    UILabel *message;
-    UIButton *facebookButton;
-}
+@interface NMLoginViewController ()
+
+@property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIImageView *signView;
+@property (nonatomic, strong) UIImageView *logoView;
+@property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) UIButton *facebookButton;
 
 @end
 
 @implementation NMLoginViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        [self setupBG];
-        [self setupSign];
-        [self setupLogo];
-        [self setupMessage];
-        [self setupFacebookButton];
-    }
-    return self;
+- (void)loadView {
+    [super loadView];
+    [self setupBG];
+    [self setupSign];
+    [self setupLogo];
+    [self setupMessageLabel];
+    [self setupFacebookButton];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_signView, _logoView, _facebookButton, _messageLabel);
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[_logoView]-50-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_signView]-20-[_logoView]" options:0 metrics:nil views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[_signView]-50-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_signView]" options:0 metrics:nil views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[_messageLabel]-40-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_logoView]-15-[_messageLabel]" options:0 metrics:nil views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[_facebookButton]-30-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageLabel]-25-[_facebookButton]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupBG
 {
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    imageView.image = [UIImage imageNamed:@"LoginBG"];
-    [self.view insertSubview:imageView atIndex:0];
+    _backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    _backgroundImageView.image = [UIImage imageNamed:@"LoginBG"];
+    [self.view addSubview:_backgroundImageView];
 }
 
 - (void)setupLogo
 {
-    logoView = [[UIImageView alloc] init];
-    logoView.image = [UIImage imageNamed:@"LoginLogo"];
-    logoView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:logoView];
+    _logoView = [[UIImageView alloc] init];
+    _logoView.image = [UIImage imageNamed:@"LoginLogo"];
+    _logoView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_logoView];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(signView, logoView);
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[logoView]-50-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[signView]-20-[logoView]" options:0 metrics:nil views:views]];
 }
-
 - (void)setupSign
 {
-    signView = [[UIImageView alloc] init];
-    signView.image = [UIImage imageNamed:@"LoginSign"];
-    signView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:signView];
-        
-    NSDictionary *views = NSDictionaryOfVariableBindings(signView);
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[signView]-50-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[signView]" options:0 metrics:nil views:views]];
+    _signView = [[UIImageView alloc] init];
+    _signView.image = [UIImage imageNamed:@"LoginSign"];
+    _signView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_signView];
 }
 
 - (void)setupFacebookButton
 {
-    facebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [facebookButton setImage:[UIImage imageNamed:@"LoginFacebookButton"] forState:UIControlStateNormal];
-    facebookButton.contentMode = UIViewContentModeScaleAspectFill;
-    [facebookButton addTarget:self action:@selector(loginFacebookTouched:) forControlEvents:UIControlEventTouchUpInside];
-    facebookButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:facebookButton];
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(facebookButton, message);
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[facebookButton]-30-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[message]-25-[facebookButton]" options:0 metrics:nil views:views]];
-    
+    _facebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_facebookButton setImage:[UIImage imageNamed:@"LoginFacebookButton"] forState:UIControlStateNormal];
+    _facebookButton.contentMode = UIViewContentModeScaleAspectFill;
+    _facebookButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_facebookButton];
+
+    [_facebookButton addTarget:self action:@selector(loginFacebookTouched:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)setupMessage
+- (void)setupMessageLabel
 {
-    message = [[UILabel alloc] init];
-    message.font = [UIFont fontWithName:@"Avenir-LightOblique" size:12.0f];
-    message.textColor = UIColorFromRGB(0x878787);
-    message.textAlignment = NSTextAlignmentCenter;
-    message.lineBreakMode = NSLineBreakByWordWrapping;
-    message.numberOfLines = 0;
-    message.translatesAutoresizingMaskIntoConstraints = NO;
-    message.text = @"To use nommit, please sign in with Facebook. Only available to CMU students.";
+    _messageLabel = [[UILabel alloc] init];
+    _messageLabel.font = [UIFont fontWithName:@"Avenir-LightOblique" size:12.0f];
+    _messageLabel.textColor = UIColorFromRGB(0x878787);
+    _messageLabel.textAlignment = NSTextAlignmentCenter;
+    _messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _messageLabel.numberOfLines = 0;
+    _messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _messageLabel.text = @"To use nommit, please sign in with Facebook. Only available to CMU students.";
     
-    [self.view addSubview:message];
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(logoView, message);
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[message]-40-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[logoView]-15-[message]" options:0 metrics:nil views:views]];
+    [self.view addSubview:_messageLabel];
 }
 
 - (void)loginFacebookTouched:(id)sender
@@ -121,31 +111,28 @@
 
 - (void)performLoginWithFBSession:(FBSession*)session {
     [SVProgressHUD showWithStatus:@"Logging in..." maskType:SVProgressHUDMaskTypeBlack];
-    [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : session.accessTokenData.accessToken } completion:^(OVCResponse *response, NSError *error) {
+    [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : session.accessTokenData.accessToken } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
-        if (error || [response.result class] == [NMErrorApiModel class]) {
-            NSLog(@"Error: %@", error);
-            [response.result handleError];
-        } else {
-            // Authenticated.
-            [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
-            [NMApi instance].session.configuration.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
-            [NMSession setUserID:[response.result facebookUID]];
-            
-            [SVProgressHUD showSuccessWithStatus:@"Logged in!"];
-            if ([NMUser currentUser].state == NMUserStateActivated) {
-                NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
-                [self.navigationController pushViewController:foodsViewController animated:YES];
-                [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
-                
-            } else if ([NMUser currentUser].state == NMUserStateRegistered) {
-                NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
-                
-                [self.navigationController pushViewController:activateVC animated:YES];
-            }
-            
+        [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
+        [NMApi instance].session.configuration.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
+        [NMSession setUserID:[response.result facebookUID]];
+        
+        [SVProgressHUD showSuccessWithStatus:@"Logged in!"];
 
+        if ([NMUser currentUser].state == NMUserStateActivated) {
+            NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
+            [self.navigationController pushViewController:foodsViewController animated:YES];
+            [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
+            
+        } else if ([NMUser currentUser].state == NMUserStateRegistered) {
+            NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
+            
+            [self.navigationController pushViewController:activateVC animated:YES];
         }
+        
+        // Fetch orders and pending deliveries.
+        [[NMApi instance] GET:@"orders" parameters:nil completion:NULL];
+        [[NMApi instance] GET:@"shifts" parameters:nil completion:NULL];
         
     }];
 }
@@ -155,18 +142,6 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(BOOL)prefersStatusBarHidden { return YES; }

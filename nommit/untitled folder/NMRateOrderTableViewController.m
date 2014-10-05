@@ -139,12 +139,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
     NSNumber *tip = @(_totalAmount.intValue * 100 - _order.priceInCents.intValue);
     NSDictionary *params = @{ @"tip_in_cents" : tip, @"rating" : @(_receiptCell.rateVw.rating), @"state_id" : @(NMOrderStateRated) };
     
-    [[NMApi instance] PUT:path parameters:params completion:^(OVCResponse *response, NSError *error) {
-
-        if (error) {
-            [response.result handleError];
-        }
-    }];
+    [[NMApi instance] PUT:path parameters:params completionWithErrorHandling:NULL];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

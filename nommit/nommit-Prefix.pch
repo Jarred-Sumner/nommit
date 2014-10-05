@@ -36,4 +36,6 @@
 
 #import "NMConstants.h"
 
+#import <SIAlertView/SIAlertView.h>
+
 #endif

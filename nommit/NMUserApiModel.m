@@ -18,7 +18,6 @@
              @"facebookUID": @"id",
              @"isCourier" : @"is_courier",
              @"referralCode" : @"referral_code",
-             @"referralCredit" : @"referral_credit",
              @"lastFour" : @"last_four",
              @"cardType" : @"card_type",
              @"paymentAuthorized" : @"payment_authorized",

@@ -6,20 +6,20 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMVerifyPhoneNumberViewController.h"
+#import "NMConfirmNumberViewController.h"
 #import "NMTableSeparatorView.h"
 #import "NMFoodsTableViewController.h"
 #import <SIAlertView.h>
 
-@interface NMVerifyPhoneNumberViewController ()
+@interface NMConfirmNumberViewController ()
 
-@property (nonatomic, strong) NMVerifyPhoneNumberTableViewCell *verifyPhoneNumberTableViewCell;
+@property (nonatomic, strong) NMConfirmPhoneTableViewCell *confirmPhoneTableViewCell;
 
 @end
 
-@implementation NMVerifyPhoneNumberViewController
+@implementation NMConfirmNumberViewController
 
-static NSString *NMVerifyPhoneNumberTableViewCellKey = @"NMVerifyPhoneNumberTableViewCell";
+static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -27,7 +27,7 @@ static NSString *NMVerifyPhoneNumberTableViewCellKey = @"NMVerifyPhoneNumberTabl
         self.tableView.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
         self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-        [self.tableView registerClass:[NMVerifyPhoneNumberTableViewCell class] forCellReuseIdentifier:NMVerifyPhoneNumberTableViewCellKey];
+        [self.tableView registerClass:[NMConfirmPhoneTableViewCell class] forCellReuseIdentifier:NMConfirmNumberTableViewCellKey];
     }
     return self;
 }
@@ -74,32 +74,31 @@ static NSString *NMVerifyPhoneNumberTableViewCellKey = @"NMVerifyPhoneNumberTabl
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    _verifyPhoneNumberTableViewCell = [self.tableView dequeueReusableCellWithIdentifier:NMVerifyPhoneNumberTableViewCellKey];
-    _verifyPhoneNumberTableViewCell.delegate = self;
-    [_verifyPhoneNumberTableViewCell.textField becomeFirstResponder];
-    return _verifyPhoneNumberTableViewCell;
+    _confirmPhoneTableViewCell = [self.tableView dequeueReusableCellWithIdentifier:NMConfirmNumberTableViewCellKey];
+    [_confirmPhoneTableViewCell.textField addTarget:self action:@selector(confirmTextDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [_confirmPhoneTableViewCell.textField becomeFirstResponder];
+    return _confirmPhoneTableViewCell;
 }
 
-- (void)verifyCodeFormat
+#pragma mark - NMConfirmNumberDelegate
+
+- (BOOL)confirmTextDidChange:(id)sender
 {
-    if ([_verifyPhoneNumberTableViewCell.textField.text length] == 6) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-    }
+    self.navigationItem.rightBarButtonItem.enabled = [sender text].length == 6;
+    return YES;
 }
 
 - (void)done:(id)button
 {
+    __block NMConfirmNumberViewController *this = self;
     [SVProgressHUD showWithStatus:@"Verifying..." maskType:SVProgressHUDMaskTypeBlack];
     NSString *path = [NSString stringWithFormat:@"users/%@", NMUser.currentUser.facebookUID];
     
-    [[NMApi instance] PUT:path parameters:@{ @"confirm_code" : _verifyPhoneNumberTableViewCell.textField.text } completion:^(OVCResponse *response, NSError *error) {
-        if ([response.result class] == [NMErrorApiModel class]) {
-            [response.result handleError];
-        } else {
-            [SVProgressHUD showSuccessWithStatus:@"Verified!"];
-            NMFoodsTableViewController *ftv = [[NMFoodsTableViewController alloc] init];
-            [self.navigationController pushViewController:ftv animated:YES];
-        }
+    [[NMApi instance] PUT:path parameters:@{ @"confirm_code" : _confirmPhoneTableViewCell.textField.text } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        
+        [SVProgressHUD showSuccessWithStatus:@"Verified!"];
+        NMFoodsTableViewController *ftv = [[NMFoodsTableViewController alloc] init];
+        [this.navigationController pushViewController:ftv animated:YES];
     }];
     
    

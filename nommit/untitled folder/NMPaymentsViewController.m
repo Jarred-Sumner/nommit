@@ -123,15 +123,10 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
             
             NSString *path = [NSString stringWithFormat:@"users/%@", NMUser.currentUser.facebookUID];
             
-            [[NMApi instance] PUT:path parameters:params completion:^(OVCResponse *response, NSError *error) {
-                if ([response.result class] == [NMErrorApiModel class]) {
-                    [response.result handleError];
-                } else if (error) {
-                    [NMErrorApiModel handleGenericError];
-                } else {
-                    [SVProgressHUD showSuccessWithStatus:@"Saved!"];
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
+            [[NMApi instance] PUT:path parameters:params completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+                
+                [SVProgressHUD showSuccessWithStatus:@"Saved!"];
+                [self.navigationController popViewControllerAnimated:YES];
                 
             }];
             

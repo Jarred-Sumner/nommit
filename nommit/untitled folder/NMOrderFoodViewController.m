@@ -192,24 +192,15 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     __weak NMOrderFoodViewController *this = self;
     if (_orderModel.isValid) {
         [SVProgressHUD showWithStatus:@"Placing Order..." maskType:SVProgressHUDMaskTypeBlack];
-        [[NMApi instance] POST:@"orders" parameters:_orderModel.createParams completion:^(OVCResponse *response, NSError *error) {
-            if (response.result) {
-                NSLog(@"Result: %@", response.result);
-                if ([response.result class] == [NMErrorApiModel class]) {
-                    [response.result handleError];
-                } else {
-                    [SVProgressHUD showSuccessWithStatus:@"Order Placed!"];
+        [[NMApi instance] POST:@"orders" parameters:_orderModel.createParams completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+            [SVProgressHUD showSuccessWithStatus:@"Order Placed!"];
 
-                    NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
+            NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
 
-                    NMDeliveryTableViewController *deliverVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
-                    
-                    [this.navigationController pushViewController:deliverVC animated:YES];
-                }
-            } else if (error) {
-                NSLog(@"Error: %@", error);
-                [NMErrorApiModel handleGenericError];
-            }
+            NMDeliveryTableViewController *deliverVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
+
+            [this.navigationController pushViewController:deliverVC animated:YES];
+        
         }];
     } else {
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];

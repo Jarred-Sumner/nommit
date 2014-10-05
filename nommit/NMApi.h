@@ -31,11 +31,19 @@
 
 #import "NMSession.h"
 
+typedef void (^NMApiCompletionBlock)(id response, NSError *error);
+
 @interface NMApi : OVCHTTPSessionManager
 
 //@property (nonatomic, strong) NSManagedObjectContext *context;
 
 + (NMApi *)instance;
 + (NSDateFormatter *)dateFormatter;
+
+- (NSURLSessionDataTask*)POST:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion;
+- (NSURLSessionDataTask*)PUT:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion;
+- (NSURLSessionDataTask*)GET:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion;
+- (NSURLSessionDataTask*)HEAD:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion;
+- (NSURLSessionDataTask*)PATCH:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion;
 
 @end

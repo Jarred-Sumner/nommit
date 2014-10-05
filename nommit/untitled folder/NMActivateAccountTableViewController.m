@@ -19,7 +19,7 @@
 #import "NMFoodsTableViewController.h"
 #import "NMConstants.h"
 #import <SIAlertView/SIAlertView.h>
-#import "NMVerifyPhoneNumberViewController.h"
+#import "NMConfirmNumberViewController.h"
 
 
 @interface NMActivateAccountTableViewController ()<PTKViewDelegate>
@@ -43,8 +43,6 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        [self initNavBar];
-        
         self.tableView.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
         self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -57,19 +55,11 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 }
 
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     self.title = @"Register Account";
     
-    // Setup save button
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
-    saveButton.enabled = NO;
-    self.navigationItem.rightBarButtonItem = saveButton;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self initNavBar];
 }
 
 #pragma mark - Table view data source
@@ -130,10 +120,12 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 
 #pragma mark - nav bar
 
-- (void)initNavBar
-{
-    self.navigationController.navigationBarHidden = NO;
-    
+- (void)initNavBar {
+    // Setup save button
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
+    saveButton.enabled = NO;
+    self.navigationItem.rightBarButtonItem = saveButton;
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 #pragma mark - payments information
@@ -182,19 +174,11 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
             
             NSString *path = [NSString stringWithFormat:@"users/%@", NMUser.currentUser.facebookUID];
             
-            [[NMApi instance] PUT:path parameters:params completion:^(OVCResponse *response, NSError *error) {
-                if ([response.result class] == [NMErrorApiModel class]) {
-                    [response.result handleError];
-                } else if (error) {
-                    [NMErrorApiModel handleGenericError];
-                } else {
+            [[NMApi instance] PUT:path parameters:params completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
                     [this didSaveSuccessfullyWithToken:token card:card];
-                }
-                
             }];
-            
-            
         }
+    
     }];
     
 }
@@ -207,7 +191,7 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
     _paymentCell.hiddenCardLabel.hidden = NO;
     
     [SVProgressHUD showSuccessWithStatus:@"Saved!"];
-    NMVerifyPhoneNumberViewController *phoneVC = [[NMVerifyPhoneNumberViewController alloc] init];
+    NMConfirmNumberViewController *phoneVC = [[NMConfirmNumberViewController alloc] init];
     [self.navigationController pushViewController:phoneVC animated:YES];
 }
 

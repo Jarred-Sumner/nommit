@@ -9,6 +9,7 @@
 #import "NMApi.h"
 #import "NMErrorApiModel.h"
 
+
 static NSString *NMApiBaseURLString = API_URL;
 
 @implementation NMApi
@@ -37,6 +38,7 @@ static NSString *NMApiBaseURLString = API_URL;
 + (NSDictionary *)modelClassesByResourcePath {
     return @{
              @"users/*" : [NMUserApiModel class],
+             @"users/*/promos" : [NMUserApiModel class],
              @"sessions" : [NMUserApiModel class],
              @"orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
@@ -59,4 +61,39 @@ static NSString *NMApiBaseURLString = API_URL;
      return dateFormatter;
 }
 
+#pragma mark - Error Handling
+
++ (NMApiCompletionBlock)completionWithErrorHandling:(NMApiCompletionBlock)completion {
+    return ^(id response, NSError *error) {
+        if ([[response result] class] == [NMErrorApiModel class]) {
+            [[response result] handleError];
+        } else if (error) {
+            [NMErrorApiModel handleGenericError];
+        } else {
+            completion(response, error);
+        }
+        
+    };
+    
+}
+
+- (NSURLSessionDataTask*)POST:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
+    return [self POST:URLString parameters:parameters completion:[NMApi completionWithErrorHandling:completion]];
+}
+
+- (NSURLSessionDataTask*)PUT:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
+    return [self PUT:URLString parameters:parameters completion:[NMApi completionWithErrorHandling:completion]];
+}
+
+- (NSURLSessionDataTask*)GET:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
+    return [self GET:URLString parameters:parameters completion:[NMApi completionWithErrorHandling:completion]];
+}
+
+- (NSURLSessionDataTask*)HEAD:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
+    return [self HEAD:URLString parameters:parameters completion:[NMApi completionWithErrorHandling:completion]];
+}
+
+- (NSURLSessionDataTask*)PATCH:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
+    return [self PATCH:URLString parameters:parameters completion:[NMApi completionWithErrorHandling:completion]];
+}
 @end

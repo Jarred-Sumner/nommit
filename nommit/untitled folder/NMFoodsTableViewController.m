@@ -214,12 +214,8 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     __weak NMFoodsTableViewController *this = self;
     [self.refreshControl beginRefreshing];
     
-    [[NMApi instance] GET:@"foods" parameters:nil completion:^(OVCResponse *response, NSError *error) {
-        if (error) {
-            [response.result handleError];
-        } else {
-            this.place = [NMPlace activePlace];
-        }
+    [[NMApi instance] GET:@"foods" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        this.place = [NMPlace activePlace];
         [this.refreshControl endRefreshing];
     }];
 }

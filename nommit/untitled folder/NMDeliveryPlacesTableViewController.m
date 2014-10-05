@@ -85,10 +85,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     __weak NMDeliveryPlacesTableViewController *this = self;
     [self.refreshControl beginRefreshing];
     
-    [[NMApi instance] GET:@"places" parameters:nil completion:^(OVCResponse *response, NSError *error) {
-        if (error) {
-            [response.result handleError];
-        }
+    [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         [this.refreshControl endRefreshing];
     }];
 }
@@ -251,17 +248,13 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     [SVProgressHUD showWithStatus:@"Starting Shift..." maskType:SVProgressHUDMaskTypeBlack];
     __block NMDeliveryPlacesTableViewController *this = self;
     
-    [[NMApi instance] POST:@"shifts" parameters:@{ @"place_ids": [self.placeIDs array] } completion:^(OVCResponse *response, NSError *error) {
-        if (error) {
-            [response.result handleError];
-        } else {
-            NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
-            this.shift = shift;
-            
-            NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
-            [self.navigationController pushViewController:dpTV animated:YES];
-            [SVProgressHUD showSuccessWithStatus:@"Started Shift!"];
-        }
+    [[NMApi instance] POST:@"shifts" parameters:@{ @"place_ids": [self.placeIDs array] } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
+        this.shift = shift;
+        
+        NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+        [self.navigationController pushViewController:dpTV animated:YES];
+        [SVProgressHUD showSuccessWithStatus:@"Started Shift!"];
     }];
 }
 
@@ -269,17 +262,13 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     [SVProgressHUD showWithStatus:@"Updating Shift..." maskType:SVProgressHUDMaskTypeBlack];
     __block NMDeliveryPlacesTableViewController *this = self;
     
-    [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"place_ids": [self.placeIDs array] } completion:^(OVCResponse *response, NSError *error) {
-        if (error) {
-            [response.result handleError];
-        } else {
-            NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
-            this.shift = shift;
-            
-            NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
-            [self.navigationController pushViewController:dpTV animated:YES];
-            [SVProgressHUD showSuccessWithStatus:@"Updated Shift!"];
-        }
+    [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"place_ids": [self.placeIDs array] } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
+        this.shift = shift;
+        
+        NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+        [self.navigationController pushViewController:dpTV animated:YES];
+        [SVProgressHUD showSuccessWithStatus:@"Updated Shift!"];
     }];
 }
 

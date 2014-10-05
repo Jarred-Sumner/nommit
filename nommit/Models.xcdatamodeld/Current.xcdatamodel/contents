@@ -121,6 +121,7 @@
     </entity>
     <entity name="NMUser" representedClassName="NMUser" syncable="YES">
         <attribute name="cardType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="credit" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="facebookUID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
@@ -130,7 +131,6 @@
         <attribute name="paymentAuthorized" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referralCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="referralCredit" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="stateID" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <relationship name="couriers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="user" inverseEntity="NMCourier" syncable="YES"/>
         <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="user" inverseEntity="NMLocation" syncable="YES"/>
@@ -150,6 +150,6 @@
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="133"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
         <element name="NMShift" positionX="18" positionY="153" width="128" height="118"/>
-        <element name="NMUser" positionX="0" positionY="0" width="128" height="268"/>
+        <element name="NMUser" positionX="0" positionY="0" width="128" height="270"/>
     </elements>
 </model>

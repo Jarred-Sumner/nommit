@@ -219,9 +219,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     
     NSString *path = [NSString stringWithFormat:@"orders/%@", order.uid];
     
-    [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMOrderStateDelivered) } completion:^(OVCResponse *response, NSError *error) {
-        if ([response.result class] == [NMErrorApiModel class]) [response.result handleError];
-    }];
+    [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMOrderStateDelivered) } completionWithErrorHandling:NULL];
 }
 
 #pragma mark - Shift
@@ -314,38 +312,26 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
         [SVProgressHUD showWithStatus:@"Preventing New Orders..." maskType:SVProgressHUDMaskTypeBlack];
         
         NSString *path = [NSString stringWithFormat:@"shifts/%@", _shift.uid];
-        [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMShiftStateHalted) } completion:^(OVCResponse *response, NSError *error) {
+        [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMShiftStateHalted) } completionWithErrorHandling:^(id response, NSError *error) {
             
-            if ([response.result class] == [NMErrorApiModel class]) {
-                [response.result handleError];
-            } else if (error) {
-                [NMErrorApiModel handleGenericError];
+            if ([_shift hasPendingDeliveries]) {
+                [SVProgressHUD dismiss];
+                
+                NSNumber *pendingOrders = [self.shift countOfPendingDeliveries];
+                NSString *message = [NSString stringWithFormat:@"Stopped new orders, but please deliver the remaining %@ orders", pendingOrders];
+                SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Finish Deliveries" andMessage:message];
+                [alert show];
             } else {
-                if ([_shift hasPendingDeliveries]) {
-                    [SVProgressHUD dismiss];
-                    
-                    NSNumber *pendingOrders = [self.shift countOfPendingDeliveries];
-                    NSString *message = [NSString stringWithFormat:@"Stopped new orders, but please deliver the remaining %@ orders", pendingOrders];
-                    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Finish Deliveries"andMessage:message];
-                    [alert show];
-                } else {
-                    [this endShift];
-                }
+                [this endShift];
             }
+
         }];
     } else if (_shift.state == NMShiftStateHalted) {
         
         [SVProgressHUD showWithStatus:@"Ending Shift..." maskType:SVProgressHUDMaskTypeBlack];
-        [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"state_id" : @(NMShiftStateEnded) } completion:^(OVCResponse *response, NSError *error) {
-            if ([response.result class] == [NMErrorApiModel class]){
-                [response.result handleError];
-            } else if (error) {
-                [NMErrorApiModel handleGenericError];
-            }
-            else {
+        [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"state_id" : @(NMShiftStateEnded) } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
                 [SVProgressHUD showSuccessWithStatus:@"Shift Ended!"];
                 [this.navigationController dismissViewControllerAnimated:YES completion:NULL];
-            }
         }];
     }
     
@@ -354,16 +340,10 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (void)imHere {
     __block NMDeliveryPlaceTableViewController *this = self;
     [SVProgressHUD showWithStatus:@"Notifying Customers..." maskType:SVProgressHUDMaskTypeBlack];
-    [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"delivery_place_id": self.deliveryPlace.uid, @"delivery_place_state_id" : @(NMDeliveryPlaceStateArrived) } completion:^(OVCResponse * response, NSError *error) {
-        if ([response.result class] == [NMErrorApiModel class]) {
-            [response.result handleError];
-        } else if (error) {
-            [NMErrorApiModel handleGenericError];
-        } else {
+    [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"delivery_place_id": self.deliveryPlace.uid, @"delivery_place_state_id" : @(NMDeliveryPlaceStateArrived) } completionWithErrorHandling:^(OVCResponse * response, NSError *error) {
             NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
             this.shift = shift;
-            [SVProgressHUD showSuccessWithStatus:@"Notified!"];            
-        }
+            [SVProgressHUD showSuccessWithStatus:@"Notified!"];
     }];
 }
 

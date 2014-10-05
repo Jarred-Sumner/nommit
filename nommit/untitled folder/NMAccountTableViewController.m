@@ -20,6 +20,7 @@
 
 @interface NMAccountTableViewController() <NSFetchedResultsControllerDelegate>
 
+@property (readonly) NMUser *user;
 @property (nonatomic, strong) NMAccountInformationTableViewCell *infoCell;
 @property (nonatomic, strong) NMPaymentMethodTableViewCell *cardCell;
 @property (nonatomic, strong) NMAccountPromoTableViewCell *promoCell;
@@ -55,6 +56,11 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
     }
     return self;
 }
+
+- (NMUser*)user {
+    return [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -138,10 +144,18 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
 
 #pragma mark - submit button
 
-- (void)submitPromoCode:(id)button
-{
-    NSString *promoCode = _promoCell.textField.text;
-    NSLog(@"%@", promoCode);
+- (void)submitPromoCode:(id)button {
+    if (_promoCell.textField.text.length > 0) {
+        [SVProgressHUD showWithStatus:@"Applying..." maskType:SVProgressHUDMaskTypeBlack];
+        [[NMApi instance] POST:[NSString stringWithFormat:@"users/%@/promos", self.user.facebookUID] parameters:@{ @"code" : _promoCell.textField.text } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+            [SVProgressHUD showSuccessWithStatus:@"Applied!"];
+        }];
+    } else {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"No Promo Code" andMessage:@"Please enter a promo code and try again"];
+        [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+        [alert show];
+    }
+
 }
 
 #pragma mark - nav bar
@@ -185,7 +199,8 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
             break;
         case NMAccountPromoSection:
             [_promoCell.submitButton addTarget:self action:@selector(submitPromoCode:) forControlEvents:UIControlEventTouchUpInside];
-            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@\nShare your code with friends: %@", user.referralCredit, user.referralCode];
+            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@\nShare your code with friends: %@", user.credit, user.referralCode];
+            break;
         default:
             break;
     }
