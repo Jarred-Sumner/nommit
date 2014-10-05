@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "THContactPickerViewController.h"
 
-@interface NMInviteCodeViewController : UIViewController
+@interface NMInviteCodeViewController : UIViewController <THContactPickerViewControllerDelegate>
 
 @end

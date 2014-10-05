@@ -11,8 +11,15 @@
 #import "THContactPickerView.h"
 #import "THContactPickerTableViewCell.h"
 
+@protocol THContactPickerViewControllerDelegate <NSObject>
+
+- (void)didSelectContacts:(NSArray*)contact;
+
+@end
+
 @interface THContactPickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, THContactPickerDelegate, ABPersonViewControllerDelegate>
 
+@property (nonatomic, strong) NSObject<THContactPickerViewControllerDelegate>* delegate;
 @property (nonatomic, strong) THContactPickerView *contactPickerView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *contacts;

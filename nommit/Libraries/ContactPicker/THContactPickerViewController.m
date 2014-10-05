@@ -27,8 +27,6 @@ UIBarButtonItem *barButton;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Select Contacts (0)";
-        
         CFErrorRef error;
         _addressBookRef = ABAddressBookCreateWithOptions(NULL, &error);
     }
@@ -38,13 +36,9 @@ UIBarButtonItem *barButton;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    //    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleBordered target:self action:@selector(removeAllContacts:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Invite All" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
     
-    barButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
-    barButton.enabled = FALSE;
-    
-    self.navigationItem.rightBarButtonItem = barButton;
     
     // Initialize and add Contact Picker View
     self.contactPickerView = [[THContactPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
@@ -61,13 +55,14 @@ UIBarButtonItem *barButton;
     
     [self.view insertSubview:self.tableView belowSubview:self.contactPickerView];
     
+    __block THContactPickerViewController *this = self;
     ABAddressBookRequestAccessWithCompletion(self.addressBookRef, ^(bool granted, CFErrorRef error) {
         if (granted) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self getContactsFromAddressBook];
+                [this getContactsFromAddressBook];
             });
         } else {
-            // TODO: Show alert
+            [this cancel];
         }
     });
 }
@@ -100,6 +95,7 @@ UIBarButtonItem *barButton;
             // Get mobile number
             ABMultiValueRef phonesRef = ABRecordCopyValue(contactPerson, kABPersonPhoneProperty);
             contact.phone = [self getMobilePhoneProperty:phonesRef];
+            if (contact.phone.length == 0) continue;
             if(phonesRef) {
                 CFRelease(phonesRef);
             }
@@ -110,7 +106,7 @@ UIBarButtonItem *barButton;
             if (!contact.image) {
                 contact.image = [UIImage imageNamed:@"icon-avatar-60x60"];
             }
-            
+
             [mutableContacts addObject:contact];
         }
         
@@ -200,6 +196,8 @@ UIBarButtonItem *barButton;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self refreshContacts];
     });
+    self.navigationItem.title = @"Invite Friends";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
 }
 
 - (void)viewDidLayoutSubviews {
@@ -212,12 +210,6 @@ UIBarButtonItem *barButton;
     frame.origin.y = topOffset;
     self.contactPickerView.frame = frame;
     [self adjustTableViewFrame:NO];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)adjustTableViewFrame:(BOOL)animated {
@@ -288,33 +280,16 @@ UIBarButtonItem *barButton;
     // Set the checked state for the contact selection checkbox
     UIImage *image;
     if ([self.selectedContacts containsObject:[self.filteredContacts objectAtIndex:indexPath.row]]){
-        //cell.accessoryType = UITableViewCellAccessoryCheckmark;
         image = [UIImage imageNamed:@"icon-checkbox-selected-green-25x25"];
     } else {
-        //cell.accessoryType = UITableViewCellAccessoryNone;
         image = [UIImage imageNamed:@"icon-checkbox-unselected-25x25"];
     }
     checkboxImageView.image = image;
     
     // Assign a UIButton to the accessoryView cell property
     cell.accessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    // Set a target and selector for the accessoryView UIControlEventTouchUpInside
     [(UIButton *)cell.accessoryView addTarget:self action:@selector(viewContactDetail:) forControlEvents:UIControlEventTouchUpInside];
     cell.accessoryView.tag = contact.recordId; //so we know which ABRecord in the IBAction method
-    
-    // // For custom accessory view button use this.
-    //    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    //    button.frame = CGRectMake(0.0f, 0.0f, 150.0f, 25.0f);
-    //
-    //    [button setTitle:@"Expand"
-    //            forState:UIControlStateNormal];
-    //
-    //    [button addTarget:self
-    //               action:@selector(viewContactDetail:)
-    //     forControlEvents:UIControlEventTouchUpInside];
-    //
-    //    cell.accessoryView = button;
-    
     return cell;
 }
 
@@ -349,16 +324,13 @@ UIBarButtonItem *barButton;
     
     // Enable Done button if total selected contacts > 0
     if(self.selectedContacts.count > 0) {
-        barButton.enabled = TRUE;
+        self.navigationItem.rightBarButtonItem.title = @"Invite";
     }
     else
     {
-        barButton.enabled = FALSE;
+        self.navigationItem.rightBarButtonItem.title = @"Invite All";
     }
-    
-    // Update window title
-    self.title = [NSString stringWithFormat:@"Add Members (%lu)", (unsigned long)self.selectedContacts.count];
-    
+
     // Set checkbox image
     checkboxImageView.image = image;
     // Reset the filtered contacts
@@ -388,16 +360,6 @@ UIBarButtonItem *barButton;
     
     NSUInteger index = [self.contacts indexOfObject:contact];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    //cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    // Enable Done button if total selected contacts > 0
-    if(self.selectedContacts.count > 0) {
-        barButton.enabled = TRUE;
-    }
-    else
-    {
-        barButton.enabled = FALSE;
-    }
     
     // Set unchecked image
     UIImageView *checkboxImageView = (UIImageView *)[cell viewWithTag:104];
@@ -405,8 +367,11 @@ UIBarButtonItem *barButton;
     image = [UIImage imageNamed:@"icon-checkbox-unselected-25x25"];
     checkboxImageView.image = image;
     
-    // Update window title
-    self.title = [NSString stringWithFormat:@"Add Members (%lu)", (unsigned long)self.selectedContacts.count];
+    if (self.selectedContacts.count > 0) {
+        self.navigationItem.rightBarButtonItem.title = @"Invite";
+    } else {
+        self.navigationItem.rightBarButtonItem.title = @"Invite All";
+    }
 }
 
 - (void)removeAllContacts:(id)sender
@@ -437,16 +402,21 @@ UIBarButtonItem *barButton;
     [self.navigationController pushViewController:view animated:YES];
 }
 
-// TODO: send contact object
 - (void)done:(id)sender
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Done!"
-                                                        message:@"Invited Friends!"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-    [alertView show];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    __block THContactPickerViewController *this = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (!this.delegate) return;
+        
+        if (this.selectedContacts.count > 0) {
+            [this.delegate didSelectContacts:this.selectedContacts];
+        } else [this.delegate didSelectContacts:this.contacts];
+        
+    }];
+}
+
+- (void)cancel {
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

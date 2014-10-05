@@ -8,8 +8,8 @@
 
 #import "NMInviteCodeViewController.h"
 #import "NMInviteCodeView.h"
-#import "THContactPickerViewController.h"
 #import "NMMenuNavigationController.h"
+#import "THContact.h"
 
 @implementation NMInviteCodeViewController
 
@@ -33,6 +33,7 @@
 
 - (void)inviteButtonTouched {
     THContactPickerViewController *contactPicker = [[THContactPickerViewController alloc] init];
+    contactPicker.delegate = self;
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:contactPicker];
     [self presentViewController:navVC animated:YES completion:nil];
 }
@@ -48,6 +49,22 @@
     self.navigationItem.leftBarButtonItem = lbb;
     
     self.navigationController.navigationBarHidden = NO;
+    
+}
+
+#pragma mark - THContactPickerViewControllerDelegate
+
+- (void)didSelectContacts:(NSArray*)contacts {
+    [SVProgressHUD showWithStatus:@"Sending..." maskType:SVProgressHUDMaskTypeBlack];
+    NSMutableArray *contactArray = [[NSMutableArray alloc] init];
+    for (THContact *contact in contacts) {
+        if (!contact.phone.length) continue;
+        
+        [contactArray addObject:@{ @"name" : contact.fullName, @"phone" : contact.phone }];
+    }
+    [[NMApi instance] POST:@"invites" parameters:@{ @"contacts" : contactArray } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        [SVProgressHUD showSuccessWithStatus:@"Sent!"];
+    }];
     
 }
 
