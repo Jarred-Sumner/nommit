@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NMAccountInformationTableViewCell *infoCell;
 @property (nonatomic, strong) NMActivatePaymentTableViewCell *paymentCell;
 @property (nonatomic, strong) NMActivatePhoneTableViewCell *phoneCell;
+@property (nonatomic, strong) UIBarButtonItem *saveButton;
 
 @end
 
@@ -59,6 +60,7 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.title = @"Register Account";
+    [self checkPhoneValid];
     
     [self initNavBar];
 }
@@ -123,9 +125,9 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 
 - (void)initNavBar {
     // Setup save button
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
-    saveButton.enabled = NO;
-    self.navigationItem.rightBarButtonItem = saveButton;
+    _saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
+    _saveButton.enabled = YES;
+    self.navigationItem.rightBarButtonItem = _saveButton;
     [self.navigationController setNavigationBarHidden:NO];
 }
 
@@ -136,7 +138,7 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
             isValid:(BOOL)valid {
     // Enable save button if the Checkout is valid
     if ([_phoneCell.textField.text length] > 0) {
-        self.navigationItem.rightBarButtonItem.enabled = valid;
+        _saveButton.enabled = valid;
     }
 }
 
