@@ -324,12 +324,11 @@ UIBarButtonItem *barButton;
     
     // Enable Done button if total selected contacts > 0
     if(self.selectedContacts.count > 0) {
-        self.navigationItem.rightBarButtonItem.title = @"Invite";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Invite" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
     }
     else
     {
-        self.navigationItem.rightBarButtonItem.title = @"Select All";
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Select All" style:UIBarButtonItemStyleDone target:self action:@selector(selectAllContacts:)];
     }
 
     // Set checkbox image
@@ -369,9 +368,9 @@ UIBarButtonItem *barButton;
     checkboxImageView.image = image;
     
     if (self.selectedContacts.count > 0) {
-        self.navigationItem.rightBarButtonItem.title = @"Invite";
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Invite" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
     } else {
-        self.navigationItem.rightBarButtonItem.title = @"Select All";
+       self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Select All" style:UIBarButtonItemStyleDone target:self action:@selector(selectAllContacts:)];
     }
 }
 
