@@ -25,6 +25,7 @@
         <attribute name="orderGoal" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="4" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -144,7 +145,7 @@
     <elements>
         <element name="NMCourier" positionX="9" positionY="117" width="128" height="133"/>
         <element name="NMDeliveryPlace" positionX="9" positionY="117" width="128" height="148"/>
-        <element name="NMFood" positionX="0" positionY="0" width="128" height="268"/>
+        <element name="NMFood" positionX="0" positionY="0" width="128" height="285"/>
         <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMOrder" positionX="0" positionY="0" width="128" height="270"/>
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="133"/>

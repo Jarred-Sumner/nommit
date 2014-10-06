@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSString *subtitle;
 @property (nonatomic, strong) NSString *details;
 @property (nonatomic, strong) NSDate *endDate;
+@property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSString *headerImageURL;
 @property (nonatomic, strong) NSString *thumbnailImageURL;
 @property (nonatomic, strong) NSNumber *orderGoal;

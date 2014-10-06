@@ -14,12 +14,6 @@
     return @(food.orderCount.doubleValue * food.price.doubleValue);
 }
 
-+ (NSArray*)activeFoods {
-    NSPredicate *active = [NSPredicate predicateWithFormat:@"stateID = %@ AND endDate > %@", @(NMFoodStateActive), [NSDate date]];
-    NSFetchRequest *request = [NMFood requestAllWithPredicate:active];
-    return [NMFood executeFetchRequest:request];
-}
-
 - (NMFoodState)state {
     return (NMFoodState)self.stateIDValue;
 }

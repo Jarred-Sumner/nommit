@@ -86,7 +86,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     NSPredicate *foodPredicate;
     if (_place) {
         NSArray *states = @[@(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateArrived)];
-        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND (ANY deliveryPlaces.stateID IN %@) AND stateID = %@", _place, states, @(NMFoodStateActive)];
+        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND (ANY deliveryPlaces.stateID IN %@) AND stateID = %@ AND (startDate <= %@) AND (endDate >= %@)", _place, states, @(NMFoodStateActive), [NSDate date], [NSDate date]];
     } else {
         // Predicate that never returns anything ever, for empty data source.
         foodPredicate = [NSPredicate predicateWithFormat:@"uid = %@", @(-1)];

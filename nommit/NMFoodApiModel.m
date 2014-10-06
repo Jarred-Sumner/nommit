@@ -18,6 +18,7 @@
              @"uid" : @"id",
              @"subtitle" : @"place",
              @"stateID" : @"state_id",
+             @"startDate" : @"start_date",
              @"endDate" : @"end_date",
              @"headerImageURL" : @"header_image_url",
              @"thumbnailImageURL" : @"thumbnail_image_url",
@@ -34,6 +35,14 @@
 
 + (NSValueTransformer *)deliveryPlacesJSONTransformer  {
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMDeliveryPlaceApiModel class]];
+}
+
++ (NSValueTransformer *)startDateJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [NMApi.dateFormatter dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [NMApi.dateFormatter stringFromDate:date];
+    }];
 }
 
 + (NSValueTransformer *)endDateJSONTransformer {

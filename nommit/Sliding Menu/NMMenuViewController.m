@@ -312,17 +312,19 @@ static NSInteger NMOrdersSection = 1;
 
 - (void)showOrders {
     NMShift *currentShift = [[NMCourier currentCourier] currentShift];
-    
-    NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:currentShift];
-    
-    NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:currentShift];
-    
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
     if (currentShift) {
-        [navVC pushViewController:ordersVC animated:NO];
+        NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:currentShift];
+        
+        NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:currentShift];
+        
+        UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
+        if (currentShift) {
+            [navVC pushViewController:ordersVC animated:NO];
+        }
+        [self presentViewController:navVC animated:YES completion:nil];
     }
-    [self presentViewController:navVC animated:YES completion:nil];
 }
+
 
 - (void)showAccount {
     NMAccountTableViewController *accountTableVC = [[NMAccountTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -330,7 +332,6 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showInvite {
-//    THContactPickerViewController *inviteVC = [[THContactPickerViewController alloc] initWithNibName:nil bundle:nil];
     NMInviteCodeViewController *inviteVC = [[NMInviteCodeViewController alloc] init];
     [self navigateTo:inviteVC];
 }
