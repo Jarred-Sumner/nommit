@@ -37,7 +37,7 @@ UIBarButtonItem *barButton;
 {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Invite All" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Select All" style:UIBarButtonItemStyleDone target:self action:@selector(selectAllContacts:)];
     
     
     // Initialize and add Contact Picker View
@@ -325,10 +325,11 @@ UIBarButtonItem *barButton;
     // Enable Done button if total selected contacts > 0
     if(self.selectedContacts.count > 0) {
         self.navigationItem.rightBarButtonItem.title = @"Invite";
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Invite" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
     }
     else
     {
-        self.navigationItem.rightBarButtonItem.title = @"Invite All";
+        self.navigationItem.rightBarButtonItem.title = @"Select All";
     }
 
     // Set checkbox image
@@ -370,7 +371,7 @@ UIBarButtonItem *barButton;
     if (self.selectedContacts.count > 0) {
         self.navigationItem.rightBarButtonItem.title = @"Invite";
     } else {
-        self.navigationItem.rightBarButtonItem.title = @"Invite All";
+        self.navigationItem.rightBarButtonItem.title = @"Select All";
     }
 }
 
@@ -405,14 +406,48 @@ UIBarButtonItem *barButton;
 - (void)done:(id)sender
 {
     __block THContactPickerViewController *this = self;
-    [self dismissViewControllerAnimated:YES completion:^{
-        if (!this.delegate) return;
-        
-        if (this.selectedContacts.count > 0) {
-            [this.delegate didSelectContacts:this.selectedContacts];
-        } else [this.delegate didSelectContacts:this.contacts];
-        
-    }];
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        if (!this.delegate) return;
+//        
+//        if (this.selectedContacts.count > 0) {
+//            [this.delegate didSelectContacts:this.selectedContacts];
+//        } else [this.delegate didSelectContacts:this.contacts];
+//        
+//    }];
+    [this.delegate didSelectContacts:this.selectedContacts];
+}
+
+- (void)selectAllContacts:(id)sender {
+    for (int i = 0; i < [self.tableView numberOfSections]; i++) {
+        for (int j = 0; j < [self.tableView numberOfRowsInSection:i]; j++) {
+            NSUInteger ints[2] = {i,j};
+            NSIndexPath *indexPath = [NSIndexPath indexPathWithIndexes:ints length:2];
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            
+            // This uses the custom cellView
+            // Set the custom imageView
+            THContact *user = [self.filteredContacts objectAtIndex:indexPath.row];
+            UIImageView *checkboxImageView = (UIImageView *)[cell viewWithTag:104];
+            UIImage *image;
+            
+            [self.selectedContacts addObject:user];
+            [self.contactPickerView addContact:user withName:user.fullName];
+            
+            checkboxImageView.image = [UIImage imageNamed:@"icon-checkbox-selected-green-25x25"];
+            
+            // Enable Done button
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Invite" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+            
+            // Set checkbox image
+            checkboxImageView.image = image;
+            
+            // Reset the filtered contacts
+            self.filteredContacts = self.contacts;
+            
+            // Refresh the tableview
+            [self.tableView reloadData];
+        }
+    }
 }
 
 - (void)cancel {

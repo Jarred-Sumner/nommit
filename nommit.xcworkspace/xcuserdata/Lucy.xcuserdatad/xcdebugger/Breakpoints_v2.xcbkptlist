@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/REFrostedViewController/REFrostedViewController/REFrostedViewController.m"
@@ -22,7 +22,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/REFrostedViewController/REFrostedViewController/REFrostedViewController.m"
@@ -343,7 +343,7 @@
                   symbolName = "-[NMTableSeparatorView sectionLabel]"
                   moduleName = "nommit"
                   urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/Views/NMTableSeparatorView.h"
-                  timestampString = "433927790.813073"
+                  timestampString = "434312884.970995"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -357,7 +357,7 @@
                   symbolName = "-[NMTableSeparatorView setSectionLabel:]"
                   moduleName = "nommit"
                   urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/Views/NMTableSeparatorView.h"
-                  timestampString = "433927790.813294"
+                  timestampString = "434312884.971166"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -442,6 +442,38 @@
             startingLineNumber = "124"
             endingLineNumber = "124"
             landmarkName = "-performLoginWithFBSession:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "nommit/untitled folder/NMDeliveryPlacesTableViewController.m"
+            timestampString = "434242748.726459"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "-setShift:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "nommit/Sliding Menu/NMMenuViewController.m"
+            timestampString = "434243008.852697"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
+            landmarkName = "-showOrders"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
