@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) UIButton *callButton;
 @property (nonatomic, strong) UIButton *emailButton;
+@property (nonatomic, strong) UIButton *textButton;
 
 @end
