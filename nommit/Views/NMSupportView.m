@@ -71,7 +71,7 @@
 }
 
 - (void)setupEmailButton {
-    _emailButton = [self createButtonWithTitle:@"Email Us" withBackgroundColor:UIColorFromRGB(0x009297)];
+    _emailButton = [self createButtonWithTitle:@"Email Us" withBackgroundColor:UIColorFromRGB(0x818181)];
     [self addSubview:_emailButton];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[_emailButton]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_emailButton)]];
