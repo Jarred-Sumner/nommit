@@ -31,9 +31,9 @@
     [self setupIcon];
 
     NSDictionary *views = NSDictionaryOfVariableBindings(_numberOfFoodAvailableLabel, _iconImageView);
-    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_iconImageView]-5-[_numberOfFoodAvailableLabel]-15-|" options:0 metrics:nil views:views]];
+    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_numberOfFoodAvailableLabel]-5-[_iconImageView]-15-|" options:0 metrics:nil views:views]];
     [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-2-[_numberOfFoodAvailableLabel]-2-|" options:0 metrics:nil views:views]];
-    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_iconImageView]-16-|" options:0 metrics:nil views:views]];
+    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_iconImageView]-13-|" options:0 metrics:nil views:views]];
 
     return self;
 }
