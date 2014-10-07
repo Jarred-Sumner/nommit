@@ -13,6 +13,7 @@
 		83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0319B5242B00524801 /* CoreImage.framework */; };
 		83291B0619B5243600524801 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0519B5243600524801 /* Security.framework */; };
 		83291CE519D129CE00A29B3C /* NMPlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83291CE419D129CE00A29B3C /* NMPlacesTableViewController.m */; };
+		832EB80619E39A5E00FF3BEF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 832EB80519E39A5E00FF3BEF /* Crashlytics.framework */; };
 		8331FA4119DD402200D78ECD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8331FA4019DD402100D78ECD /* AudioToolbox.framework */; };
 		8332FC0F19B3D447000D56AB /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */; };
 		83454F4719DA398C005CEA8C /* _NMDeliveryPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 83454F4419DA398C005CEA8C /* _NMDeliveryPlace.m */; };
@@ -170,6 +171,7 @@
 		83291B0519B5243600524801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		83291CE319D129CE00A29B3C /* NMPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMPlacesTableViewController.h; sourceTree = "<group>"; };
 		83291CE419D129CE00A29B3C /* NMPlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMPlacesTableViewController.m; sourceTree = "<group>"; };
+		832EB80519E39A5E00FF3BEF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8331FA4019DD402100D78ECD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8332FC0E19B3D447000D56AB /* Current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Current.xcdatamodel; sourceTree = "<group>"; };
 		83454F4319DA398C005CEA8C /* _NMDeliveryPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMDeliveryPlace.h; path = Model/_NMDeliveryPlace.h; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 				8D51D2B819B66D0100920F69 /* Accelerate.framework in Frameworks */,
 				83291B0619B5243600524801 /* Security.framework in Frameworks */,
 				83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */,
+				832EB80619E39A5E00FF3BEF /* Crashlytics.framework in Frameworks */,
 				83291B0219B5242500524801 /* CoreVideo.framework in Frameworks */,
 				8DD3FC3319B2512900DAFCDB /* CoreGraphics.framework in Frameworks */,
 				8DD3FC3519B2512900DAFCDB /* UIKit.framework in Frameworks */,
@@ -620,6 +623,7 @@
 		8DD3FC2F19B2512900DAFCDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				832EB80519E39A5E00FF3BEF /* Crashlytics.framework */,
 				8331FA4019DD402100D78ECD /* AudioToolbox.framework */,
 				830067A219DACE4A00AA89D0 /* CoreMedia.framework */,
 				837FCA0719C7E10F00846C62 /* AVFoundation.framework */,
@@ -899,6 +903,7 @@
 				8DD3FC2A19B2512900DAFCDB /* Frameworks */,
 				8DD3FC2B19B2512900DAFCDB /* Resources */,
 				DBA4CF18DA734625B24A115A /* Copy Pods Resources */,
+				832EB80419E39A2F00FF3BEF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1006,6 +1011,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		832EB80419E39A2F00FF3BEF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 31fe8f31e5f07653f483f7db9bf622029dd41d84 0cc0c983c8ef5093354a22f684c626b800e546a356ffdc43bcda7bd3640dcc18\n";
 		};
 		DBA4CF18DA734625B24A115A /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1262,6 +1280,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "nommit/nommit-Prefix.pch";
@@ -1280,6 +1299,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "nommit/nommit-Prefix.pch";
