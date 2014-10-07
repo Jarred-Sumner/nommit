@@ -33,7 +33,6 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];
     [self setupRefreshing];
     return self;
@@ -42,6 +41,8 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.title = @"Pick Delivery Places";
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(didTapCancel:)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
@@ -49,6 +50,8 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleDone target:self action:@selector(didTapStartShift:)];
     
     self.navigationItem.rightBarButtonItem = rightBarButton;
+
+    [self.fetchedResultsController performFetch:nil];
 }
 
 - (void)setShift:(NMShift *)shift {
@@ -72,7 +75,6 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     [super viewDidLoad];
     UIEdgeInsets inset = UIEdgeInsetsMake(20, 0, 0, 0);
     self.tableView.contentInset = inset;
-    [self.fetchedResultsController performFetch:nil];
 
 }
 
@@ -190,6 +192,9 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
      NMPlaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMCellIdentifier];
+    if (!cell) {
+        cell = [[NMPlaceTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NMCellIdentifier];
+    }
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -220,7 +225,6 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 - (void)configureCell:(NMPlaceTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.placeLabel.text = place.name;
-    
 
     if ([self isCellActiveAtIndexPath:indexPath] || [self.placeIDs containsObject:place.uid]) {
         [self.placeIDs addObject:place.uid];
@@ -228,7 +232,6 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     } else if (!cell.selected) {
         cell.iconImageView.hidden = YES;
     }
-    
 }
 
 - (BOOL)isCellActiveAtIndexPath:(NSIndexPath*)indexPath {

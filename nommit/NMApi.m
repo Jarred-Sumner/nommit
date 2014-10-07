@@ -82,14 +82,37 @@ static NSString *NMApiBaseURLString = API_URL;
      return dateFormatter;
 }
 
-#pragma mark - Error Handling
+#pragma mark - Persistence
 
-+ (NMApiCompletionBlock)completionBlockWithSaving:(NMApiCompletionBlock)completion {
++ (NMApiCompletionBlock)completionBlockWithPersistence:(NMApiCompletionBlock)completion {
     return ^(id response, NSError *error) {
         if (completion) completion(response, error);
         [[NMApi instance].managedObjectContext MR_saveToPersistentStoreAndWait];
     };
 }
+
+- (NSURLSessionDataTask*)POST:(NSString *)URLString parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
+    return [super POST:URLString parameters:parameters completion:[[self class] completionBlockWithPersistence:completion]];
+}
+
+- (NSURLSessionDataTask*)PUT:(NSString *)URLString parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
+    return [super PUT:URLString parameters:parameters completion:[[self class] completionBlockWithPersistence:completion]];
+}
+
+- (NSURLSessionDataTask*)GET:(NSString *)URLString parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
+    return [super GET:URLString parameters:parameters completion:[[self class] completionBlockWithPersistence:completion]];
+    
+}
+
+- (NSURLSessionDataTask*)HEAD:(NSString *)URLString parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
+    return [super HEAD:URLString parameters:parameters completion:[[self class] completionBlockWithPersistence:completion]];
+}
+
+- (NSURLSessionDataTask*)PATCH:(NSString *)URLString parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
+    return [super PATCH:URLString parameters:parameters completion:[[self class] completionBlockWithPersistence:completion]];
+}
+
+#pragma mark - Error Handling
 
 + (NMApiCompletionBlock)completionWithErrorHandling:(NMApiCompletionBlock)completion {
     return ^(id response, NSError *error) {
@@ -104,43 +127,20 @@ static NSString *NMApiBaseURLString = API_URL;
     };
 }
 
-- (NSURLSessionDataTask*)POST:(NSString *)URLString parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
-    return [super POST:URLString parameters:parameters completion:[[self class] completionBlockWithSaving:completion]];
-    
-}
-
 - (NSURLSessionDataTask*)POST:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
     return [self POST:URLString parameters:parameters completion:[NMApi completionWithErrorHandling:completion]];
-}
-
-- (NSURLSessionDataTask*)PUT:(NSString *)URLString parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
-    return [super PUT:URLString parameters:parameters completion:[[self class] completionBlockWithSaving:completion]];
 }
 
 - (NSURLSessionDataTask*)PUT:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
     return [self PUT:URLString parameters:parameters completion:[NMApi completionWithErrorHandling:completion]];
 }
 
-- (NSURLSessionDataTask*)GET:(NSString *)URLString parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
-    return [super GET:URLString parameters:parameters completion:[[self class] completionBlockWithSaving:completion]];
-
-}
-
 - (NSURLSessionDataTask*)GET:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
     return [self GET:URLString parameters:parameters completion:[NMApi completionWithErrorHandling:completion]];
 }
 
-- (NSURLSessionDataTask*)HEAD:(NSString *)URLString parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
-    return [super HEAD:URLString parameters:parameters completion:[[self class] completionBlockWithSaving:completion]];
-
-}
-
 - (NSURLSessionDataTask*)HEAD:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
     return [self HEAD:URLString parameters:parameters completion:[NMApi completionWithErrorHandling:completion]];
-}
-
-- (NSURLSessionDataTask*)PATCH:(NSString *)URLString parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
-    return [super PATCH:URLString parameters:parameters completion:[[self class] completionBlockWithSaving:completion]];
 }
 
 - (NSURLSessionDataTask*)PATCH:(NSString *)URLString parameters:(NSDictionary *)parameters completionWithErrorHandling:(void (^)(id, NSError *))completion {
