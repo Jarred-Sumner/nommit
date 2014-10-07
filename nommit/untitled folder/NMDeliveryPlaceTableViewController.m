@@ -242,9 +242,8 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     
     __block NMDeliveryPlaceTableViewController *this = self;
     [[NMApi instance] GET:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
-        if (!error) {
             this.shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[[NMApi instance] managedObjectContext] error:nil];
-        }
+
         
     }];
 }
@@ -296,14 +295,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 #pragma mark - Footer View
 
 - (void)updateRevenueText {
-    __block double revenue = 0;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"food in %@ AND stateID = %@ AND courier = %@", self.place.foods, @(NMOrderStateDelivered), NMCourier.currentCourier];
-    NSArray *orders = [NMOrder MR_findAllWithPredicate:predicate];
-    for (NMOrder *order in orders) {
-        revenue += [order.priceInCents doubleValue];
-    }
-    
-    self.footerView.revenueLabel.text = [NSString stringWithFormat:@"Total Delivered: $%@", @(revenue / 100)];
+    self.footerView.revenueLabel.text = [NSString stringWithFormat:@"Total Delivered: $%@", @(_shift.revenueGeneratedInCentsValue / 100)];
 }
 
 - (void)endShift {

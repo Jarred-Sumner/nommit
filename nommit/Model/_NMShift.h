@@ -6,6 +6,7 @@
 
 extern const struct NMShiftAttributes {
 	__unsafe_unretained NSString *places;
+	__unsafe_unretained NSString *revenueGeneratedInCents;
 	__unsafe_unretained NSString *stateID;
 	__unsafe_unretained NSString *uid;
 } NMShiftAttributes;
@@ -20,6 +21,7 @@ extern const struct NMShiftFetchedProperties {
 
 @class NMCourier;
 @class NMDeliveryPlace;
+
 
 
 
@@ -43,6 +45,20 @@ extern const struct NMShiftFetchedProperties {
 
 
 //- (BOOL)validatePlaces:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* revenueGeneratedInCents;
+
+
+
+@property int64_t revenueGeneratedInCentsValue;
+- (int64_t)revenueGeneratedInCentsValue;
+- (void)setRevenueGeneratedInCentsValue:(int64_t)value_;
+
+//- (BOOL)validateRevenueGeneratedInCents:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -107,6 +123,15 @@ extern const struct NMShiftFetchedProperties {
 
 - (NSString*)primitivePlaces;
 - (void)setPrimitivePlaces:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveRevenueGeneratedInCents;
+- (void)setPrimitiveRevenueGeneratedInCents:(NSNumber*)value;
+
+- (int64_t)primitiveRevenueGeneratedInCentsValue;
+- (void)setPrimitiveRevenueGeneratedInCentsValue:(int64_t)value_;
 
 
 

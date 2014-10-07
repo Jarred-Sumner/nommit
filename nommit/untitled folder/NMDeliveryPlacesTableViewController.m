@@ -33,6 +33,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     self.placeIDs = [[NSMutableOrderedSet alloc] initWithCapacity:1];
+
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];
     [self setupRefreshing];

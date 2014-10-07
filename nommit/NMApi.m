@@ -86,8 +86,8 @@ static NSString *NMApiBaseURLString = API_URL;
 
 + (NMApiCompletionBlock)completionBlockWithPersistence:(NMApiCompletionBlock)completion {
     return ^(id response, NSError *error) {
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         if (completion) completion(response, error);
-        [[NMApi instance].managedObjectContext MR_saveToPersistentStoreAndWait];
     };
 }
 

@@ -5,6 +5,7 @@
 
 const struct NMShiftAttributes NMShiftAttributes = {
 	.places = @"places",
+	.revenueGeneratedInCents = @"revenueGeneratedInCents",
 	.stateID = @"stateID",
 	.uid = @"uid",
 };
@@ -43,6 +44,11 @@ const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"revenueGeneratedInCentsValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"revenueGeneratedInCents"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"stateIDValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"stateID"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -62,6 +68,32 @@ const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 
 @dynamic places;
 
+
+
+
+
+
+@dynamic revenueGeneratedInCents;
+
+
+
+- (int64_t)revenueGeneratedInCentsValue {
+	NSNumber *result = [self revenueGeneratedInCents];
+	return [result longLongValue];
+}
+
+- (void)setRevenueGeneratedInCentsValue:(int64_t)value_ {
+	[self setRevenueGeneratedInCents:[NSNumber numberWithLongLong:value_]];
+}
+
+- (int64_t)primitiveRevenueGeneratedInCentsValue {
+	NSNumber *result = [self primitiveRevenueGeneratedInCents];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveRevenueGeneratedInCentsValue:(int64_t)value_ {
+	[self setPrimitiveRevenueGeneratedInCents:[NSNumber numberWithLongLong:value_]];
+}
 
 
 

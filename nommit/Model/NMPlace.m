@@ -25,11 +25,11 @@ static NSString *NMActivePlaceKey = @"ActivePlace";
 }
 
 - (NSArray*)foods {
-    NSMutableArray *foods = [[NSMutableArray alloc] init];
+    NSMutableSet *foods = [[NSMutableSet alloc] init];
     [[NMDeliveryPlace MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"place = %@", self]] enumerateObjectsUsingBlock:^(NMDeliveryPlace *deliveryPlace, NSUInteger idx, BOOL *stop) {
         [foods addObjectsFromArray:deliveryPlace.foods.allObjects];
     }];
-    return foods;
+    return [foods allObjects];
 }
 
 @end

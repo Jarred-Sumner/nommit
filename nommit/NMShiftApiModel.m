@@ -18,6 +18,7 @@
              @"uid": @"id",
              @"stateID" : @"state_id",
              @"deliveryPlaces" : @"delivery_places",
+             @"revenueGeneratedInCents" : @"revenue_generated_in_cents",
              @"places" : NSNull.null
              };
 }

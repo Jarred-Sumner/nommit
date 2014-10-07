@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSNumber *uid;
 @property (nonatomic, strong) NSNumber *stateID;
+@property (nonatomic, strong) NSNumber *revenueGeneratedInCents;
 
 @property (nonatomic, strong) NMCourierApiModel *courier;
 @property (nonatomic, strong) NSArray *deliveryPlaces;
