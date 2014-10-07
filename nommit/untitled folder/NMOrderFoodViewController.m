@@ -61,8 +61,6 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     _place = place;
     
     _orderModel = [[NMOrderApiModel alloc] init];
-    _orderModel.food = [MTLManagedObjectAdapter modelOfClass:[NMFoodApiModel class] fromManagedObject:_food error:nil];
-    _orderModel.place = [MTLManagedObjectAdapter modelOfClass:[NMPlaceApiModel class] fromManagedObject:_place error:nil];
 
 
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
