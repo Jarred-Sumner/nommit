@@ -205,7 +205,7 @@
 - (void)setupTime
 {
     UIImageView *timeIcon = [[UIImageView alloc] init];
-    timeIcon.image = [UIImage imageNamed:@"TimeIcon"];
+    timeIcon.image = [UIImage imageNamed:@"TruckIcon"];
     timeIcon.translatesAutoresizingMaskIntoConstraints = NO;
     [timeIcon setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     [timeIcon setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
@@ -222,7 +222,7 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[timeIcon]-5-[_timeLabel]-18-|" options:0 metrics:nil views:views]];
 
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-17-[timeIcon]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[timeIcon]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_timeLabel]" options:0 metrics:nil views:views]];
     
 }
