@@ -25,7 +25,7 @@
 static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
 - (id)initWithShift:(NMShift *)shift {
-    self = [super initWithStyle:UITableViewStylePlain];
+    self = [self initWithStyle:UITableViewStylePlain];
     self.shift = shift;
     return self;
 }
@@ -114,7 +114,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     // They don't have a courier part of the seller
     // AND
     // The deliveryPlace state is not ready and not arrived
-    NSPredicate *deliveryPlaces = [NSPredicate predicateWithFormat:@"(deliveryPlaces.@count == 0) OR  (SUBQUERY(deliveryPlaces, $dp, $dp.shift.courier IN %@ AND $dp.shift.courier != %@ AND ($dp.stateID == %@ OR $dp.stateID == %@) AND $dp.shift.stateID == %@).@count == 0)", NMCourier.currentCourier.seller.couriers, NMCourier.currentCourier, @(NMShiftStateActive), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateArrived)];
+    NSPredicate *deliveryPlaces = [NSPredicate predicateWithFormat:@"(deliveryPlaces.@count == 0) OR  (SUBQUERY(deliveryPlaces, $dp, $dp.shift.courier IN %@ AND $dp.shift.courier != %@ AND ($dp.stateID == %@ OR $dp.stateID == %@) AND $dp.shift.stateID == %@).@count == 0)", NMCourier.currentCourier.seller.couriers, NMCourier.currentCourier, @(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMShiftStateActive)];
     
     _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:deliveryPlaces groupBy:nil delegate: self];
     return _fetchedResultsController;
