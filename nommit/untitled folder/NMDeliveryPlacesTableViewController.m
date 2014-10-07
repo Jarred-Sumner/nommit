@@ -27,6 +27,11 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 - (id)initWithShift:(NMShift *)shift {
     self = [super initWithStyle:UITableViewStylePlain];
     self.shift = shift;
+    return self;
+}
+
+- (instancetype)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];

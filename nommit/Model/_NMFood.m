@@ -11,6 +11,7 @@ const struct NMFoodAttributes NMFoodAttributes = {
 	.orderGoal = @"orderGoal",
 	.price = @"price",
 	.rating = @"rating",
+	.startDate = @"startDate",
 	.stateID = @"stateID",
 	.subtitle = @"subtitle",
 	.thumbnailImageURL = @"thumbnailImageURL",
@@ -186,6 +187,13 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 - (void)setPrimitiveRatingValue:(float)value_ {
 	[self setPrimitiveRating:[NSNumber numberWithFloat:value_]];
 }
+
+
+
+
+
+@dynamic startDate;
+
 
 
 

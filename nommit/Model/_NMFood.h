@@ -12,6 +12,7 @@ extern const struct NMFoodAttributes {
 	__unsafe_unretained NSString *orderGoal;
 	__unsafe_unretained NSString *price;
 	__unsafe_unretained NSString *rating;
+	__unsafe_unretained NSString *startDate;
 	__unsafe_unretained NSString *stateID;
 	__unsafe_unretained NSString *subtitle;
 	__unsafe_unretained NSString *thumbnailImageURL;
@@ -31,6 +32,7 @@ extern const struct NMFoodFetchedProperties {
 @class NMDeliveryPlace;
 @class NMOrder;
 @class NMSeller;
+
 
 
 
@@ -135,6 +137,16 @@ extern const struct NMFoodFetchedProperties {
 - (void)setRatingValue:(float)value_;
 
 //- (BOOL)validateRating:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSDate* startDate;
+
+
+
+//- (BOOL)validateStartDate:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -286,6 +298,12 @@ extern const struct NMFoodFetchedProperties {
 
 - (float)primitiveRatingValue;
 - (void)setPrimitiveRatingValue:(float)value_;
+
+
+
+
+- (NSDate*)primitiveStartDate;
+- (void)setPrimitiveStartDate:(NSDate*)value;
 
 
 

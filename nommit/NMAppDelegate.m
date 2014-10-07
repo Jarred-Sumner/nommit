@@ -27,8 +27,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [MagicalRecord setupAutoMigratingCoreDataStack];
-    [MagicalRecord cleanUp];
-    [MagicalRecord setupAutoMigratingCoreDataStack];
     [self resetUI];
     [self.window makeKeyAndVisible];
     
