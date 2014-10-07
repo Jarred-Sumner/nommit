@@ -323,7 +323,9 @@ static NSInteger NMOrdersSection = 1;
         NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
         
         UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
+        if (shift) {
             [navVC pushViewController:ordersVC animated:NO];
+        }
         [this presentViewController:navVC animated:YES completion:nil];
         
     }];
