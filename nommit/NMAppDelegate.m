@@ -17,6 +17,7 @@
 #import "NMFoodsTableViewController.h"
 #import "NMActivateAccountTableViewController.h"
 #import "NMRateOrderTableViewController.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface NMAppDelegate ()
 
@@ -26,8 +27,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Crashlytics startWithAPIKey:@"31fe8f31e5f07653f483f7db9bf622029dd41d84"];
     [MagicalRecord setupAutoMigratingCoreDataStack];
     [self resetUI];
+    
     [self.window makeKeyAndVisible];
     
     [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
@@ -35,6 +38,7 @@
     if ([NMSession isUserLoggedIn]) {
         [self checkForActiveOrders];
     }
+    
     return YES;
 }
 
