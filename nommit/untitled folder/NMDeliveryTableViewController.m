@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, NMDeliveryCountdownState) {
 };
 
 static NSTimeInterval NMOrderFetchInterval = 10;
+static NSTimeInterval NMCountdownFlashInterval = 0.75f;
 
 
 @interface NMDeliveryTableViewController ()<APParallaxViewDelegate, NSFetchedResultsControllerDelegate>
@@ -205,12 +206,17 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         
         _countdownCell.deliveryPlaceLabel.text = [NSString stringWithFormat:@"%@ arrived at %@", _order.courier.user.name, _order.place.name];
         _countdownCell.statusLabel.text = [NSString stringWithFormat:@"Pick up in Lobby Now"];
+        [UIView animateWithDuration:NMCountdownFlashInterval delay:0 options:(UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse) animations:^{
+            _countdownCell.statusLabel.layer.opacity = 0.f;
+            _countdownCell.statusLabel.layer.opacity = 1.f;
+        } completion:NULL];
     } else if (state == NMDeliveryCountdownStateArrivingSoon) {
         _countdownCell.timerLabel.hidden = YES;
         [_countdownCell.timerLabel pause];
         _countdownCell.statusLabel.hidden = NO;
         _countdownCell.deliveryPlaceLabel.text = [NSString stringWithFormat:@"Arriving at %@ in", _order.place.name];
         _countdownCell.statusLabel.text = @"Any Moment";
+        [_countdownCell.layer removeAllAnimations];
     } else if (state == NMDeliveryCountdownStateCounting) {
         _countdownCell.timerLabel.hidden = NO;
         _countdownCell.statusLabel.hidden = YES;
@@ -218,6 +224,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         [_countdownCell.timerLabel startWithEndingBlock:^(NSTimeInterval countTime) {
             this.state = NMDeliveryCountdownStateArrivingSoon;
         }];
+        [_countdownCell.layer removeAllAnimations];
     }
     if (state == NMDeliveryCountdownStateArrived && _state != NMDeliveryCountdownStateArrived) {
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);

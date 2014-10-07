@@ -311,32 +311,22 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showOrders {
-    NMShift *currentShift = [[NMCourier currentCourier] currentShift];
-    if (currentShift) {
-        [SVProgressHUD showWithStatus:@"Loading Deliveries..." maskType:SVProgressHUDMaskTypeBlack];
-        
-        __block NMMenuViewController *this = self;
-        [[NMApi instance] GET:@"shifts" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-            NMShift *shift = [[NMCourier currentCourier] currentShift];
-            
-            [SVProgressHUD showSuccessWithStatus:@"Loaded!"];
-            NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];
-            
-            NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
-            
-            UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
-            if (currentShift) {
-                [navVC pushViewController:ordersVC animated:NO];
-            }
-            [this presentViewController:navVC animated:YES completion:nil];
-            
-        }];
+    [SVProgressHUD showWithStatus:@"Loading Deliveries..." maskType:SVProgressHUDMaskTypeBlack];
 
-    } else {
-        NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] init];
+    __block NMMenuViewController *this = self;
+    [[NMApi instance] GET:@"shifts" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        NMShift *shift = [[NMCourier currentCourier] currentShift];
+        
+        [SVProgressHUD showSuccessWithStatus:@"Loaded!"];
+        NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];
+        
+        NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+        
         UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
-        [self presentViewController:navVC animated:YES completion:nil];
-    }
+            [navVC pushViewController:ordersVC animated:NO];
+        [this presentViewController:navVC animated:YES completion:nil];
+        
+    }];
 }
 
 

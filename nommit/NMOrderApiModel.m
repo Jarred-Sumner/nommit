@@ -83,22 +83,16 @@
     return [NSSet setWithObject:@"uid"];
 }
 
-#pragma mark - Validations
-
-- (BOOL)isValid {
-    return self.place && self.food.isActive;
-}
-
 #pragma mark - Create Params
 
-- (NSDictionary*)createParams {
+- (NSDictionary*)createParamsWithFood:(NMFood*)food place:(NMPlace*)place {
     if (!_promoCode) _promoCode = @"";
     if (!_quantity || _quantity.integerValue < 1) _quantity = @1;
     return @{
              @"quantity" : _quantity,
              @"promo_code" : _promoCode,
-             @"place_id" : _place.uid,
-             @"food_id" : _food.uid
+             @"place_id" : place.uid,
+             @"food_id" : food.uid
              };
 }
 

@@ -33,14 +33,9 @@
     [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
 
     if ([NMSession isUserLoggedIn]) {
-        [self checkForPendingDeliveries];
         [self checkForActiveOrders];
     }
     return YES;
-}
-
-- (void)checkForPendingDeliveries {
-    [[NMApi instance] GET:@"shifts" parameters:nil completion:NULL];
 }
 
 - (void)checkForActiveOrders {

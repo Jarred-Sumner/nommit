@@ -40,6 +40,8 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
 @interface NMOrderFoodViewController ()<APParallaxViewDelegate>
 
+@property BOOL confirmed;
+
 // @property (nonatomic, strong) NMOrderFoodInfoCell *infoCell;
 @property (nonatomic, strong) NMOrderFoodBasicInfoTableViewCell *infoCell;
 @property (nonatomic, strong) NMOrderFoodDescriptionTableViewCell *descriptionCell;
@@ -174,12 +176,14 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 #pragma mark - order food button
 - (void)orderFoodButtonPressed
 {
-    if (_confirmAddressCell.checkbox.checkState != M13CheckboxStateChecked) {
+    if (_confirmAddressCell.checkbox.checkState == M13CheckboxStateUnchecked) _confirmed = NO;
+    if (_confirmAddressCell.checkbox.checkState != M13CheckboxStateChecked && !_confirmed) {
         __block NMOrderFoodViewController *this = self;
         SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Confirm Pickup Location" andMessage:[NSString stringWithFormat:@"Please confirm you will meet in the lobby of %@ to pick up your order.", _place.name]];
         [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
         [alert addButtonWithTitle:@"Confirm" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
             [_confirmAddressCell.checkbox setCheckState:M13CheckboxStateChecked];
+            this.confirmed = YES;
             [this orderFoodButtonPressed];
         }];
         [alert show];
@@ -188,23 +192,18 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     _orderModel.promoCode = _promoCell.textField.text;
 
     __weak NMOrderFoodViewController *this = self;
-    if (_orderModel.isValid) {
-        [SVProgressHUD showWithStatus:@"Placing Order..." maskType:SVProgressHUDMaskTypeBlack];
-        [[NMApi instance] POST:@"orders" parameters:_orderModel.createParams completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-            [SVProgressHUD showSuccessWithStatus:@"Order Placed!"];
+    [SVProgressHUD showWithStatus:@"Placing Order..." maskType:SVProgressHUDMaskTypeBlack];
+    NSDictionary *params = [_orderModel createParamsWithFood:_food place:_place];
+    [[NMApi instance] POST:@"orders" parameters:params completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        [SVProgressHUD showSuccessWithStatus:@"Order Placed!"];
 
-            NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
+        NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
 
-            NMDeliveryTableViewController *deliverVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
+        NMDeliveryTableViewController *deliverVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
 
-            [this.navigationController pushViewController:deliverVC animated:YES];
-        
-        }];
-    } else {
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-        [SVProgressHUD showErrorWithStatus:@"Please confirm that you will meet in the lobby for pickup"];
-    }
-
+        [this.navigationController pushViewController:deliverVC animated:YES];
+    
+    }];
 }
 
 # pragma mark - Respond to quantity changes

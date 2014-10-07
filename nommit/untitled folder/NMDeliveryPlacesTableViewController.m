@@ -32,6 +32,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
+    self.placeIDs = [[NSMutableOrderedSet alloc] initWithCapacity:1];
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];
     [self setupRefreshing];
@@ -56,7 +57,6 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
 - (void)setShift:(NMShift *)shift {
     _shift = shift;
-    self.placeIDs = [[NSMutableOrderedSet alloc] initWithCapacity:1];
     if (shift) {
         NSArray *places = [NMDeliveryPlace MR_findAllSortedBy:@"index" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"shift = %@", shift]];
         for (NMDeliveryPlace *dp in places) {
