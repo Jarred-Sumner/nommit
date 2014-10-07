@@ -32,11 +32,21 @@
 }
 
 - (void)textButtonTouched {
-    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
-    controller.subject = @"Nommit Support";
-    controller.messageComposeDelegate = self;
-    controller.recipients = @[@"9255968005"];
-    [self presentViewController:controller animated:YES completion:nil];
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel:+11111"]]) {
+        MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+        controller.subject = @"Nommit Support";
+        controller.messageComposeDelegate = self;
+        controller.recipients = @[@"+19253858898"];
+        [self presentViewController:controller animated:YES completion:nil];
+    } else {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Cannot Text" andMessage:@"This device doesn't support texting. Sorry about that."];
+        [alert addButtonWithTitle:@"It's Okay" type:SIAlertViewButtonTypeDefault handler:NULL];
+        [alert addButtonWithTitle:@"I'll Email" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+            [self emailButtonTouched];
+        }];
+        [alert show];
+    }
+    
 }
 
 - (void)callButtonTouched {
@@ -47,24 +57,28 @@
         [[UIApplication sharedApplication] openURL:phoneUrl];
     } else
     {
-        UIAlertView *calert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Call facility is not available!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [calert show];
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Can't Place Calls" andMessage:@"This device can't place phone calls. Sorry about that."];
+        [alert addButtonWithTitle:@"It's Okay" type:SIAlertViewButtonTypeDefault handler:NULL];
+        [alert addButtonWithTitle:@"I'll Email" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+            [self emailButtonTouched];
+        }];
+        [alert show];
     }
     
 }
 
 - (void)emailButtonTouched {
     // Email Subject
-    NSString *emailTitle = @"Nommit Support";
+    NSString *subject = @"Help with Nommit";
     // Email Content
-    NSString *messageBody = @"";
+    NSString *messageBody = @"Hey Nommit, <br> I'm having some trouble. Here's an explanation of the problem, and what if any steps I can think of to reproduce it: <br><br>";
     // To address
     NSArray *toRecipents = [NSArray arrayWithObject:@"support@getnommit.com"];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
     mc.mailComposeDelegate = self;
-    [mc setSubject:emailTitle];
-    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setSubject:subject];
+    [mc setMessageBody:messageBody isHTML:YES];
     [mc setToRecipients:toRecipents];
     
     // Present mail view controller on screen
