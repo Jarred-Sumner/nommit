@@ -198,6 +198,10 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     CGPoint buttonOriginInTableView = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
     NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NMOrderTableViewCell *cell = (NMOrderTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    cell.doneButton.hidden = YES;
+    cell.spinnerView.hidden = NO;
+    [cell.spinnerView startAnimating];
     
     NSString *phNo = order.user.phone;
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",phNo]];
@@ -213,6 +217,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)orderComplete:(id)sender
 {
+    
     CGPoint buttonOriginInTableView = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
     NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
