@@ -55,6 +55,7 @@ PODS:
   - JCAutocompletingSearch (0.9.6)
   - JVFloatLabeledTextField (0.0.9)
   - libPhoneNumber-iOS (0.7.3)
+  - LLARingSpinnerView (0.1.2)
   - Lockbox (1.4.9)
   - M13Checkbox (1.1.2)
   - MagicalRecord (2.2):
@@ -99,6 +100,7 @@ DEPENDENCIES:
   - JCAutocompletingSearch
   - JVFloatLabeledTextField
   - libPhoneNumber-iOS (~> 0.7)
+  - LLARingSpinnerView
   - Lockbox
   - M13Checkbox (~> 1.1.0)
   - MagicalRecord
@@ -136,6 +138,7 @@ SPEC CHECKSUMS:
   JCAutocompletingSearch: cf30ed8eded452d2ec52efd9c57c4b6467e5d266
   JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
   libPhoneNumber-iOS: 98fc07d70c8fdb5e6a8e3442c37e97353065c20e
+  LLARingSpinnerView: b9ee4453c976bc8edca6cc41a4d7e41280f85fc6
   Lockbox: cfe87dbbce6b5c6d7cfeefc3fe6594ef55919b11
   M13Checkbox: e87ebe28627368b1c6d2233282d711a3854dfe3f
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
@@ -154,4 +157,4 @@ SPEC CHECKSUMS:
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
   TYMProgressBarView: 3798cb41cb7eea63714d5db5793c06f31e37b4d5
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.1

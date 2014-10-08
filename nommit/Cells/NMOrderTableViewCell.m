@@ -24,6 +24,7 @@
         [self setupName];
         [self setupOrderName];
         [self setupCallAndCompleteButton];
+        [self setupSpinner];
     }
     return self;
 }
@@ -86,6 +87,30 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_callButton]-10-[_doneButton]-15-|" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_callButton]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_doneButton]" options:0 metrics:nil views:views]];
+}
+
+- (void)setupSpinner {
+    // Initialize the progress view
+    _spinnerView = [[LLARingSpinnerView alloc] init];
+    
+    // Optionally set the current progress
+    _spinnerView.lineWidth = 1.5f;
+    
+    // Optionally change the tint color
+    _spinnerView.tintColor = [NMColors mainColor];
+    
+    _spinnerView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    // Add it as a subview
+    [self.contentView addSubview:_spinnerView];
+    
+    _spinnerView.hidden = YES;
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_callButton, _spinnerView);
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_callButton]-10-[_spinnerView]-15-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_spinnerView]" options:0 metrics:nil views:views]];
+
 }
 
 @end

@@ -28,6 +28,7 @@ target "nommit" do
   pod 'AKNumericFormatter'
   pod 'ParallaxBlur'
   pod 'MZTimerLabel'
+  pod 'LLARingSpinnerView'
 end
 
 
