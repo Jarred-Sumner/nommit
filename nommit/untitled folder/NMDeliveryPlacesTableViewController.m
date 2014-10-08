@@ -272,10 +272,9 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     __block NMDeliveryPlacesTableViewController *this = self;
     
     [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"place_ids": [self.placeIDs array] } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[[NMApi instance] managedObjectContext] error:nil];
-        this.shift = shift;
+        this.shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[[NMApi instance] managedObjectContext] error:nil];
         
-        NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+        NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:this.shift];
         [self.navigationController pushViewController:dpTV animated:YES];
         [SVProgressHUD showSuccessWithStatus:@"Updated Shift!"];
     }];
