@@ -255,7 +255,11 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
 - (void)fetchOrderStatus {
     __block NMDeliveryTableViewController *this = self;
     [[NMApi instance] GET:[NSString stringWithFormat:@"orders/%@", _order.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
-            this.order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NMApi instance].managedObjectContext error:&error];
+        
+        __block NMOrderApiModel *orderModel = response.result;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            this.order = [MTLManagedObjectAdapter managedObjectFromModel:orderModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
+        });
     }];
 }
 

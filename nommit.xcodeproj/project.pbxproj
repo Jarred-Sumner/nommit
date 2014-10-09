@@ -1949,43 +1949,6 @@ fi
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>8D51D2A719B58DA500920F69</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>NMItemsCollectionViewController.h</string>
-			<key>path</key>
-			<string>untitled folder/NMItemsCollectionViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8D51D2A819B58DA500920F69</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>NMItemsCollectionViewController.m</string>
-			<key>path</key>
-			<string>untitled folder/NMItemsCollectionViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8D51D2A919B58DA500920F69</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8D51D2A819B58DA500920F69</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>8D51D2AA19B6382D00920F69</key>
 		<dict>
 			<key>fileEncoding</key>
@@ -4546,7 +4509,6 @@ fi
 				<string>8D49F30819BE942600E60145</string>
 				<string>8DC5339A19DCDCCF00A841EB</string>
 				<string>83D6A9E219B822B8009A6D9B</string>
-				<string>8D51D2A919B58DA500920F69</string>
 				<string>8DEED51C19B270D700EE227A</string>
 				<string>8DCE836E19D53AF700D770D0</string>
 				<string>8DD3FC6C19B258F700DAFCDB</string>
@@ -5544,8 +5506,6 @@ fi
 			<array>
 				<string>8DEED51D19B299A000EE227A</string>
 				<string>8DEED51E19B299A000EE227A</string>
-				<string>8D51D2A719B58DA500920F69</string>
-				<string>8D51D2A819B58DA500920F69</string>
 				<string>8D6DE41F19B7B5AB008F64CE</string>
 				<string>8D6DE42019B7B5AB008F64CE</string>
 				<string>8D6DE42219B8342A008F64CE</string>

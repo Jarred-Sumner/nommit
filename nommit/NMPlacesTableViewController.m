@@ -62,7 +62,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     __weak NMPlacesTableViewController *this = self;
     [self.refreshControl beginRefreshing];
     
-    [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+    [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
         [this.refreshControl endRefreshing];
     }];
 }

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "549955ADED3E4CF69792F046"
+               BlueprintIdentifier = "C0028CA1DF51F2030E068133"
                BuildableName = "libPods-nommit-Lockbox.a"
                BlueprintName = "Pods-nommit-Lockbox"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -9,7 +9,9 @@
 #import "NMOrderTableViewCell.h"
 #import "NMColors.h"
 
-@interface NMOrderFoodTableViewCell
+@interface NMOrderTableViewCell()
+
+@property (nonatomic, strong) UIView *deliveryContainer;
 
 @end
 
@@ -23,8 +25,7 @@
         [self setupAvatar];
         [self setupName];
         [self setupOrderName];
-        [self setupCallAndCompleteButton];
-        [self setupSpinner];
+        [self setupButtons];
     }
     return self;
 }
@@ -68,7 +69,7 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-0-[_orderName]" options:0 metrics:nil views:views]];
 }
 
-- (void)setupCallAndCompleteButton
+- (void)setupButtons
 {
     _callButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _callButton.contentMode = UIViewContentModeScaleAspectFill;
@@ -76,40 +77,34 @@
     [_callButton setImage:[UIImage imageNamed:@"PhoneIcon"] forState:UIControlStateNormal];
     [self.contentView addSubview:_callButton];
     
+    _deliveryContainer = [[UIView alloc] init];
+    _deliveryContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:_deliveryContainer];
+    
     _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _doneButton.contentMode = UIViewContentModeScaleAspectFill;
     _doneButton.translatesAutoresizingMaskIntoConstraints = NO;
     [_doneButton setImage:[UIImage imageNamed:@"CheckMarkIcon"] forState:UIControlStateNormal];
-    [self.contentView addSubview:_doneButton];
+    [_deliveryContainer addSubview:_doneButton];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_callButton, _doneButton);
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_callButton]-10-[_doneButton]-15-|" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_callButton]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_doneButton]" options:0 metrics:nil views:views]];
-}
-
-- (void)setupSpinner {
-    // Initialize the progress view
-    _spinnerView = [[LLARingSpinnerView alloc] init];
-    
-    // Optionally set the current progress
-    _spinnerView.lineWidth = 1.5f;
-    
-    // Optionally change the tint color
-    _spinnerView.tintColor = [NMColors mainColor];
-    
-    _spinnerView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    // Add it as a subview
-    [self.contentView addSubview:_spinnerView];
-    
+    _spinnerView = [[UIActivityIndicatorView alloc] init];
     _spinnerView.hidden = YES;
+    _spinnerView.tintColor = [NMColors mainColor];
+    _spinnerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [_deliveryContainer addSubview:_spinnerView];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_callButton, _spinnerView);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_callButton, _spinnerView, _deliveryContainer, _doneButton);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_callButton]-10-[_spinnerView]-15-|" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_spinnerView]" options:0 metrics:nil views:views]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_callButton(30)]" options:0 metrics:nil views:views]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_callButton(30)]-5-[_deliveryContainer(30)]-10-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_deliveryContainer(30)]" options:0 metrics:nil views:views]];
+    
+    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_doneButton(30)]|" options:0 metrics:nil views:views]];
+    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_doneButton(30)]|" options:0 metrics:nil views:views]];
+    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_spinnerView(30)]|" options:0 metrics:nil views:views]];
+    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_spinnerView(30)]|" options:0 metrics:nil views:views]];
 
 }
 

@@ -75,7 +75,14 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self refreshPlace];
+    if (!_place) self.place = [NMPlace activePlace];
+    
+    if (_place) {
+        [self refreshPlace];
+    } else {
+        [self locationButtonTouched];
+    }
+    
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -96,8 +103,6 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 }
 
 - (void)setupDataSource {
-    if (!_place) _place = [NMPlace activePlace];
-    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshPlace) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
@@ -108,9 +113,11 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     [self.refreshControl beginRefreshing];
     
     [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@", _place.uid] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        this.place = [NMPlace activePlace];
-        [this.refreshControl endRefreshing];
-        [this.fetchedResultsController performFetch:nil];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [this.refreshControl endRefreshing];
+            [this.fetchedResultsController performFetch:nil];
+        });
     }];
 }
 
@@ -213,7 +220,9 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 }
 
 - (void)configureCell:(NMFoodTableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
-    cell.food = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NMDeliveryPlace *dp = [NMDeliveryPlace deliveryPlaceForFood:food place:_place];
+    [cell setFood:food arrivalTime:dp.arrivesAt];
 }
 
 #pragma mark - nav bar
@@ -241,7 +250,9 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     
     NMMenuNavigationController *navController =
     [[NMMenuNavigationController alloc] initWithRootViewController:placesVC];
-    [self presentViewController:navController animated:YES completion:nil];
+    [self presentViewController:navController animated:YES completion:^{
+        self.place = [NMPlace activePlace];
+    }];
 }
 
 

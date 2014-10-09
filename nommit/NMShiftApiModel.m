@@ -42,7 +42,7 @@
     return @{
              @"courier" : [NMCourierApiModel class],
              @"deliveryPlaces" : [NMDeliveryPlaceApiModel class],
-             };
+    };
 }
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {

@@ -41,13 +41,7 @@ install_resource()
       ;;
   esac
 }
-          install_resource "AMSmoothAlert/AMSmoothAlert/assets/checkMark.png"
-                    install_resource "AMSmoothAlert/AMSmoothAlert/assets/checkMark@2x.png"
-                    install_resource "AMSmoothAlert/AMSmoothAlert/assets/crossMark.png"
-                    install_resource "AMSmoothAlert/AMSmoothAlert/assets/crossMark@2x.png"
-                    install_resource "AMSmoothAlert/AMSmoothAlert/assets/info.png"
-                    install_resource "AMSmoothAlert/AMSmoothAlert/assets/info@2x.png"
-                    install_resource "DBCamera/DBCamera/Resources/DBCameraImages.xcassets"
+          install_resource "DBCamera/DBCamera/Resources/DBCameraImages.xcassets"
                     install_resource "DBCamera/DBCamera/Localizations/en.lproj"
                     install_resource "DBCamera/DBCamera/Localizations/es.lproj"
                     install_resource "DBCamera/DBCamera/Localizations/it.lproj"
@@ -290,7 +284,6 @@ install_resource()
                     install_resource "GPUImage/framework/Resources/lookup_miss_etikate.png"
                     install_resource "GPUImage/framework/Resources/lookup_soft_elegance_1.png"
                     install_resource "GPUImage/framework/Resources/lookup_soft_elegance_2.png"
-                    install_resource "JCAutocompletingSearch/Library/JCAutocompletingSearchStoryboard.storyboard"
                     install_resource "PaymentKit/PaymentKit/Resources/Cards/amex.png"
                     install_resource "PaymentKit/PaymentKit/Resources/Cards/amex@2x.png"
                     install_resource "PaymentKit/PaymentKit/Resources/Cards/cvc-amex.png"

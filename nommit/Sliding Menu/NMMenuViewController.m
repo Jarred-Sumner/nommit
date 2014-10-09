@@ -311,22 +311,25 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showOrders {
-    [SVProgressHUD showWithStatus:@"Loading Deliveries..." maskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeBlack];
 
     __block NMMenuViewController *this = self;
     [[NMApi instance] GET:@"shifts" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        NMShift *shift = [[NMCourier currentCourier] currentShift];
         
-        [SVProgressHUD showSuccessWithStatus:@"Loaded!"];
-        NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            for (NMShiftApiModel *shift in response.result) {
+                [MTLManagedObjectAdapter managedObjectFromModel:shift insertingIntoContext:localContext error:nil];
+            }
+        } completion:^(BOOL success, NSError *error) {
+            [[NMApi instance] GET:@"couriers/me" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+                
+                [SVProgressHUD showSuccessWithStatus:@"Loaded!"];
+                [this performSelectorOnMainThread:@selector(openDeliveriesPage) withObject:nil waitUntilDone:NO];
+            }];
+        }];
+
         
-        NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
-        
-        UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
-        if (shift) {
-            [navVC pushViewController:ordersVC animated:NO];
-        }
-        [this presentViewController:navVC animated:YES completion:nil];
+
         
     }];
 }
@@ -353,6 +356,20 @@ static NSInteger NMOrdersSection = 1;
     
     self.frostedViewController.contentViewController = navigationController;
     [self.frostedViewController hideMenuViewController];
+}
+
+- (void)openDeliveriesPage {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"courier.user = %@ AND stateID in %@", NMUser.currentUser, @[@(NMShiftStateActive),@(NMShiftStateHalted)]];
+    NMShift *shift = [NMShift MR_findFirstWithPredicate:predicate sortedBy:@"stateID" ascending:YES];
+    NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];
+    
+    NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+    
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
+    if (shift) {
+        [navVC pushViewController:ordersVC animated:NO];
+    }
+    [self presentViewController:navVC animated:YES completion:nil];
 }
 
 @end

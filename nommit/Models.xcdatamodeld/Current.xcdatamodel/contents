@@ -13,7 +13,7 @@
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="foods" toMany="YES" deletionRule="Nullify" destinationEntity="NMFood" inverseName="deliveryPlaces" inverseEntity="NMFood" syncable="YES"/>
+        <relationship name="foods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMFood" inverseName="deliveryPlaces" inverseEntity="NMFood" syncable="YES"/>
         <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="deliveryPlaces" inverseEntity="NMPlace" syncable="YES"/>
         <relationship name="shift" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMShift" inverseName="deliveryPlaces" inverseEntity="NMShift" syncable="YES"/>
     </entity>
@@ -103,7 +103,7 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="deliveryPlaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMDeliveryPlace" inverseName="place" inverseEntity="NMDeliveryPlace" syncable="YES"/>
-        <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="place" inverseEntity="NMLocation" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="place" inverseEntity="NMLocation" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="place" inverseEntity="NMOrder" syncable="YES"/>
     </entity>
     <entity name="NMSeller" representedClassName="NMSeller" syncable="YES">
@@ -116,7 +116,7 @@
     <entity name="NMShift" representedClassName="NMShift" syncable="YES">
         <attribute name="places" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="revenueGeneratedInCents" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="stateID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="stateID" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="courier" maxCount="1" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="shifts" inverseEntity="NMCourier" syncable="YES"/>
         <relationship name="deliveryPlaces" toMany="YES" deletionRule="Nullify" destinationEntity="NMDeliveryPlace" inverseName="shift" inverseEntity="NMDeliveryPlace" syncable="YES"/>
@@ -149,9 +149,9 @@
         <element name="NMFood" positionX="0" positionY="0" width="128" height="285"/>
         <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMOrder" positionX="0" positionY="0" width="128" height="270"/>
-        <element name="NMPlace" positionX="0" positionY="0" width="128" height="133"/>
+        <element name="NMPlace" positionX="0" positionY="0" width="128" height="135"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
-        <element name="NMShift" positionX="18" positionY="153" width="128" height="135"/>
+        <element name="NMShift" positionX="18" positionY="153" width="128" height="133"/>
         <element name="NMUser" positionX="0" positionY="0" width="128" height="270"/>
     </elements>
 </model>

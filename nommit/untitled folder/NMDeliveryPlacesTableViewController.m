@@ -14,6 +14,8 @@
 
 @interface NMDeliveryPlacesTableViewController ()
 
+@property (nonatomic, strong) NMCourier *courier;
+
 @property (nonatomic, strong) NMShift *shift;
 @property (nonatomic, strong) NSMutableOrderedSet *placeIDs;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -36,7 +38,6 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];
-    [self setupRefreshing];
     return self;
 }
 
@@ -54,12 +55,14 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     self.navigationItem.rightBarButtonItem = rightBarButton;
 
     [self.fetchedResultsController performFetch:nil];
+    [self setupRefreshing];
 }
 
 - (void)setShift:(NMShift *)shift {
     _shift = shift;
     if (shift) {
-        NSArray *places = [NMDeliveryPlace MR_findAllSortedBy:@"index" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"shift = %@", shift]];
+        self.placeIDs = [[NSMutableOrderedSet alloc] initWithCapacity:1];
+        NSArray *places = [NMDeliveryPlace MR_findAllSortedBy:@"index" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"shift = %@ AND place != nil", shift]];
         for (NMDeliveryPlace *dp in places) {
             [self.placeIDs addObject:dp.place.uid];
         }
@@ -93,7 +96,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     __weak NMDeliveryPlacesTableViewController *this = self;
     [self.refreshControl beginRefreshing];
     
-    [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+    [[NMApi instance] GET:@"places" parameters:@{ @"courier_id" : self.courier.uid } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         [this.refreshControl endRefreshing];
     }];
 }
@@ -114,7 +117,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     // They don't have a courier part of the seller
     // AND
     // The deliveryPlace state is not ready and not arrived
-    NSPredicate *deliveryPlaces = [NSPredicate predicateWithFormat:@"(deliveryPlaces.@count == 0) OR  (SUBQUERY(deliveryPlaces, $dp, $dp.shift.courier IN %@ AND $dp.shift.courier != %@ AND ($dp.stateID == %@ OR $dp.stateID == %@) AND $dp.shift.stateID == %@).@count == 0)", NMCourier.currentCourier.seller.couriers, NMCourier.currentCourier, @(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMShiftStateActive)];
+    NSPredicate *deliveryPlaces = [NSPredicate predicateWithFormat:@"(deliveryPlaces.@count == 0) OR  (SUBQUERY(deliveryPlaces, $dp, $dp.shift.courier IN %@ AND $dp.shift.courier != %@ AND ($dp.stateID == %@ OR $dp.stateID == %@) AND $dp.shift.stateID == %@).@count == 0)", self.courier.seller.couriers, self.courier, @(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMShiftStateActive)];
     
     _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:deliveryPlaces groupBy:nil delegate: self];
     return _fetchedResultsController;
@@ -258,12 +261,16 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     __block NMDeliveryPlacesTableViewController *this = self;
     
     [[NMApi instance] POST:@"shifts" parameters:@{ @"place_ids": [self.placeIDs array] } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[[NMApi instance] managedObjectContext] error:nil];
-        this.shift = shift;
         
-        NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
-        [self.navigationController pushViewController:dpTV animated:YES];
-        [SVProgressHUD showSuccessWithStatus:@"Started Shift!"];
+        __block NMShiftApiModel *shiftModel = response.result;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
+            this.shift = shift;
+            
+            NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+            [this.navigationController pushViewController:dpTV animated:YES];
+            [SVProgressHUD showSuccessWithStatus:@"Started Shift!"];
+        });
     }];
 }
 
@@ -272,12 +279,37 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     __block NMDeliveryPlacesTableViewController *this = self;
     
     [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"place_ids": [self.placeIDs array] } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        this.shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[[NMApi instance] managedObjectContext] error:nil];
         
-        NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:this.shift];
-        [self.navigationController pushViewController:dpTV animated:YES];
-        [SVProgressHUD showSuccessWithStatus:@"Updated Shift!"];
+        __block NMShiftApiModel *shiftModel = response.result;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
+            this.shift = shift;
+            
+            NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+            [this.navigationController pushViewController:dpTV animated:YES];
+            [SVProgressHUD showSuccessWithStatus:@"Updated Shift!"];
+        });
     }];
+}
+
+- (NMCourier*)courier {
+    if (!_courier) {
+        if (_shift) {
+            _courier = _shift.courier;
+        } else {
+            _courier = [NMCourier MR_findFirstByAttribute:@"user" withValue:[NMUser currentUser]];
+        }
+    }
+    return _courier;
+}
+
+#pragma mark - Dealloc
+
+- (void)dealloc {
+    _fetchedResultsController.delegate = nil;
+    _fetchedResultsController = nil;
+    _shift = nil;
+    _placeIDs = nil;
 }
 
 

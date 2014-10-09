@@ -8,5 +8,7 @@ typedef NS_ENUM(NSInteger, NMDeliveryPlaceState) {
 };
 
 @interface NMDeliveryPlace : _NMDeliveryPlace {}
-// Custom logic goes here.
+
++ (NMDeliveryPlace*)deliveryPlaceForFood:(NMFood*)food place:(NMPlace*)place;
+
 @end

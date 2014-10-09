@@ -1,1 +1,0 @@
-../../../JCAutocompletingSearch/Library/JCAutocompletingSearchGenericResultCell.h

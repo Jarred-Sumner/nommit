@@ -2,8 +2,8 @@
 
 typedef NS_ENUM(NSInteger, NMShiftState) {
     NMShiftStateActive = 0,
-    NMShiftStateEnded = 1,
-    NMShiftStateHalted = 2,
+    NMShiftStateHalted = 1,
+    NMShiftStateEnded = 2,
 };
 
 @interface NMShift : _NMShift {}

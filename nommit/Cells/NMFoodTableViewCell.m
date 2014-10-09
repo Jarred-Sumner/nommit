@@ -54,17 +54,18 @@
     return self;
 }
 
-- (void)setFood:(NMFood *)food {
+- (void)setFood:(NMFood *)food arrivalTime:(NSDate*)arrivalTime {
     _food = food;
+    _arrivalTime = arrivalTime;
     
     [_sellerLogoImageView setImageWithURL:food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
     [_foodImageView setImageWithURL:food.headerImageAsURL placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
     _sellerLabel.text = food.seller.name;
-    _timeLabel.text = [self timeLeftText];
+    _timeLabel.text = [self arrivalTimeText];
     
     _nameLabel.text = food.title;
     _priceLabel.text = [NSString stringWithFormat:@"$%@", food.price];
-    _soldLabel.text = [NSString stringWithFormat:@"%@/%@ left (%@)", food.orderCount, @([food.remainingOrders floatValue] + [food.orderCount floatValue]), [self timeLeftText]];
+    _soldLabel.text = [NSString stringWithFormat:@"%@/%@ left", food.orderCount, @([food.remainingOrders floatValue] + [food.orderCount floatValue])];
     _progressBarView.progress = @(food.orderCount.floatValue / food.orderGoal.floatValue).floatValue;
     
     if (food.rating.integerValue > -1) {
@@ -229,9 +230,22 @@
 
 #pragma mark - Utility Methods
 
-- (NSString *)timeLeftText {
+- (NSString *)arrivalTimeText {
+    if (_arrivalTime && [_arrivalTime timeIntervalSinceNow] > 0) {
+        TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+        timeIntervalFormatter.usesAbbreviatedCalendarUnits = YES;
+        timeIntervalFormatter.futureDeicticExpression = @"";
+        return [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:_arrivalTime];
+    } else {
+        return @"15 mins";
+    }
+
+}
+
+- (NSString*)timeLeftText {
     TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
-    timeIntervalFormatter.futureDeicticExpression = @"left";
-    return [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:self.food.endDate];
+    timeIntervalFormatter.futureDeicticExpression = @"";
+    timeIntervalFormatter.usesAbbreviatedCalendarUnits = YES;
+    return [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:_food.endDate];
 }
 @end

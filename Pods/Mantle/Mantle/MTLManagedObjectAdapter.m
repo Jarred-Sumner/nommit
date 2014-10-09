@@ -243,6 +243,7 @@ static id performInContext(NSManagedObjectContext *context, id (^block)(void)) {
 				return NO;
 			}
 		};
+
 		if (!deserializeProperty(managedObjectProperties[managedObjectKey])) return nil;
 	}
 

@@ -7,7 +7,6 @@
 //
 
 #import "NMAppDelegate.h"
-#import "NMItemsCollectionViewController.h"
 #import <REFrostedViewController.h>
 #import <REFrostedContainerViewController.h>
 #import "NMMenuNavigationController.h"

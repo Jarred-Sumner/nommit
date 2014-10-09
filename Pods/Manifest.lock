@@ -21,8 +21,6 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AKNumericFormatter (0.0.1)
-  - AMSmoothAlert (1.1):
-    - GPUImage
   - APParallaxHeader (0.1.6)
   - Bolts (1.1.2)
   - DBCamera (2.3.4):
@@ -52,23 +50,16 @@ PODS:
   - FXBlurView (1.6.2)
   - GPUImage (0.1.6)
   - INTULocationManager (1.2.0)
-  - JCAutocompletingSearch (0.9.6)
   - JVFloatLabeledTextField (0.0.9)
   - libPhoneNumber-iOS (0.7.3)
-  - LLARingSpinnerView (0.1.2)
   - Lockbox (1.4.9)
   - M13Checkbox (1.1.2)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
-  - Mantle (1.5):
+  - Mantle (1.5.1):
     - Mantle/extobjc
-  - Mantle/extobjc (1.5)
-  - MGBoxKit (7.0.1):
-    - MGEvents
-    - MGMushParser
-  - MGEvents (1.0.3)
-  - MGMushParser (1.0.0)
+  - Mantle/extobjc (1.5.1)
   - MZTimerLabel (0.4.4)
   - Overcoat (2.0.2):
     - Overcoat/NSURLSession
@@ -90,23 +81,19 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - AKNumericFormatter
-  - AMSmoothAlert
   - APParallaxHeader (from `https://github.com/loopyz/APParallaxHeader.git`)
   - DBCamera
   - DropdownMenu
   - Facebook-iOS-SDK
   - FormatterKit
   - INTULocationManager
-  - JCAutocompletingSearch
   - JVFloatLabeledTextField
   - libPhoneNumber-iOS (~> 0.7)
-  - LLARingSpinnerView
   - Lockbox
   - M13Checkbox (~> 1.1.0)
   - MagicalRecord
-  - MGBoxKit
   - MZTimerLabel
-  - Overcoat
+  - Overcoat (from `https://github.com/Jarred-Sumner/Overcoat`)
   - ParallaxBlur
   - PaymentKit (from `https://github.com/loopyz/PaymentKit.git`)
   - RateView
@@ -119,13 +106,14 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   APParallaxHeader:
     :git: https://github.com/loopyz/APParallaxHeader.git
+  Overcoat:
+    :git: https://github.com/Jarred-Sumner/Overcoat
   PaymentKit:
     :git: https://github.com/loopyz/PaymentKit.git
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   AKNumericFormatter: 9106b01691382063dd40b83c8f09be40dcf55854
-  AMSmoothAlert: 1b4bf6688b698a606a963c336b5060490f4d3db2
   APParallaxHeader: 5369815639059caa4e195a178c020f8e2b998336
   Bolts: 2635e8698a630774689441047f3465d78c48d485
   DBCamera: d78a9f58aaf29d0a0811baa8cea747c7d7e80923
@@ -135,19 +123,14 @@ SPEC CHECKSUMS:
   FXBlurView: 47496afc9160097fa34af35fc4b310bd85d65dca
   GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
   INTULocationManager: 596c57e35a00ca1ee9d59bf4cc2b63dc299b580e
-  JCAutocompletingSearch: cf30ed8eded452d2ec52efd9c57c4b6467e5d266
   JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
   libPhoneNumber-iOS: 98fc07d70c8fdb5e6a8e3442c37e97353065c20e
-  LLARingSpinnerView: b9ee4453c976bc8edca6cc41a4d7e41280f85fc6
   Lockbox: cfe87dbbce6b5c6d7cfeefc3fe6594ef55919b11
   M13Checkbox: e87ebe28627368b1c6d2233282d711a3854dfe3f
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
-  Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
-  MGBoxKit: 86493ff76fb2164a32426418a1a900c84edd0ffa
-  MGEvents: e6254d7873bcb90b266801d171f9948194010927
-  MGMushParser: 2c28a4e5c5938da9dcc1fbb090347e5ff575fc5b
+  Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
   MZTimerLabel: e3088c90eb78bdda642651b818ec8ed22e0a8f4d
-  Overcoat: a9504cd1f0389641526ba1784592503c012c4b5f
+  Overcoat: eaf16bf5ce15cd9571405173ac1d8271d3f1cb07
   ParallaxBlur: 149ea077dec9264fc12bc04490cd05ff0e170e1d
   PaymentKit: 9c74e84fdf906b4ec5ee822c3dc6a19ae18df194
   RateView: 4142c146bd42fe7715adc3365fa2ffd71ff327e0

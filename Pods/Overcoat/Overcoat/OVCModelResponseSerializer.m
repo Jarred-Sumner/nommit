@@ -20,6 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import <CoreData+MagicalRecord.h>
 #import "OVCModelResponseSerializer.h"
 #import "OVCResponse.h"
 #import "OVCURLMatcher.h"
@@ -41,10 +42,7 @@
 
 @implementation OVCModelResponseSerializer
 
-+ (instancetype)serializerWithURLMatcher:(OVCURLMatcher *)URLMatcher
-                    managedObjectContext:(NSManagedObjectContext *)managedObjectContext
-                           responseClass:(Class)responseClass
-                         errorModelClass:(Class)errorModelClass
++ (instancetype)serializerWithURLMatcher:(OVCURLMatcher *)URLMatcher responseClassURLMatcher:(OVCURLMatcher *)URLResponseClassMatcher managedObjectContext:(NSManagedObjectContext *)managedObjectContext responseClass:(Class)responseClass errorModelClass:(Class)errorModelClass
 {
     NSParameterAssert([responseClass isSubclassOfClass:[OVCResponse class]]);
     
@@ -118,24 +116,18 @@
 - (void)saveResult:(id)result {
     NSParameterAssert(result);
     
-    NSArray *models = [result isKindOfClass:[NSArray class]] ? result : @[result];
-    for (MTLModel<MTLManagedObjectSerializing> *model in models) {
-        NSError *error = nil;
-        [MTLManagedObjectAdapter managedObjectFromModel:model
-                                   insertingIntoContext:self.managedObjectContext
-                                                  error:&error];
-        NSAssert(error == nil, @"%@ saveResult failed with error: %@", self, error);
-    }
-    
-    NSManagedObjectContext *context = self.managedObjectContext;
-    
-    [context performBlockAndWait:^{
-        if ([context hasChanges]) {
+    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+        NSArray *models = [result isKindOfClass:[NSArray class]] ? result : @[result];
+        for (MTLModel<MTLManagedObjectSerializing> *model in models) {
             NSError *error = nil;
-            [context save:&error];
+            [MTLManagedObjectAdapter managedObjectFromModel:model
+                                       insertingIntoContext:localContext
+                                                      error:&error];
             NSAssert(error == nil, @"%@ saveResult failed with error: %@", self, error);
         }
     }];
+    
 }
 
 @end
+

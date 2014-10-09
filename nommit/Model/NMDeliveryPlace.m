@@ -10,6 +10,10 @@
 
 @implementation NMDeliveryPlace
 
-// Custom logic goes here.
+
++ (NMDeliveryPlace*)deliveryPlaceForFood:(NMFood*)food place:(NMPlace*)place {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ in foods and place = %@", food, place];
+    return [NMDeliveryPlace MR_findFirstWithPredicate:predicate];
+}
 
 @end

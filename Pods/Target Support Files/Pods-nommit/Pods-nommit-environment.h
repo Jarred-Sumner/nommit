@@ -54,12 +54,6 @@
 #define COCOAPODS_VERSION_MINOR_AKNumericFormatter 0
 #define COCOAPODS_VERSION_PATCH_AKNumericFormatter 1
 
-// AMSmoothAlert
-#define COCOAPODS_POD_AVAILABLE_AMSmoothAlert
-#define COCOAPODS_VERSION_MAJOR_AMSmoothAlert 1
-#define COCOAPODS_VERSION_MINOR_AMSmoothAlert 1
-#define COCOAPODS_VERSION_PATCH_AMSmoothAlert 0
-
 // APParallaxHeader
 #define COCOAPODS_POD_AVAILABLE_APParallaxHeader
 #define COCOAPODS_VERSION_MAJOR_APParallaxHeader 0
@@ -168,23 +162,11 @@
 #define COCOAPODS_VERSION_MINOR_INTULocationManager 2
 #define COCOAPODS_VERSION_PATCH_INTULocationManager 0
 
-// JCAutocompletingSearch
-#define COCOAPODS_POD_AVAILABLE_JCAutocompletingSearch
-#define COCOAPODS_VERSION_MAJOR_JCAutocompletingSearch 0
-#define COCOAPODS_VERSION_MINOR_JCAutocompletingSearch 9
-#define COCOAPODS_VERSION_PATCH_JCAutocompletingSearch 6
-
 // JVFloatLabeledTextField
 #define COCOAPODS_POD_AVAILABLE_JVFloatLabeledTextField
 #define COCOAPODS_VERSION_MAJOR_JVFloatLabeledTextField 0
 #define COCOAPODS_VERSION_MINOR_JVFloatLabeledTextField 0
 #define COCOAPODS_VERSION_PATCH_JVFloatLabeledTextField 9
-
-// LLARingSpinnerView
-#define COCOAPODS_POD_AVAILABLE_LLARingSpinnerView
-#define COCOAPODS_VERSION_MAJOR_LLARingSpinnerView 0
-#define COCOAPODS_VERSION_MINOR_LLARingSpinnerView 1
-#define COCOAPODS_VERSION_PATCH_LLARingSpinnerView 2
 
 // Lockbox
 #define COCOAPODS_POD_AVAILABLE_Lockbox
@@ -197,24 +179,6 @@
 #define COCOAPODS_VERSION_MAJOR_M13Checkbox 1
 #define COCOAPODS_VERSION_MINOR_M13Checkbox 1
 #define COCOAPODS_VERSION_PATCH_M13Checkbox 2
-
-// MGBoxKit
-#define COCOAPODS_POD_AVAILABLE_MGBoxKit
-#define COCOAPODS_VERSION_MAJOR_MGBoxKit 7
-#define COCOAPODS_VERSION_MINOR_MGBoxKit 0
-#define COCOAPODS_VERSION_PATCH_MGBoxKit 1
-
-// MGEvents
-#define COCOAPODS_POD_AVAILABLE_MGEvents
-#define COCOAPODS_VERSION_MAJOR_MGEvents 1
-#define COCOAPODS_VERSION_MINOR_MGEvents 0
-#define COCOAPODS_VERSION_PATCH_MGEvents 3
-
-// MGMushParser
-#define COCOAPODS_POD_AVAILABLE_MGMushParser
-#define COCOAPODS_VERSION_MAJOR_MGMushParser 1
-#define COCOAPODS_VERSION_MINOR_MGMushParser 0
-#define COCOAPODS_VERSION_PATCH_MGMushParser 0
 
 // MZTimerLabel
 #define COCOAPODS_POD_AVAILABLE_MZTimerLabel
@@ -238,13 +202,13 @@
 #define COCOAPODS_POD_AVAILABLE_Mantle
 #define COCOAPODS_VERSION_MAJOR_Mantle 1
 #define COCOAPODS_VERSION_MINOR_Mantle 5
-#define COCOAPODS_VERSION_PATCH_Mantle 0
+#define COCOAPODS_VERSION_PATCH_Mantle 1
 
 // Mantle/extobjc
 #define COCOAPODS_POD_AVAILABLE_Mantle_extobjc
 #define COCOAPODS_VERSION_MAJOR_Mantle_extobjc 1
 #define COCOAPODS_VERSION_MINOR_Mantle_extobjc 5
-#define COCOAPODS_VERSION_PATCH_Mantle_extobjc 0
+#define COCOAPODS_VERSION_PATCH_Mantle_extobjc 1
 
 // Overcoat
 #define COCOAPODS_POD_AVAILABLE_Overcoat

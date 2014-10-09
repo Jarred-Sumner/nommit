@@ -28,8 +28,6 @@
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, strong) NMSellerApiModel *seller;
 
-@property (nonatomic, strong) NSArray *deliveryPlaces;
-
 - (BOOL)isActive;
 
 @end

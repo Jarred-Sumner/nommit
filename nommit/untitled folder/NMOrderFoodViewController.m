@@ -195,13 +195,16 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [SVProgressHUD showWithStatus:@"Placing Order..." maskType:SVProgressHUDMaskTypeBlack];
     NSDictionary *params = [_orderModel createParamsWithFood:_food place:_place];
     [[NMApi instance] POST:@"orders" parameters:params completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        [SVProgressHUD showSuccessWithStatus:@"Order Placed!"];
+        
+        __block NMOrderApiModel *orderModel = response.result;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:orderModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
+            [SVProgressHUD showSuccessWithStatus:@"Order Placed!"];
+            NMDeliveryTableViewController *deliverVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
+            
+            [this.navigationController pushViewController:deliverVC animated:YES];
+        });
 
-        NMOrder *order = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:&error];
-
-        NMDeliveryTableViewController *deliverVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
-
-        [this.navigationController pushViewController:deliverVC animated:YES];
     
     }];
 }

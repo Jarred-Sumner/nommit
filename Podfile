@@ -5,10 +5,9 @@ target "nommit" do
   pod 'TYMProgressBarView'
   pod 'AFNetworking'
   pod 'MagicalRecord'
-  pod 'MGBoxKit'
   pod 'APParallaxHeader', git: "https://github.com/loopyz/APParallaxHeader.git"
   pod 'REFrostedViewController'
-  pod 'Overcoat'
+  pod 'Overcoat', git: "https://github.com/Jarred-Sumner/Overcoat"
   pod 'SVProgressHUD'
   pod 'JVFloatLabeledTextField'
   pod 'INTULocationManager'
@@ -21,14 +20,11 @@ target "nommit" do
   pod 'M13Checkbox', '~> 1.1.0'
   pod 'DropdownMenu'
   pod 'FormatterKit'
-  pod 'JCAutocompletingSearch'
-  pod 'AMSmoothAlert'
   pod 'SIAlertView'
   pod 'libPhoneNumber-iOS', '~> 0.7'
   pod 'AKNumericFormatter'
   pod 'ParallaxBlur'
   pod 'MZTimerLabel'
-  pod 'LLARingSpinnerView'
 end
 
 

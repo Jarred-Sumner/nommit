@@ -217,14 +217,24 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)orderComplete:(id)sender
 {
-    
     CGPoint buttonOriginInTableView = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
+    
     NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NMOrderTableViewCell *cell = (NMOrderTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
+    [UIView animateWithDuration:0.15 animations:^{
+        [cell.spinnerView startAnimating];
+        cell.spinnerView.hidden = NO;
+        cell.doneButton.hidden = YES;
+    }];
+
     NSString *path = [NSString stringWithFormat:@"orders/%@", order.uid];
-    
-    [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMOrderStateDelivered) } completionWithErrorHandling:NULL];
+    [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMOrderStateDelivered) } completionWithErrorHandling:^(id response, NSError *error) {
+        cell.spinnerView.hidden = YES;
+        cell.doneButton.hidden = NO;
+        [cell.spinnerView stopAnimating];
+    }];
 }
 
 #pragma mark - Shift
@@ -243,13 +253,15 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 }
 
+- (void)refetchShift {
+    self.shift = [NMShift MR_findFirstByAttribute:@"uid" withValue:_shift.uid];
+}
+
 - (void)fetchShift {
     
     __block NMDeliveryPlaceTableViewController *this = self;
     [[NMApi instance] GET:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
-            this.shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[[NMApi instance] managedObjectContext] error:nil];
-
-        
+        [this performSelectorOnMainThread:@selector(refetchShift) withObject:nil waitUntilDone:NO];
     }];
 }
 
@@ -305,42 +317,38 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)endShift {
     __block NMDeliveryPlaceTableViewController *this = self;
-    if (_shift.state == NMShiftStateActive) {
-        [SVProgressHUD showWithStatus:@"Preventing New Orders..." maskType:SVProgressHUDMaskTypeBlack];
-        
-        NSString *path = [NSString stringWithFormat:@"shifts/%@", _shift.uid];
-        [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMShiftStateHalted) } completionWithErrorHandling:^(id response, NSError *error) {
-            
-            if ([_shift hasPendingDeliveries]) {
-                [SVProgressHUD dismiss];
-                
-                NSNumber *pendingOrders = [self.shift countOfPendingDeliveries];
-                NSString *message = [NSString stringWithFormat:@"Stopped new orders, but please deliver the remaining %@ orders", pendingOrders];
-                SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Finish Deliveries" andMessage:message];
-                [alert show];
-            } else {
-                [this endShift];
-            }
-
-        }];
-    } else if (_shift.state == NMShiftStateHalted) {
-        
-        [SVProgressHUD showWithStatus:@"Ending Shift..." maskType:SVProgressHUDMaskTypeBlack];
-        [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"state_id" : @(NMShiftStateEnded) } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-                [SVProgressHUD showSuccessWithStatus:@"Shift Ended!"];
-                [this.navigationController dismissViewControllerAnimated:YES completion:NULL];
-        }];
-    }
     
+    [SVProgressHUD showWithStatus:@"Ending Shift..." maskType:SVProgressHUDMaskTypeBlack];
+    [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"state_id" : @(NMShiftStateEnded) } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NMShift *shift = [NMShift MR_findFirstByAttribute:@"uid" withValue:[response.result uid]];
+                if (shift.state == NMShiftStateHalted) {
+                    [SVProgressHUD dismiss];
+                    NSString *message = [NSString stringWithFormat:@"Stopped new orders, but please deliver the remaining %@ orders", shift.countOfPendingDeliveries];
+                    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Finish Deliveries" andMessage:message];
+                    [alert addButtonWithTitle:@"Okay, I'll Finish Deliveries" type:SIAlertViewButtonTypeDestructive handler:NULL];
+                    [alert show];
+                } else if (shift.state == NMShiftStateEnded) {
+                    [SVProgressHUD showSuccessWithStatus:@"Shift Ended!"];
+                    [this.navigationController dismissViewControllerAnimated:YES completion:NULL];
+                }
+            });
+        
+    }];
 }
 
 - (void)imHere {
     __block NMDeliveryPlaceTableViewController *this = self;
     [SVProgressHUD showWithStatus:@"Notifying Customers..." maskType:SVProgressHUDMaskTypeBlack];
     [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"delivery_place_id": self.deliveryPlace.uid, @"delivery_place_state_id" : @(NMDeliveryPlaceStateArrived) } completionWithErrorHandling:^(OVCResponse * response, NSError *error) {
-            NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:[[NMApi instance] managedObjectContext] error:&error];
-            this.shift = shift;
+        
+        __block NMShiftApiModel *shiftModel = response.result;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            this.shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];;
             [SVProgressHUD showSuccessWithStatus:@"Notified!"];
+        });
+
     }];
 }
 

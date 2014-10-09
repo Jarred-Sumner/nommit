@@ -110,15 +110,16 @@
 }
 
 - (void)performLoginWithFBSession:(FBSession*)session {
-    [SVProgressHUD showWithStatus:@"Logging in..." maskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD showWithStatus:@"Signing in..." maskType:SVProgressHUDMaskTypeBlack];
     [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : session.accessTokenData.accessToken } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
         [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
         [NMApi instance].session.configuration.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
         [NMSession setUserID:[response.result facebookUID]];
         
-        [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-            [SVProgressHUD showSuccessWithStatus:@"Logged in!"];
+        [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
+            
+            [SVProgressHUD showSuccessWithStatus:@"Signed in!"];
             
             if ([NMUser currentUser].state == NMUserStateActivated) {
                 NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
@@ -130,7 +131,6 @@
                 
                 [self.navigationController pushViewController:activateVC animated:YES];
             }
-            [[NMApi instance] GET:@"shifts" parameters:nil completion:NULL];
         }];
         
         

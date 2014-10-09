@@ -18,7 +18,7 @@
 
 - (void)flashError {
     [SVProgressHUD dismiss];
-    if (!_message) _message = @"Oops! Something broke. Sit tight -- our team has been notified. Try again repeatedly :)";
+    if (!_message) _message = @"Oops! Something broke. We've been notified. Please try again.";
 
     SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"An error occurred" andMessage:_message];
     [alert  addButtonWithTitle:@"Okay"

@@ -58,6 +58,7 @@ static NSString *NMApiBaseURLString = API_URL;
 + (NSDictionary *)modelClassesByResourcePath {
     return @{
              @"users/*" : [NMUserApiModel class],
+             @"couriers/me" : [NMCourierApiModel class],
              @"users/*/promos" : [NMUserApiModel class],
              @"sessions" : [NMUserApiModel class],
              @"orders" : [NMOrderApiModel class],

@@ -12,5 +12,8 @@
 @interface NMFoodTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NMFood *food;
+@property (nonatomic, strong) NSDate *arrivalTime;
+
+- (void)setFood:(NMFood*)food arrivalTime:(NSDate*)arrivalTime;
 
 @end

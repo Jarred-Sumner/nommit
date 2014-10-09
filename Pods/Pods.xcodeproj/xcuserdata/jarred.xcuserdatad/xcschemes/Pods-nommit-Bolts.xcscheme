@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9CA20929BC6A4D10B557E9DA"
+               BlueprintIdentifier = "BEE39181F5A486F3D392A91D"
                BuildableName = "libPods-nommit-Bolts.a"
                BlueprintName = "Pods-nommit-Bolts"
                ReferencedContainer = "container:Pods.xcodeproj">
