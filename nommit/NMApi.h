@@ -37,6 +37,7 @@ typedef void (^NMApiCompletionBlock)(id response, NSError *error);
 
 //@property (nonatomic, strong) NSManagedObjectContext *context;
 
++ (void)resetInstance;
 + (NMApi *)instance;
 + (NSDateFormatter *)dateFormatter;
 

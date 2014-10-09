@@ -45,7 +45,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         self.view.backgroundColor = [NMColors lightGray];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _order = order;
-        _totalAmount = @([_order.priceInCents integerValue] / 100);
+        _totalAmount = @([_order.priceChargedInCents integerValue] / 100);
         
         
         [self.tableView addParallaxWithImage:nil andHeight:90];
@@ -113,7 +113,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 }
 
 - (void)enableMinusButton {
-    if ([_totalAmount integerValue] > (int)[_order.priceInCents integerValue] / 100) {
+    if ([_totalAmount integerValue] > (int)[_order.priceChargedInCents integerValue] / 100) {
         _receiptCell.minusButton.alpha = 1.0f;
         _receiptCell.minusButton.enabled = YES;
     } else {
@@ -136,10 +136,12 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 
 - (void)done {
     NSString *path = [NSString stringWithFormat:@"orders/%@", _order.uid];
-    NSNumber *tip = @(_totalAmount.intValue * 100 - _order.priceInCents.intValue);
+    NSNumber *tip = @(_totalAmount.intValue * 100 - _order.priceChargedInCents.intValue);
     NSDictionary *params = @{ @"tip_in_cents" : tip, @"rating" : @(_receiptCell.rateVw.rating), @"state_id" : @(NMOrderStateRated) };
     
-    [[NMApi instance] PUT:path parameters:params completionWithErrorHandling:NULL];
+    [[NMApi instance] PUT:path parameters:params completionWithErrorHandling:^(id response, NSError *error) {
+        [[Mixpanel sharedInstance] track:@"Rated Order" properties:@{ @"rating" : params[@"rating"] }];
+    }];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

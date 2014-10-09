@@ -29,7 +29,11 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 }
 
 + (NSString *)userID {
-    return [Lockbox stringForKey:NMSessionUserIDKey];
+    NSString *userID = [Lockbox stringForKey:NMSessionUserIDKey];
+    if (userID.length > 0) {
+        [[Mixpanel sharedInstance] identify:userID];
+    }
+    return userID;
 }
 
 + (void)setUserID:(NSString *)userID {

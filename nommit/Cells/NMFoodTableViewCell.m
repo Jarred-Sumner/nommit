@@ -55,7 +55,6 @@
 }
 
 - (void)setFood:(NMFood *)food arrivalTime:(NSDate*)arrivalTime {
-    _food = food;
     _arrivalTime = arrivalTime;
     
     [_sellerLogoImageView setImageWithURL:food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
@@ -231,7 +230,7 @@
 #pragma mark - Utility Methods
 
 - (NSString *)arrivalTimeText {
-    if (_arrivalTime && [_arrivalTime timeIntervalSinceNow] > 0) {
+    if ([_arrivalTime timeIntervalSinceNow] > 0) {
         TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
         timeIntervalFormatter.usesAbbreviatedCalendarUnits = YES;
         timeIntervalFormatter.futureDeicticExpression = @"";
@@ -240,12 +239,5 @@
         return @"15 mins";
     }
 
-}
-
-- (NSString*)timeLeftText {
-    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
-    timeIntervalFormatter.futureDeicticExpression = @"";
-    timeIntervalFormatter.usesAbbreviatedCalendarUnits = YES;
-    return [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:_food.endDate];
 }
 @end

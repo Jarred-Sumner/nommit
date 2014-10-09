@@ -155,7 +155,6 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
-    [self updateRevenueText];
 }
 
 
@@ -220,7 +219,8 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     CGPoint buttonOriginInTableView = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
     
-    NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    __block NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    __block NMDeliveryPlaceTableViewController *this = self;
     NMOrderTableViewCell *cell = (NMOrderTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
     [UIView animateWithDuration:0.15 animations:^{
@@ -234,6 +234,15 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
         cell.spinnerView.hidden = YES;
         cell.doneButton.hidden = NO;
         [cell.spinnerView stopAnimating];
+        
+        if ([[response result] stateID].integerValue == NMOrderStateDelivered) {
+            [[Mixpanel sharedInstance] track:@"Delivered" properties:@{ @"food" : order.food.uid, @"place" : order.place.name }];
+            
+            // TODO: make this better.
+            this.shift.revenueGeneratedInCents = @(this.shift.revenueGeneratedInCents.intValue + order.priceInCents.intValue);
+            [this updateRevenueText];
+        }
+        
     }];
 }
 
@@ -251,18 +260,6 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
         [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
     }
 
-}
-
-- (void)refetchShift {
-    self.shift = [NMShift MR_findFirstByAttribute:@"uid" withValue:_shift.uid];
-}
-
-- (void)fetchShift {
-    
-    __block NMDeliveryPlaceTableViewController *this = self;
-    [[NMApi instance] GET:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
-        [this performSelectorOnMainThread:@selector(refetchShift) withObject:nil waitUntilDone:NO];
-    }];
 }
 
 #pragma mark - Place-specific actions
@@ -312,7 +309,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 #pragma mark - Footer View
 
 - (void)updateRevenueText {
-    self.footerView.revenueLabel.text = [NSString stringWithFormat:@"Total Delivered: $%@", @(_shift.revenueGeneratedInCentsValue / 100)];
+    self.footerView.revenueLabel.text = [NSString stringWithFormat:@"Total Delivered: $%@", @(_shift.revenueGeneratedInCents.doubleValue / 100.f)];
 }
 
 - (void)endShift {
@@ -329,7 +326,9 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
                     SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Finish Deliveries" andMessage:message];
                     [alert addButtonWithTitle:@"Okay, I'll Finish Deliveries" type:SIAlertViewButtonTypeDestructive handler:NULL];
                     [alert show];
+                    [[Mixpanel sharedInstance] track:@"Halted Shift" properties:nil];
                 } else if (shift.state == NMShiftStateEnded) {
+                    [[Mixpanel sharedInstance] track:@"Ended Shift"];
                     [SVProgressHUD showSuccessWithStatus:@"Shift Ended!"];
                     [this.navigationController dismissViewControllerAnimated:YES completion:NULL];
                 }
@@ -343,6 +342,8 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [SVProgressHUD showWithStatus:@"Notifying Customers..." maskType:SVProgressHUDMaskTypeBlack];
     [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"delivery_place_id": self.deliveryPlace.uid, @"delivery_place_state_id" : @(NMDeliveryPlaceStateArrived) } completionWithErrorHandling:^(OVCResponse * response, NSError *error) {
         
+        [[Mixpanel sharedInstance] track:@"Arrived at Place" properties:@{ @"estimate" : this.deliveryPlace.arrivesAt, @"reality" : [NSDate date] }];
+
         __block NMShiftApiModel *shiftModel = response.result;
         dispatch_async(dispatch_get_main_queue(), ^{
             this.shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];;

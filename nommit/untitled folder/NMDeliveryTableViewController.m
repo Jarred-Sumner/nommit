@@ -113,7 +113,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMAvatarsSection) {
         _avatarsCell = [self.tableView dequeueReusableCellWithIdentifier:NMAvatarsInfoIdentifier];
-        int price = (int)[_order.priceInCents integerValue]/100;
+        int price = (int)[_order.priceChargedInCents integerValue]/100;
         _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%d", price];
         if ([_order.quantity integerValue] > 1) {
             _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ is delivering %@ orders of %@ from %@ to you for $%d.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
@@ -215,7 +215,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         [_countdownCell.timerLabel pause];
         _countdownCell.statusLabel.hidden = NO;
         _countdownCell.deliveryPlaceLabel.text = [NSString stringWithFormat:@"Arriving at %@ in", _order.place.name];
-        _countdownCell.statusLabel.text = @"Any Moment";
+        _countdownCell.statusLabel.text = @"Momentarily";
         [_countdownCell.layer removeAllAnimations];
     } else if (state == NMDeliveryCountdownStateCounting) {
         _countdownCell.timerLabel.hidden = NO;

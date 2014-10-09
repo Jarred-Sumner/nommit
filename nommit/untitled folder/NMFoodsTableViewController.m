@@ -75,8 +75,8 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+
     if (!_place) self.place = [NMPlace activePlace];
-    
     if (_place) {
         [self refreshPlace];
     } else {
@@ -235,7 +235,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
             action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
-    self.navigationItem.leftBarButtonItem = lbb;
+    if (!self.navigationItem.leftBarButtonItem) self.navigationItem.leftBarButtonItem = lbb;
     self.title = @"Menu";
 
     self.navigationController.navigationBarHidden = NO;

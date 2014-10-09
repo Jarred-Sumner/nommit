@@ -150,6 +150,7 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
         
         [SVProgressHUD showWithStatus:@"Applying..." maskType:SVProgressHUDMaskTypeBlack];
         [[NMApi instance] POST:[NSString stringWithFormat:@"users/%@/promos", self.user.facebookUID] parameters:@{ @"code" : _promoCell.textField.text } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+            [[Mixpanel sharedInstance] track:@"Applied Promo"];
             [SVProgressHUD showSuccessWithStatus:@"Applied!"];
             [this.tableView reloadData];
         }];

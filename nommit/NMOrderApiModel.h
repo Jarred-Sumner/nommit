@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSNumber *discountInCents;
 @property (nonatomic, strong) NSNumber *tipInCents;
 @property (nonatomic, strong) NSDate *deliveredAt;
+@property (nonatomic, strong) NSNumber *priceChargedInCents;
 
 @property (nonatomic, strong) NMPlaceApiModel *place;
 @property (nonatomic, strong) NMFoodApiModel *food;

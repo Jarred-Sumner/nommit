@@ -26,6 +26,7 @@ static NSString *NMActivePlaceKey = @"ActivePlace";
 
 + (void)setActivePlace:(NMPlace*)place {
     if (place) {
+        [[Mixpanel sharedInstance] track:@"Chose Place" properties:@{ @"Name" : place.name, @"ID" : place.uid }];
         [[NSUserDefaults standardUserDefaults] setObject:place.uid forKey:NMActivePlaceKey];
     } else {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:NMActivePlaceKey];

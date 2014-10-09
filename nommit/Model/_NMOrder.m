@@ -8,6 +8,7 @@ const struct NMOrderAttributes NMOrderAttributes = {
 	.deliveredAt = @"deliveredAt",
 	.discountInCents = @"discountInCents",
 	.placedAt = @"placedAt",
+	.priceChargedInCents = @"priceChargedInCents",
 	.priceInCents = @"priceInCents",
 	.promoCode = @"promoCode",
 	.quantity = @"quantity",
@@ -60,6 +61,11 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 	}
 	if ([key isEqualToString:@"discountInCentsValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"discountInCents"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"priceChargedInCentsValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"priceChargedInCents"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -161,6 +167,32 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 @dynamic placedAt;
 
+
+
+
+
+
+@dynamic priceChargedInCents;
+
+
+
+- (int64_t)priceChargedInCentsValue {
+	NSNumber *result = [self priceChargedInCents];
+	return [result longLongValue];
+}
+
+- (void)setPriceChargedInCentsValue:(int64_t)value_ {
+	[self setPriceChargedInCents:[NSNumber numberWithLongLong:value_]];
+}
+
+- (int64_t)primitivePriceChargedInCentsValue {
+	NSNumber *result = [self primitivePriceChargedInCents];
+	return [result longLongValue];
+}
+
+- (void)setPrimitivePriceChargedInCentsValue:(int64_t)value_ {
+	[self setPrimitivePriceChargedInCents:[NSNumber numberWithLongLong:value_]];
+}
 
 
 

@@ -14,19 +14,19 @@
 }
 
 @end
+
+static id sharedApi;
 static NSString *NMApiBaseURLString = API_URL;
 
 @implementation NMApi
 
 + (NSURLSessionConfiguration *)sessionConfiguration {
-    static NSURLSessionConfiguration *sessionConfig = nil;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-        if (NMSession.isUserLoggedIn) {
-            sessionConfig.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
-        }
-    });
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    if (NMSession.isUserLoggedIn) {
+        sessionConfig.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
+    }
+    
     return sessionConfig;
 }
 
@@ -47,12 +47,15 @@ static NSString *NMApiBaseURLString = API_URL;
 }
 
 + (NMApi *)instance {
-    static NMApi *sharedApi = nil;
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         sharedApi = [[NMApi alloc] init];
     });
     return sharedApi;
+}
+
++ (void)resetInstance {
+    sharedApi = [[NMApi alloc] init];
 }
 
 + (NSDictionary *)modelClassesByResourcePath {

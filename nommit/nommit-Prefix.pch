@@ -39,5 +39,6 @@
 #import "NMConstants.h"
 
 #import <SIAlertView/SIAlertView.h>
+#import <Mixpanel/Mixpanel.h>
 
 #endif

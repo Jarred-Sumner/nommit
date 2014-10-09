@@ -36,7 +36,7 @@
         MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
         controller.subject = @"Nommit Support";
         controller.messageComposeDelegate = self;
-        controller.recipients = @[@"+19253858898"];
+        controller.recipients = @[@"+14152739617"];
         [self presentViewController:controller animated:YES completion:nil];
     } else {
         SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Cannot Text" andMessage:@"This device doesn't support texting. Sorry about that."];
@@ -50,7 +50,7 @@
 }
 
 - (void)callButtonTouched {
-    NSString *phNo = @"+19255968005";
+    NSString *phNo = @"+14152739617";
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",phNo]];
     
     if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
@@ -71,7 +71,7 @@
     // Email Subject
     NSString *subject = @"Help with Nommit";
     // Email Content
-    NSString *messageBody = @"Hey Nommit, <br> I'm having some trouble. Here's an explanation of the problem, and what if any steps I can think of to reproduce it: <br><br>";
+    NSString *messageBody = @"Hey Nommit, <br><br> I'm having some trouble. Here's an explanation of the problem, and what if any steps I can think of to reproduce it: <br><br><br>";
     // To address
     NSArray *toRecipents = [NSArray arrayWithObject:@"support@getnommit.com"];
     

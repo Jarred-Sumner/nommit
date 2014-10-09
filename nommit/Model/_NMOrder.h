@@ -9,6 +9,7 @@ extern const struct NMOrderAttributes {
 	__unsafe_unretained NSString *deliveredAt;
 	__unsafe_unretained NSString *discountInCents;
 	__unsafe_unretained NSString *placedAt;
+	__unsafe_unretained NSString *priceChargedInCents;
 	__unsafe_unretained NSString *priceInCents;
 	__unsafe_unretained NSString *promoCode;
 	__unsafe_unretained NSString *quantity;
@@ -32,6 +33,7 @@ extern const struct NMOrderFetchedProperties {
 @class NMFood;
 @class NMPlace;
 @class NMUser;
+
 
 
 
@@ -101,6 +103,20 @@ extern const struct NMOrderFetchedProperties {
 
 
 //- (BOOL)validatePlacedAt:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* priceChargedInCents;
+
+
+
+@property int64_t priceChargedInCentsValue;
+- (int64_t)priceChargedInCentsValue;
+- (void)setPriceChargedInCentsValue:(int64_t)value_;
+
+//- (BOOL)validatePriceChargedInCents:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -264,6 +280,15 @@ extern const struct NMOrderFetchedProperties {
 
 - (NSDate*)primitivePlacedAt;
 - (void)setPrimitivePlacedAt:(NSDate*)value;
+
+
+
+
+- (NSNumber*)primitivePriceChargedInCents;
+- (void)setPrimitivePriceChargedInCents:(NSNumber*)value;
+
+- (int64_t)primitivePriceChargedInCentsValue;
+- (void)setPrimitivePriceChargedInCentsValue:(int64_t)value_;
 
 
 

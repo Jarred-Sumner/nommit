@@ -153,7 +153,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
         _progressCell.progressBarView.progress = @(_food.orderCount.floatValue / _food.orderGoal.floatValue).floatValue;
 
-        _progressCell.progressLabel.text = [NSString stringWithFormat:@"%@ left", _food.remainingOrders];
+        _progressCell.progressLabel.text = [NSString stringWithFormat:@"%@/%@ left", _food.orderCount, _food.orderGoal];
         _progressCell.progressLabel.textAlignment = NSTextAlignmentCenter;
         _progressCell.rateVw.rating = [_food.rating floatValue];
 
@@ -195,6 +195,8 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [SVProgressHUD showWithStatus:@"Placing Order..." maskType:SVProgressHUDMaskTypeBlack];
     NSDictionary *params = [_orderModel createParamsWithFood:_food place:_place];
     [[NMApi instance] POST:@"orders" parameters:params completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        
+        [[Mixpanel sharedInstance] track:@"Placed Order" properties:@{ @"food" : _food.uid, @"place" : _place.name }];
         
         __block NMOrderApiModel *orderModel = response.result;
         dispatch_async(dispatch_get_main_queue(), ^{

@@ -9,6 +9,13 @@ static id NMCurrentUser;
 + (NMUser *)currentUser {
     if (!NMCurrentUser) {
         NMCurrentUser = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID]];
+        if (NMCurrentUser) {
+            [[Mixpanel sharedInstance].people setOnce:@{
+                @"Name" : [NMCurrentUser fullName],
+                @"Email" : [NMCurrentUser email],
+                @"Phone" : [NMCurrentUser phone],
+            }];
+        }
     }
     return NMCurrentUser;
 }

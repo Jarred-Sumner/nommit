@@ -24,6 +24,7 @@
         @"stateID" : @"state_id",
         @"chargeStateID" : @"charge_state_id",
         @"promoCode" : @"promo_code",
+        @"priceChargedInCents" : @"price_charged_in_cents"
      };
 }
 

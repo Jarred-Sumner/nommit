@@ -270,6 +270,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
             NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
             [this.navigationController pushViewController:dpTV animated:YES];
             [SVProgressHUD showSuccessWithStatus:@"Started Shift!"];
+            [[Mixpanel sharedInstance] track:@"Started Shift"];
         });
     }];
 }

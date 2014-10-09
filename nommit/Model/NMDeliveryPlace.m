@@ -13,7 +13,7 @@
 
 + (NMDeliveryPlace*)deliveryPlaceForFood:(NMFood*)food place:(NMPlace*)place {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ in foods and place = %@", food, place];
-    return [NMDeliveryPlace MR_findFirstWithPredicate:predicate];
+    return [NMDeliveryPlace MR_findFirstWithPredicate:predicate sortedBy:@"arrivesAt" ascending:NO];
 }
 
 @end

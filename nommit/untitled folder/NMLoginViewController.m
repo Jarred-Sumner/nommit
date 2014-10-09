@@ -113,14 +113,14 @@
     [SVProgressHUD showWithStatus:@"Signing in..." maskType:SVProgressHUDMaskTypeBlack];
     [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : session.accessTokenData.accessToken } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
+        [[Mixpanel sharedInstance] track:@"Sign In"];
         [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
-        [NMApi instance].session.configuration.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
         [NMSession setUserID:[response.result facebookUID]];
+        [NMApi resetInstance];
         
         [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
             
             [SVProgressHUD showSuccessWithStatus:@"Signed in!"];
-            
             if ([NMUser currentUser].state == NMUserStateActivated) {
                 NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
                 [self.navigationController pushViewController:foodsViewController animated:YES];
