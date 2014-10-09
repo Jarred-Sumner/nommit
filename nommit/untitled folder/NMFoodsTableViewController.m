@@ -98,7 +98,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         foodPredicate = [NSPredicate predicateWithFormat:@"uid = %@", @(-1)];
     }
     
-    _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"endDate" ascending:NO withPredicate:foodPredicate groupBy:nil delegate: self];
+    _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:foodPredicate groupBy:nil delegate: self];
     return _fetchedResultsController;
 }
 

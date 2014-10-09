@@ -215,7 +215,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
         [_countdownCell.timerLabel pause];
         _countdownCell.statusLabel.hidden = NO;
         _countdownCell.deliveryPlaceLabel.text = [NSString stringWithFormat:@"Arriving at %@ in", _order.place.name];
-        _countdownCell.statusLabel.text = @"Momentarily";
+        _countdownCell.statusLabel.text = @"Any Minute Now";
         [_countdownCell.layer removeAllAnimations];
     } else if (state == NMDeliveryCountdownStateCounting) {
         _countdownCell.timerLabel.hidden = NO;

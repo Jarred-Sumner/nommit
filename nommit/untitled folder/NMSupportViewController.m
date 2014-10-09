@@ -71,7 +71,7 @@
     // Email Subject
     NSString *subject = @"Help with Nommit";
     // Email Content
-    NSString *messageBody = @"Hey Nommit, <br><br> I'm having some trouble. Here's an explanation of the problem, and what if any steps I can think of to reproduce it: <br><br><br>";
+    NSString *messageBody = [NSString stringWithFormat:@"Hey Nommit, <br><br> I'm having some trouble. My User ID is %@. Here's an explanation of the problem, and what if any steps I can think of to reproduce it: <br><br><br>", NMUser.currentUser.facebookUID];
     // To address
     NSArray *toRecipents = [NSArray arrayWithObject:@"support@getnommit.com"];
     
