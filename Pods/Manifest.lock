@@ -60,6 +60,7 @@ PODS:
   - Mantle (1.5.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.5.1)
+  - Mixpanel (2.5.4)
   - MZTimerLabel (0.4.4)
   - Overcoat (2.0.2):
     - Overcoat/NSURLSession
@@ -92,6 +93,7 @@ DEPENDENCIES:
   - Lockbox
   - M13Checkbox (~> 1.1.0)
   - MagicalRecord
+  - Mixpanel
   - MZTimerLabel
   - Overcoat (from `https://github.com/Jarred-Sumner/Overcoat`)
   - ParallaxBlur
@@ -129,6 +131,7 @@ SPEC CHECKSUMS:
   M13Checkbox: e87ebe28627368b1c6d2233282d711a3854dfe3f
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
+  Mixpanel: 87167a0b0a74f11f0ee3787f291357494730617c
   MZTimerLabel: e3088c90eb78bdda642651b818ec8ed22e0a8f4d
   Overcoat: eaf16bf5ce15cd9571405173ac1d8271d3f1cb07
   ParallaxBlur: 149ea077dec9264fc12bc04490cd05ff0e170e1d
