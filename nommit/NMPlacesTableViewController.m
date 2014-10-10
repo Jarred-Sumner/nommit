@@ -8,9 +8,11 @@
 
 #import "NMPlacesTableViewController.h"
 #import "NMPlaceTableViewCell.h"
+#import "NMNoFoodView.h"
 
 @interface NMPlacesTableViewController ()
 
+@property (nonatomic, strong) NMNoFoodView *noFoodView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 //@property (nonatomic, strong) UISearchBar *searchBar;
 //@property (nonatomic, strong) UISearchDisplayController * searchController;
@@ -30,9 +32,17 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     return self;
 }
 
+- (void)loadView {
+    [super loadView];
+
+    _noFoodView = [[NMNoFoodView alloc] initWithFrame:self.tableView.bounds];
+    _noFoodView.hidden = YES;
+    [self.tableView addSubview:_noFoodView];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.title = @"Delivery Location";
+    self.title = @"Delivery Locations";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
@@ -145,6 +155,9 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    if ([sectionInfo numberOfObjects] == 0) {
+        _noFoodView.hidden = NO;
+    } else _noFoodView.hidden = YES;
     return [sectionInfo numberOfObjects];
 }
 

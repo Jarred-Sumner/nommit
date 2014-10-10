@@ -5,6 +5,7 @@ typedef void (^NMApiCompletionBlock)(id response, NSError *error);
 
 @interface NMPlace : _NMPlace {}
 
++ (BOOL)hasActivePlaces;
 + (NMPlace *)activePlace;
 + (void)setActivePlace:(NMPlace*)place;
 

@@ -88,10 +88,6 @@ static NSInteger NMOrdersSection = 1;
 
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
 #pragma mark -
 #pragma mark UITableView Delegate
 
@@ -371,5 +367,6 @@ static NSInteger NMOrdersSection = 1;
     }
     [self presentViewController:navVC animated:YES completion:nil];
 }
+
 
 @end

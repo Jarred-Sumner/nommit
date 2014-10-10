@@ -7,6 +7,7 @@
 //
 
 #import "NMMenuNavigationController.h"
+#import "NMRateOrderTableViewController.h"
 
 @interface NMMenuNavigationController ()
 

@@ -20,12 +20,15 @@
 
 @interface NMAppDelegate ()
 
+@property (nonatomic, strong) NMMenuNavigationController *navigationController;
+
 @end
 
 @implementation NMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [FBLoginView class];
     [Crashlytics startWithAPIKey:@"31fe8f31e5f07653f483f7db9bf622029dd41d84"];
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
     [MagicalRecord setupAutoMigratingCoreDataStack];
@@ -43,21 +46,7 @@
 }
 
 - (void)checkForActiveOrders {
-    __block NMAppDelegate *this = self;
-    [[NMApi instance] GET:@"orders" parameters:nil completion:^(OVCResponse *response, NSError *error) {
-        
-        if ([[NMUser currentUser] hasOrdersPendingRating]) {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user = %@ and stateID = %@", NMUser.currentUser, @(NMOrderStateDelivered)];
-            NMOrder *order = [NMOrder MR_findFirstWithPredicate:predicate];
-            
-            if (order) {
-                NMRateOrderTableViewController *rateVC = [[NMRateOrderTableViewController alloc] initWithOrder:order];
-                
-                [this.window.rootViewController presentViewController:rateVC animated:YES completion:NULL];
-            }
-
-        }
-    }];
+    [[NMApi instance] GET:@"orders" parameters:nil completion:NULL];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -81,17 +70,17 @@
 
 #pragma mark - Facebook Login
 
-
-
-// During the Facebook login flow, your app passes control to the Facebook iOS app or Facebook in a mobile browser.
-// After authentication, your app will be called back with the session information.
-// Override application:openURL:sourceApplication:annotation to call the FBsession object that handles the incoming URL
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
-{
-    return [FBSession.activeSession handleOpenURL:url];
+         annotation:(id)annotation {
+    
+    // Call FBAppCall's handleOpenURL:sourceApplication to handle Facebook app responses
+    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    
+    // You can add your app-specific url handling code here if needed
+    
+    return wasHandled;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -102,16 +91,20 @@
     [FBAppCall handleDidBecomeActive];
 }
 
+- (void)handleSessionStateChange:(FBSession*)session {
+
+}
+
 #pragma mark - UI Initialization
 
 - (void)resetUI
 {
     // create content and menu controllers
-    NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:self.rootViewController];
+    _navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:self.rootViewController];
     NMMenuViewController *menuController = [[NMMenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
     // Create frosted view controller
-    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
+    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:_navigationController menuViewController:menuController];
     
     frostedViewController.direction = REFrostedViewControllerDirectionLeft;
     frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
@@ -121,7 +114,7 @@
     // make it root view controller
     self.window.rootViewController = frostedViewController;
 
-    navigationController.navigationBar.translucent = NO;
+    _navigationController.navigationBar.translucent = NO;
 }
 
 - (UIWindow*)window {

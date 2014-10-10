@@ -16,7 +16,10 @@
 #import <SVProgressHUD.h>
 #import "NMPlacesTableViewController.h"
 #import "NMOrderFoodViewController.h"
+#import "NMRateOrderTableViewController.h"
 #import "NMNoFoodView.h"
+
+static BOOL didAutoPresentPlaces = NO;
 
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
@@ -79,8 +82,10 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     if (!_place) self.place = [NMPlace activePlace];
     if (_place) {
         [self refreshPlace];
-    } else {
+        [self handlePendingOrders];
+    } else if (!didAutoPresentPlaces) {
         [self locationButtonTouched];
+        didAutoPresentPlaces = YES;
     }
     
 }
@@ -200,7 +205,12 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     _headerView = [[NMPlaceDropdownView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMPlaceDropdownTableViewCellHeight)];
-    [_headerView.locationButton setTitle:[NSString stringWithFormat:@"Delivering to: %@", _place.name] forState:UIControlStateNormal];
+    if (_place) {
+        [_headerView.locationButton setTitle:[NSString stringWithFormat:@"Delivering to: %@", _place.name] forState:UIControlStateNormal];
+    } else {
+        [_headerView.locationButton setTitle:@"Pick a Delivery Location" forState:UIControlStateNormal];
+    }
+
     [_headerView.locationButton addTarget:self action:@selector(locationButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     return _headerView;
 }
@@ -254,6 +264,19 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         self.place = [NMPlace activePlace];
     }];
 }
+
+#pragma mark - Handle Rating Orders
+
+// Rate pending orders
+- (void)handlePendingOrders {
+    if ([[NMUser currentUser] hasOrdersPendingRating]) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user = %@ AND stateID = %@", [NMUser currentUser], @(NMOrderStateDelivered)];
+        NMOrder *order = [NMOrder MR_findFirstWithPredicate:predicate];
+        NMRateOrderTableViewController *rateVC = [[NMRateOrderTableViewController alloc] initWithOrder:order];
+        [self presentViewController:rateVC animated:YES completion:NULL];
+    }
+}
+
 
 
 @end

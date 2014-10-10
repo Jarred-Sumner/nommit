@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface NMLoginViewController : UIViewController
+@interface NMLoginViewController : UIViewController <FBLoginViewDelegate, MFMailComposeViewControllerDelegate>
 
 @end

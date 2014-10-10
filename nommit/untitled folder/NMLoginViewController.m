@@ -17,7 +17,7 @@
 @property (nonatomic, strong) UIImageView *signView;
 @property (nonatomic, strong) UIImageView *logoView;
 @property (nonatomic, strong) UILabel *messageLabel;
-@property (nonatomic, strong) UIButton *facebookButton;
+@property (nonatomic, strong) FBLoginView *loginView;
 
 @end
 
@@ -31,7 +31,7 @@
     [self setupMessageLabel];
     [self setupFacebookButton];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_signView, _logoView, _facebookButton, _messageLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_signView, _logoView, _loginView   , _messageLabel);
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[_logoView]-50-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_signView]-20-[_logoView]" options:0 metrics:nil views:views]];
@@ -42,8 +42,8 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[_messageLabel]-40-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_logoView]-15-[_messageLabel]" options:0 metrics:nil views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[_facebookButton]-30-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageLabel]-25-[_facebookButton]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[_loginView]-30-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageLabel]-25-[_loginView]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupBG
@@ -71,13 +71,11 @@
 
 - (void)setupFacebookButton
 {
-    _facebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_facebookButton setImage:[UIImage imageNamed:@"LoginFacebookButton"] forState:UIControlStateNormal];
-    _facebookButton.contentMode = UIViewContentModeScaleAspectFill;
-    _facebookButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:_facebookButton];
-
-    [_facebookButton addTarget:self action:@selector(loginFacebookTouched:) forControlEvents:UIControlEventTouchUpInside];
+    _loginView = [[FBLoginView alloc] initWithReadPermissions:@[@"public_profile", @"email"]];
+    _loginView.contentMode = UIViewContentModeScaleAspectFill;
+    _loginView.translatesAutoresizingMaskIntoConstraints = NO;
+    _loginView.delegate = self;
+    [self.view addSubview:_loginView];
 }
 
 - (void)setupMessageLabel
@@ -94,24 +92,42 @@
     [self.view addSubview:_messageLabel];
 }
 
-- (void)loginFacebookTouched:(id)sender
-{
-    if (FBSession.activeSession.isOpen) {
-        [self performLoginWithFBSession:FBSession.activeSession];
-    } else {
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"]
-                                           allowLoginUI:YES
-                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                          if (error) {
-                                              NSLog(@"Error: %@", error);
-                                          } else [self performLoginWithFBSession:session];
-          }];
-    }
-}
-
 - (void)performLoginWithFBSession:(FBSession*)session {
     [SVProgressHUD showWithStatus:@"Signing in..." maskType:SVProgressHUDMaskTypeBlack];
-    [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : session.accessTokenData.accessToken } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+}
+
+- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
+    __block NMLoginViewController *this = self;
+    if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Facebook Login Required" andMessage:@"Nommit requires Facebook to login. Please authenticate with Facebook to continue. If you're not comfortable doing that, please reach out to support"];
+        [alert addButtonWithTitle:@"Email Support" type:SIAlertViewButtonTypeDefault handler:^(SIAlertView *alertView) {
+            // Email Subject
+            NSString *subject = @"Help with Nommit";
+            // Email Content
+            
+            NSArray *toRecipents = [NSArray arrayWithObject:@"support@getnommit.com"];
+            
+            MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+            mc.mailComposeDelegate = self;
+            [mc setSubject:subject];
+            [mc setToRecipients:toRecipents];
+            
+            // Present mail view controller on screen
+            [self.navigationController presentViewController:mc animated:YES completion:NULL];
+        }];
+        [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+        [alert show];
+    } else {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Error while logging in" andMessage:@"An error occurred while trying to login. Please try again"];
+        [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+        [alert show];
+    }
+
+}
+
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+    [SVProgressHUD showWithStatus:@"Logging in..." maskType:SVProgressHUDMaskTypeBlack];
+    [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : FBSession.activeSession.accessTokenData.accessToken } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
         [[Mixpanel sharedInstance] track:@"Sign In"];
         [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
@@ -147,5 +163,9 @@
 
 -(BOOL)prefersStatusBarHidden { return YES; }
 
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+}
 
 @end

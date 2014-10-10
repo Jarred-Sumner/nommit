@@ -41,6 +41,10 @@ static NSString *NMActivePlaceKey = @"ActivePlace";
     return [foods allObjects];
 }
 
++ (BOOL)hasActivePlaces {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"stateID IN %@", @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady)]];
+    return [NMDeliveryPlace MR_countOfEntitiesWithPredicate:predicate] > 1;
+}
 
 // We can't just call GET /places.
 // We don't want to return every fucking place with a bunch of empty arrays. That means the view renders at >= 5000ms. 5 seconds is too long.
