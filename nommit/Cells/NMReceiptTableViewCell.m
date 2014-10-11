@@ -80,9 +80,8 @@
     rateDeliveryLabel.numberOfLines = 1;
     [self.contentView addSubview:rateDeliveryLabel];
     
-    _rateVw = [RateView rateViewWithRating:5.0f];
+    _rateVw = [NMRateView rateViewWithRating:5.0f];
     _rateVw.starFillMode = StarFillModeHorizontal;
-    _rateVw.delegate = self;
     _rateVw.canRate = YES;
     _rateVw.tag = 88888;
     _rateVw.starSize = 50;

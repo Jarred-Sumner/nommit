@@ -14,6 +14,7 @@
 #import "NMDeliveryCountdownTableViewCell.h"
 #import "NMDeliveryCallButtonTableViewCell.h"
 #import "UIScrollView+NMParallaxHeader.h"
+#import "NMFoodsTableViewController.h"
 #import <AudioToolbox/AudioServices.h>
 
 typedef NS_ENUM(NSInteger, NMDeliveryCountdownState) {
@@ -185,11 +186,10 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     } else if (order.state == NMOrderStateDelivered) {
         [self stopFetchingOrderStatus];
         
-        __block NMMenuViewController *vc = (NMMenuViewController*)[[(NMMenuNavigationController*)[self navigationController] frostedViewController] menuViewController];
-        
+        __block UINavigationController *navVC = self.navigationController;
         NMRateOrderTableViewController *rateVC = [[NMRateOrderTableViewController alloc] initWithOrder:order];
         [self.navigationController presentViewController:rateVC animated:YES completion:^{
-            [vc showMenu];
+            [navVC pushViewController:[[NMFoodsTableViewController alloc] init] animated:NO];
         }];
     }
     _order = order;

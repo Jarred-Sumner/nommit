@@ -18,7 +18,7 @@
 #import "NMReceiptTableViewCell.h"
 #import "UIScrollView+NMParallaxHeader.h"
 
-@interface NMRateOrderTableViewController ()<APParallaxViewDelegate>
+@interface NMRateOrderTableViewController ()<APParallaxViewDelegate, NMRateViewDelegate>
 
 @property (nonatomic, strong) NMOrder *order;
 @property (nonatomic, strong) NMDeliveryAvatarsTableViewCell *avatarsCell;
@@ -41,12 +41,10 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 - (id)initWithOrder:(NMOrder *)order {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
-        self.tableView.scrollEnabled = NO;
         self.view.backgroundColor = [NMColors lightGray];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _order = order;
         _totalAmount = @([_order.priceChargedInCents integerValue] / 100);
-        
         
         [self.tableView addParallaxWithImage:nil andHeight:90];
         [self.tableView.parallaxView setDelegate:self];
@@ -98,6 +96,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         return _avatarsCell;
     } else if (indexPath.section == NMRateReceiptSection) {
         _receiptCell = [self.tableView dequeueReusableCellWithIdentifier:NMRateReceiptInfoIdentifier];
+        _receiptCell.rateVw.stateDelegate = self;
         [_receiptCell.plusButton addTarget:self action:@selector(addOneToTip) forControlEvents:UIControlEventTouchUpInside];
         [_receiptCell.minusButton addTarget:self action:@selector(minusOneFromTip) forControlEvents:UIControlEventTouchUpInside];
         _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
@@ -167,5 +166,12 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
     self.navigationController.navigationBarHidden = NO;
     
 }
+
+- (void)rateView:(RateView *)rateView didChangeRatingState:(NMRateViewState)state {
+    if (state == NMRateViewStateStarted) {
+        self.tableView.scrollEnabled = NO;
+    } else self.tableView.scrollEnabled = YES;
+}
+
 
 @end

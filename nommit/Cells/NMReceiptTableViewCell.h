@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RateView.h"
+#import "NMRateView.h"
 
+@class NMRateView;
 @protocol NMReceiptTableViewCellDelegate;
 
-@interface NMReceiptTableViewCell : UITableViewCell<RateViewDelegate>
+@interface NMReceiptTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) RateView* rateVw;
+@property (nonatomic, strong) NMRateView* rateVw;
 @property (nonatomic, weak) id<NMReceiptTableViewCellDelegate> delegate;
 @property (nonatomic, strong) UILabel *tipLabel;
 @property (nonatomic, strong) UIButton *plusButton;

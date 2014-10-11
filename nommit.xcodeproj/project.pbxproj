@@ -22,6 +22,7 @@
 		83454F4E19DA39B6005CEA8C /* NMShift.m in Sources */ = {isa = PBXBuildFile; fileRef = 83454F4C19DA39B6005CEA8C /* NMShift.m */; };
 		83454F5119DA3A02005CEA8C /* NMShiftApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83454F5019DA3A02005CEA8C /* NMShiftApiModel.m */; };
 		83454F5419DA3AFE005CEA8C /* NMDeliveryPlaceApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83454F5319DA3AFE005CEA8C /* NMDeliveryPlaceApiModel.m */; };
+		8351379A19E9B13D00BE2093 /* NMRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8351379919E9B13D00BE2093 /* NMRateView.m */; };
 		836E358519D3DF66004208A6 /* NMCourierApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 836E358419D3DF66004208A6 /* NMCourierApiModel.m */; };
 		836E358A19D3E039004208A6 /* _NMCourier.m in Sources */ = {isa = PBXBuildFile; fileRef = 836E358719D3E039004208A6 /* _NMCourier.m */; };
 		836E358B19D3E039004208A6 /* NMCourier.m in Sources */ = {isa = PBXBuildFile; fileRef = 836E358919D3E039004208A6 /* NMCourier.m */; };
@@ -186,6 +187,8 @@
 		83454F5019DA3A02005CEA8C /* NMShiftApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMShiftApiModel.m; sourceTree = "<group>"; };
 		83454F5219DA3AFE005CEA8C /* NMDeliveryPlaceApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMDeliveryPlaceApiModel.h; sourceTree = "<group>"; };
 		83454F5319DA3AFE005CEA8C /* NMDeliveryPlaceApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMDeliveryPlaceApiModel.m; sourceTree = "<group>"; };
+		8351379819E9B13D00BE2093 /* NMRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRateView.h; path = "Custom Components/NMRateView.h"; sourceTree = "<group>"; };
+		8351379919E9B13D00BE2093 /* NMRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRateView.m; path = "Custom Components/NMRateView.m"; sourceTree = "<group>"; };
 		836E358319D3DF66004208A6 /* NMCourierApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMCourierApiModel.h; sourceTree = "<group>"; };
 		836E358419D3DF66004208A6 /* NMCourierApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMCourierApiModel.m; sourceTree = "<group>"; };
 		836E358619D3E039004208A6 /* _NMCourier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMCourier.h; path = Model/_NMCourier.h; sourceTree = "<group>"; };
@@ -603,6 +606,8 @@
 			children = (
 				8DCE836919D50B2E00D770D0 /* NMPromoTextField.h */,
 				8DCE836A19D50B2E00D770D0 /* NMPromoTextField.m */,
+				8351379819E9B13D00BE2093 /* NMRateView.h */,
+				8351379919E9B13D00BE2093 /* NMRateView.m */,
 			);
 			name = "Custom Components";
 			sourceTree = "<group>";
@@ -1088,6 +1093,7 @@
 				8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */,
 				83D6A9E519B822B8009A6D9B /* NMOrder.m in Sources */,
 				83454F4819DA398C005CEA8C /* _NMShift.m in Sources */,
+				8351379A19E9B13D00BE2093 /* NMRateView.m in Sources */,
 				8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */,
 				83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */,
 				8D7D00A419CD0BDD0006E5E6 /* NMFoodsTableViewController.m in Sources */,
