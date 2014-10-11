@@ -30,6 +30,7 @@
     [self setupLogo];
     [self setupMessageLabel];
     [self setupFacebookButton];
+    [self setupCMUBanner];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_signView, _logoView, _loginView   , _messageLabel);
     
@@ -76,6 +77,28 @@
     _loginView.translatesAutoresizingMaskIntoConstraints = NO;
     _loginView.delegate = self;
     [self.view addSubview:_loginView];
+}
+
+- (void)setupCMUBanner {
+    UIImageView *blankRibbon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BlankRibbon"]];
+    blankRibbon.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:blankRibbon];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(blankRibbon, _loginView);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[blankRibbon]-15-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[blankRibbon]-50-|" options:0 metrics:nil views:views]];
+    
+    UILabel *ribbonLabel = [[UILabel alloc] init];
+    ribbonLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    ribbonLabel.text = @"Only at Carnegie Mellon";
+    ribbonLabel.textColor = [UIColor whiteColor];
+    ribbonLabel.font = [UIFont fontWithName:@"Avenir" size:18.0f];
+    ribbonLabel.textAlignment = NSTextAlignmentCenter;
+    [blankRibbon addSubview:ribbonLabel];
+    
+    [blankRibbon addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[ribbonLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ribbonLabel)]];
+    [blankRibbon addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[ribbonLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ribbonLabel)]];
+    
 }
 
 - (void)setupMessageLabel

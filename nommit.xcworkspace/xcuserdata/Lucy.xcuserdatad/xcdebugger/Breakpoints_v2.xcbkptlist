@@ -328,12 +328,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMLoginViewController.m"
-            timestampString = "433927576.998743"
+            timestampString = "434742326.382885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "-performLoginWithFBSession:"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-loginView:handleError:"
             landmarkType = "5">
             <Locations>
                <Location
@@ -374,12 +374,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMLoginViewController.m"
-            timestampString = "433927576.998743"
+            timestampString = "434742326.382885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-performLoginWithFBSession:"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-loginView:handleError:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
