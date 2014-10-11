@@ -26,6 +26,7 @@ target "nommit" do
   pod 'ParallaxBlur'
   pod 'MZTimerLabel'
   pod 'Mixpanel'
+  pod 'TTTAttributedLabel'
 end
 
 

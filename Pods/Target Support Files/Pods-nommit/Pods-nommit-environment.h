@@ -64,7 +64,7 @@
 #define COCOAPODS_POD_AVAILABLE_Bolts
 #define COCOAPODS_VERSION_MAJOR_Bolts 1
 #define COCOAPODS_VERSION_MINOR_Bolts 1
-#define COCOAPODS_VERSION_PATCH_Bolts 2
+#define COCOAPODS_VERSION_PATCH_Bolts 3
 
 // DBCamera
 #define COCOAPODS_POD_AVAILABLE_DBCamera
@@ -275,6 +275,12 @@
 #define COCOAPODS_VERSION_MAJOR_Stripe 1
 #define COCOAPODS_VERSION_MINOR_Stripe 2
 #define COCOAPODS_VERSION_PATCH_Stripe 0
+
+// TTTAttributedLabel
+#define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel
+#define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1
+#define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 10
+#define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 1
 
 // TYMProgressBarView
 #define COCOAPODS_POD_AVAILABLE_TYMProgressBarView

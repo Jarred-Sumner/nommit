@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <TTTAttributedLabel.h>
 
 @interface NMDeliveryAvatarsTableViewCell : UITableViewCell
 
@@ -18,7 +19,7 @@
 
 @property (nonatomic, strong) UILabel *priceLabel;
 
-@property (nonatomic, strong) UILabel *updateLabel;
+@property (nonatomic, strong) TTTAttributedLabel *updateLabel;
 
 - (void)setupCourierAvatarWithProfileId:(NSString *)profileId;
 
