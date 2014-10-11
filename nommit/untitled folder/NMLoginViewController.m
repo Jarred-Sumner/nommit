@@ -30,12 +30,12 @@
     [self setupLogo];
     [self setupMessageLabel];
     [self setupFacebookButton];
-    [self setupCMUBanner];
+    // [self setupCMUBanner];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_signView, _logoView, _loginView   , _messageLabel);
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[_logoView]-50-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_signView]-20-[_logoView]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_signView]-30-[_logoView]" options:0 metrics:nil views:views]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_signView]|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_signView]" options:0 metrics:nil views:views]];
