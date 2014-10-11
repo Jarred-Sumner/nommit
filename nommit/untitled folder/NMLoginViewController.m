@@ -37,7 +37,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[_logoView]-50-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_signView]-20-[_logoView]" options:0 metrics:nil views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[_signView]-50-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_signView]|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_signView]" options:0 metrics:nil views:views]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[_messageLabel]-40-|" options:0 metrics:nil views:views]];
@@ -80,7 +80,7 @@
 }
 
 - (void)setupCMUBanner {
-    UIImageView *blankRibbon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BlankRibbon"]];
+    UIImageView *blankRibbon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CMUBanner"]];
     blankRibbon.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:blankRibbon];
     
@@ -88,16 +88,16 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[blankRibbon]-15-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[blankRibbon]-50-|" options:0 metrics:nil views:views]];
     
-    UILabel *ribbonLabel = [[UILabel alloc] init];
-    ribbonLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    ribbonLabel.text = @"Only at Carnegie Mellon";
-    ribbonLabel.textColor = [UIColor whiteColor];
-    ribbonLabel.font = [UIFont fontWithName:@"Avenir" size:18.0f];
-    ribbonLabel.textAlignment = NSTextAlignmentCenter;
-    [blankRibbon addSubview:ribbonLabel];
-    
-    [blankRibbon addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[ribbonLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ribbonLabel)]];
-    [blankRibbon addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[ribbonLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ribbonLabel)]];
+//    UILabel *ribbonLabel = [[UILabel alloc] init];
+//    ribbonLabel.translatesAutoresizingMaskIntoConstraints = NO;
+//    ribbonLabel.text = @"Only at Carnegie Mellon";
+//    ribbonLabel.textColor = [UIColor whiteColor];
+//    ribbonLabel.font = [UIFont fontWithName:@"Avenir" size:18.0f];
+//    ribbonLabel.textAlignment = NSTextAlignmentCenter;
+//    [blankRibbon addSubview:ribbonLabel];
+//    
+//    [blankRibbon addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[ribbonLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ribbonLabel)]];
+//    [blankRibbon addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[ribbonLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ribbonLabel)]];
     
 }
 
