@@ -127,8 +127,8 @@
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_nameLabel, _quantityInput, quantityLabel);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_nameLabel]-25-[_quantityInput]-16-|" options:0 metrics:nil views:views ]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_nameLabel]-120-[quantityLabel]" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_nameLabel]-34-[_quantityInput]-16-|" options:0 metrics:nil views:views ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[quantityLabel]-33-|" options:0 metrics:nil views:views ]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[quantityLabel]-0-[_quantityInput]-7-|" options:0 metrics:nil views:views ]];
     
     // adding the target,actions for available events
