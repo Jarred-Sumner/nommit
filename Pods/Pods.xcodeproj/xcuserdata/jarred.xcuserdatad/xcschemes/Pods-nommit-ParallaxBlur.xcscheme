@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DAE9647E3652116A1E25C4FD"
+               BlueprintIdentifier = "D6417A534BF6D9EC9BE2D594"
                BuildableName = "libPods-nommit-ParallaxBlur.a"
                BlueprintName = "Pods-nommit-ParallaxBlur"
                ReferencedContainer = "container:Pods.xcodeproj">

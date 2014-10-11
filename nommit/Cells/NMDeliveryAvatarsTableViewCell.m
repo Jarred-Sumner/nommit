@@ -81,7 +81,7 @@
 }
 
 - (void)setupUpdateLabel {
-    _updateLabel = [[UILabel alloc] init];
+    _updateLabel = [[TTTAttributedLabel alloc] init];
     _updateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _updateLabel.textColor = UIColorFromRGB(0x3c3c3c);
     _updateLabel.font = [UIFont fontWithName:@"Avenir" size:13.0f];

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2DE30B007BFEFE035682AC7C"
+               BlueprintIdentifier = "9D0A0C1CEFF7525D85756AD6"
                BuildableName = "libPods-nommit-MZTimerLabel.a"
                BlueprintName = "Pods-nommit-MZTimerLabel"
                ReferencedContainer = "container:Pods.xcodeproj">
