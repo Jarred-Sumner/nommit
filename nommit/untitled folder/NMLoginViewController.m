@@ -115,10 +115,6 @@
     [self.view addSubview:_messageLabel];
 }
 
-- (void)performLoginWithFBSession:(FBSession*)session {
-    [SVProgressHUD showWithStatus:@"Signing in..." maskType:SVProgressHUDMaskTypeBlack];
-}
-
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
     __block NMLoginViewController *this = self;
     if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
@@ -131,7 +127,7 @@
             NSArray *toRecipents = [NSArray arrayWithObject:@"support@getnommit.com"];
             
             MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-            mc.mailComposeDelegate = self;
+            mc.mailComposeDelegate = this;
             [mc setSubject:subject];
             [mc setToRecipients:toRecipents];
             
