@@ -23,7 +23,7 @@
 
 - (void)setupDescriptionLabel {
     _descriptionLabel = [[UILabel alloc] init];
-    _descriptionLabel.numberOfLines = 2;
+    _descriptionLabel.numberOfLines = 0;
     _descriptionLabel.font = [UIFont fontWithName:@"Avenir" size:14];
     _descriptionLabel.textColor = UIColorFromRGB(0x5D5D5D);
     _descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
