@@ -94,7 +94,7 @@ static char UIScrollViewParallaxView;
 {
     UILabel *eventName = [[UILabel alloc] init];
     eventName.text = title;
-    eventName.font = [UIFont fontWithName:@"Avenir" size:20];
+    eventName.font = [UIFont fontWithName:@"Avenir" size:18];
     eventName.textColor = [UIColor whiteColor];
     eventName.translatesAutoresizingMaskIntoConstraints = NO;
     [self.parallaxView addSubview:eventName];

@@ -215,11 +215,12 @@
     _timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _timeLabel.font = [UIFont fontWithName:@"Avenir" size:12.0f];
     _timeLabel.textColor = UIColorFromRGB(0x979797);
+    _timeLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_timeLabel];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(timeIcon, _timeLabel);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[timeIcon]-5-[_timeLabel(50)]-12-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[timeIcon]-5-[_timeLabel]-18-|" options:0 metrics:nil views:views]];
 
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[timeIcon]" options:0 metrics:nil views:views]];
