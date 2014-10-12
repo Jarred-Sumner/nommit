@@ -83,7 +83,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"foodCount > 0"];
-    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"foodCount" ascending:NO withPredicate:predicate groupBy:nil delegate:self];
+    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:predicate groupBy:nil delegate:self];
     return _fetchedResultsController;
 }
 

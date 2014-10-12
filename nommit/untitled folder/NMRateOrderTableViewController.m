@@ -20,6 +20,7 @@
 
 @interface NMRateOrderTableViewController ()<APParallaxViewDelegate, NMRateViewDelegate>
 
+@property BOOL didRate;
 @property (nonatomic, strong) NMOrder *order;
 @property (nonatomic, strong) NMDeliveryAvatarsTableViewCell *avatarsCell;
 @property (nonatomic, strong) NMDeliveryCallButtonTableViewCell *callButtonCell;
@@ -44,7 +45,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         self.view.backgroundColor = [NMColors lightGray];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _order = order;
-        _totalAmount = @([_order.priceChargedInCents integerValue] / 100);
+        _totalAmount = @([_order.priceChargedInCents doubleValue] / 100.f);
         
         [self.tableView addParallaxWithImage:nil andHeight:90];
         [self.tableView.parallaxView setDelegate:self];
@@ -86,11 +87,11 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSNumber *price = @([_order.priceChargedInCents doubleValue] / 100.0f);
     if (indexPath.section == NMRateAvatarsSection) {
         _avatarsCell = [self.tableView dequeueReusableCellWithIdentifier:NMRateAvatarsInfoIdentifier];
-        int price = (int)[_order.priceInCents integerValue]/100;
-        _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%d", price];
-        _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ delivered %@ orders of %@ from %@  to you for $%d.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
+        _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%@", price];
+        _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ delivered %@ orders of %@ from %@  to you for $%@.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
         [_avatarsCell setupCourierAvatarWithProfileId:_order.courier.user.facebookUID];
         [_avatarsCell.avatarSeller setImageWithURL:_order.food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
         return _avatarsCell;
@@ -112,7 +113,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 }
 
 - (void)enableMinusButton {
-    if ([_totalAmount integerValue] > (int)[_order.priceChargedInCents integerValue] / 100) {
+    if ([_totalAmount doubleValue] > @([_order.priceChargedInCents doubleValue] / 100.f).doubleValue) {
         _receiptCell.minusButton.alpha = 1.0f;
         _receiptCell.minusButton.enabled = YES;
     } else {
@@ -122,20 +123,26 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 }
 
 - (void)addOneToTip {
-    _totalAmount = @(_totalAmount.intValue + 1);
+    _totalAmount = @(_totalAmount.doubleValue + 1.0f);
     _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
     [self enableMinusButton];
 }
 
 - (void)minusOneFromTip {
-    _totalAmount = @(_totalAmount.intValue - 1);
+    _totalAmount = @(_totalAmount.doubleValue - 1.0f);
     _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
     [self enableMinusButton];
 }
 
 - (void)done {
+    if (!_didRate) {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Please rate your experience" andMessage:@"To continue, please rate your experience. If you had any issues at all, don't hesitate to reach out to support."];
+        [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+        [alert show];
+        return;
+    }
     NSString *path = [NSString stringWithFormat:@"orders/%@", _order.uid];
-    NSNumber *tip = @(_totalAmount.intValue * 100 - _order.priceChargedInCents.intValue);
+    NSNumber *tip = @( (_totalAmount.doubleValue * 100.f) - _order.priceChargedInCents.doubleValue);
     NSDictionary *params = @{ @"tip_in_cents" : tip, @"rating" : @(_receiptCell.rateVw.rating), @"state_id" : @(NMOrderStateRated) };
     
     [[NMApi instance] PUT:path parameters:params completionWithErrorHandling:^(id response, NSError *error) {
@@ -171,6 +178,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
     if (state == NMRateViewStateStarted) {
         self.tableView.scrollEnabled = NO;
     } else self.tableView.scrollEnabled = YES;
+    _didRate = YES;
 }
 
 

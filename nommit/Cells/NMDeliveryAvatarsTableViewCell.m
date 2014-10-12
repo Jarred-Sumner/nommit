@@ -70,10 +70,12 @@
     [self.contentView addSubview:avatarBorder];
     
     _priceLabel = [[UILabel alloc] init];
-    _priceLabel.font = [UIFont fontWithName:@"Avenir" size:30];
+    _priceLabel.font = [UIFont fontWithName:@"Avenir" size:28];
     _priceLabel.textColor = [UIColor whiteColor];
     _priceLabel.textAlignment = NSTextAlignmentCenter;
     _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [_priceLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    [_priceLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [_avatarPrice addSubview:_priceLabel];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_priceLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel) ]];
@@ -93,8 +95,7 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-65-[_updateLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_updateLabel) ]];
 }
 
-- (UIImageView *)createCircleAvatarWithFrame:(CGRect)frame
-{
+- (UIImageView *)createCircleAvatarWithFrame:(CGRect)frame {
     UIImageView *avatar = [[UIImageView alloc] initWithFrame:frame];
     
     avatar.layer.cornerRadius = CGRectGetWidth(frame) / 2;
@@ -104,8 +105,7 @@
     return avatar;
 }
 
-- (void)addBorder
-{
+- (void)addBorder {
     UIView *borderView = [[UIView alloc] init];
     borderView.backgroundColor = UIColorFromRGB(0xDFDFDF);
     borderView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -113,17 +113,6 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[borderView(1)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[borderView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
-}
-
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

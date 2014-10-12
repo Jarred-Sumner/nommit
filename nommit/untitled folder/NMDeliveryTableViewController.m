@@ -114,10 +114,10 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMAvatarsSection) {
         _avatarsCell = [self.tableView dequeueReusableCellWithIdentifier:NMAvatarsInfoIdentifier];
-        int price = (int)[_order.priceChargedInCents integerValue]/100;
-        _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%d", price];
+        NSNumber *price = @([_order.priceChargedInCents doubleValue] / 100.f);
+        _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%@", price];
         if ([_order.quantity integerValue] > 1) {
-            NSString *text = [NSString stringWithFormat:@"%@ is delivering %@ orders of %@ from %@ to you for $%d.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
+            NSString *text = [NSString stringWithFormat:@"%@ is delivering %@ orders of %@ from %@ to you for $%@.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
             
             __block NMDeliveryTableViewController *this = self;
             [_avatarsCell.updateLabel setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
@@ -139,7 +139,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
             }];
             
         } else {
-            NSString *text = [NSString stringWithFormat:@"%@ is delivering an order of %@ from %@ to you for $%d.", _order.courier.user.name, _order.food.title, _order.food.seller.name, price];
+            NSString *text = [NSString stringWithFormat:@"%@ is delivering an order of %@ from %@ to you for $%@.", _order.courier.user.name, _order.food.title, _order.food.seller.name, price];
             
             __block NMDeliveryTableViewController *this = self;
             [_avatarsCell.updateLabel setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
