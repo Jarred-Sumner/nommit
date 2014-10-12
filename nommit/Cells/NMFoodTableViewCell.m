@@ -231,14 +231,15 @@
 #pragma mark - Utility Methods
 
 - (NSString *)arrivalTimeText {
-    if ([_arrivalTime timeIntervalSinceNow] > 0) {
+    if ([_arrivalTime timeIntervalSinceNow] > 60 * 2) {
         TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
         timeIntervalFormatter.usesAbbreviatedCalendarUnits = YES;
         timeIntervalFormatter.futureDeicticExpression = @"";
         return [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:_arrivalTime];
+    } else if ([_arrivalTime timeIntervalSinceNow] > 0) {
+        return @"2 mins";
     } else {
         return @"15 mins";
     }
-
 }
 @end

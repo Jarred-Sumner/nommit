@@ -181,10 +181,10 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     
     if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
         [[UIApplication sharedApplication] openURL:phoneUrl];
-    } else
-    {
-        UIAlertView *calert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Call facility is not available!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [calert show];
+    } else {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Can't Place Calls" andMessage:@"This device can't place phone calls. Sorry about that."];
+        [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+        [alert show];
     }
 }
 
