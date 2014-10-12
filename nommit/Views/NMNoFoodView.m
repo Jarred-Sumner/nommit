@@ -32,14 +32,26 @@
 }
 
 - (void)setupLabel {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"HH::mm a";
+    
+    NSPredicate *startPredicate = [NSPredicate predicateWithFormat:@"startDate > %@", [NSDate date]];
+    NMFood *food = [NMFood MR_findFirstWithPredicate:startPredicate sortedBy:@"startDate" ascending:YES];
+    
     UILabel *label = [[UILabel alloc] init];
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.font = [UIFont fontWithName:@"Avenir" size:16];
     label.textColor = UIColorFromRGB(0xB2B2B2);
-    label.text = @"No food available right now. Please check back later!";
+
+    if (food) {
+        label.text = [NSString stringWithFormat:@"No food available right now. Please check back between %@ and %@!", [formatter stringFromDate:food.startDate], [formatter stringFromDate:food.endDate]];
+    } else {
+        label.text = @"No food available right now. Please check back tonight!";
+    }
+
     label.textAlignment = NSTextAlignmentCenter;
     label.lineBreakMode = NSLineBreakByWordWrapping;
-    label.numberOfLines = 2;
+    label.numberOfLines = 3;
     
     [self addSubview:label];
     
