@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "76BA2B9339DD9DA01CD3BFFA"
+               BlueprintIdentifier = "DF51ED417A6E4FF858C5E30F"
                BuildableName = "libPods-nommit-AKNumericFormatter.a"
                BlueprintName = "Pods-nommit-AKNumericFormatter"
                ReferencedContainer = "container:Pods.xcodeproj">

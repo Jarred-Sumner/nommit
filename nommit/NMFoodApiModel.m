@@ -28,6 +28,10 @@
     };
 }
 
++ (NSValueTransformer *)pricesJSONTransformer  {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMPriceApiModel class]];
+}
+
 + (NSValueTransformer *)sellerJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMSellerApiModel class]];
 }
@@ -61,6 +65,7 @@
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
     return @{
              @"seller" : [NMSellerApiModel class],
+             @"prices" : [NMPriceApiModel class]
     };
 }
 

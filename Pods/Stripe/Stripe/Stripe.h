@@ -40,4 +40,9 @@ typedef void (^STPCompletionBlock)(STPToken *token, NSError *error);
 + (void)requestTokenWithID:(NSString *)tokenId operationQueue:(NSOperationQueue *)queue completion:(STPCompletionBlock)handler;
 
 + (void)requestTokenWithID:(NSString *)tokenId completion:(STPCompletionBlock)handler;
+
++ (NSDictionary *)stripeUserAgentDetails;
++ (NSURL *)apiURL;
++ (void)handleTokenResponse:(NSURLResponse *)response body:(NSData *)body error:(NSError *)requestError completion:(STPCompletionBlock)handler;
+
 @end

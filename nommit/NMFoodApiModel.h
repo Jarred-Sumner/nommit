@@ -23,10 +23,10 @@
 @property (nonatomic, strong) NSString *thumbnailImageURL;
 @property (nonatomic, strong) NSNumber *orderGoal;
 @property (nonatomic, strong) NSNumber *orderCount;
-@property (nonatomic, strong) NSNumber *price;
 @property (nonatomic, strong) NSNumber *stateID;
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, strong) NMSellerApiModel *seller;
+@property (nonatomic, strong) NSArray *prices;
 
 - (BOOL)isActive;
 

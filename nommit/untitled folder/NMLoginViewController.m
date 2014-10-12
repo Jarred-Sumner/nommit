@@ -148,9 +148,14 @@
     [SVProgressHUD showWithStatus:@"Logging in..." maskType:SVProgressHUDMaskTypeBlack];
     [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : FBSession.activeSession.accessTokenData.accessToken } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
-        [[Mixpanel sharedInstance] track:@"Sign In"];
-        [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
+        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+           [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:localContext error:nil];
+        }];
+        
+        
         [NMSession setUserID:[response.result facebookUID]];
+        [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
+        [[Mixpanel sharedInstance] track:@"Sign In"];
         [NMApi resetInstance];
         
         [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {

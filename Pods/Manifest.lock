@@ -1,34 +1,34 @@
 PODS:
-  - AFNetworking (2.3.1):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.3.1):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.3.1):
+  - AFNetworking/NSURLSession (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.3.1)
-  - AFNetworking/Security (2.3.1)
-  - AFNetworking/Serialization (2.3.1)
-  - AFNetworking/UIKit (2.3.1):
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AKNumericFormatter (0.0.1)
+  - AKNumericFormatter (0.0.2)
   - APParallaxHeader (0.1.6)
   - Bolts (1.1.3)
-  - DBCamera (2.3.4):
+  - DBCamera (2.3.5):
     - GPUImage (~> 0.1)
   - DropdownMenu (1.0.0)
-  - Facebook-iOS-SDK (3.17.0):
-    - Bolts
-  - FormatterKit (1.7.0):
+  - Facebook-iOS-SDK (3.19.0):
+    - Bolts (~> 1.0)
+  - FormatterKit (1.7.1):
     - FormatterKit/AddressFormatter
     - FormatterKit/ArrayFormatter
     - FormatterKit/ColorFormatter
@@ -38,21 +38,21 @@ PODS:
     - FormatterKit/TimeIntervalFormatter
     - FormatterKit/UnitOfInformationFormatter
     - FormatterKit/URLRequestFormatter
-  - FormatterKit/AddressFormatter (1.7.0)
-  - FormatterKit/ArrayFormatter (1.7.0)
-  - FormatterKit/ColorFormatter (1.7.0)
-  - FormatterKit/LocationFormatter (1.7.0)
-  - FormatterKit/NameFormatter (1.7.0)
-  - FormatterKit/OrdinalNumberFormatter (1.7.0)
-  - FormatterKit/TimeIntervalFormatter (1.7.0)
-  - FormatterKit/UnitOfInformationFormatter (1.7.0)
-  - FormatterKit/URLRequestFormatter (1.7.0)
+  - FormatterKit/AddressFormatter (1.7.1)
+  - FormatterKit/ArrayFormatter (1.7.1)
+  - FormatterKit/ColorFormatter (1.7.1)
+  - FormatterKit/LocationFormatter (1.7.1)
+  - FormatterKit/NameFormatter (1.7.1)
+  - FormatterKit/OrdinalNumberFormatter (1.7.1)
+  - FormatterKit/TimeIntervalFormatter (1.7.1)
+  - FormatterKit/UnitOfInformationFormatter (1.7.1)
+  - FormatterKit/URLRequestFormatter (1.7.1)
   - FXBlurView (1.6.2)
   - GPUImage (0.1.6)
   - INTULocationManager (1.2.0)
   - JVFloatLabeledTextField (0.0.9)
   - libPhoneNumber-iOS (0.7.3)
-  - Lockbox (1.4.9)
+  - Lockbox (2.0.0)
   - M13Checkbox (1.1.2)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
@@ -73,9 +73,11 @@ PODS:
     - FXBlurView (~> 1.6.2)
   - PaymentKit (1.1)
   - RateView (1.1)
-  - REFrostedViewController (2.4.6)
+  - REFrostedViewController (2.4.7)
   - SIAlertView (1.3)
-  - Stripe (1.2)
+  - Stripe (2.2.0):
+    - Stripe/Core
+  - Stripe/Core (2.2.0)
   - SVProgressHUD (1.0)
   - TTTAttributedLabel (1.10.1)
   - TYMProgressBarView (0.3.0)
@@ -116,20 +118,20 @@ EXTERNAL SOURCES:
     :git: https://github.com/loopyz/PaymentKit.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  AKNumericFormatter: 9106b01691382063dd40b83c8f09be40dcf55854
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  AKNumericFormatter: 1e139772f4b4e6cea99fbfc8a4ca091dcef01576
   APParallaxHeader: 5369815639059caa4e195a178c020f8e2b998336
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
-  DBCamera: d78a9f58aaf29d0a0811baa8cea747c7d7e80923
+  DBCamera: 0095227e0d2d0292c5a2cc400fe75687120e6f29
   DropdownMenu: ad71a2fcb932cc04a4f7c29aadaf2e8ed0c08e42
-  Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
-  FormatterKit: 846ca773b9daaa13b50ae0df1f4a328d030d859c
+  Facebook-iOS-SDK: cb7d74759d0b1ba546e6e6f1dde407b0d4e448d6
+  FormatterKit: 877ff970af3feb2f602ced0a9420e9fbc25f568c
   FXBlurView: 47496afc9160097fa34af35fc4b310bd85d65dca
   GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
   INTULocationManager: 596c57e35a00ca1ee9d59bf4cc2b63dc299b580e
   JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
   libPhoneNumber-iOS: 98fc07d70c8fdb5e6a8e3442c37e97353065c20e
-  Lockbox: cfe87dbbce6b5c6d7cfeefc3fe6594ef55919b11
+  Lockbox: d1bada30011f98141383da4f2e8df9cc5e8bcf0f
   M13Checkbox: e87ebe28627368b1c6d2233282d711a3854dfe3f
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
@@ -139,9 +141,9 @@ SPEC CHECKSUMS:
   ParallaxBlur: 149ea077dec9264fc12bc04490cd05ff0e170e1d
   PaymentKit: 9c74e84fdf906b4ec5ee822c3dc6a19ae18df194
   RateView: 4142c146bd42fe7715adc3365fa2ffd71ff327e0
-  REFrostedViewController: 0f6bb16aeb4b384da25cc3c97bc1a16926583c62
+  REFrostedViewController: 08870a24788191339608b80b2bd4fce549858f0d
   SIAlertView: d00609a1faa9d82f17b9f0b4eede64e84a577b10
-  Stripe: 332d4942590c9b57a52d2b62a140cc2088907db8
+  Stripe: 935d0ff491100ca1ba0f4040c64e449c5ed69f6d
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
   TTTAttributedLabel: 94bb04f1e005616002dd2cee0262a0082e533627
   TYMProgressBarView: 3798cb41cb7eea63714d5db5793c06f31e37b4d5

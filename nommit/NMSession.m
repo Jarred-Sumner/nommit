@@ -37,7 +37,7 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 }
 
 + (void)setUserID:(NSString *)userID {
-    [Lockbox setString:[NSString stringWithFormat:@"%@", userID] forKey:NMSessionUserIDKey];
+    [Lockbox setString:userID forKey:NMSessionUserIDKey];
     [NMUser setCurrentUser:[NMUser MR_findFirstByAttribute:@"facebookUID" withValue:userID]];
 }
 

@@ -84,7 +84,7 @@
     _updateLabel = [[TTTAttributedLabel alloc] init];
     _updateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _updateLabel.textColor = UIColorFromRGB(0x3c3c3c);
-    _updateLabel.font = [UIFont fontWithName:@"Avenir" size:13.0f];
+    _updateLabel.font = [UIFont fontWithName:@"Avenir-Light" size:13.0f];
     _updateLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _updateLabel.numberOfLines = 0;
     [self.contentView addSubview:_updateLabel];

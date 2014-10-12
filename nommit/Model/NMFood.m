@@ -10,10 +10,6 @@
 
 @implementation NMFood
 
-+ (NSNumber*)revenueForFood:(NMFood*)food {
-    return @(food.orderCount.doubleValue * food.price.doubleValue);
-}
-
 - (NMFoodState)state {
     return (NMFoodState)self.stateIDValue;
 }
@@ -32,6 +28,12 @@
 
 - (NSNumber *)remainingOrders {
     return @(self.orderGoal.integerValue - self.orderCount.integerValue);
+}
+
+- (NSDecimalNumber*)priceAtQuantity:(NSNumber*)quantity {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"food = %@ AND quantity = %@", self, quantity];
+    NMPrice *price = [NMPrice MR_findFirstWithPredicate:predicate];
+    return price.price;
 }
 
 @end

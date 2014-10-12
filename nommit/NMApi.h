@@ -18,7 +18,9 @@
 #import "NMCourierApiModel.h"
 #import "NMShiftApiModel.h"
 #import "NMDeliveryPlaceApiModel.h"
+#import "NMPriceApiModel.h"
 
+#import "NMPrice.h"
 #import "NMLocation.h"
 #import "NMFood.h"
 #import "NMorder.h"

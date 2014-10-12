@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA1A85D5F7B56E8D87097F83"
+               BlueprintIdentifier = "21E371D6EDDEB9812E0EA096"
                BuildableName = "libPods-nommit-Overcoat.a"
                BlueprintName = "Pods-nommit-Overcoat"
                ReferencedContainer = "container:Pods.xcodeproj">

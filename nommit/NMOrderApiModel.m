@@ -90,7 +90,7 @@
     if (!_promoCode) _promoCode = @"";
     if (!_quantity || _quantity.integerValue < 1) _quantity = @1;
     return @{
-             @"quantity" : _quantity,
+             @"price_id" : [NMPrice priceIDForFood:food quantity:_quantity],
              @"promo_code" : _promoCode,
              @"place_id" : place.uid,
              @"food_id" : food.uid

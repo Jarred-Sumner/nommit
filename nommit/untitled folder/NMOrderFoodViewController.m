@@ -141,8 +141,8 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
         
         [_infoCell.avatar setImageWithURL:_food.seller.logoAsURL];
         _infoCell.nameLabel.text = [NSString stringWithFormat:@"By %@", _food.seller.name];
-        _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", _food.price];
         _infoCell.quantityInput.value = [_orderModel.quantity integerValue] || 1;
+        _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", [_food priceAtQuantity:@(_infoCell.quantityInput.value)]];
         return _infoCell;
     } else if (indexPath.section == NMDescriptionSecton) {
         _descriptionCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDescriptionIdentifier];
@@ -218,7 +218,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
     _orderModel.quantity = @(_infoCell.quantityInput.value);
 
-    _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", @(_orderModel.quantity.floatValue * _food.price.floatValue)];
+    _infoCell.priceLabel.text = [NSString stringWithFormat:@"$%@", [_food priceAtQuantity:_orderModel.quantity]];
 }
 
 @end

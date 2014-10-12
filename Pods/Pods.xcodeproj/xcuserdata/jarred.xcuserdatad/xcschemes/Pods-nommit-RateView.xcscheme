@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9740EC7ED4CD5154808F34C6"
+               BlueprintIdentifier = "5413810E9CB02E5BD3FCE6B1"
                BuildableName = "libPods-nommit-RateView.a"
                BlueprintName = "Pods-nommit-RateView"
                ReferencedContainer = "container:Pods.xcodeproj">

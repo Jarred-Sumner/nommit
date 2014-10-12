@@ -535,6 +535,113 @@ fi
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>8351379B19EA127800BE2093</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>NMPriceApiModel.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8351379C19EA127800BE2093</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>NMPriceApiModel.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8351379D19EA127800BE2093</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8351379C19EA127800BE2093</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8351379E19EA143D00BE2093</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>_NMPrice.h</string>
+			<key>path</key>
+			<string>Model/_NMPrice.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8351379F19EA143D00BE2093</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>_NMPrice.m</string>
+			<key>path</key>
+			<string>Model/_NMPrice.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>835137A019EA143D00BE2093</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8351379F19EA143D00BE2093</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>835137A119EA144B00BE2093</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NMPrice.h</string>
+			<key>path</key>
+			<string>Model/NMPrice.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>835137A219EA144B00BE2093</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NMPrice.m</string>
+			<key>path</key>
+			<string>Model/NMPrice.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>835137A319EA144B00BE2093</key>
+		<dict>
+			<key>fileRef</key>
+			<string>835137A219EA144B00BE2093</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>836E358319D3DF66004208A6</key>
 		<dict>
 			<key>fileEncoding</key>
@@ -772,6 +879,8 @@ fi
 		<dict>
 			<key>children</key>
 			<array>
+				<string>8351379E19EA143D00BE2093</string>
+				<string>8351379F19EA143D00BE2093</string>
 				<string>83454F4319DA398C005CEA8C</string>
 				<string>83454F4419DA398C005CEA8C</string>
 				<string>83454F4519DA398C005CEA8C</string>
@@ -1460,6 +1569,8 @@ fi
 				<string>83454F5019DA3A02005CEA8C</string>
 				<string>83454F5219DA3AFE005CEA8C</string>
 				<string>83454F5319DA3AFE005CEA8C</string>
+				<string>8351379B19EA127800BE2093</string>
+				<string>8351379C19EA127800BE2093</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -4587,9 +4698,11 @@ fi
 				<string>8D51D2BB19B6A28700920F69</string>
 				<string>83FB6D0119B57D6700B808B6</string>
 				<string>8D7D00A419CD0BDD0006E5E6</string>
+				<string>835137A019EA143D00BE2093</string>
 				<string>8DD32FC819D9C197009485C2</string>
 				<string>8D6DE42119B7B5AB008F64CE</string>
 				<string>8D51D29D19B509B400920F69</string>
+				<string>835137A319EA144B00BE2093</string>
 				<string>8DD3FC3D19B2512900DAFCDB</string>
 				<string>8DD32FD119D9E0EE009485C2</string>
 				<string>8DD32FCE19D9D77B009485C2</string>
@@ -4616,6 +4729,7 @@ fi
 				<string>8DD32FB919D8E804009485C2</string>
 				<string>8DCE835A19D4D5C900D770D0</string>
 				<string>8D7D00A719CD160B0006E5E6</string>
+				<string>8351379D19EA127800BE2093</string>
 				<string>83C3A18619CE54380052B6F7</string>
 				<string>83454F5119DA3A02005CEA8C</string>
 				<string>8DCE835419D4C85500D770D0</string>
@@ -6003,6 +6117,8 @@ fi
 		<dict>
 			<key>children</key>
 			<array>
+				<string>835137A119EA144B00BE2093</string>
+				<string>835137A219EA144B00BE2093</string>
 				<string>83454F4919DA39B6005CEA8C</string>
 				<string>83454F4A19DA39B6005CEA8C</string>
 				<string>83454F4B19DA39B6005CEA8C</string>

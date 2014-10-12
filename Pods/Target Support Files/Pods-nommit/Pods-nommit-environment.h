@@ -9,50 +9,50 @@
 // AFNetworking
 #define COCOAPODS_POD_AVAILABLE_AFNetworking
 #define COCOAPODS_VERSION_MAJOR_AFNetworking 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking 3
+#define COCOAPODS_VERSION_MINOR_AFNetworking 4
 #define COCOAPODS_VERSION_PATCH_AFNetworking 1
 
 // AFNetworking/NSURLConnection
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLConnection
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLConnection 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLConnection 3
+#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLConnection 4
 #define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLConnection 1
 
 // AFNetworking/NSURLSession
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLSession
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLSession 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLSession 3
+#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLSession 4
 #define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLSession 1
 
 // AFNetworking/Reachability
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_Reachability
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_Reachability 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_Reachability 3
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Reachability 4
 #define COCOAPODS_VERSION_PATCH_AFNetworking_Reachability 1
 
 // AFNetworking/Security
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_Security
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_Security 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_Security 3
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Security 4
 #define COCOAPODS_VERSION_PATCH_AFNetworking_Security 1
 
 // AFNetworking/Serialization
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_Serialization
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_Serialization 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_Serialization 3
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Serialization 4
 #define COCOAPODS_VERSION_PATCH_AFNetworking_Serialization 1
 
 // AFNetworking/UIKit
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_UIKit
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_UIKit 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 3
+#define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 4
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
 // AKNumericFormatter
 #define COCOAPODS_POD_AVAILABLE_AKNumericFormatter
 #define COCOAPODS_VERSION_MAJOR_AKNumericFormatter 0
 #define COCOAPODS_VERSION_MINOR_AKNumericFormatter 0
-#define COCOAPODS_VERSION_PATCH_AKNumericFormatter 1
+#define COCOAPODS_VERSION_PATCH_AKNumericFormatter 2
 
 // APParallaxHeader
 #define COCOAPODS_POD_AVAILABLE_APParallaxHeader
@@ -70,7 +70,7 @@
 #define COCOAPODS_POD_AVAILABLE_DBCamera
 #define COCOAPODS_VERSION_MAJOR_DBCamera 2
 #define COCOAPODS_VERSION_MINOR_DBCamera 3
-#define COCOAPODS_VERSION_PATCH_DBCamera 4
+#define COCOAPODS_VERSION_PATCH_DBCamera 5
 
 // DropdownMenu
 #define COCOAPODS_POD_AVAILABLE_DropdownMenu
@@ -87,68 +87,68 @@
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
-#define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 17
+#define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 19
 #define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 0
 
 // FormatterKit
 #define COCOAPODS_POD_AVAILABLE_FormatterKit
 #define COCOAPODS_VERSION_MAJOR_FormatterKit 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit 7
-#define COCOAPODS_VERSION_PATCH_FormatterKit 0
+#define COCOAPODS_VERSION_PATCH_FormatterKit 1
 
 // FormatterKit/AddressFormatter
 #define COCOAPODS_POD_AVAILABLE_FormatterKit_AddressFormatter
 #define COCOAPODS_VERSION_MAJOR_FormatterKit_AddressFormatter 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit_AddressFormatter 7
-#define COCOAPODS_VERSION_PATCH_FormatterKit_AddressFormatter 0
+#define COCOAPODS_VERSION_PATCH_FormatterKit_AddressFormatter 1
 
 // FormatterKit/ArrayFormatter
 #define COCOAPODS_POD_AVAILABLE_FormatterKit_ArrayFormatter
 #define COCOAPODS_VERSION_MAJOR_FormatterKit_ArrayFormatter 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit_ArrayFormatter 7
-#define COCOAPODS_VERSION_PATCH_FormatterKit_ArrayFormatter 0
+#define COCOAPODS_VERSION_PATCH_FormatterKit_ArrayFormatter 1
 
 // FormatterKit/ColorFormatter
 #define COCOAPODS_POD_AVAILABLE_FormatterKit_ColorFormatter
 #define COCOAPODS_VERSION_MAJOR_FormatterKit_ColorFormatter 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit_ColorFormatter 7
-#define COCOAPODS_VERSION_PATCH_FormatterKit_ColorFormatter 0
+#define COCOAPODS_VERSION_PATCH_FormatterKit_ColorFormatter 1
 
 // FormatterKit/LocationFormatter
 #define COCOAPODS_POD_AVAILABLE_FormatterKit_LocationFormatter
 #define COCOAPODS_VERSION_MAJOR_FormatterKit_LocationFormatter 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit_LocationFormatter 7
-#define COCOAPODS_VERSION_PATCH_FormatterKit_LocationFormatter 0
+#define COCOAPODS_VERSION_PATCH_FormatterKit_LocationFormatter 1
 
 // FormatterKit/NameFormatter
 #define COCOAPODS_POD_AVAILABLE_FormatterKit_NameFormatter
 #define COCOAPODS_VERSION_MAJOR_FormatterKit_NameFormatter 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit_NameFormatter 7
-#define COCOAPODS_VERSION_PATCH_FormatterKit_NameFormatter 0
+#define COCOAPODS_VERSION_PATCH_FormatterKit_NameFormatter 1
 
 // FormatterKit/OrdinalNumberFormatter
 #define COCOAPODS_POD_AVAILABLE_FormatterKit_OrdinalNumberFormatter
 #define COCOAPODS_VERSION_MAJOR_FormatterKit_OrdinalNumberFormatter 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit_OrdinalNumberFormatter 7
-#define COCOAPODS_VERSION_PATCH_FormatterKit_OrdinalNumberFormatter 0
+#define COCOAPODS_VERSION_PATCH_FormatterKit_OrdinalNumberFormatter 1
 
 // FormatterKit/TimeIntervalFormatter
 #define COCOAPODS_POD_AVAILABLE_FormatterKit_TimeIntervalFormatter
 #define COCOAPODS_VERSION_MAJOR_FormatterKit_TimeIntervalFormatter 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit_TimeIntervalFormatter 7
-#define COCOAPODS_VERSION_PATCH_FormatterKit_TimeIntervalFormatter 0
+#define COCOAPODS_VERSION_PATCH_FormatterKit_TimeIntervalFormatter 1
 
 // FormatterKit/URLRequestFormatter
 #define COCOAPODS_POD_AVAILABLE_FormatterKit_URLRequestFormatter
 #define COCOAPODS_VERSION_MAJOR_FormatterKit_URLRequestFormatter 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit_URLRequestFormatter 7
-#define COCOAPODS_VERSION_PATCH_FormatterKit_URLRequestFormatter 0
+#define COCOAPODS_VERSION_PATCH_FormatterKit_URLRequestFormatter 1
 
 // FormatterKit/UnitOfInformationFormatter
 #define COCOAPODS_POD_AVAILABLE_FormatterKit_UnitOfInformationFormatter
 #define COCOAPODS_VERSION_MAJOR_FormatterKit_UnitOfInformationFormatter 1
 #define COCOAPODS_VERSION_MINOR_FormatterKit_UnitOfInformationFormatter 7
-#define COCOAPODS_VERSION_PATCH_FormatterKit_UnitOfInformationFormatter 0
+#define COCOAPODS_VERSION_PATCH_FormatterKit_UnitOfInformationFormatter 1
 
 // GPUImage
 #define COCOAPODS_POD_AVAILABLE_GPUImage
@@ -170,9 +170,9 @@
 
 // Lockbox
 #define COCOAPODS_POD_AVAILABLE_Lockbox
-#define COCOAPODS_VERSION_MAJOR_Lockbox 1
-#define COCOAPODS_VERSION_MINOR_Lockbox 4
-#define COCOAPODS_VERSION_PATCH_Lockbox 9
+#define COCOAPODS_VERSION_MAJOR_Lockbox 2
+#define COCOAPODS_VERSION_MINOR_Lockbox 0
+#define COCOAPODS_VERSION_PATCH_Lockbox 0
 
 // M13Checkbox
 #define COCOAPODS_POD_AVAILABLE_M13Checkbox
@@ -250,7 +250,7 @@
 #define COCOAPODS_POD_AVAILABLE_REFrostedViewController
 #define COCOAPODS_VERSION_MAJOR_REFrostedViewController 2
 #define COCOAPODS_VERSION_MINOR_REFrostedViewController 4
-#define COCOAPODS_VERSION_PATCH_REFrostedViewController 6
+#define COCOAPODS_VERSION_PATCH_REFrostedViewController 7
 
 // RateView
 #define COCOAPODS_POD_AVAILABLE_RateView
@@ -272,9 +272,15 @@
 
 // Stripe
 #define COCOAPODS_POD_AVAILABLE_Stripe
-#define COCOAPODS_VERSION_MAJOR_Stripe 1
+#define COCOAPODS_VERSION_MAJOR_Stripe 2
 #define COCOAPODS_VERSION_MINOR_Stripe 2
 #define COCOAPODS_VERSION_PATCH_Stripe 0
+
+// Stripe/Core
+#define COCOAPODS_POD_AVAILABLE_Stripe_Core
+#define COCOAPODS_VERSION_MAJOR_Stripe_Core 2
+#define COCOAPODS_VERSION_MINOR_Stripe_Core 2
+#define COCOAPODS_VERSION_PATCH_Stripe_Core 0
 
 // TTTAttributedLabel
 #define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel

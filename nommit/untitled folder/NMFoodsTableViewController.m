@@ -114,6 +114,8 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 }
 
 - (void)refreshPlace {
+    if (!_place) return;
+    
     __weak NMFoodsTableViewController *this = self;
     [self.refreshControl beginRefreshing];
     

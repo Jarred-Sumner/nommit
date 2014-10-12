@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="14A379a" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="14A386a" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="NMCourier" representedClassName="NMCourier" syncable="YES">
         <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -23,7 +23,6 @@
         <attribute name="headerImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="orderCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="orderGoal" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="4" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -33,6 +32,7 @@
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="deliveryPlaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMDeliveryPlace" inverseName="foods" inverseEntity="NMDeliveryPlace" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="food" inverseEntity="NMOrder" syncable="YES"/>
+        <relationship name="prices" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="NMPrice" inverseName="food" inverseEntity="NMPrice" syncable="YES"/>
         <relationship name="seller" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMSeller" inverseName="foods" inverseEntity="NMSeller" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
@@ -107,6 +107,12 @@
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="place" inverseEntity="NMLocation" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="place" inverseEntity="NMOrder" syncable="YES"/>
     </entity>
+    <entity name="NMPrice" representedClassName="NMPrice" syncable="YES">
+        <attribute name="price" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="quantity" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="food" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMFood" inverseName="prices" inverseEntity="NMFood" syncable="YES"/>
+    </entity>
     <entity name="NMSeller" representedClassName="NMSeller" syncable="YES">
         <attribute name="logoURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -145,12 +151,13 @@
         </compoundIndexes>
     </entity>
     <elements>
-        <element name="NMCourier" positionX="9" positionY="117" width="128" height="133"/>
+        <element name="NMCourier" positionX="9" positionY="117" width="128" height="135"/>
         <element name="NMDeliveryPlace" positionX="9" positionY="117" width="128" height="148"/>
-        <element name="NMFood" positionX="0" positionY="0" width="128" height="285"/>
+        <element name="NMFood" positionX="0" positionY="0" width="128" height="283"/>
         <element name="NMLocation" positionX="0" positionY="0" width="128" height="253"/>
         <element name="NMOrder" positionX="0" positionY="0" width="128" height="285"/>
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="NMPrice" positionX="9" positionY="126" width="128" height="105"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
         <element name="NMShift" positionX="18" positionY="153" width="128" height="133"/>
         <element name="NMUser" positionX="0" positionY="0" width="128" height="270"/>

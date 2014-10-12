@@ -52,6 +52,15 @@ static NSString *NMActivePlaceKey = @"ActivePlace";
 + (void)refreshAllWithCompletion:(NMApiCompletionBlock)completion {
     [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
+        
+//        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+//            NSError *err;
+//            for (NMPlaceApiModel *model in response.result) {
+//                [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:&err];
+//                NSLog(@"Error: %@", err);
+//            }
+//        }];
+        
         __block NSMutableArray *activePlaceIDs = [[NSMutableArray alloc] init];
         for (NMPlaceApiModel *placeModel in response.result) {
             if (placeModel.foodCount.intValue > 0) {

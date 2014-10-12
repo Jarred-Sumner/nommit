@@ -34,7 +34,6 @@
 @interface OVCModelResponseSerializer ()
 
 @property (strong, nonatomic) OVCURLMatcher *URLMatcher;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) Class responseClass;
 @property (nonatomic) Class errorModelClass;
 
@@ -42,8 +41,7 @@
 
 @implementation OVCModelResponseSerializer
 
-+ (instancetype)serializerWithURLMatcher:(OVCURLMatcher *)URLMatcher responseClassURLMatcher:(OVCURLMatcher *)URLResponseClassMatcher managedObjectContext:(NSManagedObjectContext *)managedObjectContext responseClass:(Class)responseClass errorModelClass:(Class)errorModelClass
-{
++ (instancetype)serializerWithURLMatcher:(OVCURLMatcher *)URLMatcher responseClassURLMatcher:(OVCURLMatcher *)URLResponseClassMatcher managedObjectContext:(NSManagedObjectContext *)managedObjectContext responseClass:(Class)responseClass errorModelClass:(Class)errorModelClass {
     NSParameterAssert([responseClass isSubclassOfClass:[OVCResponse class]]);
     
     if (errorModelClass != Nil) {
@@ -52,7 +50,6 @@
     
     OVCModelResponseSerializer *serializer = [self serializerWithReadingOptions:0];
     serializer.URLMatcher = URLMatcher;
-    serializer.managedObjectContext = managedObjectContext;
     serializer.responseClass = responseClass;
     serializer.errorModelClass = errorModelClass;
     
@@ -89,21 +86,19 @@
                                                                     JSONObject:JSONObject
                                                                    resultClass:resultClass];
     
-    if (self.managedObjectContext) {
-        id result = nil;
-        
-        if ([resultClass conformsToProtocol:@protocol(MTLManagedObjectSerializing)]) {
-            result = responseObject.result;
-        } else if ([resultClass conformsToProtocol:@protocol(OVCManagedObjectSerializingContainer)]) {
-            NSString *keyPath = [resultClass managedObjectSerializingKeyPath];
-            result = [responseObject.result valueForKeyPath:keyPath];
-        }
-        
-        if (result) {
-            [self saveResult:result];
-        }
+    id result = nil;
+    
+    if ([resultClass conformsToProtocol:@protocol(MTLManagedObjectSerializing)]) {
+        result = responseObject.result;
+    } else if ([resultClass conformsToProtocol:@protocol(OVCManagedObjectSerializingContainer)]) {
+        NSString *keyPath = [resultClass managedObjectSerializingKeyPath];
+        result = [responseObject.result valueForKeyPath:keyPath];
     }
-        
+    
+    if (result) {
+        [self saveResult:result];
+    }
+    
     if (serializationError && error) {
         *error = [serializationError ovc_errorWithUnderlyingResponse:responseObject];
     }

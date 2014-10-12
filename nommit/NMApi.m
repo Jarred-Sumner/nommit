@@ -9,10 +9,7 @@
 #import "NMApi.h"
 #import "NMErrorApiModel.h"
 
-@interface NMApi () {
-    NSManagedObjectContext *_managedObjectContext;
-}
-
+@interface NMApi ()
 @end
 
 static id sharedApi;
@@ -22,23 +19,18 @@ static NSString *NMApiBaseURLString = API_URL;
 
 + (NSURLSessionConfiguration *)sessionConfiguration {
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+
+    NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSMutableDictionary *headers = [[NSMutableDictionary alloc] init];
+    headers[@"X-APP-VERSION"] = appVersion;
+    headers[@"X-APP-PLATFORM"] = @"iOS";
     
-    if (NMSession.isUserLoggedIn) {
-        sessionConfig.HTTPAdditionalHeaders = @{ @"X-SESSION-ID" : [NMSession sessionID] };
+    if ([NMSession isUserLoggedIn]) {
+        headers[@"X-SESSION-ID"] = NMSession.sessionID;
     }
     
+    sessionConfig.HTTPAdditionalHeaders = headers;
     return sessionConfig;
-}
-
-- (NSManagedObjectContextConcurrencyType)concurrencyType {
-    return [[self managedObjectContext] concurrencyType];
-}
-
-- (NSManagedObjectContext*)managedObjectContext {
-    if (!_managedObjectContext) {
-        _managedObjectContext = [NSManagedObjectContext MR_contextWithParent:[NSManagedObjectContext MR_defaultContext]];
-    }
-    return _managedObjectContext;
 }
 
 - (instancetype)init {
