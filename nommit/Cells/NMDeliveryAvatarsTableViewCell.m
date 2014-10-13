@@ -75,6 +75,7 @@
     _priceLabel.textAlignment = NSTextAlignmentCenter;
     _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [_priceLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    _priceLabel.adjustsFontSizeToFitWidth = YES;
     [_priceLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [_avatarPrice addSubview:_priceLabel];
     
@@ -92,7 +93,7 @@
     [self.contentView addSubview:_updateLabel];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[_updateLabel]-25-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_updateLabel) ]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-65-[_updateLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_updateLabel) ]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-55-[_updateLabel]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_updateLabel) ]];
 }
 
 - (UIImageView *)createCircleAvatarWithFrame:(CGRect)frame {
