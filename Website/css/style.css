@@ -334,4 +334,36 @@ fieldset[disabled] .order-button.active {
     .progress li:nth-child(1):before {
         border-left-color: #42B7BB !important;
     }
+
+
+/* login form */
+
+.modal-content {
+  width: 400px;
+  margin-left: 200px;
+}
+
+/* ring */
+
+.ring {
+    margin: 0 auto;
+    position: center;
+    max-width: 60%;
+    height: auto;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.update-text {
+  text-align: center;
+}
+/*
+.priceAvatar { 
+    position: center;
+    width: 100px;
+    height: 100px;
+    background-size: 100% 100%;
+    background-image: url('../images/tealcircle.png');
+}
+*/
     
