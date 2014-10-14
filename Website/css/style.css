@@ -63,7 +63,8 @@ h2 {
 .food-container {
     margin: 0 auto;
     text-align: left;
-    width: 326.9px;
+    width: 306.9px;
+    height: 450px;
     background-size: 100% 100%;
     background-image: url('../images/main_card.png');
 }
@@ -75,17 +76,19 @@ h2 {
 }
 
 .food-container .food {
-    margin: 16px;
+    margin-left: 16px;
 }
 
 .food-container .title {
     margin: 0;
+    margin-top: 2px;
     padding: 0px;
     text-align: left;
 }
 
 .food-container .sold {
     width: 96%; 
+    margin-top: 2px;
     text-align: left;
     font-family: "Avenir-Light";
     font-size: 12px;   
@@ -95,23 +98,33 @@ h2 {
 .food-container .description {
     font-family: "Avenir-Light";
     font-size: 13px;   
+    margin-top: -10px;
+    margin-right: 5px;
     color: #565656;
 }
 
 .food-container .price {
     width: 80%; 
     text-align: left;
+    margin-top: 33px;
     font-family: "Avenir-Light";
     font-size: 24px;   
     color: #42B7BB;
 }
 
 .food-container .quantity-label {
-    width: 18%; 
-    text-align: left;
+    width: 68%;
+    margin-top: -25px;
+    text-align: right;
     font-family: "Avenir-Light";
     font-size: 12px; 
     color: #888888;
+}
+
+.form-control {
+  width: 50px;
+  margin-left: 75%;
+  margin-top: -9%;
 }
 
 .main_card .quantity-select {
@@ -123,6 +136,8 @@ h2 {
 
 .order-button {
     width: 18%; 
+    margin-top: 20px;
+    margin-left: 16px;
     text-align: center;
     font-family: "Avenir-Light";
     font-size: 23px;
@@ -204,3 +219,119 @@ fieldset[disabled] .order-button.active {
   color: #42B7BB; 
   background-color: #ffffff; 
 }
+
+/* progress bar */
+
+
+#progress_bar {
+    display: block;
+    width: 270px;
+    height: 15px;
+    background-color: #F0F0F0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 2px;
+    margin-bottom: 30px;
+    /* typekit futura included */
+    font-family: "Futura", futura-pt-1, futura-pt-2, "Arial", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    color: white;
+    position: relative;
+}
+    #progress_bar:before {
+        display: block;
+        width: 270px;
+        height: 15px;
+        background-color: rgba(255, 255, 255, 0.1);
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        content: "";
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        z-index: 400;
+    }
+    #progress_bar:after {
+        display: block;
+        width: 270px;
+        height: 15px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        content: "";
+        -moz-box-shadow: inset 0 0 5px #343434;
+        -webkit-box-shadow: inset 0 0 5px #343434;
+        box-shadow: inset 0 0 5px #343434;
+        z-index: 500;
+    }
+    #progress_bar li {
+        display: inline-block;
+        width: 120px;
+        text-align: center;
+        padding-top: 7px;
+        padding-bottom: 0px;
+        position: relative;
+        height: 15px;
+    }
+        #progress_bar li:first-child {
+            -webkit-border-top-left-radius: 10px;
+            -webkit-border-bottom-left-radius: 10px;
+            -moz-border-radius-topleft: 10px;
+            -moz-border-radius-bottomleft: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        #progress_bar li:last-child {
+            -webkit-border-top-right-radius: 10px;
+            -webkit-border-bottom-right-radius: 10px;
+            -moz-border-radius-topright: 10px;
+            -moz-border-radius-bottomright: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+            #progress_bar li:last-child:before {
+                border: none;
+            }
+            #progress_bar li:last-child:after {
+                border: none;
+            }
+        #progress_bar li:after {
+            width: 0px;
+            height: 0px;
+            display: block;
+            border: 13px solid transparent;
+            border-left-color: white;
+            position: absolute;
+            top: 0px;
+            left: 121px;
+            content: "";
+            z-index: 200;
+        }
+        #progress_bar li:before {
+            width: 0px;
+            height: 0px;
+            display: block;
+            border: 13px solid transparent;
+            border-left-color: #F0F0F0;
+            position: absolute;
+            top: 0px;
+            left: 118px;
+            content: "";
+            z-index: 300;
+        }
+    
+
+.progress li:nth-child(1) {
+  margin-left: -40px;
+    background-color: #42B7BB;
+}
+    .progress li:nth-child(1):before {
+        border-left-color: #42B7BB !important;
+    }
+    
