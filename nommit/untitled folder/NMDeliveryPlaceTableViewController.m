@@ -220,16 +220,16 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     NMOrderTableViewCell *cell = (NMOrderTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
     [UIView animateWithDuration:0.15 animations:^{
-        [cell.spinnerView startAnimating];
-        cell.spinnerView.hidden = NO;
         cell.doneButton.hidden = YES;
+    } completion:^(BOOL finished) {
+        [cell.spinnerView startAnimating];
     }];
 
     NSString *path = [NSString stringWithFormat:@"orders/%@", order.uid];
     [[NMApi instance] PUT:path parameters:@{ @"state_id" : @(NMOrderStateDelivered) } completionWithErrorHandling:^(id response, NSError *error) {
-        cell.spinnerView.hidden = YES;
-        cell.doneButton.hidden = NO;
         [cell.spinnerView stopAnimating];
+        cell.doneButton.hidden = NO;
+
         
         if ([[response result] stateID].integerValue == NMOrderStateDelivered) {
             [[Mixpanel sharedInstance] track:@"Delivered" properties:@{ @"food" : order.food.uid, @"place" : order.place.name }];

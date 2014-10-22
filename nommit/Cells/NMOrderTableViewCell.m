@@ -88,8 +88,8 @@
     [_deliveryContainer addSubview:_doneButton];
     
     _spinnerView = [[UIActivityIndicatorView alloc] init];
-    _spinnerView.hidden = YES;
-    _spinnerView.tintColor = [NMColors mainColor];
+    _spinnerView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    _spinnerView.color = [NMColors mainColor];
     _spinnerView.translatesAutoresizingMaskIntoConstraints = NO;
     [_deliveryContainer addSubview:_spinnerView];
     
