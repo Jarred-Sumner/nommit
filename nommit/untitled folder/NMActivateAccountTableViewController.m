@@ -42,7 +42,7 @@ static NSString *NMRegisterPaymentTableViewCellKey = @"NMRegisterPaymentTableVie
 static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
 
         self.tableView.backgroundColor = UIColorFromRGB(0xFBFBFB);
@@ -52,6 +52,7 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
         [self.tableView registerClass:[NMActivatePhoneTableViewCell class] forCellReuseIdentifier:NMRegisterPhoneTableViewCellKey];
         [self.tableView registerClass:[NMActivatePaymentTableViewCell class] forCellReuseIdentifier:NMRegisterPaymentTableViewCellKey];
 
+        self.navigationItem.hidesBackButton = YES;
     }
     return self;
 }
@@ -126,7 +127,7 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 - (void)initNavBar {
     // Setup save button
     _saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
-    _saveButton.enabled = YES;
+    _saveButton.enabled = NO;
     self.navigationItem.rightBarButtonItem = _saveButton;
     [self.navigationController setNavigationBarHidden:NO];
 }
