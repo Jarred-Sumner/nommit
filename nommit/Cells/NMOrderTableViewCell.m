@@ -65,7 +65,7 @@
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_orderName, _nameLabel);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-70-[_orderName]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-70-[_orderName(150)]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-0-[_orderName]" options:0 metrics:nil views:views]];
 }
 
@@ -96,10 +96,10 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_callButton, _spinnerView, _deliveryContainer, _doneButton);
     
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_callButton(40)]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_callButton(40)]" options:0 metrics:nil views:views]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_callButton(40)]-5-[_deliveryContainer(40)]-17-|" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_deliveryContainer(40)]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_callButton(40)]-5-[_deliveryContainer(40)]-13-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_deliveryContainer(40)]" options:0 metrics:nil views:views]];
     
     [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_doneButton(40)]|" options:0 metrics:nil views:views]];
     [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_doneButton(40)]|" options:0 metrics:nil views:views]];
