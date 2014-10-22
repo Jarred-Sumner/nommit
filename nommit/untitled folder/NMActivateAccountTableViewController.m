@@ -44,7 +44,6 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-
         self.tableView.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
         self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -64,6 +63,9 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
     [self checkPhoneValid];
     
     [self initNavBar];
+    
+    NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
+    navController.frostedViewController.panGestureEnabled = NO;
 }
 
 #pragma mark - Table view data source
@@ -129,6 +131,7 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
     _saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
     _saveButton.enabled = NO;
     self.navigationItem.rightBarButtonItem = _saveButton;
+    self.navigationItem.hidesBackButton = YES;
     [self.navigationController setNavigationBarHidden:NO];
 }
 
