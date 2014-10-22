@@ -32,7 +32,7 @@
 
 - (void)setupAvatar
 {
-    _profileAvatar = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(20.5, 7.5, 35.25, 35.25)];
+    _profileAvatar = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(20.5, 7.5, 45.25, 45.25)];
     _profileAvatar.layer.cornerRadius = CGRectGetWidth(_profileAvatar.bounds) / 2;
     _profileAvatar.contentMode = UIViewContentModeScaleAspectFit;
     _profileAvatar.layer.masksToBounds = YES;
@@ -51,7 +51,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_nameLabel);
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-70-[_nameLabel]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[_nameLabel]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-9-[_nameLabel]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupOrderName
@@ -96,15 +96,15 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(_callButton, _spinnerView, _deliveryContainer, _doneButton);
     
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_callButton(30)]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_callButton(40)]" options:0 metrics:nil views:views]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_callButton(30)]-5-[_deliveryContainer(30)]-10-|" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_deliveryContainer(30)]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_callButton(40)]-5-[_deliveryContainer(40)]-10-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_deliveryContainer(40)]" options:0 metrics:nil views:views]];
     
-    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_doneButton(30)]|" options:0 metrics:nil views:views]];
-    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_doneButton(30)]|" options:0 metrics:nil views:views]];
-    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_spinnerView(30)]|" options:0 metrics:nil views:views]];
-    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_spinnerView(30)]|" options:0 metrics:nil views:views]];
+    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_doneButton(40)]|" options:0 metrics:nil views:views]];
+    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_doneButton(40)]|" options:0 metrics:nil views:views]];
+    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_spinnerView(40)]|" options:0 metrics:nil views:views]];
+    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_spinnerView(40)]|" options:0 metrics:nil views:views]];
 
 }
 

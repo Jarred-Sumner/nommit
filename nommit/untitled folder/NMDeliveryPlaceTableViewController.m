@@ -170,7 +170,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -197,7 +197,6 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     CGPoint buttonOriginInTableView = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
     NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NMOrderTableViewCell *cell = (NMOrderTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
     NSString *phNo = order.user.phone;
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",phNo]];
