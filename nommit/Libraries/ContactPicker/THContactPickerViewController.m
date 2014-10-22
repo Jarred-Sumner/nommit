@@ -415,6 +415,7 @@ UIBarButtonItem *barButton;
 //    }];
     [this.delegate didSelectContacts:this.selectedContacts];
     [self removeAllContacts:self];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Select All" style:UIBarButtonItemStyleDone target:self action:@selector(selectAllContacts:)];
 }
 
 - (void)selectAllContacts:(id)sender {
