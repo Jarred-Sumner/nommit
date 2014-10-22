@@ -9,7 +9,7 @@ static id NMCurrentUser;
 + (NMUser *)currentUser {
     if (!NMCurrentUser) {
         NMCurrentUser = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID]];
-        if (NMCurrentUser) {
+        if (NMCurrentUser && [NMCurrentUser fullName] && [NMCurrentUser email] && [NMCurrentUser phone]) {
             [[Mixpanel sharedInstance].people setOnce:@{
                 @"Name" : [NMCurrentUser fullName],
                 @"Email" : [NMCurrentUser email],
