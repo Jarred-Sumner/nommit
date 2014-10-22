@@ -10,6 +10,7 @@
 #import "NMTableSeparatorView.h"
 #import "NMFoodsTableViewController.h"
 #import <SIAlertView.h>
+#import "NMMenuNavigationController.h"
 
 @interface NMConfirmNumberViewController ()
 
@@ -24,6 +25,9 @@ static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCel
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
+        
+        [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
+        
         self.tableView.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
         self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -45,6 +49,12 @@ static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCel
     SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Confirm Phone Number" andMessage:@"You've been texted a six digit confirm code. Please enter it to get started ordering food with Nommit."];
     [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
     [alert show];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
+    navController.frostedViewController.panGestureEnabled = NO;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

@@ -27,8 +27,21 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
+        UILabel *poweredby = [[UILabel alloc] init];
+        poweredby.translatesAutoresizingMaskIntoConstraints = NO;
+        poweredby.text = @"Secured by Stripe Checkout - Lyft uses them too! You won't be charged until your first purchase.";
+        poweredby.textColor = UIColorFromRGB(0x5F5F5F);
+        poweredby.font = [UIFont fontWithName:@"Avenir" size:11];
+        poweredby.lineBreakMode = NSLineBreakByWordWrapping;
+        poweredby.numberOfLines = 0;
+        [self.contentView addSubview:poweredby];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[poweredby]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(poweredby)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[poweredby]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(poweredby)]];
+
+        
         // Setup checkout
-        PTKView *paymentView = [[PTKView alloc] initWithFrame:CGRectMake(24, 20, 290, 45)];
+        PTKView *paymentView = [[PTKView alloc] initWithFrame:CGRectMake(24, 42, 290, 45)];
         self.paymentView = paymentView;
         [self.contentView addSubview:paymentView];
         

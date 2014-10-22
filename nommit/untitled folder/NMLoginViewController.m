@@ -168,7 +168,7 @@
                 
             } else if ([NMUser currentUser].state == NMUserStateRegistered) {
                 NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
-                
+                [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
                 [self.navigationController pushViewController:activateVC animated:YES];
             }
         }];

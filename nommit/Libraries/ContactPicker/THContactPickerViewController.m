@@ -414,6 +414,7 @@ UIBarButtonItem *barButton;
 //        
 //    }];
     [this.delegate didSelectContacts:this.selectedContacts];
+    [self removeAllContacts:self];
 }
 
 - (void)selectAllContacts:(id)sender {

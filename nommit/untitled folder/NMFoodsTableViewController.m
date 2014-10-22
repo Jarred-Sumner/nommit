@@ -37,6 +37,9 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 - (id)init {
     self = [super init];
     if (self) {
+        
+        [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
+        
         self.view.backgroundColor = [NMColors lightGray];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self initNavBar];
@@ -74,6 +77,9 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    
+    NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
+    navController.frostedViewController.panGestureEnabled = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
