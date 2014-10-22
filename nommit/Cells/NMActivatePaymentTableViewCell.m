@@ -29,7 +29,7 @@
         
         UILabel *poweredby = [[UILabel alloc] init];
         poweredby.translatesAutoresizingMaskIntoConstraints = NO;
-        poweredby.text = @"Powered by Stripe Checkout - Lyft uses them too! You won't be charged until your first purchase.";
+        poweredby.text = @"Secured by Stripe Checkout - Lyft uses them too! You won't be charged until your first purchase.";
         poweredby.textColor = UIColorFromRGB(0x5F5F5F);
         poweredby.font = [UIFont fontWithName:@"Avenir" size:11];
         poweredby.lineBreakMode = NSLineBreakByWordWrapping;
