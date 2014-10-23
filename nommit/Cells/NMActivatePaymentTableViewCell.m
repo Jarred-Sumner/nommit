@@ -35,22 +35,27 @@
         
         TTTAttributedLabel *poweredby = [[TTTAttributedLabel alloc] init];
         poweredby.translatesAutoresizingMaskIntoConstraints = NO;
-        
         poweredby.textAlignment = NSTextAlignmentCenter;
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] init];
-        FAKFontAwesome *lockIcon = [FAKFontAwesome lockIconWithSize:12];
-        
-        [string appendAttributedString:[lockIcon attributedString]];
-        [string appendAttributedString:[[NSAttributedString alloc] initWithString:@" Secured with Stripe"]];
         
         NSDictionary *attrs = @{
-                                NSFontAttributeName: [UIFont fontWithName:@"Avenir-Light"  size:11]
-//            NSForegroundColorAttributeName:  };
+                                NSForegroundColorAttributeName: UIColorFromRGB(0x636363)
+                                };
+        
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"" attributes:attrs];
+        
+        FAKFontAwesome *lockIcon = [FAKFontAwesome lockIconWithSize:12];
+        [lockIcon addAttributes:attrs];
+        [string appendAttributedString:[lockIcon attributedString]];
+        [string appendAttributedString:[[NSAttributedString alloc] initWithString:@" Secured with Stripe" attributes:attrs]];
+        
+        attrs = @{
+                                NSFontAttributeName: [UIFont fontWithName:@"Avenir-Light"  size:11],
+                                NSForegroundColorAttributeName: UIColorFromRGB(0x636363)
                                 };
         
         [string appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n (Lyft & Twitter use them too!)" attributes:attrs]];
         poweredby.attributedText = string;
-        poweredby.textColor = UIColorFromRGB(0x5F5F5F);
+        poweredby.textColor = UIColorFromRGB(0x636363);
         poweredby.font = [UIFont fontWithName:@"Avenir" size:11];
         poweredby.lineBreakMode = NSLineBreakByWordWrapping;
         poweredby.numberOfLines = 2;
