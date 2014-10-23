@@ -27,6 +27,7 @@ target "nommit" do
   pod 'MZTimerLabel'
   pod 'Mixpanel'
   pod 'TTTAttributedLabel'
+  pod 'FontAwesomeKit', '~> 2.1.0'
 end
 
 

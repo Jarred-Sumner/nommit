@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA6B84859F3681F5C9AF133B"
-               BuildableName = "libPods-nommit-ADBIndexedTableView.a"
-               BlueprintName = "Pods-nommit-ADBIndexedTableView"
+               BlueprintIdentifier = "5C5D0604A36C9D5EF662BFFC"
+               BuildableName = "libPods-nommit-FontAwesomeKit.a"
+               BlueprintName = "Pods-nommit-FontAwesomeKit"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

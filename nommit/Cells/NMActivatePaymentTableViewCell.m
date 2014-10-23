@@ -9,6 +9,7 @@
 #import "NMActivatePaymentTableViewCell.h"
 #import "PTKView.h"
 #import <TTTAttributedLabel.h>
+#import <FAKFontAwesome.h>
 
 @interface NMActivatePaymentTableViewCell() {
     UIButton *hiddenCardButton;
@@ -37,11 +38,16 @@
         
         poweredby.textAlignment = NSTextAlignmentCenter;
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] init];
-        [string appendAttributedString:[[NSAttributedString alloc] initWithString:@"Secured with Stripe"]];
+        FAKFontAwesome *lockIcon = [FAKFontAwesome lockIconWithSize:12];
+        
+        [string appendAttributedString:[lockIcon attributedString]];
+        [string appendAttributedString:[[NSAttributedString alloc] initWithString:@" Secured with Stripe"]];
         
         NSDictionary *attrs = @{
-            NSFontAttributeName: [UIFont fontWithName:@"Avenir-Light"  size:11],
+                                NSFontAttributeName: [UIFont fontWithName:@"Avenir-Light"  size:11]
 //            NSForegroundColorAttributeName:  };
+                                };
+        
         [string appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n (Lyft & Twitter use them too!)" attributes:attrs]];
         poweredby.attributedText = string;
         poweredby.textColor = UIColorFromRGB(0x5F5F5F);

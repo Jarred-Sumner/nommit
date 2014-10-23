@@ -28,6 +28,21 @@ PODS:
   - DropdownMenu (1.0.0)
   - Facebook-iOS-SDK (3.19.0):
     - Bolts (~> 1.0)
+  - FontAwesomeKit (2.1.8):
+    - FontAwesomeKit/Core
+    - FontAwesomeKit/FontAwesome
+    - FontAwesomeKit/FoundationIcons
+    - FontAwesomeKit/IonIcons
+    - FontAwesomeKit/Zocial
+  - FontAwesomeKit/Core (2.1.8)
+  - FontAwesomeKit/FontAwesome (2.1.8):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/FoundationIcons (2.1.8):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/IonIcons (2.1.8):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Zocial (2.1.8):
+    - FontAwesomeKit/Core
   - FormatterKit (1.7.1):
     - FormatterKit/AddressFormatter
     - FormatterKit/ArrayFormatter
@@ -89,6 +104,7 @@ DEPENDENCIES:
   - DBCamera
   - DropdownMenu
   - Facebook-iOS-SDK
+  - FontAwesomeKit (~> 2.1.0)
   - FormatterKit
   - INTULocationManager
   - JVFloatLabeledTextField
@@ -125,6 +141,7 @@ SPEC CHECKSUMS:
   DBCamera: 0095227e0d2d0292c5a2cc400fe75687120e6f29
   DropdownMenu: ad71a2fcb932cc04a4f7c29aadaf2e8ed0c08e42
   Facebook-iOS-SDK: cb7d74759d0b1ba546e6e6f1dde407b0d4e448d6
+  FontAwesomeKit: a2edea3111dab107b4cc43b85881b404eb063385
   FormatterKit: 877ff970af3feb2f602ced0a9420e9fbc25f568c
   FXBlurView: 47496afc9160097fa34af35fc4b310bd85d65dca
   GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
@@ -148,4 +165,4 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 94bb04f1e005616002dd2cee0262a0082e533627
   TYMProgressBarView: 3798cb41cb7eea63714d5db5793c06f31e37b4d5
 
-COCOAPODS: 0.34.1
+COCOAPODS: 0.34.4
