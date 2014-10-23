@@ -53,7 +53,7 @@
                                 NSForegroundColorAttributeName: UIColorFromRGB(0x636363)
                                 };
         
-        [string appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n (Lyft & Twitter use them too!)" attributes:attrs]];
+        [string appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n (Won't charge until credit is used up)" attributes:attrs]];
         poweredby.attributedText = string;
         poweredby.textColor = UIColorFromRGB(0x636363);
         poweredby.font = [UIFont fontWithName:@"Avenir" size:11];
@@ -61,8 +61,10 @@
         poweredby.numberOfLines = 2;
         [self.contentView addSubview:poweredby];
         
+        
+        
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[poweredby]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(poweredby)]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[paymentView]-8-[poweredby]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(poweredby, paymentView)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-63-[poweredby]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(poweredby)]];
         NSString *sTokenId = @"";
         if (sTokenId) {
             _sCard = @"4242";
