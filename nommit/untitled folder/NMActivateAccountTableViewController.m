@@ -66,12 +66,11 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
     
     NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = NO;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.tableView setContentOffset:CGPointMake(0, 110) animated:NO];
+    [self.tableView setContentOffset:CGPointMake(0, 135) animated:NO];
 }
 
 #pragma mark - Table view data source
@@ -111,7 +110,7 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMAccountInfoSection) {
         _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMAccountInfoTableViewCellKey];
-        
+        _infoCell.avatar.profileID = NMUser.currentUser.facebookUID;
         _infoCell.nameLabel.text = NMUser.currentUser.fullName;
         _infoCell.emailLabel.text = NMUser.currentUser.email;
         return _infoCell;

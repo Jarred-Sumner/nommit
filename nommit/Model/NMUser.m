@@ -9,12 +9,15 @@ static id NMCurrentUser;
 + (NMUser *)currentUser {
     if (!NMCurrentUser) {
         NMCurrentUser = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID]];
-        if (NMCurrentUser && [NMCurrentUser fullName] && [NMCurrentUser email] && [NMCurrentUser phone]) {
-            [[Mixpanel sharedInstance].people setOnce:@{
-                @"Name" : [NMCurrentUser fullName],
-                @"Email" : [NMCurrentUser email],
-                @"Phone" : [NMCurrentUser phone],
-            }];
+        if (NMCurrentUser) {
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+            if ([NMCurrentUser fullName]) [dict setObject:@"Name" forKey:[NMCurrentUser fullName]];
+            
+            if ([NMCurrentUser email]) [dict setObject:@"Email" forKey:[NMCurrentUser email]];
+            
+            if ([NMCurrentUser phone]) [dict setObject:@"Phone" forKey:[NMCurrentUser phone]];
+            
+            [[Mixpanel sharedInstance].people setOnce:dict];
         }
     }
     return NMCurrentUser;
