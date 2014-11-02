@@ -60,6 +60,8 @@
 		8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */; };
 		8D3D052E19DB5C3400B02677 /* NMCourierSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */; };
 		8D3D053119DB688900B02677 /* NMCourierSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D053019DB688900B02677 /* NMCourierSummaryTableViewCell.m */; };
+		8D4907D91A044F47001A2225 /* NMNewDeliveryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4907D81A044F47001A2225 /* NMNewDeliveryTableViewController.m */; };
+		8D4907DC1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4907DB1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m */; };
 		8D49F30819BE942600E60145 /* NMPaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30719BE942600E60145 /* NMPaymentsViewController.m */; };
 		8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F31019C0D65900E60145 /* NMCreateCampaignViewController.m */; };
 		8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D28F19B3A3DD00920F69 /* MEExpandableHeaderView.m */; };
@@ -262,6 +264,10 @@
 		8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCourierSummaryTableViewController.m; path = "untitled folder/NMCourierSummaryTableViewController.m"; sourceTree = "<group>"; };
 		8D3D052F19DB688900B02677 /* NMCourierSummaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCourierSummaryTableViewCell.h; path = Cells/NMCourierSummaryTableViewCell.h; sourceTree = "<group>"; };
 		8D3D053019DB688900B02677 /* NMCourierSummaryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCourierSummaryTableViewCell.m; path = Cells/NMCourierSummaryTableViewCell.m; sourceTree = "<group>"; };
+		8D4907D71A044F47001A2225 /* NMNewDeliveryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNewDeliveryTableViewController.h; path = "untitled folder/NMNewDeliveryTableViewController.h"; sourceTree = "<group>"; };
+		8D4907D81A044F47001A2225 /* NMNewDeliveryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNewDeliveryTableViewController.m; path = "untitled folder/NMNewDeliveryTableViewController.m"; sourceTree = "<group>"; };
+		8D4907DA1A04520F001A2225 /* NMDeliveryPlaceHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlaceHeaderView.h; path = Views/NMDeliveryPlaceHeaderView.h; sourceTree = "<group>"; };
+		8D4907DB1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryPlaceHeaderView.m; path = Views/NMDeliveryPlaceHeaderView.m; sourceTree = "<group>"; };
 		8D49F30619BE942600E60145 /* NMPaymentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPaymentsViewController.h; path = "untitled folder/NMPaymentsViewController.h"; sourceTree = "<group>"; };
 		8D49F30719BE942600E60145 /* NMPaymentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPaymentsViewController.m; path = "untitled folder/NMPaymentsViewController.m"; sourceTree = "<group>"; };
 		8D49F30F19C0D65900E60145 /* NMCreateCampaignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCreateCampaignViewController.h; path = "untitled folder/NMCreateCampaignViewController.h"; sourceTree = "<group>"; };
@@ -761,6 +767,8 @@
 				8DC5339619DCCF5D00A841EB /* NMInviteCodeViewController.m */,
 				8DC5339B19DCEE7C00A841EB /* NMSupportViewController.h */,
 				8DC5339C19DCEE7C00A841EB /* NMSupportViewController.m */,
+				8D4907D71A044F47001A2225 /* NMNewDeliveryTableViewController.h */,
+				8D4907D81A044F47001A2225 /* NMNewDeliveryTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -881,6 +889,8 @@
 				8DC5339919DCDCCF00A841EB /* NMInviteCodeView.m */,
 				8DC5339E19DCEE9200A841EB /* NMSupportView.h */,
 				8DC5339F19DCEE9200A841EB /* NMSupportView.m */,
+				8D4907DA1A04520F001A2225 /* NMDeliveryPlaceHeaderView.h */,
+				8D4907DB1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1101,6 +1111,7 @@
 				8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */,
 				8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownView.m in Sources */,
 				8DC5339719DCCF5D00A841EB /* NMInviteCodeViewController.m in Sources */,
+				8D4907D91A044F47001A2225 /* NMNewDeliveryTableViewController.m in Sources */,
 				8DC5339D19DCEE7C00A841EB /* NMSupportViewController.m in Sources */,
 				83D6A9E119B822B8009A6D9B /* _NMFood.m in Sources */,
 				8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */,
@@ -1188,6 +1199,7 @@
 				8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */,
 				8D5E561619C246F90001B531 /* NMPersonalCampaignViewController.m in Sources */,
 				8DC533A019DCEE9200A841EB /* NMSupportView.m in Sources */,
+				8D4907DC1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m in Sources */,
 				8DC5338D19DCBAF500A841EB /* THContactPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,6 +14,7 @@
 #import "NMColors.h"
 
 #import "NMDeliveryPlaceTableViewController.h"
+#import "NMNewDeliveryTableViewController.h"
 #import "NMDeliveryPlacesTableViewController.h"
 #import "NMAccountTableViewController.h"
 #import "NMDeliveryTableViewController.h"
@@ -136,6 +137,8 @@ static NSInteger NMOrdersSection = 1;
                 [self showInvite];
             } else if (indexPath.row == 4) {
                 [self showSupport];
+            } else if (indexPath.row == 5) {
+                [self showNewPage];
             }
         } else {
             if (indexPath.row == 0) {
@@ -146,6 +149,8 @@ static NSInteger NMOrdersSection = 1;
                 [self showInvite];
             } else if (indexPath.row == 3) {
                 [self showSupport];
+            } else if (indexPath.row == 4) {
+                [self showNewPage];
             }
         }
 
@@ -257,9 +262,9 @@ static NSInteger NMOrdersSection = 1;
 {
     if (sectionIndex == 0) {
         if ([NMUser currentUser].isCourierValue) {
-            return 5;
+            return 6;
         } else {
-            return 4;
+            return 5;
         }
     } else if (sectionIndex == 1) {
         id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
@@ -280,9 +285,9 @@ static NSInteger NMOrdersSection = 1;
     if (indexPath.section == 0) {
         NSArray *titles;
         if ([[NMUser currentUser] isCourierValue]) {
-            titles = @[@"Menu", @"Deliver", @"Account", @"Invite", @"Support"];
+            titles = @[@"Menu", @"Deliver", @"Account", @"Invite", @"Support", @"New Delivery Page"];
         } else {
-            titles = @[@"Menu", @"Account", @"Invite", @"Support"];
+            titles = @[@"Menu", @"Account", @"Invite", @"Support", @"New Delivery Page"];
         }
         cell.textLabel.text = titles[indexPath.row];
     } else {
@@ -344,6 +349,15 @@ static NSInteger NMOrdersSection = 1;
 - (void)showSupport {
     NMSupportViewController *supportVC = [[NMSupportViewController alloc] init];
     [self navigateTo:supportVC];
+}
+
+- (void)showNewPage {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"courier.user = %@ AND stateID in %@", NMUser.currentUser, @[@(NMShiftStateActive),@(NMShiftStateHalted)]];
+    NMShift *shift = [NMShift MR_findFirstWithPredicate:predicate sortedBy:@"stateID" ascending:YES];
+    
+    NMNewDeliveryTableViewController *ordersVC = [[NMNewDeliveryTableViewController alloc] init];
+    
+    [self navigateTo:ordersVC];
 }
 
 - (void)navigateTo:(UIViewController*)viewController {
