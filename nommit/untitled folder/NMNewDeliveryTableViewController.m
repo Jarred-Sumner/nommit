@@ -105,6 +105,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     NMDeliveryPlaceHeaderView *view = [[NMDeliveryPlaceHeaderView alloc] initWithFrame:CGRectMake(0, 0, 273, 60)];
     view.backgroundColor = UIColorFromRGB(0xB00000);
     view.placeName.text = @"Mudge";
+    view.placeNumber.text = [NSString stringWithFormat:@"%d", section];
     [view.arrivalButton addTarget:self action:@selector(arrivedAtLocation) forControlEvents:UIControlEventTouchUpInside];
     [view setUrgency:NMDeliveryUrgencyHigh];
     return view;
