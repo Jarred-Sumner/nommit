@@ -20,9 +20,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 @property (nonatomic) NSUInteger placeIndex;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NMDeliveryPlaceFooter *footerView;
-
-
-
+@property (nonatomic, strong) UIButton *oldPlaceButton;
 
 @end
 
@@ -106,7 +104,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     view.backgroundColor = UIColorFromRGB(0xB00000);
     view.placeName.text = @"Mudge";
     view.placeNumber.text = [NSString stringWithFormat:@"%d", section];
-    [view.arrivalButton addTarget:self action:@selector(arrivedAtLocation) forControlEvents:UIControlEventTouchUpInside];
+    [view.arrivalButton addTarget:self action:@selector(arrivedAtLocation:) forControlEvents:UIControlEventTouchUpInside];
     [view setUrgency:NMDeliveryUrgencyHigh];
     return view;
 }
@@ -149,8 +147,13 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 #pragma mark - Header function
 
-- (void)arrivedAtLocation {
-    
+- (void)arrivedAtLocation:(id)button {
+    UIButton *currentbutton = (UIButton *)button;
+    if (_oldPlaceButton) {
+        _oldPlaceButton.hidden = NO;
+    }
+    _oldPlaceButton = currentbutton;
+    currentbutton.hidden = YES;
 }
 
 @end

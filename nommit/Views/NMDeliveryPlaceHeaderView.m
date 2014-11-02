@@ -46,7 +46,7 @@
 
 - (void)setupPlaceName {
     _placeName = [[UILabel alloc] init];
-    _placeName.font = [UIFont fontWithName:@"Avenir-Medium" size:15.0f];
+    _placeName.font = [UIFont fontWithName:@"Avenir-Medium" size:17.0f];
     _placeName.textAlignment = NSTextAlignmentRight;
     _placeName.textColor = [UIColor whiteColor];
     _placeName.translatesAutoresizingMaskIntoConstraints = NO;
