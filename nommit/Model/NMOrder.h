@@ -8,8 +8,17 @@ typedef NS_ENUM(NSInteger, NMOrderState) {
     NMOrderStateRated = 3
 };
 
+typedef NS_ENUM(NSInteger, NMOrderChargeState) {
+    NMOrderChargeStateFailed = -1,
+    NMOrderChargeStateNotCharged = 0,
+    NMOrderChargeStateCharged = 1,
+    NMOrderChargeStatePaid = 2,
+    NMOrderChargeStateRefunded = 3
+};
+
 @interface NMOrder : _NMOrder {}
 
 @property (readonly) NMOrderState state;
+@property (readonly) NMOrderChargeState chargeState;
 
 @end

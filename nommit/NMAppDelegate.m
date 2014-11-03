@@ -18,6 +18,8 @@
 #import "NMRateOrderTableViewController.h"
 #import <Crashlytics/Crashlytics.h>
 
+static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
+
 @interface NMAppDelegate ()
 
 @property (nonatomic, strong) NMMenuNavigationController *navigationController;
@@ -123,5 +125,40 @@
     }
     return _window;
 }
+
+#pragma mark - Push Notifications
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+    NSLog(@"Push Notifications with Token: %@", devToken);
+    NSString *token = [devToken base64EncodedStringWithOptions:0];
+    [[NMApi instance] POST:@"devices" parameters:@{ @"token" : token }  completion:NULL];
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    NSLog(@"Error in registration. Error: %@", err);
+}
+
+- (void)registerForPushNotifications {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
+    
+    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Find out when food is available" andMessage:@"To get notified when food is available, please enable push notifications"];
+    
+    [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
+    [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+        UIApplication *app = [UIApplication sharedApplication];
+        
+        UIUserNotificationType types = UIUserNotificationTypeBadge |
+        UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+        UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        
+        [app registerUserNotificationSettings:settings];
+        [app registerForRemoteNotifications];
+    }];
+    [alert show];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:NMPushNotificationsKey];
+}
+
 
 @end

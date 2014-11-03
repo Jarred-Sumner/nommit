@@ -1,6 +1,7 @@
 #import "NMPlace.h"
 
 static NSString *NMActivePlaceKey = @"ActivePlace";
+static NSNumber *NMCurrentPlaceID;
 
 @interface NMPlace ()
 
@@ -12,9 +13,8 @@ static NSString *NMActivePlaceKey = @"ActivePlace";
 @implementation NMPlace
 
 + (NMPlace *)activePlace {
-    NSNumber *activePlaceID = [[NSUserDefaults standardUserDefaults] valueForKey:NMActivePlaceKey];
-    if (activePlaceID) {
-        NMPlace *place = [NMPlace MR_findFirstByAttribute:@"uid" withValue:activePlaceID];
+    if (NMCurrentPlaceID) {
+        NMPlace *place = [NMPlace MR_findFirstByAttribute:@"uid" withValue:NMCurrentPlaceID];
         if (place) {
             return place;
         } else {
@@ -27,9 +27,9 @@ static NSString *NMActivePlaceKey = @"ActivePlace";
 + (void)setActivePlace:(NMPlace*)place {
     if (place) {
         [[Mixpanel sharedInstance] track:@"Chose Place" properties:@{ @"Name" : place.name, @"ID" : place.uid }];
-        [[NSUserDefaults standardUserDefaults] setObject:place.uid forKey:NMActivePlaceKey];
+        NMCurrentPlaceID = place.uid;
     } else {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:NMActivePlaceKey];
+        NMCurrentPlaceID = nil;
     }
 }
 
@@ -51,15 +51,6 @@ static NSString *NMActivePlaceKey = @"ActivePlace";
 // So, we only update active ones. Then, we mark all the others as inactive.
 + (void)refreshAllWithCompletion:(NMApiCompletionBlock)completion {
     [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        
-        
-//        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-//            NSError *err;
-//            for (NMPlaceApiModel *model in response.result) {
-//                [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:&err];
-//                NSLog(@"Error: %@", err);
-//            }
-//        }];
         
         __block NSMutableArray *activePlaceIDs = [[NSMutableArray alloc] init];
         for (NMPlaceApiModel *placeModel in response.result) {

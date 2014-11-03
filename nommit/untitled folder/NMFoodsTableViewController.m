@@ -18,6 +18,7 @@
 #import "NMOrderFoodViewController.h"
 #import "NMRateOrderTableViewController.h"
 #import "NMNoFoodView.h"
+#import "NMAppDelegate.h"
 
 static BOOL didAutoPresentPlaces = NO;
 
@@ -94,6 +95,8 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         didAutoPresentPlaces = YES;
     }
     
+    // Register for push notifications
+    [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] registerForPushNotifications];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -120,7 +123,11 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 }
 
 - (void)refreshPlace {
-    if (!_place) return;
+    if (!_place) {
+        [self locationButtonTouched];
+        [self.refreshControl endRefreshing];
+        return;
+    }
     
     __weak NMFoodsTableViewController *this = self;
     [self.refreshControl beginRefreshing];
@@ -198,8 +205,13 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    _noFoodView.hidden = [sectionInfo numberOfObjects] != 0;
-    return [sectionInfo numberOfObjects];
+    NSUInteger count = [sectionInfo numberOfObjects];
+    
+    // Side effects!
+    _noFoodView.hidden = count == 0;
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
+
+    return count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

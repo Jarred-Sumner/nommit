@@ -1,6 +1,7 @@
 #import "NMUser.h"
 
 #import <libPhoneNumber-iOS/NBPhoneNumberUtil.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation NMUser
 
@@ -17,6 +18,10 @@ static id NMCurrentUser;
             
             if ([NMCurrentUser phone]) [dict setObject:@"Phone" forKey:[NMCurrentUser phone]];
             
+            [[Crashlytics sharedInstance] setUserIdentifier:[NMCurrentUser facebookUID]];
+            [[Crashlytics sharedInstance] setUserEmail:[NMCurrentUser email]];
+            [[Crashlytics sharedInstance] setUserName:[NMCurrentUser fullName]];
+
             [[Mixpanel sharedInstance].people setOnce:dict];
         }
     }

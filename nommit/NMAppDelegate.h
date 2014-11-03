@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (readonly) UIViewController *rootViewController;
 
+- (void)registerForPushNotifications;
 - (void)resetUI;
 
 @end

@@ -100,6 +100,10 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         _receiptCell.rateVw.stateDelegate = self;
         [_receiptCell.plusButton addTarget:self action:@selector(addOneToTip) forControlEvents:UIControlEventTouchUpInside];
         [_receiptCell.minusButton addTarget:self action:@selector(minusOneFromTip) forControlEvents:UIControlEventTouchUpInside];
+        
+        _receiptCell.plusButton.hidden = (_order.chargeState != NMOrderChargeStateNotCharged);
+        _receiptCell.minusButton.hidden = (_order.chargeState != NMOrderChargeStateNotCharged);
+        
         _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
         [self enableMinusButton];
         return _receiptCell;
@@ -123,15 +127,21 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 }
 
 - (void)addOneToTip {
-    _totalAmount = @(_totalAmount.doubleValue + 1.0f);
-    _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
-    [self enableMinusButton];
+    if (_order.chargeState == NMOrderChargeStateNotCharged) {
+        _totalAmount = @(_totalAmount.doubleValue + 1.0f);
+        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
+        [self enableMinusButton];
+    }
+
 }
 
 - (void)minusOneFromTip {
-    _totalAmount = @(_totalAmount.doubleValue - 1.0f);
-    _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
-    [self enableMinusButton];
+    if (_order.chargeState == NMOrderChargeStateNotCharged) {
+        _totalAmount = @(_totalAmount.doubleValue - 1.0f);
+        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
+        [self enableMinusButton];
+    }
+    
 }
 
 - (void)done {

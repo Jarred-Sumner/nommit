@@ -41,4 +41,6 @@
 #import <SIAlertView/SIAlertView.h>
 #import <Mixpanel/Mixpanel.h>
 
+#import "NMAppDelegate.h"
+
 #endif

@@ -57,6 +57,7 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 
     [NMSession setSessionID:nil];
     [NMSession setUserID:nil];
+    [NMPlace setActivePlace:nil];
     [FBSession.activeSession closeAndClearTokenInformation];
     [FBSession setActiveSession:nil];
     [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] resetUI];

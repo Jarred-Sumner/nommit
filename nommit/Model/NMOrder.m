@@ -11,4 +11,8 @@
     return (NMOrderState)[self.stateID integerValue];
 }
 
+- (NMOrderChargeState)chargeState {
+    return (NMOrderChargeState)[self.chargeStateID integerValue];
+}
+
 @end

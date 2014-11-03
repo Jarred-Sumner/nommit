@@ -49,9 +49,14 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 }
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     UIEdgeInsets inset = UIEdgeInsetsMake(20, 0, 0, 0);
     self.tableView.contentInset = inset;
     [self.fetchedResultsController performFetch:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self refreshPlaces];
 }
 
@@ -157,7 +162,9 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     if ([sectionInfo numberOfObjects] == 0) {
         _noFoodView.hidden = NO;
-    } else _noFoodView.hidden = YES;
+    } else {
+        _noFoodView.hidden = YES;
+    }
     return [sectionInfo numberOfObjects];
 }
 
