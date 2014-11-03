@@ -208,6 +208,11 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     self.navigationItem.titleView = logoView;
     self.navigationController.navigationBarHidden = NO;
     
+    // Setup cancel button
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+    cancelButton.enabled = YES;
+    self.navigationItem.rightBarButtonItem = cancelButton;
+    
 }
 
 #pragma mark - Countdown State
@@ -299,6 +304,14 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
 
 - (void)stopFetchingOrderStatus {
     [_fetchOrderTimer invalidate];
+}
+
+#pragma mark - Cancel
+
+- (void)cancel:(id)button {
+    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Are you sure you want to cancel?" andMessage:@"Your courier is already on his way!"];
+    [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+    [alert show];
 }
 
 @end
