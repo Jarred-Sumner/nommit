@@ -20,6 +20,7 @@ const struct NMOrderAttributes NMOrderAttributes = {
 
 const struct NMOrderRelationships NMOrderRelationships = {
 	.courier = @"courier",
+	.deliveryPlace = @"deliveryPlace",
 	.food = @"food",
 	.place = @"place",
 	.user = @"user",
@@ -362,6 +363,10 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 
 @dynamic courier;
+
+	
+
+@dynamic deliveryPlace;
 
 	
 

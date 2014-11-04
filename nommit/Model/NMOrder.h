@@ -21,4 +21,6 @@ typedef NS_ENUM(NSInteger, NMOrderChargeState) {
 @property (readonly) NMOrderState state;
 @property (readonly) NMOrderChargeState chargeState;
 
++ (NSArray*)pendingStates;
+
 @end

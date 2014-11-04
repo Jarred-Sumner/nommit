@@ -7,7 +7,7 @@
 //
 
 #import "NMDeliveryPlacesTableViewController.h"
-#import "NMDeliveryPlaceTableViewController.h"
+#import "NMShiftTableViewController.h"
 #import "NMPlaceTableViewCell.h"
 
 #import <SIAlertView/SIAlertView.h>
@@ -267,7 +267,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
             NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
             this.shift = shift;
             
-            NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+            NMShiftTableViewController *dpTV = [[NMShiftTableViewController alloc] initWithShift:shift];
             [this.navigationController pushViewController:dpTV animated:YES];
             [SVProgressHUD showSuccessWithStatus:@"Started Shift!"];
             [[Mixpanel sharedInstance] track:@"Started Shift"];
@@ -286,7 +286,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
             NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
             this.shift = shift;
             
-            NMDeliveryPlaceTableViewController *dpTV = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+            NMShiftTableViewController *dpTV = [[NMShiftTableViewController alloc] initWithShift:shift];
             [this.navigationController pushViewController:dpTV animated:YES];
             [SVProgressHUD showSuccessWithStatus:@"Updated Shift!"];
         });

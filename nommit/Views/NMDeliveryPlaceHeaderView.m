@@ -29,7 +29,7 @@
     whiteCircle.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:whiteCircle];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[whiteCircle(30)]-8-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(whiteCircle)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[whiteCircle(30)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(whiteCircle)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[whiteCircle(30)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(whiteCircle)]];
     
     _placeNumber = [[UILabel alloc] init];

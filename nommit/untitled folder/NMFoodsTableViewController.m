@@ -106,7 +106,16 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         
     NSPredicate *foodPredicate;
     if (_place) {
-        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND stateID = %@ AND (startDate <= %@) AND (endDate >= %@)", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady)], _place, @(NMFoodStateActive), [NSDate date], [NSDate date]];
+        NSDate *oneDayAgo = [NSDate dateWithTimeIntervalSinceNow:-(60 * 60 * 24)];
+        NSDate *oneDayFromNow = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24];
+        
+        // The foods we show match the following:
+        // - Are orderable
+        // - Are orderable, but not to that place
+        // - Stopped being sold (due to endDate being < now)
+        // - Haven't been sold
+        // - Have sold out
+        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (startDate <= %@) AND (endDate >= %@)", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateEnded), @(NMDeliveryPlaceStatePending)], _place, oneDayFromNow, oneDayAgo];
     } else {
         // Predicate that never returns anything ever, for empty data source.
         foodPredicate = [NSPredicate predicateWithFormat:@"uid = %@", @(-1)];
@@ -208,7 +217,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     NSUInteger count = [sectionInfo numberOfObjects];
     
     // Side effects!
-    _noFoodView.hidden = count == 0;
+    _noFoodView.hidden = count != 0;
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
 
     return count;

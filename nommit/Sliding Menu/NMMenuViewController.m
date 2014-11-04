@@ -13,8 +13,7 @@
 #import "NMMenuNavigationController.h"
 #import "NMColors.h"
 
-#import "NMDeliveryPlaceTableViewController.h"
-#import "NMNewDeliveryTableViewController.h"
+#import "NMShiftTableViewController.h"
 #import "NMDeliveryPlacesTableViewController.h"
 #import "NMAccountTableViewController.h"
 #import "NMDeliveryTableViewController.h"
@@ -137,8 +136,6 @@ static NSInteger NMOrdersSection = 1;
                 [self showInvite];
             } else if (indexPath.row == 4) {
                 [self showSupport];
-            } else if (indexPath.row == 5) {
-                [self showNewPage];
             }
         } else {
             if (indexPath.row == 0) {
@@ -149,8 +146,6 @@ static NSInteger NMOrdersSection = 1;
                 [self showInvite];
             } else if (indexPath.row == 3) {
                 [self showSupport];
-            } else if (indexPath.row == 4) {
-                [self showNewPage];
             }
         }
 
@@ -262,9 +257,9 @@ static NSInteger NMOrdersSection = 1;
 {
     if (sectionIndex == 0) {
         if ([NMUser currentUser].isCourierValue) {
-            return 6;
-        } else {
             return 5;
+        } else {
+            return 4;
         }
     } else if (sectionIndex == 1) {
         id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
@@ -285,9 +280,9 @@ static NSInteger NMOrdersSection = 1;
     if (indexPath.section == 0) {
         NSArray *titles;
         if ([[NMUser currentUser] isCourierValue]) {
-            titles = @[@"Menu", @"Deliver", @"Account", @"Invite", @"Support", @"New Delivery Page"];
+            titles = @[@"Menu", @"Deliver", @"Account", @"Invite", @"Support"];
         } else {
-            titles = @[@"Menu", @"Account", @"Invite", @"Support", @"New Delivery Page"];
+            titles = @[@"Menu", @"Account", @"Invite", @"Support"];
         }
         cell.textLabel.text = titles[indexPath.row];
     } else {
@@ -351,15 +346,6 @@ static NSInteger NMOrdersSection = 1;
     [self navigateTo:supportVC];
 }
 
-- (void)showNewPage {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"courier.user = %@ AND stateID in %@", NMUser.currentUser, @[@(NMShiftStateActive),@(NMShiftStateHalted)]];
-    NMShift *shift = [NMShift MR_findFirstWithPredicate:predicate sortedBy:@"stateID" ascending:YES];
-    
-    NMNewDeliveryTableViewController *ordersVC = [[NMNewDeliveryTableViewController alloc] init];
-    
-    [self navigateTo:ordersVC];
-}
-
 - (void)navigateTo:(UIViewController*)viewController {
     NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:viewController];
     navigationController.navigationBar.translucent = NO;
@@ -373,7 +359,7 @@ static NSInteger NMOrdersSection = 1;
     NMShift *shift = [NMShift MR_findFirstWithPredicate:predicate sortedBy:@"stateID" ascending:YES];
     NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];
     
-    NMDeliveryPlaceTableViewController *ordersVC = [[NMDeliveryPlaceTableViewController alloc] initWithShift:shift];
+    NMShiftTableViewController *ordersVC = [[NMShiftTableViewController alloc] initWithShift:shift];
     
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
     if (shift) {

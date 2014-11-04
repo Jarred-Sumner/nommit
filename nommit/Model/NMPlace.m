@@ -75,4 +75,10 @@ static NSNumber *NMCurrentPlaceID;
     }];
 }
 
+- (NMDeliveryPlace*)deliveryPlaceForShift:(NMShift*)shift inContext:(NSManagedObjectContext*)context {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"shift = %@ AND place = %@ AND stateID IN %@", shift, self, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady)]];
+    
+    return [NMDeliveryPlace MR_findFirstWithPredicate:predicate inContext:context];
+}
+
 @end

@@ -21,6 +21,7 @@ extern const struct NMOrderAttributes {
 
 extern const struct NMOrderRelationships {
 	__unsafe_unretained NSString *courier;
+	__unsafe_unretained NSString *deliveryPlace;
 	__unsafe_unretained NSString *food;
 	__unsafe_unretained NSString *place;
 	__unsafe_unretained NSString *user;
@@ -30,6 +31,7 @@ extern const struct NMOrderFetchedProperties {
 } NMOrderFetchedProperties;
 
 @class NMCourier;
+@class NMDeliveryPlace;
 @class NMFood;
 @class NMPlace;
 @class NMUser;
@@ -223,6 +225,13 @@ extern const struct NMOrderFetchedProperties {
 
 
 
+@property (nonatomic, strong) NMDeliveryPlace *deliveryPlace;
+
+//- (BOOL)validateDeliveryPlace:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, strong) NMFood *food;
 
 //- (BOOL)validateFood:(id*)value_ error:(NSError**)error_;
@@ -356,6 +365,11 @@ extern const struct NMOrderFetchedProperties {
 
 - (NMCourier*)primitiveCourier;
 - (void)setPrimitiveCourier:(NMCourier*)value;
+
+
+
+- (NMDeliveryPlace*)primitiveDeliveryPlace;
+- (void)setPrimitiveDeliveryPlace:(NMDeliveryPlace*)value;
 
 
 

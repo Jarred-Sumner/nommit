@@ -60,7 +60,7 @@
 		8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */; };
 		8D3D052E19DB5C3400B02677 /* NMCourierSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */; };
 		8D3D053119DB688900B02677 /* NMCourierSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D053019DB688900B02677 /* NMCourierSummaryTableViewCell.m */; };
-		8D4907D91A044F47001A2225 /* NMNewDeliveryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4907D81A044F47001A2225 /* NMNewDeliveryTableViewController.m */; };
+		8D4907D91A044F47001A2225 /* NMShiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4907D81A044F47001A2225 /* NMShiftTableViewController.m */; };
 		8D4907DC1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4907DB1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m */; };
 		8D49F30819BE942600E60145 /* NMPaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30719BE942600E60145 /* NMPaymentsViewController.m */; };
 		8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F31019C0D65900E60145 /* NMCreateCampaignViewController.m */; };
@@ -91,7 +91,6 @@
 		8D7D00AA19CD168C0006E5E6 /* NMFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */; };
 		8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */; };
 		8DA5198819D0ED9100BBA8A0 /* NMPlaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198719D0ED9100BBA8A0 /* NMPlaceTableViewCell.m */; };
-		8DA5198E19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198D19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m */; };
 		8DA5199419D3846800BBA8A0 /* NMOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5199319D3846800BBA8A0 /* NMOrderTableViewCell.m */; };
 		8DC5335719DC5D4D00A841EB /* NMLogoutButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */; };
 		8DC5338019DCBAF500A841EB /* icon-avatar-60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC5336519DCBAF500A841EB /* icon-avatar-60x60.png */; };
@@ -177,9 +176,10 @@
 		83291B0519B5243600524801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		83291CE319D129CE00A29B3C /* NMPlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMPlacesTableViewController.h; sourceTree = "<group>"; };
 		83291CE419D129CE00A29B3C /* NMPlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMPlacesTableViewController.m; sourceTree = "<group>"; };
+		832AA8B01A082424007C48DF /* Current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Current.xcdatamodel; sourceTree = "<group>"; };
 		832EB80519E39A5E00FF3BEF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8331FA4019DD402100D78ECD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		8332FC0E19B3D447000D56AB /* Current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Current.xcdatamodel; sourceTree = "<group>"; };
+		8332FC0E19B3D447000D56AB /* V3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = V3.xcdatamodel; sourceTree = "<group>"; };
 		83454F4319DA398C005CEA8C /* _NMDeliveryPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMDeliveryPlace.h; path = Model/_NMDeliveryPlace.h; sourceTree = "<group>"; };
 		83454F4419DA398C005CEA8C /* _NMDeliveryPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMDeliveryPlace.m; path = Model/_NMDeliveryPlace.m; sourceTree = "<group>"; };
 		83454F4519DA398C005CEA8C /* _NMShift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMShift.h; path = Model/_NMShift.h; sourceTree = "<group>"; };
@@ -264,8 +264,8 @@
 		8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCourierSummaryTableViewController.m; path = "untitled folder/NMCourierSummaryTableViewController.m"; sourceTree = "<group>"; };
 		8D3D052F19DB688900B02677 /* NMCourierSummaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCourierSummaryTableViewCell.h; path = Cells/NMCourierSummaryTableViewCell.h; sourceTree = "<group>"; };
 		8D3D053019DB688900B02677 /* NMCourierSummaryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCourierSummaryTableViewCell.m; path = Cells/NMCourierSummaryTableViewCell.m; sourceTree = "<group>"; };
-		8D4907D71A044F47001A2225 /* NMNewDeliveryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNewDeliveryTableViewController.h; path = "untitled folder/NMNewDeliveryTableViewController.h"; sourceTree = "<group>"; };
-		8D4907D81A044F47001A2225 /* NMNewDeliveryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNewDeliveryTableViewController.m; path = "untitled folder/NMNewDeliveryTableViewController.m"; sourceTree = "<group>"; };
+		8D4907D71A044F47001A2225 /* NMShiftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMShiftTableViewController.h; path = "untitled folder/NMShiftTableViewController.h"; sourceTree = "<group>"; };
+		8D4907D81A044F47001A2225 /* NMShiftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMShiftTableViewController.m; path = "untitled folder/NMShiftTableViewController.m"; sourceTree = "<group>"; };
 		8D4907DA1A04520F001A2225 /* NMDeliveryPlaceHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlaceHeaderView.h; path = Views/NMDeliveryPlaceHeaderView.h; sourceTree = "<group>"; };
 		8D4907DB1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryPlaceHeaderView.m; path = Views/NMDeliveryPlaceHeaderView.m; sourceTree = "<group>"; };
 		8D49F30619BE942600E60145 /* NMPaymentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPaymentsViewController.h; path = "untitled folder/NMPaymentsViewController.h"; sourceTree = "<group>"; };
@@ -324,8 +324,6 @@
 		8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPlaceDropdownView.m; path = Cells/NMPlaceDropdownView.m; sourceTree = "<group>"; };
 		8DA5198619D0ED9100BBA8A0 /* NMPlaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPlaceTableViewCell.h; path = Cells/NMPlaceTableViewCell.h; sourceTree = "<group>"; };
 		8DA5198719D0ED9100BBA8A0 /* NMPlaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPlaceTableViewCell.m; path = Cells/NMPlaceTableViewCell.m; sourceTree = "<group>"; };
-		8DA5198C19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlaceTableViewController.h; path = "untitled folder/NMDeliveryPlaceTableViewController.h"; sourceTree = "<group>"; };
-		8DA5198D19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryPlaceTableViewController.m; path = "untitled folder/NMDeliveryPlaceTableViewController.m"; sourceTree = "<group>"; };
 		8DA5198F19D3829C00BBA8A0 /* NMDeliveryPlaceNavigatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlaceNavigatorView.h; path = Views/NMDeliveryPlaceNavigatorView.h; sourceTree = "<group>"; };
 		8DA5199019D3829C00BBA8A0 /* NMDeliveryPlaceNavigatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryPlaceNavigatorView.m; path = Views/NMDeliveryPlaceNavigatorView.m; sourceTree = "<group>"; };
 		8DA5199219D3846800BBA8A0 /* NMOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderTableViewCell.h; path = Cells/NMOrderTableViewCell.h; sourceTree = "<group>"; };
@@ -747,8 +745,6 @@
 				8D7D00A319CD0BDD0006E5E6 /* NMFoodsTableViewController.m */,
 				83291CE319D129CE00A29B3C /* NMPlacesTableViewController.h */,
 				83291CE419D129CE00A29B3C /* NMPlacesTableViewController.m */,
-				8DA5198C19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.h */,
-				8DA5198D19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m */,
 				8DCE834F19D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.h */,
 				8DCE835019D4C6FD00D770D0 /* NMDeliveryPlacesTableViewController.m */,
 				8DCE835519D4D56700D770D0 /* NMAccountTableViewController.h */,
@@ -767,8 +763,8 @@
 				8DC5339619DCCF5D00A841EB /* NMInviteCodeViewController.m */,
 				8DC5339B19DCEE7C00A841EB /* NMSupportViewController.h */,
 				8DC5339C19DCEE7C00A841EB /* NMSupportViewController.m */,
-				8D4907D71A044F47001A2225 /* NMNewDeliveryTableViewController.h */,
-				8D4907D81A044F47001A2225 /* NMNewDeliveryTableViewController.m */,
+				8D4907D71A044F47001A2225 /* NMShiftTableViewController.h */,
+				8D4907D81A044F47001A2225 /* NMShiftTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1111,7 +1107,7 @@
 				8D49F31119C0D65900E60145 /* NMCreateCampaignViewController.m in Sources */,
 				8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownView.m in Sources */,
 				8DC5339719DCCF5D00A841EB /* NMInviteCodeViewController.m in Sources */,
-				8D4907D91A044F47001A2225 /* NMNewDeliveryTableViewController.m in Sources */,
+				8D4907D91A044F47001A2225 /* NMShiftTableViewController.m in Sources */,
 				8DC5339D19DCEE7C00A841EB /* NMSupportViewController.m in Sources */,
 				83D6A9E119B822B8009A6D9B /* _NMFood.m in Sources */,
 				8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */,
@@ -1188,7 +1184,6 @@
 				8DD32FAD19D6628D009485C2 /* NMActivatePhoneTableViewCell.m in Sources */,
 				83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */,
 				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
-				8DA5198E19D3823000BBA8A0 /* NMDeliveryPlaceTableViewController.m in Sources */,
 				83D6A9E319B822B8009A6D9B /* _NMUser.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
@@ -1440,11 +1435,12 @@
 		8332FC0D19B3D447000D56AB /* Models.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				832AA8B01A082424007C48DF /* Current.xcdatamodel */,
 				83C3A18019CE531E0052B6F7 /* V2.xcdatamodel */,
 				83D6A9D419B821BD009A6D9B /* V1.xcdatamodel */,
-				8332FC0E19B3D447000D56AB /* Current.xcdatamodel */,
+				8332FC0E19B3D447000D56AB /* V3.xcdatamodel */,
 			);
-			currentVersion = 8332FC0E19B3D447000D56AB /* Current.xcdatamodel */;
+			currentVersion = 832AA8B01A082424007C48DF /* Current.xcdatamodel */;
 			path = Models.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

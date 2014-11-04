@@ -14,32 +14,19 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupHereButton];
         [self setupDoneButton];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_hereButton(160)]-0-[_endShiftButton(160)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hereButton, _endShiftButton)]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_endShiftButton(320)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_endShiftButton)]];
         [self setupRevenueLabel];
     }
     return self;
 }
 
-- (void)setupHereButton
-{
-    _hereButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _hereButton.backgroundColor = [NMColors mainColor];
-    _hereButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_hereButton setTitle:@"I'm Here" forState:UIControlStateNormal];
-    [_hereButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
-    [self addSubview:_hereButton];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-40-[_hereButton(44)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hereButton)]];
-}
-
 - (void)setupDoneButton
 {
     _endShiftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _endShiftButton.backgroundColor = UIColorFromRGB(0xF0F0F0);
+    _endShiftButton.backgroundColor = [NMColors mainColor];
     [_endShiftButton setTitle:@"End Shift" forState:UIControlStateNormal];
-    [_endShiftButton setTitleColor:UIColorFromRGB(0x404040) forState:UIControlStateNormal];
+    [_endShiftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _endShiftButton.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self addSubview:_endShiftButton];
@@ -69,7 +56,7 @@
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[whiteBackround]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(whiteBackround)]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[whiteBackround(40)]-0-[_hereButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(whiteBackround, _hereButton)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[whiteBackround(40)]-0-[_endShiftButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(whiteBackround, _endShiftButton)]];
     
 }
 

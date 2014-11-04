@@ -7,6 +7,10 @@
 
 @implementation NMOrder
 
++ (NSArray*)pendingStates {
+    return @[ @(NMOrderStateActive), @(NMOrderStateArrived) ];
+}
+
 - (NMOrderState)state {
     return (NMOrderState)[self.stateID integerValue];
 }

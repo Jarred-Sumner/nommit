@@ -17,7 +17,7 @@
     return @{
              @"uid": @"id",
              @"stateID" : @"state_id",
-             @"arrivesAt" : @"arrives_at"
+             @"arrivesAt" : @"arrives_at",
              };
 }
 
@@ -50,7 +50,7 @@
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
     return @{
              @"foods" : [NMFoodApiModel class],
-             @"place" : [NMPlaceApiModel class]
+             @"place" : [NMPlaceApiModel class],
     };
 }
 
