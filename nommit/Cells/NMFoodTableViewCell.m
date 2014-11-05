@@ -25,6 +25,7 @@
 @property (nonatomic, strong) UIImageView *sellerLogoImageView;
 @property (nonatomic, strong) RateView *rateVw;
 @property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) UIImageView *overlayView;
 
 @end
 
@@ -50,6 +51,7 @@
         [self setupSoldLabel];
         [self setupProgressBar];
         [self setupRating];
+        [self setupOverLay];
     }
     return self;
 }
@@ -69,6 +71,12 @@
     
     if (food.rating.integerValue > -1) {
         _rateVw.rating = food.rating.floatValue;
+    }
+    
+    if ([food.endDate compare:[NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24]] == NSOrderedAscending) {
+        _overlayView.hidden = NO;
+    } else {
+        _overlayView.hidden = YES;
     }
     
 }
@@ -226,6 +234,12 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[timeIcon]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_timeLabel]" options:0 metrics:nil views:views]];
     
+}
+
+- (void)setupOverLay {
+    _overlayView = [[UIImageView alloc] initWithFrame:CGRectMake(65, 36, 241, 202)];
+    _overlayView.image = [UIImage imageNamed:@"SoldOutOverlay"];
+    [self.contentView addSubview:_overlayView];
 }
 
 #pragma mark - Utility Methods
