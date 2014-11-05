@@ -10,4 +10,6 @@
 
 @interface NMSellFoodInformationView : UIView
 
+@property (nonatomic, strong) UIButton *emailButton;
+
 @end
