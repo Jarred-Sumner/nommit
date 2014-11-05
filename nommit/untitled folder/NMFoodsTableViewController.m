@@ -262,6 +262,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
     NMDeliveryPlace *dp = [NMDeliveryPlace deliveryPlaceForFood:food place:_place];
     [cell setFood:food arrivalTime:dp.arrivesAt];
+    
 }
 
 #pragma mark - nav bar

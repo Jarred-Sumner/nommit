@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "NMFood.h"
 
+typedef NS_ENUM(NSInteger, NMFoodCellState) {
+    NMFoodStateSoldOut = 1,
+    NMFoodStateStopped = 2,
+    NMFoodStateFuture = 3,
+    NMFoodStateNormal = 4
+};
+
 @interface NMFoodTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NSDate *arrivalTime;

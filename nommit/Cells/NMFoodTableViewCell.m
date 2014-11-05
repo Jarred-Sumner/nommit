@@ -74,7 +74,7 @@
     }
     
     if ([food.endDate compare:[NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24]] == NSOrderedAscending) {
-        _overlayView.hidden = NO;
+        [self setOverlay:NMFoodStateSoldOut];
     } else {
         _overlayView.hidden = YES;
     }
@@ -238,8 +238,27 @@
 
 - (void)setupOverLay {
     _overlayView = [[UIImageView alloc] initWithFrame:CGRectMake(65, 36, 241, 202)];
-    _overlayView.image = [UIImage imageNamed:@"SoldOutOverlay"];
+    _overlayView.hidden = YES;
     [self.contentView addSubview:_overlayView];
+}
+
+- (void)setOverlay:(NMFoodCellState)cellState {
+    switch (cellState) {
+        case NMFoodStateFuture:
+            _overlayView.image = [UIImage imageNamed:@"FutureSaleOverlay"];
+            _overlayView.hidden = NO;
+            break;
+        case NMFoodStateSoldOut:
+            _overlayView.image = [UIImage imageNamed:@"SoldOutOverlay"];
+            _overlayView.hidden = NO;
+            break;
+        case NMFoodStateStopped:
+            _overlayView.image = [UIImage imageNamed:@"SaleEndedOverlay"];
+            _overlayView.hidden = NO;
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - Utility Methods
