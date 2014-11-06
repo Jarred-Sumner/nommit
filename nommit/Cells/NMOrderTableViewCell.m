@@ -26,6 +26,7 @@
         [self setupName];
         [self setupOrderName];
         [self setupButtons];
+        self.state = NMOrderTableViewCellStatePending;
     }
     return self;
 }
@@ -106,6 +107,22 @@
     [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_spinnerView(40)]|" options:0 metrics:nil views:views]];
     [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_spinnerView(40)]|" options:0 metrics:nil views:views]];
 
+}
+
+- (void)setState:(NMOrderTableViewCellState)state {
+    [UIView animateWithDuration:0.15 animations:^{
+
+        if (state == NMOrderTableViewCellStateDelivering) {
+            [self.spinnerView startAnimating];
+            self.spinnerView.hidden = NO;
+            self.doneButton.hidden = YES;
+        } else {
+            [self.spinnerView stopAnimating];
+            self.spinnerView.hidden = YES;
+            self.doneButton.hidden = NO;
+        }
+
+    }];
 }
 
 @end

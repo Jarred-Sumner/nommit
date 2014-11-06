@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NMDeliveryPlaceHeaderView.h"
 
-@interface NMShiftTableViewController:UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface NMShiftTableViewController:UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, NMDeliveryPlaceHeaderViewDelegate>
 
 @property (nonatomic, strong) NMShift *shift;
 

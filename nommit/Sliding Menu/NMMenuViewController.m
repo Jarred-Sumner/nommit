@@ -367,13 +367,14 @@ static NSInteger NMOrdersSection = 1;
 - (void)openDeliveriesPage {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"courier.user = %@ AND stateID in %@", NMUser.currentUser, @[@(NMShiftStateActive),@(NMShiftStateHalted)]];
     NMShift *shift = [NMShift MR_findFirstWithPredicate:predicate sortedBy:@"stateID" ascending:YES];
-    NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];
-    
     NMShiftTableViewController *ordersVC = [[NMShiftTableViewController alloc] initWithShift:shift];
     
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
-    if (shift) {
-        [navVC pushViewController:ordersVC animated:NO];
+    UINavigationController *navVC;
+    if (shift && shift.state != NMShiftStateEnded) {
+        navVC = [[UINavigationController alloc] initWithRootViewController:ordersVC];
+    } else {
+        NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];
+        navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
     }
     [self presentViewController:navVC animated:YES completion:nil];
 }

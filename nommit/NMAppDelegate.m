@@ -43,7 +43,7 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
     if ([NMSession isUserLoggedIn]) {
         [self checkForActiveOrders];
     }
-    
+    [[Mixpanel sharedInstance] track:@"Opened App"];
     return YES;
 }
 

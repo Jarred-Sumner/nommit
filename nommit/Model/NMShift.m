@@ -28,6 +28,12 @@
     return self.countOfPendingDeliveries.integerValue > 0;
 }
 
+- (NSArray*)activeDeliveryPlaces {
+    NSArray *states = @[ @(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateHalted) ];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"stateID IN %@ AND shift = %@", states, self];
+    return [NMDeliveryPlace MR_findAllSortedBy:@"index" ascending:YES withPredicate:predicate];
+}
+
 #pragma mark - Utility Methods
 
 - (NSPredicate*)pendingDeliveryPredicate {

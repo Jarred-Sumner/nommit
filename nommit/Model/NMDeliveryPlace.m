@@ -16,4 +16,8 @@
     return [NMDeliveryPlace MR_findFirstWithPredicate:predicate sortedBy:@"arrivesAt" ascending:NO];
 }
 
+- (NMDeliveryPlaceState)state {
+    return (NMDeliveryPlaceState)[self.stateID integerValue];
+}
+
 @end

@@ -11,5 +11,6 @@ typedef NS_ENUM(NSInteger, NMDeliveryPlaceState) {
 @interface NMDeliveryPlace : _NMDeliveryPlace {}
 
 + (NMDeliveryPlace*)deliveryPlaceForFood:(NMFood*)food place:(NMPlace*)place;
+@property (readonly) NMDeliveryPlaceState state;
 
 @end

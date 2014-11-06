@@ -11,7 +11,7 @@
     <entity name="NMDeliveryPlace" representedClassName="NMDeliveryPlace" syncable="YES">
         <attribute name="arrivesAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="stateID" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="foods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMFood" inverseName="deliveryPlaces" inverseEntity="NMFood" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="deliveryPlace" inverseEntity="NMOrder" syncable="YES"/>

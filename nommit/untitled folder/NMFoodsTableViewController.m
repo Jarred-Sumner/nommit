@@ -113,7 +113,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         // - Are orderable
         // - Are orderable, but not to that place
         // - Stopped being sold (due to endDate being < now)
-        // - Haven't been sold
+        // - Haven't been sold (startDate > now)
         // - Have sold out
         foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (endDate <= %@)", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateEnded), @(NMDeliveryPlaceStatePending)], _place, oneDayFromNow];
     } else {

@@ -11,7 +11,8 @@ typedef NS_ENUM(NSInteger, NMShiftState) {
 @property (readonly) NMShiftState state;
 @property (readonly) BOOL hasPendingDeliveries;
 @property (readonly) NSNumber *countOfPendingDeliveries;
+@property (readonly) NSArray *activeDeliveryPlaces;
 
-- (NSArray*)sortedDeliveryPlaces;
+- (NSDictionary*)sortedDeliveryPlaces;
 
 @end
