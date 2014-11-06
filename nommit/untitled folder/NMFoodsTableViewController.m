@@ -107,15 +107,13 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     NSPredicate *foodPredicate;
     if (_place) {
         NSDate *oneDayAgo = [NSDate dateWithTimeIntervalSinceNow:-(60 * 60 * 24)];
-        NSDate *oneDayFromNow = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24];
-        
         // The foods we show match the following:
         // - Are orderable
         // - Are orderable, but not to that place
         // - Stopped being sold (due to endDate being < now)
         // - Haven't been sold (startDate > now)
         // - Have sold out
-        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (endDate <= %@)", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateEnded), @(NMDeliveryPlaceStatePending)], _place, oneDayFromNow];
+        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (endDate >= %@)", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateEnded), @(NMDeliveryPlaceStatePending)], _place, oneDayAgo];
     } else {
         // Predicate that never returns anything ever, for empty data source.
         foodPredicate = [NSPredicate predicateWithFormat:@"uid = %@", @(-1)];
@@ -265,14 +263,14 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     
     NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24];
     
-    if ([food.endDate compare:currentDate] == NSOrderedAscending) {
-        [cell setOverlay:NMFoodStateStopped];
-    } else if ([food.startDate compare:currentDate] == NSOrderedDescending) {
-        [cell setFutureSaleLayout];
-        [cell.timerLabel setCountDownToDate:food.startDate];
-    } else if ([food.endDate compare:currentDate] == NSOrderedDescending) {
-        [cell setOverlay:NMFoodStateSoldOut];
-    }
+//    if ([food.endDate compare:currentDate] == NSOrderedAscending) {
+//        [cell setOverlay:NMFoodStateStopped];
+//    } else if ([food.startDate compare:currentDate] == NSOrderedDescending) {
+//        [cell setFutureSaleLayout];
+//        [cell.timerLabel setCountDownToDate:food.startDate];
+//    } else if ([food.endDate compare:currentDate] == NSOrderedDescending) {
+//        [cell setOverlay:NMFoodStateSoldOut];
+//    }
     
 }
 

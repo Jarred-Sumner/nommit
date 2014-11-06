@@ -281,14 +281,14 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     
     [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"place_ids": [self.placeIDs array] } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
-        __block NMShiftApiModel *shiftModel = response.result;
+        __block NMShiftApiModel *shiftModel = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
             NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
             this.shift = shift;
             
-            NMShiftTableViewController *dpTV = [[NMShiftTableViewController alloc] initWithShift:shift];
-            [this.navigationController pushViewController:dpTV animated:YES];
             [SVProgressHUD showSuccessWithStatus:@"Updated Shift!"];
+            [this.delegate didModifyShift:shift];
+            [this dismissViewControllerAnimated:YES completion:NULL];
         });
     }];
 }

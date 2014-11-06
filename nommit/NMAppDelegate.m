@@ -146,13 +146,6 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
     [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
     [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
         UIApplication *app = [UIApplication sharedApplication];
-        
-        UIUserNotificationType types = UIUserNotificationTypeBadge |
-        UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-        UIUserNotificationSettings *settings =
-        [UIUserNotificationSettings settingsForTypes:types categories:nil];
-        
-        [app registerUserNotificationSettings:settings];
         [app registerForRemoteNotifications];
     }];
     [alert show];

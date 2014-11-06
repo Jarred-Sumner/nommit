@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NMDeliveryPlacesTableViewControllerDelegate <NSObject>
+
+- (void)didModifyShift:(NMShift*)shift;
+
+@end
+
 @interface NMDeliveryPlacesTableViewController : UITableViewController<UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
 
 - (id)initWithShift:(NMShift*)shift;
+
+@property (nonatomic, strong) NSObject<NMDeliveryPlacesTableViewControllerDelegate>*delegate;
 
 @end

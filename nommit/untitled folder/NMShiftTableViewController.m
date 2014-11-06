@@ -10,6 +10,8 @@
 #import "NMOrderTableViewCell.h"
 #import "NMDeliveryPlaceFooter.h"
 
+#import "NMDeliveryPlacesTableViewController.h"
+
 
 static NSTimeInterval NMOrderFetchInterval = 5;
 
@@ -117,7 +119,15 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 }
 
 - (void)edit {
+    NMDeliveryPlacesTableViewController *dps = [[NMDeliveryPlacesTableViewController alloc] initWithShift:self.shift];
+    dps.delegate = self;
     
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:dps];
+    [self.navigationController presentViewController:navVC animated:YES completion:NULL];
+}
+
+- (void)didModifyShift:(NMShift *)shift {
+    self.shift = shift;
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
