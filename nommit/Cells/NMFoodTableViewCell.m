@@ -12,6 +12,7 @@
 #import "NMMenuNavigationController.h"
 #import "NMFoodCellHeaderView.h"
 #import "RateView.h"
+#import  "MZTimerLabel.h"
 
 @interface NMFoodTableViewCell()
 
@@ -26,6 +27,7 @@
 @property (nonatomic, strong) RateView *rateVw;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIImageView *overlayView;
+@property (nonatomic, strong) UIImageView *timeIcon;
 
 @end
 
@@ -72,13 +74,6 @@
     if (food.rating.integerValue > -1) {
         _rateVw.rating = food.rating.floatValue;
     }
-    
-    if ([food.endDate compare:[NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24]] == NSOrderedAscending) {
-        [self setOverlay:NMFoodStateSoldOut];
-    } else {
-        _overlayView.hidden = YES;
-    }
-    
 }
 
 - (void)setupSellerLogoImageView
@@ -212,12 +207,12 @@
 
 - (void)setupTime
 {
-    UIImageView *timeIcon = [[UIImageView alloc] init];
-    timeIcon.image = [UIImage imageNamed:@"TruckIcon"];
-    timeIcon.translatesAutoresizingMaskIntoConstraints = NO;
-    [timeIcon setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
-    [timeIcon setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
-    [self.contentView addSubview:timeIcon];
+    _timeIcon = [[UIImageView alloc] init];
+    _timeIcon.image = [UIImage imageNamed:@"TruckIcon"];
+    _timeIcon.translatesAutoresizingMaskIntoConstraints = NO;
+    [_timeIcon setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+    [_timeIcon setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+    [self.contentView addSubview:_timeIcon];
     
     _timeLabel = [[UILabel alloc] init];
     _timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -226,12 +221,12 @@
     _timeLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_timeLabel];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(timeIcon, _timeLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_timeIcon, _timeLabel);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[timeIcon]-5-[_timeLabel]-18-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_timeIcon]-5-[_timeLabel]-18-|" options:0 metrics:nil views:views]];
 
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[timeIcon]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[_timeIcon]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_timeLabel]" options:0 metrics:nil views:views]];
     
 }
@@ -259,6 +254,43 @@
         default:
             break;
     }
+}
+
+- (void)setupTimerLabel
+{
+    _timerLabel = [[MZTimerLabel alloc] init];
+    _timerLabel.timeLabel.font = [UIFont fontWithName:@"Avenir-Black" size:50];
+    _timerLabel.timeLabel.textColor = [UIColor whiteColor];
+    _timerLabel.timeLabel.alpha = .9;
+    _timerLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _timerLabel.textAlignment = NSTextAlignmentCenter;
+    _timerLabel.timeFormat = @"mm:ss";
+    _timerLabel.timerType = MZTimerLabelTypeTimer;
+    [_foodImageView addSubview:_timerLabel];
+    
+    [_foodImageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_timerLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_timerLabel)]];
+    
+    [_foodImageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[_timerLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_timerLabel)]];
+}
+
+- (void)setFutureSaleLayout {
+    _soldLabel.hidden = YES;
+    _rateVw.hidden = YES;
+    _progressBarView.hidden = YES;
+    _timeIcon.hidden = YES;
+    _timeLabel.hidden = YES;
+    
+    _notifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _notifyButton.layer.cornerRadius = 2;
+    _notifyButton.backgroundColor = [NMColors mainColor];
+    [_notifyButton setTitle:@"notify me about sale @ 4:00 pm" forState:UIControlStateNormal];
+    [_notifyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _notifyButton.titleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+     _notifyButton.frame = CGRectMake(67, 238.5-35, 241-4.5, 35);
+    
+    [self.contentView addSubview:_notifyButton];
+    
+    [self setupTimerLabel];
 }
 
 #pragma mark - Utility Methods

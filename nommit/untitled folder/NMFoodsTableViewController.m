@@ -263,6 +263,17 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     NMDeliveryPlace *dp = [NMDeliveryPlace deliveryPlaceForFood:food place:_place];
     [cell setFood:food arrivalTime:dp.arrivesAt];
     
+    NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24];
+    
+    if ([food.endDate compare:currentDate] == NSOrderedAscending) {
+        [cell setOverlay:NMFoodStateStopped];
+    } else if ([food.startDate compare:currentDate] == NSOrderedDescending) {
+        [cell setFutureSaleLayout];
+        [cell.timerLabel setCountDownToDate:food.startDate];
+    } else if ([food.endDate compare:currentDate] == NSOrderedDescending) {
+        [cell setOverlay:NMFoodStateSoldOut];
+    }
+    
 }
 
 #pragma mark - nav bar

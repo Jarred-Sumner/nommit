@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NMFood.h"
+#import "MZTimerLabel.h"
 
 typedef NS_ENUM(NSInteger, NMFoodCellState) {
     NMFoodStateSoldOut = 1,
@@ -19,7 +20,12 @@ typedef NS_ENUM(NSInteger, NMFoodCellState) {
 @interface NMFoodTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NSDate *arrivalTime;
+@property (nonatomic, strong) UIButton *notifyButton;
+@property (nonatomic, strong) MZTimerLabel *timerLabel;
 
 - (void)setFood:(NMFood*)food arrivalTime:(NSDate*)arrivalTime;
+
+- (void)setFutureSaleLayout;
+- (void)setOverlay:(NMFoodCellState)cellState;
 
 @end
