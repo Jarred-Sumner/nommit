@@ -143,16 +143,7 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 }
 
 - (void)registerForPushNotifications {
-//    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
-//    
-//    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Find out when food is available" andMessage:@"To get notified when food is available, please enable push notifications"];
-//    
-//    [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
-//    [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
-//        UIApplication *app = [UIApplication sharedApplication];
-//        [app registerForRemoteNotifications];
-//    }];
-//    [alert show];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
     
     NSString *currentUserName = [NMUser currentUser].name;
     
