@@ -90,9 +90,9 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
     if (!_place) self.place = [NMPlace activePlace];
     if (_place) {
-        [self refreshPlace];
+        [self refresh];
         [self handlePendingOrders];
-    } else if (!didAutoPresentPlaces) {
+    } else if (!didAutoPresentPlaces && [NMFood countOfActiveFoods] > 0) {
         [self locationButtonTouched];
         didAutoPresentPlaces = YES;
     }
@@ -117,8 +117,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         // - Have sold out
         foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (endDate >= %@)", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateEnded), @(NMDeliveryPlaceStatePending)], _place, oneDayAgo];
     } else {
-        // Predicate that never returns anything ever, for empty data source.
-        foodPredicate = [NSPredicate predicateWithFormat:@"uid = %@", @(-1)];
+        foodPredicate = [NSPredicate predicateWithFormat:@"endDate >= %@", [NSDate date]];
     }
     
     _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:foodPredicate groupBy:nil delegate: self];
@@ -127,27 +126,47 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (void)setupDataSource {
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refreshPlace) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
 }
 
-- (void)refreshPlace {
-    if (!_place) {
+- (void)refresh {
+    if (!_place && [NMFood countOfActiveFoods] > 0) {
         [self locationButtonTouched];
         [self.refreshControl endRefreshing];
         return;
     }
-    
-    __weak NMFoodsTableViewController *this = self;
+
     [self.refreshControl beginRefreshing];
+    if (_place) {
+        [self refreshFoodForPlace:_place];
+    } else {
+        [self refreshFood];
+    }
     
-    [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@", _place.uid] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [this.refreshControl endRefreshing];
-            [this.fetchedResultsController performFetch:nil];
-        });
+}
+
+- (void)refreshFoodForPlace:(NMPlace*)place {
+    __weak NMFoodsTableViewController *this = self;
+    [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@", place.uid] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        [this didRefresh];
     }];
+}
+
+- (void)refreshFood {
+    __weak NMFoodsTableViewController *this = self;
+    [[NMApi instance] GET:[NSString stringWithFormat:@"foods"] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        [this didRefresh];
+    }];
+}
+
+- (void)didRefresh {
+    __block NMFoodsTableViewController *this = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [this.refreshControl endRefreshing];
+        [this.fetchedResultsController performFetch:nil];
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[NMFood countOfActiveFoods]];
+    });
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
@@ -218,8 +237,6 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     
     // Side effects!
     _noFoodView.hidden = count != 0;
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
-
     return count;
 }
 
@@ -260,19 +277,23 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 - (void)configureCell:(NMFoodTableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
     NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
     NMDeliveryPlace *dp = [NMDeliveryPlace deliveryPlaceForFood:food place:_place];
     [cell setFood:food arrivalTime:dp.arrivesAt];
     
-    NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24];
-    
-//    if ([food.endDate compare:currentDate] == NSOrderedAscending) {
-//        [cell setOverlay:NMFoodStateStopped];
-//    } else if ([food.startDate compare:currentDate] == NSOrderedDescending) {
-//        [cell setFutureSaleLayout];
-//        [cell.timerLabel setCountDownToDate:food.startDate];
-//    } else if ([food.endDate compare:currentDate] == NSOrderedDescending) {
-//        [cell setOverlay:NMFoodStateSoldOut];
-//    }
+    if (food.state != NMFoodStateActive) {
+        cell.state = NMFoodCellStateExpired;
+    } else {
+        if (food.quantityState == NMFoodQuantityStateActive) {
+            if (food.timingState == NMFoodTimingStateActive) {
+                [cell setState:NMFoodCellStateNormal];
+            } else if (food.timingState == NMFoodTimingStateExpired) {
+                [cell setState:NMFoodCellStateExpired];
+            }
+        } else {
+            [cell setState:NMFoodCellStateSoldOut];
+        }
+    }
     
 }
 

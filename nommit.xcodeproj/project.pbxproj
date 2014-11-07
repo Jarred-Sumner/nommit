@@ -154,7 +154,6 @@
 		8DEED50819B2673A00EE227A /* NMCollectionViewLargeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50719B2673A00EE227A /* NMCollectionViewLargeLayout.m */; };
 		8DEED50F19B267A000EE227A /* HATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50C19B267A000EE227A /* HATransitionController.m */; };
 		8DEED51019B267A000EE227A /* HATransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED50E19B267A000EE227A /* HATransitionLayout.m */; };
-		8DEED51C19B270D700EE227A /* NMFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51B19B270D700EE227A /* NMFoodCell.m */; };
 		8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */; };
 		8DFC10051A09EB2B004862F7 /* NMSellFoodInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC10041A09EB2B004862F7 /* NMSellFoodInformationViewController.m */; };
 		8DFC10081A0A033D004862F7 /* NMSellFoodInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC10071A0A033D004862F7 /* NMSellFoodInformationView.m */; };
@@ -440,8 +439,6 @@
 		8DEED50C19B267A000EE227A /* HATransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HATransitionController.m; sourceTree = "<group>"; };
 		8DEED50D19B267A000EE227A /* HATransitionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HATransitionLayout.h; sourceTree = "<group>"; };
 		8DEED50E19B267A000EE227A /* HATransitionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HATransitionLayout.m; sourceTree = "<group>"; };
-		8DEED51A19B270D700EE227A /* NMFoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFoodCell.h; path = Cells/NMFoodCell.h; sourceTree = "<group>"; };
-		8DEED51B19B270D700EE227A /* NMFoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodCell.m; path = Cells/NMFoodCell.m; sourceTree = "<group>"; };
 		8DEED51D19B299A000EE227A /* NMOrderFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMOrderFoodViewController.h; path = "untitled folder/NMOrderFoodViewController.h"; sourceTree = "<group>"; };
 		8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMOrderFoodViewController.m; path = "untitled folder/NMOrderFoodViewController.m"; sourceTree = "<group>"; };
 		8DFC10031A09EB2B004862F7 /* NMSellFoodInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMSellFoodInformationViewController.h; path = "untitled folder/NMSellFoodInformationViewController.h"; sourceTree = "<group>"; };
@@ -829,8 +826,6 @@
 				8D5E561B19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m */,
 				8D51D2AD19B6418000920F69 /* NMCollectionHeaderView.h */,
 				8D51D2AE19B6418000920F69 /* NMCollectionHeaderView.m */,
-				8DEED51A19B270D700EE227A /* NMFoodCell.h */,
-				8DEED51B19B270D700EE227A /* NMFoodCell.m */,
 				8D7D00A519CD160B0006E5E6 /* NMFoodCellHeaderView.h */,
 				8D7D00A619CD160B0006E5E6 /* NMFoodCellHeaderView.m */,
 				8D7D00A819CD168C0006E5E6 /* NMFoodTableViewCell.h */,
@@ -1112,7 +1107,6 @@
 				8D49F30819BE942600E60145 /* NMPaymentsViewController.m in Sources */,
 				8DC5339A19DCDCCF00A841EB /* NMInviteCodeView.m in Sources */,
 				83D6A9E219B822B8009A6D9B /* _NMOrder.m in Sources */,
-				8DEED51C19B270D700EE227A /* NMFoodCell.m in Sources */,
 				8DCE836E19D53AF700D770D0 /* NMNoFoodView.m in Sources */,
 				8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */,
 				83454F5419DA3AFE005CEA8C /* NMDeliveryPlaceApiModel.m in Sources */,

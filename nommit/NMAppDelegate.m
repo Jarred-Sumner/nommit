@@ -143,7 +143,7 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 }
 
 - (void)registerForPushNotifications {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
+//    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
     
     NSString *currentUserName = [NMUser currentUser].name;
     
@@ -155,14 +155,24 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
     [_popup show];
     
     [notificationPopupView.closeButton addTarget:_popup action:@selector(dismissPresentingPopup) forControlEvents:UIControlEventTouchUpInside];
+    [alert show];
     
     [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:NMPushNotificationsKey];
 }
 
 - (void)showNotificationRegistration {
     [_popup dismissPresentingPopup];
-    UIApplication *app = [UIApplication sharedApplication];
-    [app registerForRemoteNotifications];
+    #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+            UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        } else {
+            [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+        }
+    #else
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    #endif
 }
 
 

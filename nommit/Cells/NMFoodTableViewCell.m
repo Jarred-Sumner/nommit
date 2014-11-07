@@ -237,19 +237,50 @@
     [self.contentView addSubview:_overlayView];
 }
 
-- (void)setOverlay:(NMFoodCellState)cellState {
+- (void)setState:(NMFoodCellState)cellState {
+    _state = cellState;
     switch (cellState) {
-        case NMFoodStateFuture:
+        case NMFoodCellStateFuture: {
             _overlayView.image = [UIImage imageNamed:@"FutureSaleOverlay"];
             _overlayView.hidden = NO;
+            [self setupTimerLabel];
+
+            _soldLabel.hidden = YES;
+            _rateVw.hidden = YES;
+            _progressBarView.hidden = YES;
+            _timeIcon.hidden = YES;
+            _timeLabel.hidden = YES;
             break;
-        case NMFoodStateSoldOut:
+        }
+        case NMFoodCellStateSoldOut:
             _overlayView.image = [UIImage imageNamed:@"SoldOutOverlay"];
             _overlayView.hidden = NO;
+            
+            _soldLabel.hidden = NO;
+            _rateVw.hidden = NO;
+            _progressBarView.hidden = NO;
+            _timeIcon.hidden = NO;
+            _timeLabel.hidden = NO;
             break;
-        case NMFoodStateStopped:
+        case NMFoodCellStateExpired:
             _overlayView.image = [UIImage imageNamed:@"SaleEndedOverlay"];
             _overlayView.hidden = NO;
+
+            _soldLabel.hidden = NO;
+            _rateVw.hidden = NO;
+            _progressBarView.hidden = NO;
+            _timeIcon.hidden = NO;
+            _timeLabel.hidden = NO;
+            break;
+        case NMFoodCellStateNormal:
+            _overlayView.image = nil;
+            _overlayView.hidden = YES;
+
+            _soldLabel.hidden = NO;
+            _rateVw.hidden = NO;
+            _progressBarView.hidden = NO;
+            _timeIcon.hidden = NO;
+            _timeLabel.hidden = NO;
             break;
         default:
             break;
@@ -273,24 +304,16 @@
     [_foodImageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[_timerLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_timerLabel)]];
 }
 
-- (void)setFutureSaleLayout {
-    _soldLabel.hidden = YES;
-    _rateVw.hidden = YES;
-    _progressBarView.hidden = YES;
-    _timeIcon.hidden = YES;
-    _timeLabel.hidden = YES;
-    
+- (void)setupNotifyButton {
     _notifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _notifyButton.layer.cornerRadius = 2;
     _notifyButton.backgroundColor = [NMColors mainColor];
-    [_notifyButton setTitle:@"notify me about sale @ 4:00 pm" forState:UIControlStateNormal];
+    [_notifyButton setTitle:@"Notify Me" forState:UIControlStateNormal];
     [_notifyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _notifyButton.titleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
-     _notifyButton.frame = CGRectMake(67, 238.5-35, 241-4.5, 35);
+    _notifyButton.frame = CGRectMake(67, 238.5-35, 241-4.5, 35);
     
     [self.contentView addSubview:_notifyButton];
-    
-    [self setupTimerLabel];
 }
 
 #pragma mark - Utility Methods
