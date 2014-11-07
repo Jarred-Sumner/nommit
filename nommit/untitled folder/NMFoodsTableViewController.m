@@ -19,6 +19,7 @@
 #import "NMRateOrderTableViewController.h"
 #import "NMNoFoodView.h"
 #import "NMAppDelegate.h"
+#import "KLCPopup.h"
 
 static BOOL didAutoPresentPlaces = NO;
 
@@ -47,6 +48,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         [self setupDataSource];
         
         [self.tableView registerClass:[NMFoodTableViewCell class] forCellReuseIdentifier:NMFoodCellIdentifier];
+        
     }
     return self;
 }

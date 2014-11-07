@@ -158,6 +158,9 @@
 		8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEED51E19B299A000EE227A /* NMOrderFoodViewController.m */; };
 		8DFC10051A09EB2B004862F7 /* NMSellFoodInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC10041A09EB2B004862F7 /* NMSellFoodInformationViewController.m */; };
 		8DFC10081A0A033D004862F7 /* NMSellFoodInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC10071A0A033D004862F7 /* NMSellFoodInformationView.m */; };
+		8DFC100E1A0C92F2004862F7 /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC100D1A0C92F2004862F7 /* KLCPopup.m */; };
+		8DFC10111A0D51E0004862F7 /* NMNotificationAskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC10101A0D51E0004862F7 /* NMNotificationAskView.m */; };
+		8DFC10141A0D733E004862F7 /* NMNotificationPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC10131A0D733E004862F7 /* NMNotificationPopupView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -445,6 +448,12 @@
 		8DFC10041A09EB2B004862F7 /* NMSellFoodInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMSellFoodInformationViewController.m; path = "untitled folder/NMSellFoodInformationViewController.m"; sourceTree = "<group>"; };
 		8DFC10061A0A033D004862F7 /* NMSellFoodInformationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMSellFoodInformationView.h; path = Views/NMSellFoodInformationView.h; sourceTree = "<group>"; };
 		8DFC10071A0A033D004862F7 /* NMSellFoodInformationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMSellFoodInformationView.m; path = Views/NMSellFoodInformationView.m; sourceTree = "<group>"; };
+		8DFC100C1A0C92F2004862F7 /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KLCPopup.h; path = Libraries/KLCPopup.h; sourceTree = "<group>"; };
+		8DFC100D1A0C92F2004862F7 /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KLCPopup.m; path = Libraries/KLCPopup.m; sourceTree = "<group>"; };
+		8DFC100F1A0D51E0004862F7 /* NMNotificationAskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNotificationAskView.h; path = Views/NMNotificationAskView.h; sourceTree = "<group>"; };
+		8DFC10101A0D51E0004862F7 /* NMNotificationAskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNotificationAskView.m; path = Views/NMNotificationAskView.m; sourceTree = "<group>"; };
+		8DFC10121A0D733E004862F7 /* NMNotificationPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNotificationPopupView.h; path = Views/NMNotificationPopupView.h; sourceTree = "<group>"; };
+		8DFC10131A0D733E004862F7 /* NMNotificationPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNotificationPopupView.m; path = Views/NMNotificationPopupView.m; sourceTree = "<group>"; };
 		8E8B0327B56164E6E6A983A7 /* Pods-nommit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nommit.release.xcconfig"; path = "Pods/Target Support Files/Pods-nommit/Pods-nommit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -555,6 +564,8 @@
 		8D51D28D19B3A3C200920F69 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8DFC100C1A0C92F2004862F7 /* KLCPopup.h */,
+				8DFC100D1A0C92F2004862F7 /* KLCPopup.m */,
 				8DC5335B19DCBAF500A841EB /* ContactPicker */,
 				8D6DE41E19B7B3CE008F64CE /* Google Places */,
 				8D51D29219B3A43F00920F69 /* UIImage+ImageEffects.h */,
@@ -897,6 +908,10 @@
 				8D4907DB1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m */,
 				8DFC10061A0A033D004862F7 /* NMSellFoodInformationView.h */,
 				8DFC10071A0A033D004862F7 /* NMSellFoodInformationView.m */,
+				8DFC100F1A0D51E0004862F7 /* NMNotificationAskView.h */,
+				8DFC10101A0D51E0004862F7 /* NMNotificationAskView.m */,
+				8DFC10121A0D733E004862F7 /* NMNotificationPopupView.h */,
+				8DFC10131A0D733E004862F7 /* NMNotificationPopupView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1192,12 +1207,15 @@
 				8DA5199419D3846800BBA8A0 /* NMOrderTableViewCell.m in Sources */,
 				83C3A18C19CE54420052B6F7 /* NMSeller.m in Sources */,
 				8DCE836B19D50B2E00D770D0 /* NMPromoTextField.m in Sources */,
+				8DFC10141A0D733E004862F7 /* NMNotificationPopupView.m in Sources */,
 				8DD32FAD19D6628D009485C2 /* NMActivatePhoneTableViewCell.m in Sources */,
 				83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */,
 				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				83D6A9E319B822B8009A6D9B /* _NMUser.m in Sources */,
+				8DFC100E1A0C92F2004862F7 /* KLCPopup.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
+				8DFC10111A0D51E0004862F7 /* NMNotificationAskView.m in Sources */,
 				83C3649719D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.m in Sources */,
 				83454F4719DA398C005CEA8C /* _NMDeliveryPlace.m in Sources */,
 				8DFC10051A09EB2B004862F7 /* NMSellFoodInformationViewController.m in Sources */,

@@ -17,12 +17,16 @@
 #import "NMActivateAccountTableViewController.h"
 #import "NMRateOrderTableViewController.h"
 #import <Crashlytics/Crashlytics.h>
+#import "KLCPopup.h"
+#import "NMNotificationPopupView.h"
+#import "NMColors.h"
 
 static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 
 @interface NMAppDelegate ()
 
 @property (nonatomic, strong) NMMenuNavigationController *navigationController;
+@property (nonatomic, strong) KLCPopup *popup;
 
 @end
 
@@ -139,18 +143,35 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 }
 
 - (void)registerForPushNotifications {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
+//    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
+//    
+//    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Find out when food is available" andMessage:@"To get notified when food is available, please enable push notifications"];
+//    
+//    [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
+//    [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+//        UIApplication *app = [UIApplication sharedApplication];
+//        [app registerForRemoteNotifications];
+//    }];
+//    [alert show];
     
-    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Find out when food is available" andMessage:@"To get notified when food is available, please enable push notifications"];
+    NSString *currentUserName = [NMUser currentUser].name;
     
-    [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
-    [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
-        UIApplication *app = [UIApplication sharedApplication];
-        [app registerForRemoteNotifications];
-    }];
-    [alert show];
+    NMNotificationPopupView *notificationPopupView = [[NMNotificationPopupView alloc] initWithFrame:CGRectMake(0, 0, 268.5, 382.5)];
+    notificationPopupView.contentView.messageLabel.text = [NSString stringWithFormat:@"Hi %@, we’d love to keep you in the loop of when food is available. In order to do so, you need to enable push notifications!", currentUserName ];
+    [notificationPopupView.contentView.notifyButton addTarget:self action:@selector(showNotificationRegistration) forControlEvents:UIControlEventTouchUpInside];
+
+    _popup = [KLCPopup popupWithContentView:notificationPopupView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeFadeOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:NO dismissOnContentTouch:NO];
+    [_popup show];
+    
+    [notificationPopupView.closeButton addTarget:_popup action:@selector(dismissPresentingPopup) forControlEvents:UIControlEventTouchUpInside];
     
     [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:NMPushNotificationsKey];
+}
+
+- (void)showNotificationRegistration {
+    [_popup dismissPresentingPopup];
+    UIApplication *app = [UIApplication sharedApplication];
+    [app registerForRemoteNotifications];
 }
 
 
