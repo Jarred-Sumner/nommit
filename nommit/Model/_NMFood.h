@@ -17,6 +17,7 @@ extern const struct NMFoodAttributes {
 	__unsafe_unretained NSString *thumbnailImageURL;
 	__unsafe_unretained NSString *title;
 	__unsafe_unretained NSString *uid;
+	__unsafe_unretained NSString *willNotifyUser;
 } NMFoodAttributes;
 
 extern const struct NMFoodRelationships {
@@ -33,6 +34,7 @@ extern const struct NMFoodFetchedProperties {
 @class NMOrder;
 @class NMPrice;
 @class NMSeller;
+
 
 
 
@@ -200,6 +202,20 @@ extern const struct NMFoodFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* willNotifyUser;
+
+
+
+@property BOOL willNotifyUserValue;
+- (BOOL)willNotifyUserValue;
+- (void)setWillNotifyUserValue:(BOOL)value_;
+
+//- (BOOL)validateWillNotifyUser:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSSet *deliveryPlaces;
 
 - (NSMutableSet*)deliveryPlacesSet;
@@ -336,6 +352,15 @@ extern const struct NMFoodFetchedProperties {
 
 - (int64_t)primitiveUidValue;
 - (void)setPrimitiveUidValue:(int64_t)value_;
+
+
+
+
+- (NSNumber*)primitiveWillNotifyUser;
+- (void)setPrimitiveWillNotifyUser:(NSNumber*)value;
+
+- (BOOL)primitiveWillNotifyUserValue;
+- (void)setPrimitiveWillNotifyUserValue:(BOOL)value_;
 
 
 

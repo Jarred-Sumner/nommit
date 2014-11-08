@@ -16,6 +16,7 @@ const struct NMFoodAttributes NMFoodAttributes = {
 	.thumbnailImageURL = @"thumbnailImageURL",
 	.title = @"title",
 	.uid = @"uid",
+	.willNotifyUser = @"willNotifyUser",
 };
 
 const struct NMFoodRelationships NMFoodRelationships = {
@@ -76,6 +77,11 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 	}
 	if ([key isEqualToString:@"uidValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"uid"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"willNotifyUserValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"willNotifyUser"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -259,6 +265,32 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 
 - (void)setPrimitiveUidValue:(int64_t)value_ {
 	[self setPrimitiveUid:[NSNumber numberWithLongLong:value_]];
+}
+
+
+
+
+
+@dynamic willNotifyUser;
+
+
+
+- (BOOL)willNotifyUserValue {
+	NSNumber *result = [self willNotifyUser];
+	return [result boolValue];
+}
+
+- (void)setWillNotifyUserValue:(BOOL)value_ {
+	[self setWillNotifyUser:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveWillNotifyUserValue {
+	NSNumber *result = [self primitiveWillNotifyUser];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveWillNotifyUserValue:(BOOL)value_ {
+	[self setPrimitiveWillNotifyUser:[NSNumber numberWithBool:value_]];
 }
 
 

@@ -14,6 +14,10 @@
     return (NMFoodState)self.stateIDValue;
 }
 
+- (BOOL)orderable {
+    return self.state == NMFoodStateActive && self.timingState == NMFoodTimingStateActive && self.quantityState == NMFoodQuantityStateActive;
+}
+
 - (NMFoodTimingState)timingState {
     if (self.startDate.timeIntervalSinceNow < 0.0 && self.endDate.timeIntervalSinceNow > 0.0) {
         return NMFoodTimingStateActive;

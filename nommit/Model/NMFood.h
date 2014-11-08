@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, NMFoodQuantityState) {
 @property (readonly) NMFoodState state;
 @property (readonly) NMFoodTimingState timingState;
 @property (readonly) NMFoodQuantityState quantityState;
+@property (readonly) BOOL orderable;
 
 @property (readonly) NSNumber *remainingOrders;
 @property (readonly) NSURL *headerImageAsURL;

@@ -143,19 +143,18 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 }
 
 - (void)registerForPushNotifications {
-//    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
     
-    NSString *currentUserName = [NMUser currentUser].name;
+    NSString *name = [[NMUser currentUser] name];
     
     NMNotificationPopupView *notificationPopupView = [[NMNotificationPopupView alloc] initWithFrame:CGRectMake(0, 0, 268.5, 382.5)];
-    notificationPopupView.contentView.messageLabel.text = [NSString stringWithFormat:@"Hi %@, we’d love to keep you in the loop of when food is available. In order to do so, you need to enable push notifications!", currentUserName ];
+    notificationPopupView.contentView.messageLabel.text = [NSString stringWithFormat:@"We don't always offer food, but when we do, we want you to know. Please enable push notifications, but you're free to refuse."];
     [notificationPopupView.contentView.notifyButton addTarget:self action:@selector(showNotificationRegistration) forControlEvents:UIControlEventTouchUpInside];
 
-    _popup = [KLCPopup popupWithContentView:notificationPopupView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeFadeOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:NO dismissOnContentTouch:NO];
+    _popup = [KLCPopup popupWithContentView:notificationPopupView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeFadeOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
     [_popup show];
     
     [notificationPopupView.closeButton addTarget:_popup action:@selector(dismissPresentingPopup) forControlEvents:UIControlEventTouchUpInside];
-    [alert show];
     
     [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:NMPushNotificationsKey];
 }

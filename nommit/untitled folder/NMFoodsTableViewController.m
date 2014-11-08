@@ -271,30 +271,70 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NMFood *food = (NMFood*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    NMOrderFoodViewController *orderFoodVC = [[NMOrderFoodViewController alloc] initWithFood:food place:_place];
-    [self.navigationController pushViewController:orderFoodVC animated:YES];
+    
+    if (food.orderable) {
+
+        if (!_place) {
+            [self locationButtonTouched];
+            return;
+        }
+
+        NMOrderFoodViewController *orderFoodVC = [[NMOrderFoodViewController alloc] initWithFood:food place:_place];
+        [self.navigationController pushViewController:orderFoodVC animated:YES];
+    } else if (food.timingState == NMFoodTimingStatePending) {
+
+    }
 }
 
 - (void)configureCell:(NMFoodTableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
     NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    NMDeliveryPlace *dp = [NMDeliveryPlace deliveryPlaceForFood:food place:_place];
-    [cell setFood:food arrivalTime:dp.arrivesAt];
+    __block NMFoodsTableViewController *this = self;
+    [cell setFood:food timerEndedBlock:^(NSTimeInterval elapsed) {
+        [this refresh];
+    }];
     
     if (food.state != NMFoodStateActive) {
-        cell.state = NMFoodCellStateExpired;
+        [cell setState:NMFoodCellStateExpired];
     } else {
         if (food.quantityState == NMFoodQuantityStateActive) {
             if (food.timingState == NMFoodTimingStateActive) {
                 [cell setState:NMFoodCellStateNormal];
             } else if (food.timingState == NMFoodTimingStateExpired) {
                 [cell setState:NMFoodCellStateExpired];
+            } else if (food.timingState == NMFoodTimingStatePending) {
+                [cell setState:NMFoodCellStateFuture];
+                [cell.notifyButton addTarget:self action:@selector(notifyUser:) forControlEvents:UIControlEventTouchUpInside];
             }
         } else {
             [cell setState:NMFoodCellStateSoldOut];
         }
     }
+}
+
+- (void)notifyUser:(id)sender {
+    CGPoint point = [sender convertPoint:CGPointZero toView:self.tableView];
+    __block NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
     
+    NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    __block NSNumber *foodID = food.uid;
+    __block NMFoodTableViewCell *cell = (NMFoodTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    [SVProgressHUD showWithStatus:@"Saving..." maskType:SVProgressHUDMaskTypeBlack];
+    
+    __block NMFoodsTableViewController *this = self;
+    NSString *path = [NSString stringWithFormat:@"users/%@", [NMUser currentUser].facebookUID];
+    [[NMApi instance] PUT:path parameters:@{ @"push_notifications" : @"reset" } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            NMFood *food = [NMFood MR_findFirstByAttribute:@"uid" withValue:foodID inContext:localContext];
+            food.willNotifyUser = @YES;
+        } completion:^(BOOL success, NSError *error) {
+            [SVProgressHUD showSuccessWithStatus:@"Saved!"];
+            [this configureCell:cell forIndexPath:indexPath];
+        }];
+
+        
+    }];
 }
 
 #pragma mark - nav bar
