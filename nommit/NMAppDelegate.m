@@ -143,7 +143,7 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 }
 
 - (void)registerForPushNotifications {
-//    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
     
     NSString *name = [[NMUser currentUser] name];
     
