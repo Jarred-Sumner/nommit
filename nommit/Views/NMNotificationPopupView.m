@@ -21,13 +21,13 @@
 }
 
 - (void)setupContent {
-    _contentView = [[NMNotificationAskView alloc] initWithFrame:CGRectMake(10, 10, 259, 372)];
+    _contentView = [[NMNotificationAskView alloc] initWithFrame:CGRectMake(12.5, 12.5, 259, 372)];
     [self addSubview:_contentView];
 }
 
 - (void)setupCloseButton {
     _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _closeButton.frame = CGRectMake(0, 0, 20, 20);
+    _closeButton.frame = CGRectMake(0, 0, 26, 26);
     [_closeButton setImage:[UIImage imageNamed:@"PopupClose"] forState:UIControlStateNormal];
     [self addSubview:_closeButton];
 }
