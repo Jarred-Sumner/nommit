@@ -68,13 +68,9 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 }
 
 - (void)setPlace:(NMPlace *)place {
-    if (place) {
-        _place = place;
-        _fetchedResultsController = nil;
-        [self.tableView reloadData];
-        [self.fetchedResultsController performFetch:nil];
-    }
-
+    _place = place;
+    _fetchedResultsController = nil;
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -89,6 +85,10 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     [super viewDidAppear:animated];
 
     if (!_place) self.place = [NMPlace activePlace];
+    
+    _fetchedResultsController = nil;
+    [self.fetchedResultsController performFetch:nil];
+    
     if (_place) {
         [self refresh];
         [self handlePendingOrders];
@@ -97,6 +97,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         didAutoPresentPlaces = YES;
     }
     
+
     // Register for push notifications
     [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] registerForPushNotifications];
 }
@@ -104,20 +105,19 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (NSFetchedResultsController *)fetchedResultsController {
-    if (_fetchedResultsController != nil) return _fetchedResultsController;
+    if (_fetchedResultsController) return _fetchedResultsController;
         
     NSPredicate *foodPredicate;
     if (_place) {
-        NSDate *oneDayAgo = [NSDate dateWithTimeIntervalSinceNow:-(60 * 60 * 24)];
         // The foods we show match the following:
         // - Are orderable
         // - Are orderable, but not to that place
         // - Stopped being sold (due to endDate being < now)
         // - Haven't been sold (startDate > now)
         // - Have sold out
-        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (endDate >= %@)", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateEnded), @(NMDeliveryPlaceStatePending)], _place, oneDayAgo];
+        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (endDate >= %@) AND (startDate <= %@) AND stateID = %@", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStatePending)], _place, [NSDate date], [NSDate date], @(NMFoodStateActive)];
     } else {
-        foodPredicate = [NSPredicate predicateWithFormat:@"endDate >= %@", [NSDate date]];
+        foodPredicate = [NSPredicate predicateWithFormat:@"endDate >= %@", [[NSDate date] dateByAddingTimeInterval:-86400]];
     }
     
     _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:foodPredicate groupBy:nil delegate: self];
@@ -131,7 +131,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 }
 
 - (void)refresh {
-    if (!_place && [NMFood countOfActiveFoods] > 0) {
+    if (!_place && [NMFood countOfActiveFoods] > 0 && !didAutoPresentPlaces) {
         [self locationButtonTouched];
         [self.refreshControl endRefreshing];
         return;
@@ -139,8 +139,10 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
     [self.refreshControl beginRefreshing];
     if (_place) {
+
         [self refreshFoodForPlace:_place];
     } else {
+
         [self refreshFood];
     }
     
@@ -310,6 +312,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
             [cell setState:NMFoodCellStateSoldOut];
         }
     }
+
 }
 
 - (void)notifyUser:(id)sender {

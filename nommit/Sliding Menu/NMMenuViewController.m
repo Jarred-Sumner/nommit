@@ -89,6 +89,11 @@ static NSInteger NMOrdersSection = 1;
 
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.fetchedResultsController performFetch:nil];
+}
+
 #pragma mark -
 #pragma mark UITableView Delegate
 
@@ -159,17 +164,7 @@ static NSInteger NMOrdersSection = 1;
         indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
         
         NMOrder *order = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        NMDeliveryTableViewController *deliveryVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
-        
-//        NMCourierSummaryTableViewController *deliveryVC = [[NMCourierSummaryTableViewController alloc] initWithShift:nil];
-        
-//        NMRateTableViewController *deliveryVC = [[NMRateTableViewController alloc] initWithOrder:order];
-//        NMMenuNavigationController *navController =
-//        [[NMMenuNavigationController alloc] initWithRootViewController:deliveryVC];
-//        [self presentViewController:navController animated:YES completion:nil];
-        
-        [self navigateTo:deliveryVC];
+        [self showDeliveryPageForOrder:order];
     }
 }
 
@@ -285,9 +280,9 @@ static NSInteger NMOrdersSection = 1;
     if (indexPath.section == 0) {
         NSArray *titles;
         if ([[NMUser currentUser] isCourierValue]) {
-            titles = @[@"Menu", @"Deliver", @"Account", @"Invite", @"Support", @"Sell Food On Nommit"];
+            titles = @[@"Menu", @"Deliver", @"Account", @"Invite", @"Support", @"Fundraise On Nommit"];
         } else {
-            titles = @[@"Menu", @"Account", @"Invite", @"Support", @"Sell Food On Nommit"];
+            titles = @[@"Menu", @"Account", @"Invite", @"Support", @"Fundraise On Nommit"];
         }
         cell.textLabel.text = titles[indexPath.row];
     } else {
@@ -379,5 +374,9 @@ static NSInteger NMOrdersSection = 1;
     [self presentViewController:navVC animated:YES completion:nil];
 }
 
+- (void)showDeliveryPageForOrder:(NMOrder *)order {
+    NMDeliveryTableViewController *deliveryVC = [[NMDeliveryTableViewController alloc] initWithOrder:order];
+    [self navigateTo:deliveryVC];
+}
 
 @end

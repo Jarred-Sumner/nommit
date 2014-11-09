@@ -68,69 +68,40 @@
 }
 
 - (void)emailButtonTouched {
-    // Email Subject
-    NSString *subject = @"Help with Nommit";
-    // Email Content
-    NSString *messageBody = [NSString stringWithFormat:@"Hey Nommit, <br><br> I'm having some trouble. My User ID is %@. Here's an explanation of the problem, and what if any steps I can think of to reproduce it: <br><br><br>", NMUser.currentUser.facebookUID];
-    // To address
-    NSArray *toRecipents = [NSArray arrayWithObject:@"support@getnommit.com"];
     
-    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-    mc.mailComposeDelegate = self;
-    [mc setSubject:subject];
-    [mc setMessageBody:messageBody isHTML:YES];
-    [mc setToRecipients:toRecipents];
-    
-    // Present mail view controller on screen
-    [self presentViewController:mc animated:YES completion:NULL];
+    if ([MFMailComposeViewController canSendMail]) {
+        NSString *subject = @"Help with Nommit";
+        NSString *messageBody = [NSString stringWithFormat:@"Hey Nommit, <br><br> I'm having some trouble. My User ID is %@. Here's an explanation of the problem, and what if any steps I can think of to reproduce it: <br><br><br>", NMUser.currentUser.facebookUID];
+        NSArray *toRecipents = [NSArray arrayWithObject:@"support@getnommit.com"];
+        
+        MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+        mc.mailComposeDelegate = self;
+        [mc setSubject:subject];
+        [mc setMessageBody:messageBody isHTML:YES];
+        [mc setToRecipients:toRecipents];
+        
+        // Present mail view controller on screen
+        [self presentViewController:mc animated:YES completion:NULL];
+    } else {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Email Support" andMessage:@"Email support at support@getnommit.com"];
+        [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeCancel handler:NULL];
+        [alert addButtonWithTitle:@"Copy" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+            UIPasteboard *paste = [UIPasteboard generalPasteboard];
+            paste.string = @"support@getnommit.com";
+        }];
+    }
 
 }
 
 #pragma mark - email delegate methods
 
-- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
-    switch (result)
-    {
-        case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled");
-            break;
-        case MFMailComposeResultSaved:
-            NSLog(@"Mail saved");
-            break;
-        case MFMailComposeResultSent:
-            NSLog(@"Mail sent");
-            break;
-        case MFMailComposeResultFailed:
-            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
-            break;
-        default:
-            break;
-    }
-    
-    // Close the Mail Interface
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - text delegate methods
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-    switch (result)
-    {
-        case MessageComposeResultCancelled:
-            NSLog(@"Mail cancelled");
-            break;
-        case MessageComposeResultSent:
-            NSLog(@"Mail sent");
-            break;
-        case MessageComposeResultFailed:
-            NSLog(@"Mail failed");
-            break;
-        default:
-            break;
-    }
-    
-    // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 

@@ -148,7 +148,26 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
     NSString *name = [[NMUser currentUser] name];
     
     NMNotificationPopupView *notificationPopupView = [[NMNotificationPopupView alloc] initWithFrame:CGRectMake(0, 0, 268.5, 382.5)];
-    notificationPopupView.contentView.messageLabel.text = [NSString stringWithFormat:@"We don't always offer food, but when we do, we want you to know. Please enable push notifications, but you're free to refuse."];
+    
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@, we want you to know when Nommit has food. We'd really like it if you enabled push notifications, but you don't have to.", name]];;
+    
+    [notificationPopupView.contentView.messageLabel setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *text) {
+        
+        NSRange nameRange = [[text string] rangeOfString:name];
+        NSRange knowWhen = [[text string] rangeOfString:@"know when Nommit has food"];
+        NSRange dontHaveTo = [[text string] rangeOfString:@"you don't have to"];
+        
+        UIFont *uiFont = [UIFont fontWithName:@"Avenir-Medium" size:12];
+        CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)uiFont.fontName, uiFont.pointSize, NULL);
+        if (font) {
+            [text addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:nameRange];
+            [text addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:knowWhen];
+            [text addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:dontHaveTo];
+        }
+        return text;
+    }];
+ 
+
     [notificationPopupView.contentView.notifyButton addTarget:self action:@selector(showNotificationRegistration) forControlEvents:UIControlEventTouchUpInside];
 
     _popup = [KLCPopup popupWithContentView:notificationPopupView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeFadeOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];

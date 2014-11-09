@@ -42,5 +42,7 @@
 #import <Mixpanel/Mixpanel.h>
 
 #import "NMAppDelegate.h"
+#import "NMMenuViewController.h"
+
 
 #endif

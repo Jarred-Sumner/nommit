@@ -45,7 +45,7 @@
 }
 
 - (void)setupMessage {
-    _messageLabel = [[UILabel alloc] init];
+    _messageLabel = [[TTTAttributedLabel alloc] init];
     _messageLabel.textColor = UIColorFromRGB(0x494949);
     _messageLabel.font = [UIFont fontWithName:@"Avenir-Light" size:12];
     _messageLabel.numberOfLines = 0;

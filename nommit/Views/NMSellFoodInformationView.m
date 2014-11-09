@@ -40,7 +40,7 @@
     
     UILabel *ribbonLabel = [[UILabel alloc] init];
     ribbonLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    ribbonLabel.text = @"Make $ Selling Food";
+    ribbonLabel.text = @"Fundraise with Nommit";
     ribbonLabel.textColor = [UIColor whiteColor];
     ribbonLabel.font = [UIFont fontWithName:@"Avenir" size:18.0f];
     ribbonLabel.textAlignment = NSTextAlignmentCenter;
@@ -58,7 +58,7 @@
     _inviteLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _inviteLabel.numberOfLines = 0;
     _inviteLabel.font = [UIFont fontWithName:@"Avenir" size:15];
-    _inviteLabel.text = @"You can make an average of $20/hr by delivering food with";
+    _inviteLabel.text = @"Organizations have raised thousands of dollars fundraising with Nommit.";
     [self addSubview:_inviteLabel];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-70-[_inviteLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteLabel)]];

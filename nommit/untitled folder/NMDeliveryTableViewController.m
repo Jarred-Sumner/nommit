@@ -16,6 +16,8 @@
 #import "UIScrollView+NMParallaxHeader.h"
 #import "NMFoodsTableViewController.h"
 #import <AudioToolbox/AudioServices.h>
+#import "NMSupportViewController.h"
+#import <MessageUI/MessageUI.h>
 
 typedef NS_ENUM(NSInteger, NMDeliveryCountdownState) {
     NMDeliveryCountdownStateCounting,
@@ -209,8 +211,8 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     self.navigationController.navigationBarHidden = NO;
     
     // Setup cancel button
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
-    cancelButton.enabled = YES;
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
+    cancelButton.enabled = _order.placedAt.timeIntervalSinceNow > -120;
     self.navigationItem.rightBarButtonItem = cancelButton;
     
 }
@@ -309,9 +311,45 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
 #pragma mark - Cancel
 
 - (void)cancel:(id)button {
-    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Are you sure you want to cancel?" andMessage:@"Your courier is already on his way!"];
-    [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
-    [alert show];
+    
+    __block NMDeliveryTableViewController *this = self;
+
+    if ([self.order.placedAt timeIntervalSinceNow] < -120) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Cannot cancel order" andMessage:@"Orders can't be cancelled after two minutes. If you need help, contact us"];
+        
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel:+11111"]]) {
+            [alert addButtonWithTitle:@"Text Us" type:SIAlertViewButtonTypeCancel handler:^(SIAlertView *alertView) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+                        controller.subject = @"Nommit Support";
+                        controller.recipients = @[@"+14152739617"];
+                        [this presentViewController:controller animated:YES completion:nil];
+                    });
+            }];
+        }
+        [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+        [alert show];
+        
+    } else {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Are you sure?" andMessage:@"Your courier is already on the way! Are you sure you want to cancel?"];
+        [alert addButtonWithTitle:@"No" type:SIAlertViewButtonTypeCancel handler:NULL];
+        [alert addButtonWithTitle:@"Yes" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+            
+            [SVProgressHUD showWithStatus:@"Cancelling..." maskType:SVProgressHUDMaskTypeBlack];
+            [[NMApi instance] PUT:[NSString stringWithFormat:@"orders/%@", _order.uid] parameters:@{ @"state_id" : @(NMOrderStateCancelled) }completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+                
+                if (error) return;
+                [SVProgressHUD showSuccessWithStatus:@"Cancelled!"];
+                NMFoodsTableViewController *foodsVC = [[NMFoodsTableViewController alloc] init];
+                NMMenuNavigationController *nav = [[NMMenuNavigationController alloc] initWithRootViewController:foodsVC];
+                this.frostedViewController.contentViewController = nav;
+                
+            }];
+            
+        }];
+        [alert show];
+    }
 }
 
 @end

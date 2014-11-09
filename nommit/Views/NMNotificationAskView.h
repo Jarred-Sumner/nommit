@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
 
 @interface NMNotificationAskView : UIView
 
-@property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) TTTAttributedLabel *messageLabel;
 @property (nonatomic, strong) UIButton *notifyButton;
 
 @end

@@ -12,7 +12,7 @@
 #import <MessageUI/MessageUI.h>
 
 
-@interface NMSellFoodInformationViewController ()
+@interface NMSellFoodInformationViewController ()<MFMailComposeViewControllerDelegate>
 
 @end
 
@@ -30,32 +30,33 @@
 }
 
 - (void)emailButtonTouched {
-    // Email Subject
-    NSString *subject = @"Selling with Nommit";
-    // Email Content
-    NSString *messageBody = [NSString stringWithFormat:@"Hey Nommit, <br><br> I'd like to sell food on Nommit. My User ID is %@. Here's what I'm thinking: <br><br><br>", NMUser.currentUser.facebookUID];
-    // To address
-    NSArray *toRecipents = [NSArray arrayWithObject:@"support@getnommit.com"];
     
-    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-    mc.mailComposeDelegate = self;
-    [mc setSubject:subject];
-    [mc setMessageBody:messageBody isHTML:YES];
-    [mc setToRecipients:toRecipents];
-    
-    // Present mail view controller on screen
-    [self presentViewController:mc animated:YES completion:NULL];
-    
+    if ([MFMailComposeViewController canSendMail]) {
+        NSString *subject = @"Selling with Nommit";
+        NSString *messageBody = [NSString stringWithFormat:@"Hey Nommit, <br><br> I'd like to sell food on Nommit. My User ID is %@. Here's what I'm thinking: <br><br><br>", NMUser.currentUser.facebookUID];
+        NSArray *toRecipents = [NSArray arrayWithObject:@"support@getnommit.com"];
+        
+        MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+        mc.mailComposeDelegate = self;
+        [mc setSubject:subject];
+        [mc setMessageBody:messageBody isHTML:YES];
+        [mc setToRecipients:toRecipents];
+
+        [self presentViewController:mc animated:YES completion:NULL];
+    } else {
+        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Email Us" andMessage:@"Email support at support@getnommit.com"];
+        [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeCancel handler:NULL];
+        [alert addButtonWithTitle:@"Copy" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+            UIPasteboard *paste = [UIPasteboard generalPasteboard];
+            paste.string = @"support@getnommit.com";
+        }];
+    }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
+#pragma mark - MFMailComposeDelegate
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - nav bar
@@ -79,15 +80,5 @@
     self.title = @"Sell Food On Nommit";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -59,7 +59,7 @@ static NSString *NMApiBaseURLString = API_URL;
              @"orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
              @"foods" : [NMFoodApiModel class],
-             @"places": [NMPlaceApiModel class],
+//             @"places": [NMPlaceApiModel class],
              @"places/*": [NMPlaceApiModel class],
              @"places/*/orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],

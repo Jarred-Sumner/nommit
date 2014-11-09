@@ -109,6 +109,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                           withRowAnimation:UITableViewRowAnimationFade];
             break;
+            
     }
 }
 
@@ -189,13 +190,11 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    __weak NMPlace *place = (NMPlace*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    NMPlace *place = (NMPlace*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     _foodsVC.place = place;
-
-    [self dismissViewControllerAnimated:YES completion:^{
-        NMPlace.activePlace = place;
-    }];
+    NMPlace.activePlace = place;
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

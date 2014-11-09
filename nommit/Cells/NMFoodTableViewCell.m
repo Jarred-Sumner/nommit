@@ -370,4 +370,8 @@
     
     [self.contentView addSubview:_notifyButton];
 }
+
+- (void)dealloc {
+    _timerEndedBlock = NULL;
+}
 @end

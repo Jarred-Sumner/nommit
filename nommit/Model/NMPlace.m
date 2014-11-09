@@ -52,21 +52,19 @@ static NSNumber *NMCurrentPlaceID;
 + (void)refreshAllWithCompletion:(NMApiCompletionBlock)completion {
     [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
-        __block NSMutableArray *activePlaceIDs = [[NSMutableArray alloc] init];
-        for (NMPlaceApiModel *placeModel in response.result) {
-            if (placeModel.foodCount.intValue > 0) {
-                [activePlaceIDs addObject:placeModel.uid];
-            }
-        }
-        
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            NSArray *places = [MTLJSONAdapter modelsOfClass:[NMPlaceApiModel class] fromJSONArray:response.result error:nil];
+            
+            NSMutableArray *activePlaceIDs = [[NSMutableArray alloc] init];
             
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT(uid IN %@)", activePlaceIDs];
             NSArray *inactivePlaces = [NMPlace MR_findAllWithPredicate:predicate inContext:localContext];
             for (NMPlace *place in inactivePlaces) {
                 place.foodCount = @0;
             }
-            
+            for (NMPlaceApiModel *model in places) {
+                [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:nil];
+            }
         } completion:^(BOOL success, NSError *error) {
             completion(response, error);
         }];

@@ -29,7 +29,7 @@
 }
 
 - (NMFoodQuantityState)quantityState {
-    if (self.orderCount.intValue >= self.orderGoal.intValue) {
+    if ([self.remainingOrders intValue] >= [self.orderGoal intValue]) {
         return NMFoodQuantityStateSoldOut;
     } else return NMFoodQuantityStateActive;
 }

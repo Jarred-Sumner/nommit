@@ -13,5 +13,13 @@
 @interface NMMenuViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 - (void)showMenu;
+- (void)showSupport;
+- (void)showInvite;
+- (void)showAccount;
+- (void)showOrders;
+
+- (void)openDeliveriesPage;
+- (void)showDeliveryPageForOrder:(NMOrder*)order;
+
 
 @end
