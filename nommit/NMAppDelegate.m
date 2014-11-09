@@ -134,17 +134,20 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
     NSLog(@"Push Notifications with Token: %@", devToken);
+    [[Mixpanel sharedInstance] track:@"Registered for Push Notifications"];
     NSString *token = [devToken base64EncodedStringWithOptions:0];
     [[NMApi instance] POST:@"devices" parameters:@{ @"token" : token }  completion:NULL];
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     NSLog(@"Error in registration. Error: %@", err);
+    [[Mixpanel sharedInstance] track:@"Failed to Register for Push Notifications" properties:@{ @"error" : [NSString stringWithFormat:@"%@", err] }];
 }
 
 - (void)registerForPushNotifications {
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
     
+    [[Mixpanel sharedInstance] track:@"Presented Push Notifications Request"];
     NSString *name = [[NMUser currentUser] name];
     
     NMNotificationPopupView *notificationPopupView = [[NMNotificationPopupView alloc] initWithFrame:CGRectMake(0, 0, 268.5, 382.5)];
@@ -173,9 +176,14 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
     _popup = [KLCPopup popupWithContentView:notificationPopupView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeFadeOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
     [_popup show];
     
-    [notificationPopupView.closeButton addTarget:_popup action:@selector(dismissPresentingPopup) forControlEvents:UIControlEventTouchUpInside];
+    [notificationPopupView.closeButton addTarget:self action:@selector(hideNotificationPopup) forControlEvents:UIControlEventTouchUpInside];
     
     [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:NMPushNotificationsKey];
+}
+
+- (void)hideNotificationPopup {
+    [[Mixpanel sharedInstance] track:@"Declined Push Notification Registration"];
+    [_popup dismissPresentingPopup];
 }
 
 - (void)showNotificationRegistration {
@@ -191,6 +199,7 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
     #else
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     #endif
+    [[Mixpanel sharedInstance] track:@"Requested Push Notification Access"];
 }
 
 

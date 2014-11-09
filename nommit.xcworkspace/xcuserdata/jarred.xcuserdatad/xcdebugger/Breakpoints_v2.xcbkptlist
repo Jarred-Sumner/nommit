@@ -408,11 +408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/NMAppDelegate.m"
-            timestampString = "437256589.652596"
+            timestampString = "437262441.430743"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "-registerForPushNotifications"
             landmarkType = "5">
          </BreakpointContent>
