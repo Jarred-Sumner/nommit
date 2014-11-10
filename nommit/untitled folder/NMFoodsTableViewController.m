@@ -95,6 +95,8 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     } else if (!didAutoPresentPlaces && [NMFood countOfActiveFoods] > 0) {
         [self locationButtonTouched];
         didAutoPresentPlaces = YES;
+    } else {
+        [self refreshFood];
     }
     
 
@@ -139,10 +141,8 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
     [self.refreshControl beginRefreshing];
     if (_place) {
-
         [self refreshFoodForPlace:_place];
     } else {
-
         [self refreshFood];
     }
     

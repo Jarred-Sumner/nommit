@@ -201,7 +201,6 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
-    [self calculateStats];
 }
 
 
@@ -335,6 +334,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
             [this.fetchedResultsController performFetch:nil];
             [this.tableView reloadData];
             [this refreshSectionHeaders];
+            [this calculateStats];
         }];
         
     }];
