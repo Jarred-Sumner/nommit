@@ -11,9 +11,9 @@
 #import "NMDeliveryPlacesTableViewController.h"
 
 
-@interface NMShiftTableViewController:UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, NMDeliveryPlaceHeaderViewDelegate, NMDeliveryPlacesTableViewControllerDelegate>
+@interface NMShiftTableViewController:UIViewController<UITableViewDataSource, UITableViewDelegate, NMDeliveryPlaceHeaderViewDelegate, NMDeliveryPlacesTableViewControllerDelegate>
 
-@property (nonatomic, strong) NMShift *shift;
+@property (nonatomic, strong) NSNumber *shiftID;
 
-- (id)initWithShift:(NMShift*)shift;
+- (id)initWithShiftID:(NSNumber*)shiftID;
 @end

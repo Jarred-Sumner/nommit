@@ -267,7 +267,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
             NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
             this.shift = shift;
             
-            NMShiftTableViewController *dpTV = [[NMShiftTableViewController alloc] initWithShift:shift];
+            NMShiftTableViewController *dpTV = [[NMShiftTableViewController alloc] initWithShiftID:shift.uid];
             [this.navigationController pushViewController:dpTV animated:YES];
             [SVProgressHUD showSuccessWithStatus:@"Started Shift!"];
             [[Mixpanel sharedInstance] track:@"Started Shift"];

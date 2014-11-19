@@ -68,7 +68,8 @@
 }
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {
-    return @{};
+    return @{
+    };
 }
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {

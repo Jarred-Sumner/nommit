@@ -122,7 +122,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         foodPredicate = [NSPredicate predicateWithFormat:@"endDate >= %@", [[NSDate date] dateByAddingTimeInterval:-86400]];
     }
     
-    _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:foodPredicate groupBy:nil delegate: self];
+    _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"startDate" ascending:NO withPredicate:foodPredicate groupBy:nil delegate: self];
     return _fetchedResultsController;
 }
 
@@ -151,6 +151,13 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 - (void)refreshFoodForPlace:(NMPlace*)place {
     __weak NMFoodsTableViewController *this = self;
     [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@", place.uid] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        
+        if ([[response.result foodCount] integerValue] == 0) {
+            _place = nil;
+            [NMPlace setActivePlace:nil];
+            [self.tableView reloadData];
+        }
+
         [this didRefresh];
     }];
 }

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSNumber *index;
 
 @property (nonatomic, strong) NSArray *foods;
+@property (nonatomic, strong) NSMutableOrderedSet *pendingOrders;
 @property (nonatomic, strong) NMPlaceApiModel *place;
 
 @end

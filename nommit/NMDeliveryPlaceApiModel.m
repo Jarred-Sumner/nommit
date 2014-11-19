@@ -44,7 +44,10 @@
 }
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {
-    return @{ @"places": NSNull.null };
+    return @{
+        @"places": NSNull.null,
+        @"pendingOrders" : NSNull.null
+    };
 }
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {

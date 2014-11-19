@@ -133,9 +133,10 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 #pragma mark - Push Notifications
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
-    NSLog(@"Push Notifications with Token: %@", devToken);
     [[Mixpanel sharedInstance] track:@"Registered for Push Notifications"];
     NSString *token = [devToken base64EncodedStringWithOptions:0];
+    NSLog(@"Push Notifications with Token: %@", token);
+
     [[NMApi instance] POST:@"devices" parameters:@{ @"token" : token }  completion:NULL];
 }
 
@@ -173,7 +174,7 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 
     [notificationPopupView.contentView.notifyButton addTarget:self action:@selector(showNotificationRegistration) forControlEvents:UIControlEventTouchUpInside];
 
-    _popup = [KLCPopup popupWithContentView:notificationPopupView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeFadeOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
+    _popup = [KLCPopup popupWithContentView:notificationPopupView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeFadeOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:NO dismissOnContentTouch:NO];
     [_popup show];
     
     [notificationPopupView.closeButton addTarget:self action:@selector(hideNotificationPopup) forControlEvents:UIControlEventTouchUpInside];

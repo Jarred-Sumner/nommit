@@ -89,10 +89,6 @@ static NSInteger NMOrdersSection = 1;
 
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.fetchedResultsController performFetch:nil];
-}
 
 #pragma mark -
 #pragma mark UITableView Delegate
@@ -362,7 +358,7 @@ static NSInteger NMOrdersSection = 1;
 - (void)openDeliveriesPage {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"courier.user = %@ AND stateID in %@", NMUser.currentUser, @[@(NMShiftStateActive),@(NMShiftStateHalted)]];
     NMShift *shift = [NMShift MR_findFirstWithPredicate:predicate sortedBy:@"stateID" ascending:YES];
-    NMShiftTableViewController *ordersVC = [[NMShiftTableViewController alloc] initWithShift:shift];
+    NMShiftTableViewController *ordersVC = [[NMShiftTableViewController alloc] initWithShiftID:shift.uid];
     
     UINavigationController *navVC;
     if (shift && shift.state != NMShiftStateEnded) {
