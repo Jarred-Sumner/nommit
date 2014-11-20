@@ -31,6 +31,10 @@ install_resource()
       echo "xcrun momc \"${PODS_ROOT}/$1\" \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd\""
       xcrun momc "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd"
       ;;
+    *.xcmappingmodel)
+      echo "xcrun mapc \"${PODS_ROOT}/$1\" \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcmappingmodel`.cdm\""
+      xcrun mapc "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcmappingmodel`.cdm"
+      ;;
     *.xcassets)
       ;;
     /*)
@@ -55,7 +59,6 @@ install_resource()
                     install_resource "DBCamera/DBCamera/Filters/mayfair.acv"
                     install_resource "DBCamera/DBCamera/Filters/Nashville.acv"
                     install_resource "DBCamera/DBCamera/Filters/Valencia.acv"
-                    install_resource "Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle"
                     install_resource "FontAwesomeKit/FontAwesomeKit/FontAwesome.otf"
                     install_resource "FontAwesomeKit/FontAwesomeKit/foundation-icons.ttf"
                     install_resource "FontAwesomeKit/FontAwesomeKit/ionicons.ttf"

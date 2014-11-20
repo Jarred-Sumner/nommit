@@ -11,7 +11,6 @@
 #import "NMOrderFoodInfoCell.h"
 #import "NMOrderFoodProgressCell.h"
 #import "NMOrderFoodConfirmAddressCell.h"
-#import "NMOrderFoodOrderButtonCell.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMAddressSearchViewController.h"
 #import "NMMenuNavigationController.h"
@@ -27,14 +26,12 @@ const NSInteger NMInfoSection = 0;
 const NSInteger NMDescriptionSecton = 1;
 const NSInteger NMProgressSection = 2;
 const NSInteger NMOrderFoodConfirmationSection = 4;
-const NSInteger NMOrderButtonSection = 5;
 const NSInteger NMOrderPromoSection = 3;
 
 static NSString *NMOrderFoodInfoIdentifier = @"NMOrderFoodInfoCell";
 static NSString *NMOrderFoodDescriptionIdentifier = @"NMOrderFoodDescriptionCell";
 static NSString *NMOrderFoodProgressIdentifier = @"NMOrderFoodProgressCell";
 static NSString *NMOrderFoodConfirmAddressCellIdentifier = @"NMOrderFoodConfirmAddressCell";
-static NSString *NMOrderFoodButtonIdentifier = @"NMOrderFoodOrderButtonCell";
 static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 
 
@@ -71,7 +68,6 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [self.tableView registerClass:[NMOrderFoodDescriptionTableViewCell class] forCellReuseIdentifier:NMOrderFoodDescriptionIdentifier];
     [self.tableView registerClass:[NMOrderFoodProgressCell class] forCellReuseIdentifier:NMOrderFoodProgressIdentifier];
     [self.tableView registerClass:[NMOrderFoodConfirmAddressCell class] forCellReuseIdentifier:NMOrderFoodConfirmAddressCellIdentifier];
-    [self.tableView registerClass:[NMOrderFoodOrderButtonCell class] forCellReuseIdentifier:NMOrderFoodButtonIdentifier];
     [self.tableView registerClass:[NMPromoCodeTableViewCell class] forCellReuseIdentifier:NMOrderFoodPromoIdentifier];
 
     [self.tableView addParallaxWithImage:nil andHeight:150];
@@ -79,6 +75,15 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [self.tableView addBlackOverlayToParallaxView];
     [self.tableView addTitleToParallaxView:_food.title];
     [self.tableView.parallaxView.imageView setImageWithURL:food.headerImageAsURL placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
+    
+    UIButton *orderFoodButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    orderFoodButton.backgroundColor = [NMColors mainColor];
+    orderFoodButton.frame = CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), 49);
+    [orderFoodButton setTitle:@"Order Food" forState:UIControlStateNormal];
+    [orderFoodButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-medium" size:22.f]];
+    [orderFoodButton addTarget:self action:@selector(orderFoodButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    self.tableView.tableFooterView = orderFoodButton;
 
     return self;
 }
@@ -99,7 +104,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,8 +117,6 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
         return 69;
     } else if (indexPath.section == NMOrderFoodConfirmationSection || indexPath.section == NMOrderPromoSection) {
         return 42.5;
-    } else if (indexPath.section == NMOrderButtonSection) {
-        return 49;
     }
     return 0;
 }
@@ -126,8 +129,6 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     } else if (section == NMProgressSection) {
         return 1;
     } else if (section == NMOrderFoodConfirmationSection) {
-        return 1;
-    } else if (section == NMOrderButtonSection) {
         return 1;
     } else if (section == NMOrderPromoSection) {
         return 1;
@@ -164,10 +165,6 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     } else if (indexPath.section == NMOrderPromoSection) {
         _promoCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodPromoIdentifier];
         return _promoCell;
-    } else if (indexPath.section == NMOrderButtonSection) {
-        NMOrderFoodOrderButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodButtonIdentifier];
-        [cell.orderButton addTarget:self action:@selector(orderFoodButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        return cell;
     } else return nil;
 }
 

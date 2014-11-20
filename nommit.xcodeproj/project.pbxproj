@@ -56,7 +56,6 @@
 		83EE765819BBE3CD006FEDDF /* NMSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765719BBE3CD006FEDDF /* NMSession.m */; };
 		83EE765B19BBF9A6006FEDDF /* NMLocationApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765A19BBF9A6006FEDDF /* NMLocationApiModel.m */; };
 		83EE766119BBFE51006FEDDF /* NMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765F19BBFE51006FEDDF /* NMLocation.m */; };
-		83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */; };
 		8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */; };
 		8D3D052E19DB5C3400B02677 /* NMCourierSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */; };
 		8D3D053119DB688900B02677 /* NMCourierSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D053019DB688900B02677 /* NMCourierSummaryTableViewCell.m */; };
@@ -196,6 +195,7 @@
 		83454F5019DA3A02005CEA8C /* NMShiftApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMShiftApiModel.m; sourceTree = "<group>"; };
 		83454F5219DA3AFE005CEA8C /* NMDeliveryPlaceApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMDeliveryPlaceApiModel.h; sourceTree = "<group>"; };
 		83454F5319DA3AFE005CEA8C /* NMDeliveryPlaceApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMDeliveryPlaceApiModel.m; sourceTree = "<group>"; };
+		834D0D1D1A1D8BB700A32332 /* nommit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = nommit.entitlements; sourceTree = "<group>"; };
 		8351379819E9B13D00BE2093 /* NMRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRateView.h; path = "Custom Components/NMRateView.h"; sourceTree = "<group>"; };
 		8351379919E9B13D00BE2093 /* NMRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRateView.m; path = "Custom Components/NMRateView.m"; sourceTree = "<group>"; };
 		8351379B19EA127800BE2093 /* NMPriceApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMPriceApiModel.h; sourceTree = "<group>"; };
@@ -261,8 +261,6 @@
 		83EE765E19BBFE51006FEDDF /* NMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLocation.h; path = Model/NMLocation.h; sourceTree = "<group>"; };
 		83EE765F19BBFE51006FEDDF /* NMLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLocation.m; path = Model/NMLocation.m; sourceTree = "<group>"; };
 		83F601FF19DE72FB000ECE8B /* NMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMConstants.h; sourceTree = "<group>"; };
-		83FB6CFF19B57D6700B808B6 /* NMOrderFoodOrderButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMOrderFoodOrderButtonCell.h; sourceTree = "<group>"; };
-		83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMOrderFoodOrderButtonCell.m; sourceTree = "<group>"; };
 		8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nommit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3D052C19DB5C3400B02677 /* NMCourierSummaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCourierSummaryTableViewController.h; path = "untitled folder/NMCourierSummaryTableViewController.h"; sourceTree = "<group>"; };
 		8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCourierSummaryTableViewController.m; path = "untitled folder/NMCourierSummaryTableViewController.m"; sourceTree = "<group>"; };
@@ -690,6 +688,7 @@
 		8DD3FC3619B2512900DAFCDB /* nommit */ = {
 			isa = PBXGroup;
 			children = (
+				834D0D1D1A1D8BB700A32332 /* nommit.entitlements */,
 				8DCE836819D50B1200D770D0 /* Custom Components */,
 				83D6A9E919B82A47009A6D9B /* API */,
 				8D51D2B019B6686E00920F69 /* Sliding Menu */,
@@ -832,8 +831,6 @@
 				8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */,
 				8D51D29519B3BA9900920F69 /* NMOrderFoodInfoCell.h */,
 				8D51D29619B3BA9900920F69 /* NMOrderFoodInfoCell.m */,
-				83FB6CFF19B57D6700B808B6 /* NMOrderFoodOrderButtonCell.h */,
-				83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */,
 				8D51D29B19B509B400920F69 /* NMOrderFoodProgressCell.h */,
 				8D51D29C19B509B400920F69 /* NMOrderFoodProgressCell.m */,
 				8D7D00AB19CD17940006E5E6 /* NMPlaceDropdownView.h */,
@@ -995,6 +992,11 @@
 				TargetAttributes = {
 					8DD3FC2C19B2512900DAFCDB = {
 						DevelopmentTeam = DRT5U2393F;
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 1;
+							};
+						};
 					};
 					8DD3FC4719B2512900DAFCDB = {
 						TestTargetID = 8DD3FC2C19B2512900DAFCDB;
@@ -1139,7 +1141,6 @@
 				83454F4819DA398C005CEA8C /* _NMShift.m in Sources */,
 				8351379A19E9B13D00BE2093 /* NMRateView.m in Sources */,
 				8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */,
-				83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */,
 				8D7D00A419CD0BDD0006E5E6 /* NMFoodsTableViewController.m in Sources */,
 				835137A019EA143D00BE2093 /* _NMPrice.m in Sources */,
 				8DD32FC819D9C197009485C2 /* NMDeliveryCountdownTableViewCell.m in Sources */,
@@ -1341,6 +1342,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = nommit/nommit.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1365,6 +1367,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = nommit/nommit.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
