@@ -153,7 +153,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     [[NMApi instance] GET:[NSString stringWithFormat:@"places/%@", place.uid] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
         if ([[response.result foodCount] integerValue] == 0) {
-            _place = nil;
+            this.place = nil;
             [NMPlace setActivePlace:nil];
             [self.tableView reloadData];
         }
