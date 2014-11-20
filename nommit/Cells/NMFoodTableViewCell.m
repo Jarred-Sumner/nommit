@@ -16,6 +16,7 @@
 
 @interface NMFoodTableViewCell()
 
+@property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UIImageView *foodImageView;
 @property (nonatomic, strong) NMFoodCellHeaderView *headerView;
 @property (nonatomic, strong) UILabel *soldLabel;
@@ -47,7 +48,9 @@
         bg.image = [UIImage imageNamed:@"NewsCell"];
         [self.contentView addSubview:bg];
         
+        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self setupContainerView];
         [self setupSellerLogoImageView];
         [self setupTime];
         [self setupSellerLabel];
@@ -60,6 +63,7 @@
         [self setupOverLay];
         [self setupStartTimerLabel];
         [self setupNotifyButton];
+        
     }
     return self;
 }
@@ -106,6 +110,10 @@
     _endDate = food.endDate;
 }
 
+- (void)setupContainerView {
+    
+}
+
 - (void)setupSellerLogoImageView
 {
     _sellerLogoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 18, 40, 40)];
@@ -150,7 +158,7 @@
     
     // _foodImageView.frame = CGRectMake(67, 38, 241, 200.5);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-67-[_foodImageView]-16-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-67-[_foodImageView(242)]-16-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-38-[_foodImageView]-75-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
 }
 

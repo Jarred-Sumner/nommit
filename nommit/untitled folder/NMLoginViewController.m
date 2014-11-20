@@ -59,6 +59,7 @@
     _logoView = [[UIImageView alloc] init];
     _logoView.image = [UIImage imageNamed:@"LoginLogo"];
     _logoView.translatesAutoresizingMaskIntoConstraints = NO;
+    _logoView.contentMode = UIViewContentModeCenter;
     [self.view addSubview:_logoView];
     
 }
@@ -67,6 +68,7 @@
     _signView = [[UIImageView alloc] init];
     _signView.image = [UIImage imageNamed:@"LoginSign"];
     _signView.translatesAutoresizingMaskIntoConstraints = NO;
+    _signView.contentMode = UIViewContentModeCenter;
     [self.view addSubview:_signView];
 }
 
