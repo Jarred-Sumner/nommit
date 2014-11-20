@@ -46,6 +46,7 @@
         
         UIImageView *bg = [[UIImageView alloc] initWithFrame:CGRectMake(65, 38, 241, 200.5)];
         bg.image = [UIImage imageNamed:@"NewsCell"];
+        bg.contentMode = UIViewContentModeCenter;
         [self.contentView addSubview:bg];
         
         
