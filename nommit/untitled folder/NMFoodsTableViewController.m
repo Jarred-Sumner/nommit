@@ -174,7 +174,6 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     dispatch_async(dispatch_get_main_queue(), ^{
         [this.refreshControl endRefreshing];
         [this.fetchedResultsController performFetch:nil];
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[NMFood countOfActiveFoods]];
     });
 }
 

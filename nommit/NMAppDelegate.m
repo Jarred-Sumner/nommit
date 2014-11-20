@@ -34,6 +34,7 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     [FBLoginView class];
     [Crashlytics startWithAPIKey:@"31fe8f31e5f07653f483f7db9bf622029dd41d84"];
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
