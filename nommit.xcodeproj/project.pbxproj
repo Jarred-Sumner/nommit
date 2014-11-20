@@ -58,6 +58,7 @@
 		83EE766119BBFE51006FEDDF /* NMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EE765F19BBFE51006FEDDF /* NMLocation.m */; };
 		83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */; };
 		8432350431CD4E7F966D30A5 /* libPods-nommit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */; };
+		8D1F3C7A1A1DAED900DC169B /* NMNotificationSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1F3C791A1DAED900DC169B /* NMNotificationSettingsTableViewCell.m */; };
 		8D3D052E19DB5C3400B02677 /* NMCourierSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */; };
 		8D3D053119DB688900B02677 /* NMCourierSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D053019DB688900B02677 /* NMCourierSummaryTableViewCell.m */; };
 		8D4907D91A044F47001A2225 /* NMShiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4907D81A044F47001A2225 /* NMShiftTableViewController.m */; };
@@ -264,6 +265,8 @@
 		83FB6CFF19B57D6700B808B6 /* NMOrderFoodOrderButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMOrderFoodOrderButtonCell.h; sourceTree = "<group>"; };
 		83FB6D0019B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMOrderFoodOrderButtonCell.m; sourceTree = "<group>"; };
 		8C5EC20A77F7494E9C07D482 /* libPods-nommit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nommit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1F3C781A1DAED900DC169B /* NMNotificationSettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNotificationSettingsTableViewCell.h; path = Cells/NMNotificationSettingsTableViewCell.h; sourceTree = "<group>"; };
+		8D1F3C791A1DAED900DC169B /* NMNotificationSettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNotificationSettingsTableViewCell.m; path = Cells/NMNotificationSettingsTableViewCell.m; sourceTree = "<group>"; };
 		8D3D052C19DB5C3400B02677 /* NMCourierSummaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCourierSummaryTableViewController.h; path = "untitled folder/NMCourierSummaryTableViewController.h"; sourceTree = "<group>"; };
 		8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCourierSummaryTableViewController.m; path = "untitled folder/NMCourierSummaryTableViewController.m"; sourceTree = "<group>"; };
 		8D3D052F19DB688900B02677 /* NMCourierSummaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCourierSummaryTableViewCell.h; path = Cells/NMCourierSummaryTableViewCell.h; sourceTree = "<group>"; };
@@ -878,6 +881,8 @@
 				8D3D053019DB688900B02677 /* NMCourierSummaryTableViewCell.m */,
 				8DC5335519DC5D4D00A841EB /* NMLogoutButtonCell.h */,
 				8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */,
+				8D1F3C781A1DAED900DC169B /* NMNotificationSettingsTableViewCell.h */,
+				8D1F3C791A1DAED900DC169B /* NMNotificationSettingsTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1211,6 +1216,7 @@
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
 				8DFC10111A0D51E0004862F7 /* NMNotificationAskView.m in Sources */,
 				83C3649719D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.m in Sources */,
+				8D1F3C7A1A1DAED900DC169B /* NMNotificationSettingsTableViewCell.m in Sources */,
 				83454F4719DA398C005CEA8C /* _NMDeliveryPlace.m in Sources */,
 				8DFC10051A09EB2B004862F7 /* NMSellFoodInformationViewController.m in Sources */,
 				83454F4D19DA39B6005CEA8C /* NMDeliveryPlace.m in Sources */,

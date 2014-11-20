@@ -17,6 +17,7 @@
 #import "NMLogoutButtonCell.h"
 #import "NMLoginViewController.h"
 #import "NMAppDelegate.h"
+#import "NMNotificationSettingsTableViewCell.h"
 
 @interface NMAccountTableViewController() <NSFetchedResultsControllerDelegate>
 
@@ -34,12 +35,18 @@
 const NSInteger NMAccountInformationSection = 0;
 const NSInteger NMPaymentMethodSection = 1;
 const NSInteger NMAccountPromoSection = 2;
-const NSInteger NMLogoutButtonSection = 3;
+const NSInteger NMNotificationSection = 3;
+const NSInteger NMLogoutButtonSection = 4;
+
+const NSInteger NMEmailRow = 0;
+const NSInteger NMTextingRow = 1;
+const NSInteger NMPushRow = 2;
 
 static NSString *NMAccountInformationTableViewCellKey = @"NMAcountInformationTableViewCell";
 static NSString *NMAccountPromoTableViewCellKey = @"NMAccountPromoTableViewCell";
 static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCellKey";
 static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell";
+static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettingsTableViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -52,7 +59,7 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
         [self.tableView registerClass:[NMAccountPromoTableViewCell class] forCellReuseIdentifier:NMAccountPromoTableViewCellKey];
         [self.tableView registerClass:[NMPaymentMethodTableViewCell class] forCellReuseIdentifier:NMPaymentMethodTableViewCellKey];
         [self.tableView registerClass:[NMLogoutButtonCell class] forCellReuseIdentifier:NMLogoutButtonTableViewCellKey];
-        
+        [self.tableView registerClass:[NMNotificationSettingsTableViewCell class] forCellReuseIdentifier:NMNotificationSettingsTableViewCellKey];
     }
     return self;
 }
@@ -65,11 +72,14 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    if (section == NMNotificationSection) {
+        return 3;
+    }
     return 1;
 }
 
@@ -83,9 +93,11 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
     } else if (indexPath.section == NMPaymentMethodSection) {
         return 65;
     } else if (indexPath.section == NMAccountPromoSection) {
-        return 75;
+        return 80;
     } else if (indexPath.section == NMLogoutButtonSection) {
-        return 44;
+        return 40;
+    } else if (indexPath.section == NMNotificationSection) {
+        return 54;
     }
     return 0;
 }
@@ -101,6 +113,8 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
         separatorView.sectionLabel.text = @"PROMOS";
     } else if (section == NMLogoutButtonSection) {
         return nil;
+    } else if (section == NMNotificationSection) {
+        separatorView.sectionLabel.text = @"NOTIFICATION SETTINGS";
     }
     return separatorView;
 }
@@ -124,6 +138,10 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
         [_logoutCell.logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
         [_logoutCell.logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
         return _logoutCell;
+    } else if (indexPath.section == NMNotificationSection) {
+        NMNotificationSettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMNotificationSettingsTableViewCellKey forIndexPath:indexPath];
+        [self configureNotificationCell:cell withIndexPath:indexPath];
+        return cell;
     } else {
         return nil;
     }
@@ -209,6 +227,22 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
             break;
     }
 
+}
+
+- (void)configureNotificationCell:(NMNotificationSettingsTableViewCell *)cell withIndexPath:(NSIndexPath*)indexPath {
+    switch (indexPath.row) {
+        case NMEmailRow:
+            cell.titleLabel.text = @"Enable Email Notifications";
+            break;
+        case NMTextingRow:
+            cell.titleLabel.text = @"Enable Text Notifications";
+            break;
+        case NMPushRow:
+            cell.titleLabel.text = @"Enable Push Notifications";
+            break;
+        default:
+            break;
+    }
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {
