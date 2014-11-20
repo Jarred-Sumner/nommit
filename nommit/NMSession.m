@@ -11,6 +11,7 @@
 #import "NMUser.h"
 #import "NMAppDelegate.h"
 
+static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 static NSString *NMSessionIDKey = @"NMSessionIDKey";
 static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 
@@ -26,6 +27,14 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 
 + (void)setSessionID:(NSString *)sessionID {
     [Lockbox setString:sessionID forKey:NMSessionIDKey];
+}
+
++ (BOOL)hasRequestedPush {
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue];
+}
+
++ (void)setRequestedPush:(BOOL)requestedPush {
+    [[NSUserDefaults standardUserDefaults] setObject:@(requestedPush) forKey:NMPushNotificationsKey];
 }
 
 + (NSString *)userID {

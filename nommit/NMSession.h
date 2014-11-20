@@ -18,6 +18,9 @@
 + (NSString *)userID;
 + (void)setUserID:(NSString *)userID;
 
++ (BOOL)hasRequestedPush;
++ (void)setRequestedPush:(BOOL)requestedPush;
+
 + (void)logout;
 
 @end

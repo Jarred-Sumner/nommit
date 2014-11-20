@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NMLogoutButtonCell *logoutCell;
 
+
 @end
 
 @implementation NMAccountTableViewController
@@ -60,6 +61,9 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
         [self.tableView registerClass:[NMPaymentMethodTableViewCell class] forCellReuseIdentifier:NMPaymentMethodTableViewCellKey];
         [self.tableView registerClass:[NMLogoutButtonCell class] forCellReuseIdentifier:NMLogoutButtonTableViewCellKey];
         [self.tableView registerClass:[NMNotificationSettingsTableViewCell class] forCellReuseIdentifier:NMNotificationSettingsTableViewCellKey];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(declinedPush) name:NMDidFailToRegisterForPushNotificationsKey object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPushCell) name:NMDidRegisterForPushNotificationsKey object:nil];
     }
     return self;
 }
@@ -152,12 +156,16 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
     if (indexPath.section == NMPaymentMethodSection) {
         NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] init];
         [self.navigationController pushViewController:paymentsVC animated:YES];
+    } else if (indexPath.section == NMNotificationSection) {
+        NMNotificationSettingsTableViewCell *cell = (NMNotificationSettingsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        [self toggleNotificationStateForCell:cell];
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
+    [self refreshSubscription];
 }
 
 #pragma mark - submit button
@@ -201,48 +209,31 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
 #pragma mark - NSFetchedResultsController
 
 - (void)configureCellForIndexPath:(NSIndexPath*)indexPath {
-    NMUser *user = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     switch (indexPath.section) {
         case NMAccountInformationSection:
-            _infoCell.avatar.profileID = user.facebookUID;
-            _infoCell.nameLabel.text = user.fullName;
-            _infoCell.emailLabel.text = user.email;
-            _infoCell.phoneLabel.text = user.formattedPhone;
+            _infoCell.avatar.profileID = self.user.facebookUID;
+            _infoCell.nameLabel.text = self.user.fullName;
+            _infoCell.emailLabel.text = self.user.email;
+            _infoCell.phoneLabel.text = self.user.formattedPhone;
             break;
         case NMPaymentMethodSection:
             
-            if ([user.lastFour length] > 0) {
-                _cardCell.cardLabel.text = [NSString stringWithFormat:@"• • • • %@", user.lastFour];
-                _cardCell.cardImage.image = [UIImage imageNamed:user.cardType];
+            if ([self.user.lastFour length] > 0) {
+                _cardCell.cardLabel.text = [NSString stringWithFormat:@"• • • • %@", self.user.lastFour];
+                _cardCell.cardImage.image = [UIImage imageNamed:self.user.cardType];
             } else {
                 _cardCell.cardLabel.text = @"• • • •";
             }
             break;
         case NMAccountPromoSection:
             [_promoCell.submitButton addTarget:self action:@selector(submitPromoCode:) forControlEvents:UIControlEventTouchUpInside];
-            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@\nShare your code with friends: %@", user.credit, user.referralCode];
+            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@\nShare your code with friends: %@", self.user.credit, self.user.referralCode];
             break;
         default:
             break;
     }
 
-}
-
-- (void)configureNotificationCell:(NMNotificationSettingsTableViewCell *)cell withIndexPath:(NSIndexPath*)indexPath {
-    switch (indexPath.row) {
-        case NMEmailRow:
-            cell.titleLabel.text = @"Enable Email Notifications";
-            break;
-        case NMTextingRow:
-            cell.titleLabel.text = @"Enable Text Notifications";
-            break;
-        case NMPushRow:
-            cell.titleLabel.text = @"Enable Push Notifications";
-            break;
-        default:
-            break;
-    }
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -310,5 +301,114 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
 - (void)logout {
     _fetchedResultsController = nil;
     [NMSession logout];
+}
+
+
+#pragma mark - Notifications
+
+- (void)configureNotificationCell:(NMNotificationSettingsTableViewCell *)cell withIndexPath:(NSIndexPath*)indexPath {
+    NMSubscription *subscription = [self.user subscription];
+
+    switch (indexPath.row) {
+        case NMEmailRow: {
+            cell.type = NMNotificationTypeEmail;
+            cell.state = subscription.email.boolValue;
+            break;
+        }
+        case NMTextingRow: {
+            cell.type = NMNotificationTypeSMS;
+            cell.state = subscription.sms.boolValue;
+            break;
+        }
+        case NMPushRow: {
+            cell.type = NMNotificationTypePush;
+            cell.state = NMNotificationSettingsStateRequest;
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)toggleNotificationStateForCell:(NMNotificationSettingsTableViewCell*)cell {
+    NMSubscription *subscription = self.user.subscription;
+    NSString *key;
+    NSNumber *value;
+    if (cell.type == NMNotificationTypeEmail) {
+        key = @"email";
+        value = @(!subscription.emailValue);
+    } else if (cell.type == NMNotificationTypePush) {
+        key = @"push_notifications";
+        value = @(![(NMAppDelegate*)UIApplication.sharedApplication.delegate isPushEnabled]);
+    } else if (cell.type == NMNotificationTypeSMS) {
+        key = @"sms";
+        value = @(!subscription.smsValue);
+    }
+    
+    if (!([key isEqualToString:@"push_notifications"])) {
+        cell.state = NMNotificationSettingsStateLoading;
+        __block NMAccountTableViewController *this = self;
+        [[NMApi instance] POST:[NSString stringWithFormat:@"users/%@/subscription", self.user.facebookUID] parameters:@{ key: value } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+            
+            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+                NMSubscriptionApiModel *model = [MTLJSONAdapter modelOfClass:[NMSubscriptionApiModel class] fromJSONDictionary:response.result error:nil];
+                NMSubscription *subscription = [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:nil];
+                subscription.user = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID] inContext:localContext];
+            } completion:^(BOOL success, NSError *error) {
+                NSIndexPath *indexPath = [this.tableView indexPathForCell:cell];
+                [this configureNotificationCell:cell withIndexPath:indexPath];
+            }];
+            
+        }];
+    } else {
+        [self requestPushNotifications];
+    }
+}
+
+- (void)requestPushNotifications {
+    [NMSession setRequestedPush:NO];
+    [(NMAppDelegate*)UIApplication.sharedApplication.delegate  registerForPushNotifications];
+}
+
+- (void)refreshSubscription {
+    __block NMAccountTableViewController *this = self;
+    [[NMApi instance] GET:[NSString stringWithFormat:@"users/%@/subscription", self.user.facebookUID] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            NMSubscriptionApiModel *model = [MTLJSONAdapter modelOfClass:[NMSubscriptionApiModel class] fromJSONDictionary:response.result error:nil];
+            NMSubscription *subscription = [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:nil];
+            subscription.user = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID] inContext:localContext];
+        } completion:^(BOOL success, NSError *error) {
+            for (int i = 0; i < [this tableView:this.tableView numberOfRowsInSection:NMNotificationSection]; i++) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:NMNotificationSection];
+                NMNotificationSettingsTableViewCell *cell = (NMNotificationSettingsTableViewCell*)[this.tableView cellForRowAtIndexPath:indexPath];
+                
+                [this configureNotificationCell:cell withIndexPath:indexPath];
+            }
+            
+        }];
+        
+    }];
+}
+
+- (void)declinedPush {
+    
+    if (![(NMAppDelegate*)UIApplication.sharedApplication.delegate isPushEnabled]) {
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Enable in Settings" andMessage:@"To enable push notifications, open the Settings app and enable push notifications for Nommit"];
+        [alertView addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+        [alertView show];
+    }
+    [self resetPushCell];
+}
+- (void)resetPushCell {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:NMPushRow inSection:NMNotificationSection];
+    NMNotificationSettingsTableViewCell *cell = (NMNotificationSettingsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    [self configureNotificationCell:cell withIndexPath:indexPath];
+}
+
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end
