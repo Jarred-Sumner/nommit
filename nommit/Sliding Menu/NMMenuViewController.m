@@ -276,9 +276,9 @@ static NSInteger NMOrdersSection = 1;
     if (indexPath.section == 0) {
         NSArray *titles;
         if ([[NMUser currentUser] isCourierValue]) {
-            titles = @[@"Menu", @"Deliver", @"Account", @"Invite", @"Support", @"Fundraise On Nommit"];
+            titles = @[@"Menu", @"Deliver", @"Account", @"Get Free Food", @"Support", @"Fundraise On Nommit"];
         } else {
-            titles = @[@"Menu", @"Account", @"Invite", @"Support", @"Fundraise On Nommit"];
+            titles = @[@"Menu", @"Account", @"Get Free Food", @"Support", @"Fundraise On Nommit"];
         }
         cell.textLabel.text = titles[indexPath.row];
     } else {
