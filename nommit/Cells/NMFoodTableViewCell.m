@@ -34,6 +34,8 @@
 @property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic, strong) NSDate *startDate;
 
+@property (nonatomic, strong) UIImageView *bg;
+
 @end
 
 @implementation NMFoodTableViewCell
@@ -44,10 +46,10 @@
     if (self) {
         self.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
-        UIImageView *bg = [[UIImageView alloc] initWithFrame:CGRectMake(65, 38, 241, 200.5)];
-        bg.image = [UIImage imageNamed:@"NewsCell"];
-        bg.contentMode = UIViewContentModeCenter;
-        [self.contentView addSubview:bg];
+        _bg = [[UIImageView alloc] initWithFrame:CGRectMake(65, 38, 241, 200.5)];
+        _bg.image = [UIImage imageNamed:@"NewsCell"];
+        _bg.contentMode = UIViewContentModeCenter;
+        [self.contentView addSubview:_bg];
         
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -155,12 +157,12 @@
     _foodImageView.layer.cornerRadius = 2;
     _foodImageView.contentMode = UIViewContentModeScaleAspectFill;
 
-    [self.contentView addSubview:_foodImageView];
+    [_bg addSubview:_foodImageView];
     
     // _foodImageView.frame = CGRectMake(67, 38, 241, 200.5);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-67-[_foodImageView(242)]-16-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-38-[_foodImageView]-75-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-2-[_foodImageView(237)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_foodImageView]-77-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
 }
 
 - (void)setupFoodLabel
@@ -170,10 +172,10 @@
     _nameLabel.textColor = UIColorFromRGB(0x3C3C3C);
     _nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.contentView addSubview:_nameLabel];
+    [_bg addSubview:_nameLabel];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-77-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_foodImageView]-7-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel, _foodImageView)]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel)]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_foodImageView]-7-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel, _foodImageView)]];
 }
 
 - (void)setupPriceLabel
@@ -184,10 +186,10 @@
     _priceLabel.textColor = UIColorFromRGB(0x60C4BE);
     _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.contentView addSubview:_priceLabel];
+    [_bg addSubview:_priceLabel];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_foodImageView]-7-[_priceLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel, _foodImageView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_priceLabel]-25-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel)]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_foodImageView]-7-[_priceLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel, _foodImageView)]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_priceLabel]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel)]];
 }
 
 - (void)setupSoldLabel
@@ -197,10 +199,10 @@
     _soldLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _soldLabel.textColor = UIColorFromRGB(0x717171);
     
-    [self.contentView addSubview:_soldLabel];
+    [_bg addSubview:_soldLabel];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-77-[_soldLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_soldLabel)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-3-[_soldLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel, _soldLabel)]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_soldLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_soldLabel)]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-3-[_soldLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel, _soldLabel)]];
     
 }
 
@@ -215,12 +217,12 @@
     _progressBarView.barInnerPadding = 0;
     _progressBarView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.contentView addSubview:_progressBarView];
+    [_bg addSubview:_progressBarView];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_progressBarView, _soldLabel);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-77-[_progressBarView]-25-|" options:0 metrics:nil views:views ]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_soldLabel]-5-[_progressBarView]-15-|" options:0 metrics:nil views:views ]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_progressBarView]-10-|" options:0 metrics:nil views:views ]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_soldLabel]-5-[_progressBarView]-15-|" options:0 metrics:nil views:views ]];
 }
 
 - (void)setupRating
@@ -235,13 +237,13 @@
     _rateVw.starFillColor = [NMColors mainColor];
     
     
-    [self.contentView addSubview:_rateVw];
+    [_bg addSubview:_rateVw];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_rateVw, _nameLabel);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_rateVw]-75-|" options:0 metrics:nil views:views]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_rateVw]-15-|" options:0 metrics:nil views:views]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-6-[_rateVw]" options:0 metrics:nil views:views]];
+    [_bg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-6-[_rateVw]" options:0 metrics:nil views:views]];
 }
 
 - (void)setupTime
@@ -262,9 +264,11 @@
     _endTimerLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_endTimerLabel];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_timeIcon, _endTimerLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_timeIcon, _endTimerLabel, _bg);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_timeIcon]-5-[_endTimerLabel]-18-|" options:0 metrics:nil views:views]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_timeIcon]-5-[_endTimerLabel]-0-[_bg]" options:0 metrics:nil views:views]];
+
 
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[_timeIcon]" options:0 metrics:nil views:views]];
