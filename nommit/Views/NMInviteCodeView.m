@@ -108,7 +108,7 @@
     _messengerButton = [self makeInviteButtonWithImage:[UIImage imageNamed:@"InviteMessenger"]];
     [self addSubview:_messengerButton];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-59-[_twitterButton]-54-[_facebookButton]-54-[_messengerButton]-59-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_twitterButton, _facebookButton, _messengerButton)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-59-[_facebookButton]-54-[_messengerButton]-54-[_twitterButton]-59-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_twitterButton, _facebookButton, _messengerButton)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inviteLabel]-20-[_twitterButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_twitterButton, inviteLabel)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inviteLabel]-20-[_facebookButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_facebookButton, inviteLabel)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inviteLabel]-20-[_messengerButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messengerButton, inviteLabel)]];

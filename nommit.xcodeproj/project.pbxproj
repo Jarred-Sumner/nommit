@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		830067A319DACE4A00AA89D0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830067A219DACE4A00AA89D0 /* CoreMedia.framework */; };
 		830067A419DACF1600AA89D0 /* NMDeliveryPlaceNavigatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5199019D3829C00BBA8A0 /* NMDeliveryPlaceNavigatorView.m */; };
+		83182D101A1FFA2500D9EC1D /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83182D0F1A1FFA2500D9EC1D /* Twitter.framework */; };
 		83291B0219B5242500524801 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0119B5242500524801 /* CoreVideo.framework */; };
 		83291B0419B5242B00524801 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0319B5242B00524801 /* CoreImage.framework */; };
 		83291B0619B5243600524801 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83291B0519B5243600524801 /* Security.framework */; };
@@ -179,6 +180,7 @@
 /* Begin PBXFileReference section */
 		452128D7DF4B74E6E0E8D1BD /* Pods-nommit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nommit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nommit/Pods-nommit.debug.xcconfig"; sourceTree = "<group>"; };
 		830067A219DACE4A00AA89D0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		83182D0F1A1FFA2500D9EC1D /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		83291B0119B5242500524801 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		83291B0319B5242B00524801 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		83291B0519B5243600524801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -471,6 +473,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83182D101A1FFA2500D9EC1D /* Twitter.framework in Frameworks */,
 				8331FA4119DD402200D78ECD /* AudioToolbox.framework in Frameworks */,
 				830067A319DACE4A00AA89D0 /* CoreMedia.framework in Frameworks */,
 				837FCA0819C7E10F00846C62 /* AVFoundation.framework in Frameworks */,
@@ -682,6 +685,7 @@
 		8DD3FC2F19B2512900DAFCDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83182D0F1A1FFA2500D9EC1D /* Twitter.framework */,
 				832EB80519E39A5E00FF3BEF /* Crashlytics.framework */,
 				8331FA4019DD402100D78ECD /* AudioToolbox.framework */,
 				830067A219DACE4A00AA89D0 /* CoreMedia.framework */,
