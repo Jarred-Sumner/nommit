@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
+#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+
+
 #import "NMAppDelegate.h"
 #import <REFrostedViewController.h>
 #import <REFrostedContainerViewController.h>
@@ -21,7 +24,7 @@
 #import "NMNotificationPopupView.h"
 #import "NMColors.h"
 
-static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
+
 
 @interface NMAppDelegate ()
 
@@ -34,6 +37,7 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     [FBLoginView class];
     [Crashlytics startWithAPIKey:@"31fe8f31e5f07653f483f7db9bf622029dd41d84"];
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
@@ -46,8 +50,16 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 
     if ([NMSession isUserLoggedIn]) {
         [self checkForActiveOrders];
+        
+        // Always send off the device token on app load in case they changed whether or not push notifications is enabled
+        if (self.isPushEnabled) {
+            [self requestPushNotificationAccess];
+        }
+        
     }
     [[Mixpanel sharedInstance] track:@"Opened App"];
+    
+    
     return YES;
 }
 
@@ -90,8 +102,9 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    
+{    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+
     // Handle the user leaving the app while the Facebook login dialog is being shown
     // For example: when the user presses the iOS "home" button while the login dialog is active
     [FBAppCall handleDidBecomeActive];
@@ -133,20 +146,34 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 #pragma mark - Push Notifications
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
-    [[Mixpanel sharedInstance] track:@"Registered for Push Notifications"];
-    NSString *token = [devToken base64EncodedStringWithOptions:0];
-    NSLog(@"Push Notifications with Token: %@", token);
+    NSUInteger rntypes;
+    if (!SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+        rntypes = [[[UIApplication sharedApplication] currentUserNotificationSettings] types];
+    } else{
+        rntypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+    }
+    
+    if (rntypes > 0) {
+    
+        [[Mixpanel sharedInstance] track:@"Registered for Push Notifications"];
+        NSString *token = [devToken base64EncodedStringWithOptions:0];
+        NSLog(@"Push Notifications with Token: %@", token);
 
-    [[NMApi instance] POST:@"devices" parameters:@{ @"token" : token }  completion:NULL];
+        [[NMApi instance] POST:@"devices" parameters:@{ @"token" : token }  completion:NULL];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NMDidRegisterForPushNotificationsKey object:nil];
+    } else {
+        [self application:app didFailToRegisterForRemoteNotificationsWithError:nil];
+    }
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     NSLog(@"Error in registration. Error: %@", err);
     [[Mixpanel sharedInstance] track:@"Failed to Register for Push Notifications" properties:@{ @"error" : [NSString stringWithFormat:@"%@", err] }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NMDidFailToRegisterForPushNotificationsKey object:nil];
 }
 
 - (void)registerForPushNotifications {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:NMPushNotificationsKey] boolValue]) return;
+    if ([NMSession hasRequestedPush]) return;
     
     [[Mixpanel sharedInstance] track:@"Presented Push Notifications Request"];
     NSString *name = [[NMUser currentUser] name];
@@ -172,14 +199,14 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
     }];
  
 
-    [notificationPopupView.contentView.notifyButton addTarget:self action:@selector(showNotificationRegistration) forControlEvents:UIControlEventTouchUpInside];
+    [notificationPopupView.contentView.notifyButton addTarget:self action:@selector(didTapNotifyButton) forControlEvents:UIControlEventTouchUpInside];
 
     _popup = [KLCPopup popupWithContentView:notificationPopupView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeFadeOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:NO dismissOnContentTouch:NO];
     [_popup show];
     
     [notificationPopupView.closeButton addTarget:self action:@selector(hideNotificationPopup) forControlEvents:UIControlEventTouchUpInside];
     
-    [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:NMPushNotificationsKey];
+    [NMSession setRequestedPush:YES];
 }
 
 - (void)hideNotificationPopup {
@@ -187,20 +214,39 @@ static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
     [_popup dismissPresentingPopup];
 }
 
-- (void)showNotificationRegistration {
+- (void)didTapNotifyButton {
     [_popup dismissPresentingPopup];
-    #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
-        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-            UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-            [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-            [[UIApplication sharedApplication] registerForRemoteNotifications];
-        } else {
-            [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-        }
-    #else
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    #endif
     [[Mixpanel sharedInstance] track:@"Requested Push Notification Access"];
+    [self requestPushNotificationAccess];
+}
+
+- (void)requestPushNotificationAccess {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+#else
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+#endif
+}
+
+- (BOOL)isPushEnabled {
+    BOOL enabled = NO;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
+        enabled =  [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
+    }
+#else
+    UIRemoteNotificationType types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+    if (types & UIRemoteNotificationTypeAlert) {
+        enabled = true;
+    }
+#endif
+    return enabled;
 }
 
 

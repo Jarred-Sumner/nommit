@@ -26,6 +26,9 @@
 		8351379D19EA127800BE2093 /* NMPriceApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8351379C19EA127800BE2093 /* NMPriceApiModel.m */; };
 		835137A019EA143D00BE2093 /* _NMPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8351379F19EA143D00BE2093 /* _NMPrice.m */; };
 		835137A319EA144B00BE2093 /* NMPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835137A219EA144B00BE2093 /* NMPrice.m */; };
+		8367D1BA1A1EAEE0009D8C63 /* NMSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 8367D1B61A1EAEE0009D8C63 /* NMSubscription.m */; };
+		8367D1BB1A1EAEE0009D8C63 /* _NMSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 8367D1B81A1EAEE0009D8C63 /* _NMSubscription.m */; };
+		8367D1BE1A1EAEEE009D8C63 /* NMSubscriptionApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8367D1BC1A1EAEEE009D8C63 /* NMSubscriptionApiModel.m */; };
 		836E358519D3DF66004208A6 /* NMCourierApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 836E358419D3DF66004208A6 /* NMCourierApiModel.m */; };
 		836E358A19D3E039004208A6 /* _NMCourier.m in Sources */ = {isa = PBXBuildFile; fileRef = 836E358719D3E039004208A6 /* _NMCourier.m */; };
 		836E358B19D3E039004208A6 /* NMCourier.m in Sources */ = {isa = PBXBuildFile; fileRef = 836E358919D3E039004208A6 /* NMCourier.m */; };
@@ -205,6 +208,12 @@
 		8351379F19EA143D00BE2093 /* _NMPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMPrice.m; path = Model/_NMPrice.m; sourceTree = "<group>"; };
 		835137A119EA144B00BE2093 /* NMPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPrice.h; path = Model/NMPrice.h; sourceTree = "<group>"; };
 		835137A219EA144B00BE2093 /* NMPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPrice.m; path = Model/NMPrice.m; sourceTree = "<group>"; };
+		8367D1B61A1EAEE0009D8C63 /* NMSubscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMSubscription.m; path = Model/NMSubscription.m; sourceTree = "<group>"; };
+		8367D1B71A1EAEE0009D8C63 /* NMSubscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMSubscription.h; path = Model/NMSubscription.h; sourceTree = "<group>"; };
+		8367D1B81A1EAEE0009D8C63 /* _NMSubscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMSubscription.m; path = Model/_NMSubscription.m; sourceTree = "<group>"; };
+		8367D1B91A1EAEE0009D8C63 /* _NMSubscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMSubscription.h; path = Model/_NMSubscription.h; sourceTree = "<group>"; };
+		8367D1BC1A1EAEEE009D8C63 /* NMSubscriptionApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMSubscriptionApiModel.m; sourceTree = "<group>"; };
+		8367D1BD1A1EAEEE009D8C63 /* NMSubscriptionApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMSubscriptionApiModel.h; sourceTree = "<group>"; };
 		836E358319D3DF66004208A6 /* NMCourierApiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMCourierApiModel.h; sourceTree = "<group>"; };
 		836E358419D3DF66004208A6 /* NMCourierApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMCourierApiModel.m; sourceTree = "<group>"; };
 		836E358619D3E039004208A6 /* _NMCourier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMCourier.h; path = Model/_NMCourier.h; sourceTree = "<group>"; };
@@ -506,6 +515,8 @@
 		83C0EA0819B981FD009A7BE0 /* Machine Generated */ = {
 			isa = PBXGroup;
 			children = (
+				8367D1B81A1EAEE0009D8C63 /* _NMSubscription.m */,
+				8367D1B91A1EAEE0009D8C63 /* _NMSubscription.h */,
 				8351379E19EA143D00BE2093 /* _NMPrice.h */,
 				8351379F19EA143D00BE2093 /* _NMPrice.m */,
 				83454F4319DA398C005CEA8C /* _NMDeliveryPlace.h */,
@@ -533,6 +544,8 @@
 		83D6A9E919B82A47009A6D9B /* API */ = {
 			isa = PBXGroup;
 			children = (
+				8367D1BC1A1EAEEE009D8C63 /* NMSubscriptionApiModel.m */,
+				8367D1BD1A1EAEEE009D8C63 /* NMSubscriptionApiModel.h */,
 				83D6A9EA19B82A5B009A6D9B /* NMApi.h */,
 				83D6A9EB19B82A5B009A6D9B /* NMApi.m */,
 				839765B419BBCDF000EE8254 /* NMFoodApiModel.h */,
@@ -919,6 +932,8 @@
 		8DEED52419B29AFD00EE227A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8367D1B61A1EAEE0009D8C63 /* NMSubscription.m */,
+				8367D1B71A1EAEE0009D8C63 /* NMSubscription.h */,
 				835137A119EA144B00BE2093 /* NMPrice.h */,
 				835137A219EA144B00BE2093 /* NMPrice.m */,
 				83454F4919DA39B6005CEA8C /* NMDeliveryPlace.h */,
@@ -1115,7 +1130,9 @@
 				8DCE836E19D53AF700D770D0 /* NMNoFoodView.m in Sources */,
 				8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */,
 				83454F5419DA3AFE005CEA8C /* NMDeliveryPlaceApiModel.m in Sources */,
+				8367D1BA1A1EAEE0009D8C63 /* NMSubscription.m in Sources */,
 				839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */,
+				8367D1BB1A1EAEE0009D8C63 /* _NMSubscription.m in Sources */,
 				8DD32FAA19D63A42009485C2 /* NMActivateAccountTableViewController.m in Sources */,
 				8DA5198819D0ED9100BBA8A0 /* NMPlaceTableViewCell.m in Sources */,
 				8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
@@ -1197,6 +1214,7 @@
 				8DCE835D19D4D67B00D770D0 /* NMAccountInformationTableViewCell.m in Sources */,
 				8DCE836319D4D69E00D770D0 /* NMPromoCodeTableViewCell.m in Sources */,
 				8D695D2219DB3AEF00EF6EB1 /* UIScrollView+NMParallaxHeader.m in Sources */,
+				8367D1BE1A1EAEEE009D8C63 /* NMSubscriptionApiModel.m in Sources */,
 				8DEED51F19B299A000EE227A /* NMOrderFoodViewController.m in Sources */,
 				8D5E561C19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m in Sources */,
 				8DD32FB619D73595009485C2 /* NMConfirmPhoneTableViewCell.m in Sources */,

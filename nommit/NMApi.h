@@ -19,6 +19,7 @@
 #import "NMShiftApiModel.h"
 #import "NMDeliveryPlaceApiModel.h"
 #import "NMPriceApiModel.h"
+#import "NMSubscriptionApiModel.h"
 
 #import "NMPrice.h"
 #import "NMLocation.h"
@@ -30,6 +31,7 @@
 #import "NMCourier.h"
 #import "NMShift.h"
 #import "NMDeliveryPlace.h"
+#import "NMSubscription.h"
 
 #import "NMSession.h"
 
