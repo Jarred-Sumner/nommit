@@ -97,7 +97,7 @@
     [self addSubview:inviteLabel];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[inviteLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inviteLabel)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_inviteButton]-20-[inviteLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton, inviteLabel)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_inviteButton]-25-[inviteLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton, inviteLabel)]];
     
     _twitterButton = [self makeInviteButtonWithImage:[UIImage imageNamed:@"InviteTwitter"]];
     [self addSubview:_twitterButton];
