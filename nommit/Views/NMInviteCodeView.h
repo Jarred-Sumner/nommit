@@ -13,4 +13,10 @@
 @property (nonatomic, strong) UILabel *inviteCode;
 @property (nonatomic, strong) UIButton *inviteButton;
 
+@property (nonatomic, strong) UIButton *twitterButton;
+
+@property (nonatomic, strong) UIButton *facebookButton;
+
+@property (nonatomic, strong) UIButton *messengerButton;
+
 @end
