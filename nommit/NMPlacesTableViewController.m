@@ -37,6 +37,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
     _noFoodView = [[NMNoFoodView alloc] initWithFrame:self.tableView.bounds];
     _noFoodView.hidden = YES;
+
     [self.tableView addSubview:_noFoodView];
 }
 
