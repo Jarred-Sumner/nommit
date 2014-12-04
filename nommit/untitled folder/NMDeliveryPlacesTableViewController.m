@@ -97,7 +97,16 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     [self.refreshControl beginRefreshing];
     
     [[NMApi instance] GET:@"places" parameters:@{ @"courier_id" : self.courier.uid } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        [this.refreshControl endRefreshing];
+        
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            NSArray *models = [MTLJSONAdapter modelsOfClass:[NMPlaceApiModel class] fromJSONArray:response.result error:nil];
+            for (NMPlaceApiModel *model in models) {
+                [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:nil];
+            }
+        } completion:^(BOOL success, NSError *error) {
+            [this.refreshControl endRefreshing];
+        }];
+        
     }];
 }
 
@@ -106,20 +115,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
 
-    // We want to show all the places the Seller could be delivering to, but isn't.
-    // Those are defined as Places without active deliveryPlaces associated with the seller
-    
-    // YUCK
-    
-    // Places that:
-    // Have no deliveryPlaces
-    // OR
-    // They don't have a courier part of the seller
-    // AND
-    // The deliveryPlace state is not ready and not arrived
-    NSPredicate *deliveryPlaces = [NSPredicate predicateWithFormat:@"(deliveryPlaces.@count == 0) OR  (SUBQUERY(deliveryPlaces, $dp, $dp.shift.courier IN %@ AND $dp.shift.courier != %@ AND ($dp.stateID == %@ OR $dp.stateID == %@) AND $dp.shift.stateID == %@).@count == 0)", self.courier.seller.couriers, self.courier, @(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMShiftStateActive)];
-    
-    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:deliveryPlaces groupBy:nil delegate: self];
+    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:nil groupBy:nil delegate:self];
     return _fetchedResultsController;
 }
 
