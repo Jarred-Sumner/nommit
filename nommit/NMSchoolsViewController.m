@@ -1,84 +1,60 @@
 //
-//  NMLocationsTableViewController.m
+//  NMSchoolsVewController.m
 //  nommit
 //
-//  Created by Jarred Sumner on 9/22/14.
+//  Created by Jarred Sumner on 12/16/14.
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMPlacesTableViewController.h"
 #import "NMListTableViewCell.h"
-#import "NMNoFoodView.h"
+#import "NMSchoolsViewController.h"
 
-@interface NMPlacesTableViewController ()
+NSString *NMSchoolTableViewCellKey = @"NMSchoolTableViewCellKey";
 
-@property (nonatomic, strong) NMNoFoodView *noFoodView;
+@interface NMSchoolsViewController ()
+
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-//@property (nonatomic, strong) UISearchBar *searchBar;
-//@property (nonatomic, strong) UISearchDisplayController * searchController;
+@property (nonatomic, strong) NMListTableViewCell *selectedCell;
 
 @end
 
-@implementation NMPlacesTableViewController
+@implementation NMSchoolsViewController
 
-static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
-
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    [self setupRefreshing];
-    self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[NMListTableViewCell class] forCellReuseIdentifier:NMPlaceTableViewCellKey];
+- (id)initWithCompletionBlock:(NMSchoolsCompletionBlock)completionBlock {
+    self = [super initWithStyle:UITableViewStylePlain];
+    _completionBlock = completionBlock;
     return self;
 }
 
-- (void)loadView {
-    [super loadView];
-
-    _noFoodView = [[NMNoFoodView alloc] initWithFrame:self.tableView.bounds];
-    _noFoodView.hidden = YES;
-
-    [self.tableView addSubview:_noFoodView];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.title = @"Delivery Locations";
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
-    self.navigationItem.leftBarButtonItem = leftBarButton;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    UIEdgeInsets inset = UIEdgeInsetsMake(20, 0, 0, 0);
-    self.tableView.contentInset = inset;
-    [self.fetchedResultsController performFetch:nil];
+- (instancetype)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    
+    self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerClass:[NMListTableViewCell class] forCellReuseIdentifier:NMSchoolTableViewCellKey];
+    
+    [self setupRefreshing];
+    
+    return self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self refreshPlaces];
+    [self refresh];
 }
 
-- (void)cancel:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Refresh Places
+#pragma mark - Refresh Content
 
 - (void)setupRefreshing {
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refreshPlaces) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
 }
 
-- (void)refreshPlaces {
-    __weak NMPlacesTableViewController *this = self;
+- (void)refresh {
+    __weak NMSchoolsViewController *this = self;
     [self.refreshControl beginRefreshing];
-    
-    [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
+    [[NMApi instance] GET:@"schools" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         [this.refreshControl endRefreshing];
     }];
 }
@@ -87,9 +63,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"foodCount > 0"];
-    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:predicate groupBy:nil delegate:self];
+    _fetchedResultsController = [NMSchool MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:nil groupBy:nil delegate:self];
     return _fetchedResultsController;
 }
 
@@ -99,13 +73,13 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-
+    
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                           withRowAnimation:UITableViewRowAnimationFade];
             break;
-
+            
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                           withRowAnimation:UITableViewRowAnimationFade];
@@ -117,25 +91,25 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
-
+    
     UITableView *tableView = self.tableView;
-
+    
     switch(type) {
-
+            
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
-
+            
         case NSFetchedResultsChangeDelete:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
-
+            
         case NSFetchedResultsChangeUpdate:
             [self configureCell:(NMListTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
-
+            
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
@@ -162,40 +136,41 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    if ([sectionInfo numberOfObjects] == 0) {
-        _noFoodView.hidden = NO;
-    } else {
-        _noFoodView.hidden = YES;
-    }
     return [sectionInfo numberOfObjects];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NMListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMPlaceTableViewCellKey];
+    NMListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMSchoolTableViewCellKey];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
 - (void)configureCell:(NMListTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
-    NSString *placeString = place.name;
-    if ([placeString length] > 21) {
-        placeString = [NSString stringWithFormat:@"%@...", [placeString substringToIndex:21]];
+    NMSchool *school = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    NSString *name = school.name;
+    if ([name length] > 21) {
+        name = [NSString stringWithFormat:@"%@...", [name substringToIndex:21]];
     }
     
-    cell.textLabel.text = placeString;
-    cell.accessoryLabel.text = [NSString stringWithFormat:@"%@", place.foodCount];
-    cell.iconImageView.hidden = !(place.foodCount.integerValue > 0);
+    cell.textLabel.text = name;
+    cell.accessoryLabel.hidden = YES;
+
+    if ([[[[NMUser currentUser] school] uid] isEqualToNumber:school.uid]) {
+        cell.iconImageView.hidden = NO;
+        _selectedCell = cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NMListTableViewCell *cell = (NMListTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
-    NMPlace *place = (NMPlace*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    _foodsVC.place = place;
-    NMPlace.activePlace = place;
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    cell.iconImageView.hidden = NO;
+    if (_selectedCell) {
+        cell.iconImageView.hidden = YES;
+        _selectedCell = cell;
+    }
 }
 
 @end

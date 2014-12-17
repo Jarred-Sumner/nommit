@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B17" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14C81f" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="NMCourier" representedClassName="NMCourier" syncable="YES">
         <attribute name="stateID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -131,6 +131,13 @@
         <relationship name="courier" maxCount="1" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="shifts" inverseEntity="NMCourier" syncable="YES"/>
         <relationship name="deliveryPlaces" toMany="YES" deletionRule="Nullify" destinationEntity="NMDeliveryPlace" inverseName="shift" inverseEntity="NMDeliveryPlace" syncable="YES"/>
     </entity>
+    <entity name="NMSubscription" representedClassName="NMSubscription" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="pushNotifications" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="sms" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="subscription" inverseEntity="NMUser" syncable="YES"/>
+    </entity>
     <entity name="NMUser" representedClassName="NMUser" syncable="YES">
         <attribute name="cardType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="creditInCents" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
@@ -146,7 +153,9 @@
         <attribute name="stateID" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <relationship name="couriers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="user" inverseEntity="NMCourier" syncable="YES"/>
         <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="user" inverseEntity="NMLocation" syncable="YES"/>
+        <relationship name="notification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="notification" inverseEntity="NMUser" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="user" inverseEntity="NMOrder" syncable="YES"/>
+        <relationship name="subscription" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMSubscription" inverseName="user" inverseEntity="NMSubscription" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="facebookUID"/>
@@ -163,6 +172,7 @@
         <element name="NMPrice" positionX="9" positionY="126" width="128" height="105"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
         <element name="NMShift" positionX="18" positionY="153" width="128" height="133"/>
-        <element name="NMUser" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="NMSubscription" positionX="9" positionY="135" width="128" height="118"/>
+        <element name="NMUser" positionX="0" positionY="0" width="128" height="300"/>
     </elements>
 </model>

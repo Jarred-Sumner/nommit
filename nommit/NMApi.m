@@ -66,7 +66,9 @@ static NSString *NMApiBaseURLString = API_URL;
              @"shifts" : [NMShiftApiModel class],
 //             @"shifts/*/orders" : [NMOrderApiModel class],
 //             @"shifts/*" : [NMShiftApiModel class],
-             @"delivery_places/*": [NMDeliveryPlaceApiModel class]
+             @"delivery_places/*": [NMDeliveryPlaceApiModel class],
+             @"schools" : [NMSchoolApiModel class],
+             @"schools/*" : [NMSchoolApiModel class]
      };
 }
 

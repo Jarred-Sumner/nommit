@@ -228,7 +228,7 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
             break;
         case NMAccountPromoSection:
             [_promoCell.submitButton addTarget:self action:@selector(submitPromoCode:) forControlEvents:UIControlEventTouchUpInside];
-            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@\nShare your code with friends: %@", self.user.credit, self.user.referralCode];
+            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@", self.user.credit];
             break;
         default:
             break;

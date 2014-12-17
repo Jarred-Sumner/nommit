@@ -18,7 +18,6 @@
         
         [self setupBanner];
         [self setupInviteText];
-        [self setupInviteCode];
         [self setupInviteButton];
         [self setupSocialMediaIcons];
     }
@@ -36,7 +35,7 @@
     
     UILabel *ribbonLabel = [[UILabel alloc] init];
     ribbonLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    ribbonLabel.text = @"Give and Get";
+    ribbonLabel.text = @"Share Nommit";
     ribbonLabel.textColor = [UIColor whiteColor];
     ribbonLabel.font = [UIFont fontWithName:@"Avenir" size:18.0f];
     ribbonLabel.textAlignment = NSTextAlignmentCenter;
@@ -54,25 +53,12 @@
     inviteLabel.lineBreakMode = NSLineBreakByWordWrapping;
     inviteLabel.numberOfLines = 0;
     inviteLabel.font = [UIFont fontWithName:@"Avenir" size:15];
-    inviteLabel.text = @"When a friend orders with your invite code, you both get $5 off";
+    inviteLabel.text = @"Help organizations fundraise by inviting friends to Nommit";
     [self addSubview:inviteLabel];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-70-[inviteLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inviteLabel)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[inviteLabel]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inviteLabel)]];
 }
-
-- (void)setupInviteCode {
-    _inviteCode = [[UILabel alloc] init];
-    _inviteCode.textColor = [NMColors mainColor];
-    _inviteCode.translatesAutoresizingMaskIntoConstraints = NO;
-    _inviteCode.textAlignment = NSTextAlignmentCenter;
-    _inviteCode.font = [UIFont fontWithName:@"Avenir" size:34];
-    [self addSubview:_inviteCode];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-130-[_inviteCode]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteCode)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_inviteCode]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteCode)]];
-}
-
 - (void)setupInviteButton {
     _inviteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _inviteButton.backgroundColor = [NMColors mainColor];
@@ -84,13 +70,14 @@
     [self addSubview:_inviteButton];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[_inviteButton]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_inviteCode]-20-[_inviteButton(44)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton, _inviteCode)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-130-[_inviteButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton)]];
+
 }
 
 - (void)setupSocialMediaIcons {
     UILabel *inviteLabel = [[UILabel alloc] init];
     inviteLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    inviteLabel.text = @"—————— Share Your Code ——————";
+    inviteLabel.text = @"—————— Share Nommit ——————";
     inviteLabel.textColor = UIColorFromRGB(0x454444);
     inviteLabel.textAlignment = NSTextAlignmentCenter;
     inviteLabel.font = [UIFont fontWithName:@"Avenir-Light" size:13];

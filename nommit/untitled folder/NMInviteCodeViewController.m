@@ -19,7 +19,6 @@
     self = [super init];
     if (self) {
         NMInviteCodeView *inviteView = [[NMInviteCodeView alloc] initWithFrame:self.view.frame];
-        inviteView.inviteCode.text = [[NMUser currentUser] referralCode];
         [inviteView.inviteButton addTarget:self action:@selector(inviteButtonTouched) forControlEvents:UIControlEventTouchUpInside];
         [inviteView.facebookButton addTarget:self action:@selector(shareOnFacebook) forControlEvents:UIControlEventTouchUpInside];
         [inviteView.messengerButton addTarget:self action:@selector(shareOnMessenger) forControlEvents:UIControlEventTouchUpInside];
@@ -79,9 +78,8 @@
         
         NSURL *referralURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.getnommit.com/?i=%@", referralCode]];
         NSURL *pic = [NSURL URLWithString:@"http://s3.amazonaws.com/nommit-production/foods/previews/000/000/006/original/open-uri20141029-16665-2r7dj3?1414624684"];
-        NSString *description = [NSString stringWithFormat:@"Use my code %@ for $5 off your first order!", referralCode];
         
-        [FBDialogs presentShareDialogWithLink:referralURL name:@"Nommit - food in under 15 minutes" caption:@"Get food delivered to you in under 15 min. Try it now!" description:description picture:pic clientState:nil handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+        [FBDialogs presentShareDialogWithLink:referralURL name:@"Nommit - food in under 15 minutes" caption:@"Get food delivered to you in under 15 min. Try it now!" description:nil picture:pic clientState:nil handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
             
             [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
             if (!error && ![results[@"completionGesture"] isEqualToString:@"cancel"]) {
@@ -102,9 +100,7 @@
         
         NSURL *referralURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.getnommit.com/?i=%@", referralCode]];
         NSURL *pic = [NSURL URLWithString:@"http://s3.amazonaws.com/nommit-production/foods/previews/000/000/006/original/open-uri20141029-16665-2r7dj3?1414624684"];
-        NSString *description = [NSString stringWithFormat:@"Use my code %@ for $5 off your first order!", referralCode];
-        
-        [FBDialogs presentMessageDialogWithLink:referralURL name:@"Nommit - food in under 15 minutes" caption:@"Get food delivered to you in under 15 min. Try it now!" description:description picture:pic clientState:nil handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+        [FBDialogs presentMessageDialogWithLink:referralURL name:@"Nommit - food in under 15 minutes" caption:@"Get food delivered to you in under 15 min. Try it now!" description:nil picture:pic clientState:nil handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
             
             [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
             if (!error && ![results[@"completionGesture"] isEqualToString:@"cancel"]) {
@@ -122,7 +118,7 @@
 - (void)shareOnTwitter {
     NSString *referralCode = [[NMUser currentUser] referralCode];
     NSURL *referralURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.getnommit.com/?i=%@", referralCode]];
-    NSString *tweetText = [NSString stringWithFormat:@"Get food delivered to CMU in < 15 min with Nommit. Use my code %@ for $5 free credit - %@", referralCode, referralURL];
+    NSString *tweetText = @"Get food delivered to campus in < 15 min with Nommit.";
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewController *tweetSheet = [SLComposeViewController

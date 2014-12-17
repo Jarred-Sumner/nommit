@@ -8,7 +8,7 @@
 
 #import "NMDeliveryPlacesTableViewController.h"
 #import "NMShiftTableViewController.h"
-#import "NMPlaceTableViewCell.h"
+#import "NMListTableViewCell.h"
 
 #import <SIAlertView/SIAlertView.h>
 
@@ -37,7 +37,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     self.placeIDs = [[NSMutableOrderedSet alloc] initWithCapacity:1];
 
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
-    [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];
+    [self.tableView registerClass:[NMListTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];
     return self;
 }
 
@@ -158,7 +158,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:(NMPlaceTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:(NMListTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -191,9 +191,9 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     NMPlaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMCellIdentifier];
+     NMListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMCellIdentifier];
     if (!cell) {
-        cell = [[NMPlaceTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NMCellIdentifier];
+        cell = [[NMListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NMCellIdentifier];
     }
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -201,7 +201,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NMPlaceTableViewCell *cell = (NMPlaceTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    NMListTableViewCell *cell = (NMListTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     if ([self isCellActiveAtIndexPath:indexPath]) {
@@ -217,14 +217,13 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     } else {
         cell.iconImageView.hidden = YES;
         [self.placeIDs removeObject:place.uid];
-
     }
 
 }
 
-- (void)configureCell:(NMPlaceTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
+- (void)configureCell:(NMListTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.placeLabel.text = place.name;
+    cell.textLabel.text = place.name;
 
     if ([self isCellActiveAtIndexPath:indexPath] || [self.placeIDs containsObject:place.uid]) {
         [self.placeIDs addObject:place.uid];

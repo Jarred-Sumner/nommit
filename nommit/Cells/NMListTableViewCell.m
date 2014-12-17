@@ -6,16 +6,18 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMPlaceTableViewCell.h"
+#import "NMListTableViewCell.h"
 #import "NMColors.h"
 
-@interface NMPlaceTableViewCell()
+@interface NMListTableViewCell()
 
 @property (nonatomic, strong) UIImageView *whiteBackground;
 
 @end
 
-@implementation NMPlaceTableViewCell
+@implementation NMListTableViewCell
+
+@synthesize textLabel = _textLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,13 +28,13 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     [self setupWhiteBackground];
-    [self setupPlaceLabel];
+    [self setupTextLabel];
     [self setupLabel];
     [self setupIcon];
 
-    NSDictionary *views = NSDictionaryOfVariableBindings(_numberOfFoodAvailableLabel, _iconImageView);
-    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_numberOfFoodAvailableLabel]-5-[_iconImageView]-15-|" options:0 metrics:nil views:views]];
-    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-2-[_numberOfFoodAvailableLabel]-2-|" options:0 metrics:nil views:views]];
+    NSDictionary *views = NSDictionaryOfVariableBindings(_accessoryLabel, _iconImageView);
+    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_accessoryLabel]-5-[_iconImageView]-15-|" options:0 metrics:nil views:views]];
+    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-2-[_accessoryLabel]-2-|" options:0 metrics:nil views:views]];
     [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_iconImageView]-13-|" options:0 metrics:nil views:views]];
 
     return self;
@@ -48,15 +50,15 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_whiteBackground]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_whiteBackground)]];
 }
 
-- (void)setupPlaceLabel {
-    _placeLabel = [[UILabel alloc] init];
-    _placeLabel.textColor = UIColorFromRGB(0x6C6C6C);
-    _placeLabel.font = [UIFont fontWithName:@"Avenir" size:15];
-    _placeLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [_whiteBackground addSubview:_placeLabel];
+- (void)setupTextLabel {
+    _textLabel = [[UILabel alloc] init];
+    _textLabel.textColor = UIColorFromRGB(0x6C6C6C);
+    _textLabel.font = [UIFont fontWithName:@"Avenir" size:15];
+    _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [_whiteBackground addSubview:_textLabel];
     
-    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_placeLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_placeLabel)]];
-    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_placeLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_placeLabel)]];
+    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_textLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_textLabel)]];
+    [_whiteBackground addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_textLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_textLabel)]];
 }
 
 - (void)setupIcon {
@@ -69,11 +71,11 @@
 
 - (void)setupLabel
 {
-    _numberOfFoodAvailableLabel = [[UILabel alloc] init];
-    _numberOfFoodAvailableLabel.textColor = UIColorFromRGB(0x009297);
-    _numberOfFoodAvailableLabel.font = [UIFont fontWithName:@"Avenir" size:16];
-    _numberOfFoodAvailableLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [_whiteBackground addSubview:_numberOfFoodAvailableLabel];
+    _accessoryLabel = [[UILabel alloc] init];
+    _accessoryLabel.textColor = UIColorFromRGB(0x009297);
+    _accessoryLabel.font = [UIFont fontWithName:@"Avenir" size:16];
+    _accessoryLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [_whiteBackground addSubview:_accessoryLabel];
 }
 
 @end

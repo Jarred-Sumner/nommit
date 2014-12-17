@@ -8,6 +8,7 @@
 
 #import "NMLoginViewController.h"
 #import "NMFoodsTableViewController.h"
+#import "NMSchoolsViewController.h"
 #import "NMActivateAccountTableViewController.h"
 #import "NMAppDelegate.h"
 
@@ -167,9 +168,17 @@
                 [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
                 
             } else if ([NMUser currentUser].state == NMUserStateRegistered) {
-                NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
-                [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
-                [self.navigationController pushViewController:activateVC animated:YES];
+                
+                __block UINavigationController *navVC = self.navigationController;
+                [(NMMenuNavigationController*)navVC setDisabledMenu:YES];
+
+                NMSchoolsViewController *vc = [[NMSchoolsViewController alloc] initWithCompletionBlock:^{
+                    NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
+                    [navVC pushViewController:activateVC animated:YES];
+                }];
+                [navVC pushViewController:vc animated:YES];
+                
+                
             }
         }];
         

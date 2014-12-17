@@ -10,7 +10,6 @@
 
 @interface NMInviteCodeView : UIView
 
-@property (nonatomic, strong) UILabel *inviteCode;
 @property (nonatomic, strong) UIButton *inviteButton;
 
 @property (nonatomic, strong) UIButton *twitterButton;

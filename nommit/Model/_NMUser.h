@@ -24,6 +24,7 @@ extern const struct NMUserRelationships {
 	__unsafe_unretained NSString *locations;
 	__unsafe_unretained NSString *notification;
 	__unsafe_unretained NSString *orders;
+	__unsafe_unretained NSString *school;
 	__unsafe_unretained NSString *subscription;
 } NMUserRelationships;
 
@@ -34,6 +35,7 @@ extern const struct NMUserFetchedProperties {
 @class NMLocation;
 @class NMUser;
 @class NMOrder;
+@class NMSchool;
 @class NMSubscription;
 
 
@@ -226,6 +228,13 @@ extern const struct NMUserFetchedProperties {
 
 
 
+@property (nonatomic, strong) NMSchool *school;
+
+//- (BOOL)validateSchool:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, strong) NMSubscription *subscription;
 
 //- (BOOL)validateSubscription:(id*)value_ error:(NSError**)error_;
@@ -355,6 +364,11 @@ extern const struct NMUserFetchedProperties {
 
 - (NSMutableSet*)primitiveOrders;
 - (void)setPrimitiveOrders:(NSMutableSet*)value;
+
+
+
+- (NMSchool*)primitiveSchool;
+- (void)setPrimitiveSchool:(NMSchool*)value;
 
 
 

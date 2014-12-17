@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMPlaceTableViewCell : UITableViewCell
+@interface NMListTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *iconImageView;
-@property (strong, nonatomic) UILabel *numberOfFoodAvailableLabel;
-@property (strong, nonatomic) UILabel *placeLabel;
+@property (strong, nonatomic) UILabel *accessoryLabel;
+@property (strong, nonatomic) UILabel *textLabel;
 
 @end
