@@ -20,6 +20,7 @@
 #import "NMNoFoodView.h"
 #import "NMAppDelegate.h"
 #import "KLCPopup.h"
+#import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 
 static BOOL didAutoPresentPlaces = NO;
 
@@ -37,7 +38,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 @implementation NMFoodsTableViewController
 
 - (id)init {
-    self = [super init];
+    self = [self initWithStyle:UITableViewStyleGrouped];
     if (self) {
         
         [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
@@ -48,7 +49,8 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         [self setupDataSource];
         
         [self.tableView registerClass:[NMFoodTableViewCell class] forCellReuseIdentifier:NMFoodCellIdentifier];
-        
+        [self.tableView addParallaxWithImage:[UIImage imageNamed:@"HoursBanner"] andHeight:130];
+        [self.tableView.parallaxView setAutoresizingMask:UIViewAutoresizingNone];
     }
     return self;
 }
@@ -79,6 +81,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     
     NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = YES;
+    navController.navigationBar.translucent = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -371,6 +374,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     
     NMMenuNavigationController *navController =
     [[NMMenuNavigationController alloc] initWithRootViewController:placesVC];
+    navController.navigationBar.translucent = NO;
     [self presentViewController:navController animated:YES completion:^{
         self.place = [NMPlace activePlace];
     }];

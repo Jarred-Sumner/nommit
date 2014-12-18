@@ -65,14 +65,14 @@ static char UIScrollViewParallaxView;
 - (void)addParallaxWithView:(UIView*)view andHeight:(CGFloat)height {
     if(self.parallaxView) {
         [self.parallaxView.currentSubView removeFromSuperview];
-        [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+//        [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [self.parallaxView addSubview:view];
     }
     else
     {
         APParallaxView *parallaxView = [[APParallaxView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, height)];
         [parallaxView setClipsToBounds:YES];
-        [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+//        [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [parallaxView addSubview:view];
         
         parallaxView.scrollView = self;

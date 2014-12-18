@@ -55,6 +55,7 @@ static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCel
     [super viewWillAppear:animated];
     NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = NO;
+    navController.navigationController.navigationBar.translucent = NO;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

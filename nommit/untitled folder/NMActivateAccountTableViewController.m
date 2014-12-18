@@ -66,6 +66,7 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
     
     NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = NO;
+    navController.navigationBar.translucent = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

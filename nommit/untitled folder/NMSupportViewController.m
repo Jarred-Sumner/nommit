@@ -119,6 +119,7 @@
     self.navigationItem.leftBarButtonItem = lbb;
     
     self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.translucent = NO;
     
 }
 

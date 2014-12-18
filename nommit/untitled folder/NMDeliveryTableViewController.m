@@ -343,6 +343,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
                 [SVProgressHUD showSuccessWithStatus:@"Cancelled!"];
                 NMFoodsTableViewController *foodsVC = [[NMFoodsTableViewController alloc] init];
                 NMMenuNavigationController *nav = [[NMMenuNavigationController alloc] initWithRootViewController:foodsVC];
+                nav.navigationBar.translucent = NO;
                 this.frostedViewController.contentViewController = nav;
                 
             }];
