@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Lucy Guo. All rights reserved.
 //
 
-#import "NMActivatePaymentTableViewCell.h"
+#import "NMPaymentInfoTableViewCell.h"
 #import "PTKView.h"
 #import <TTTAttributedLabel.h>
 #import <FAKFontAwesome.h>
 
-@interface NMActivatePaymentTableViewCell() {
+@interface NMPaymentInfoTableViewCell() {
     UIButton *hiddenCardButton;
 }
 
 @end
 
-@implementation NMActivatePaymentTableViewCell
+@implementation NMPaymentInfoTableViewCell
 
 #define PDefaultBoldFont [UIFont boldSystemFontOfSize:17]
 
@@ -53,7 +53,7 @@
                                 NSForegroundColorAttributeName: UIColorFromRGB(0x636363)
                                 };
         
-        [string appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n (Won't charge until credit is used up)" attributes:attrs]];
+        [string appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n (Twitter & Lyft use them too!)" attributes:attrs]];
         poweredby.attributedText = string;
         poweredby.textColor = UIColorFromRGB(0x636363);
         poweredby.font = [UIFont fontWithName:@"Avenir" size:11];
@@ -65,40 +65,18 @@
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[poweredby]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(poweredby)]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-63-[poweredby]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(poweredby)]];
-        NSString *sTokenId = @"";
-        if (sTokenId) {
-            _sCard = @"4242";
-            _hiddenCardLabel.hidden = YES;
-            hiddenCardButton.hidden = YES;
-            self.paymentView.hidden = NO;
-            
-            
-        } else {
-            _sCard = @"4242";
-            _hiddenCardLabel.hidden = YES;
-            hiddenCardButton.hidden = YES;
-            self.paymentView.hidden = NO;
-        }
 
+        _hiddenCardLabel.hidden = YES;
+        hiddenCardButton.hidden = YES;
+        self.paymentView.hidden = NO;
     }
     return self;
 }
 
 - (void)edit:(id)sender {
-    NSLog(@"editing now");
     self.paymentView.hidden = NO;
     hiddenCardButton.hidden = YES;
     _hiddenCardLabel.hidden = YES;
-}
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^NMSchoolsCompletionBlock)();
-
 @interface NMSchoolsViewController : UITableViewController<NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, copy) NMSchoolsCompletionBlock completionBlock;
+@property (nonatomic, copy) NMCompletionBlock completionBlock;
 
-- (id)initWithCompletionBlock:(NMSchoolsCompletionBlock)completionBlock;
+- (id)initWithCompletionBlock:(NMCompletionBlock)completionBlock;
 
 @end

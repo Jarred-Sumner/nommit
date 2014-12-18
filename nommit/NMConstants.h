@@ -24,3 +24,5 @@
     #define MIXPANEL_TOKEN @"de0a7915f912ad72f34a490a940449da"
 #endif
 
+
+typedef void (^NMCompletionBlock)();

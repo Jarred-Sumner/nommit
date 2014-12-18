@@ -18,6 +18,8 @@
 #import "NMLoginViewController.h"
 #import "NMAppDelegate.h"
 #import "NMNotificationSettingsTableViewCell.h"
+#import "NMShowSchoolTableViewCell.h"
+#import "NMSchoolsViewController.h"
 
 @interface NMAccountTableViewController() <NSFetchedResultsControllerDelegate>
 
@@ -27,17 +29,18 @@
 @property (nonatomic, strong) NMAccountPromoTableViewCell *promoCell;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NMLogoutButtonCell *logoutCell;
-
+@property (nonatomic, strong) NMShowSchoolTableViewCell *schoolCell;
 
 @end
 
 @implementation NMAccountTableViewController
 
 const NSInteger NMAccountInformationSection = 0;
-const NSInteger NMPaymentMethodSection = 1;
-const NSInteger NMAccountPromoSection = 2;
-const NSInteger NMNotificationSection = 3;
-const NSInteger NMLogoutButtonSection = 4;
+const NSInteger NMPaymentMethodSection      = 1;
+const NSInteger NMSchoolSection             = 2;
+const NSInteger NMAccountPromoSection       = 3;
+const NSInteger NMNotificationSection       = 4;
+const NSInteger NMLogoutButtonSection       = 5;
 
 const NSInteger NMEmailRow = 0;
 const NSInteger NMTextingRow = 1;
@@ -46,6 +49,7 @@ const NSInteger NMPushRow = 2;
 static NSString *NMAccountInformationTableViewCellKey = @"NMAcountInformationTableViewCell";
 static NSString *NMAccountPromoTableViewCellKey = @"NMAccountPromoTableViewCell";
 static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCellKey";
+static NSString *NMSchoolTableViewCellKey = @"NMSchoolTableViewCellKey";
 static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell";
 static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettingsTableViewCell";
 
@@ -61,6 +65,7 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
         [self.tableView registerClass:[NMPaymentMethodTableViewCell class] forCellReuseIdentifier:NMPaymentMethodTableViewCellKey];
         [self.tableView registerClass:[NMLogoutButtonCell class] forCellReuseIdentifier:NMLogoutButtonTableViewCellKey];
         [self.tableView registerClass:[NMNotificationSettingsTableViewCell class] forCellReuseIdentifier:NMNotificationSettingsTableViewCellKey];
+        [self.tableView registerClass:[NMShowSchoolTableViewCell class] forCellReuseIdentifier:NMSchoolTableViewCellKey];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(declinedPush) name:NMDidFailToRegisterForPushNotificationsKey object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPushCell) name:NMDidRegisterForPushNotificationsKey object:nil];
@@ -76,7 +81,7 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 5;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -94,7 +99,7 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMAccountInformationSection) {
         return 76;
-    } else if (indexPath.section == NMPaymentMethodSection) {
+    } else if (indexPath.section == NMPaymentMethodSection || indexPath.section == NMSchoolSection) {
         return 65;
     } else if (indexPath.section == NMAccountPromoSection) {
         return 80;
@@ -113,6 +118,8 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
         separatorView.sectionLabel.text = @"ACCOUNT INFORMATION";
     } else if (section == NMPaymentMethodSection) {
         separatorView.sectionLabel.text = @"YOUR CARD";
+    } else if (section == NMSchoolSection) {
+        separatorView.sectionLabel.text = @"YOUR SCHOOL";
     } else if (section == NMAccountPromoSection) {
         separatorView.sectionLabel.text = @"PROMOS";
     } else if (section == NMLogoutButtonSection) {
@@ -133,6 +140,10 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
         _cardCell = [self.tableView dequeueReusableCellWithIdentifier:NMPaymentMethodTableViewCellKey];
         [self configureCellForIndexPath:indexPath];
         return _cardCell;
+    } else if (indexPath.section == NMSchoolSection) {
+        _schoolCell = [self.tableView dequeueReusableCellWithIdentifier:NMSchoolTableViewCellKey];
+        [self configureCellForIndexPath:indexPath];
+        return _schoolCell;
     } else if (indexPath.section == NMAccountPromoSection) {
         _promoCell = [self.tableView dequeueReusableCellWithIdentifier:NMAccountPromoTableViewCellKey];
         [self configureCellForIndexPath:indexPath];
@@ -154,8 +165,20 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == NMPaymentMethodSection) {
-        NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] init];
+        __block UINavigationController *navVC = self.navigationController;
+        NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] initWithCompletionBlock:^{
+            [navVC popViewControllerAnimated:YES];
+        }];
+        
         [self.navigationController pushViewController:paymentsVC animated:YES];
+    } else if (indexPath.section == NMSchoolSection) {
+        __block UINavigationController *navVC = self.navigationController;
+        NMSchoolsViewController *schoolsVC = [[NMSchoolsViewController alloc] initWithCompletionBlock:^{
+            [navVC popViewControllerAnimated:YES];
+        }];
+        
+        [self.navigationController pushViewController:schoolsVC animated:YES];
+        
     } else if (indexPath.section == NMNotificationSection) {
         NMNotificationSettingsTableViewCell *cell = (NMNotificationSettingsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         [self toggleNotificationStateForCell:cell];
@@ -226,6 +249,8 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
                 _cardCell.cardLabel.text = @"• • • •";
             }
             break;
+        case NMSchoolSection:
+            _schoolCell.schoolLabel.text = self.user.school.name;
         case NMAccountPromoSection:
             [_promoCell.submitButton addTarget:self action:@selector(submitPromoCode:) forControlEvents:UIControlEventTouchUpInside];
             _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@", self.user.credit];

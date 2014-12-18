@@ -10,8 +10,5 @@
 #import "PTKView.h"
 #import "NMActivatePhoneTableViewCell.h"
 
-@interface NMActivateAccountTableViewController : UITableViewController <NMRegisterPhoneTableViewCellDelegate>
-
-- (IBAction)save:(id)sender;
-
+@interface NMActivateAccountTableViewController : UITableViewController
 @end

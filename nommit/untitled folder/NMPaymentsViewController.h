@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PTKView.h"
 
-@interface NMPaymentsViewController : UIViewController
+@interface NMPaymentsViewController : UITableViewController
 
-- (IBAction)save:(id)sender;
+- (instancetype)initWithCompletionBlock:(NMCompletionBlock)completionBlock;
 
 @end

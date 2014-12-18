@@ -169,6 +169,8 @@
                 
             } else if ([NMUser currentUser].state == NMUserStateRegistered) {
                 
+                [[Mixpanel sharedInstance] track:@"Start Activation Flow"];
+                
                 __block UINavigationController *navVC = self.navigationController;
                 [(NMMenuNavigationController*)navVC setDisabledMenu:YES];
 
@@ -176,6 +178,7 @@
                     NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
                     [navVC pushViewController:activateVC animated:YES];
                 }];
+                vc.navigationItem.hidesBackButton = YES;
                 [navVC pushViewController:vc animated:YES];
                 
                 

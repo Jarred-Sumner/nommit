@@ -19,6 +19,7 @@
 #import "NMFoodsTableViewController.h"
 #import "NMActivateAccountTableViewController.h"
 #import "NMRateOrderTableViewController.h"
+#import "NMSchoolsViewController.h"
 #import <Crashlytics/Crashlytics.h>
 #import "KLCPopup.h"
 #import "NMNotificationPopupView.h"
@@ -75,8 +76,11 @@
     if ([NMSession isUserLoggedIn]) {
         if ([NMUser currentUser].state == NMUserStateRegistered) {
             
-            NMActivateAccountTableViewController *accountVC = [[NMActivateAccountTableViewController alloc] init];
-            return accountVC;
+            __block NMMenuNavigationController *navVC = _navigationController;
+            return [[NMSchoolsViewController alloc] initWithCompletionBlock:^{
+                NMActivateAccountTableViewController *accountVC = [[NMActivateAccountTableViewController alloc] init];
+                [navVC pushViewController:accountVC animated:YES];
+            }];
             
         } else if ([NMUser currentUser].state == NMUserStateActivated) {
             
@@ -119,7 +123,9 @@
 - (void)resetUI
 {
     // create content and menu controllers
-    _navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:self.rootViewController];
+    _navigationController = [[NMMenuNavigationController alloc] init];
+    [_navigationController pushViewController:self.rootViewController animated:NO];
+
     NMMenuViewController *menuController = [[NMMenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
     // Create frosted view controller

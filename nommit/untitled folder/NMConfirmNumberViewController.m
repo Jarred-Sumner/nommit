@@ -11,6 +11,7 @@
 #import "NMFoodsTableViewController.h"
 #import <SIAlertView.h>
 #import "NMMenuNavigationController.h"
+#import "NMPaymentsViewController.h"
 
 @interface NMConfirmNumberViewController ()
 
@@ -42,11 +43,10 @@ static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCel
     // Do any additional setup after loading the view.
     
     // Setup save button
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
-    saveButton.enabled = NO;
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
     self.navigationItem.rightBarButtonItem = saveButton;
     
-    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Confirm Phone Number" andMessage:@"You've been texted a six digit confirm code. Please enter it to get started ordering food with Nommit."];
+    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Confirm Phone Number" andMessage:@"You've been texted a four digit confirm code. Please enter it to get started ordering food with Nommit."];
     [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
     [alert show];
 }
@@ -56,6 +56,7 @@ static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCel
     NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = NO;
     navController.navigationController.navigationBar.translucent = NO;
+    [[Mixpanel sharedInstance] track:@"Showed Confirm Phone Number Page"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -95,7 +96,7 @@ static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCel
 
 - (BOOL)confirmTextDidChange:(id)sender
 {
-    self.navigationItem.rightBarButtonItem.enabled = [sender text].length == 6;
+    self.navigationItem.rightBarButtonItem.enabled = [sender text].length == 4;
     return YES;
 }
 
@@ -108,8 +109,15 @@ static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCel
     [[NMApi instance] PUT:path parameters:@{ @"confirm_code" : _confirmPhoneTableViewCell.textField.text } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
         [SVProgressHUD showSuccessWithStatus:@"Verified!"];
-        NMFoodsTableViewController *ftv = [[NMFoodsTableViewController alloc] init];
-        [this.navigationController pushViewController:ftv animated:YES];
+        
+        NMPaymentsViewController *payVC = [[NMPaymentsViewController alloc] initWithCompletionBlock:^{
+            NMFoodsTableViewController *foodsVC = [[NMFoodsTableViewController alloc] initWithPlace:nil];
+            [this.navigationController pushViewController:foodsVC animated:YES];
+            [[Mixpanel sharedInstance] track:@"Ended Activation Flow"];
+        }];
+        
+        [this.navigationController pushViewController:payVC animated:YES];
+
     }];
     
    

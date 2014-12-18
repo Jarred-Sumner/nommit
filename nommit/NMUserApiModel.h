@@ -8,6 +8,8 @@
 
 #import <Overcoat.h>
 
+@class NMSchoolApiModel;
+
 @interface NMUserApiModel : MTLModel <MTLJSONSerializing, MTLManagedObjectSerializing>
 
 @property (nonatomic, strong) NSString *facebookUID;
@@ -25,5 +27,7 @@
 @property (nonatomic, strong) NSString *cardType;
 @property (nonatomic, strong) NSNumber *paymentAuthorized;
 @property (nonatomic, strong) NSNumber *stateID;
+
+@property (nonatomic, strong) NMSchoolApiModel *school;
 
 @end

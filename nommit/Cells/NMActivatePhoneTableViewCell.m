@@ -55,7 +55,6 @@
 {
     NSCharacterSet *invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqsrtuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-"] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
-    [_delegate checkPhoneValid];
     return [string isEqualToString:filtered];
 }
 

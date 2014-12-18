@@ -27,6 +27,9 @@
     };
 }
 
++ (NSValueTransformer *)schoolJSONTransformer  {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMSchoolApiModel class]];
+}
 
 #pragma mark - MTLManagedObjectSerializing
 
@@ -39,7 +42,9 @@
 }
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
-    return @{};
+    return @{
+             @"school" : [NMSchoolApiModel class]
+             };
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {

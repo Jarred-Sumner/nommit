@@ -32,7 +32,7 @@
     _textField.translatesAutoresizingMaskIntoConstraints = NO;
     _textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     _textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    _textField.placeholder = @"******";
+    _textField.placeholder = @"****";
     _textField.layer.borderWidth = 1.0f;
     _textField.layer.borderColor = [UIColorFromRGB(0xE9E9E9) CGColor];
     _textField.backgroundColor = [UIColor whiteColor];
