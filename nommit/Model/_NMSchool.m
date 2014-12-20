@@ -5,6 +5,9 @@
 
 const struct NMSchoolAttributes NMSchoolAttributes = {
 	.fromHours = @"fromHours",
+	.imageURL = @"imageURL",
+	.motd = @"motd",
+	.motdExpiration = @"motdExpiration",
 	.name = @"name",
 	.toHours = @"toHours",
 	.uid = @"uid",
@@ -56,6 +59,27 @@ const struct NMSchoolFetchedProperties NMSchoolFetchedProperties = {
 
 
 @dynamic fromHours;
+
+
+
+
+
+
+@dynamic imageURL;
+
+
+
+
+
+
+@dynamic motd;
+
+
+
+
+
+
+@dynamic motdExpiration;
 
 
 

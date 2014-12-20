@@ -17,9 +17,20 @@
     return @{
              @"uid" : @"id",
              @"fromHours" : @"from_hours",
-             @"toHours" : @"to_hours"
+             @"toHours" : @"to_hours",
+             @"motdExpiration": @"motd_expiration",
+             @"imageURL": @"image_url"
      };
 }
+
++ (NSValueTransformer *)motdExpirationJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [NMApi.dateFormatter dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [NMApi.dateFormatter stringFromDate:date];
+    }];
+}
+
 
 + (NSValueTransformer *)fromHoursJSONTransformer {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {

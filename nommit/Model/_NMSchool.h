@@ -6,6 +6,9 @@
 
 extern const struct NMSchoolAttributes {
 	__unsafe_unretained NSString *fromHours;
+	__unsafe_unretained NSString *imageURL;
+	__unsafe_unretained NSString *motd;
+	__unsafe_unretained NSString *motdExpiration;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *toHours;
 	__unsafe_unretained NSString *uid;
@@ -19,6 +22,9 @@ extern const struct NMSchoolFetchedProperties {
 } NMSchoolFetchedProperties;
 
 @class NMUser;
+
+
+
 
 
 
@@ -43,6 +49,36 @@ extern const struct NMSchoolFetchedProperties {
 
 
 //- (BOOL)validateFromHours:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* imageURL;
+
+
+
+//- (BOOL)validateImageURL:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* motd;
+
+
+
+//- (BOOL)validateMotd:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSDate* motdExpiration;
+
+
+
+//- (BOOL)validateMotdExpiration:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -101,6 +137,24 @@ extern const struct NMSchoolFetchedProperties {
 
 - (NSDate*)primitiveFromHours;
 - (void)setPrimitiveFromHours:(NSDate*)value;
+
+
+
+
+- (NSString*)primitiveImageURL;
+- (void)setPrimitiveImageURL:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveMotd;
+- (void)setPrimitiveMotd:(NSString*)value;
+
+
+
+
+- (NSDate*)primitiveMotdExpiration;
+- (void)setPrimitiveMotdExpiration:(NSDate*)value;
 
 
 

@@ -118,6 +118,9 @@
     </entity>
     <entity name="NMSchool" representedClassName="NMSchool" syncable="YES">
         <attribute name="fromHours" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="motd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="motdExpiration" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="toHours" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
@@ -183,10 +186,10 @@
         <element name="NMOrder" positionX="0" positionY="0" width="128" height="300"/>
         <element name="NMPlace" positionX="0" positionY="0" width="128" height="135"/>
         <element name="NMPrice" positionX="9" positionY="126" width="128" height="105"/>
+        <element name="NMSchool" positionX="9" positionY="144" width="128" height="165"/>
         <element name="NMSeller" positionX="0" positionY="0" width="128" height="118"/>
         <element name="NMShift" positionX="18" positionY="153" width="128" height="133"/>
         <element name="NMSubscription" positionX="9" positionY="135" width="128" height="118"/>
         <element name="NMUser" positionX="0" positionY="0" width="128" height="315"/>
-        <element name="NMSchool" positionX="9" positionY="144" width="128" height="118"/>
     </elements>
 </model>

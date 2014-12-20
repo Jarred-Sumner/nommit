@@ -12,6 +12,10 @@
 
 @property (nonatomic, strong) NSNumber *uid;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *motd;
+@property (nonatomic, strong) NSString *imageURL;
+
+@property (nonatomic, strong) NSDate *motdExpiration;
 
 @property (nonatomic, strong) NSDate *fromHours;
 @property (nonatomic, strong) NSDate *toHours;
