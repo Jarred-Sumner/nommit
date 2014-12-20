@@ -27,19 +27,18 @@
 - (void)loadView {
     [super loadView];
     [self setupBG];
-    [self setupSign];
+    // [self setupSign];
     [self setupLogo];
     [self setupMessageLabel];
     [self setupFacebookButton];
     // [self setupCMUBanner];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_signView, _logoView, _loginView   , _messageLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_logoView, _loginView   , _messageLabel);
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[_logoView]-50-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_signView]-30-[_logoView]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-160-[_logoView]" options:0 metrics:nil views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-39-[_signView]-39-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-24-[_signView]" options:0 metrics:nil views:views]];
+
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[_messageLabel]-40-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_logoView]-15-[_messageLabel]" options:0 metrics:nil views:views]];
@@ -111,7 +110,7 @@
     _messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _messageLabel.numberOfLines = 0;
     _messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _messageLabel.text = @"To use nommit, please sign in with Facebook. Only available to CMU students.";
+    _messageLabel.text = @"To use nommit, please sign in with Facebook. Only available to CMU and USC students.";
     
     [self.view addSubview:_messageLabel];
 }
