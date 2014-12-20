@@ -22,6 +22,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.clipsToBounds = YES;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         UIImageView *bannerImage = [[UIImageView alloc] initWithFrame:self.bounds];
         bannerImage.contentMode = UIViewContentModeScaleAspectFill;
 
