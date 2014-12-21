@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/25/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMDeliveryPlacesTableViewController.h"
@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) NMCourier *courier;
 
-@property (nonatomic, strong) NMShift *shift;
+@property (nonatomic, strong) NMShiftApiModel *shift;
 @property (nonatomic, strong) NSMutableOrderedSet *placeIDs;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
@@ -26,7 +26,7 @@
 
 static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
-- (id)initWithShift:(NMShift *)shift {
+- (id)initWithShift:(NMShiftApiModel *)shift {
     self = [self initWithStyle:UITableViewStylePlain];
     self.shift = shift;
     return self;
@@ -58,7 +58,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     [self setupRefreshing];
 }
 
-- (void)setShift:(NMShift *)shift {
+- (void)setShift:(NMShiftApiModel *)shift {
     _shift = shift;
     if (shift) {
         self.placeIDs = [[NSMutableOrderedSet alloc] initWithCapacity:1];
@@ -70,16 +70,15 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     
 }
 
-- (void)didTapCancel:(id)sender
-{
+- (void)didTapCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     UIEdgeInsets inset = UIEdgeInsetsMake(20, 0, 0, 0);
     self.tableView.contentInset = inset;
-
 }
 
 #pragma mark - Refresh
@@ -257,12 +256,9 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     
     [[NMApi instance] POST:@"shifts" parameters:@{ @"place_ids": [self.placeIDs array] } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
-        __block NMShiftApiModel *shiftModel = response.result;
+        __block NMShiftApiModel *shiftModel = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
-            NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
-            this.shift = shift;
-            
-            NMShiftTableViewController *dpTV = [[NMShiftTableViewController alloc] initWithShiftID:shift.uid];
+            NMShiftTableViewController *dpTV = [[NMShiftTableViewController alloc] initWithShift:shiftModel];
             [this.navigationController pushViewController:dpTV animated:YES];
             [SVProgressHUD showSuccessWithStatus:@"Started Shift!"];
             [[Mixpanel sharedInstance] track:@"Started Shift"];
@@ -280,9 +276,8 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
         dispatch_async(dispatch_get_main_queue(), ^{
             NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
             this.shift = shift;
-            
+
             [SVProgressHUD showSuccessWithStatus:@"Updated Shift!"];
-            [this.delegate didModifyShift:shift];
             [this dismissViewControllerAnimated:YES completion:NULL];
         });
     }];

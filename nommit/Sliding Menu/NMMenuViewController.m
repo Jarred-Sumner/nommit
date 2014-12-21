@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/2/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMMenuViewController.h"
@@ -276,9 +276,9 @@ static NSInteger NMOrdersSection = 1;
     if (indexPath.section == 0) {
         NSArray *titles;
         if ([[NMUser currentUser] isCourierValue]) {
-            titles = @[@"Menu", @"Deliver", @"Account", @"Invite Friends", @"Support", @"Fundraise On Nommit"];
+            titles = @[@"Menu", @"Deliver", @"Account", @"Invite Friends", @"Support", @"Sell Food"];
         } else {
-            titles = @[@"Menu", @"Account", @"Invite Friends", @"Support", @"Fundraise On Nommit"];
+            titles = @[@"Menu", @"Account", @"Invite Friends", @"Support", @"Sell Food"];
         }
         cell.textLabel.text = titles[indexPath.row];
     } else {
@@ -307,22 +307,16 @@ static NSInteger NMOrdersSection = 1;
 
     __block NMMenuViewController *this = self;
     [[NMApi instance] GET:@"shifts" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            for (NMShiftApiModel *shift in response.result) {
-                [MTLManagedObjectAdapter managedObjectFromModel:shift insertingIntoContext:localContext error:nil];
+
+        NMShiftApiModel *shift;
+        for (NSDictionary *shiftDictionary in response.result) {
+            if ([shiftDictionary[@"state_id"] isEqualToNumber:@(NMShiftStateActive)] || [shiftDictionary[@"state_id"] isEqualToNumber:@(NMShiftStateHalted)]) {
+                shift = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:shiftDictionary error:nil];
             }
-        } completion:^(BOOL success, NSError *error) {
-            [[NMApi instance] GET:@"couriers/me" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-                
-                [SVProgressHUD showSuccessWithStatus:@"Loaded!"];
-                [this performSelectorOnMainThread:@selector(openDeliveriesPage) withObject:nil waitUntilDone:NO];
-            }];
-        }];
-
+        }
         
-
-        
+        [SVProgressHUD showSuccessWithStatus:@"Loaded!"];
+        [this performSelectorOnMainThread:@selector(openDeliveriesPageWithShift:) withObject:shift waitUntilDone:NO];
     }];
 }
 
@@ -355,13 +349,11 @@ static NSInteger NMOrdersSection = 1;
     [self.frostedViewController hideMenuViewController];
 }
 
-- (void)openDeliveriesPage {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"courier.user = %@ AND stateID in %@", NMUser.currentUser, @[@(NMShiftStateActive),@(NMShiftStateHalted)]];
-    NMShift *shift = [NMShift MR_findFirstWithPredicate:predicate sortedBy:@"stateID" ascending:YES];
-    NMShiftTableViewController *ordersVC = [[NMShiftTableViewController alloc] initWithShiftID:shift.uid];
+- (void)openDeliveriesPageWithShift:(NMShiftApiModel*)shift {
     
     UINavigationController *navVC;
-    if (shift && shift.state != NMShiftStateEnded) {
+    if (shift) {
+        NMShiftTableViewController *ordersVC = [[NMShiftTableViewController alloc] initWithShift:shift];
         navVC = [[UINavigationController alloc] initWithRootViewController:ordersVC];
     } else {
         NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];

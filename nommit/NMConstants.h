@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Jarred Sumner on 10/2/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #define DEVELOPMENT_URL @"http://localhost:3000/api/v1"

@@ -3,12 +3,19 @@
 //  nommit
 //
 //  Created by Jarred Sumner on 9/29/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMDeliveryPlaceApiModel.h"
 
 @implementation NMDeliveryPlaceApiModel
+
+- (NSMutableArray*)orders {
+    if (!_orders) {
+        _orders = [[NSMutableArray alloc] init];
+    }
+    return _orders;
+}
 
 #pragma mark - MTLJSONSerializing
 
@@ -46,7 +53,7 @@
 + (NSDictionary *)managedObjectKeysByPropertyKey {
     return @{
         @"places": NSNull.null,
-        @"pendingOrders" : NSNull.null
+        @"orders" : NSNull.null,
     };
 }
 
