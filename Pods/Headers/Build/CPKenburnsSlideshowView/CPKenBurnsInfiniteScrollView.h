@@ -1,0 +1,1 @@
+../../../CPKenburnsSlideshowView/CPKenBurnsSlideshowView/CPKenBurnsInfiniteScrollView.h

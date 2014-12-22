@@ -11,14 +11,23 @@
 #import "NMSchoolsViewController.h"
 #import "NMActivateAccountTableViewController.h"
 #import "NMAppDelegate.h"
+#import <CPKenBurnsImage.h>
+#import <CPKenBurnsSlideshowView.h>
 
-@interface NMLoginViewController ()
+const int numSlideshowPictures = 4;
+
+@interface NMLoginViewController ()<CPKenburnsSlideshowViewDeleagte>
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIImageView *loginContainer;
 @property (nonatomic, strong) UIImageView *signView;
 @property (nonatomic, strong) UIImageView *logoView;
 @property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) UILabel *descriptionLabel;
 @property (nonatomic, strong) FBLoginView *loginView;
+
+@property (strong, nonatomic) CPKenburnsSlideshowView *kenburnsSlideshowView;
+@property (strong, nonatomic) UISlider *slider;
 
 @end
 
@@ -26,33 +35,43 @@
 
 - (void)loadView {
     [super loadView];
-    [self setupBG];
-    // [self setupSign];
+    [self setupSlideShow];
     [self setupLogo];
+    [self setupContainer];
+    [self setupDescriptionLabel];
     [self setupMessageLabel];
     [self setupFacebookButton];
     // [self setupCMUBanner];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_logoView, _loginView   , _messageLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_logoView, _loginView   , _messageLabel, _loginContainer, _descriptionLabel);
+    
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_loginContainer]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-186-[_loginContainer]" options:0 metrics:nil views:views]];
+    
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[_logoView]-50-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-160-[_logoView]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-87-[_logoView]" options:0 metrics:nil views:views]];
     
+    [_loginContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_descriptionLabel]|" options:0 metrics:nil views:views]];
+    [_loginContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_descriptionLabel]" options:0 metrics:nil views:views]];
+    
+    [_loginContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[_messageLabel]-40-|" options:0 metrics:nil views:views]];
+    [_loginContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageLabel]-10-|" options:0 metrics:nil views:views]];
+    
+    [_loginContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[_loginView]-30-|" options:0 metrics:nil views:views]];
+    [_loginContainer  addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_descriptionLabel]-12-[_loginView]" options:0 metrics:nil views:views]];
 
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[_messageLabel]-40-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_logoView]-15-[_messageLabel]" options:0 metrics:nil views:views]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[_loginView]-30-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageLabel]-25-[_loginView]" options:0 metrics:nil views:views]];
+
 }
 
-- (void)setupBG
-{
-    _backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _backgroundImageView.image = [UIImage imageNamed:@"LoginBG"];
-    [self.view addSubview:_backgroundImageView];
+- (void)setupContainer {
+    _loginContainer = [[UIImageView alloc] init];
+    _loginContainer.image = [UIImage imageNamed:@"LoginContainer"];
+    _loginContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_loginContainer];
 }
+
 
 - (void)setupLogo
 {
@@ -62,13 +81,6 @@
     [self.view addSubview:_logoView];
     
 }
-- (void)setupSign
-{
-    _signView = [[UIImageView alloc] init];
-    _signView.image = [UIImage imageNamed:@"LoginSign"];
-    _signView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:_signView];
-}
 
 - (void)setupFacebookButton
 {
@@ -76,7 +88,7 @@
     _loginView.contentMode = UIViewContentModeScaleAspectFill;
     _loginView.translatesAutoresizingMaskIntoConstraints = NO;
     _loginView.delegate = self;
-    [self.view addSubview:_loginView];
+    [_loginContainer addSubview:_loginView];
 }
 
 - (void)setupCMUBanner {
@@ -88,16 +100,20 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[blankRibbon]-15-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[blankRibbon]-50-|" options:0 metrics:nil views:views]];
     
-//    UILabel *ribbonLabel = [[UILabel alloc] init];
-//    ribbonLabel.translatesAutoresizingMaskIntoConstraints = NO;
-//    ribbonLabel.text = @"Only at Carnegie Mellon";
-//    ribbonLabel.textColor = [UIColor whiteColor];
-//    ribbonLabel.font = [UIFont fontWithName:@"Avenir" size:18.0f];
-//    ribbonLabel.textAlignment = NSTextAlignmentCenter;
-//    [blankRibbon addSubview:ribbonLabel];
-//    
-//    [blankRibbon addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[ribbonLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ribbonLabel)]];
-//    [blankRibbon addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[ribbonLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(ribbonLabel)]];
+}
+
+- (void)setupDescriptionLabel {
+    _descriptionLabel = [[UILabel alloc] init];
+    _descriptionLabel.font = [UIFont fontWithName:@"Avenir" size:21.0f];
+    _descriptionLabel.textColor = [UIColor whiteColor];
+    _descriptionLabel.alpha = .86f;
+    _descriptionLabel.textAlignment = NSTextAlignmentCenter;
+    _descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _descriptionLabel.numberOfLines = 0;
+    _descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _descriptionLabel.text = @"Food delivered in under \n 15 minutes.";
+    
+    [_loginContainer addSubview:_descriptionLabel];
     
 }
 
@@ -105,14 +121,15 @@
 {
     _messageLabel = [[UILabel alloc] init];
     _messageLabel.font = [UIFont fontWithName:@"Avenir-LightOblique" size:12.0f];
-    _messageLabel.textColor = UIColorFromRGB(0x878787);
+    _messageLabel.textColor = [UIColor whiteColor];
+    _messageLabel.alpha = .86f;
     _messageLabel.textAlignment = NSTextAlignmentCenter;
     _messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _messageLabel.numberOfLines = 0;
     _messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _messageLabel.text = @"To use nommit, please sign in with Facebook. Only available to CMU and USC students.";
+    _messageLabel.text = @"Available to select universities.";
     
-    [self.view addSubview:_messageLabel];
+    [_loginContainer addSubview:_messageLabel];
 }
 
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
@@ -194,6 +211,40 @@
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationItem setHidesBackButton:YES];
     [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
+- (void)setupSlideShow {
+    self.kenburnsSlideshowView = [[CPKenburnsSlideshowView alloc] initWithFrame:self.view.bounds];
+    _slider = [[UISlider alloc] initWithFrame:self.view.frame];
+    self.kenburnsSlideshowView.delegate = self;
+    
+    NSMutableArray *images = [NSMutableArray array];
+    for (int i = 1; i < numSlideshowPictures + 1; i++) {
+        CPKenburnsImage *image = [CPKenburnsImage new];
+        image.image = [UIImage imageNamed:[NSString stringWithFormat:@"LoginBG%d",i]];
+        [images addObject:image];
+    }
+    
+    self.kenburnsSlideshowView.images = images;
+    self.kenburnsSlideshowView.longTapGestureEnable = NO;
+    
+    [self.view addSubview:_kenburnsSlideshowView];
+}
+
+#pragma mark - KenBurns Slideshow Delegate Methods
+
+- (void)slideshowView:(CPKenburnsSlideshowView *)slideshowView willShowKenburnsView:(CPKenburnsView *)kenBurnsView
+{
+    
+    kenBurnsView.animationDuration = 8.0f;
+    kenBurnsView.startZoomRate = .7;
+    kenBurnsView.endZoomRate = 1;
+    kenBurnsView.zoomRatio = .3;
 }
 
 -(BOOL)prefersStatusBarHidden { return YES; }

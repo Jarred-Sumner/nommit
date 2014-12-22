@@ -23,6 +23,9 @@ PODS:
   - AKNumericFormatter (0.0.2)
   - APParallaxHeader (0.1.6)
   - Bolts (1.1.3)
+  - CPKenburnsSlideshowView (1.1.4):
+    - CPKenburnsView
+  - CPKenburnsView (1.0.1)
   - DBCamera (2.3.5):
     - GPUImage (~> 0.1)
   - DropdownMenu (1.0.0)
@@ -62,7 +65,7 @@ PODS:
   - FormatterKit/TimeIntervalFormatter (1.7.1)
   - FormatterKit/UnitOfInformationFormatter (1.7.1)
   - FormatterKit/URLRequestFormatter (1.7.1)
-  - FXBlurView (1.6.2)
+  - FXBlurView (1.6.3)
   - GPUImage (0.1.6)
   - INTULocationManager (1.2.0)
   - JVFloatLabeledTextField (0.0.9)
@@ -101,6 +104,7 @@ DEPENDENCIES:
   - AFNetworking
   - AKNumericFormatter
   - APParallaxHeader (from `https://github.com/loopyz/APParallaxHeader.git`)
+  - CPKenburnsSlideshowView
   - DBCamera
   - DropdownMenu
   - Facebook-iOS-SDK
@@ -138,12 +142,14 @@ SPEC CHECKSUMS:
   AKNumericFormatter: 1e139772f4b4e6cea99fbfc8a4ca091dcef01576
   APParallaxHeader: 5369815639059caa4e195a178c020f8e2b998336
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  CPKenburnsSlideshowView: 7f82d09ab044674bbe7fd0cc3c68be5cebbd5d04
+  CPKenburnsView: 451143c38649df6f27f72ad579bf178e690564ba
   DBCamera: 0095227e0d2d0292c5a2cc400fe75687120e6f29
   DropdownMenu: ad71a2fcb932cc04a4f7c29aadaf2e8ed0c08e42
   Facebook-iOS-SDK: cb7d74759d0b1ba546e6e6f1dde407b0d4e448d6
   FontAwesomeKit: a2edea3111dab107b4cc43b85881b404eb063385
   FormatterKit: 877ff970af3feb2f602ced0a9420e9fbc25f568c
-  FXBlurView: 47496afc9160097fa34af35fc4b310bd85d65dca
+  FXBlurView: abe1046285813c4f6e9008abbc324fc5ab32af90
   GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
   INTULocationManager: 596c57e35a00ca1ee9d59bf4cc2b63dc299b580e
   JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8

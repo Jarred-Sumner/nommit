@@ -66,6 +66,18 @@
 #define COCOAPODS_VERSION_MINOR_Bolts 1
 #define COCOAPODS_VERSION_PATCH_Bolts 3
 
+// CPKenburnsSlideshowView
+#define COCOAPODS_POD_AVAILABLE_CPKenburnsSlideshowView
+#define COCOAPODS_VERSION_MAJOR_CPKenburnsSlideshowView 1
+#define COCOAPODS_VERSION_MINOR_CPKenburnsSlideshowView 1
+#define COCOAPODS_VERSION_PATCH_CPKenburnsSlideshowView 4
+
+// CPKenburnsView
+#define COCOAPODS_POD_AVAILABLE_CPKenburnsView
+#define COCOAPODS_VERSION_MAJOR_CPKenburnsView 1
+#define COCOAPODS_VERSION_MINOR_CPKenburnsView 0
+#define COCOAPODS_VERSION_PATCH_CPKenburnsView 1
+
 // DBCamera
 #define COCOAPODS_POD_AVAILABLE_DBCamera
 #define COCOAPODS_VERSION_MAJOR_DBCamera 2
@@ -82,7 +94,7 @@
 #define COCOAPODS_POD_AVAILABLE_FXBlurView
 #define COCOAPODS_VERSION_MAJOR_FXBlurView 1
 #define COCOAPODS_VERSION_MINOR_FXBlurView 6
-#define COCOAPODS_VERSION_PATCH_FXBlurView 2
+#define COCOAPODS_VERSION_PATCH_FXBlurView 3
 
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
