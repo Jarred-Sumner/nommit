@@ -60,20 +60,20 @@
     [self.contentView addSubview:_hoursLabel];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_hoursLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hoursLabel)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_hoursLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hoursLabel)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[_hoursLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hoursLabel)]];
 }
 
 - (void)setupTipLabel {
     _tipLabel = [[UILabel alloc] init];
     _tipLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _tipLabel.font = [UIFont fontWithName:@"Avenir" size:13.f];
+    _tipLabel.font = [UIFont fontWithName:@"Avenir-LightOblique" size:13.f];
     _tipLabel.textColor = [UIColor whiteColor];
     _tipLabel.textAlignment = NSTextAlignmentCenter;
     _tipLabel.text = @"(Tip Included)";
     [self.contentView addSubview:_tipLabel];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tipLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tipLabel)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_tipLabel]-35-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tipLabel)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_tipLabel]-25-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tipLabel)]];
 }
 
 @end
