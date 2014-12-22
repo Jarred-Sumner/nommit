@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Jarred Sumner on 9/6/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMOrderApiModel.h"
@@ -24,7 +24,8 @@
         @"stateID" : @"state_id",
         @"chargeStateID" : @"charge_state_id",
         @"promoCode" : @"promo_code",
-        @"priceChargedInCents" : @"price_charged_in_cents"
+        @"priceChargedInCents" : @"price_charged_in_cents",
+        @"deliveryPlace" : @"delivery_place"
      };
 }
 
@@ -50,7 +51,10 @@
 
 + (NSValueTransformer *)placeJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMPlaceApiModel class]];
+}
 
++ (NSValueTransformer *)deliveryPlaceJSONTransformer {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:NMDeliveryPlaceApiModel.class];
 }
 
 + (NSValueTransformer *)courierJSONTransformer  {
@@ -69,6 +73,7 @@
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {
     return @{
+             @"deliveryPlace" : NSNull.null
     };
 }
 

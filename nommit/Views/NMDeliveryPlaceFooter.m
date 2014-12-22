@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/28/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMDeliveryPlaceFooter.h"
@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setupDoneButton];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_endShiftButton(320)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_endShiftButton)]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_endShiftButton]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_endShiftButton)]];
         [self setupRevenueLabel];
     }
     return self;

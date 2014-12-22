@@ -52,6 +52,7 @@ install_resource()
                     install_resource "DBCamera/DBCamera/Localizations/es.lproj"
                     install_resource "DBCamera/DBCamera/Localizations/it.lproj"
                     install_resource "DBCamera/DBCamera/Localizations/pt.lproj"
+                    install_resource "DBCamera/DBCamera/Localizations/sv-SE.lproj"
                     install_resource "DBCamera/DBCamera/Localizations/tr.lproj"
                     install_resource "DBCamera/DBCamera/Filters/1977.acv"
                     install_resource "DBCamera/DBCamera/Filters/amaro.acv"

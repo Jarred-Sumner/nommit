@@ -2,6 +2,7 @@
 platform :ios, "7.0"
 
 target "nommit" do
+  pod 'MGSwipeTableCell'
   pod 'TYMProgressBarView'
   pod 'AFNetworking'
   pod 'MagicalRecord'
@@ -28,6 +29,7 @@ target "nommit" do
   pod 'Mixpanel'
   pod 'TTTAttributedLabel'
   pod 'FontAwesomeKit', '~> 2.1.0'
+  pod 'CPKenburnsSlideshowView'
 end
 
 

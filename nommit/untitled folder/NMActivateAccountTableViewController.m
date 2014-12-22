@@ -3,14 +3,14 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/26/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMActivateAccountTableViewController.h"
 #import "NMAccountInformationTableViewCell.h"
 #import "NMTableSeparatorView.h"
 #import "NMActivatePhoneTableViewCell.h"
-#import "NMActivatePaymentTableViewCell.h"
+#import "NMPaymentInfoTableViewCell.h"
 #import "PTKView.h"
 #import "NMColors.h"
 #import "Stripe.h"
@@ -25,7 +25,7 @@
 @interface NMActivateAccountTableViewController ()<PTKViewDelegate>
 
 @property (nonatomic, strong) NMAccountInformationTableViewCell *infoCell;
-@property (nonatomic, strong) NMActivatePaymentTableViewCell *paymentCell;
+@property (nonatomic, strong) NMPaymentInfoTableViewCell *paymentCell;
 @property (nonatomic, strong) NMActivatePhoneTableViewCell *phoneCell;
 @property (nonatomic, strong) UIBarButtonItem *saveButton;
 
@@ -34,22 +34,21 @@
 @implementation NMActivateAccountTableViewController
 
 const NSInteger NMAccountInfoSection = 0;
-const NSInteger NMActivatePaymentSection = 1;
-const NSInteger NMActivatePhoneSection = 2;
+const NSInteger NMActivatePhoneSection = 1;
 
 static NSString *NMAccountInfoTableViewCellKey = @"NMAcountInfoTableViewCell";
-static NSString *NMRegisterPaymentTableViewCellKey = @"NMRegisterPaymentTableViewCell";
 static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
+        self.clearsSelectionOnViewWillAppear = NO;
+
         self.tableView.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
         self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         [self.tableView registerClass:[NMAccountInformationTableViewCell class] forCellReuseIdentifier:NMAccountInfoTableViewCellKey];
         [self.tableView registerClass:[NMActivatePhoneTableViewCell class] forCellReuseIdentifier:NMRegisterPhoneTableViewCellKey];
-        [self.tableView registerClass:[NMActivatePaymentTableViewCell class] forCellReuseIdentifier:NMRegisterPaymentTableViewCellKey];
 
         self.navigationItem.hidesBackButton = YES;
     }
@@ -59,25 +58,26 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
     self.title = @"Register Account";
-    [self checkPhoneValid];
     
     [self initNavBar];
     
     NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = NO;
+    navController.navigationBar.translucent = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.tableView setContentOffset:CGPointMake(0, 135) animated:NO];
+    [[Mixpanel sharedInstance] track:@"Show Activate Account Page"];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -100,8 +100,6 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
         separatorView.sectionLabel.text = @"ACCOUNT INFORMATION";
     } else if (section == NMActivatePhoneSection) {
         separatorView.sectionLabel.text = @"ENTER PHONE NUMBER";
-    } else if (section == NMActivatePaymentSection) {
-        separatorView.sectionLabel.text = @"ENTER PAYMENT INFORMATION";
     }
     return separatorView;
 }
@@ -116,12 +114,8 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
         return _infoCell;
     } else if (indexPath.section == NMActivatePhoneSection) {
         _phoneCell = [self.tableView dequeueReusableCellWithIdentifier:NMRegisterPhoneTableViewCellKey];
-        _phoneCell.delegate = self;
+        [_phoneCell.textField becomeFirstResponder];
         return _phoneCell;
-    } else if (indexPath.section == NMActivatePaymentSection) {
-        _paymentCell = [self.tableView dequeueReusableCellWithIdentifier:NMRegisterPaymentTableViewCellKey];
-        _paymentCell.paymentView.delegate = self;
-        return _paymentCell;
     }
     return nil;
 }
@@ -130,87 +124,27 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
 
 - (void)initNavBar {
     // Setup save button
-    _saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
-    _saveButton.enabled = NO;
+    _saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(next)];
     self.navigationItem.rightBarButtonItem = _saveButton;
     self.navigationItem.hidesBackButton = YES;
     [self.navigationController setNavigationBarHidden:NO];
 }
 
-#pragma mark - payments information
-
-- (void)paymentView:(PTKView *)paymentView
-           withCard:(PTKCard *)card
-            isValid:(BOOL)valid {
-    // Enable save button if the Checkout is valid
-    if ([_phoneCell.textField.text length] > 0) {
-        _saveButton.enabled = valid;
-    }
-}
-
-- (IBAction)save:(id)sender {
-    if (_paymentCell.paymentView.hidden == YES) {
-        [SVProgressHUD showWithStatus:@"Validating..." maskType:SVProgressHUDMaskTypeBlack];
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-        return;
-    }
-    if (![_paymentCell.paymentView isValid]) {
-        SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"" andMessage:@"Please re-enter it and try again"];
-        [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
-        [alert show];
-        return;
-    }
-    [Stripe setDefaultPublishableKey:STRIPE_KEY];
+- (void)next {
+    __block NMActivateAccountTableViewController *this = self;
     
     [SVProgressHUD showWithStatus:@"Saving..." maskType:SVProgressHUDMaskTypeBlack];
-    
-    STPCard *card = [[STPCard alloc] init];
-    card.number = _paymentCell.paymentView.card.number;
-    card.expMonth = _paymentCell.paymentView.card.expMonth;
-    card.expYear = _paymentCell.paymentView.card.expYear;
-    card.cvc = _paymentCell.paymentView.card.cvc;
-    
-    __block NMActivateAccountTableViewController *this = self;
-    [Stripe createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
+    [[NMApi instance] PUT:[NSString stringWithFormat:@"users/%@", [[NMUser currentUser] facebookUID]] parameters:@{ @"phone" : _phoneCell.textField.text } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
-        if (error) {
-            [SVProgressHUD dismiss];
-            SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Error while saving card" andMessage:@"Please re-enter it and try again"];
-            [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
-            [alert show];
-        } else {
-            NSDictionary *params = @{ @"stripe_token" : token.tokenId, @"phone" : _phoneCell.textField.text };
-            
-            NSString *path = [NSString stringWithFormat:@"users/%@", NMUser.currentUser.facebookUID];
-            
-            [[NMApi instance] PUT:path parameters:params completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-                    [this didSaveSuccessfullyWithToken:token card:card];
-            }];
+        if (!error) {
+            [SVProgressHUD showSuccessWithStatus:@"Saved!"];
+            NMConfirmNumberViewController *vc = [[NMConfirmNumberViewController alloc] init];
+            [this.navigationController pushViewController:vc animated:YES];
         }
-    
+
     }];
-    
-}
 
-- (void)didSaveSuccessfullyWithToken:(STPToken*)token card:(STPCard*)card {
-    _paymentCell.sCard = [card.number substringFromIndex:[card.number length] - 4] ;
-    _paymentCell.sToken = token;
     
-    _paymentCell.hiddenCardLabel.text = [NSString stringWithFormat:@"%@%@", hiddenCardNums, _paymentCell.sCard];
-    _paymentCell.hiddenCardLabel.hidden = NO;
-    
-    [SVProgressHUD showSuccessWithStatus:@"Saved!"];
-    NMConfirmNumberViewController *phoneVC = [[NMConfirmNumberViewController alloc] init];
-    [self.navigationController pushViewController:phoneVC animated:YES];
-}
-
-#pragma mark - NMRegisterPhoneTableViewCellDelegate methods
-
-- (void)checkPhoneValid
-{
-    if ([_phoneCell.textField.text length] > 0) {
-        [self paymentView:_paymentCell.paymentView withCard:_paymentCell.paymentView.card isValid:_paymentCell.paymentView.isValid];
-    }
 }
 
 @end

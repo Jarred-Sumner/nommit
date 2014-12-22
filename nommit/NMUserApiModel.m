@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Jarred Sumner on 9/6/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMUserApiModel.h"
@@ -27,6 +27,9 @@
     };
 }
 
++ (NSValueTransformer *)schoolJSONTransformer  {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMSchoolApiModel class]];
+}
 
 #pragma mark - MTLManagedObjectSerializing
 
@@ -39,7 +42,9 @@
 }
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
-    return @{};
+    return @{
+             @"school" : [NMSchoolApiModel class]
+             };
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {

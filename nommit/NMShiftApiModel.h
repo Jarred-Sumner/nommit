@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Jarred Sumner on 9/29/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "MTLModel.h"
@@ -15,8 +15,13 @@
 @property (nonatomic, strong) NSNumber *revenueGeneratedInCents;
 
 @property (nonatomic, strong) NMCourierApiModel *courier;
-@property (nonatomic, strong) NSArray *deliveryPlaces;
 
+@property (nonatomic, strong) NSMutableArray *orders;
 @property (nonatomic, strong) NSArray *places;
+@property (nonatomic, strong) NSArray *placeIDs;
+@property (nonatomic, strong) NSArray *deliveryPlaces;
+@property (readonly) NSArray *activeDeliveryPlaces;
+
+- (void)removeOrder:(NMOrderApiModel*)order;
 
 @end

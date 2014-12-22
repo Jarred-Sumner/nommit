@@ -3,11 +3,11 @@
 //  nommit
 //
 //  Created by Jarred Sumner on 9/22/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMPlacesTableViewController.h"
-#import "NMPlaceTableViewCell.h"
+#import "NMListTableViewCell.h"
 #import "NMNoFoodView.h"
 
 @interface NMPlacesTableViewController ()
@@ -28,7 +28,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     [self setupRefreshing];
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[NMPlaceTableViewCell class] forCellReuseIdentifier:NMPlaceTableViewCellKey];
+    [self.tableView registerClass:[NMListTableViewCell class] forCellReuseIdentifier:NMPlaceTableViewCellKey];
     return self;
 }
 
@@ -37,6 +37,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
     _noFoodView = [[NMNoFoodView alloc] initWithFrame:self.tableView.bounds];
     _noFoodView.hidden = YES;
+
     [self.tableView addSubview:_noFoodView];
 }
 
@@ -79,6 +80,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     
     [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
         [this.refreshControl endRefreshing];
+        [this.fetchedResultsController performFetch:nil];
     }];
 }
 
@@ -132,7 +134,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
             break;
 
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:(NMPlaceTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:(NMListTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
 
         case NSFetchedResultsChangeMove:
@@ -171,12 +173,12 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NMPlaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMPlaceTableViewCellKey];
+    NMListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMPlaceTableViewCellKey];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-- (void)configureCell:(NMPlaceTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(NMListTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     NSString *placeString = place.name;
@@ -184,8 +186,8 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
         placeString = [NSString stringWithFormat:@"%@...", [placeString substringToIndex:21]];
     }
     
-    cell.placeLabel.text = placeString;
-    cell.numberOfFoodAvailableLabel.text = [NSString stringWithFormat:@"%@", place.foodCount];
+    cell.textLabel.text = placeString;
+    cell.accessoryLabel.text = [NSString stringWithFormat:@"%@", place.foodCount];
     cell.iconImageView.hidden = !(place.foodCount.integerValue > 0);
 }
 

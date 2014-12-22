@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/19/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMFoodsTableViewController.h"
@@ -17,18 +17,22 @@
 #import "NMPlacesTableViewController.h"
 #import "NMOrderFoodViewController.h"
 #import "NMRateOrderTableViewController.h"
-#import "NMNoFoodView.h"
 #import "NMAppDelegate.h"
 #import "KLCPopup.h"
+#import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
+#import "NMHoursBannerTableViewCell.h"
+
 
 static BOOL didAutoPresentPlaces = NO;
 
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
+static NSString *NMHoursCellIdentifier = @"HoursCellIdentifier";
+
+const NSInteger NMHoursBannerSection = 0;
 
 @interface NMFoodsTableViewController ()
 
-@property (nonatomic, strong) NMNoFoodView *noFoodView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NMPlaceDropdownView *headerView;
 
@@ -37,7 +41,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 @implementation NMFoodsTableViewController
 
 - (id)init {
-    self = [super init];
+    self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
         
         [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
@@ -47,18 +51,16 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
         [self initNavBar];
         [self setupDataSource];
         
-        [self.tableView registerClass:[NMFoodTableViewCell class] forCellReuseIdentifier:NMFoodCellIdentifier];
+        if ([self.tableView respondsToSelector:@selector(separatorInset)]) {
+            [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+        }
         
+        [self.tableView registerClass:[NMFoodTableViewCell class] forCellReuseIdentifier:NMFoodCellIdentifier];
+        [self.tableView registerClass:[NMHoursBannerTableViewCell class] forCellReuseIdentifier:NMHoursCellIdentifier];
+//        [self.tableView addParallaxWithImage:[UIImage imageNamed:@"HoursBanner"] andHeight:130];
+//        [self.tableView.parallaxView setAutoresizingMask:UIViewAutoresizingNone];
     }
     return self;
-}
-
-- (void)loadView {
-    [super loadView];
-    
-    _noFoodView = [[NMNoFoodView alloc] initWithFrame:CGRectInset(self.tableView.bounds, 0, NMPlaceDropdownTableViewCellHeight)];
-    _noFoodView.hidden = YES;
-    [self.tableView addSubview:_noFoodView];
 }
 
 - (id)initWithPlace:(NMPlace *)place {
@@ -79,6 +81,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     
     NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = YES;
+    navController.navigationBar.translucent = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -174,7 +177,6 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     dispatch_async(dispatch_get_main_queue(), ^{
         [this.refreshControl endRefreshing];
         [this.fetchedResultsController performFetch:nil];
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[NMFood countOfActiveFoods]];
     });
 }
 
@@ -237,28 +239,34 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.fetchedResultsController.sections.count;
+    return self.fetchedResultsController.sections.count + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    if (section == NMHoursBannerSection) {
+        return 1;
+    }
+    // offset index
+    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
     NSUInteger count = [sectionInfo numberOfObjects];
-    
-    // Side effects!
-    _noFoodView.hidden = count != 0;
     return count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == NMHoursBannerSection) return 130;
     return 243;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == NMHoursBannerSection) return 0;
     return NMPlaceDropdownTableViewCellHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    if (section == NMHoursBannerSection) {
+        return nil;
+    }
     _headerView = [[NMPlaceDropdownView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMPlaceDropdownTableViewCellHeight)];
     if (_place) {
         [_headerView.locationButton setTitle:[NSString stringWithFormat:@"Delivering to: %@", _place.name] forState:UIControlStateNormal];
@@ -272,13 +280,22 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NMFoodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell;
+    if (indexPath.section == NMHoursBannerSection) {
+        cell = [tableView dequeueReusableCellWithIdentifier:NMHoursCellIdentifier];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
+    }
     [self configureCell:cell forIndexPath:indexPath];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == NMHoursBannerSection) {
+        return;
+    }
+    indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
     NMFood *food = (NMFood*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     
     if (food.orderable) {
@@ -295,29 +312,50 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     }
 }
 
-- (void)configureCell:(NMFoodTableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
-    NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
-    __block NMFoodsTableViewController *this = self;
-    [cell setFood:food timerEndedBlock:^(NSTimeInterval elapsed) {
-        [this refresh];
-    }];
-    
-    if (food.state != NMFoodStateActive) {
-        [cell setState:NMFoodCellStateExpired];
-    } else {
-        if (food.quantityState == NMFoodQuantityStateActive) {
-            if (food.timingState == NMFoodTimingStateActive) {
-                [cell setState:NMFoodCellStateNormal];
-            } else if (food.timingState == NMFoodTimingStateExpired) {
-                [cell setState:NMFoodCellStateExpired];
-            } else if (food.timingState == NMFoodTimingStatePending) {
-                [cell setState:NMFoodCellStateFuture];
-                [cell.notifyButton addTarget:self action:@selector(notifyUser:) forControlEvents:UIControlEventTouchUpInside];
-            }
+- (void)configureCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
+    if (indexPath.section == 1) {
+        NMFoodTableViewCell *foodCell = (NMFoodTableViewCell*)cell;
+        indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+        NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        __block NMFoodsTableViewController *this = self;
+        [foodCell setFood:food timerEndedBlock:^(NSTimeInterval elapsed) {
+            [this refresh];
+        }];
+        
+        if (food.state != NMFoodStateActive) {
+            [foodCell setState:NMFoodCellStateExpired];
         } else {
-            [cell setState:NMFoodCellStateSoldOut];
+            if (food.quantityState == NMFoodQuantityStateActive) {
+                if (food.timingState == NMFoodTimingStateActive) {
+                    [foodCell setState:NMFoodCellStateNormal];
+                } else if (food.timingState == NMFoodTimingStateExpired) {
+                    [foodCell setState:NMFoodCellStateExpired];
+                } else if (food.timingState == NMFoodTimingStatePending) {
+                    [foodCell setState:NMFoodCellStateFuture];
+                    [foodCell.notifyButton addTarget:self action:@selector(notifyUser:) forControlEvents:UIControlEventTouchUpInside];
+                }
+            } else {
+                [foodCell setState:NMFoodCellStateSoldOut];
+            }
         }
+    } else {
+        NMHoursBannerTableViewCell *hoursCell = (NMHoursBannerTableViewCell*)cell;
+        
+        NMSchool *school = [[NMUser currentUser] school];
+        if (school.messageState == NMSchoolMessageStateHours) {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateStyle = NSDateFormatterNoStyle;
+            formatter.timeStyle = NSDateFormatterShortStyle;
+            
+            hoursCell.hoursLabel.text = [NSString stringWithFormat:@"Weekdays %@ - %@", [formatter stringFromDate:school.fromHours], [formatter stringFromDate:school.toHours]];
+        } else if (school.messageState == NMSchoolMessageStateMOTD) {
+            hoursCell.hoursLabel.text = school.motd;
+        } else if (school.messageState == NMSchoolMessageStateSpecialEvents) {
+            hoursCell.hoursLabel.text = @"Only for Special Events";
+        }
+        
+        [(UIImageView*)hoursCell.backgroundView setImageWithURL:[NSURL URLWithString:school.imageURL] placeholderImage:[UIImage imageNamed:@"HoursBanner"]];
     }
 
 }
@@ -372,6 +410,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
     
     NMMenuNavigationController *navController =
     [[NMMenuNavigationController alloc] initWithRootViewController:placesVC];
+    navController.navigationBar.translucent = NO;
     [self presentViewController:navController animated:YES completion:^{
         self.place = [NMPlace activePlace];
     }];

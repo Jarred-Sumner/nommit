@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/26/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMActivatePhoneTableViewCell.h"
@@ -55,7 +55,6 @@
 {
     NSCharacterSet *invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqsrtuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-"] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
-    [_delegate checkPhoneValid];
     return [string isEqualToString:filtered];
 }
 

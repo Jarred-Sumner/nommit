@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 10/1/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMLogoutButtonCell.h"
@@ -24,7 +24,7 @@
     
     [self.contentView addSubview:_logoutButton];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[_logoutButton]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_logoutButton)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[_logoutButton]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_logoutButton)]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_logoutButton]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_logoutButton)]];
     
     return self;

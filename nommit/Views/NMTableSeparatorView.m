@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/25/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMTableSeparatorView.h"
@@ -35,8 +35,13 @@
 
 - (void)setupLine {
     UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(24, 38, self.frame.size.width - 5, 1)];
+    separatorLine.translatesAutoresizingMaskIntoConstraints = NO;
     separatorLine.backgroundColor = UIColorFromRGB(0x009297);
     [self addSubview:separatorLine];
+    
+    [separatorLine addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[separatorLine]-5-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(separatorLine)]];
+    [separatorLine addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-38-[separatorLine(1)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(separatorLine)]];
+    
 }
 
 @end

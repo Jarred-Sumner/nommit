@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/8/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMPaymentsViewController.h"
@@ -14,23 +14,30 @@
 #import "NMMenuNavigationController.h"
 #import "NMFoodsTableViewController.h"
 #import <SIAlertView/SIAlertView.h>
-
-#define PDefaultBoldFont [UIFont boldSystemFontOfSize:17]
-static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
+#import "NMTableSeparatorView.h"
+#import "NMPaymentInfoTableViewCell.h"
 
 @interface NMPaymentsViewController ()<PTKViewDelegate>
 
-@property (nonatomic, strong) PTKView *paymentView;
-@property (nonatomic, strong) UILabel *hiddenCardLabel;
-@property (nonatomic, strong) UIButton *hiddenCardButton;
+@property (nonatomic, strong) NMPaymentInfoTableViewCell *paymentCell;
+@property (nonatomic, copy) NMCompletionBlock completionBlock;
 
 @end
 
 @implementation NMPaymentsViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+static NSString *NMPaymentCellIdentifier = @"NMPaymentCellIdentifier";
+
+- (instancetype)initWithCompletionBlock:(NMCompletionBlock)completionBlock {
+    self = [self initWithStyle:UITableViewStylePlain];
+    _completionBlock = completionBlock;
+    return self;
+}
+
+- (instancetype)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
     
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.title = @"Payment Information";
     self.view.backgroundColor = [NMColors lightGray];
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
@@ -38,64 +45,62 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
     }
     
     // Setup save button
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
-    saveButton.enabled = NO;
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(save)];
     self.navigationItem.rightBarButtonItem = saveButton;
     
-    // Setup checkout
-    _paymentView = [[PTKView alloc] initWithFrame:CGRectMake(24, 20, 300, 55)];
-    _paymentView.delegate = self;
-    [self.view addSubview:_paymentView];
+    [self.tableView registerClass:[NMPaymentInfoTableViewCell class] forCellReuseIdentifier:NMPaymentCellIdentifier];
     
-    // Setup editable checkout
-    _hiddenCardLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 22, 238, 38)];
-    _hiddenCardLabel.backgroundColor = UIColorFromRGB(0xf7f7f7);
-    _hiddenCardLabel.text = [NSString stringWithFormat:@"%@4242", hiddenCardNums];
-    _hiddenCardLabel.textColor = UIColorFromRGB(0xcecece);
-    _hiddenCardLabel.font = PDefaultBoldFont;
-    _hiddenCardLabel.layer.cornerRadius = 10;
-    _hiddenCardLabel.layer.masksToBounds = YES;
-    
-    [self.view addSubview:_hiddenCardLabel];
-    
-    _hiddenCardButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 20, 290, 55)];
-    _hiddenCardButton.backgroundColor = [UIColor clearColor];
-    [_hiddenCardButton addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_hiddenCardButton];
-    
-    _hiddenCardLabel.hidden = YES;
-    _hiddenCardButton.hidden = YES;
-    _paymentView.hidden = NO;
+    return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [NMColors mainColor]};
+    self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [NMColors mainColor]
+    };
+    
+    [[Mixpanel sharedInstance] track:@"Show Payments Page"];
 }
 
-- (void)paymentView:(PTKView *)paymentView
-           withCard:(PTKCard *)card
-            isValid:(BOOL)valid {
-    self.navigationItem.rightBarButtonItem.enabled = valid;
+
+#pragma mark - Data Source
+
+
+
+- (UIView*)tableView:tableView viewForHeaderInSection:(NSInteger)section {
+    NMTableSeparatorView *separatorView = [[NMTableSeparatorView alloc] initWithFrame:CGRectMake(0, 0, 273, 17)];
+
+    if (section == 0) {
+        separatorView.sectionLabel.text = @"ENTER PAYMENT INFORMATION";
+    }
+    
+    return separatorView;
 }
 
-- (void)cancel:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+- (NSInteger)tableView:tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
 }
 
-- (void)edit:(id)sender {
-    _paymentView.hidden = NO;
-    _hiddenCardButton.hidden = YES;
-    _hiddenCardLabel.hidden = YES;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
-- (IBAction)save:(id)sender {
-    if (_paymentView.hidden == YES) {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 65;
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    _paymentCell = [self.tableView dequeueReusableCellWithIdentifier:NMPaymentCellIdentifier];
+    _paymentCell.paymentView.delegate = self;
+    return _paymentCell;
+}
+
+- (void)save {
+    if (_paymentCell.paymentView.hidden == YES) {
         [SVProgressHUD showWithStatus:@"Validating..." maskType:SVProgressHUDMaskTypeBlack];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         return;
     }
-    if (![_paymentView isValid]) {
+    if (![_paymentCell.paymentView isValid]) {
         SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"" andMessage:@"Please re-enter it and try again"];
         [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
         [alert show];
@@ -106,11 +111,12 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
     [SVProgressHUD showWithStatus:@"Saving..." maskType:SVProgressHUDMaskTypeBlack];
     
     STPCard *card = [[STPCard alloc] init];
-    card.number = _paymentView.card.number;
-    card.expMonth = _paymentView.card.expMonth;
-    card.expYear = _paymentView.card.expYear;
-    card.cvc = _paymentView.card.cvc;
+    card.number = _paymentCell.paymentView.card.number;
+    card.expMonth = _paymentCell.paymentView.card.expMonth;
+    card.expYear = _paymentCell.paymentView.card.expYear;
+    card.cvc = _paymentCell.paymentView.card.cvc;
     
+    __block NMPaymentsViewController *this = self;
     [Stripe createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
         
         if (error) {
@@ -124,16 +130,25 @@ static NSString *hiddenCardNums = @"XXXX-XXXX-XXXX-";
             NSString *path = [NSString stringWithFormat:@"users/%@", NMUser.currentUser.facebookUID];
             
             [[NMApi instance] PUT:path parameters:params completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-                
-                [SVProgressHUD showSuccessWithStatus:@"Saved!"];
-                [self.navigationController popViewControllerAnimated:YES];
-                
+                [this didSaveSuccessfullyWithToken:token card:card];
             }];
-            
-            
         }
+        
     }];
+    
 }
+
+- (void)didSaveSuccessfullyWithToken:(STPToken*)token card:(STPCard*)card {
+    _paymentCell.sCard = [card.number substringFromIndex:[card.number length] - 4] ;
+    _paymentCell.sToken = token;
+    
+    _paymentCell.hiddenCardLabel.text = [NSString stringWithFormat:@"%@%@", hiddenCardNums, _paymentCell.sCard];
+    _paymentCell.hiddenCardLabel.hidden = NO;
+    
+    [SVProgressHUD showSuccessWithStatus:@"Saved!"];
+    self.completionBlock();
+}
+
 
 
 @end

@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/29/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMDeliveryTableViewController.h"
@@ -343,6 +343,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
                 [SVProgressHUD showSuccessWithStatus:@"Cancelled!"];
                 NMFoodsTableViewController *foodsVC = [[NMFoodsTableViewController alloc] init];
                 NMMenuNavigationController *nav = [[NMMenuNavigationController alloc] initWithRootViewController:foodsVC];
+                nav.navigationBar.translucent = NO;
                 this.frostedViewController.contentViewController = nav;
                 
             }];

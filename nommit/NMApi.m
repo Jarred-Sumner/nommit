@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Jarred Sumner on 9/3/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMApi.h"
@@ -59,14 +59,12 @@ static NSString *NMApiBaseURLString = API_URL;
              @"orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
              @"foods" : [NMFoodApiModel class],
-//             @"places": [NMPlaceApiModel class],
              @"places/*": [NMPlaceApiModel class],
              @"places/*/orders" : [NMOrderApiModel class],
              @"orders/*" : [NMOrderApiModel class],
-             @"shifts" : [NMShiftApiModel class],
-//             @"shifts/*/orders" : [NMOrderApiModel class],
-//             @"shifts/*" : [NMShiftApiModel class],
-             @"delivery_places/*": [NMDeliveryPlaceApiModel class]
+             @"delivery_places/*": [NMDeliveryPlaceApiModel class],
+             @"schools" : [NMSchoolApiModel class],
+             @"schools/*" : [NMSchoolApiModel class]
      };
 }
 

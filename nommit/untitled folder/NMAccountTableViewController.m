@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/25/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMAccountTableViewController.h"
@@ -17,6 +17,9 @@
 #import "NMLogoutButtonCell.h"
 #import "NMLoginViewController.h"
 #import "NMAppDelegate.h"
+#import "NMNotificationSettingsTableViewCell.h"
+#import "NMShowSchoolTableViewCell.h"
+#import "NMSchoolsViewController.h"
 
 @interface NMAccountTableViewController() <NSFetchedResultsControllerDelegate>
 
@@ -26,20 +29,29 @@
 @property (nonatomic, strong) NMAccountPromoTableViewCell *promoCell;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NMLogoutButtonCell *logoutCell;
+@property (nonatomic, strong) NMShowSchoolTableViewCell *schoolCell;
 
 @end
 
 @implementation NMAccountTableViewController
 
 const NSInteger NMAccountInformationSection = 0;
-const NSInteger NMPaymentMethodSection = 1;
-const NSInteger NMAccountPromoSection = 2;
-const NSInteger NMLogoutButtonSection = 3;
+const NSInteger NMPaymentMethodSection      = 1;
+const NSInteger NMSchoolSection             = 2;
+const NSInteger NMAccountPromoSection       = 3;
+const NSInteger NMNotificationSection       = 4;
+const NSInteger NMLogoutButtonSection       = 5;
+
+const NSInteger NMEmailRow = 0;
+const NSInteger NMTextingRow = 1;
+const NSInteger NMPushRow = 2;
 
 static NSString *NMAccountInformationTableViewCellKey = @"NMAcountInformationTableViewCell";
 static NSString *NMAccountPromoTableViewCellKey = @"NMAccountPromoTableViewCell";
 static NSString *NMPaymentMethodTableViewCellKey = @"NMPaymentMethodTableViewCellKey";
+static NSString *NMSchoolTableViewCellKey = @"NMSchoolTableViewCellKey";
 static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell";
+static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettingsTableViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -52,7 +64,11 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
         [self.tableView registerClass:[NMAccountPromoTableViewCell class] forCellReuseIdentifier:NMAccountPromoTableViewCellKey];
         [self.tableView registerClass:[NMPaymentMethodTableViewCell class] forCellReuseIdentifier:NMPaymentMethodTableViewCellKey];
         [self.tableView registerClass:[NMLogoutButtonCell class] forCellReuseIdentifier:NMLogoutButtonTableViewCellKey];
-        
+        [self.tableView registerClass:[NMNotificationSettingsTableViewCell class] forCellReuseIdentifier:NMNotificationSettingsTableViewCellKey];
+        [self.tableView registerClass:[NMShowSchoolTableViewCell class] forCellReuseIdentifier:NMSchoolTableViewCellKey];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(declinedPush) name:NMDidFailToRegisterForPushNotificationsKey object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPushCell) name:NMDidRegisterForPushNotificationsKey object:nil];
     }
     return self;
 }
@@ -65,11 +81,14 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 4;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    if (section == NMNotificationSection) {
+        return 3;
+    }
     return 1;
 }
 
@@ -80,12 +99,14 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMAccountInformationSection) {
         return 76;
-    } else if (indexPath.section == NMPaymentMethodSection) {
+    } else if (indexPath.section == NMPaymentMethodSection || indexPath.section == NMSchoolSection) {
         return 65;
     } else if (indexPath.section == NMAccountPromoSection) {
-        return 75;
+        return 80;
     } else if (indexPath.section == NMLogoutButtonSection) {
-        return 44;
+        return 40;
+    } else if (indexPath.section == NMNotificationSection) {
+        return 54;
     }
     return 0;
 }
@@ -97,10 +118,14 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
         separatorView.sectionLabel.text = @"ACCOUNT INFORMATION";
     } else if (section == NMPaymentMethodSection) {
         separatorView.sectionLabel.text = @"YOUR CARD";
+    } else if (section == NMSchoolSection) {
+        separatorView.sectionLabel.text = @"YOUR SCHOOL";
     } else if (section == NMAccountPromoSection) {
         separatorView.sectionLabel.text = @"PROMOS";
     } else if (section == NMLogoutButtonSection) {
         return nil;
+    } else if (section == NMNotificationSection) {
+        separatorView.sectionLabel.text = @"NOTIFICATION SETTINGS";
     }
     return separatorView;
 }
@@ -115,6 +140,10 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
         _cardCell = [self.tableView dequeueReusableCellWithIdentifier:NMPaymentMethodTableViewCellKey];
         [self configureCellForIndexPath:indexPath];
         return _cardCell;
+    } else if (indexPath.section == NMSchoolSection) {
+        _schoolCell = [self.tableView dequeueReusableCellWithIdentifier:NMSchoolTableViewCellKey];
+        [self configureCellForIndexPath:indexPath];
+        return _schoolCell;
     } else if (indexPath.section == NMAccountPromoSection) {
         _promoCell = [self.tableView dequeueReusableCellWithIdentifier:NMAccountPromoTableViewCellKey];
         [self configureCellForIndexPath:indexPath];
@@ -124,6 +153,10 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
         [_logoutCell.logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
         [_logoutCell.logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
         return _logoutCell;
+    } else if (indexPath.section == NMNotificationSection) {
+        NMNotificationSettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMNotificationSettingsTableViewCellKey forIndexPath:indexPath];
+        [self configureNotificationCell:cell withIndexPath:indexPath];
+        return cell;
     } else {
         return nil;
     }
@@ -132,14 +165,30 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == NMPaymentMethodSection) {
-        NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] init];
+        __block UINavigationController *navVC = self.navigationController;
+        NMPaymentsViewController *paymentsVC = [[NMPaymentsViewController alloc] initWithCompletionBlock:^{
+            [navVC popViewControllerAnimated:YES];
+        }];
+        
         [self.navigationController pushViewController:paymentsVC animated:YES];
+    } else if (indexPath.section == NMSchoolSection) {
+        __block UINavigationController *navVC = self.navigationController;
+        NMSchoolsViewController *schoolsVC = [[NMSchoolsViewController alloc] initWithCompletionBlock:^{
+            [navVC popViewControllerAnimated:YES];
+        }];
+        
+        [self.navigationController pushViewController:schoolsVC animated:YES];
+        
+    } else if (indexPath.section == NMNotificationSection) {
+        NMNotificationSettingsTableViewCell *cell = (NMNotificationSettingsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        [self toggleNotificationStateForCell:cell];
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
+    [self refreshSubscription];
 }
 
 #pragma mark - submit button
@@ -183,27 +232,28 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
 #pragma mark - NSFetchedResultsController
 
 - (void)configureCellForIndexPath:(NSIndexPath*)indexPath {
-    NMUser *user = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     switch (indexPath.section) {
         case NMAccountInformationSection:
-            _infoCell.avatar.profileID = user.facebookUID;
-            _infoCell.nameLabel.text = user.fullName;
-            _infoCell.emailLabel.text = user.email;
-            _infoCell.phoneLabel.text = user.formattedPhone;
+            _infoCell.avatar.profileID = self.user.facebookUID;
+            _infoCell.nameLabel.text = self.user.fullName;
+            _infoCell.emailLabel.text = self.user.email;
+            _infoCell.phoneLabel.text = self.user.formattedPhone;
             break;
         case NMPaymentMethodSection:
             
-            if ([user.lastFour length] > 0) {
-                _cardCell.cardLabel.text = [NSString stringWithFormat:@"• • • • %@", user.lastFour];
-                _cardCell.cardImage.image = [UIImage imageNamed:user.cardType];
+            if ([self.user.lastFour length] > 0) {
+                _cardCell.cardLabel.text = [NSString stringWithFormat:@"• • • • %@", self.user.lastFour];
+                _cardCell.cardImage.image = [UIImage imageNamed:self.user.cardType];
             } else {
                 _cardCell.cardLabel.text = @"• • • •";
             }
             break;
+        case NMSchoolSection:
+            _schoolCell.schoolLabel.text = self.user.school.name;
         case NMAccountPromoSection:
             [_promoCell.submitButton addTarget:self action:@selector(submitPromoCode:) forControlEvents:UIControlEventTouchUpInside];
-            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@\nShare your code with friends: %@", user.credit, user.referralCode];
+            _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@", self.user.credit];
             break;
         default:
             break;
@@ -276,5 +326,114 @@ static NSString *NMLogoutButtonTableViewCellKey = @"NMLogoutButtonTableViewCell"
 - (void)logout {
     _fetchedResultsController = nil;
     [NMSession logout];
+}
+
+
+#pragma mark - Notifications
+
+- (void)configureNotificationCell:(NMNotificationSettingsTableViewCell *)cell withIndexPath:(NSIndexPath*)indexPath {
+    NMSubscription *subscription = [self.user subscription];
+
+    switch (indexPath.row) {
+        case NMEmailRow: {
+            cell.type = NMNotificationTypeEmail;
+            cell.state = subscription.email.boolValue;
+            break;
+        }
+        case NMTextingRow: {
+            cell.type = NMNotificationTypeSMS;
+            cell.state = subscription.sms.boolValue;
+            break;
+        }
+        case NMPushRow: {
+            cell.type = NMNotificationTypePush;
+            cell.state = NMNotificationSettingsStateRequest;
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)toggleNotificationStateForCell:(NMNotificationSettingsTableViewCell*)cell {
+    NMSubscription *subscription = self.user.subscription;
+    NSString *key;
+    NSNumber *value;
+    if (cell.type == NMNotificationTypeEmail) {
+        key = @"email";
+        value = @(!subscription.emailValue);
+    } else if (cell.type == NMNotificationTypePush) {
+        key = @"push_notifications";
+        value = @(![(NMAppDelegate*)UIApplication.sharedApplication.delegate isPushEnabled]);
+    } else if (cell.type == NMNotificationTypeSMS) {
+        key = @"sms";
+        value = @(!subscription.smsValue);
+    }
+    
+    if (!([key isEqualToString:@"push_notifications"])) {
+        cell.state = NMNotificationSettingsStateLoading;
+        __block NMAccountTableViewController *this = self;
+        [[NMApi instance] POST:[NSString stringWithFormat:@"users/%@/subscription", self.user.facebookUID] parameters:@{ key: value } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+            
+            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+                NMSubscriptionApiModel *model = [MTLJSONAdapter modelOfClass:[NMSubscriptionApiModel class] fromJSONDictionary:response.result error:nil];
+                NMSubscription *subscription = [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:nil];
+                subscription.user = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID] inContext:localContext];
+            } completion:^(BOOL success, NSError *error) {
+                NSIndexPath *indexPath = [this.tableView indexPathForCell:cell];
+                [this configureNotificationCell:cell withIndexPath:indexPath];
+            }];
+            
+        }];
+    } else {
+        [self requestPushNotifications];
+    }
+}
+
+- (void)requestPushNotifications {
+    [NMSession setRequestedPush:NO];
+    [(NMAppDelegate*)UIApplication.sharedApplication.delegate  registerForPushNotifications];
+}
+
+- (void)refreshSubscription {
+    __block NMAccountTableViewController *this = self;
+    [[NMApi instance] GET:[NSString stringWithFormat:@"users/%@/subscription", self.user.facebookUID] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            NMSubscriptionApiModel *model = [MTLJSONAdapter modelOfClass:[NMSubscriptionApiModel class] fromJSONDictionary:response.result error:nil];
+            NMSubscription *subscription = [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:nil];
+            subscription.user = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID] inContext:localContext];
+        } completion:^(BOOL success, NSError *error) {
+            for (int i = 0; i < [this tableView:this.tableView numberOfRowsInSection:NMNotificationSection]; i++) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:NMNotificationSection];
+                NMNotificationSettingsTableViewCell *cell = (NMNotificationSettingsTableViewCell*)[this.tableView cellForRowAtIndexPath:indexPath];
+                
+                [this configureNotificationCell:cell withIndexPath:indexPath];
+            }
+            
+        }];
+        
+    }];
+}
+
+- (void)declinedPush {
+    
+    if (![(NMAppDelegate*)UIApplication.sharedApplication.delegate isPushEnabled]) {
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Enable in Settings" andMessage:@"To enable push notifications, open the Settings app and enable push notifications for Nommit"];
+        [alertView addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+        [alertView show];
+    }
+    [self resetPushCell];
+}
+- (void)resetPushCell {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:NMPushRow inSection:NMNotificationSection];
+    NMNotificationSettingsTableViewCell *cell = (NMNotificationSettingsTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    [self configureNotificationCell:cell withIndexPath:indexPath];
+}
+
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

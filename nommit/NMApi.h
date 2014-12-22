@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Jarred Sumner on 9/3/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import <Overcoat.h>
@@ -19,6 +19,8 @@
 #import "NMShiftApiModel.h"
 #import "NMDeliveryPlaceApiModel.h"
 #import "NMPriceApiModel.h"
+#import "NMSubscriptionApiModel.h"
+#import "NMSchoolApiModel.h"
 
 #import "NMPrice.h"
 #import "NMLocation.h"
@@ -30,6 +32,8 @@
 #import "NMCourier.h"
 #import "NMShift.h"
 #import "NMDeliveryPlace.h"
+#import "NMSubscription.h"
+#import "NMSchool.h"
 
 #import "NMSession.h"
 

@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 10/1/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMInviteCodeView.h"
@@ -18,9 +18,8 @@
         
         [self setupBanner];
         [self setupInviteText];
-        [self setupInviteCode];
         [self setupInviteButton];
-
+        [self setupSocialMediaIcons];
     }
     return self;
 }
@@ -36,7 +35,7 @@
     
     UILabel *ribbonLabel = [[UILabel alloc] init];
     ribbonLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    ribbonLabel.text = @"Give and Get";
+    ribbonLabel.text = @"Share Nommit";
     ribbonLabel.textColor = [UIColor whiteColor];
     ribbonLabel.font = [UIFont fontWithName:@"Avenir" size:18.0f];
     ribbonLabel.textAlignment = NSTextAlignmentCenter;
@@ -54,25 +53,12 @@
     inviteLabel.lineBreakMode = NSLineBreakByWordWrapping;
     inviteLabel.numberOfLines = 0;
     inviteLabel.font = [UIFont fontWithName:@"Avenir" size:15];
-    inviteLabel.text = @"When a friend orders with your invite code, you both get $5 off";
+    inviteLabel.text = @"Help organizations fundraise by inviting friends to Nommit";
     [self addSubview:inviteLabel];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-70-[inviteLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inviteLabel)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[inviteLabel]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inviteLabel)]];
 }
-
-- (void)setupInviteCode {
-    _inviteCode = [[UILabel alloc] init];
-    _inviteCode.textColor = [NMColors mainColor];
-    _inviteCode.translatesAutoresizingMaskIntoConstraints = NO;
-    _inviteCode.textAlignment = NSTextAlignmentCenter;
-    _inviteCode.font = [UIFont fontWithName:@"Avenir" size:34];
-    [self addSubview:_inviteCode];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-130-[_inviteCode]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteCode)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_inviteCode]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteCode)]];
-}
-
 - (void)setupInviteButton {
     _inviteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _inviteButton.backgroundColor = [NMColors mainColor];
@@ -84,7 +70,43 @@
     [self addSubview:_inviteButton];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[_inviteButton]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_inviteCode]-20-[_inviteButton(44)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton, _inviteCode)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-130-[_inviteButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton)]];
+
+}
+
+- (void)setupSocialMediaIcons {
+    UILabel *inviteLabel = [[UILabel alloc] init];
+    inviteLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    inviteLabel.text = @"—————— Share Nommit ——————";
+    inviteLabel.textColor = UIColorFromRGB(0x454444);
+    inviteLabel.textAlignment = NSTextAlignmentCenter;
+    inviteLabel.font = [UIFont fontWithName:@"Avenir-Light" size:13];
+    [self addSubview:inviteLabel];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[inviteLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inviteLabel)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_inviteButton]-25-[inviteLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton, inviteLabel)]];
+    
+    _twitterButton = [self makeInviteButtonWithImage:[UIImage imageNamed:@"InviteTwitter"]];
+    [self addSubview:_twitterButton];
+    
+    _facebookButton = [self makeInviteButtonWithImage:[UIImage imageNamed:@"InviteFacebook"]];
+    [self addSubview:_facebookButton];
+    
+    _messengerButton = [self makeInviteButtonWithImage:[UIImage imageNamed:@"InviteMessenger"]];
+    [self addSubview:_messengerButton];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-59-[_facebookButton]-54-[_messengerButton]-54-[_twitterButton]-59-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_twitterButton, _facebookButton, _messengerButton)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inviteLabel]-20-[_twitterButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_twitterButton, inviteLabel)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inviteLabel]-20-[_facebookButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_facebookButton, inviteLabel)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inviteLabel]-20-[_messengerButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messengerButton, inviteLabel)]];
+    
+}
+
+- (UIButton *)makeInviteButtonWithImage:(UIImage *)image {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:image forState:UIControlStateNormal];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    return button;
 }
 
 

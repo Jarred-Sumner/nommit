@@ -3,14 +3,14 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/8/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "PTKView.h"
 
-@interface NMPaymentsViewController : UIViewController
+@interface NMPaymentsViewController : UITableViewController
 
-- (IBAction)save:(id)sender;
+- (instancetype)initWithCompletionBlock:(NMCompletionBlock)completionBlock;
 
 @end

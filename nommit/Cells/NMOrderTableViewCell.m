@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 9/24/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMOrderTableViewCell.h"
@@ -26,7 +26,6 @@
         [self setupName];
         [self setupOrderName];
         [self setupButtons];
-        self.state = NMOrderTableViewCellStatePending;
     }
     return self;
 }
@@ -55,6 +54,18 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-14-[_nameLabel]" options:0 metrics:nil views:views]];
 }
 
+- (void)setupButtons {
+    _doneButton = [MGSwipeButton buttonWithTitle:nil icon:[UIImage imageNamed:@"CheckMarkIcon"] backgroundColor:[UIColor whiteColor]];
+    _callButton = [MGSwipeButton buttonWithTitle:nil icon:[UIImage imageNamed:@"PhoneIcon"] backgroundColor:[UIColor whiteColor]];
+    
+    self.leftButtons = @[ _doneButton, _callButton ];
+    
+    MGSwipeExpansionSettings *exp = [[MGSwipeExpansionSettings alloc] init];
+    exp.buttonIndex = 0;
+    exp.fillOnTrigger = YES;
+    self.leftExpansion = exp;
+}
+
 - (void)setupOrderName
 {
     _orderName = [[UILabel alloc] init];
@@ -70,59 +81,5 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-0-[_orderName]" options:0 metrics:nil views:views]];
 }
 
-- (void)setupButtons
-{
-    _callButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _callButton.contentMode = UIViewContentModeScaleAspectFill;
-    _callButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_callButton setImage:[UIImage imageNamed:@"PhoneIcon"] forState:UIControlStateNormal];
-    [self.contentView addSubview:_callButton];
-    
-    _deliveryContainer = [[UIView alloc] init];
-    _deliveryContainer.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:_deliveryContainer];
-    
-    _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _doneButton.contentMode = UIViewContentModeScaleAspectFill;
-    _doneButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_doneButton setImage:[UIImage imageNamed:@"CheckMarkIcon"] forState:UIControlStateNormal];
-    [_deliveryContainer addSubview:_doneButton];
-    
-    _spinnerView = [[UIActivityIndicatorView alloc] init];
-    _spinnerView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    _spinnerView.color = [NMColors mainColor];
-    _spinnerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [_deliveryContainer addSubview:_spinnerView];
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(_callButton, _spinnerView, _deliveryContainer, _doneButton);
-    
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_callButton(40)]" options:0 metrics:nil views:views]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_callButton(40)]-5-[_deliveryContainer(40)]-13-|" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_deliveryContainer(40)]" options:0 metrics:nil views:views]];
-    
-    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_doneButton(40)]|" options:0 metrics:nil views:views]];
-    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_doneButton(40)]|" options:0 metrics:nil views:views]];
-    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_spinnerView(40)]|" options:0 metrics:nil views:views]];
-    [_deliveryContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_spinnerView(40)]|" options:0 metrics:nil views:views]];
-
-}
-
-- (void)setState:(NMOrderTableViewCellState)state {
-    [UIView animateWithDuration:0.15 animations:^{
-
-        if (state == NMOrderTableViewCellStateDelivering) {
-            [self.spinnerView startAnimating];
-            self.spinnerView.hidden = NO;
-            self.doneButton.hidden = YES;
-        } else {
-            [self.spinnerView stopAnimating];
-            self.spinnerView.hidden = YES;
-            self.doneButton.hidden = NO;
-        }
-
-    }];
-}
 
 @end

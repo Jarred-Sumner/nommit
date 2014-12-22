@@ -22,7 +22,10 @@ extern const struct NMUserAttributes {
 extern const struct NMUserRelationships {
 	__unsafe_unretained NSString *couriers;
 	__unsafe_unretained NSString *locations;
+	__unsafe_unretained NSString *notification;
 	__unsafe_unretained NSString *orders;
+	__unsafe_unretained NSString *school;
+	__unsafe_unretained NSString *subscription;
 } NMUserRelationships;
 
 extern const struct NMUserFetchedProperties {
@@ -30,7 +33,10 @@ extern const struct NMUserFetchedProperties {
 
 @class NMCourier;
 @class NMLocation;
+@class NMUser;
 @class NMOrder;
+@class NMSchool;
+@class NMSubscription;
 
 
 
@@ -208,9 +214,30 @@ extern const struct NMUserFetchedProperties {
 
 
 
+@property (nonatomic, strong) NMUser *notification;
+
+//- (BOOL)validateNotification:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, strong) NSSet *orders;
 
 - (NSMutableSet*)ordersSet;
+
+
+
+
+@property (nonatomic, strong) NMSchool *school;
+
+//- (BOOL)validateSchool:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NMSubscription *subscription;
+
+//- (BOOL)validateSubscription:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -330,8 +357,23 @@ extern const struct NMUserFetchedProperties {
 
 
 
+- (NMUser*)primitiveNotification;
+- (void)setPrimitiveNotification:(NMUser*)value;
+
+
+
 - (NSMutableSet*)primitiveOrders;
 - (void)setPrimitiveOrders:(NSMutableSet*)value;
+
+
+
+- (NMSchool*)primitiveSchool;
+- (void)setPrimitiveSchool:(NMSchool*)value;
+
+
+
+- (NMSubscription*)primitiveSubscription;
+- (void)setPrimitiveSubscription:(NMSubscription*)value;
 
 
 @end

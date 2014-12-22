@@ -23,10 +23,13 @@ PODS:
   - AKNumericFormatter (0.0.2)
   - APParallaxHeader (0.1.6)
   - Bolts (1.1.3)
-  - DBCamera (2.3.5):
+  - CPKenburnsSlideshowView (1.1.4):
+    - CPKenburnsView
+  - CPKenburnsView (1.0.1)
+  - DBCamera (2.3.7):
     - GPUImage (~> 0.1)
   - DropdownMenu (1.0.0)
-  - Facebook-iOS-SDK (3.20.0):
+  - Facebook-iOS-SDK (3.21.1):
     - Bolts (~> 1.0)
   - FontAwesomeKit (2.1.8):
     - FontAwesomeKit/Core (= 2.1.8)
@@ -43,30 +46,30 @@ PODS:
     - FontAwesomeKit/Core
   - FontAwesomeKit/Zocial (2.1.8):
     - FontAwesomeKit/Core
-  - FormatterKit (1.7.3):
-    - FormatterKit/AddressFormatter (= 1.7.3)
-    - FormatterKit/ArrayFormatter (= 1.7.3)
-    - FormatterKit/ColorFormatter (= 1.7.3)
-    - FormatterKit/LocationFormatter (= 1.7.3)
-    - FormatterKit/NameFormatter (= 1.7.3)
-    - FormatterKit/OrdinalNumberFormatter (= 1.7.3)
-    - FormatterKit/TimeIntervalFormatter (= 1.7.3)
-    - FormatterKit/UnitOfInformationFormatter (= 1.7.3)
-    - FormatterKit/URLRequestFormatter (= 1.7.3)
-  - FormatterKit/AddressFormatter (1.7.3)
-  - FormatterKit/ArrayFormatter (1.7.3)
-  - FormatterKit/ColorFormatter (1.7.3)
-  - FormatterKit/LocationFormatter (1.7.3)
-  - FormatterKit/NameFormatter (1.7.3)
-  - FormatterKit/OrdinalNumberFormatter (1.7.3)
-  - FormatterKit/TimeIntervalFormatter (1.7.3)
-  - FormatterKit/UnitOfInformationFormatter (1.7.3)
-  - FormatterKit/URLRequestFormatter (1.7.3)
+  - FormatterKit (1.7.5):
+    - FormatterKit/AddressFormatter (= 1.7.5)
+    - FormatterKit/ArrayFormatter (= 1.7.5)
+    - FormatterKit/ColorFormatter (= 1.7.5)
+    - FormatterKit/LocationFormatter (= 1.7.5)
+    - FormatterKit/NameFormatter (= 1.7.5)
+    - FormatterKit/OrdinalNumberFormatter (= 1.7.5)
+    - FormatterKit/TimeIntervalFormatter (= 1.7.5)
+    - FormatterKit/UnitOfInformationFormatter (= 1.7.5)
+    - FormatterKit/URLRequestFormatter (= 1.7.5)
+  - FormatterKit/AddressFormatter (1.7.5)
+  - FormatterKit/ArrayFormatter (1.7.5)
+  - FormatterKit/ColorFormatter (1.7.5)
+  - FormatterKit/LocationFormatter (1.7.5)
+  - FormatterKit/NameFormatter (1.7.5)
+  - FormatterKit/OrdinalNumberFormatter (1.7.5)
+  - FormatterKit/TimeIntervalFormatter (1.7.5)
+  - FormatterKit/UnitOfInformationFormatter (1.7.5)
+  - FormatterKit/URLRequestFormatter (1.7.5)
   - FXBlurView (1.6.3)
   - GPUImage (0.1.6)
   - INTULocationManager (1.2.0)
-  - JVFloatLabeledTextField (0.0.9)
-  - libPhoneNumber-iOS (0.7.3)
+  - JVFloatLabeledTextField (1.0.0)
+  - libPhoneNumber-iOS (0.7.5)
   - Lockbox (2.1.0)
   - M13Checkbox (1.1.2)
   - MagicalRecord (2.2):
@@ -75,8 +78,11 @@ PODS:
   - Mantle (1.5.1):
     - Mantle/extobjc (= 1.5.1)
   - Mantle/extobjc (1.5.1)
-  - Mixpanel (2.5.4)
-  - MZTimerLabel (0.4.5)
+  - MGSwipeTableCell (1.3.4)
+  - Mixpanel (2.6.2):
+    - Mixpanel/MPCategoryHelpers (= 2.6.2)
+  - Mixpanel/MPCategoryHelpers (2.6.2)
+  - MZTimerLabel (0.5.1)
   - Overcoat (2.0.2):
     - Overcoat/NSURLSession (= 2.0.2)
   - Overcoat/Core (2.0.2):
@@ -93,14 +99,15 @@ PODS:
   - Stripe (2.2.2):
     - Stripe/Core (= 2.2.2)
   - Stripe/Core (2.2.2)
-  - SVProgressHUD (1.0)
-  - TTTAttributedLabel (1.10.1)
+  - SVProgressHUD (1.1.2)
+  - TTTAttributedLabel (1.13.0)
   - TYMProgressBarView (0.3.0)
 
 DEPENDENCIES:
   - AFNetworking
   - AKNumericFormatter
   - APParallaxHeader (from `https://github.com/loopyz/APParallaxHeader.git`)
+  - CPKenburnsSlideshowView
   - DBCamera
   - DropdownMenu
   - Facebook-iOS-SDK
@@ -112,6 +119,7 @@ DEPENDENCIES:
   - Lockbox
   - M13Checkbox (~> 1.1.0)
   - MagicalRecord
+  - MGSwipeTableCell
   - Mixpanel
   - MZTimerLabel
   - Overcoat (from `https://github.com/Jarred-Sumner/Overcoat`)
@@ -149,22 +157,25 @@ SPEC CHECKSUMS:
   AKNumericFormatter: 1e139772f4b4e6cea99fbfc8a4ca091dcef01576
   APParallaxHeader: 5369815639059caa4e195a178c020f8e2b998336
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
-  DBCamera: 0095227e0d2d0292c5a2cc400fe75687120e6f29
+  CPKenburnsSlideshowView: 7f82d09ab044674bbe7fd0cc3c68be5cebbd5d04
+  CPKenburnsView: 451143c38649df6f27f72ad579bf178e690564ba
+  DBCamera: b20778a524d727845981754fb4e93ac505ca94aa
   DropdownMenu: ad71a2fcb932cc04a4f7c29aadaf2e8ed0c08e42
-  Facebook-iOS-SDK: 5854404b4b651f612a8ef79ca06d766858f4cb8e
+  Facebook-iOS-SDK: 18c26e86ab25c17854a2ee2a8f60562099c6600f
   FontAwesomeKit: a2edea3111dab107b4cc43b85881b404eb063385
-  FormatterKit: dc6c9de1fa78a5e0f39efe1518bc61d8364b2aad
+  FormatterKit: 758bef4552d11454f0eb7e73669f81c225247904
   FXBlurView: abe1046285813c4f6e9008abbc324fc5ab32af90
   GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
   INTULocationManager: 596c57e35a00ca1ee9d59bf4cc2b63dc299b580e
-  JVFloatLabeledTextField: b6c7d824d231b3c01d14692feada878808480af8
-  libPhoneNumber-iOS: 98fc07d70c8fdb5e6a8e3442c37e97353065c20e
+  JVFloatLabeledTextField: c2b8124e439cf2b05fe5bb38f44358743588c1bd
+  libPhoneNumber-iOS: 16b9556d7fdf4819eabeb7b7356fea3373fa47f9
   Lockbox: 3168f08cb26680b05a0702b8c0cc6da32788059d
   M13Checkbox: e87ebe28627368b1c6d2233282d711a3854dfe3f
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
-  Mixpanel: 87167a0b0a74f11f0ee3787f291357494730617c
-  MZTimerLabel: f4439dc6001eca7a0ab2a6d0f599ee24bb7d301f
+  MGSwipeTableCell: 6b78813ec4eca2d02dc4e948f40f267721be1ce1
+  Mixpanel: c075cedebda3328ce1ee29a18429e265ce967cd8
+  MZTimerLabel: 599c3e89ae7fccc7bd6fc3b30fc737cf742345a9
   Overcoat: eaf16bf5ce15cd9571405173ac1d8271d3f1cb07
   ParallaxBlur: 149ea077dec9264fc12bc04490cd05ff0e170e1d
   PaymentKit: 9c74e84fdf906b4ec5ee822c3dc6a19ae18df194
@@ -172,8 +183,8 @@ SPEC CHECKSUMS:
   REFrostedViewController: 08870a24788191339608b80b2bd4fce549858f0d
   SIAlertView: d00609a1faa9d82f17b9f0b4eede64e84a577b10
   Stripe: c9484104b577a9ae0aa275614640b2ee7b9f92f5
-  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
-  TTTAttributedLabel: 94bb04f1e005616002dd2cee0262a0082e533627
+  SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
+  TTTAttributedLabel: a847b59a75c92d59f4eabc9cc1745704cff2dc36
   TYMProgressBarView: 3798cb41cb7eea63714d5db5793c06f31e37b4d5
 
 COCOAPODS: 0.35.0

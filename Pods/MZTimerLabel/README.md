@@ -8,7 +8,7 @@ MZTimerLabel
 
 MZTimerLabel is a UILabel subclass, which is a handy way to use UILabel as a countdown timer or stopwatch just like that in Apple Clock App with just __2 lines of code__. MZTimerLabel also provides delegate method for you to define the action when the timer finished.
 
-Auther: [MineS Chan](https://github.com/mineschan/)
+Author: [MineS Chan](https://github.com/mineschan/) and awesome [contributors](https://github.com/mineschan/MZTimerLabel/graphs/contributors).
 
 _Remark: This is my first iOS plugin project on github, please accept my apologize if any bad coding._
 
@@ -20,14 +20,14 @@ _Remark: This is my first iOS plugin project on github, please accept my apologi
 
 ####Manual
 
-1. Download or clone MZTimerLabel, add `MZTimerLabel.h` and `MZTimerLabel.m` souce files into your project.
+1. Download or clone MZTimerLabel, add `MZTimerLabel.h` and `MZTimerLabel.m` source files into your project.
 2. `#import "MZTimerLabel.h"` whereever you need it.
 
 ####CocoaPods
 
 (Unfamiliar with [CocoaPods](http://cocoapods.org/) yet? It's a dependency management tool for iOS and Mac, check it out!)
 
-1. Add `pod 'MZTimerLabel', '~> 0.4.4'` to your podfiles
+1. Add `pod 'MZTimerLabel'` to your podfiles
 
 ###Easy Example
 
@@ -75,20 +75,32 @@ You can start,pause,reset your timer with your custom control, set your control 
 -(void)reset;
 ```
 
-And you control the time at the begining or during runtime with these methods
+#### Getter and Setters
+
+You may control the time value and behaviours at the begining or during runtime with these properties and methods
 
 ```
+@property (assign) BOOL shouldCountBeyondHHLimit;   //see example #12
+@property (assign) BOOL resetTimerAfterFinish;      //see example #7
+
 -(void)setCountDownTime:(NSTimeInterval)time;
 -(void)setStopWatchTime:(NSTimeInterval)time;
 -(void)setCountDownToDate:(NSDate*)date;
--(void)addTimeCountedByTime:(NSTimeInterval)timeToAdd;
+-(void)addTimeCountedByTime:(NSTimeInterval)timeToAdd; //see example #10, #11
 ```
 
+And if you want to have information of the timer, here is how.
 
+```
+@property (assign,readonly) BOOL counting;  //see example #4-7
+
+- (NSTimeInterval)getTimeCounted;    //see example #3
+- (NSTimeInterval)getTimeRemaining;  //see example #3
+```
 
 ###Timer Finish Handling
 
-Usually when you need a timer, you need to deal with it after it finished counting. Following are 2 examples showing how to do it using `delegate` and `block` methods.
+Usually when you need a timer, you need to deal with it after it finished. Following are 2 examples showing how to do it using `delegate` and `block` methods.
 
 ####Delegate
 
@@ -117,10 +129,21 @@ Finally, implement the delegate method `timerLabel:finshedCountDownTimerWithTime
     MZTimerLabel *timer = [[MZTimerLabel alloc] initWithLabel:aUILabel andTimerType:MZTimerLabelTypeTimer];
     [timer3 setCountDownTime:60]; 
     [timer startWithEndingBlock:^(NSTimeInterval countTime) {
-        //oh my god it's awesome!!
+        //oh my gosh, it's awesome!!
     }];
  
  ```
+ 
+ Or set it seperately
+ 
+ ```
+    [timer3 setCountDownTime:60]; 
+    timer.endedBlock = ^(NSTimeInterval countTime) {
+        //oh my gosh, it's awesome!!
+    };
+    [timer start];
+```
+
  
 ###More Examples
 
@@ -135,8 +158,3 @@ This code is distributed under the terms and conditions of the [MIT license](LIC
 1. ~~Submit to CocaPods~~
 2. ~~Better performance.~~
 3. __Your suggestions!:D__
-
-### Donations
-
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/hk/cgi-bin/webscr?cmd=_flow&SESSION=7kbCkfBlNfRFeELE0Sf_M0zirSMf2i-QwDO__seqKccp_qXfRHxa6-QYNuW&dispatch=50a222a57771920b6a3d7b606239e4d529b525e0b7e69bf0224adecfb0124e9b61f737ba21b081986471f9b93cfa01e00b63629be0164db1)
-
