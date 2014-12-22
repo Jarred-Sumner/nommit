@@ -17,7 +17,6 @@
 #import "NMPlacesTableViewController.h"
 #import "NMOrderFoodViewController.h"
 #import "NMRateOrderTableViewController.h"
-#import "NMNoFoodView.h"
 #import "NMAppDelegate.h"
 #import "KLCPopup.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
@@ -34,7 +33,6 @@ const NSInteger NMHoursBannerSection = 0;
 
 @interface NMFoodsTableViewController ()
 
-@property (nonatomic, strong) NMNoFoodView *noFoodView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NMPlaceDropdownView *headerView;
 
@@ -63,14 +61,6 @@ const NSInteger NMHoursBannerSection = 0;
 //        [self.tableView.parallaxView setAutoresizingMask:UIViewAutoresizingNone];
     }
     return self;
-}
-
-- (void)loadView {
-    [super loadView];
-    
-    _noFoodView = [[NMNoFoodView alloc] initWithFrame:CGRectInset(self.tableView.bounds, 0, NMPlaceDropdownTableViewCellHeight)];
-    _noFoodView.hidden = YES;
-    [self.tableView addSubview:_noFoodView];
 }
 
 - (id)initWithPlace:(NMPlace *)place {
@@ -259,9 +249,6 @@ const NSInteger NMHoursBannerSection = 0;
     // offset index
     id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
     NSUInteger count = [sectionInfo numberOfObjects];
-    
-    // Side effects!
-    _noFoodView.hidden = count != 0;
     return count;
 }
 

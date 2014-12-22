@@ -69,6 +69,7 @@ const int numSlideshowPictures = 4;
     _loginContainer = [[UIImageView alloc] init];
     _loginContainer.image = [UIImage imageNamed:@"LoginContainer"];
     _loginContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    _loginContainer.userInteractionEnabled = YES;
     [self.view addSubview:_loginContainer];
 }
 
@@ -127,7 +128,7 @@ const int numSlideshowPictures = 4;
     _messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _messageLabel.numberOfLines = 0;
     _messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _messageLabel.text = @"Available to select universities.";
+    _messageLabel.text = @"Available at select universities";
     
     [_loginContainer addSubview:_messageLabel];
 }
@@ -245,6 +246,11 @@ const int numSlideshowPictures = 4;
     kenBurnsView.startZoomRate = .7;
     kenBurnsView.endZoomRate = 1;
     kenBurnsView.zoomRatio = .3;
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
 }
 
 -(BOOL)prefersStatusBarHidden { return YES; }

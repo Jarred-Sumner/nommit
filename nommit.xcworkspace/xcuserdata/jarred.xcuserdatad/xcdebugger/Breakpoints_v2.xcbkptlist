@@ -106,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMLoginViewController.m"
-            timestampString = "440550018.890786"
+            timestampString = "440930484.456921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "-loginView:handleError:"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "-setupMessageLabel"
             landmarkType = "5">
             <Locations>
                <Location
@@ -248,12 +248,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMLoginViewController.m"
-            timestampString = "440550018.890786"
+            timestampString = "440930484.456921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-loginViewShowingLoggedInUser:"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-loginView:handleError:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
