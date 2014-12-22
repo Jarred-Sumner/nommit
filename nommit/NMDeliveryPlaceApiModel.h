@@ -16,7 +16,10 @@
 @property (nonatomic, strong) NSNumber *index;
 
 @property (nonatomic, strong) NSArray *foods;
-@property (nonatomic, strong) NSMutableArray *orders;
+@property (readonly) NSArray *orders;
 @property (nonatomic, strong) NMPlaceApiModel *place;
+
+- (void)addOrder:(NMOrderApiModel*)order;
+- (void)removeOrder:(NMOrderApiModel*)order;
 
 @end

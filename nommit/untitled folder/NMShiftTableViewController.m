@@ -13,7 +13,7 @@
 #import "NMDeliveryPlacesTableViewController.h"
 
 
-static NSTimeInterval NMOrderFetchInterval = 5;
+static NSTimeInterval NMOrderFetchInterval = 15;
 
 static NSString *NMDeliveryPlaceHeaderReuseIdentifier = @"NMDeliveryPlaceHeaderReuseIdentifier";
 static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifier";
@@ -32,15 +32,26 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 @property (nonatomic, copy) NSTimer *ordersTimer;
 @property (nonatomic, copy) NSTimer *headersTimer;
 
+@property (readonly) NSArray *deliveryPlaces;
+
 
 @end
 
 @implementation NMShiftTableViewController
 
+- (NSArray*)deliveryPlaces {
+    return self.shift.activeDeliveryPlaces;
+}
+
 - (id)initWithShift:(NMShiftApiModel *)shift {
     self = [super init];
     self.shift = shift;
     return self;
+}
+
+- (void)setShift:(NMShiftApiModel *)shift {
+    _shift = shift;
+    _numberOfOrders = @(shift.orders.count);
 }
 
 - (void)loadView {
@@ -86,7 +97,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     self.navigationItem.hidesBackButton = YES;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(close)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Places" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
     
     [self calculateStats];
 }
@@ -129,11 +140,11 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.shift.deliveryPlaces.count;
+    return self.deliveryPlaces.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NMDeliveryPlaceApiModel *place = _shift.deliveryPlaces[section];
+    NMDeliveryPlaceApiModel *place = self.deliveryPlaces[section];
     return place.orders.count;
 }
 
@@ -153,7 +164,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 }
 
 - (void)configureHeaderView:(NMDeliveryPlaceHeaderView*)view {
-    NMDeliveryPlace *deliveryPlace = self.shift.deliveryPlaces[view.index.intValue];
+    NMDeliveryPlace *deliveryPlace = self.deliveryPlaces[view.index.intValue];
 
     NSString *timeFormat = [NSString stringWithFormat:@"'%@' - mm:ss", deliveryPlace.place.name];
     [view.placeName setTimeFormat:timeFormat];
@@ -165,26 +176,30 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [self setUrgencyForHeader:view];
 }
 
-- (void)configureCell:(NMOrderTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
-    NMOrderApiModel *order = [[_shift.deliveryPlaces[indexPath.section] orders] objectAtIndex:indexPath.row];
+- (void)configureCell:(NMOrderTableViewCell*)cell atIndexPath:(NSIndexPath*)rawIndexPath {
+    __block NSIndexPath *indexPath = rawIndexPath;
+    __block NMOrderApiModel *order = [[self.deliveryPlaces[indexPath.section] orders] objectAtIndex:indexPath.row];
+    __block NMShiftTableViewController *this = self;
     
     cell.nameLabel.text = order.user.name;
     cell.orderName.text = [NSString stringWithFormat:@"%@ - %@", order.quantity, order.food.title];
     cell.profileAvatar.profileID = order.user.facebookUID;
-
-    [cell.callButton addTarget:self action:@selector(callUser:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.doneButton addTarget:self action:@selector(deliverOrder:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.callButton.callback = ^BOOL(MGSwipeTableCell * sender) {
+        [this callUserForOrder:order];
+        return YES;
+    };
+    
+    cell.doneButton.callback = ^BOOL(MGSwipeTableCell * sender) {
+        [this deliverOrder:order atIndexPath:indexPath];
+        return YES;
+    };
 }
-
 
 #pragma mark - Order Actions
 
-- (void)callUser:(id)sender
+- (void)callUserForOrder:(NMOrderApiModel*)order
 {
-    CGPoint buttonOriginInTableView = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
-    NMOrderApiModel *order = [_shift.deliveryPlaces[indexPath.section] orders][indexPath.row];
-
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",order.user.phone]];
     
     if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
@@ -194,18 +209,12 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     }
 }
 
-- (void)deliverOrder:(id)sender {
-    CGPoint buttonOriginInTableView = [sender convertPoint:CGPointZero toView:self.tableView];
+- (void)deliverOrder:(NMOrderApiModel*)rawOrder atIndexPath:(NSIndexPath*)rawIndexPath {
+    __block NSIndexPath *indexPath = rawIndexPath;
+    __block NMOrderApiModel *order = rawOrder;
     
-    __block NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
-    NMOrderTableViewCell *cell = (NMOrderTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-    __block NMDeliveryPlaceApiModel *deliveryPlace = self.shift.deliveryPlaces[indexPath.section];
-    __block NMOrderApiModel *order = [self orderForIndexPath:indexPath];
-    
-    cell.state = NMOrderTableViewCellStateDelivering;
     __block NMShiftTableViewController *this = self;
     [[NMApi instance] PUT:[NSString stringWithFormat:@"orders/%@", order.uid] parameters:@{ @"state_id" : @(NMOrderStateDelivered) } completion:^(OVCResponse *response, NSError *error) {
-        cell.state = NMOrderTableViewCellStatePending;
         if (error) {
             if ([response.result class] == [NMErrorApiModel class]) {
                 [response.result handleError];
@@ -215,11 +224,18 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [this.tableView beginUpdates];
+                [this.shift removeOrder:order];
+                
                 [this.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationFade];
-                [deliveryPlace.orders removeObject:order];
-                if (deliveryPlace.orders.count == 0) {
-                    [this.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+                
+                BOOL isRemoved = true;
+                for (NMDeliveryPlaceApiModel *dp in self.deliveryPlaces) {
+                    if ([dp.uid isEqualToNumber:order.deliveryPlace.uid]) {
+                        isRemoved = false;
+                    }
                 }
+                if (isRemoved) [this.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+                
                 [this.tableView endUpdates];
                 
             });
@@ -246,22 +262,20 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
         if (error) {
             NSLog(@"Error: %@", error);
         } else {
+            NMShiftApiModel *shiftModel = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:&error];
             
-            __block NMShiftApiModel *shiftModel = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:&error];
             this.revenueGeneratedInCents = shiftModel.revenueGeneratedInCents;
+            this.shift = shiftModel;
             
-            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-                NSError *error;
-                [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:localContext error:&error];
-                NSLog(@"Error: %@", error);
-            }];
+            [this calculateStats];
+            [this.tableView reloadData];
         }
     }];
     
 }
 
 - (NMOrderApiModel*)orderForIndexPath:(NSIndexPath*)indexPath {
-    NMDeliveryPlaceApiModel *dp = _shift.deliveryPlaces[indexPath.section];
+    NMDeliveryPlaceApiModel *dp = self.deliveryPlaces[indexPath.section];
     return [dp.orders objectAtIndex:indexPath.row];
 }
 
@@ -290,7 +304,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (void)refreshSectionHeaders {
     if (self.tableView.numberOfSections > 0) {
         // Update all the section views
-        for (int sectionIndex = 0; sectionIndex < [_shift.deliveryPlaces count]; sectionIndex++) {
+        for (int sectionIndex = 0; sectionIndex < [self.deliveryPlaces count]; sectionIndex++) {
             NMDeliveryPlaceHeaderView *headerView = (NMDeliveryPlaceHeaderView*)[self.tableView headerViewForSection:sectionIndex];
             headerView.index = @(sectionIndex);
             [self configureHeaderView:headerView];
@@ -301,7 +315,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 #pragma mark - NMDeliveryPlaceHeaderViewDelegate
 
 - (void)toggleStateForHeader:(NMDeliveryPlaceHeaderView *)header {
-    NMDeliveryPlaceApiModel *deliveryPlace = self.shift.deliveryPlaces[header.index.intValue];
+    NMDeliveryPlaceApiModel *deliveryPlace = self.deliveryPlaces[header.index.intValue];
 
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     params[@"delivery_place_id"] = deliveryPlace.uid;
@@ -367,11 +381,11 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 #pragma mark - Urgency
 
 - (void)setUrgencyForHeader:(NMDeliveryPlaceHeaderView*)header {
-    NMDeliveryPlace *deliveryPlace = _shift.deliveryPlaces[header.index.intValue];
+    NMDeliveryPlace *deliveryPlace = self.deliveryPlaces[header.index.intValue];
     
     NMDeliveryUrgencyState urgency;
-    if ([_shift.deliveryPlaces count] < header.index.intValue) {
-        NMDeliveryPlace *next = _shift.deliveryPlaces[header.index.intValue + 1];
+    if ([self.deliveryPlaces count] < header.index.intValue) {
+        NMDeliveryPlace *next = self.deliveryPlaces[header.index.intValue + 1];
         urgency = [self urgencyFromDate:deliveryPlace.arrivesAt toDate:next.arrivesAt];
     } else {
         // Default time is 15 minutes

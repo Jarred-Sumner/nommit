@@ -8,13 +8,33 @@
 
 #import "NMDeliveryPlaceApiModel.h"
 
+@interface NMDeliveryPlaceApiModel () {
+    NSMutableDictionary *_orders;
+}
+
+@property (readonly) NSMutableDictionary *ordersDict;
+
+@end
+
 @implementation NMDeliveryPlaceApiModel
 
-- (NSMutableArray*)orders {
+- (NSMutableDictionary*)ordersDict {
     if (!_orders) {
-        _orders = [[NSMutableArray alloc] init];
+        _orders = [[NSMutableDictionary alloc] init];
     }
     return _orders;
+}
+
+- (NSArray*)orders {
+    return [self.ordersDict allValues];
+}
+
+- (void)addOrder:(NMOrderApiModel*)order {
+    [self.ordersDict setObject:order forKey:order.uid];
+}
+
+- (void)removeOrder:(NMOrderApiModel*)order {
+    [self.ordersDict removeObjectForKey:order.uid];
 }
 
 #pragma mark - MTLJSONSerializing
@@ -59,8 +79,8 @@
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
     return @{
-             @"foods" : [NMFoodApiModel class],
-             @"place" : [NMPlaceApiModel class],
+         @"foods" : [NMFoodApiModel class],
+         @"place" : [NMPlaceApiModel class],
     };
 }
 

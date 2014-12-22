@@ -216,6 +216,12 @@
 #define COCOAPODS_VERSION_MINOR_M13Checkbox 1
 #define COCOAPODS_VERSION_PATCH_M13Checkbox 2
 
+// MGSwipeTableCell
+#define COCOAPODS_POD_AVAILABLE_MGSwipeTableCell
+#define COCOAPODS_VERSION_MAJOR_MGSwipeTableCell 1
+#define COCOAPODS_VERSION_MINOR_MGSwipeTableCell 3
+#define COCOAPODS_VERSION_PATCH_MGSwipeTableCell 4
+
 // MZTimerLabel
 #define COCOAPODS_POD_AVAILABLE_MZTimerLabel
 #define COCOAPODS_VERSION_MAJOR_MZTimerLabel 0

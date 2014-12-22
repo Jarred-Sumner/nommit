@@ -8,19 +8,46 @@
 
 #import "NMShiftApiModel.h"
 
-@interface NMShiftApiModel ()
+@interface NMShiftApiModel () {
+    NSMutableDictionary *_dps;
+}
 
 @end
 
 @implementation NMShiftApiModel
 
 - (NSArray*)activeDeliveryPlaces {
-    NSMutableDictionary *dps = [[NSMutableDictionary alloc] init];
+    if (!_dps) _dps = [[NSMutableDictionary alloc] init];
+
     for (NMOrderApiModel *order in self.orders) {
-        dps[order.deliveryPlace.uid] = dps[order.deliveryPlace];
-        [order.deliveryPlace.orders addObject:order];
+        NMDeliveryPlaceApiModel *dp = _dps[order.deliveryPlace.uid];
+        if (!_dps[order.deliveryPlace.uid]) {
+            [_dps setObject:order.deliveryPlace forKey:order.deliveryPlace.uid];
+            dp = order.deliveryPlace;
+        }
+
+        dp.index = order.deliveryPlace.index;
+        dp.arrivesAt = order.deliveryPlace.arrivesAt;
+        dp.stateID = order.deliveryPlace.stateID;
+
+        [dp addOrder:order];
     }
-    return dps.allValues;
+    return [_dps.allValues sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]]];
+}
+
+- (void)removeOrder:(NMOrderApiModel*)order {
+    id toBeRemoved;
+    for (NMOrderApiModel *currentOrder in self.orders) {
+        if ([currentOrder.uid isEqualToNumber:order.uid]) {
+            toBeRemoved = currentOrder;
+        }
+    }
+    [self.orders removeObject:toBeRemoved];
+    [_dps[order.deliveryPlace.uid] removeOrder:order];
+    
+    if ([[_dps[order.deliveryPlace.uid] orders] count] == 0) {
+        [_dps removeObjectForKey:order.deliveryPlace.uid];
+    }
 }
 
 
@@ -33,8 +60,8 @@
              @"stateID" : @"state_id",
              @"revenueGeneratedInCents" : @"revenue_generated_in_cents",
              @"places" : NSNull.null,
-             @"orders" : NSNull.null
-             };
+             @"placeIDs" : @"place_ids"
+     };
 }
 
 + (NSValueTransformer *)courierJSONTransformer  {
@@ -45,6 +72,9 @@
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMOrderApiModel class]];
 }
 
++ (NSValueTransformer *)deliveryPlacesJSONTransformer  {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[NMDeliveryPlaceApiModel class]];
+}
 
 #pragma mark - MTLManagedObjectSerializing
 
@@ -54,12 +84,14 @@
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
     return @{
-             @"courier" : [NMCourierApiModel class],
+        @"courier" : [NMCourierApiModel class],
     };
 }
 
 + (NSDictionary *)managedObjectKeysByPropertyKey {
-    return @{};
+    return @{
+             @"placeIDs" : NSNull.null
+             };
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {

@@ -14,8 +14,6 @@
 
 @interface NMDeliveryPlacesTableViewController ()
 
-@property (nonatomic, strong) NMCourier *courier;
-
 @property (nonatomic, strong) NMShiftApiModel *shift;
 @property (nonatomic, strong) NSMutableOrderedSet *placeIDs;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -61,11 +59,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 - (void)setShift:(NMShiftApiModel *)shift {
     _shift = shift;
     if (shift) {
-        self.placeIDs = [[NSMutableOrderedSet alloc] initWithCapacity:1];
-        NSArray *places = [NMDeliveryPlace MR_findAllSortedBy:@"index" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"shift = %@ AND place != nil", shift]];
-        for (NMDeliveryPlace *dp in places) {
-            [self.placeIDs addObject:dp.place.uid];
-        }
+        self.placeIDs = [[NSMutableOrderedSet alloc] initWithArray:shift.placeIDs];
     }
     
 }
@@ -95,7 +89,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     __weak NMDeliveryPlacesTableViewController *this = self;
     [self.refreshControl beginRefreshing];
     
-    [[NMApi instance] GET:@"places" parameters:@{ @"courier_id" : self.courier.uid } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+    [[NMApi instance] GET:@"places" parameters:@{ @"courier_id" : [NMCourier currentCourier].uid } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
             NSArray *models = [MTLJSONAdapter modelsOfClass:[NMPlaceApiModel class] fromJSONArray:response.result error:nil];
@@ -203,7 +197,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     NMListTableViewCell *cell = (NMListTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    if ([self isCellActiveAtIndexPath:indexPath]) {
+    if ([self.placeIDs containsObject:place.uid]) {
         SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Can't Stop Deliveries" andMessage:[NSString stringWithFormat:@"Can't stop delivering to %@ until your shift ends.", place.name]];
         [alert addButtonWithTitle:@"Close" type:SIAlertViewButtonTypeDestructive handler:NULL];
         [alert show];
@@ -224,18 +218,12 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = place.name;
 
-    if ([self isCellActiveAtIndexPath:indexPath] || [self.placeIDs containsObject:place.uid]) {
+    if ([self.placeIDs containsObject:place.uid]) {
         [self.placeIDs addObject:place.uid];
         cell.iconImageView.hidden = NO;
     } else if (!cell.selected) {
         cell.iconImageView.hidden = YES;
     }
-}
-
-- (BOOL)isCellActiveAtIndexPath:(NSIndexPath*)indexPath {
-    NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"place = %@ AND shift.courier = %@ AND (shift.stateID = %@ OR shift.stateID = %@)", place, [NMCourier currentCourier], @(NMShiftStateActive), @(NMShiftStateHalted)];
-    return [NMDeliveryPlace MR_countOfEntitiesWithPredicate:predicate] > 0;
 }
 
 #pragma mark - Shifts
@@ -272,26 +260,15 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     
     [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"place_ids": [self.placeIDs array] } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
-        __block NMShiftApiModel *shiftModel = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
-            NMShift *shift = [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
-            this.shift = shift;
+            __block NMShiftApiModel *shiftModel = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:nil];
+            this.shift = shiftModel;
 
             [SVProgressHUD showSuccessWithStatus:@"Updated Shift!"];
             [this dismissViewControllerAnimated:YES completion:NULL];
         });
-    }];
-}
 
-- (NMCourier*)courier {
-    if (!_courier) {
-        if (_shift) {
-            _courier = _shift.courier;
-        } else {
-            _courier = [NMCourier MR_findFirstByAttribute:@"user" withValue:[NMUser currentUser]];
-        }
-    }
-    return _courier;
+    }];
 }
 
 #pragma mark - Dealloc

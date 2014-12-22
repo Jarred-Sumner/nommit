@@ -16,8 +16,12 @@
 
 @property (nonatomic, strong) NMCourierApiModel *courier;
 
-@property (nonatomic, strong) NSArray *orders;
+@property (nonatomic, strong) NSMutableArray *orders;
 @property (nonatomic, strong) NSArray *places;
+@property (nonatomic, strong) NSArray *placeIDs;
+@property (nonatomic, strong) NSArray *deliveryPlaces;
 @property (readonly) NSArray *activeDeliveryPlaces;
+
+- (void)removeOrder:(NMOrderApiModel*)order;
 
 @end
