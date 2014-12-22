@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Jarred Sumner on 9/22/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMPlacesTableViewController.h"
@@ -80,6 +80,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     
     [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
         [this.refreshControl endRefreshing];
+        [this.fetchedResultsController performFetch:nil];
     }];
 }
 

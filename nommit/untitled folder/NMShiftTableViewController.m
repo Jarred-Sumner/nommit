@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Lucy Guo on 10/31/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMShiftTableViewController.h"
@@ -13,7 +13,7 @@
 #import "NMDeliveryPlacesTableViewController.h"
 
 
-static NSTimeInterval NMOrderFetchInterval = 5;
+static NSTimeInterval NMOrderFetchInterval = 15;
 
 static NSString *NMDeliveryPlaceHeaderReuseIdentifier = @"NMDeliveryPlaceHeaderReuseIdentifier";
 static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifier";
@@ -26,23 +26,32 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 @property (nonatomic, strong) UIButton *oldPlaceButton;
 @property (nonatomic, strong) UILabel *headerLabel;
 
-@property (nonatomic, strong) NSArray *deliveryPlaces;
-@property (nonatomic, strong) NSArray *nextDeliveryPlaces;
 @property (nonatomic, strong) NSNumber *numberOfOrders;
 @property (nonatomic, strong) NSNumber *revenueGeneratedInCents;
 
 @property (nonatomic, copy) NSTimer *ordersTimer;
 @property (nonatomic, copy) NSTimer *headersTimer;
 
+@property (readonly) NSArray *deliveryPlaces;
+
 
 @end
 
 @implementation NMShiftTableViewController
 
-- (id)initWithShiftID:(NSNumber *)shiftID {
+- (NSArray*)deliveryPlaces {
+    return self.shift.activeDeliveryPlaces;
+}
+
+- (id)initWithShift:(NMShiftApiModel *)shift {
     self = [super init];
-    self.shiftID = shiftID;
+    self.shift = shift;
     return self;
+}
+
+- (void)setShift:(NMShiftApiModel *)shift {
+    _shift = shift;
+    _numberOfOrders = @(shift.orders.count);
 }
 
 - (void)loadView {
@@ -88,7 +97,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     self.navigationItem.hidesBackButton = YES;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(close)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Places" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
     
     [self calculateStats];
 }
@@ -114,15 +123,10 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 }
 
 - (void)edit {
-    NMDeliveryPlacesTableViewController *dps = [[NMDeliveryPlacesTableViewController alloc] initWithShift:[NMShift MR_findFirstByAttribute:@"uid" withValue:_shiftID]];
-    dps.delegate = self;
-    
+    NMDeliveryPlacesTableViewController *dps = [[NMDeliveryPlacesTableViewController alloc] initWithShift:_shift];
+
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:dps];
     [self.navigationController presentViewController:navVC animated:YES completion:NULL];
-}
-
-- (void)didModifyShift:(NMShift *)shift {
-    self.shiftID = shift.uid;
 }
 
 #pragma mark - Table view data source
@@ -141,7 +145,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NMDeliveryPlaceApiModel *place = self.deliveryPlaces[section];
-    return place.pendingOrders.count;
+    return place.orders.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -172,26 +176,30 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [self setUrgencyForHeader:view];
 }
 
-- (void)configureCell:(NMOrderTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
-    NMOrderApiModel *order = [[self.deliveryPlaces[indexPath.section] pendingOrders] objectAtIndex:indexPath.row];
+- (void)configureCell:(NMOrderTableViewCell*)cell atIndexPath:(NSIndexPath*)rawIndexPath {
+    __block NSIndexPath *indexPath = rawIndexPath;
+    __block NMOrderApiModel *order = [[self.deliveryPlaces[indexPath.section] orders] objectAtIndex:indexPath.row];
+    __block NMShiftTableViewController *this = self;
     
     cell.nameLabel.text = order.user.name;
     cell.orderName.text = [NSString stringWithFormat:@"%@ - %@", order.quantity, order.food.title];
     cell.profileAvatar.profileID = order.user.facebookUID;
-
-    [cell.callButton addTarget:self action:@selector(callUser:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.doneButton addTarget:self action:@selector(deliverOrder:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.callButton.callback = ^BOOL(MGSwipeTableCell * sender) {
+        [this callUserForOrder:order];
+        return YES;
+    };
+    
+    cell.doneButton.callback = ^BOOL(MGSwipeTableCell * sender) {
+        [this deliverOrder:order atIndexPath:indexPath];
+        return YES;
+    };
 }
-
 
 #pragma mark - Order Actions
 
-- (void)callUser:(id)sender
+- (void)callUserForOrder:(NMOrderApiModel*)order
 {
-    CGPoint buttonOriginInTableView = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
-    NMOrderApiModel *order = [self.deliveryPlaces[indexPath.section] pendingOrders][indexPath.row];
-
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",order.user.phone]];
     
     if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
@@ -201,18 +209,12 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     }
 }
 
-- (void)deliverOrder:(id)sender {
-    CGPoint buttonOriginInTableView = [sender convertPoint:CGPointZero toView:self.tableView];
+- (void)deliverOrder:(NMOrderApiModel*)rawOrder atIndexPath:(NSIndexPath*)rawIndexPath {
+    __block NSIndexPath *indexPath = rawIndexPath;
+    __block NMOrderApiModel *order = rawOrder;
     
-    __block NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonOriginInTableView];
-    NMOrderTableViewCell *cell = (NMOrderTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-    __block NMDeliveryPlaceApiModel *deliveryPlace = self.deliveryPlaces[indexPath.section];
-    __block NMOrderApiModel *order = [self orderForIndexPath:indexPath];
-    
-    cell.state = NMOrderTableViewCellStateDelivering;
     __block NMShiftTableViewController *this = self;
     [[NMApi instance] PUT:[NSString stringWithFormat:@"orders/%@", order.uid] parameters:@{ @"state_id" : @(NMOrderStateDelivered) } completion:^(OVCResponse *response, NSError *error) {
-        cell.state = NMOrderTableViewCellStatePending;
         if (error) {
             if ([response.result class] == [NMErrorApiModel class]) {
                 [response.result handleError];
@@ -222,17 +224,18 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [this.tableView beginUpdates];
-                [this.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationFade];
-                [deliveryPlace.pendingOrders removeObject:order];
+                [this.shift removeOrder:order];
                 
-                if (deliveryPlace.pendingOrders.count == 0) {
-                    NSMutableArray *dps = [[NSMutableArray alloc] init];
-                    for (NMDeliveryPlace *dp in [this.deliveryPlaces reverseObjectEnumerator]) {
-                        if (![dp.uid isEqualToNumber:deliveryPlace.uid]) [dps addObject:dp];
+                [this.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationFade];
+                
+                BOOL isRemoved = true;
+                for (NMDeliveryPlaceApiModel *dp in self.deliveryPlaces) {
+                    if ([dp.uid isEqualToNumber:order.deliveryPlace.uid]) {
+                        isRemoved = false;
                     }
-                    this.deliveryPlaces = dps;
-                    [this.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
                 }
+                if (isRemoved) [this.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+                
                 [this.tableView endUpdates];
                 
             });
@@ -253,62 +256,19 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [_ordersTimer invalidate];
 }
 
-- (void)refreshOrders {
-    __block NMShiftTableViewController *this = self;
-    [[NMApi instance] GET:[NSString stringWithFormat:@"shifts/%@/orders", _shiftID] parameters:nil completion:^(OVCResponse *response, NSError *error) {
-        
-        NSArray *models = [MTLJSONAdapter modelsOfClass:[NMOrderApiModel class] fromJSONArray:response.result error:nil];
-        NSSet *visibleStates = [NSSet setWithArray:@[ @(NMOrderStateActive), @(NMOrderStateArrived) ]];
-        NSUInteger numberOfOrders = 0;
-        for (NMDeliveryPlaceApiModel *dp in this.nextDeliveryPlaces) {
-            dp.pendingOrders = [[NSMutableOrderedSet alloc] init];
-            for (NMOrderApiModel *order in models) {
-                if ([order.place.uid isEqual:dp.place.uid] && [visibleStates member:order.stateID]) {
-                    [dp.pendingOrders addObject:order];
-                    numberOfOrders++;
-                }
-            }
-            NSSortDescriptor *ordering = [[NSSortDescriptor alloc] initWithKey:@"placedAt" ascending:YES];
-            dp.pendingOrders = [[NSMutableOrderedSet alloc] initWithArray:[dp.pendingOrders sortedArrayUsingDescriptors:@[ordering]]];
-            
-        }
-        this.numberOfOrders = @(numberOfOrders);
-        this.deliveryPlaces = this.nextDeliveryPlaces;
-        [this.tableView reloadData];
-        [this calculateStats];
-        
-        
-        
-    }];
-    
-}
 - (void)refreshShift {
     __block NMShiftTableViewController *this = self;
-    [[NMApi instance] GET:[NSString stringWithFormat:@"shifts/%@", _shiftID] parameters:nil completion:^(OVCResponse *response, NSError *error) {
+    [[NMApi instance] GET:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         } else {
+            NMShiftApiModel *shiftModel = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:&error];
             
-            __block NMShiftApiModel *shiftModel = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:&error];
             this.revenueGeneratedInCents = shiftModel.revenueGeneratedInCents;
+            this.shift = shiftModel;
             
-            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-                NSError *error;
-                [MTLManagedObjectAdapter managedObjectFromModel:shiftModel insertingIntoContext:localContext error:&error];
-                NSLog(@"Error: %@", error);
-            }];
-            
-            NSMutableArray *dps = [[NSMutableArray alloc] init];
-            NSSet *visibleStates = [NSSet setWithArray:@[ @(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStateHalted) ]];
-            for (NMDeliveryPlaceApiModel *dp in shiftModel.deliveryPlaces) {
-
-                if ([visibleStates member:dp.stateID]) {
-                    [dps addObject:dp];
-                }
-            }
-            NSSortDescriptor *key = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES ];
-            this.nextDeliveryPlaces = [dps sortedArrayUsingDescriptors:@[key]];
-            [this refreshOrders];
+            [this calculateStats];
+            [this.tableView reloadData];
         }
     }];
     
@@ -316,7 +276,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 
 - (NMOrderApiModel*)orderForIndexPath:(NSIndexPath*)indexPath {
     NMDeliveryPlaceApiModel *dp = self.deliveryPlaces[indexPath.section];
-    return [dp.pendingOrders objectAtIndex:indexPath.row];
+    return [dp.orders objectAtIndex:indexPath.row];
 }
 
 #pragma mark - Header
@@ -368,20 +328,14 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [header setArrivalState:NMDeliveryArrivalStatePending];
     
     __block NMShiftTableViewController *this = self;
-    [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shiftID] parameters:params completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+    [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:params completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
         if (!error) {
             [SVProgressHUD showWithStatus:@"Notified!" maskType:SVProgressHUDMaskTypeBlack];
             [SVProgressHUD showSuccessWithStatus:@"Notified!"];
         }
         
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            NMShiftApiModel *model = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:nil];
-            [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:nil];
-        } completion:^(BOOL success, NSError *error) {
-        }];
-        
-        
+        this.shift = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:nil];
     }];
 }
 
@@ -403,7 +357,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [SVProgressHUD showWithStatus:@"Ending Shift..." maskType:SVProgressHUDMaskTypeBlack];
     
     __block NMShiftTableViewController *this = self;
-    [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shiftID] parameters:@{ @"state_id" : @(NMShiftStateEnded) } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+    [[NMApi instance] PUT:[NSString stringWithFormat:@"shifts/%@", _shift.uid] parameters:@{ @"state_id" : @(NMShiftStateEnded) } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
         if (error) return;
         

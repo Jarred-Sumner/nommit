@@ -3,7 +3,7 @@
 //  nommit
 //
 //  Created by Jarred Sumner on 9/24/14.
-//  Copyright (c) 2014 Lucy Guo. All rights reserved.
+//  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
 #import "NMCourierApiModel.h"
