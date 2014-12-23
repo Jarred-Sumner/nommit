@@ -87,10 +87,9 @@ static NSString *NMCourierSummaryIdentifier = @"NMCourierSummaryTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMCourierAvatarsSection) {
         _avatarsCell = [self.tableView dequeueReusableCellWithIdentifier:NMCourierAvatarsInfoIdentifier];
-        _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%d", 210];
-        _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"You worked %d hours and made $%d on behalf of %@ ", 3, 210, @"Delta Delta Delta"];
-        [_avatarsCell setupCourierAvatarWithProfileId:_shift.courier.user.facebookUID];
-        [_avatarsCell.avatarSeller setImageWithURL:_shift.courier.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
+//        [_avatarsCell setProfileID:_shift.courier.user.facebookUID sellerImageURL:_shift.courier.seller.logoAsURL price:_shift.revenueGeneratedInCents];
+//        _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%d", 210];
+//        _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"You worked %d hours and made $%d on behalf of %@ ", _shift.time, 210, @"Delta Delta Delta"];
         return _avatarsCell;
     } else if (indexPath.section == NMCourierSummarySection) {
         NMCourierSummaryTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:NMCourierSummaryIdentifier];

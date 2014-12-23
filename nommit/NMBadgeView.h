@@ -15,7 +15,7 @@
 @property (nonatomic, strong) FBProfilePictureView *profileView;
 @property (nonatomic, strong) UILabel *textLabel;
 
-- (instancetype)initWithRadius:(CGFloat)radius image:(UIImage*)image;
+- (instancetype)initWithRadius:(CGFloat)radius imageURL:(NSURL*)imageURL;
 - (instancetype)initWithRadius:(CGFloat)radius profileID:(NSString*)profileID;
 - (instancetype)initWithRadius:(CGFloat)radius text:(NSString*)text;
 

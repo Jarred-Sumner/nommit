@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, NMOrderChargeState) {
 
 @property (readonly) NMOrderState state;
 @property (readonly) NMOrderChargeState chargeState;
+@property (readonly) NSNumber *price;
 
 + (NSArray*)pendingStates;
 

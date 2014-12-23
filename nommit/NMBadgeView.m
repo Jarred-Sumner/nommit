@@ -18,11 +18,11 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithRadius:(CGFloat)radius image:(UIImage*)image {
+- (instancetype)initWithRadius:(CGFloat)radius imageURL:(NSURL*)imageURL {
     self = [self init];
     
     [self setupImageView];
-    self.imageView.image = image;
+    [self.imageView setImageWithURL:imageURL];
     
     [self addConstraintForView:self.imageView radius:radius];
     return self;
@@ -44,7 +44,6 @@
     [self setupTextLabel];
     self.textLabel.text = text;
     
-    
     [self addConstraintForView:self.textLabel radius:radius];
     return self;
 }
@@ -52,7 +51,7 @@
 - (instancetype)init {
     self = [super init];
 
-    self.backgroundColor = [NMColors mainColor];
+    self.backgroundColor = [UIColor clearColor];
     self.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self setupBorderView];
@@ -67,7 +66,7 @@
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     _imageView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self addSubview:_imageView];
+    [_borderView addSubview:_imageView];
 }
 
 - (void)setupProfileView {
@@ -76,7 +75,7 @@
     _profileView.pictureCropping = FBProfilePictureCroppingSquare;
     _profileView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self addSubview:_profileView];
+    [_borderView addSubview:_profileView];
 }
 
 - (void)setupBorderView {
@@ -97,8 +96,9 @@
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _textLabel.adjustsFontSizeToFitWidth = YES;
+    _textLabel.backgroundColor = [NMColors mainColor];
     
-    [self addSubview:_textLabel];
+    [_borderView addSubview:_textLabel];
     
     [_textLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [_textLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
@@ -110,8 +110,15 @@
     NSString *formatX = [NSString stringWithFormat:@"H:|-5-[view(%@)]-5-|", @(radius * 2)];
     NSString *formatY = [NSString stringWithFormat:@"V:|-5-[view(%@)]-5-|", @(radius * 2)];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:formatX options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:formatY options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)]];
+    [_borderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:formatX options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)]];
+    [_borderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:formatY options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)]];
+    
+    self.layer.cornerRadius = radius + 5;
+    self.clipsToBounds = YES;
+    
+    view.layer.cornerRadius = radius;
+    view.clipsToBounds = YES;
+    
 }
 
 @end

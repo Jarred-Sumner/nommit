@@ -7,6 +7,10 @@
 
 @implementation NMOrder
 
+- (NSNumber *)price {
+    return @(self.priceChargedInCents.doubleValue / 100.f);
+}
+
 + (NSArray*)pendingStates {
     return @[ @(NMOrderStateActive), @(NMOrderStateArrived) ];
 }

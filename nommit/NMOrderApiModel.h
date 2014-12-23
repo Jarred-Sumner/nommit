@@ -32,4 +32,5 @@
 @property (nonatomic, strong) NMDeliveryPlaceApiModel *deliveryPlace;
 
 - (NSDictionary*)createParamsWithFood:(NMFood*)food place:(NMPlace*)place;
+
 @end

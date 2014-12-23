@@ -13,6 +13,6 @@
 
 @property (nonatomic, strong) TTTAttributedLabel *updateLabel;
 
-- (void)setupCourierAvatarWithProfileId:(NSString *)profileId;
+-(void)setProfileID:(NSString*)profileID sellerImageURL:(NSURL*)sellerImageURL price:(NSNumber*)price;
 
 @end

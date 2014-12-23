@@ -116,10 +116,9 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMAvatarsSection) {
         _avatarsCell = [self.tableView dequeueReusableCellWithIdentifier:NMAvatarsInfoIdentifier];
-        NSNumber *price = @([_order.priceChargedInCents doubleValue] / 100.f);
-        _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%@", price];
+
         if ([_order.quantity integerValue] > 1) {
-            NSString *text = [NSString stringWithFormat:@"%@ is delivering %@ orders of %@ from %@ to you for $%@.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
+            NSString *text = [NSString stringWithFormat:@"%@ is delivering %@ orders of %@ from %@ to you for $%@.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, _order.price];
             
             __block NMDeliveryTableViewController *this = self;
             [_avatarsCell.updateLabel setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
@@ -129,7 +128,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
 
                 NSRange sellerRange = [[mutableAttributedString string] rangeOfString:this.order.food.seller.name];
                 
-                UIFont *uiFont = [UIFont fontWithName:@"Avenir-Medium" size:13.f];
+                UIFont *uiFont = [UIFont fontWithName:@"Avenir-Medium" size:19.f];
                 CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)uiFont.fontName, uiFont.pointSize, NULL);
                 if (font) {
                     [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:courierRange];
@@ -141,7 +140,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
             }];
             
         } else {
-            NSString *text = [NSString stringWithFormat:@"%@ is delivering an order of %@ from %@ to you for $%@.", _order.courier.user.name, _order.food.title, _order.food.seller.name, price];
+            NSString *text = [NSString stringWithFormat:@"%@ is delivering an order of %@ from %@ to you for $%@.", _order.courier.user.name, _order.food.title, _order.food.seller.name, _order.price];
             
             __block NMDeliveryTableViewController *this = self;
             [_avatarsCell.updateLabel setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
@@ -149,7 +148,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
                 NSRange sellerRange = [[mutableAttributedString string] rangeOfString:this.order.food.seller.name];
                 NSRange foodRange = [[mutableAttributedString string] rangeOfString:this.order.food.title];
                 
-                UIFont *uiFont = [UIFont fontWithName:@"Avenir-Medium" size:13.f];
+                UIFont *uiFont = [UIFont fontWithName:@"Avenir-Medium" size:19.f];
                 CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)uiFont.fontName, uiFont.pointSize, NULL);
                 if (font) {
                     [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:courierRange];
@@ -157,9 +156,11 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
                     [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:foodRange];
                 }
                 return mutableAttributedString;
-            }];        }
-        [_avatarsCell setupCourierAvatarWithProfileId:_order.courier.user.facebookUID];
-        [_avatarsCell.avatarSeller setImageWithURL:_order.food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
+            }];
+        }
+        
+        [_avatarsCell setProfileID:_order.courier.user.facebookUID sellerImageURL:_order.food.seller.logoAsURL price:_order.price];
+        
         return _avatarsCell;
     } else if (indexPath.section == NMCountdownSection) {
         _countdownCell = [self.tableView dequeueReusableCellWithIdentifier:NMCountDownInfoIdentifier];

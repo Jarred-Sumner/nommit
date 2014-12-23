@@ -9,7 +9,13 @@
 #import "NMDeliveryAvatarsTableViewCell.h"
 #import "NMColors.h"
 
+#import "NMBadgeView.h"
+
 @interface NMDeliveryAvatarsTableViewCell ()
+
+@property (nonatomic, strong) NMBadgeView *courierBadge;
+@property (nonatomic, strong) NMBadgeView *sellerBadge;
+@property (nonatomic, strong) NMBadgeView *priceBadge;
 
 @property (nonatomic, strong) UIView *avatarContainerView;
 
@@ -29,7 +35,6 @@ static NSInteger NMCircleAvatarWidth = 80;
     self.contentView.layer.masksToBounds = NO;
     self.layer.masksToBounds = NO;
     
-    [self setupAvatars];
     [self addBorder];
     [self setupUpdateLabel];
     
@@ -41,7 +46,7 @@ static NSInteger NMCircleAvatarWidth = 80;
     _updateLabel = [[TTTAttributedLabel alloc] init];
     _updateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _updateLabel.textColor = UIColorFromRGB(0x3c3c3c);
-    _updateLabel.font = [UIFont fontWithName:@"Avenir-Light" size:13.0f];
+    _updateLabel.font = [UIFont fontWithName:@"Avenir-Light" size:19.0f];
     _updateLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _updateLabel.numberOfLines = 0;
     [self.contentView addSubview:_updateLabel];
@@ -58,6 +63,32 @@ static NSInteger NMCircleAvatarWidth = 80;
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[borderView(1)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[borderView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(borderView)]];
+}
+
+- (void)setProfileID:(NSString *)profileID sellerImageURL:(NSURL *)sellerImageURL price:(NSNumber*)price {
+    _courierBadge = [[NMBadgeView alloc] initWithRadius:40 profileID:profileID];
+    _sellerBadge = [[NMBadgeView alloc] initWithRadius:40 imageURL:sellerImageURL];
+    _priceBadge = [[NMBadgeView alloc] initWithRadius:40 text:[NSString stringWithFormat:@"$%@", price]];
+        
+    UIView *badges = [[UIView alloc] init];
+    badges.contentMode = UIViewContentModeCenter;
+    badges.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [badges addSubview:_courierBadge];
+    [badges addSubview:_sellerBadge];
+    [badges addSubview:_priceBadge];
+    
+    [badges addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_courierBadge]-20-[_sellerBadge]-20-[_priceBadge]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_courierBadge, _sellerBadge, _priceBadge)]];
+    [badges addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_courierBadge]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_courierBadge, _sellerBadge, _priceBadge)]];
+    [badges addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_sellerBadge]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_courierBadge, _sellerBadge, _priceBadge)]];
+    [badges addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_priceBadge]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_courierBadge, _sellerBadge, _priceBadge)]];
+    
+    
+    [self.contentView addSubview:badges];
+
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(-40)-[badges]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(badges)]];
+    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:badges attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+
 }
 
 @end

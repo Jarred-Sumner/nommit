@@ -90,10 +90,8 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
     NSNumber *price = @([_order.priceChargedInCents doubleValue] / 100.0f);
     if (indexPath.section == NMRateAvatarsSection) {
         _avatarsCell = [self.tableView dequeueReusableCellWithIdentifier:NMRateAvatarsInfoIdentifier];
-        _avatarsCell.priceLabel.text = [NSString stringWithFormat:@"$%@", price];
+        [_avatarsCell setProfileID:_order.courier.user.facebookUID sellerImageURL:_order.food.seller.logoAsURL price:_order.price];
         _avatarsCell.updateLabel.text = [NSString stringWithFormat:@"%@ delivered %@ orders of %@ from %@  to you for $%@.", _order.courier.user.name, _order.quantity, _order.food.title, _order.food.seller.name, price];
-        [_avatarsCell setupCourierAvatarWithProfileId:_order.courier.user.facebookUID];
-        [_avatarsCell.avatarSeller setImageWithURL:_order.food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
         return _avatarsCell;
     } else if (indexPath.section == NMRateReceiptSection) {
         _receiptCell = [self.tableView dequeueReusableCellWithIdentifier:NMRateReceiptInfoIdentifier];
