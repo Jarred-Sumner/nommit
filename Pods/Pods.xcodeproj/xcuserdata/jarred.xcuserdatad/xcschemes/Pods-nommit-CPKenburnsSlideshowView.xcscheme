@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BC82AFDE0943DAC27F2F1736"
+               BlueprintIdentifier = "4087E05F1381FB18EECF7DCE"
                BuildableName = "libPods-nommit-CPKenburnsSlideshowView.a"
                BlueprintName = "Pods-nommit-CPKenburnsSlideshowView"
                ReferencedContainer = "container:Pods.xcodeproj">

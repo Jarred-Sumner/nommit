@@ -128,7 +128,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
 
                 NSRange sellerRange = [[mutableAttributedString string] rangeOfString:this.order.food.seller.name];
                 
-                UIFont *uiFont = [UIFont fontWithName:@"Avenir-Medium" size:19.f];
+                UIFont *uiFont = [UIFont fontWithName:@"Avenir-Medium" size:16.f];
                 CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)uiFont.fontName, uiFont.pointSize, NULL);
                 if (font) {
                     [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:courierRange];
@@ -148,7 +148,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
                 NSRange sellerRange = [[mutableAttributedString string] rangeOfString:this.order.food.seller.name];
                 NSRange foodRange = [[mutableAttributedString string] rangeOfString:this.order.food.title];
                 
-                UIFont *uiFont = [UIFont fontWithName:@"Avenir-Medium" size:19.f];
+                UIFont *uiFont = [UIFont fontWithName:@"Avenir-Medium" size:16.f];
                 CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)uiFont.fontName, uiFont.pointSize, NULL);
                 if (font) {
                     [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:courierRange];

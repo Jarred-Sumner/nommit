@@ -45,6 +45,7 @@ static NSInteger NMCircleAvatarWidth = 80;
 - (void)setupUpdateLabel {
     _updateLabel = [[TTTAttributedLabel alloc] init];
     _updateLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _updateLabel.adjustsFontSizeToFitWidth = YES;
     _updateLabel.textColor = UIColorFromRGB(0x3c3c3c);
     _updateLabel.font = [UIFont fontWithName:@"Avenir-Light" size:19.0f];
     _updateLabel.lineBreakMode = NSLineBreakByWordWrapping;
