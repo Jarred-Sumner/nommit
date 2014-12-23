@@ -52,8 +52,19 @@
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;
     
+    UIBarButtonItem *rightBB = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+    rightBB.tintColor = UIColorFromRGB(0xC3C3C3);
+    self.navigationItem.rightBarButtonItem = rightBB;
+    
     self.navigationController.navigationBarHidden = NO;
     
+}
+
+- (void)share {
+    NSString *text = @"Get food delivered in under 15 minutes to campus with Nommit!";
+    UIActivityViewController *activity = [[UIActivityViewController alloc] initWithActivityItems:@[text, [NSURL URLWithString:@"http://www.getnommit.com"]] applicationActivities:nil];
+    activity.excludedActivityTypes = @[UIActivityTypeCopyToPasteboard, UIActivityTypePrint, UIActivityTypeAirDrop, UIActivityTypeAddToReadingList, UIActivityTypeSaveToCameraRoll];
+    [self.navigationController presentViewController:activity animated:YES completion:NULL];
 }
 
 #pragma mark - THContactPickerViewControllerDelegate
@@ -72,70 +83,6 @@
     
 }
 
-- (void)shareOnFacebook {
-    if ([FBDialogs canPresentShareDialog] ) {
-        NSString *referralCode = [[NMUser currentUser] referralCode];
-        
-        NSURL *referralURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.getnommit.com/?i=%@", referralCode]];
-        NSURL *pic = [NSURL URLWithString:@"http://s3.amazonaws.com/nommit-production/foods/previews/000/000/006/original/open-uri20141029-16665-2r7dj3?1414624684"];
-        
-        [FBDialogs presentShareDialogWithLink:referralURL name:@"Nommit - food in under 15 minutes" caption:@"Get food delivered to you in under 15 min. Try it now!" description:nil picture:pic clientState:nil handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-            
-            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-            if (!error && ![results[@"completionGesture"] isEqualToString:@"cancel"]) {
-                [SVProgressHUD showSuccessWithStatus:@"Shared!"];
-            } else {
-                [SVProgressHUD showErrorWithStatus:@"Failed!"];
-            }
-        }];
-    } else {
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-        [SVProgressHUD showErrorWithStatus:@"Facebook not installed!"];
-    }
-}
-
-- (void)shareOnMessenger {
-    if ([FBDialogs canPresentMessageDialog]) {
-        NSString *referralCode = [[NMUser currentUser] referralCode];
-        
-        NSURL *referralURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.getnommit.com/?i=%@", referralCode]];
-        NSURL *pic = [NSURL URLWithString:@"http://s3.amazonaws.com/nommit-production/foods/previews/000/000/006/original/open-uri20141029-16665-2r7dj3?1414624684"];
-        [FBDialogs presentMessageDialogWithLink:referralURL name:@"Nommit - food in under 15 minutes" caption:@"Get food delivered to you in under 15 min. Try it now!" description:nil picture:pic clientState:nil handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-            
-            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-            if (!error && ![results[@"completionGesture"] isEqualToString:@"cancel"]) {
-                [SVProgressHUD showSuccessWithStatus:@"Shared!"];
-            } else {
-                [SVProgressHUD showErrorWithStatus:@"Failed!"];
-            }
-        }];
-    } else {
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-        [SVProgressHUD showErrorWithStatus:@"Facebook Messenger not installed!"];
-    }
-}
-
-- (void)shareOnTwitter {
-    NSString *referralCode = [[NMUser currentUser] referralCode];
-    NSURL *referralURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.getnommit.com/?i=%@", referralCode]];
-    NSString *tweetText = @"Get food delivered to campus in < 15 min with Nommit.";
-    
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-        SLComposeViewController *tweetSheet = [SLComposeViewController
-                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
-        [tweetSheet setInitialText:tweetText];
-        [self presentViewController:tweetSheet animated:YES completion:nil];
-    } else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter://"]]) {
-        NSString *encodedText = [tweetText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"twitter://post?message=%@", encodedText]]];
-    } else {
-        NSString *encodedText = [tweetText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *encodedURL = [[NSString stringWithFormat:@"%@", referralURL] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/intent/tweet?text=%@&url=%@", encodedText, encodedURL]]];
-        
-    }
-    
-}
 
 
 

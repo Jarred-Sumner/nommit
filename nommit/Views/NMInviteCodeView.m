@@ -19,7 +19,6 @@
         [self setupBanner];
         [self setupInviteText];
         [self setupInviteButton];
-        [self setupSocialMediaIcons];
     }
     return self;
 }
@@ -72,41 +71,6 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[_inviteButton]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-130-[_inviteButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton)]];
 
-}
-
-- (void)setupSocialMediaIcons {
-    UILabel *inviteLabel = [[UILabel alloc] init];
-    inviteLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    inviteLabel.text = @"—————— Share Nommit ——————";
-    inviteLabel.textColor = UIColorFromRGB(0x454444);
-    inviteLabel.textAlignment = NSTextAlignmentCenter;
-    inviteLabel.font = [UIFont fontWithName:@"Avenir-Light" size:13];
-    [self addSubview:inviteLabel];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[inviteLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inviteLabel)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_inviteButton]-25-[inviteLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_inviteButton, inviteLabel)]];
-    
-    _twitterButton = [self makeInviteButtonWithImage:[UIImage imageNamed:@"InviteTwitter"]];
-    [self addSubview:_twitterButton];
-    
-    _facebookButton = [self makeInviteButtonWithImage:[UIImage imageNamed:@"InviteFacebook"]];
-    [self addSubview:_facebookButton];
-    
-    _messengerButton = [self makeInviteButtonWithImage:[UIImage imageNamed:@"InviteMessenger"]];
-    [self addSubview:_messengerButton];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-59-[_facebookButton]-54-[_messengerButton]-54-[_twitterButton]-59-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_twitterButton, _facebookButton, _messengerButton)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inviteLabel]-20-[_twitterButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_twitterButton, inviteLabel)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inviteLabel]-20-[_facebookButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_facebookButton, inviteLabel)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inviteLabel]-20-[_messengerButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messengerButton, inviteLabel)]];
-    
-}
-
-- (UIButton *)makeInviteButtonWithImage:(UIImage *)image {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:image forState:UIControlStateNormal];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    return button;
 }
 
 
