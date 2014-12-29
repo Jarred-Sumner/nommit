@@ -24,7 +24,7 @@
 #import "KLCPopup.h"
 #import "NMNotificationPopupView.h"
 #import "NMColors.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface NMAppDelegate ()
@@ -59,6 +59,12 @@
         
     }
     [[Mixpanel sharedInstance] track:@"Opened App"];
+    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBarBG"]
+                                       forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.layer.cornerRadius= 8;
+    
+    
     
     
     return YES;

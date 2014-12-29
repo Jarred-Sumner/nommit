@@ -253,7 +253,7 @@ const NSInteger NMHoursBannerSection = 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == NMHoursBannerSection) return 130;
+    if (indexPath.section == NMHoursBannerSection) return 25;
     return 243;
 }
 

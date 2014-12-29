@@ -328,11 +328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMLoginViewController.m"
-            timestampString = "440929065.143147"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            timestampString = "0"
+            startingColumnNumber = "0"
+            endingColumnNumber = "0"
+            startingLineNumber = "0"
+            endingLineNumber = "0"
             landmarkName = "-loginViewShowingLoggedInUser:"
             landmarkType = "5">
             <Locations>
@@ -374,11 +374,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMLoginViewController.m"
-            timestampString = "440929065.143147"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            timestampString = "0"
+            startingColumnNumber = "0"
+            endingColumnNumber = "0"
+            startingLineNumber = "0"
+            endingLineNumber = "0"
             landmarkName = "-loginViewShowingLoggedInUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -683,7 +683,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "370"
             endingLineNumber = "370"
-            landmarkName = "-configureCell:forIndexPath:"
+            landmarkName = "-notifyUser:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -715,7 +715,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "326"
             endingLineNumber = "326"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkName = "-configureCell:forIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -731,8 +731,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "293"
             endingLineNumber = "293"
-            landmarkName = "@implementation NMFoodsTableViewController"
-            landmarkType = "3">
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
