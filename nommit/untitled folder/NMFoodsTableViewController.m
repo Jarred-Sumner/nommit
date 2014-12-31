@@ -46,7 +46,7 @@ const NSInteger NMHoursBannerSection = 0;
         
         [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
         
-        self.view.backgroundColor = [NMColors lightGray];
+        self.view.backgroundColor = UIColorFromRGB(0xF3F1F1);
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self initNavBar];
         [self setupDataSource];
@@ -254,7 +254,7 @@ const NSInteger NMHoursBannerSection = 0;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMHoursBannerSection) return 25;
-    return 243;
+    return 198.5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
