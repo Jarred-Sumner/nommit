@@ -21,6 +21,7 @@
 #import "KLCPopup.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMHoursBannerTableViewCell.h"
+#import "NMBecomeASellerFooterView.h"
 
 
 static BOOL didAutoPresentPlaces = NO;
@@ -59,6 +60,7 @@ const NSInteger NMHoursBannerSection = 0;
         [self.tableView registerClass:[NMHoursBannerTableViewCell class] forCellReuseIdentifier:NMHoursCellIdentifier];
 //        [self.tableView addParallaxWithImage:[UIImage imageNamed:@"HoursBanner"] andHeight:130];
 //        [self.tableView.parallaxView setAutoresizingMask:UIViewAutoresizingNone];
+        
     }
     return self;
 }
@@ -82,6 +84,10 @@ const NSInteger NMHoursBannerSection = 0;
     NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = YES;
     navController.navigationBar.translucent = NO;
+    
+//    NMBecomeASellerFooterView *footerView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 300, self.tableView.frame.size.width, 34)];
+//    self.tableView.tableFooterView = footerView;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -254,6 +260,7 @@ const NSInteger NMHoursBannerSection = 0;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMHoursBannerSection) return 25;
+//    if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) return 197;
     return 198.5;
 }
 
@@ -283,6 +290,11 @@ const NSInteger NMHoursBannerSection = 0;
     UITableViewCell *cell;
     if (indexPath.section == NMHoursBannerSection) {
         cell = [tableView dequeueReusableCellWithIdentifier:NMHoursCellIdentifier];
+//    } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
+//        NMBecomeASellerFooterView *footerView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 197)];
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
+//        cell.backgroundView = footerView;
+//        return cell;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
     }

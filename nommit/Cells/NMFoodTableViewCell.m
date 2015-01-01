@@ -52,7 +52,6 @@
         
         [self setupSellerLogoImageView];
         [self setupTime];
-//        [self setupFoodImageView];
         [self setupFoodLabel];
         [self setupSellerLabel];
         [self setupPriceLabel];
@@ -163,23 +162,6 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-0-[_sellerLabel]" options:0 metrics:nil views:views]];
 }
 
-- (void)setupFoodImageView
-{
-    _foodImageView = [[UIImageView alloc] init];
-    _foodImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    _foodImageView.image = [UIImage imageNamed:@"LoadingImage"];
-    _foodImageView.layer.masksToBounds = YES;
-    _foodImageView.layer.cornerRadius = 2;
-    _foodImageView.contentMode = UIViewContentModeScaleAspectFill;
-
-    [self.contentView addSubview:_foodImageView];
-    
-    // _foodImageView.frame = CGRectMake(67, 38, 241, 200.5);
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-36-[_foodImageView]-36-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-38-[_foodImageView]-75-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
-}
-
 - (void)setupFoodLabel
 {
     _nameLabel = [[UILabel alloc] init];
@@ -190,20 +172,20 @@
     [self.contentView addSubview:_nameLabel];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_sellerLogoImageView]-9-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel,_sellerLogoImageView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-107-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-109-[_nameLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nameLabel)]];
 }
 
 - (void)setupPriceLabel
 {
     _priceLabel = [[UILabel alloc] init];
-    _priceLabel.font = [UIFont fontWithName:@"Avenir-Black" size:16.0f];
+    _priceLabel.font = [UIFont fontWithName:@"Avenir-Black" size:15.0f];
     _priceLabel.textAlignment = NSTextAlignmentRight;
     _priceLabel.textColor = [UIColor whiteColor];
     _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.contentView addSubview:_priceLabel];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-114-[_priceLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel, _sellerLogoImageView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-122-[_priceLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel, _sellerLogoImageView)]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_priceLabel]-37-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_priceLabel)]];
 }
 
