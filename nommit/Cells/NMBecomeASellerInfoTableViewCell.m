@@ -38,55 +38,60 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-28-[_icons]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_icons)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[_icons(228)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_icons)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[_icons(363)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_icons)]];
     
 }
 
 - (void)setupTitles {
-    _dollarTitle = [self setupTitleLabelWithColor:UIColorFromRGB(0x9013FE)];
-    _chefTitle = [self setupTitleLabelWithColor:UIColorFromRGB(0x50E3C2)];
-    _peopleTitle = [self setupTitleLabelWithColor:UIColorFromRGB(0xFF0000)];
+    _getFoodTitle = [self setupTitleLabelWithColor:UIColorFromRGB(0xBC4068)];
+    _chefTitle = [self setupTitleLabelWithColor:UIColorFromRGB(0x30AA8E)];
+    _peopleTitle = [self setupTitleLabelWithColor:UIColorFromRGB(0xCE0808)];
+    _dollarTitle = [self setupTitleLabelWithColor:UIColorFromRGB(0x730ACF)];
     
-    [self.contentView addSubview:_dollarTitle];
+    [self.contentView addSubview:_getFoodTitle];
     [self.contentView addSubview:_chefTitle];
     [self.contentView addSubview:_peopleTitle];
+    [self.contentView addSubview:_dollarTitle];
 }
 
 - (void)setupDescriptions {
-    _dollarDesc = [self descriptionLabel];
+    _getFoodDesc = [self descriptionLabel];
     _chefDesc = [self descriptionLabel];
     _peopleDesc = [self descriptionLabel];
+    _dollarDesc = [self descriptionLabel];
     
-    [self.contentView addSubview:_dollarDesc];
+    [self.contentView addSubview:_getFoodDesc];
     [self.contentView addSubview:_chefDesc];
     [self.contentView addSubview:_peopleDesc];
+    [self.contentView addSubview:_dollarDesc];
 }
 
 - (void)setupConstraints {
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_icons, _dollarTitle, _dollarDesc, _chefDesc, _chefTitle, _peopleTitle, _peopleDesc);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_icons, _getFoodTitle, _getFoodDesc, _chefDesc, _chefTitle, _peopleTitle, _peopleDesc, _dollarTitle, _dollarDesc);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_icons]-11-[_dollarTitle]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_icons]-11-[_getFoodTitle]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_icons]-11-[_chefTitle]" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_icons]-11-[_peopleTitle]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_icons]-11-[_dollarTitle]" options:0 metrics:nil views:views]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_icons]-11-[_dollarDesc]-29-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_icons]-11-[_getFoodDesc]-29-|" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_icons]-11-[_chefDesc]-29-|" options:0 metrics:nil views:views]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_icons(60)]-11-[_peopleDesc]-29-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_icons(60)]-11-[_dollarDesc]-29-|" options:0 metrics:nil views:views]];
     
 
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[_dollarTitle]-1-[_dollarDesc]" options:0 metrics:nil views:views]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-118-[_chefTitle]-1-[_chefDesc]" options:0 metrics:nil views:views]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-203-[_peopleTitle]-1-[_peopleDesc]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-33-[_getFoodTitle]-1-[_getFoodDesc]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-134-[_chefTitle]-1-[_chefDesc]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-236-[_peopleTitle]-1-[_peopleDesc]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-337-[_dollarTitle]-1-[_dollarDesc]" options:0 metrics:nil views:views]];
     
 }
 
 - (UILabel *)setupTitleLabelWithColor:(UIColor *)color {
     UILabel *title = [[UILabel alloc] init];
     title.translatesAutoresizingMaskIntoConstraints = NO;
-    title.font = [UIFont fontWithName:@"Avenir-Medium" size:11.5];
+    title.font = [UIFont fontWithName:@"Avenir-Medium" size:13.5];
     title.textColor = color;
     
     return title;
@@ -95,7 +100,7 @@
 - (UILabel *)descriptionLabel {
     UILabel *descriptionLabel = [[UILabel alloc] init];
     descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    descriptionLabel.font = [UIFont fontWithName:@"Avenir" size:10];
+    descriptionLabel.font = [UIFont fontWithName:@"Avenir" size:12];
     descriptionLabel.textColor = UIColorFromRGB(0x7A7A7A);
     descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
     descriptionLabel.numberOfLines = 0;
