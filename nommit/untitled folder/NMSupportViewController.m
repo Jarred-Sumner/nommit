@@ -8,7 +8,7 @@
 
 #import "NMSupportViewController.h"
 #import "NMSupportView.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import <MessageUI/MessageUI.h>
 
 @interface NMSupportViewController()<MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
@@ -112,15 +112,13 @@
 {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
                                                             style:UIBarButtonItemStylePlain
-                                                           target:(NMMenuNavigationController *)self.navigationController
+                                                           target:(NMNavigationController *)self.navigationController
                                                            action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;
     
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.translucent = NO;
-    
+    self.navigationController.navigationBarHidden = NO;    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

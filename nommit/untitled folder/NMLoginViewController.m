@@ -182,14 +182,14 @@ const int numSlideshowPictures = 4;
             if ([NMUser currentUser].state == NMUserStateActivated) {
                 NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
                 [self.navigationController pushViewController:foodsViewController animated:YES];
-                [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
+                [(NMNavigationController*)self.navigationController setDisabledMenu:NO];
                 
             } else if ([NMUser currentUser].state == NMUserStateRegistered) {
                 
                 [[Mixpanel sharedInstance] track:@"Start Activation Flow"];
                 
-                __block UINavigationController *navVC = self.navigationController;
-                [(NMMenuNavigationController*)navVC setDisabledMenu:YES];
+                __block NMNavigationController *navVC = self.navigationController;
+                [(NMNavigationController*)navVC setDisabledMenu:YES];
 
                 NMSchoolsViewController *vc = [[NMSchoolsViewController alloc] initWithCompletionBlock:^{
                     NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
@@ -211,7 +211,7 @@ const int numSlideshowPictures = 4;
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     [self.navigationItem setHidesBackButton:YES];
-    [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
+    [(NMNavigationController*)self.navigationController setDisabledMenu:YES];
 }
 
 - (void)viewDidLoad

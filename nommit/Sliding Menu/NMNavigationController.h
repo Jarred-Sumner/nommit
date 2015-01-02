@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMMenuNavigationController : UINavigationController
+@interface NMNavigationController : UINavigationController
 
 @property BOOL disabledMenu;
 

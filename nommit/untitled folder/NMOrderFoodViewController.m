@@ -14,7 +14,7 @@
 #import "NMOrderFoodOrderButtonCell.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMAddressSearchViewController.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMDeliveryTableViewController.h"
 #import "NMPromoCodeTableViewCell.h"
 #import "NMOrderFoodDescriptionTableViewCell.h"
@@ -90,12 +90,12 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     [super viewWillAppear:animated];
     self.title = _food.title;
     
-    [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
+    [(NMNavigationController*)self.navigationController setDisabledMenu:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
+    [(NMNavigationController*)self.navigationController setDisabledMenu:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

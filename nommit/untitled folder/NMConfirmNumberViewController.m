@@ -10,7 +10,7 @@
 #import "NMTableSeparatorView.h"
 #import "NMFoodsTableViewController.h"
 #import <SIAlertView.h>
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMPaymentsViewController.h"
 
 @interface NMConfirmNumberViewController ()
@@ -27,7 +27,7 @@ static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCel
     self = [super initWithStyle:style];
     if (self) {
         
-        [(NMMenuNavigationController*)self.navigationController setDisabledMenu:YES];
+        [(NMNavigationController*)self.navigationController setDisabledMenu:YES];
         
         self.tableView.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
@@ -53,9 +53,8 @@ static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCel
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
+    NMNavigationController *navController = (NMNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = NO;
-    navController.navigationController.navigationBar.translucent = NO;
     [[Mixpanel sharedInstance] track:@"Showed Confirm Phone Number Page"];
 }
 

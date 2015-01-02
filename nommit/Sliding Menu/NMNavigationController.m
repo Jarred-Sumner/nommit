@@ -6,16 +6,21 @@
 //  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMRateOrderTableViewController.h"
 
-@interface NMMenuNavigationController ()
+@interface NMNavigationController ()
 
-@property (strong, readwrite, nonatomic) NMMenuNavigationController *menuViewController;
+@property (strong, readwrite, nonatomic) NMNavigationController *menuViewController;
 
 @end
 
-@implementation NMMenuNavigationController
+@implementation NMNavigationController
+
+- (void)loadView {
+    [super loadView];
+    self.navigationBar.translucent = NO;
+}
 
 - (void)viewDidLoad
 {
