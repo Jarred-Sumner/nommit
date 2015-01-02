@@ -10,4 +10,7 @@
 
 @interface NMBecomeASellerFooterView : UIView
 
+@property (nonatomic, strong) UILabel *footerText;
+@property (nonatomic, strong) UIButton *footerButton;
+
 @end

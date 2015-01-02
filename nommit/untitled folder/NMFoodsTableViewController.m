@@ -22,6 +22,7 @@
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMHoursBannerTableViewCell.h"
 #import "NMBecomeASellerFooterView.h"
+#import "NMBecomeASellerTableViewController.h"
 
 
 static BOOL didAutoPresentPlaces = NO;
@@ -61,7 +62,11 @@ const NSInteger NMFooterSection = 1;
         [self.tableView registerClass:[NMHoursBannerTableViewCell class] forCellReuseIdentifier:NMHoursCellIdentifier];
 //        [self.tableView addParallaxWithImage:[UIImage imageNamed:@"HoursBanner"] andHeight:130];
 //        [self.tableView.parallaxView setAutoresizingMask:UIViewAutoresizingNone];
-        self.tableView.tableFooterView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 197)];
+        
+        NMBecomeASellerFooterView *footerView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 222)];
+        footerView.footerText.text = @"You will be guaranteed to make at least $15/hr. Sellers typically make an average of $30/hr.";
+        [footerView.footerButton addTarget:self action:@selector(openSellerPage) forControlEvents:UIControlEventTouchUpInside];
+        self.tableView.tableFooterView = footerView;
         
     }
     return self;
@@ -77,6 +82,11 @@ const NSInteger NMFooterSection = 1;
     _place = place;
     _fetchedResultsController = nil;
     [self.tableView reloadData];
+}
+
+- (void)openSellerPage {
+    NMBecomeASellerTableViewController *becomeASellerVC = [[NMBecomeASellerTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:becomeASellerVC animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
