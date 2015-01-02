@@ -27,9 +27,8 @@
 @property (nonatomic, strong) UIImageView *sellerLogoImageView;
 @property (nonatomic, strong) RateView *rateVw;
 
-@property (nonatomic, strong) MZTimerLabel *endTimerLabel;
 @property (nonatomic, strong) UIImageView *overlayView;
-@property (nonatomic, strong) UIImageView *timeIcon;
+
 
 @property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic, strong) NSDate *startDate;
@@ -43,45 +42,27 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = UIColorFromRGB(0xF3F1F1);
-        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [self setupFoodImage];
         [self setupCellBG];
         
-        
         [self setupSellerLogoImageView];
-        [self setupTime];
         [self setupFoodLabel];
         [self setupSellerLabel];
         [self setupPriceLabel];
         [self setupSoldLabel];
         [self setupProgressBar];
         [self setupRating];
-//        [self setupOverLay];
-//        [self setupStartTimerLabel];
-//        [self setupNotifyButton];
     }
     return self;
 }
 
-- (void)setFood:(NMFood*)food timerEndedBlock:(NMFoodTableViewCellTimerBlock)timerEndedBlock {
-    _timerEndedBlock = timerEndedBlock;
+- (void)setFood:(NMFood*)food {
     
     [_sellerLogoImageView setImageWithURL:food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
     [_foodImageView setImageWithURL:food.headerImageAsURL placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
     _sellerLabel.text = [NSString stringWithFormat:@"by %@", food.seller.name];
-
-    
-    if (![food.endDate isEqualToDate:_endDate]) {
-        [_endTimerLabel pause];
-        [_endTimerLabel setCountDownToDate:food.endDate];
-    }
-
-    if (![food.startDate isEqualToDate:_startDate]) {
-        [_startTimerLabel pause];
-        [_startTimerLabel setCountDownToDate:food.startDate];
-    }
     
     _nameLabel.text = food.title;
     _priceLabel.text = [NSString stringWithFormat:@"$%@", [food priceAtQuantity:@1]];
@@ -91,18 +72,6 @@
     if (food.rating.integerValue > -1) {
         _rateVw.rating = food.rating.floatValue;
     }
-    
-    if (food.willNotifyUserValue) {
-        [_notifyButton setTitle:@"We'll Notify You" forState:UIControlStateNormal];
-        _notifyButton.enabled = NO;
-        _notifyButton.layer.opacity = 0.5f;
-
-    } else {
-        [_notifyButton setTitle:@"Notify Me" forState:UIControlStateNormal];
-        _notifyButton.enabled = YES;
-        _notifyButton.layer.opacity = 1.0f;
-    }
-
     _startDate = food.startDate;
     _endDate = food.endDate;
 }
@@ -113,8 +82,6 @@
     _foodImageView.image = [UIImage imageNamed:@"LoadingImage"];
     _foodImageView.layer.masksToBounds = YES;
     _foodImageView.layer.cornerRadius = 4;
-//    _foodImageView.contentMode = UIViewContentModeScaleAspectFill;
-    
     [self.contentView addSubview:_foodImageView];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-22-[_foodImageView]-22-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_foodImageView)]];
@@ -243,144 +210,53 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_foodImageView]-2-[_rateVw]" options:0 metrics:nil views:views]];
 }
 
-- (void)setupTime
-{
-    _timeIcon = [[UIImageView alloc] init];
-    _timeIcon.image = [UIImage imageNamed:@"TimeIcon"];
-    _timeIcon.tintColor = [UIColor whiteColor];
-    _timeIcon.translatesAutoresizingMaskIntoConstraints = NO;
-    [_timeIcon setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
-    [_timeIcon setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
-    [self.contentView addSubview:_timeIcon];
-    
-    _endTimerLabel = [[MZTimerLabel alloc] init];
-    _endTimerLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _endTimerLabel.font = [UIFont fontWithName:@"Avenir" size:12.0f];
-    _endTimerLabel.textColor = [UIColor whiteColor];
-    _endTimerLabel.timerType = MZTimerLabelTypeTimer;
-    _endTimerLabel.timeFormat = @"HH:mm:ss 'left'";
-    _endTimerLabel.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:_endTimerLabel];
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(_timeIcon, _endTimerLabel);
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_timeIcon]-5-[_endTimerLabel]-30-|" options:0 metrics:nil views:views]];
-
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-28-[_timeIcon]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[_endTimerLabel]" options:0 metrics:nil views:views]];
-    
-}
 
 - (void)setupOverLay {
     _overlayView = [[UIImageView alloc] initWithFrame:CGRectMake(65, 36, 241, 202)];
     _overlayView.hidden = YES;
-    // [self.contentView addSubview:_overlayView];
 }
 
 - (void)setState:(NMFoodCellState)cellState {
     _state = cellState;
     switch (cellState) {
         case NMFoodCellStateFuture: {
-            [_endTimerLabel pause];
-            [_startTimerLabel startWithEndingBlock:_timerEndedBlock];
-            _startTimerLabel.hidden = NO;
-            _notifyButton.hidden = NO;
-            
             _overlayView.image = nil;
             _overlayView.hidden = YES;
             _soldLabel.hidden = YES;
             _rateVw.hidden = YES;
             _progressBarView.hidden = YES;
-            _timeIcon.hidden = YES;
-            _endTimerLabel.hidden = YES;
-            _timeIcon.hidden = YES;
 
             break;
         }
         case NMFoodCellStateSoldOut:
-            [_endTimerLabel pause];
-            [_startTimerLabel pause];
             _overlayView.image = [UIImage imageNamed:@"SoldOutOverlay"];
             _overlayView.hidden = NO;
             
-            _startTimerLabel.hidden = YES;
-            _notifyButton.hidden = YES;
             _soldLabel.hidden = NO;
             _rateVw.hidden = NO;
             _progressBarView.hidden = NO;
-            _timeIcon.hidden = NO;
-            _endTimerLabel.hidden = YES;
-            _timeIcon.hidden = YES;
 
             break;
         case NMFoodCellStateExpired:
-            [_endTimerLabel pause];
-            [_startTimerLabel pause];
             _overlayView.image = [UIImage imageNamed:@"SaleEndedOverlay"];
             _overlayView.hidden = NO;
 
-            _startTimerLabel.hidden = YES;
-            _notifyButton.hidden = YES;
             _soldLabel.hidden = NO;
             _rateVw.hidden = NO;
             _progressBarView.hidden = NO;
-            _timeIcon.hidden = NO;
-            _endTimerLabel.hidden = YES;
-            _timeIcon.hidden = YES;
 
             break;
         case NMFoodCellStateNormal:
-            [_endTimerLabel startWithEndingBlock:_timerEndedBlock];
-            [_startTimerLabel pause];
             _overlayView.image = nil;
             _overlayView.hidden = YES;
 
-            _startTimerLabel.hidden = YES;
-            _notifyButton.hidden = YES;
             _soldLabel.hidden = NO;
             _rateVw.hidden = NO;
             _progressBarView.hidden = NO;
-            _timeIcon.hidden = NO;
-            _endTimerLabel.hidden = NO;
-            _timeIcon.hidden = NO;
 
             break;
         default:
             break;
     }
-}
-
-- (void)setupStartTimerLabel
-{
-    _startTimerLabel = [[MZTimerLabel alloc] init];
-    _startTimerLabel.timeLabel.font = [UIFont fontWithName:@"Avenir-Black" size:50];
-    _startTimerLabel.timeLabel.textColor = [UIColor whiteColor];
-    _startTimerLabel.timeLabel.alpha = .95;
-    _startTimerLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _startTimerLabel.textAlignment = NSTextAlignmentCenter;
-    _startTimerLabel.timeFormat = @"HH:mm:ss";
-    _startTimerLabel.timerType = MZTimerLabelTypeTimer;
-    [_foodImageView addSubview:_startTimerLabel];
-    
-    [_foodImageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_startTimerLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_startTimerLabel)]];
-    
-    [_foodImageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[_startTimerLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_startTimerLabel)]];
-}
-
-- (void)setupNotifyButton {
-    _notifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _notifyButton.layer.cornerRadius = 2;
-    _notifyButton.backgroundColor = [NMColors mainColor];
-    [_notifyButton setTitle:@"Notify Me" forState:UIControlStateNormal];
-    [_notifyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _notifyButton.titleLabel.font = [UIFont fontWithName:@"Avenir" size:12];
-    _notifyButton.frame = CGRectMake(67, 238.5-35, 241-4.5, 33);
-    
-    [self.contentView addSubview:_notifyButton];
-}
-
-- (void)dealloc {
-    _timerEndedBlock = NULL;
 }
 @end

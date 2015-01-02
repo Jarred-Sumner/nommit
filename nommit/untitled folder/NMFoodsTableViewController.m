@@ -61,6 +61,7 @@ const NSInteger NMFooterSection = 1;
         [self.tableView registerClass:[NMHoursBannerTableViewCell class] forCellReuseIdentifier:NMHoursCellIdentifier];
 //        [self.tableView addParallaxWithImage:[UIImage imageNamed:@"HoursBanner"] andHeight:130];
 //        [self.tableView.parallaxView setAutoresizingMask:UIViewAutoresizingNone];
+        self.tableView.tableFooterView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 197)];
         
     }
     return self;
@@ -261,7 +262,6 @@ const NSInteger NMFooterSection = 1;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMHoursBannerSection) return 25;
-//    if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) return 197;
     return 198.5;
 }
 
@@ -286,16 +286,26 @@ const NSInteger NMFooterSection = 1;
     return _headerView;
 }
 
+#pragma mark - Spacing for Footer View
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section == NMHoursBannerSection) return nil;
+    else {
+        return [[UIView alloc] initWithFrame:CGRectMake(0,0,1,44.0)];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == NMHoursBannerSection) return 0.f;
+    else {
+        return 44.f;
+    }
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     if (indexPath.section == NMHoursBannerSection) {
         cell = [tableView dequeueReusableCellWithIdentifier:NMHoursCellIdentifier];
-//    } else if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
-//        NMBecomeASellerFooterView *footerView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 197)];
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
-//        cell.backgroundView = footerView;
-//        return cell;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
     }
@@ -331,10 +341,7 @@ const NSInteger NMFooterSection = 1;
         indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
         NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-        __block NMFoodsTableViewController *this = self;
-        [foodCell setFood:food timerEndedBlock:^(NSTimeInterval elapsed) {
-            [this refresh];
-        }];
+        [foodCell setFood:food];
         
         if (food.state != NMFoodStateActive) {
             [foodCell setState:NMFoodCellStateExpired];
@@ -346,7 +353,6 @@ const NSInteger NMFooterSection = 1;
                     [foodCell setState:NMFoodCellStateExpired];
                 } else if (food.timingState == NMFoodTimingStatePending) {
                     [foodCell setState:NMFoodCellStateFuture];
-                    [foodCell.notifyButton addTarget:self action:@selector(notifyUser:) forControlEvents:UIControlEventTouchUpInside];
                 }
             } else {
                 [foodCell setState:NMFoodCellStateSoldOut];

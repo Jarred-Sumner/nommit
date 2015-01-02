@@ -21,15 +21,11 @@ typedef void (^NMFoodTableViewCellTimerBlock)(NSTimeInterval elapsed);
 
 @interface NMFoodTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) UIButton *notifyButton;
-@property (nonatomic, strong) MZTimerLabel *startTimerLabel;
+@property (nonatomic, strong) UILabel *startTimeLabel;
 
 @property (nonatomic) NMFoodCellState state;
-@property (nonatomic, copy) NMFoodTableViewCellTimerBlock timerEndedBlock;
 
-- (void)setFood:(NMFood*)food timerEndedBlock:(NMFoodTableViewCellTimerBlock)timerEndedBlock;
-
-- (void)setFutureSaleLayout;
+- (void)setFood:(NMFood*)food;
 
 
 
