@@ -262,13 +262,7 @@ const NSInteger NMFooterSection = 1;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMHoursBannerSection) return 25;
-    
-    if ([self tableView:tableView numberOfRowsInSection:indexPath.section] < 2 && [ [ UIScreen mainScreen ] bounds ].size.height > 480) {
-        return 198.5 + 44.0;
-    } else return 198.5;
-
-    
-
+    return 198.5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -290,6 +284,21 @@ const NSInteger NMFooterSection = 1;
 
     [_headerView.locationButton addTarget:self action:@selector(locationButtonTouched) forControlEvents:UIControlEventTouchUpInside];
     return _headerView;
+}
+
+#pragma mark - Spacing for Footer View
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section == NMHoursBannerSection) return nil;
+    else {
+        return [[UIView alloc] initWithFrame:CGRectMake(0,0,1,44.0)];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == NMHoursBannerSection) return 0.f;
+    else {
+        return 44.f;
+    }
 }
 
 

@@ -21,7 +21,7 @@ typedef void (^NMFoodTableViewCellTimerBlock)(NSTimeInterval elapsed);
 
 @interface NMFoodTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) MZTimerLabel *startTimerLabel;
+@property (nonatomic, strong) UILabel *startTimeLabel;
 
 @property (nonatomic) NMFoodCellState state;
 
