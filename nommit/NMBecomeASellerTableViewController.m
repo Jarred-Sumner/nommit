@@ -107,13 +107,26 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
         return _bannerCell;
     } else if (indexPath.section == NMBecomeASellerInfoSection) {
         _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMBecomeASellerInfoIdentifier];
+        _infoCell.dollarTitle.text = @"Pay off dues/loans";
+        _infoCell.chefTitle.text = @"How it works";
+        _infoCell.peopleTitle.text = @"Team up with friends";
+        
+        _infoCell.dollarDesc.text = @"You will be guaranteed to make at least $15/hr. Sellers typically make an average of $30/hr.";
+        _infoCell.chefDesc.text = @"You can either cook food and sell it or buy food and resell.";
+        _infoCell.peopleDesc.text = @"Gather 3-4 friends and work together to sell food together!";
+        
         return _infoCell;
     } else if (indexPath.section == NMBecomeASellerApplySection) {
         _applyCell = [self.tableView dequeueReusableCellWithIdentifier:NMBecomeASellerApplyIdentifier];
+        // _applyCell.becomeASellerLabel.text = @"Become A Seller";
+        [_applyCell.applyButton addTarget:self action:@selector(applyToBeSeller) forControlEvents:UIControlEventTouchUpInside];
         return _applyCell;
     }
     return nil;
 }
 
+- (void)applyToBeSeller {
+    
+}
 
 @end

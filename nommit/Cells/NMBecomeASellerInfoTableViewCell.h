@@ -10,4 +10,11 @@
 
 @interface NMBecomeASellerInfoTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *dollarTitle;
+@property (nonatomic, strong) UILabel *dollarDesc;
+@property (nonatomic,strong) UILabel *chefTitle;
+@property (nonatomic, strong) UILabel *chefDesc;
+@property (nonatomic, strong) UILabel *peopleTitle;
+@property (nonatomic, strong) UILabel *peopleDesc;
+
 @end

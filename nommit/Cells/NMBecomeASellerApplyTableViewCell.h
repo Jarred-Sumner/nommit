@@ -10,4 +10,8 @@
 
 @interface NMBecomeASellerApplyTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *becomeASellerLabel;
+
+@property (nonatomic, strong) UIButton *applyButton;
+
 @end
