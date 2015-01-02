@@ -10,4 +10,6 @@
 
 @interface NMBecomeASellerBannerTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *bannerLabel;
+
 @end

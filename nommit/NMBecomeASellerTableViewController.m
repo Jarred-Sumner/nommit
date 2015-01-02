@@ -104,6 +104,7 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMBecomeASellerBannerSection) {
         _bannerCell = [self.tableView dequeueReusableCellWithIdentifier:NMBecomeASellerBannerIdentifier];
+        _bannerCell.bannerLabel.text = @"You will be guaranteed to make at least $15/hr. Sellers typically make an average of $30/hr.";
         return _bannerCell;
     } else if (indexPath.section == NMBecomeASellerInfoSection) {
         _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMBecomeASellerInfoIdentifier];

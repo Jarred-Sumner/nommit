@@ -23,8 +23,26 @@
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[backgroundImage]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(backgroundImage)]];
         
+        [self setupLabel];
+        
     }
     return self;
+}
+
+- (void)setupLabel {
+    _bannerLabel = [[UILabel alloc] init];
+    _bannerLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _bannerLabel.font = [UIFont fontWithName:@"Avenir" size:13];
+    _bannerLabel.textColor = [UIColor whiteColor];
+    _bannerLabel.numberOfLines = 0;
+    _bannerLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _bannerLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [self.contentView addSubview:_bannerLabel];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-29-[_bannerLabel]-29-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_bannerLabel)]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_bannerLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_bannerLabel)]];
 }
 
 
