@@ -8,7 +8,6 @@
 
 #import "NMFoodsTableViewController.h"
 #import "NMFoodTableViewCell.h"
-#import "NMPlaceDropdownView.h"
 #import "NMNavigationController.h"
 #import "NMFoodCellHeaderView.h"
 #import "NMFood.h"
@@ -19,11 +18,11 @@
 #import "NMRateOrderTableViewController.h"
 #import "NMAppDelegate.h"
 #import "KLCPopup.h"
-#import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMHoursBannerTableViewCell.h"
 #import "NMBecomeASellerFooterView.h"
 #import "NMBecomeASellerTableViewController.h"
 
+#import "NMPlaceTitleView.h"
 
 static BOOL didAutoPresentPlaces = NO;
 
@@ -37,7 +36,6 @@ const NSInteger NMFooterSection = 1;
 @interface NMFoodsTableViewController ()
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong) NMPlaceDropdownView *headerView;
 
 @end
 
@@ -60,11 +58,9 @@ const NSInteger NMFooterSection = 1;
         
         [self.tableView registerClass:[NMFoodTableViewCell class] forCellReuseIdentifier:NMFoodCellIdentifier];
         [self.tableView registerClass:[NMHoursBannerTableViewCell class] forCellReuseIdentifier:NMHoursCellIdentifier];
-//        [self.tableView addParallaxWithImage:[UIImage imageNamed:@"HoursBanner"] andHeight:130];
-//        [self.tableView.parallaxView setAutoresizingMask:UIViewAutoresizingNone];
         
         NMBecomeASellerFooterView *footerView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 222)];
-        footerView.footerText.text = @"You will be guaranteed to make at least $15/hr. Sellers typically make an average of $30/hr.";
+        footerView.footerText.text = @"Sell food people love. Make from $15/hour to over $150/hour.";
         [footerView.footerButton addTarget:self action:@selector(openSellerPage) forControlEvents:UIControlEventTouchUpInside];
         self.tableView.tableFooterView = footerView;
         
@@ -82,6 +78,13 @@ const NSInteger NMFooterSection = 1;
     _place = place;
     _fetchedResultsController = nil;
     [self.tableView reloadData];
+    
+    self.navigationItem.titleView = [[NMPlaceTitleView alloc] initWithFrame:CGRectMake(0, -4, 200, 44) title:@"" target:self selector:@selector(showPlaces)];
+    if (place) {
+        [(NMPlaceTitleView*)self.navigationItem.titleView setTitle:place.name];
+    } else {
+        [(NMPlaceTitleView*)self.navigationItem.titleView setTitle:@"Pick Place"];
+    }
 }
 
 - (void)openSellerPage {
@@ -101,7 +104,7 @@ const NSInteger NMFooterSection = 1;
     [super viewDidAppear:animated];
 
     if (!_place) self.place = [NMPlace activePlace];
-    
+
     _fetchedResultsController = nil;
     [self.fetchedResultsController performFetch:nil];
     
@@ -109,7 +112,7 @@ const NSInteger NMFooterSection = 1;
         [self refresh];
         [self handlePendingOrders];
     } else if (!didAutoPresentPlaces && [NMFood countOfActiveFoods] > 0) {
-        [self locationButtonTouched];
+        [self showPlaces];
         didAutoPresentPlaces = YES;
     } else {
         [self refreshFood];
@@ -118,6 +121,10 @@ const NSInteger NMFooterSection = 1;
 
     // Register for push notifications
     [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] registerForPushNotifications];
+}
+
+- (void)loadView {
+    [super loadView];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -150,7 +157,7 @@ const NSInteger NMFooterSection = 1;
 
 - (void)refresh {
     if (!_place && [NMFood countOfActiveFoods] > 0 && !didAutoPresentPlaces) {
-        [self locationButtonTouched];
+        [self showPlaces];
         [self.refreshControl endRefreshing];
         return;
     }
@@ -270,27 +277,6 @@ const NSInteger NMFooterSection = 1;
     return 198.5;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == NMHoursBannerSection) return 0;
-    return NMPlaceDropdownTableViewCellHeight;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (section == NMHoursBannerSection) {
-        return nil;
-    }
-    _headerView = [[NMPlaceDropdownView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), NMPlaceDropdownTableViewCellHeight)];
-    if (_place) {
-        [_headerView.locationButton setTitle:[NSString stringWithFormat:@"Delivering to: %@", _place.name] forState:UIControlStateNormal];
-    } else {
-        [_headerView.locationButton setTitle:@"Pick a Delivery Location" forState:UIControlStateNormal];
-    }
-
-    [_headerView.locationButton addTarget:self action:@selector(locationButtonTouched) forControlEvents:UIControlEventTouchUpInside];
-    return _headerView;
-}
-
 #pragma mark - Spacing for Footer View
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == NMHoursBannerSection) return nil;
@@ -300,10 +286,8 @@ const NSInteger NMFooterSection = 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == NMHoursBannerSection) return 0.f;
-    else {
-        return 44.f;
-    }
+    if (section > NMHoursBannerSection) return 44.f;
+    else return 0.f;
 }
 
 
@@ -329,7 +313,7 @@ const NSInteger NMFooterSection = 1;
     if (food.orderable) {
 
         if (!_place) {
-            [self locationButtonTouched];
+            [self showPlaces];
             return;
         }
 
@@ -420,14 +404,12 @@ const NSInteger NMFooterSection = 1;
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     if (!self.navigationItem.leftBarButtonItem) self.navigationItem.leftBarButtonItem = lbb;
-    self.title = @"Menu";
-
     self.navigationController.navigationBarHidden = NO;
     
 }
 
 #pragma mark - location button
-- (void)locationButtonTouched
+- (void)showPlaces
 {
     NMPlacesTableViewController *placesVC = [[NMPlacesTableViewController alloc] init];
     placesVC.foodsVC = self;

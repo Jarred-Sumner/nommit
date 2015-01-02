@@ -53,6 +53,7 @@
 		83C3A18F19CE54660052B6F7 /* NMSellerApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A18E19CE54660052B6F7 /* NMSellerApiModel.m */; };
 		83C3A19219CE547A0052B6F7 /* NMPlaceApiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A19119CE547A0052B6F7 /* NMPlaceApiModel.m */; };
 		83C3A19519D0C5E20052B6F7 /* _NMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C3A19419D0C5E20052B6F7 /* _NMLocation.m */; };
+		83CD001A1A568F4A00D42560 /* NMPlaceTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CD00191A568F4A00D42560 /* NMPlaceTitleView.m */; };
 		83D663031A43919100090962 /* NMShowSchoolTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D663021A43919100090962 /* NMShowSchoolTableViewCell.m */; };
 		83D6A9E119B822B8009A6D9B /* _NMFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6A9D619B822B8009A6D9B /* _NMFood.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		83D6A9E219B822B8009A6D9B /* _NMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6A9D819B822B8009A6D9B /* _NMOrder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -270,6 +271,8 @@
 		83C3A19119CE547A0052B6F7 /* NMPlaceApiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMPlaceApiModel.m; sourceTree = "<group>"; };
 		83C3A19319D0C5E20052B6F7 /* _NMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _NMLocation.h; path = Model/_NMLocation.h; sourceTree = "<group>"; };
 		83C3A19419D0C5E20052B6F7 /* _NMLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _NMLocation.m; path = Model/_NMLocation.m; sourceTree = "<group>"; };
+		83CD00181A568F4A00D42560 /* NMPlaceTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMPlaceTitleView.h; sourceTree = "<group>"; };
+		83CD00191A568F4A00D42560 /* NMPlaceTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMPlaceTitleView.m; sourceTree = "<group>"; };
 		83D663011A43919100090962 /* NMShowSchoolTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMShowSchoolTableViewCell.h; sourceTree = "<group>"; };
 		83D663021A43919100090962 /* NMShowSchoolTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMShowSchoolTableViewCell.m; sourceTree = "<group>"; };
 		83D6A9D419B821BD009A6D9B /* V1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = V1.xcdatamodel; sourceTree = "<group>"; };
@@ -983,6 +986,8 @@
 				8DFC10131A0D733E004862F7 /* NMNotificationPopupView.m */,
 				8D6B9D8C1A53B20500DB4A4B /* NMBecomeASellerFooterView.h */,
 				8D6B9D8D1A53B20500DB4A4B /* NMBecomeASellerFooterView.m */,
+				83CD00181A568F4A00D42560 /* NMPlaceTitleView.h */,
+				83CD00191A568F4A00D42560 /* NMPlaceTitleView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1311,6 +1316,7 @@
 				83454F4D19DA39B6005CEA8C /* NMDeliveryPlace.m in Sources */,
 				8D51D2B319B6688200920F69 /* NMMenuViewController.m in Sources */,
 				8D51D29019B3A3DD00920F69 /* MEExpandableHeaderView.m in Sources */,
+				83CD001A1A568F4A00D42560 /* NMPlaceTitleView.m in Sources */,
 				8D5E561619C246F90001B531 /* NMPersonalCampaignViewController.m in Sources */,
 				8DC533A019DCEE9200A841EB /* NMSupportView.m in Sources */,
 				8D4907DC1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m in Sources */,

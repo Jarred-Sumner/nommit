@@ -49,26 +49,10 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
     self.title = @"Become A Seller";
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)initNavBar
-{
+- (void)initNavBar {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
                                                             style:UIBarButtonItemStylePlain
-                                                           target:(NMMenuNavigationController *)self.navigationController
+                                                           target:(UINavigationController *)self.navigationController
                                                            action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
@@ -104,17 +88,17 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMBecomeASellerBannerSection) {
         _bannerCell = [self.tableView dequeueReusableCellWithIdentifier:NMBecomeASellerBannerIdentifier];
-        _bannerCell.bannerLabel.text = @"You will be guaranteed to make at least $15/hr. Sellers typically make an average of $30/hr.";
+        _bannerCell.bannerLabel.text = @"Make from $15/hour to over $150/hour selling food people want.";
         return _bannerCell;
     } else if (indexPath.section == NMBecomeASellerInfoSection) {
         _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMBecomeASellerInfoIdentifier];
-        _infoCell.dollarTitle.text = @"Pay off dues/loans";
-        _infoCell.chefTitle.text = @"How it works";
-        _infoCell.peopleTitle.text = @"Team up with friends";
+        _infoCell.dollarTitle.text = @"Get Food";
+        _infoCell.chefTitle.text = @"Prepare Food";
+        _infoCell.peopleTitle.text = @"Deliver Food";
         
-        _infoCell.dollarDesc.text = @"You will be guaranteed to make at least $15/hr. Sellers typically make an average of $30/hr.";
-        _infoCell.chefDesc.text = @"You can either cook food and sell it or buy food and resell.";
-        _infoCell.peopleDesc.text = @"Gather 3-4 friends and work together to sell food together!";
+        _infoCell.dollarDesc.text = @"Buy fresh food people want from restaurants and grocery stores.";
+        _infoCell.chefDesc.text = @"Heat, box, and package all of it before deliveries start.";
+        _infoCell.peopleDesc.text = @"Gather 3-4 friends, and deliver the food together!";
         
         return _infoCell;
     } else if (indexPath.section == NMBecomeASellerApplySection) {
