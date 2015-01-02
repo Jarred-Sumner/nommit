@@ -25,6 +25,7 @@
 #import "NMInviteCodeViewController.h"
 #import "NMSupportViewController.h"
 #import "NMSellFoodInformationViewController.h"
+#import "NMBecomeASellerTableViewController.h"
 
 static NSInteger NMStaticSection = 0;
 static NSInteger NMOrdersSection = 1;
@@ -337,8 +338,8 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)showSellFood {
-    NMSellFoodInformationViewController *sellFoodVC = [[NMSellFoodInformationViewController alloc] init];
-    [self navigateTo:sellFoodVC];
+    NMBecomeASellerTableViewController *becomeASellerVC = [[NMBecomeASellerTableViewController alloc] init];
+    [self navigateTo:becomeASellerVC];
 }
 
 - (void)navigateTo:(UIViewController*)viewController {
