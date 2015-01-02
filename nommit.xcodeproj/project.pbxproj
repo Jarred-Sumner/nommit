@@ -89,6 +89,10 @@
 		8D5E561C19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E561B19C249E00001B531 /* NMCampaignVisibilityTableViewCell.m */; };
 		8D695D2219DB3AEF00EF6EB1 /* UIScrollView+NMParallaxHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D695D2119DB3AEF00EF6EB1 /* UIScrollView+NMParallaxHeader.m */; };
 		8D6B9D8E1A53B20500DB4A4B /* NMBecomeASellerFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B9D8D1A53B20500DB4A4B /* NMBecomeASellerFooterView.m */; };
+		8D6B9D941A56202B00DB4A4B /* NMBecomeASellerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B9D931A56202B00DB4A4B /* NMBecomeASellerTableViewController.m */; };
+		8D6B9D9A1A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B9D991A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.m */; };
+		8D6B9D9D1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B9D9C1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m */; };
+		8D6B9DA01A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.m */; };
 		8D6DE41719B7B220008F64CE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D6DE41619B7B220008F64CE /* CoreLocation.framework */; };
 		8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE41919B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m */; };
 		8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE41B19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m */; };
@@ -337,6 +341,14 @@
 		8D695D2119DB3AEF00EF6EB1 /* UIScrollView+NMParallaxHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+NMParallaxHeader.m"; path = "Custom Components/UIScrollView+NMParallaxHeader.m"; sourceTree = "<group>"; };
 		8D6B9D8C1A53B20500DB4A4B /* NMBecomeASellerFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMBecomeASellerFooterView.h; path = Views/NMBecomeASellerFooterView.h; sourceTree = "<group>"; };
 		8D6B9D8D1A53B20500DB4A4B /* NMBecomeASellerFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMBecomeASellerFooterView.m; path = Views/NMBecomeASellerFooterView.m; sourceTree = "<group>"; };
+		8D6B9D921A56202B00DB4A4B /* NMBecomeASellerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMBecomeASellerTableViewController.h; sourceTree = "<group>"; };
+		8D6B9D931A56202B00DB4A4B /* NMBecomeASellerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMBecomeASellerTableViewController.m; sourceTree = "<group>"; };
+		8D6B9D981A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMBecomeASellerBannerTableViewCell.h; path = Cells/NMBecomeASellerBannerTableViewCell.h; sourceTree = "<group>"; };
+		8D6B9D991A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMBecomeASellerBannerTableViewCell.m; path = Cells/NMBecomeASellerBannerTableViewCell.m; sourceTree = "<group>"; };
+		8D6B9D9B1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMBecomeASellerInfoTableViewCell.h; path = Cells/NMBecomeASellerInfoTableViewCell.h; sourceTree = "<group>"; };
+		8D6B9D9C1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMBecomeASellerInfoTableViewCell.m; path = Cells/NMBecomeASellerInfoTableViewCell.m; sourceTree = "<group>"; };
+		8D6B9D9E1A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMBecomeASellerApplyTableViewCell.h; path = Cells/NMBecomeASellerApplyTableViewCell.h; sourceTree = "<group>"; };
+		8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMBecomeASellerApplyTableViewCell.m; path = Cells/NMBecomeASellerApplyTableViewCell.m; sourceTree = "<group>"; };
 		8D6DE41619B7B220008F64CE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8D6DE41819B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPGooglePlacesAutocompleteUtilities.h; path = Libraries/SPGooglePlacesAutocompleteUtilities.h; sourceTree = "<group>"; };
 		8D6DE41919B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesAutocompleteUtilities.m; path = Libraries/SPGooglePlacesAutocompleteUtilities.m; sourceTree = "<group>"; };
@@ -829,6 +841,8 @@
 				8D4907D81A044F47001A2225 /* NMShiftTableViewController.m */,
 				8DFC10031A09EB2B004862F7 /* NMSellFoodInformationViewController.h */,
 				8DFC10041A09EB2B004862F7 /* NMSellFoodInformationViewController.m */,
+				8D6B9D921A56202B00DB4A4B /* NMBecomeASellerTableViewController.h */,
+				8D6B9D931A56202B00DB4A4B /* NMBecomeASellerTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -932,6 +946,12 @@
 				8D73BF7F1A439B7D001DADC1 /* NMHoursBannerTableViewCell.m */,
 				83D663011A43919100090962 /* NMShowSchoolTableViewCell.h */,
 				83D663021A43919100090962 /* NMShowSchoolTableViewCell.m */,
+				8D6B9D981A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.h */,
+				8D6B9D991A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.m */,
+				8D6B9D9B1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.h */,
+				8D6B9D9C1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m */,
+				8D6B9D9E1A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.h */,
+				8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1163,6 +1183,7 @@
 			files = (
 				830067A419DACF1600AA89D0 /* NMDeliveryPlaceNavigatorView.m in Sources */,
 				837F229419D7BA29000AA2FE /* NMPaymentMethodTableViewCell.m in Sources */,
+				8D6B9D9A1A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.m in Sources */,
 				8D3D052E19DB5C3400B02677 /* NMCourierSummaryTableViewController.m in Sources */,
 				8D49F30819BE942600E60145 /* NMPaymentsViewController.m in Sources */,
 				8D6B9D8E1A53B20500DB4A4B /* NMBecomeASellerFooterView.m in Sources */,
@@ -1175,6 +1196,7 @@
 				839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */,
 				8367D1BB1A1EAEE0009D8C63 /* _NMSubscription.m in Sources */,
 				8DD32FAA19D63A42009485C2 /* NMActivateAccountTableViewController.m in Sources */,
+				8D6B9D941A56202B00DB4A4B /* NMBecomeASellerTableViewController.m in Sources */,
 				8DA5198819D0ED9100BBA8A0 /* NMListTableViewCell.m in Sources */,
 				8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
 				8D51D2BE19B6A92000920F69 /* CHDigitInput.m in Sources */,
@@ -1244,6 +1266,7 @@
 				83C3A18619CE54380052B6F7 /* _NMSeller.m in Sources */,
 				83454F5119DA3A02005CEA8C /* NMShiftApiModel.m in Sources */,
 				8DCE835419D4C85500D770D0 /* NMPickPlaceTableViewCell.m in Sources */,
+				8D6B9DA01A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.m in Sources */,
 				83D663031A43919100090962 /* NMShowSchoolTableViewCell.m in Sources */,
 				8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				8DC5335719DC5D4D00A841EB /* NMLogoutButtonCell.m in Sources */,
@@ -1275,6 +1298,7 @@
 				8DD32FAD19D6628D009485C2 /* NMActivatePhoneTableViewCell.m in Sources */,
 				83D6A9EC19B82A5B009A6D9B /* NMApi.m in Sources */,
 				8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
+				8D6B9D9D1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m in Sources */,
 				83D6A9E319B822B8009A6D9B /* _NMUser.m in Sources */,
 				8DFC100E1A0C92F2004862F7 /* KLCPopup.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,

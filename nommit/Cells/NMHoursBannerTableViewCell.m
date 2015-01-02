@@ -33,9 +33,9 @@
         _hoursLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:_hoursLabel];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_hoursLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hoursLabel)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_hoursLabel]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hoursLabel)]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_hoursLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hoursLabel)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_hoursLabel]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_hoursLabel)]];
                         
         
     }
