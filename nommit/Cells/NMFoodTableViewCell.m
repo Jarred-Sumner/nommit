@@ -9,7 +9,7 @@
 #import "NMFoodTableViewCell.h"
 #import "TYMProgressBarView.h"
 #import "NMColors.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMFoodCellHeaderView.h"
 #import "RateView.h"
 #import  "MZTimerLabel.h"

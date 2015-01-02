@@ -10,7 +10,7 @@
 #import <REFrostedViewController.h>
 #import <REFrostedContainerViewController.h>
 #import "NMFoodsTableViewController.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMColors.h"
 
 #import "NMShiftTableViewController.h"
@@ -342,9 +342,7 @@ static NSInteger NMOrdersSection = 1;
 }
 
 - (void)navigateTo:(UIViewController*)viewController {
-    NMMenuNavigationController *navigationController = [[NMMenuNavigationController alloc] initWithRootViewController:viewController];
-    navigationController.navigationBar.translucent = NO;
-    
+    NMNavigationController *navigationController = [[NMNavigationController alloc] initWithRootViewController:viewController];    
     self.frostedViewController.contentViewController = navigationController;
     [self.frostedViewController hideMenuViewController];
 }
@@ -354,10 +352,10 @@ static NSInteger NMOrdersSection = 1;
     UINavigationController *navVC;
     if (shift) {
         NMShiftTableViewController *ordersVC = [[NMShiftTableViewController alloc] initWithShift:shift];
-        navVC = [[UINavigationController alloc] initWithRootViewController:ordersVC];
+        navVC = [[NMNavigationController alloc] initWithRootViewController:ordersVC];
     } else {
         NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];
-        navVC = [[UINavigationController alloc] initWithRootViewController:pickPlacesTVC];
+        navVC = [[NMNavigationController alloc] initWithRootViewController:pickPlacesTVC];
     }
     [self presentViewController:navVC animated:YES completion:nil];
 }

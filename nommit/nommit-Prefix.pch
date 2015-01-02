@@ -43,6 +43,6 @@
 
 #import "NMAppDelegate.h"
 #import "NMMenuViewController.h"
-
+#import "NMNavigationController.h"
 
 #endif

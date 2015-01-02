@@ -9,7 +9,7 @@
 #import "NMFoodsTableViewController.h"
 #import "NMFoodTableViewCell.h"
 #import "NMPlaceDropdownView.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMFoodCellHeaderView.h"
 #import "NMFood.h"
 #import <REFrostedViewController.h>
@@ -46,7 +46,7 @@ const NSInteger NMFooterSection = 1;
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
         
-        [(NMMenuNavigationController*)self.navigationController setDisabledMenu:NO];
+        [(NMNavigationController*)self.navigationController setDisabledMenu:NO];
         
         self.view.backgroundColor = UIColorFromRGB(0xF3F1F1);
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -83,13 +83,8 @@ const NSInteger NMFooterSection = 1;
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     
-    NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
+    NMNavigationController *navController = (NMNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = YES;
-    navController.navigationBar.translucent = NO;
-    
-//    NMBecomeASellerFooterView *footerView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 300, self.tableView.frame.size.width, 34)];
-//    self.tableView.tableFooterView = footerView;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -410,7 +405,7 @@ const NSInteger NMFooterSection = 1;
 {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
             style:UIBarButtonItemStylePlain
-            target:(NMMenuNavigationController *)self.navigationController
+            target:(NMNavigationController *)self.navigationController
             action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
@@ -427,8 +422,8 @@ const NSInteger NMFooterSection = 1;
     NMPlacesTableViewController *placesVC = [[NMPlacesTableViewController alloc] init];
     placesVC.foodsVC = self;
     
-    NMMenuNavigationController *navController =
-    [[NMMenuNavigationController alloc] initWithRootViewController:placesVC];
+    NMNavigationController *navController =
+    [[NMNavigationController alloc] initWithRootViewController:placesVC];
     navController.navigationBar.translucent = NO;
     [self presentViewController:navController animated:YES completion:^{
         self.place = [NMPlace activePlace];

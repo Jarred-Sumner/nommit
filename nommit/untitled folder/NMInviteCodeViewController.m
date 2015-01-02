@@ -8,7 +8,7 @@
 
 #import "NMInviteCodeViewController.h"
 #import "NMInviteCodeView.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "THContact.h"
 
 #import <Social/Social.h>
@@ -38,7 +38,7 @@
 - (void)inviteButtonTouched {
     THContactPickerViewController *contactPicker = [[THContactPickerViewController alloc] init];
     contactPicker.delegate = self;
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:contactPicker];
+    NMNavigationController *navVC = [[NMNavigationController alloc] initWithRootViewController:contactPicker];
     [self presentViewController:navVC animated:YES completion:nil];
 }
 
@@ -46,7 +46,7 @@
 {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
                                                             style:UIBarButtonItemStylePlain
-                                                           target:(NMMenuNavigationController *)self.navigationController
+                                                           target:(NMNavigationController *)self.navigationController
                                                            action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);

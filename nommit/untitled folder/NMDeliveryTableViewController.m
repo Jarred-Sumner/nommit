@@ -7,7 +7,7 @@
 //
 
 #import "NMDeliveryTableViewController.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMMenuViewController.h"
 #import "NMRateOrderTableViewController.h"
 #import "NMDeliveryAvatarsTableViewCell.h"
@@ -196,7 +196,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
 {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
                                                             style:UIBarButtonItemStylePlain
-                                                           target:(NMMenuNavigationController *)self.navigationController
+                                                           target:(NMNavigationController *)self.navigationController
                                                            action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
@@ -342,8 +342,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
                 if (error) return;
                 [SVProgressHUD showSuccessWithStatus:@"Cancelled!"];
                 NMFoodsTableViewController *foodsVC = [[NMFoodsTableViewController alloc] init];
-                NMMenuNavigationController *nav = [[NMMenuNavigationController alloc] initWithRootViewController:foodsVC];
-                nav.navigationBar.translucent = NO;
+                NMNavigationController *nav = [[NMNavigationController alloc] initWithRootViewController:foodsVC];
                 this.frostedViewController.contentViewController = nav;
                 
             }];

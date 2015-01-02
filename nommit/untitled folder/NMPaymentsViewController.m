@@ -11,7 +11,7 @@
 #import "NMColors.h"
 #import "Stripe.h"
 #import "SVProgressHUD.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMFoodsTableViewController.h"
 #import <SIAlertView/SIAlertView.h>
 #import "NMTableSeparatorView.h"

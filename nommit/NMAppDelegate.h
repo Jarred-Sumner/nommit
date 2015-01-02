@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <REFrostedViewController.h>
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 
 static NSString *NMDidRegisterForPushNotificationsKey = @"RegisteredForPush";
 static NSString *NMDidFailToRegisterForPushNotificationsKey = @"FailedToRegisterForPush";

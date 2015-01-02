@@ -12,7 +12,7 @@
 #import "NMAccountInformationTableViewCell.h"
 #import "NMAccountPromoTableViewCell.h"
 #import "NMPaymentMethodTableViewCell.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMPaymentsViewController.h"
 #import "NMLogoutButtonCell.h"
 #import "NMLoginViewController.h"
@@ -219,7 +219,7 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
 
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
                                                             style:UIBarButtonItemStylePlain
-                                                           target:(NMMenuNavigationController *)self.navigationController
+                                                           target:(NMNavigationController *)self.navigationController
                                                            action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);

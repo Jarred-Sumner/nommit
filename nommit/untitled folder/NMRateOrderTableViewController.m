@@ -10,11 +10,11 @@
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMDeliveryAvatarsTableViewCell.h"
 #import "NMDeliveryCallButtonTableViewCell.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 #import "NMDeliveryAvatarsTableViewCell.h"
 #import "NMDeliveryCallButtonTableViewCell.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMReceiptTableViewCell.h"
 #import "UIScrollView+NMParallaxHeader.h"
 
@@ -168,7 +168,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
                                                             style:UIBarButtonItemStylePlain
-                                                           target:(NMMenuNavigationController *)self.navigationController
+                                                           target:(NMNavigationController *)self.navigationController
                                                            action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);

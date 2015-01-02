@@ -81,7 +81,7 @@
 		8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2AB19B6382D00920F69 /* NMMiniItemView.m */; };
 		8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2AE19B6418000920F69 /* NMCollectionHeaderView.m */; };
 		8D51D2B319B6688200920F69 /* NMMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2B219B6688200920F69 /* NMMenuViewController.m */; };
-		8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2B519B6690900920F69 /* NMMenuNavigationController.m */; };
+		8D51D2B619B6690900920F69 /* NMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2B519B6690900920F69 /* NMNavigationController.m */; };
 		8D51D2B819B66D0100920F69 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D51D2B719B66D0100920F69 /* Accelerate.framework */; };
 		8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */; };
 		8D51D2BE19B6A92000920F69 /* CHDigitInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D2BD19B6A92000920F69 /* CHDigitInput.m */; };
@@ -322,8 +322,8 @@
 		8D51D2AE19B6418000920F69 /* NMCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCollectionHeaderView.m; path = Cells/NMCollectionHeaderView.m; sourceTree = "<group>"; };
 		8D51D2B119B6688200920F69 /* NMMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMMenuViewController.h; path = "Sliding Menu/NMMenuViewController.h"; sourceTree = "<group>"; };
 		8D51D2B219B6688200920F69 /* NMMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMMenuViewController.m; path = "Sliding Menu/NMMenuViewController.m"; sourceTree = "<group>"; };
-		8D51D2B419B6690900920F69 /* NMMenuNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMMenuNavigationController.h; path = "Sliding Menu/NMMenuNavigationController.h"; sourceTree = "<group>"; };
-		8D51D2B519B6690900920F69 /* NMMenuNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMMenuNavigationController.m; path = "Sliding Menu/NMMenuNavigationController.m"; sourceTree = "<group>"; };
+		8D51D2B419B6690900920F69 /* NMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNavigationController.h; path = "Sliding Menu/NMNavigationController.h"; sourceTree = "<group>"; };
+		8D51D2B519B6690900920F69 /* NMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNavigationController.m; path = "Sliding Menu/NMNavigationController.m"; sourceTree = "<group>"; };
 		8D51D2B719B66D0100920F69 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		8D51D2B919B6A28700920F69 /* NMRibbonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRibbonCell.h; path = Cells/NMRibbonCell.h; sourceTree = "<group>"; };
 		8D51D2BA19B6A28700920F69 /* NMRibbonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRibbonCell.m; path = Cells/NMRibbonCell.m; sourceTree = "<group>"; };
@@ -625,8 +625,8 @@
 			children = (
 				8D51D2B119B6688200920F69 /* NMMenuViewController.h */,
 				8D51D2B219B6688200920F69 /* NMMenuViewController.m */,
-				8D51D2B419B6690900920F69 /* NMMenuNavigationController.h */,
-				8D51D2B519B6690900920F69 /* NMMenuNavigationController.m */,
+				8D51D2B419B6690900920F69 /* NMNavigationController.h */,
+				8D51D2B519B6690900920F69 /* NMNavigationController.m */,
 			);
 			name = "Sliding Menu";
 			sourceTree = "<group>";
@@ -1235,7 +1235,7 @@
 				8DD32FCB19D9CBE4009485C2 /* NMDeliveryCallButtonTableViewCell.m in Sources */,
 				8D51D2AF19B6418000920F69 /* NMCollectionHeaderView.m in Sources */,
 				83EE766119BBFE51006FEDDF /* NMLocation.m in Sources */,
-				8D51D2B619B6690900920F69 /* NMMenuNavigationController.m in Sources */,
+				8D51D2B619B6690900920F69 /* NMNavigationController.m in Sources */,
 				836E358B19D3E039004208A6 /* NMCourier.m in Sources */,
 				8DD32FB919D8E804009485C2 /* NMDeliveryPlaceFooter.m in Sources */,
 				8DCE835A19D4D5C900D770D0 /* NMTableSeparatorView.m in Sources */,

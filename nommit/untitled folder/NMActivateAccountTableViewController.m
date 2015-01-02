@@ -15,7 +15,7 @@
 #import "NMColors.h"
 #import "Stripe.h"
 #import "SVProgressHUD.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMFoodsTableViewController.h"
 #import "NMConstants.h"
 #import <SIAlertView/SIAlertView.h>
@@ -63,9 +63,8 @@ static NSString *NMRegisterPhoneTableViewCellKey = @"NMRegisterPhoneTableViewCel
     
     [self initNavBar];
     
-    NMMenuNavigationController *navController = (NMMenuNavigationController *)self.navigationController;
+    NMNavigationController *navController = (NMNavigationController *)self.navigationController;
     navController.frostedViewController.panGestureEnabled = NO;
-    navController.navigationBar.translucent = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

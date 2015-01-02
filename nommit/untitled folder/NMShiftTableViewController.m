@@ -125,7 +125,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
 - (void)edit {
     NMDeliveryPlacesTableViewController *dps = [[NMDeliveryPlacesTableViewController alloc] initWithShift:_shift];
 
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:dps];
+    NMNavigationController *navVC = [[NMNavigationController alloc] initWithRootViewController:dps];
     [self.navigationController presentViewController:navVC animated:YES completion:NULL];
 }
 

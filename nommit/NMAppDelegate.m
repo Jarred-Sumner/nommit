@@ -8,13 +8,12 @@
 
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
-
 #import "NMAppDelegate.h"
 #import <REFrostedViewController.h>
 #import <REFrostedContainerViewController.h>
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMMenuViewController.h"
-#import "NMMenuNavigationController.h"
+#import "NMNavigationController.h"
 #import "NMLoginViewController.h"
 #import "NMFoodsTableViewController.h"
 #import "NMActivateAccountTableViewController.h"
@@ -29,7 +28,7 @@
 
 @interface NMAppDelegate ()
 
-@property (nonatomic, strong) NMMenuNavigationController *navigationController;
+@property (nonatomic, strong) NMNavigationController *navigationController;
 @property (nonatomic, strong) KLCPopup *popup;
 
 @end
@@ -38,7 +37,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [application setApplicationIconBadgeNumber:0];
+    [application setStatusBarStyle:UIStatusBarStyleDefault];
     [FBLoginView class];
     [Crashlytics startWithAPIKey:@"31fe8f31e5f07653f483f7db9bf622029dd41d84"];
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
@@ -46,6 +46,8 @@
     [self resetUI];
     
     [self.window makeKeyAndVisible];
+    self.window.layer.cornerRadius = 5.0f;
+    self.window.layer.masksToBounds = YES;
     
     [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
 
@@ -59,43 +61,7 @@
         
     }
     [[Mixpanel sharedInstance] track:@"Opened App"];
-    
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBarBG"]
-//                                       forBarMetrics:UIBarMetricsDefault];
-//    self.navigationController.navigationBar.layer.cornerRadius= 8;
-    
-    // [self makeRoundedNavBar];
-    
-    // [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
-    
-    
-    
-    
     return YES;
-}
-
-- (void)makeRoundedNavBar {
-    CALayer *capa = [self.navigationController navigationBar].layer;
-//    [capa setShadowColor: [[UIColor blackColor] CGColor]];
-//    [capa setShadowOpacity:0.85f];
-//    [capa setShadowOffset: CGSizeMake(0.0f, 1.5f)];
-//    [capa setShadowRadius:2.0f];
-//    [capa setShouldRasterize:YES];
-    
-    
-    //Round
-    CGRect bounds = capa.bounds;
-    bounds.size.height += 10.0f;    //I'm reserving enough room for the shadow
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:bounds
-                                                   byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
-                                                         cornerRadii:CGSizeMake(4.0, 4.0)];
-    
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = bounds;
-    maskLayer.path = maskPath.CGPath;
-    
-    [capa addSublayer:maskLayer];
-    capa.mask = maskLayer;
 }
 
 - (void)checkForActiveOrders {
@@ -110,7 +76,7 @@
     if ([NMSession isUserLoggedIn]) {
         if ([NMUser currentUser].state == NMUserStateRegistered) {
             
-            __block NMMenuNavigationController *navVC = _navigationController;
+            __block NMNavigationController *navVC = _navigationController;
             return [[NMSchoolsViewController alloc] initWithCompletionBlock:^{
                 NMActivateAccountTableViewController *accountVC = [[NMActivateAccountTableViewController alloc] init];
                 [navVC pushViewController:accountVC animated:YES];
@@ -157,7 +123,7 @@
 - (void)resetUI
 {
     // create content and menu controllers
-    _navigationController = [[NMMenuNavigationController alloc] init];
+    _navigationController = [[NMNavigationController alloc] init];
     [_navigationController pushViewController:self.rootViewController animated:NO];
 
     NMMenuViewController *menuController = [[NMMenuViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -172,8 +138,7 @@
     
     // make it root view controller
     self.window.rootViewController = frostedViewController;
-
-    _navigationController.navigationBar.translucent = NO;
+    self.window.backgroundColor = [UIColor blackColor];
 }
 
 - (UIWindow*)window {
