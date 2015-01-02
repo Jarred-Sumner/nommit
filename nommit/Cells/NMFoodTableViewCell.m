@@ -247,6 +247,7 @@
 {
     _timeIcon = [[UIImageView alloc] init];
     _timeIcon.image = [UIImage imageNamed:@"TimeIcon"];
+    _timeIcon.tintColor = [UIColor whiteColor];
     _timeIcon.translatesAutoresizingMaskIntoConstraints = NO;
     [_timeIcon setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     [_timeIcon setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
@@ -255,7 +256,7 @@
     _endTimerLabel = [[MZTimerLabel alloc] init];
     _endTimerLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _endTimerLabel.font = [UIFont fontWithName:@"Avenir" size:12.0f];
-    _endTimerLabel.textColor = UIColorFromRGB(0x979797);
+    _endTimerLabel.textColor = [UIColor whiteColor];
     _endTimerLabel.timerType = MZTimerLabelTypeTimer;
     _endTimerLabel.timeFormat = @"HH:mm:ss 'left'";
     _endTimerLabel.textAlignment = NSTextAlignmentRight;
@@ -263,11 +264,11 @@
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_timeIcon, _endTimerLabel);
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_timeIcon]-5-[_endTimerLabel]-18-|" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_timeIcon]-5-[_endTimerLabel]-30-|" options:0 metrics:nil views:views]];
 
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-18-[_timeIcon]" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_endTimerLabel]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-28-[_timeIcon]" options:0 metrics:nil views:views]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[_endTimerLabel]" options:0 metrics:nil views:views]];
     
 }
 

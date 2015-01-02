@@ -31,6 +31,7 @@ static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
 static NSString *NMHoursCellIdentifier = @"HoursCellIdentifier";
 
 const NSInteger NMHoursBannerSection = 0;
+const NSInteger NMFooterSection = 1;
 
 @interface NMFoodsTableViewController ()
 

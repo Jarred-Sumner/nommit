@@ -60,14 +60,42 @@
     }
     [[Mixpanel sharedInstance] track:@"Opened App"];
     
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBarBG"]
-                                       forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.layer.cornerRadius= 8;
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBarBG"]
+//                                       forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.layer.cornerRadius= 8;
+    
+    // [self makeRoundedNavBar];
+    
+    // [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
     
     
     
     
     return YES;
+}
+
+- (void)makeRoundedNavBar {
+    CALayer *capa = [self.navigationController navigationBar].layer;
+//    [capa setShadowColor: [[UIColor blackColor] CGColor]];
+//    [capa setShadowOpacity:0.85f];
+//    [capa setShadowOffset: CGSizeMake(0.0f, 1.5f)];
+//    [capa setShadowRadius:2.0f];
+//    [capa setShouldRasterize:YES];
+    
+    
+    //Round
+    CGRect bounds = capa.bounds;
+    bounds.size.height += 10.0f;    //I'm reserving enough room for the shadow
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:bounds
+                                                   byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
+                                                         cornerRadii:CGSizeMake(4.0, 4.0)];
+    
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = bounds;
+    maskLayer.path = maskPath.CGPath;
+    
+    [capa addSublayer:maskLayer];
+    capa.mask = maskLayer;
 }
 
 - (void)checkForActiveOrders {
