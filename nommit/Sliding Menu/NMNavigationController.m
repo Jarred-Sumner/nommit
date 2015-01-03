@@ -21,14 +21,13 @@
     [super loadView];
     self.navigationBar.translucent = NO;
     self.navigationBar.opaque = NO;
-    [self.navigationBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NavBarBG"]]];
-    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarBG"] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)]];
+    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarBG"] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
     
     self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColorFromRGB(0x319396)};
 }

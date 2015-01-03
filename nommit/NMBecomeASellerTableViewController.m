@@ -109,9 +109,9 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
         _infoCell.dollarTitle.text = @"Profit";
         
         _infoCell.getFoodDesc.text = @"Buy fresh food people want from restaurants and grocery stores.";
-        _infoCell.chefDesc.text = @"Heat, box, and package all of it before deliveries start.";
+        _infoCell.chefDesc.text = @"Heat, box, package, and bag the food before deliveries start.";
         _infoCell.peopleDesc.text = @"Gather 3-4 friends and deliver the food together!";
-        _infoCell.dollarDesc.text = @"We get you customers and handle payments. You keep the profit.";
+        _infoCell.dollarDesc.text = @"Mark up the price and sell!";
         
         return _infoCell;
     }
