@@ -408,6 +408,14 @@ const NSInteger NMFooterSection = 1;
     if (!self.navigationItem.leftBarButtonItem) self.navigationItem.leftBarButtonItem = lbb;
     self.navigationController.navigationBarHidden = NO;
     
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    [attributes setValue:UIColorFromRGB(0xB6B6B6) forKey:NSForegroundColorAttributeName];
+    [attributes setValue:[UIColor whiteColor] forKey:UITextAttributeTextShadowColor];
+    [attributes setValue:[NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)] forKey:UITextAttributeTextShadowOffset];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    
+    self.navigationController.navigationBar.titleTextAttributes = attributes;
+    
 }
 
 #pragma mark - location button

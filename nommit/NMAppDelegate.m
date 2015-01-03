@@ -49,7 +49,7 @@
     self.window.layer.cornerRadius = 5.0f;
     self.window.layer.masksToBounds = YES;
     
-    [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x42B7BB)];
+    [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x898989)];
 
     if ([NMSession isUserLoggedIn]) {
         [self checkForActiveOrders];
