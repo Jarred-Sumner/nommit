@@ -31,7 +31,6 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        [self.tableView setBounces:NO];
         self.tableView.backgroundColor = UIColorFromRGB(0xF3F1F1);
         [self.tableView registerClass:[NMBecomeASellerBannerTableViewCell class] forCellReuseIdentifier:NMBecomeASellerBannerIdentifier];
         [self.tableView registerClass:[NMBecomeASellerInfoTableViewCell class] forCellReuseIdentifier:NMBecomeASellerInfoIdentifier];
@@ -91,7 +90,7 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     NMBecomeASellerApplyView *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:NMBecomeASellerApplyIdentifier];
     
-    [view.applyButton addTarget:self action:@selector(applyButton) forControlEvents:UIControlEventTouchUpInside];
+    [view.applyButton addTarget:self action:@selector(applyToBeSeller) forControlEvents:UIControlEventTouchUpInside];
     
     return view;
 }
@@ -120,7 +119,17 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
 }
 
 - (void)applyToBeSeller {
-    
+    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Are you sure?" andMessage:@"Upon confirmation, we'll contact you by email or phone in the next 48 hours"];
+    [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
+    [alert addButtonWithTitle:@"Confirm" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+
+        [[NMApi instance] POST:@"sellers" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+            [SVProgressHUD showSuccessWithStatus:@"Applied!"];
+       }];
+
+    }];
+    [alert show];
 }
 
 @end
