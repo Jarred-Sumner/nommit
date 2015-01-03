@@ -6,23 +6,21 @@
 //  Copyright (c) 2015 Lucy Guo. All rights reserved.
 //
 
-#import "NMBecomeASellerApplyTableViewCell.h"
+#import "NMBecomeASellerApplyView.h"
 
-@interface NMBecomeASellerApplyTableViewCell()
+@interface NMBecomeASellerApplyView()
 
 @property (nonatomic, strong) UIImageView *sellImageLabel;
 
 @end
 
-@implementation NMBecomeASellerApplyTableViewCell
+@implementation NMBecomeASellerApplyView
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupBG];
-        // [self setupBecomeASellerLabel];
         [self setupBecomeASellerImageLabel];
         [self setupApplyButton];
         
@@ -72,16 +70,6 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_applyButton]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_applyButton)]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_sellImageLabel(25)]-22-[_applyButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_sellImageLabel, _applyButton)]];
-}
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

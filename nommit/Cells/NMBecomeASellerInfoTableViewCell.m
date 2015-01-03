@@ -21,7 +21,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.backgroundColor = UIColorFromRGB(0xF3F1F1);
+        self.backgroundColor = [UIColor clearColor];
         [self setupIcons];
         [self setupTitles];
         [self setupDescriptions];

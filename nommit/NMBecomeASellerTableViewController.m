@@ -9,12 +9,11 @@
 #import "NMBecomeASellerTableViewController.h"
 #import "NMBecomeASellerBannerTableViewCell.h"
 #import "NMBecomeASellerInfoTableViewCell.h"
-#import "NMBecomeASellerApplyTableViewCell.h"
+#import "NMBecomeASellerApplyView.h"
 
 
 const NSInteger NMBecomeASellerBannerSection = 0;
 const NSInteger NMBecomeASellerInfoSection = 1;
-const NSInteger NMBecomeASellerApplySection = 2;
 
 static NSString *NMBecomeASellerBannerIdentifier = @"NMBecomeASellerBannerCell";
 static NSString *NMBecomeASellerInfoIdentifier = @"NMBecomeASellerInfoCell";
@@ -24,7 +23,6 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
 
 @property (nonatomic, strong) NMBecomeASellerBannerTableViewCell *bannerCell;
 @property (nonatomic, strong) NMBecomeASellerInfoTableViewCell *infoCell;
-@property (nonatomic, strong) NMBecomeASellerApplyTableViewCell *applyCell;
 
 @end
 
@@ -33,9 +31,10 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
+        self.tableView.backgroundColor = UIColorFromRGB(0xF3F1F1);
         [self.tableView registerClass:[NMBecomeASellerBannerTableViewCell class] forCellReuseIdentifier:NMBecomeASellerBannerIdentifier];
         [self.tableView registerClass:[NMBecomeASellerInfoTableViewCell class] forCellReuseIdentifier:NMBecomeASellerInfoIdentifier];
-        [self.tableView registerClass:[NMBecomeASellerApplyTableViewCell class] forCellReuseIdentifier:NMBecomeASellerApplyIdentifier];
+        [self.tableView registerClass:[NMBecomeASellerApplyView class] forHeaderFooterViewReuseIdentifier:NMBecomeASellerApplyIdentifier];
         
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
@@ -66,7 +65,7 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -79,11 +78,22 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
         return 84;
     } else if (indexPath.section == NMBecomeASellerInfoSection) {
         return 423;
-    } else if (indexPath.section == NMBecomeASellerApplySection) {
-        return 132;
     } return 0;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == NMBecomeASellerInfoSection) {
+        return 132.0f;
+    } else return 0.f;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    NMBecomeASellerApplyView *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:NMBecomeASellerApplyIdentifier];
+    
+    [view.applyButton addTarget:self action:@selector(applyToBeSeller) forControlEvents:UIControlEventTouchUpInside];
+    
+    return view;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == NMBecomeASellerBannerSection) {
@@ -101,20 +111,25 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
         _infoCell.getFoodDesc.text = @"Buy fresh food people want from restaurants and grocery stores.";
         _infoCell.chefDesc.text = @"Heat, box, and package all of it before deliveries start.";
         _infoCell.peopleDesc.text = @"Gather 3-4 friends and deliver the food together!";
-        _infoCell.dollarDesc.text = @"We take a 15% + $0.30/transaction cut. You keep the profit.";
+        _infoCell.dollarDesc.text = @"We get you customers and handle payments. You keep the profit.";
         
         return _infoCell;
-    } else if (indexPath.section == NMBecomeASellerApplySection) {
-        _applyCell = [self.tableView dequeueReusableCellWithIdentifier:NMBecomeASellerApplyIdentifier];
-        // _applyCell.becomeASellerLabel.text = @"Become A Seller";
-        [_applyCell.applyButton addTarget:self action:@selector(applyToBeSeller) forControlEvents:UIControlEventTouchUpInside];
-        return _applyCell;
     }
     return nil;
 }
 
 - (void)applyToBeSeller {
-    
+    SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Are you sure?" andMessage:@"Upon confirmation, we'll contact you by email or phone in the next 48 hours"];
+    [alert addButtonWithTitle:@"Cancel" type:SIAlertViewButtonTypeCancel handler:NULL];
+    [alert addButtonWithTitle:@"Confirm" type:SIAlertViewButtonTypeDestructive handler:^(SIAlertView *alertView) {
+
+        [[NMApi instance] POST:@"sellers" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+            [SVProgressHUD showSuccessWithStatus:@"Applied!"];
+       }];
+
+    }];
+    [alert show];
 }
 
 @end

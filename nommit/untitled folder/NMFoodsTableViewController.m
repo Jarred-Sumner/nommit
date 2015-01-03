@@ -60,7 +60,7 @@ const NSInteger NMFooterSection = 1;
         [self.tableView registerClass:[NMHoursBannerTableViewCell class] forCellReuseIdentifier:NMHoursCellIdentifier];
         
         NMBecomeASellerFooterView *footerView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 222)];
-        footerView.footerText.text = @"Sell food people love. Make from $15/hour to over $150/hour.";
+        footerView.footerText.text = @"Turn food students love into cash. \n Make up to $150/hour selling food on Nommit.";
         [footerView.footerButton addTarget:self action:@selector(openSellerPage) forControlEvents:UIControlEventTouchUpInside];
         self.tableView.tableFooterView = footerView;
         

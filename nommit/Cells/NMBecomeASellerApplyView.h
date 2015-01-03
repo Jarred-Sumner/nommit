@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMBecomeASellerApplyTableViewCell : UITableViewCell
+@interface NMBecomeASellerApplyView : UITableViewHeaderFooterView
 
 @property (nonatomic, strong) UILabel *becomeASellerLabel;
 

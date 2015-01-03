@@ -93,7 +93,7 @@
 		8D6B9D941A56202B00DB4A4B /* NMBecomeASellerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B9D931A56202B00DB4A4B /* NMBecomeASellerTableViewController.m */; };
 		8D6B9D9A1A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B9D991A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.m */; };
 		8D6B9D9D1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B9D9C1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m */; };
-		8D6B9DA01A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.m */; };
+		8D6B9DA01A56212100DB4A4B /* NMBecomeASellerApplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyView.m */; };
 		8D6DE41719B7B220008F64CE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D6DE41619B7B220008F64CE /* CoreLocation.framework */; };
 		8D6DE41C19B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE41919B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m */; };
 		8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE41B19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m */; };
@@ -350,8 +350,8 @@
 		8D6B9D991A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMBecomeASellerBannerTableViewCell.m; path = Cells/NMBecomeASellerBannerTableViewCell.m; sourceTree = "<group>"; };
 		8D6B9D9B1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMBecomeASellerInfoTableViewCell.h; path = Cells/NMBecomeASellerInfoTableViewCell.h; sourceTree = "<group>"; };
 		8D6B9D9C1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMBecomeASellerInfoTableViewCell.m; path = Cells/NMBecomeASellerInfoTableViewCell.m; sourceTree = "<group>"; };
-		8D6B9D9E1A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMBecomeASellerApplyTableViewCell.h; path = Cells/NMBecomeASellerApplyTableViewCell.h; sourceTree = "<group>"; };
-		8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMBecomeASellerApplyTableViewCell.m; path = Cells/NMBecomeASellerApplyTableViewCell.m; sourceTree = "<group>"; };
+		8D6B9D9E1A56212100DB4A4B /* NMBecomeASellerApplyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMBecomeASellerApplyView.h; path = Cells/NMBecomeASellerApplyView.h; sourceTree = "<group>"; };
+		8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMBecomeASellerApplyView.m; path = Cells/NMBecomeASellerApplyView.m; sourceTree = "<group>"; };
 		8D6DE41619B7B220008F64CE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8D6DE41819B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPGooglePlacesAutocompleteUtilities.h; path = Libraries/SPGooglePlacesAutocompleteUtilities.h; sourceTree = "<group>"; };
 		8D6DE41919B7B3C7008F64CE /* SPGooglePlacesAutocompleteUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPGooglePlacesAutocompleteUtilities.m; path = Libraries/SPGooglePlacesAutocompleteUtilities.m; sourceTree = "<group>"; };
@@ -953,8 +953,8 @@
 				8D6B9D991A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.m */,
 				8D6B9D9B1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.h */,
 				8D6B9D9C1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m */,
-				8D6B9D9E1A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.h */,
-				8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.m */,
+				8D6B9D9E1A56212100DB4A4B /* NMBecomeASellerApplyView.h */,
+				8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyView.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1271,7 +1271,7 @@
 				83C3A18619CE54380052B6F7 /* _NMSeller.m in Sources */,
 				83454F5119DA3A02005CEA8C /* NMShiftApiModel.m in Sources */,
 				8DCE835419D4C85500D770D0 /* NMPickPlaceTableViewCell.m in Sources */,
-				8D6B9DA01A56212100DB4A4B /* NMBecomeASellerApplyTableViewCell.m in Sources */,
+				8D6B9DA01A56212100DB4A4B /* NMBecomeASellerApplyView.m in Sources */,
 				83D663031A43919100090962 /* NMShowSchoolTableViewCell.m in Sources */,
 				8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				8DC5335719DC5D4D00A841EB /* NMLogoutButtonCell.m in Sources */,
