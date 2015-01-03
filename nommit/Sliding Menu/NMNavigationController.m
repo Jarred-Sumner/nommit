@@ -17,15 +17,13 @@
 
 @implementation NMNavigationController
 
-- (void)loadView {
-    [super loadView];
-    self.navigationBar.translucent = NO;
-    self.navigationBar.opaque = NO;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.navigationBar.translucent = NO;
+    self.navigationBar.opaque = NO;
+
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)]];
     [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarBG"] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
     
