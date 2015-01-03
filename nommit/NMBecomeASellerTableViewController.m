@@ -78,7 +78,7 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
     if (indexPath.section == NMBecomeASellerBannerSection) {
         return 84;
     } else if (indexPath.section == NMBecomeASellerInfoSection) {
-        return 288;
+        return 423;
     } else if (indexPath.section == NMBecomeASellerApplySection) {
         return 132;
     } return 0;
@@ -92,13 +92,16 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
         return _bannerCell;
     } else if (indexPath.section == NMBecomeASellerInfoSection) {
         _infoCell = [self.tableView dequeueReusableCellWithIdentifier:NMBecomeASellerInfoIdentifier];
-        _infoCell.dollarTitle.text = @"Get Food";
+
+        _infoCell.getFoodTitle.text = @"Get Food";
         _infoCell.chefTitle.text = @"Prepare Food";
         _infoCell.peopleTitle.text = @"Deliver Food";
+        _infoCell.dollarTitle.text = @"Profit";
         
-        _infoCell.dollarDesc.text = @"Buy fresh food people want from restaurants and grocery stores.";
+        _infoCell.getFoodDesc.text = @"Buy fresh food people want from restaurants and grocery stores.";
         _infoCell.chefDesc.text = @"Heat, box, and package all of it before deliveries start.";
-        _infoCell.peopleDesc.text = @"Gather 3-4 friends, and deliver the food together!";
+        _infoCell.peopleDesc.text = @"Gather 3-4 friends and deliver the food together!";
+        _infoCell.dollarDesc.text = @"We take a 15% + $0.30/transaction cut. You keep the profit.";
         
         return _infoCell;
     } else if (indexPath.section == NMBecomeASellerApplySection) {
