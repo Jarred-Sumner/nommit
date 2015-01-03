@@ -397,6 +397,8 @@ const NSInteger NMFooterSection = 1;
 
 - (void)initNavBar
 {
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
             style:UIBarButtonItemStylePlain
             target:(NMNavigationController *)self.navigationController

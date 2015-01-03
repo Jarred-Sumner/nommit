@@ -20,6 +20,9 @@
 - (void)loadView {
     [super loadView];
     self.navigationBar.translucent = NO;
+    self.navigationBar.opaque = NO;
+    [self.navigationBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NavBarBG"]]];
+    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarBG"] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewDidLoad

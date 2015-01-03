@@ -277,7 +277,7 @@ static NSInteger NMOrdersSection = 1;
     if (indexPath.section == 0) {
         NSArray *titles;
         if ([[NMUser currentUser] isCourierValue]) {
-            titles = @[@"Menu", @"Deliver", @"Account", @"Invite Friends", @"Support", @"Becmoe a Seller"];
+            titles = @[@"Menu", @"Deliver", @"Account", @"Invite Friends", @"Support", @"Become a Seller"];
         } else {
             titles = @[@"Menu", @"Account", @"Invite Friends", @"Support", @"Become a Seller"];
         }

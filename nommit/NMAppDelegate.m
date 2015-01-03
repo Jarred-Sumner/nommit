@@ -61,6 +61,11 @@
         
     }
     [[Mixpanel sharedInstance] track:@"Opened App"];
+    
+    
+    [self.navigationController.navigationBar setTranslucent:NO];
+
+    
     return YES;
 }
 
