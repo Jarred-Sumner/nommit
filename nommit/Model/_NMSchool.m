@@ -14,6 +14,8 @@ const struct NMSchoolAttributes NMSchoolAttributes = {
 };
 
 const struct NMSchoolRelationships NMSchoolRelationships = {
+	.places = @"places",
+	.sellers = @"sellers",
 	.users = @"users",
 };
 
@@ -82,6 +84,28 @@ const struct NMSchoolRelationships NMSchoolRelationships = {
 
 - (void)setPrimitiveUidValue:(int64_t)value_ {
 	[self setPrimitiveUid:@(value_)];
+}
+
+@dynamic places;
+
+- (NSMutableSet*)placesSet {
+	[self willAccessValueForKey:@"places"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"places"];
+
+	[self didAccessValueForKey:@"places"];
+	return result;
+}
+
+@dynamic sellers;
+
+- (NSMutableSet*)sellersSet {
+	[self willAccessValueForKey:@"sellers"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"sellers"];
+
+	[self didAccessValueForKey:@"sellers"];
+	return result;
 }
 
 @dynamic users;

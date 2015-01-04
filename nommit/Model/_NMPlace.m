@@ -13,6 +13,7 @@ const struct NMPlaceRelationships NMPlaceRelationships = {
 	.deliveryPlaces = @"deliveryPlaces",
 	.location = @"location",
 	.orders = @"orders",
+	.school = @"school",
 };
 
 @implementation NMPlaceID
@@ -120,6 +121,8 @@ const struct NMPlaceRelationships NMPlaceRelationships = {
 	[self didAccessValueForKey:@"orders"];
 	return result;
 }
+
+@dynamic school;
 
 @end
 

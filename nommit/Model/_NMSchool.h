@@ -14,9 +14,13 @@ extern const struct NMSchoolAttributes {
 } NMSchoolAttributes;
 
 extern const struct NMSchoolRelationships {
+	__unsafe_unretained NSString *places;
+	__unsafe_unretained NSString *sellers;
 	__unsafe_unretained NSString *users;
 } NMSchoolRelationships;
 
+@class NMPlace;
+@class NMSeller;
 @class NMUser;
 
 @interface NMSchoolID : NSManagedObjectID {}
@@ -60,9 +64,33 @@ extern const struct NMSchoolRelationships {
 
 //- (BOOL)validateUid:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSSet *places;
+
+- (NSMutableSet*)placesSet;
+
+@property (nonatomic, strong) NSSet *sellers;
+
+- (NSMutableSet*)sellersSet;
+
 @property (nonatomic, strong) NMUser *users;
 
 //- (BOOL)validateUsers:(id*)value_ error:(NSError**)error_;
+
+@end
+
+@interface _NMSchool (PlacesCoreDataGeneratedAccessors)
+- (void)addPlaces:(NSSet*)value_;
+- (void)removePlaces:(NSSet*)value_;
+- (void)addPlacesObject:(NMPlace*)value_;
+- (void)removePlacesObject:(NMPlace*)value_;
+
+@end
+
+@interface _NMSchool (SellersCoreDataGeneratedAccessors)
+- (void)addSellers:(NSSet*)value_;
+- (void)removeSellers:(NSSet*)value_;
+- (void)addSellersObject:(NMSeller*)value_;
+- (void)removeSellersObject:(NMSeller*)value_;
 
 @end
 
@@ -91,6 +119,12 @@ extern const struct NMSchoolRelationships {
 
 - (int64_t)primitiveUidValue;
 - (void)setPrimitiveUidValue:(int64_t)value_;
+
+- (NSMutableSet*)primitivePlaces;
+- (void)setPrimitivePlaces:(NSMutableSet*)value;
+
+- (NSMutableSet*)primitiveSellers;
+- (void)setPrimitiveSellers:(NSMutableSet*)value;
 
 - (NMUser*)primitiveUsers;
 - (void)setPrimitiveUsers:(NMUser*)value;

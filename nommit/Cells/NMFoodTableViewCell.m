@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UIImageView *sellerLogoImageView;
 @property (nonatomic, strong) RateView *rateVw;
 
+@property (nonatomic, strong) UILabel *startTimeLabel;
 @property (nonatomic, strong) UIImageView *overlayView;
 
 
@@ -57,15 +58,17 @@
         
         [self setupOverLay];
         [self setupFeaturedBadge];
+        [self setupStartLabel];
     }
     return self;
 }
 
 - (void)setFood:(NMFood*)food {
+    _featuredBadge.hidden = !food.featuredValue;
     
-    [_sellerLogoImageView setImageWithURL:food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
+    [_sellerLogoImageView setImageWithURL:food.restaurant.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
     [_foodImageView setImageWithURL:food.headerImageAsURL placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
-    _sellerLabel.text = [NSString stringWithFormat:@"by %@", food.seller.name];
+    _sellerLabel.text = [NSString stringWithFormat:@"by %@", food.restaurant.name];
     
     _nameLabel.text = food.title;
     _priceLabel.text = [NSString stringWithFormat:@"$%@", [food priceAtQuantity:@1]];
@@ -77,6 +80,15 @@
     }
     _startDate = food.startDate;
     _endDate = food.endDate;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = NSDateFormatterNoStyle;
+    dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    [_startTimeLabel setText:[NSString stringWithFormat:@"AVAILABLE %@", [dateFormatter stringFromDate:food.startDate]]];
+    
+    self.state = food.state;
+    self.timingState = food.timingState;
+    self.quantityState = food.quantityState;
 }
 
 - (void)setupFoodImage {
@@ -99,6 +111,18 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_cellBG]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_cellBG)]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_cellBG]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_cellBG)]];
+}
+
+- (void)setupStartLabel {
+    _startTimeLabel = [[UILabel alloc] init];
+    _startTimeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _startTimeLabel.textColor = [UIColor whiteColor];
+    _startTimeLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:30.5];
+    _startTimeLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:_startTimeLabel];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_startTimeLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_startTimeLabel)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[_startTimeLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_startTimeLabel)]];
 }
 
 - (void)setupSellerLogoImageView
@@ -175,7 +199,6 @@
 
 - (void)setupProgressBar
 {
-    // Create a progress bar view and set its appearance
     _progressBarView = [[TYMProgressBarView alloc] init];
     _progressBarView.barBorderWidth = 1.0f;
     _progressBarView.barBorderWidth = 0;
@@ -200,16 +223,13 @@
     _rateVw.tag = 88888;
     _rateVw.starSize = 10;
     _rateVw.translatesAutoresizingMaskIntoConstraints = NO;
-    
     _rateVw.starFillColor = [NMColors mainColor];
-    
     
     [self.contentView addSubview:_rateVw];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_rateVw, _nameLabel, _foodImageView);
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_rateVw]-88-|" options:0 metrics:nil views:views]];
-    
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_foodImageView]-2-[_rateVw]" options:0 metrics:nil views:views]];
 }
 
@@ -217,12 +237,13 @@
 - (void)setupOverLay {
     _overlayView = [[UIImageView alloc] init];
     _overlayView.translatesAutoresizingMaskIntoConstraints = NO;
+    _overlayView.layer.cornerRadius = 5.0f;
+    _overlayView.hidden = YES;
+
     [self.contentView addSubview:_overlayView];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-21-[_overlayView]-21-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_overlayView)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-22-[_overlayView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_overlayView)]];
-    
-    _overlayView.hidden = YES;
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-21-[_overlayView(278)]-21-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_overlayView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-22-[_overlayView(175)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_overlayView)]];
 }
 
 - (void)setupFeaturedBadge {
@@ -234,31 +255,47 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-7-[_featuredBadge]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_featuredBadge)]];
 }
 
-- (void)setState:(NMFoodCellState)cellState {
-    _state = cellState;
-    switch (cellState) {
-        case NMFoodCellStateFuture: {
-            _overlayView.image = nil;
-            _overlayView.hidden = YES;
-            break;
-        }
-        case NMFoodCellStateSoldOut:
-            _overlayView.image = [UIImage imageNamed:@"SoldOutOverlay"];
-            _overlayView.hidden = NO;
+#pragma mark - State Handling
 
-            break;
-        case NMFoodCellStateExpired:
-            _overlayView.image = [UIImage imageNamed:@"SaleEndedOverlay"];
-            _overlayView.hidden = NO;
-
-            break;
-        case NMFoodCellStateNormal:
-            _overlayView.image = nil;
-            _overlayView.hidden = YES;
-
-            break;
-        default:
-            break;
+- (void)setState:(NMFoodState)state {
+    _state = state;
+    if (state == NMFoodStateActive) {
+        _overlayView.image = nil;
+        _overlayView.hidden = YES;
+        _overlayView.backgroundColor = [UIColor clearColor];
+        _startTimeLabel.hidden = YES;
+    } else {
+        // If the food is inactive, just say sale ended.
+        self.timingState = NMFoodTimingStateExpired;
     }
 }
+
+- (void)setTimingState:(NMFoodTimingState)timingState {
+    _timingState = timingState;
+    if (timingState == NMFoodTimingStateExpired) {
+        _overlayView.image = [UIImage imageNamed:@"SaleEndedOverlay"];
+        _overlayView.hidden = NO;
+        _overlayView.backgroundColor = [UIColor clearColor];
+        _startTimeLabel.hidden = YES;
+    } else if (timingState == NMFoodTimingStatePending) {
+        _overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.24];
+        _overlayView.hidden = NO;
+        _startTimeLabel.hidden = NO;
+    } else {
+        self.state = NMFoodStateActive;
+    }
+}
+
+- (void)setQuantityState:(NMFoodQuantityState)quantityState {
+    _quantityState = quantityState;
+    if (quantityState == NMFoodQuantityStateSoldOut) {
+        _overlayView.image = [UIImage imageNamed:@"SoldOutOverlay"];
+        _overlayView.backgroundColor = [UIColor clearColor];
+        _overlayView.hidden = NO;
+        _startTimeLabel.hidden = YES;
+    } else {
+        self.state = NMFoodStateActive;
+    }
+}
+
 @end

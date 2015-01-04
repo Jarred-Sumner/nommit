@@ -12,10 +12,12 @@ extern const struct NMSellerAttributes {
 extern const struct NMSellerRelationships {
 	__unsafe_unretained NSString *couriers;
 	__unsafe_unretained NSString *foods;
+	__unsafe_unretained NSString *school;
 } NMSellerRelationships;
 
 @class NMCourier;
 @class NMFood;
+@class NMSchool;
 
 @interface NMSellerID : NSManagedObjectID {}
 @end
@@ -49,6 +51,10 @@ extern const struct NMSellerRelationships {
 @property (nonatomic, strong) NSSet *foods;
 
 - (NSMutableSet*)foodsSet;
+
+@property (nonatomic, strong) NMSchool *school;
+
+//- (BOOL)validateSchool:(id*)value_ error:(NSError**)error_;
 
 @end
 
@@ -87,5 +93,8 @@ extern const struct NMSellerRelationships {
 
 - (NSMutableSet*)primitiveFoods;
 - (void)setPrimitiveFoods:(NSMutableSet*)value;
+
+- (NMSchool*)primitiveSchool;
+- (void)setPrimitiveSchool:(NMSchool*)value;
 
 @end

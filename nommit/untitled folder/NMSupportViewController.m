@@ -89,6 +89,7 @@
             UIPasteboard *paste = [UIPasteboard generalPasteboard];
             paste.string = @"support@getnommit.com";
         }];
+        [alert show];
     }
 
 }

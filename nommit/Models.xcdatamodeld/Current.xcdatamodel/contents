@@ -110,6 +110,7 @@
         <relationship name="deliveryPlaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMDeliveryPlace" inverseName="place" inverseEntity="NMDeliveryPlace" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMLocation" inverseName="place" inverseEntity="NMLocation" syncable="YES"/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMOrder" inverseName="place" inverseEntity="NMOrder" syncable="YES"/>
+        <relationship name="school" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMSchool" inverseName="places" inverseEntity="NMSchool" syncable="YES"/>
     </entity>
     <entity name="NMPrice" representedClassName="NMPrice" syncable="YES">
         <attribute name="price" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
@@ -125,6 +126,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="toHours" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMPlace" inverseName="school" inverseEntity="NMPlace" syncable="YES"/>
+        <relationship name="sellers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMSeller" inverseName="school" inverseEntity="NMSeller" syncable="YES"/>
         <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMUser" inverseName="school" inverseEntity="NMUser" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
@@ -138,6 +141,7 @@
         <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="couriers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NMCourier" inverseName="seller" inverseEntity="NMCourier" syncable="YES"/>
         <relationship name="foods" toMany="YES" deletionRule="Nullify" destinationEntity="NMFood" inverseName="seller" inverseEntity="NMFood" syncable="YES"/>
+        <relationship name="school" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMSchool" inverseName="sellers" inverseEntity="NMSchool" syncable="YES"/>
     </entity>
     <entity name="NMShift" representedClassName="NMShift" syncable="YES">
         <attribute name="places" optional="YES" attributeType="String" syncable="YES"/>

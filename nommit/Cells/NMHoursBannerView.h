@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMHoursBannerTableViewCell : UITableViewCell
+@interface NMHoursBannerView : UIView
 
 @property (nonatomic, strong) UILabel *hoursLabel;
 

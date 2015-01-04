@@ -17,8 +17,6 @@
     for (NMPlaceApiModel *placeApiModel in models) {
         NMPlace *place = [MTLManagedObjectAdapter managedObjectFromModel:placeApiModel insertingIntoContext:[[NMApi instance] managedObjectContext] error:&error];
         [places addObject:place];
-        NSLog(@"Error: %@", error);
-        NSLog(@"Place: %@", placeApiModel.name);
     }
     return places;
 }
@@ -37,6 +35,10 @@
 
 + (NSValueTransformer *)locationJSONTransformer  {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMLocationApiModel class]];
+}
+
++ (NSValueTransformer *)schoolJSONTransformer  {
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[NMSchoolApiModel class]];
 }
 
 + (NSValueTransformer *)deliveryPlacesJSONTransformer  {

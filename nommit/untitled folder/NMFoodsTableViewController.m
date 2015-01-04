@@ -18,7 +18,7 @@
 #import "NMRateOrderTableViewController.h"
 #import "NMAppDelegate.h"
 #import "KLCPopup.h"
-#import "NMHoursBannerTableViewCell.h"
+#import "NMHoursBannerView.h"
 #import "NMBecomeASellerFooterView.h"
 #import "NMBecomeASellerTableViewController.h"
 
@@ -28,9 +28,7 @@ static BOOL didAutoPresentPlaces = NO;
 
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
-static NSString *NMHoursCellIdentifier = @"HoursCellIdentifier";
 
-const NSInteger NMHoursBannerSection = 0;
 const NSInteger NMFooterSection = 1;
 
 @interface NMFoodsTableViewController ()
@@ -57,12 +55,28 @@ const NSInteger NMFooterSection = 1;
         }
         
         [self.tableView registerClass:[NMFoodTableViewCell class] forCellReuseIdentifier:NMFoodCellIdentifier];
-        [self.tableView registerClass:[NMHoursBannerTableViewCell class] forCellReuseIdentifier:NMHoursCellIdentifier];
         
         NMBecomeASellerFooterView *footerView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 222)];
         footerView.footerText.text = @"Turn food students love into cash. \n Make up to $150/hour selling food on Nommit.";
         [footerView.footerButton addTarget:self action:@selector(openSellerPage) forControlEvents:UIControlEventTouchUpInside];
         self.tableView.tableFooterView = footerView;
+        
+        NMHoursBannerView *hoursView = [[NMHoursBannerView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), 25)];
+        
+        NMSchool *school = [[NMUser currentUser] school];
+        if (school.messageState == NMSchoolMessageStateHours) {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateStyle = NSDateFormatterNoStyle;
+            formatter.timeStyle = NSDateFormatterShortStyle;
+            
+            hoursView.hoursLabel.text = [NSString stringWithFormat:@"Weekdays %@ - %@", [formatter stringFromDate:school.fromHours], [formatter stringFromDate:school.toHours]];
+        } else if (school.messageState == NMSchoolMessageStateMOTD) {
+            hoursView.hoursLabel.text = school.motd;
+        } else if (school.messageState == NMSchoolMessageStateSpecialEvents) {
+            hoursView.hoursLabel.text = @"Only for Special Events";
+        }
+        
+        self.tableView.tableHeaderView = hoursView;
         
     }
     return self;
@@ -123,10 +137,6 @@ const NSInteger NMFooterSection = 1;
     [(NMAppDelegate*)[[UIApplication sharedApplication] delegate] registerForPushNotifications];
 }
 
-- (void)loadView {
-    [super loadView];
-}
-
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -140,12 +150,12 @@ const NSInteger NMFooterSection = 1;
         // - Stopped being sold (due to endDate being < now)
         // - Haven't been sold (startDate > now)
         // - Have sold out
-        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (endDate >= %@) AND (startDate <= %@) AND stateID = %@", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStatePending)], _place, [NSDate date], [NSDate date], @(NMFoodStateActive)];
+        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (endDate >= %@) AND (startDate <= %@) AND stateID = %@ AND seller.school = %@", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStatePending)], _place, [NSDate date], [NSDate date], @(NMFoodStateActive), [NMUser currentUser].school];
     } else {
-        foodPredicate = [NSPredicate predicateWithFormat:@"endDate >= %@", [[NSDate date] dateByAddingTimeInterval:-86400]];
+        foodPredicate = [NSPredicate predicateWithFormat:@"endDate >= %@ AND seller.school = %@", [[NSDate date] dateByAddingTimeInterval:-86400], [NMUser currentUser].school];
     }
     
-    _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"startDate" ascending:NO withPredicate:foodPredicate groupBy:nil delegate: self];
+    _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"featured" ascending:NO withPredicate:foodPredicate groupBy:nil delegate: self];
     return _fetchedResultsController;
 }
 
@@ -217,6 +227,8 @@ const NSInteger NMFooterSection = 1;
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                           withRowAnimation:UITableViewRowAnimationFade];
             break;
+        default:
+            break;
     }
 }
 
@@ -225,7 +237,6 @@ const NSInteger NMFooterSection = 1;
       newIndexPath:(NSIndexPath *)newIndexPath {
     
     UITableView *tableView = self.tableView;
-    
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
@@ -259,54 +270,37 @@ const NSInteger NMFooterSection = 1;
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.fetchedResultsController.sections.count + 1;
+    return self.fetchedResultsController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == NMHoursBannerSection) {
-        return 1;
-    }
-    // offset index
     id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
     NSUInteger count = [sectionInfo numberOfObjects];
     return count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == NMHoursBannerSection) return 25;
     return 198.5;
 }
 
 #pragma mark - Spacing for Footer View
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == NMHoursBannerSection) return nil;
-    else {
-        return [[UIView alloc] initWithFrame:CGRectMake(0,0,1,44.0)];
-    }
+    return [[UIView alloc] initWithFrame:CGRectMake(0,0,1,44.0)];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section > NMHoursBannerSection) return 44.f;
-    else return 0.f;
+    return 44.f;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
-    if (indexPath.section == NMHoursBannerSection) {
-        cell = [tableView dequeueReusableCellWithIdentifier:NMHoursCellIdentifier];
-    } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
     [self configureCell:cell forIndexPath:indexPath];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == NMHoursBannerSection) {
-        return;
-    }
     indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
     NMFood *food = (NMFood*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     
@@ -325,72 +319,10 @@ const NSInteger NMFooterSection = 1;
 }
 
 - (void)configureCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
-    if (indexPath.section == 1) {
-        NMFoodTableViewCell *foodCell = (NMFoodTableViewCell*)cell;
-        indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
-        NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        [foodCell setFood:food];
-        
-        if (food.state != NMFoodStateActive) {
-            [foodCell setState:NMFoodCellStateExpired];
-        } else {
-            if (food.quantityState == NMFoodQuantityStateActive) {
-                if (food.timingState == NMFoodTimingStateActive) {
-                    [foodCell setState:NMFoodCellStateNormal];
-                } else if (food.timingState == NMFoodTimingStateExpired) {
-                    [foodCell setState:NMFoodCellStateExpired];
-                } else if (food.timingState == NMFoodTimingStatePending) {
-                    [foodCell setState:NMFoodCellStateFuture];
-                }
-            } else {
-                [foodCell setState:NMFoodCellStateSoldOut];
-            }
-        }
-    } else {
-        NMHoursBannerTableViewCell *hoursCell = (NMHoursBannerTableViewCell*)cell;
-        
-        NMSchool *school = [[NMUser currentUser] school];
-        if (school.messageState == NMSchoolMessageStateHours) {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            formatter.dateStyle = NSDateFormatterNoStyle;
-            formatter.timeStyle = NSDateFormatterShortStyle;
-            
-            hoursCell.hoursLabel.text = [NSString stringWithFormat:@"Weekdays %@ - %@", [formatter stringFromDate:school.fromHours], [formatter stringFromDate:school.toHours]];
-        } else if (school.messageState == NMSchoolMessageStateMOTD) {
-            hoursCell.hoursLabel.text = school.motd;
-        } else if (school.messageState == NMSchoolMessageStateSpecialEvents) {
-            hoursCell.hoursLabel.text = @"Only for Special Events";
-        }
-        
-        [(UIImageView*)hoursCell.backgroundView setImageWithURL:[NSURL URLWithString:school.imageURL] placeholderImage:[UIImage imageNamed:@"HoursBanner"]];
-    }
-
-}
-
-- (void)notifyUser:(id)sender {
-    CGPoint point = [sender convertPoint:CGPointZero toView:self.tableView];
-    __block NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
-    
+    NMFoodTableViewCell *foodCell = (NMFoodTableViewCell*)cell;
     NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    __block NSNumber *foodID = food.uid;
-    __block NMFoodTableViewCell *cell = (NMFoodTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
-    [SVProgressHUD showWithStatus:@"Saving..." maskType:SVProgressHUDMaskTypeBlack];
-    
-    __block NMFoodsTableViewController *this = self;
-    NSString *path = [NSString stringWithFormat:@"users/%@", [NMUser currentUser].facebookUID];
-    [[NMApi instance] PUT:path parameters:@{ @"push_notifications" : @"reset" } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            NMFood *food = [NMFood MR_findFirstByAttribute:@"uid" withValue:foodID inContext:localContext];
-            food.willNotifyUser = @YES;
-        } completion:^(BOOL success, NSError *error) {
-            [SVProgressHUD showSuccessWithStatus:@"Saved!"];
-            [this configureCell:cell forIndexPath:indexPath];
-        }];
-
-        
-    }];
+    [foodCell setFood:food];
 }
 
 #pragma mark - nav bar

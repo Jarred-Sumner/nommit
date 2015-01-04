@@ -99,7 +99,7 @@
 		8D6DE41D19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE41B19B7B3C7008F64CE /* SPGooglePlacesPlaceDetailQuery.m */; };
 		8D6DE42119B7B5AB008F64CE /* NMAddressSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE42019B7B5AB008F64CE /* NMAddressSearchViewController.m */; };
 		8D6DE42419B8342A008F64CE /* NMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DE42319B8342A008F64CE /* NMLoginViewController.m */; };
-		8D73BF801A439B7D001DADC1 /* NMHoursBannerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D73BF7F1A439B7D001DADC1 /* NMHoursBannerTableViewCell.m */; };
+		8D73BF801A439B7D001DADC1 /* NMHoursBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D73BF7F1A439B7D001DADC1 /* NMHoursBannerView.m */; };
 		8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819719B84269004A5090 /* NMAddressTableViewController.m */; };
 		8D74819D19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819A19B84448004A5090 /* SPGooglePlacesAutocompletePlace.m */; };
 		8D74819E19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D74819C19B84448004A5090 /* SPGooglePlacesAutocompleteQuery.m */; };
@@ -361,8 +361,8 @@
 		8D6DE42019B7B5AB008F64CE /* NMAddressSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMAddressSearchViewController.m; path = "untitled folder/NMAddressSearchViewController.m"; sourceTree = "<group>"; };
 		8D6DE42219B8342A008F64CE /* NMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMLoginViewController.h; path = "untitled folder/NMLoginViewController.h"; sourceTree = "<group>"; };
 		8D6DE42319B8342A008F64CE /* NMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMLoginViewController.m; path = "untitled folder/NMLoginViewController.m"; sourceTree = "<group>"; };
-		8D73BF7E1A439B7D001DADC1 /* NMHoursBannerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMHoursBannerTableViewCell.h; path = Cells/NMHoursBannerTableViewCell.h; sourceTree = "<group>"; };
-		8D73BF7F1A439B7D001DADC1 /* NMHoursBannerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMHoursBannerTableViewCell.m; path = Cells/NMHoursBannerTableViewCell.m; sourceTree = "<group>"; };
+		8D73BF7E1A439B7D001DADC1 /* NMHoursBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMHoursBannerView.h; path = Cells/NMHoursBannerView.h; sourceTree = "<group>"; };
+		8D73BF7F1A439B7D001DADC1 /* NMHoursBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMHoursBannerView.m; path = Cells/NMHoursBannerView.m; sourceTree = "<group>"; };
 		8D74819619B84269004A5090 /* NMAddressTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMAddressTableViewController.h; path = "untitled folder/NMAddressTableViewController.h"; sourceTree = "<group>"; };
 		8D74819719B84269004A5090 /* NMAddressTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMAddressTableViewController.m; path = "untitled folder/NMAddressTableViewController.m"; sourceTree = "<group>"; };
 		8D74819919B84448004A5090 /* SPGooglePlacesAutocompletePlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPGooglePlacesAutocompletePlace.h; path = Libraries/SPGooglePlacesAutocompletePlace.h; sourceTree = "<group>"; };
@@ -1249,7 +1249,7 @@
 				83D6A9E419B822B8009A6D9B /* NMFood.m in Sources */,
 				83C3A19519D0C5E20052B6F7 /* _NMLocation.m in Sources */,
 				839765BC19BBCE0A00EE8254 /* NMUserApiModel.m in Sources */,
-				8D73BF801A439B7D001DADC1 /* NMHoursBannerTableViewCell.m in Sources */,
+				8D73BF801A439B7D001DADC1 /* NMHoursBannerView.m in Sources */,
 				839765B919BBCE0200EE8254 /* NMOrderApiModel.m in Sources */,
 				8D6DE42419B8342A008F64CE /* NMLoginViewController.m in Sources */,
 				8DC5338C19DCBAF500A841EB /* THContactPickerView.m in Sources */,

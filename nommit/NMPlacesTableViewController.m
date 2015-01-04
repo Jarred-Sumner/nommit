@@ -14,8 +14,6 @@
 
 @property (nonatomic, strong) NMNoFoodView *noFoodView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-//@property (nonatomic, strong) UISearchBar *searchBar;
-//@property (nonatomic, strong) UISearchDisplayController * searchController;
 
 @end
 
@@ -84,7 +82,8 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     
     [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
         [this.refreshControl endRefreshing];
-        [this.fetchedResultsController performFetch:nil];
+        [this.fetchedResultsController performFetch:&error];
+        NSLog(@"Error: %@", error);
     }];
 }
 
@@ -93,7 +92,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"foodCount > 0"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"foodCount > 0 AND school = %@", [NMUser currentUser].school];
     _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:predicate groupBy:nil delegate:self];
     return _fetchedResultsController;
 }

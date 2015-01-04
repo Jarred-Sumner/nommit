@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, NMDeliveryCountdownState) {
     NMDeliveryCountdownStateArrived,
 };
 
-static NSTimeInterval NMOrderFetchInterval = 10;
+static NSTimeInterval NMOrderFetchInterval = 7;
 static NSTimeInterval NMCountdownFlashInterval = 0.75f;
 
 
@@ -294,6 +294,10 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
     [self fetchOrderStatus];
 }
 
+- (void)stopFetchingOrderStatus {
+    [_fetchOrderTimer invalidate];
+}
+
 - (void)fetchOrderStatus {
     __block NMDeliveryTableViewController *this = self;
     [[NMApi instance] GET:[NSString stringWithFormat:@"orders/%@", _order.uid] parameters:nil completion:^(OVCResponse *response, NSError *error) {
@@ -303,10 +307,6 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
             this.order = [MTLManagedObjectAdapter managedObjectFromModel:orderModel insertingIntoContext:[NSManagedObjectContext MR_defaultContext] error:nil];
         });
     }];
-}
-
-- (void)stopFetchingOrderStatus {
-    [_fetchOrderTimer invalidate];
 }
 
 #pragma mark - Cancel

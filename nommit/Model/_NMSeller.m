@@ -12,6 +12,7 @@ const struct NMSellerAttributes NMSellerAttributes = {
 const struct NMSellerRelationships NMSellerRelationships = {
 	.couriers = @"couriers",
 	.foods = @"foods",
+	.school = @"school",
 };
 
 @implementation NMSellerID
@@ -94,6 +95,8 @@ const struct NMSellerRelationships NMSellerRelationships = {
 	[self didAccessValueForKey:@"foods"];
 	return result;
 }
+
+@dynamic school;
 
 @end
 

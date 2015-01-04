@@ -13,11 +13,13 @@ extern const struct NMPlaceRelationships {
 	__unsafe_unretained NSString *deliveryPlaces;
 	__unsafe_unretained NSString *location;
 	__unsafe_unretained NSString *orders;
+	__unsafe_unretained NSString *school;
 } NMPlaceRelationships;
 
 @class NMDeliveryPlace;
 @class NMLocation;
 @class NMOrder;
+@class NMSchool;
 
 @interface NMPlaceID : NSManagedObjectID {}
 @end
@@ -59,6 +61,10 @@ extern const struct NMPlaceRelationships {
 @property (nonatomic, strong) NSSet *orders;
 
 - (NSMutableSet*)ordersSet;
+
+@property (nonatomic, strong) NMSchool *school;
+
+//- (BOOL)validateSchool:(id*)value_ error:(NSError**)error_;
 
 @end
 
@@ -103,5 +109,8 @@ extern const struct NMPlaceRelationships {
 
 - (NSMutableSet*)primitiveOrders;
 - (void)setPrimitiveOrders:(NSMutableSet*)value;
+
+- (NMSchool*)primitiveSchool;
+- (void)setPrimitiveSchool:(NMSchool*)value;
 
 @end

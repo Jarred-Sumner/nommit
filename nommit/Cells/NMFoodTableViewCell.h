@@ -10,20 +10,14 @@
 #import "NMFood.h"
 #import "MZTimerLabel.h"
 
-typedef NS_ENUM(NSInteger, NMFoodCellState) {
-    NMFoodCellStateSoldOut = 1,
-    NMFoodCellStateExpired,
-    NMFoodCellStateFuture,
-    NMFoodCellStateNormal
-};
-
 typedef void (^NMFoodTableViewCellTimerBlock)(NSTimeInterval elapsed);
 
 @interface NMFoodTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *startTimeLabel;
 
-@property (nonatomic) NMFoodCellState state;
+@property (nonatomic) NMFoodState state;
+@property (nonatomic) NMFoodQuantityState quantityState;
+@property (nonatomic) NMFoodTimingState timingState;
 
 @property (nonatomic, strong) UIImageView *featuredBadge;
 
