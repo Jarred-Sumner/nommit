@@ -14,9 +14,6 @@ const struct NMSellerRelationships NMSellerRelationships = {
 	.foods = @"foods",
 };
 
-const struct NMSellerFetchedProperties NMSellerFetchedProperties = {
-};
-
 @implementation NMSellerID
 @end
 
@@ -42,7 +39,7 @@ const struct NMSellerFetchedProperties NMSellerFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"uidValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"uid"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -52,26 +49,11 @@ const struct NMSellerFetchedProperties NMSellerFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic logoURL;
-
-
-
-
-
 
 @dynamic name;
 
-
-
-
-
-
 @dynamic uid;
-
-
 
 - (int32_t)uidValue {
 	NSNumber *result = [self uid];
@@ -79,7 +61,7 @@ const struct NMSellerFetchedProperties NMSellerFetchedProperties = {
 }
 
 - (void)setUidValue:(int32_t)value_ {
-	[self setUid:[NSNumber numberWithInt:value_]];
+	[self setUid:@(value_)];
 }
 
 - (int32_t)primitiveUidValue {
@@ -88,42 +70,30 @@ const struct NMSellerFetchedProperties NMSellerFetchedProperties = {
 }
 
 - (void)setPrimitiveUidValue:(int32_t)value_ {
-	[self setPrimitiveUid:[NSNumber numberWithInt:value_]];
+	[self setPrimitiveUid:@(value_)];
 }
-
-
-
-
 
 @dynamic couriers;
 
-	
 - (NSMutableSet*)couriersSet {
 	[self willAccessValueForKey:@"couriers"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"couriers"];
-  
+
 	[self didAccessValueForKey:@"couriers"];
 	return result;
 }
-	
 
 @dynamic foods;
 
-	
 - (NSMutableSet*)foodsSet {
 	[self willAccessValueForKey:@"foods"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"foods"];
-  
+
 	[self didAccessValueForKey:@"foods"];
 	return result;
 }
-	
-
-
-
-
-
 
 @end
+

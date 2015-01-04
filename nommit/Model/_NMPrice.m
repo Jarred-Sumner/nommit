@@ -13,9 +13,6 @@ const struct NMPriceRelationships NMPriceRelationships = {
 	.food = @"food",
 };
 
-const struct NMPriceFetchedProperties NMPriceFetchedProperties = {
-};
-
 @implementation NMPriceID
 @end
 
@@ -41,7 +38,7 @@ const struct NMPriceFetchedProperties NMPriceFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"quantityValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"quantity"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -56,19 +53,9 @@ const struct NMPriceFetchedProperties NMPriceFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic price;
 
-
-
-
-
-
 @dynamic quantity;
-
-
 
 - (int16_t)quantityValue {
 	NSNumber *result = [self quantity];
@@ -76,7 +63,7 @@ const struct NMPriceFetchedProperties NMPriceFetchedProperties = {
 }
 
 - (void)setQuantityValue:(int16_t)value_ {
-	[self setQuantity:[NSNumber numberWithShort:value_]];
+	[self setQuantity:@(value_)];
 }
 
 - (int16_t)primitiveQuantityValue {
@@ -85,16 +72,10 @@ const struct NMPriceFetchedProperties NMPriceFetchedProperties = {
 }
 
 - (void)setPrimitiveQuantityValue:(int16_t)value_ {
-	[self setPrimitiveQuantity:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveQuantity:@(value_)];
 }
 
-
-
-
-
 @dynamic uid;
-
-
 
 - (int64_t)uidValue {
 	NSNumber *result = [self uid];
@@ -102,7 +83,7 @@ const struct NMPriceFetchedProperties NMPriceFetchedProperties = {
 }
 
 - (void)setUidValue:(int64_t)value_ {
-	[self setUid:[NSNumber numberWithLongLong:value_]];
+	[self setUid:@(value_)];
 }
 
 - (int64_t)primitiveUidValue {
@@ -111,20 +92,10 @@ const struct NMPriceFetchedProperties NMPriceFetchedProperties = {
 }
 
 - (void)setPrimitiveUidValue:(int64_t)value_ {
-	[self setPrimitiveUid:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveUid:@(value_)];
 }
-
-
-
-
 
 @dynamic food;
 
-	
-
-
-
-
-
-
 @end
+

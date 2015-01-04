@@ -17,9 +17,6 @@ const struct NMSchoolRelationships NMSchoolRelationships = {
 	.users = @"users",
 };
 
-const struct NMSchoolFetchedProperties NMSchoolFetchedProperties = {
-};
-
 @implementation NMSchoolID
 @end
 
@@ -45,7 +42,7 @@ const struct NMSchoolFetchedProperties NMSchoolFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"uidValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"uid"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -55,54 +52,19 @@ const struct NMSchoolFetchedProperties NMSchoolFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic fromHours;
-
-
-
-
-
 
 @dynamic imageURL;
 
-
-
-
-
-
 @dynamic motd;
-
-
-
-
-
 
 @dynamic motdExpiration;
 
-
-
-
-
-
 @dynamic name;
-
-
-
-
-
 
 @dynamic toHours;
 
-
-
-
-
-
 @dynamic uid;
-
-
 
 - (int64_t)uidValue {
 	NSNumber *result = [self uid];
@@ -110,7 +72,7 @@ const struct NMSchoolFetchedProperties NMSchoolFetchedProperties = {
 }
 
 - (void)setUidValue:(int64_t)value_ {
-	[self setUid:[NSNumber numberWithLongLong:value_]];
+	[self setUid:@(value_)];
 }
 
 - (int64_t)primitiveUidValue {
@@ -119,20 +81,10 @@ const struct NMSchoolFetchedProperties NMSchoolFetchedProperties = {
 }
 
 - (void)setPrimitiveUidValue:(int64_t)value_ {
-	[self setPrimitiveUid:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveUid:@(value_)];
 }
-
-
-
-
 
 @dynamic users;
 
-	
-
-
-
-
-
-
 @end
+

@@ -15,9 +15,6 @@ const struct NMPlaceRelationships NMPlaceRelationships = {
 	.orders = @"orders",
 };
 
-const struct NMPlaceFetchedProperties NMPlaceFetchedProperties = {
-};
-
 @implementation NMPlaceID
 @end
 
@@ -43,7 +40,7 @@ const struct NMPlaceFetchedProperties NMPlaceFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"foodCountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"foodCount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -58,12 +55,7 @@ const struct NMPlaceFetchedProperties NMPlaceFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic foodCount;
-
-
 
 - (int32_t)foodCountValue {
 	NSNumber *result = [self foodCount];
@@ -71,7 +63,7 @@ const struct NMPlaceFetchedProperties NMPlaceFetchedProperties = {
 }
 
 - (void)setFoodCountValue:(int32_t)value_ {
-	[self setFoodCount:[NSNumber numberWithInt:value_]];
+	[self setFoodCount:@(value_)];
 }
 
 - (int32_t)primitiveFoodCountValue {
@@ -80,23 +72,12 @@ const struct NMPlaceFetchedProperties NMPlaceFetchedProperties = {
 }
 
 - (void)setPrimitiveFoodCountValue:(int32_t)value_ {
-	[self setPrimitiveFoodCount:[NSNumber numberWithInt:value_]];
+	[self setPrimitiveFoodCount:@(value_)];
 }
-
-
-
-
 
 @dynamic name;
 
-
-
-
-
-
 @dynamic uid;
-
-
 
 - (int32_t)uidValue {
 	NSNumber *result = [self uid];
@@ -104,7 +85,7 @@ const struct NMPlaceFetchedProperties NMPlaceFetchedProperties = {
 }
 
 - (void)setUidValue:(int32_t)value_ {
-	[self setUid:[NSNumber numberWithInt:value_]];
+	[self setUid:@(value_)];
 }
 
 - (int32_t)primitiveUidValue {
@@ -113,46 +94,32 @@ const struct NMPlaceFetchedProperties NMPlaceFetchedProperties = {
 }
 
 - (void)setPrimitiveUidValue:(int32_t)value_ {
-	[self setPrimitiveUid:[NSNumber numberWithInt:value_]];
+	[self setPrimitiveUid:@(value_)];
 }
-
-
-
-
 
 @dynamic deliveryPlaces;
 
-	
 - (NSMutableSet*)deliveryPlacesSet {
 	[self willAccessValueForKey:@"deliveryPlaces"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"deliveryPlaces"];
-  
+
 	[self didAccessValueForKey:@"deliveryPlaces"];
 	return result;
 }
-	
 
 @dynamic location;
 
-	
-
 @dynamic orders;
 
-	
 - (NSMutableSet*)ordersSet {
 	[self willAccessValueForKey:@"orders"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orders"];
-  
+
 	[self didAccessValueForKey:@"orders"];
 	return result;
 }
-	
-
-
-
-
-
 
 @end
+

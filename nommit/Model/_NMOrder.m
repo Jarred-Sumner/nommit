@@ -26,9 +26,6 @@ const struct NMOrderRelationships NMOrderRelationships = {
 	.user = @"user",
 };
 
-const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
-};
-
 @implementation NMOrderID
 @end
 
@@ -54,7 +51,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"chargeStateIDValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"chargeStateID"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -104,12 +101,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic chargeStateID;
-
-
 
 - (int16_t)chargeStateIDValue {
 	NSNumber *result = [self chargeStateID];
@@ -117,7 +109,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setChargeStateIDValue:(int16_t)value_ {
-	[self setChargeStateID:[NSNumber numberWithShort:value_]];
+	[self setChargeStateID:@(value_)];
 }
 
 - (int16_t)primitiveChargeStateIDValue {
@@ -126,23 +118,12 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPrimitiveChargeStateIDValue:(int16_t)value_ {
-	[self setPrimitiveChargeStateID:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveChargeStateID:@(value_)];
 }
-
-
-
-
 
 @dynamic deliveredAt;
 
-
-
-
-
-
 @dynamic discountInCents;
-
-
 
 - (int64_t)discountInCentsValue {
 	NSNumber *result = [self discountInCents];
@@ -150,7 +131,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setDiscountInCentsValue:(int64_t)value_ {
-	[self setDiscountInCents:[NSNumber numberWithLongLong:value_]];
+	[self setDiscountInCents:@(value_)];
 }
 
 - (int64_t)primitiveDiscountInCentsValue {
@@ -159,23 +140,12 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPrimitiveDiscountInCentsValue:(int64_t)value_ {
-	[self setPrimitiveDiscountInCents:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveDiscountInCents:@(value_)];
 }
-
-
-
-
 
 @dynamic placedAt;
 
-
-
-
-
-
 @dynamic priceChargedInCents;
-
-
 
 - (int64_t)priceChargedInCentsValue {
 	NSNumber *result = [self priceChargedInCents];
@@ -183,7 +153,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPriceChargedInCentsValue:(int64_t)value_ {
-	[self setPriceChargedInCents:[NSNumber numberWithLongLong:value_]];
+	[self setPriceChargedInCents:@(value_)];
 }
 
 - (int64_t)primitivePriceChargedInCentsValue {
@@ -192,16 +162,10 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPrimitivePriceChargedInCentsValue:(int64_t)value_ {
-	[self setPrimitivePriceChargedInCents:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitivePriceChargedInCents:@(value_)];
 }
 
-
-
-
-
 @dynamic priceInCents;
-
-
 
 - (int64_t)priceInCentsValue {
 	NSNumber *result = [self priceInCents];
@@ -209,7 +173,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPriceInCentsValue:(int64_t)value_ {
-	[self setPriceInCents:[NSNumber numberWithLongLong:value_]];
+	[self setPriceInCents:@(value_)];
 }
 
 - (int64_t)primitivePriceInCentsValue {
@@ -218,23 +182,12 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPrimitivePriceInCentsValue:(int64_t)value_ {
-	[self setPrimitivePriceInCents:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitivePriceInCents:@(value_)];
 }
-
-
-
-
 
 @dynamic promoCode;
 
-
-
-
-
-
 @dynamic quantity;
-
-
 
 - (int32_t)quantityValue {
 	NSNumber *result = [self quantity];
@@ -242,7 +195,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setQuantityValue:(int32_t)value_ {
-	[self setQuantity:[NSNumber numberWithInt:value_]];
+	[self setQuantity:@(value_)];
 }
 
 - (int32_t)primitiveQuantityValue {
@@ -251,16 +204,10 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPrimitiveQuantityValue:(int32_t)value_ {
-	[self setPrimitiveQuantity:[NSNumber numberWithInt:value_]];
+	[self setPrimitiveQuantity:@(value_)];
 }
 
-
-
-
-
 @dynamic rating;
-
-
 
 - (float)ratingValue {
 	NSNumber *result = [self rating];
@@ -268,7 +215,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setRatingValue:(float)value_ {
-	[self setRating:[NSNumber numberWithFloat:value_]];
+	[self setRating:@(value_)];
 }
 
 - (float)primitiveRatingValue {
@@ -277,16 +224,10 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPrimitiveRatingValue:(float)value_ {
-	[self setPrimitiveRating:[NSNumber numberWithFloat:value_]];
+	[self setPrimitiveRating:@(value_)];
 }
 
-
-
-
-
 @dynamic stateID;
-
-
 
 - (int16_t)stateIDValue {
 	NSNumber *result = [self stateID];
@@ -294,7 +235,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setStateIDValue:(int16_t)value_ {
-	[self setStateID:[NSNumber numberWithShort:value_]];
+	[self setStateID:@(value_)];
 }
 
 - (int16_t)primitiveStateIDValue {
@@ -303,16 +244,10 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPrimitiveStateIDValue:(int16_t)value_ {
-	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveStateID:@(value_)];
 }
 
-
-
-
-
 @dynamic tipInCents;
-
-
 
 - (int64_t)tipInCentsValue {
 	NSNumber *result = [self tipInCents];
@@ -320,7 +255,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setTipInCentsValue:(int64_t)value_ {
-	[self setTipInCents:[NSNumber numberWithLongLong:value_]];
+	[self setTipInCents:@(value_)];
 }
 
 - (int64_t)primitiveTipInCentsValue {
@@ -329,16 +264,10 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPrimitiveTipInCentsValue:(int64_t)value_ {
-	[self setPrimitiveTipInCents:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveTipInCents:@(value_)];
 }
 
-
-
-
-
 @dynamic uid;
-
-
 
 - (int64_t)uidValue {
 	NSNumber *result = [self uid];
@@ -346,7 +275,7 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setUidValue:(int64_t)value_ {
-	[self setUid:[NSNumber numberWithLongLong:value_]];
+	[self setUid:@(value_)];
 }
 
 - (int64_t)primitiveUidValue {
@@ -355,36 +284,18 @@ const struct NMOrderFetchedProperties NMOrderFetchedProperties = {
 }
 
 - (void)setPrimitiveUidValue:(int64_t)value_ {
-	[self setPrimitiveUid:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveUid:@(value_)];
 }
-
-
-
-
 
 @dynamic courier;
 
-	
-
 @dynamic deliveryPlace;
-
-	
 
 @dynamic food;
 
-	
-
 @dynamic place;
-
-	
 
 @dynamic user;
 
-	
-
-
-
-
-
-
 @end
+
