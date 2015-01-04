@@ -56,6 +56,7 @@
         [self setupRating];
         
         [self setupOverLay];
+        [self setupFeaturedBadge];
     }
     return self;
 }
@@ -222,6 +223,15 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-22-[_overlayView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_overlayView)]];
     
     _overlayView.hidden = YES;
+}
+
+- (void)setupFeaturedBadge {
+    _featuredBadge = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"FeaturedBadge"]];
+    _featuredBadge.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:_featuredBadge];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-7-[_featuredBadge]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_featuredBadge)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-7-[_featuredBadge]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_featuredBadge)]];
 }
 
 - (void)setState:(NMFoodCellState)cellState {

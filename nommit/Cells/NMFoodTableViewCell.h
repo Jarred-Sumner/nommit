@@ -25,6 +25,8 @@ typedef void (^NMFoodTableViewCellTimerBlock)(NSTimeInterval elapsed);
 
 @property (nonatomic) NMFoodCellState state;
 
+@property (nonatomic, strong) UIImageView *featuredBadge;
+
 - (void)setFood:(NMFood*)food;
 
 
