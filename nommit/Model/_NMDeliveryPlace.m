@@ -17,9 +17,6 @@ const struct NMDeliveryPlaceRelationships NMDeliveryPlaceRelationships = {
 	.shift = @"shift",
 };
 
-const struct NMDeliveryPlaceFetchedProperties NMDeliveryPlaceFetchedProperties = {
-};
-
 @implementation NMDeliveryPlaceID
 @end
 
@@ -45,7 +42,7 @@ const struct NMDeliveryPlaceFetchedProperties NMDeliveryPlaceFetchedProperties =
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"indexValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"index"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -65,19 +62,9 @@ const struct NMDeliveryPlaceFetchedProperties NMDeliveryPlaceFetchedProperties =
 	return keyPaths;
 }
 
-
-
-
 @dynamic arrivesAt;
 
-
-
-
-
-
 @dynamic index;
-
-
 
 - (int16_t)indexValue {
 	NSNumber *result = [self index];
@@ -85,7 +72,7 @@ const struct NMDeliveryPlaceFetchedProperties NMDeliveryPlaceFetchedProperties =
 }
 
 - (void)setIndexValue:(int16_t)value_ {
-	[self setIndex:[NSNumber numberWithShort:value_]];
+	[self setIndex:@(value_)];
 }
 
 - (int16_t)primitiveIndexValue {
@@ -94,16 +81,10 @@ const struct NMDeliveryPlaceFetchedProperties NMDeliveryPlaceFetchedProperties =
 }
 
 - (void)setPrimitiveIndexValue:(int16_t)value_ {
-	[self setPrimitiveIndex:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveIndex:@(value_)];
 }
 
-
-
-
-
 @dynamic stateID;
-
-
 
 - (int16_t)stateIDValue {
 	NSNumber *result = [self stateID];
@@ -111,7 +92,7 @@ const struct NMDeliveryPlaceFetchedProperties NMDeliveryPlaceFetchedProperties =
 }
 
 - (void)setStateIDValue:(int16_t)value_ {
-	[self setStateID:[NSNumber numberWithShort:value_]];
+	[self setStateID:@(value_)];
 }
 
 - (int16_t)primitiveStateIDValue {
@@ -120,16 +101,10 @@ const struct NMDeliveryPlaceFetchedProperties NMDeliveryPlaceFetchedProperties =
 }
 
 - (void)setPrimitiveStateIDValue:(int16_t)value_ {
-	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveStateID:@(value_)];
 }
 
-
-
-
-
 @dynamic uid;
-
-
 
 - (int64_t)uidValue {
 	NSNumber *result = [self uid];
@@ -137,7 +112,7 @@ const struct NMDeliveryPlaceFetchedProperties NMDeliveryPlaceFetchedProperties =
 }
 
 - (void)setUidValue:(int64_t)value_ {
-	[self setUid:[NSNumber numberWithLongLong:value_]];
+	[self setUid:@(value_)];
 }
 
 - (int64_t)primitiveUidValue {
@@ -146,50 +121,34 @@ const struct NMDeliveryPlaceFetchedProperties NMDeliveryPlaceFetchedProperties =
 }
 
 - (void)setPrimitiveUidValue:(int64_t)value_ {
-	[self setPrimitiveUid:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveUid:@(value_)];
 }
-
-
-
-
 
 @dynamic foods;
 
-	
 - (NSMutableSet*)foodsSet {
 	[self willAccessValueForKey:@"foods"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"foods"];
-  
+
 	[self didAccessValueForKey:@"foods"];
 	return result;
 }
-	
 
 @dynamic orders;
 
-	
 - (NSMutableSet*)ordersSet {
 	[self willAccessValueForKey:@"orders"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orders"];
-  
+
 	[self didAccessValueForKey:@"orders"];
 	return result;
 }
-	
 
 @dynamic place;
 
-	
-
 @dynamic shift;
 
-	
-
-
-
-
-
-
 @end
+

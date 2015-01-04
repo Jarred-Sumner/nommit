@@ -14,9 +14,6 @@ const struct NMSubscriptionRelationships NMSubscriptionRelationships = {
 	.user = @"user",
 };
 
-const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
-};
-
 @implementation NMSubscriptionID
 @end
 
@@ -42,7 +39,7 @@ const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"emailValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"email"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -67,12 +64,7 @@ const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic email;
-
-
 
 - (BOOL)emailValue {
 	NSNumber *result = [self email];
@@ -80,7 +72,7 @@ const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
 }
 
 - (void)setEmailValue:(BOOL)value_ {
-	[self setEmail:[NSNumber numberWithBool:value_]];
+	[self setEmail:@(value_)];
 }
 
 - (BOOL)primitiveEmailValue {
@@ -89,16 +81,10 @@ const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
 }
 
 - (void)setPrimitiveEmailValue:(BOOL)value_ {
-	[self setPrimitiveEmail:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveEmail:@(value_)];
 }
 
-
-
-
-
 @dynamic pushNotifications;
-
-
 
 - (BOOL)pushNotificationsValue {
 	NSNumber *result = [self pushNotifications];
@@ -106,7 +92,7 @@ const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
 }
 
 - (void)setPushNotificationsValue:(BOOL)value_ {
-	[self setPushNotifications:[NSNumber numberWithBool:value_]];
+	[self setPushNotifications:@(value_)];
 }
 
 - (BOOL)primitivePushNotificationsValue {
@@ -115,16 +101,10 @@ const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
 }
 
 - (void)setPrimitivePushNotificationsValue:(BOOL)value_ {
-	[self setPrimitivePushNotifications:[NSNumber numberWithBool:value_]];
+	[self setPrimitivePushNotifications:@(value_)];
 }
 
-
-
-
-
 @dynamic sms;
-
-
 
 - (BOOL)smsValue {
 	NSNumber *result = [self sms];
@@ -132,7 +112,7 @@ const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
 }
 
 - (void)setSmsValue:(BOOL)value_ {
-	[self setSms:[NSNumber numberWithBool:value_]];
+	[self setSms:@(value_)];
 }
 
 - (BOOL)primitiveSmsValue {
@@ -141,16 +121,10 @@ const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
 }
 
 - (void)setPrimitiveSmsValue:(BOOL)value_ {
-	[self setPrimitiveSms:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveSms:@(value_)];
 }
 
-
-
-
-
 @dynamic uid;
-
-
 
 - (int64_t)uidValue {
 	NSNumber *result = [self uid];
@@ -158,7 +132,7 @@ const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
 }
 
 - (void)setUidValue:(int64_t)value_ {
-	[self setUid:[NSNumber numberWithLongLong:value_]];
+	[self setUid:@(value_)];
 }
 
 - (int64_t)primitiveUidValue {
@@ -167,20 +141,10 @@ const struct NMSubscriptionFetchedProperties NMSubscriptionFetchedProperties = {
 }
 
 - (void)setPrimitiveUidValue:(int64_t)value_ {
-	[self setPrimitiveUid:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveUid:@(value_)];
 }
-
-
-
-
 
 @dynamic user;
 
-	
-
-
-
-
-
-
 @end
+

@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSNumber *orderCount;
 @property (nonatomic, strong) NSNumber *stateID;
 @property (nonatomic, strong) NSNumber *rating;
+@property (nonatomic, strong) NSNumber *featured;
 @property (nonatomic, strong) NMSellerApiModel *seller;
 @property (nonatomic, strong) NSArray *prices;
 

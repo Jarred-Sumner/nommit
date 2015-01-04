@@ -27,9 +27,6 @@ const struct NMUserRelationships NMUserRelationships = {
 	.subscription = @"subscription",
 };
 
-const struct NMUserFetchedProperties NMUserFetchedProperties = {
-};
-
 @implementation NMUserID
 @end
 
@@ -55,7 +52,7 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"creditInCentsValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"creditInCents"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -80,19 +77,9 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic cardType;
 
-
-
-
-
-
 @dynamic creditInCents;
-
-
 
 - (int64_t)creditInCentsValue {
 	NSNumber *result = [self creditInCents];
@@ -100,7 +87,7 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 }
 
 - (void)setCreditInCentsValue:(int64_t)value_ {
-	[self setCreditInCents:[NSNumber numberWithLongLong:value_]];
+	[self setCreditInCents:@(value_)];
 }
 
 - (int64_t)primitiveCreditInCentsValue {
@@ -109,37 +96,16 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 }
 
 - (void)setPrimitiveCreditInCentsValue:(int64_t)value_ {
-	[self setPrimitiveCreditInCents:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveCreditInCents:@(value_)];
 }
-
-
-
-
 
 @dynamic email;
 
-
-
-
-
-
 @dynamic facebookUID;
-
-
-
-
-
 
 @dynamic fullName;
 
-
-
-
-
-
 @dynamic isCourier;
-
-
 
 - (BOOL)isCourierValue {
 	NSNumber *result = [self isCourier];
@@ -147,7 +113,7 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 }
 
 - (void)setIsCourierValue:(BOOL)value_ {
-	[self setIsCourier:[NSNumber numberWithBool:value_]];
+	[self setIsCourier:@(value_)];
 }
 
 - (BOOL)primitiveIsCourierValue {
@@ -156,30 +122,14 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 }
 
 - (void)setPrimitiveIsCourierValue:(BOOL)value_ {
-	[self setPrimitiveIsCourier:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveIsCourier:@(value_)];
 }
-
-
-
-
 
 @dynamic lastFour;
 
-
-
-
-
-
 @dynamic name;
 
-
-
-
-
-
 @dynamic paymentAuthorized;
-
-
 
 - (BOOL)paymentAuthorizedValue {
 	NSNumber *result = [self paymentAuthorized];
@@ -187,7 +137,7 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 }
 
 - (void)setPaymentAuthorizedValue:(BOOL)value_ {
-	[self setPaymentAuthorized:[NSNumber numberWithBool:value_]];
+	[self setPaymentAuthorized:@(value_)];
 }
 
 - (BOOL)primitivePaymentAuthorizedValue {
@@ -196,30 +146,14 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 }
 
 - (void)setPrimitivePaymentAuthorizedValue:(BOOL)value_ {
-	[self setPrimitivePaymentAuthorized:[NSNumber numberWithBool:value_]];
+	[self setPrimitivePaymentAuthorized:@(value_)];
 }
-
-
-
-
 
 @dynamic phone;
 
-
-
-
-
-
 @dynamic referralCode;
 
-
-
-
-
-
 @dynamic stateID;
-
-
 
 - (int16_t)stateIDValue {
 	NSNumber *result = [self stateID];
@@ -227,7 +161,7 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 }
 
 - (void)setStateIDValue:(int16_t)value_ {
-	[self setStateID:[NSNumber numberWithShort:value_]];
+	[self setStateID:@(value_)];
 }
 
 - (int16_t)primitiveStateIDValue {
@@ -236,58 +170,38 @@ const struct NMUserFetchedProperties NMUserFetchedProperties = {
 }
 
 - (void)setPrimitiveStateIDValue:(int16_t)value_ {
-	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveStateID:@(value_)];
 }
-
-
-
-
 
 @dynamic couriers;
 
-	
 - (NSMutableSet*)couriersSet {
 	[self willAccessValueForKey:@"couriers"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"couriers"];
-  
+
 	[self didAccessValueForKey:@"couriers"];
 	return result;
 }
-	
 
 @dynamic locations;
 
-	
-
 @dynamic notification;
-
-	
 
 @dynamic orders;
 
-	
 - (NSMutableSet*)ordersSet {
 	[self willAccessValueForKey:@"orders"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orders"];
-  
+
 	[self didAccessValueForKey:@"orders"];
 	return result;
 }
-	
 
 @dynamic school;
 
-	
-
 @dynamic subscription;
 
-	
-
-
-
-
-
-
 @end
+

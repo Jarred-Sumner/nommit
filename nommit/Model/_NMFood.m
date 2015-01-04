@@ -6,6 +6,7 @@
 const struct NMFoodAttributes NMFoodAttributes = {
 	.details = @"details",
 	.endDate = @"endDate",
+	.featured = @"featured",
 	.headerImageURL = @"headerImageURL",
 	.orderCount = @"orderCount",
 	.orderGoal = @"orderGoal",
@@ -24,9 +25,6 @@ const struct NMFoodRelationships NMFoodRelationships = {
 	.orders = @"orders",
 	.prices = @"prices",
 	.seller = @"seller",
-};
-
-const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 };
 
 @implementation NMFoodID
@@ -54,7 +52,12 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
+	if ([key isEqualToString:@"featuredValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"featured"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"orderCountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"orderCount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -89,33 +92,33 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic details;
-
-
-
-
-
 
 @dynamic endDate;
 
+@dynamic featured;
 
+- (BOOL)featuredValue {
+	NSNumber *result = [self featured];
+	return [result boolValue];
+}
 
+- (void)setFeaturedValue:(BOOL)value_ {
+	[self setFeatured:@(value_)];
+}
 
+- (BOOL)primitiveFeaturedValue {
+	NSNumber *result = [self primitiveFeatured];
+	return [result boolValue];
+}
 
+- (void)setPrimitiveFeaturedValue:(BOOL)value_ {
+	[self setPrimitiveFeatured:@(value_)];
+}
 
 @dynamic headerImageURL;
 
-
-
-
-
-
 @dynamic orderCount;
-
-
 
 - (int16_t)orderCountValue {
 	NSNumber *result = [self orderCount];
@@ -123,7 +126,7 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setOrderCountValue:(int16_t)value_ {
-	[self setOrderCount:[NSNumber numberWithShort:value_]];
+	[self setOrderCount:@(value_)];
 }
 
 - (int16_t)primitiveOrderCountValue {
@@ -132,16 +135,10 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setPrimitiveOrderCountValue:(int16_t)value_ {
-	[self setPrimitiveOrderCount:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveOrderCount:@(value_)];
 }
 
-
-
-
-
 @dynamic orderGoal;
-
-
 
 - (int16_t)orderGoalValue {
 	NSNumber *result = [self orderGoal];
@@ -149,7 +146,7 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setOrderGoalValue:(int16_t)value_ {
-	[self setOrderGoal:[NSNumber numberWithShort:value_]];
+	[self setOrderGoal:@(value_)];
 }
 
 - (int16_t)primitiveOrderGoalValue {
@@ -158,16 +155,10 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setPrimitiveOrderGoalValue:(int16_t)value_ {
-	[self setPrimitiveOrderGoal:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveOrderGoal:@(value_)];
 }
 
-
-
-
-
 @dynamic rating;
-
-
 
 - (float)ratingValue {
 	NSNumber *result = [self rating];
@@ -175,7 +166,7 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setRatingValue:(float)value_ {
-	[self setRating:[NSNumber numberWithFloat:value_]];
+	[self setRating:@(value_)];
 }
 
 - (float)primitiveRatingValue {
@@ -184,23 +175,12 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setPrimitiveRatingValue:(float)value_ {
-	[self setPrimitiveRating:[NSNumber numberWithFloat:value_]];
+	[self setPrimitiveRating:@(value_)];
 }
-
-
-
-
 
 @dynamic startDate;
 
-
-
-
-
-
 @dynamic stateID;
-
-
 
 - (int16_t)stateIDValue {
 	NSNumber *result = [self stateID];
@@ -208,7 +188,7 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setStateIDValue:(int16_t)value_ {
-	[self setStateID:[NSNumber numberWithShort:value_]];
+	[self setStateID:@(value_)];
 }
 
 - (int16_t)primitiveStateIDValue {
@@ -217,37 +197,16 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setPrimitiveStateIDValue:(int16_t)value_ {
-	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveStateID:@(value_)];
 }
-
-
-
-
 
 @dynamic subtitle;
 
-
-
-
-
-
 @dynamic thumbnailImageURL;
-
-
-
-
-
 
 @dynamic title;
 
-
-
-
-
-
 @dynamic uid;
-
-
 
 - (int64_t)uidValue {
 	NSNumber *result = [self uid];
@@ -255,7 +214,7 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setUidValue:(int64_t)value_ {
-	[self setUid:[NSNumber numberWithLongLong:value_]];
+	[self setUid:@(value_)];
 }
 
 - (int64_t)primitiveUidValue {
@@ -264,16 +223,10 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setPrimitiveUidValue:(int64_t)value_ {
-	[self setPrimitiveUid:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveUid:@(value_)];
 }
 
-
-
-
-
 @dynamic willNotifyUser;
-
-
 
 - (BOOL)willNotifyUserValue {
 	NSNumber *result = [self willNotifyUser];
@@ -281,7 +234,7 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setWillNotifyUserValue:(BOOL)value_ {
-	[self setWillNotifyUser:[NSNumber numberWithBool:value_]];
+	[self setWillNotifyUser:@(value_)];
 }
 
 - (BOOL)primitiveWillNotifyUserValue {
@@ -290,59 +243,103 @@ const struct NMFoodFetchedProperties NMFoodFetchedProperties = {
 }
 
 - (void)setPrimitiveWillNotifyUserValue:(BOOL)value_ {
-	[self setPrimitiveWillNotifyUser:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveWillNotifyUser:@(value_)];
 }
-
-
-
-
 
 @dynamic deliveryPlaces;
 
-	
 - (NSMutableSet*)deliveryPlacesSet {
 	[self willAccessValueForKey:@"deliveryPlaces"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"deliveryPlaces"];
-  
+
 	[self didAccessValueForKey:@"deliveryPlaces"];
 	return result;
 }
-	
 
 @dynamic orders;
 
-	
 - (NSMutableSet*)ordersSet {
 	[self willAccessValueForKey:@"orders"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orders"];
-  
+
 	[self didAccessValueForKey:@"orders"];
 	return result;
 }
-	
 
 @dynamic prices;
 
-	
 - (NSMutableOrderedSet*)pricesSet {
 	[self willAccessValueForKey:@"prices"];
-  
+
 	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"prices"];
-  
+
 	[self didAccessValueForKey:@"prices"];
 	return result;
 }
-	
 
 @dynamic seller;
 
-	
-
-
-
-
-
-
 @end
+
+@implementation _NMFood (PricesCoreDataGeneratedAccessors)
+- (void)addPrices:(NSOrderedSet*)value_ {
+	[self.pricesSet unionOrderedSet:value_];
+}
+- (void)removePrices:(NSOrderedSet*)value_ {
+	[self.pricesSet minusOrderedSet:value_];
+}
+- (void)addPricesObject:(NMPrice*)value_ {
+	[self.pricesSet addObject:value_];
+}
+- (void)removePricesObject:(NMPrice*)value_ {
+	[self.pricesSet removeObject:value_];
+}
+- (void)insertObject:(NMPrice*)value inPricesAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"prices"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self prices]];
+    [tmpOrderedSet insertObject:value atIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"prices"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"prices"];
+}
+- (void)removeObjectFromPricesAtIndex:(NSUInteger)idx {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"prices"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self prices]];
+    [tmpOrderedSet removeObjectAtIndex:idx];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"prices"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"prices"];
+}
+- (void)insertPrices:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"prices"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self prices]];
+    [tmpOrderedSet insertObjects:value atIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"prices"];
+    [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"prices"];
+}
+- (void)removePricesAtIndexes:(NSIndexSet *)indexes {
+    [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"prices"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self prices]];
+    [tmpOrderedSet removeObjectsAtIndexes:indexes];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"prices"];
+    [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"prices"];
+}
+- (void)replaceObjectInPricesAtIndex:(NSUInteger)idx withObject:(NMPrice*)value {
+    NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"prices"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self prices]];
+    [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"prices"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"prices"];
+}
+- (void)replacePricesAtIndexes:(NSIndexSet *)indexes withPrices:(NSArray *)value {
+    [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"prices"];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self prices]];
+    [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
+    [self setPrimitiveValue:tmpOrderedSet forKey:@"prices"];
+    [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"prices"];
+}
+@end
+

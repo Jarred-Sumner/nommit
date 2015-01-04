@@ -15,9 +15,6 @@ const struct NMCourierRelationships NMCourierRelationships = {
 	.user = @"user",
 };
 
-const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
-};
-
 @implementation NMCourierID
 @end
 
@@ -43,7 +40,7 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"stateIDValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"stateID"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -58,12 +55,7 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic stateID;
-
-
 
 - (int16_t)stateIDValue {
 	NSNumber *result = [self stateID];
@@ -71,7 +63,7 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 }
 
 - (void)setStateIDValue:(int16_t)value_ {
-	[self setStateID:[NSNumber numberWithShort:value_]];
+	[self setStateID:@(value_)];
 }
 
 - (int16_t)primitiveStateIDValue {
@@ -80,16 +72,10 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 }
 
 - (void)setPrimitiveStateIDValue:(int16_t)value_ {
-	[self setPrimitiveStateID:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveStateID:@(value_)];
 }
 
-
-
-
-
 @dynamic uid;
-
-
 
 - (int64_t)uidValue {
 	NSNumber *result = [self uid];
@@ -97,7 +83,7 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 }
 
 - (void)setUidValue:(int64_t)value_ {
-	[self setUid:[NSNumber numberWithLongLong:value_]];
+	[self setUid:@(value_)];
 }
 
 - (int64_t)primitiveUidValue {
@@ -106,50 +92,34 @@ const struct NMCourierFetchedProperties NMCourierFetchedProperties = {
 }
 
 - (void)setPrimitiveUidValue:(int64_t)value_ {
-	[self setPrimitiveUid:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveUid:@(value_)];
 }
-
-
-
-
 
 @dynamic orders;
 
-	
 - (NSMutableSet*)ordersSet {
 	[self willAccessValueForKey:@"orders"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orders"];
-  
+
 	[self didAccessValueForKey:@"orders"];
 	return result;
 }
-	
 
 @dynamic seller;
 
-	
-
 @dynamic shifts;
 
-	
 - (NSMutableSet*)shiftsSet {
 	[self willAccessValueForKey:@"shifts"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"shifts"];
-  
+
 	[self didAccessValueForKey:@"shifts"];
 	return result;
 }
-	
 
 @dynamic user;
 
-	
-
-
-
-
-
-
 @end
+

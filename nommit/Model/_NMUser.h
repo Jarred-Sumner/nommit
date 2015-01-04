@@ -1,8 +1,7 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to NMUser.h instead.
 
-#import <CoreData/CoreData.h>
-
+@import CoreData;
 
 extern const struct NMUserAttributes {
 	__unsafe_unretained NSString *cardType;
@@ -28,28 +27,12 @@ extern const struct NMUserRelationships {
 	__unsafe_unretained NSString *subscription;
 } NMUserRelationships;
 
-extern const struct NMUserFetchedProperties {
-} NMUserFetchedProperties;
-
 @class NMCourier;
 @class NMLocation;
 @class NMUser;
 @class NMOrder;
 @class NMSchool;
 @class NMSubscription;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @interface NMUserID : NSManagedObjectID {}
 @end
@@ -58,200 +41,107 @@ extern const struct NMUserFetchedProperties {
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (NMUserID*)objectID;
-
-
-
-
+@property (nonatomic, readonly, strong) NMUserID* objectID;
 
 @property (nonatomic, strong) NSString* cardType;
 
-
-
 //- (BOOL)validateCardType:(id*)value_ error:(NSError**)error_;
-
-
-
-
 
 @property (nonatomic, strong) NSNumber* creditInCents;
 
-
-
-@property int64_t creditInCentsValue;
+@property (atomic) int64_t creditInCentsValue;
 - (int64_t)creditInCentsValue;
 - (void)setCreditInCentsValue:(int64_t)value_;
 
 //- (BOOL)validateCreditInCents:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSString* email;
-
-
 
 //- (BOOL)validateEmail:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSString* facebookUID;
-
-
 
 //- (BOOL)validateFacebookUID:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSString* fullName;
-
-
 
 //- (BOOL)validateFullName:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSNumber* isCourier;
 
-
-
-@property BOOL isCourierValue;
+@property (atomic) BOOL isCourierValue;
 - (BOOL)isCourierValue;
 - (void)setIsCourierValue:(BOOL)value_;
 
 //- (BOOL)validateIsCourier:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSString* lastFour;
-
-
 
 //- (BOOL)validateLastFour:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSString* name;
-
-
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSNumber* paymentAuthorized;
 
-
-
-@property BOOL paymentAuthorizedValue;
+@property (atomic) BOOL paymentAuthorizedValue;
 - (BOOL)paymentAuthorizedValue;
 - (void)setPaymentAuthorizedValue:(BOOL)value_;
 
 //- (BOOL)validatePaymentAuthorized:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSString* phone;
-
-
 
 //- (BOOL)validatePhone:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSString* referralCode;
-
-
 
 //- (BOOL)validateReferralCode:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSNumber* stateID;
 
-
-
-@property int16_t stateIDValue;
+@property (atomic) int16_t stateIDValue;
 - (int16_t)stateIDValue;
 - (void)setStateIDValue:(int16_t)value_;
 
 //- (BOOL)validateStateID:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSSet *couriers;
 
 - (NSMutableSet*)couriersSet;
-
-
-
 
 @property (nonatomic, strong) NMLocation *locations;
 
 //- (BOOL)validateLocations:(id*)value_ error:(NSError**)error_;
 
-
-
-
 @property (nonatomic, strong) NMUser *notification;
 
 //- (BOOL)validateNotification:(id*)value_ error:(NSError**)error_;
-
-
-
 
 @property (nonatomic, strong) NSSet *orders;
 
 - (NSMutableSet*)ordersSet;
 
-
-
-
 @property (nonatomic, strong) NMSchool *school;
 
 //- (BOOL)validateSchool:(id*)value_ error:(NSError**)error_;
-
-
-
 
 @property (nonatomic, strong) NMSubscription *subscription;
 
 //- (BOOL)validateSubscription:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @end
 
-@interface _NMUser (CoreDataGeneratedAccessors)
-
+@interface _NMUser (CouriersCoreDataGeneratedAccessors)
 - (void)addCouriers:(NSSet*)value_;
 - (void)removeCouriers:(NSSet*)value_;
 - (void)addCouriersObject:(NMCourier*)value_;
 - (void)removeCouriersObject:(NMCourier*)value_;
 
+@end
+
+@interface _NMUser (OrdersCoreDataGeneratedAccessors)
 - (void)addOrders:(NSSet*)value_;
 - (void)removeOrders:(NSSet*)value_;
 - (void)addOrdersObject:(NMOrder*)value_;
@@ -261,12 +151,8 @@ extern const struct NMUserFetchedProperties {
 
 @interface _NMUser (CoreDataGeneratedPrimitiveAccessors)
 
-
 - (NSString*)primitiveCardType;
 - (void)setPrimitiveCardType:(NSString*)value;
-
-
-
 
 - (NSNumber*)primitiveCreditInCents;
 - (void)setPrimitiveCreditInCents:(NSNumber*)value;
@@ -274,26 +160,14 @@ extern const struct NMUserFetchedProperties {
 - (int64_t)primitiveCreditInCentsValue;
 - (void)setPrimitiveCreditInCentsValue:(int64_t)value_;
 
-
-
-
 - (NSString*)primitiveEmail;
 - (void)setPrimitiveEmail:(NSString*)value;
-
-
-
 
 - (NSString*)primitiveFacebookUID;
 - (void)setPrimitiveFacebookUID:(NSString*)value;
 
-
-
-
 - (NSString*)primitiveFullName;
 - (void)setPrimitiveFullName:(NSString*)value;
-
-
-
 
 - (NSNumber*)primitiveIsCourier;
 - (void)setPrimitiveIsCourier:(NSNumber*)value;
@@ -301,20 +175,11 @@ extern const struct NMUserFetchedProperties {
 - (BOOL)primitiveIsCourierValue;
 - (void)setPrimitiveIsCourierValue:(BOOL)value_;
 
-
-
-
 - (NSString*)primitiveLastFour;
 - (void)setPrimitiveLastFour:(NSString*)value;
 
-
-
-
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
-
-
-
 
 - (NSNumber*)primitivePaymentAuthorized;
 - (void)setPrimitivePaymentAuthorized:(NSNumber*)value;
@@ -322,20 +187,11 @@ extern const struct NMUserFetchedProperties {
 - (BOOL)primitivePaymentAuthorizedValue;
 - (void)setPrimitivePaymentAuthorizedValue:(BOOL)value_;
 
-
-
-
 - (NSString*)primitivePhone;
 - (void)setPrimitivePhone:(NSString*)value;
 
-
-
-
 - (NSString*)primitiveReferralCode;
 - (void)setPrimitiveReferralCode:(NSString*)value;
-
-
-
 
 - (NSNumber*)primitiveStateID;
 - (void)setPrimitiveStateID:(NSNumber*)value;
@@ -343,37 +199,22 @@ extern const struct NMUserFetchedProperties {
 - (int16_t)primitiveStateIDValue;
 - (void)setPrimitiveStateIDValue:(int16_t)value_;
 
-
-
-
-
 - (NSMutableSet*)primitiveCouriers;
 - (void)setPrimitiveCouriers:(NSMutableSet*)value;
-
-
 
 - (NMLocation*)primitiveLocations;
 - (void)setPrimitiveLocations:(NMLocation*)value;
 
-
-
 - (NMUser*)primitiveNotification;
 - (void)setPrimitiveNotification:(NMUser*)value;
-
-
 
 - (NSMutableSet*)primitiveOrders;
 - (void)setPrimitiveOrders:(NSMutableSet*)value;
 
-
-
 - (NMSchool*)primitiveSchool;
 - (void)setPrimitiveSchool:(NMSchool*)value;
 
-
-
 - (NMSubscription*)primitiveSubscription;
 - (void)setPrimitiveSubscription:(NMSubscription*)value;
-
 
 @end

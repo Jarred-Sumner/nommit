@@ -15,9 +15,6 @@ const struct NMShiftRelationships NMShiftRelationships = {
 	.deliveryPlaces = @"deliveryPlaces",
 };
 
-const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
-};
-
 @implementation NMShiftID
 @end
 
@@ -43,7 +40,7 @@ const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
+
 	if ([key isEqualToString:@"revenueGeneratedInCentsValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"revenueGeneratedInCents"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -63,19 +60,9 @@ const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 	return keyPaths;
 }
 
-
-
-
 @dynamic places;
 
-
-
-
-
-
 @dynamic revenueGeneratedInCents;
-
-
 
 - (int64_t)revenueGeneratedInCentsValue {
 	NSNumber *result = [self revenueGeneratedInCents];
@@ -83,7 +70,7 @@ const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 }
 
 - (void)setRevenueGeneratedInCentsValue:(int64_t)value_ {
-	[self setRevenueGeneratedInCents:[NSNumber numberWithLongLong:value_]];
+	[self setRevenueGeneratedInCents:@(value_)];
 }
 
 - (int64_t)primitiveRevenueGeneratedInCentsValue {
@@ -92,16 +79,10 @@ const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 }
 
 - (void)setPrimitiveRevenueGeneratedInCentsValue:(int64_t)value_ {
-	[self setPrimitiveRevenueGeneratedInCents:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveRevenueGeneratedInCents:@(value_)];
 }
 
-
-
-
-
 @dynamic stateID;
-
-
 
 - (int64_t)stateIDValue {
 	NSNumber *result = [self stateID];
@@ -109,7 +90,7 @@ const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 }
 
 - (void)setStateIDValue:(int64_t)value_ {
-	[self setStateID:[NSNumber numberWithLongLong:value_]];
+	[self setStateID:@(value_)];
 }
 
 - (int64_t)primitiveStateIDValue {
@@ -118,16 +99,10 @@ const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 }
 
 - (void)setPrimitiveStateIDValue:(int64_t)value_ {
-	[self setPrimitiveStateID:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveStateID:@(value_)];
 }
 
-
-
-
-
 @dynamic uid;
-
-
 
 - (int64_t)uidValue {
 	NSNumber *result = [self uid];
@@ -135,7 +110,7 @@ const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 }
 
 - (void)setUidValue:(int64_t)value_ {
-	[self setUid:[NSNumber numberWithLongLong:value_]];
+	[self setUid:@(value_)];
 }
 
 - (int64_t)primitiveUidValue {
@@ -144,33 +119,21 @@ const struct NMShiftFetchedProperties NMShiftFetchedProperties = {
 }
 
 - (void)setPrimitiveUidValue:(int64_t)value_ {
-	[self setPrimitiveUid:[NSNumber numberWithLongLong:value_]];
+	[self setPrimitiveUid:@(value_)];
 }
-
-
-
-
 
 @dynamic courier;
 
-	
-
 @dynamic deliveryPlaces;
 
-	
 - (NSMutableSet*)deliveryPlacesSet {
 	[self willAccessValueForKey:@"deliveryPlaces"];
-  
+
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"deliveryPlaces"];
-  
+
 	[self didAccessValueForKey:@"deliveryPlaces"];
 	return result;
 }
-	
-
-
-
-
-
 
 @end
+

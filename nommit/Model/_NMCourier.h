@@ -1,8 +1,7 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to NMCourier.h instead.
 
-#import <CoreData/CoreData.h>
-
+@import CoreData;
 
 extern const struct NMCourierAttributes {
 	__unsafe_unretained NSString *stateID;
@@ -16,16 +15,10 @@ extern const struct NMCourierRelationships {
 	__unsafe_unretained NSString *user;
 } NMCourierRelationships;
 
-extern const struct NMCourierFetchedProperties {
-} NMCourierFetchedProperties;
-
 @class NMOrder;
 @class NMSeller;
 @class NMShift;
 @class NMUser;
-
-
-
 
 @interface NMCourierID : NSManagedObjectID {}
 @end
@@ -34,78 +27,51 @@ extern const struct NMCourierFetchedProperties {
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (NMCourierID*)objectID;
-
-
-
-
+@property (nonatomic, readonly, strong) NMCourierID* objectID;
 
 @property (nonatomic, strong) NSNumber* stateID;
 
-
-
-@property int16_t stateIDValue;
+@property (atomic) int16_t stateIDValue;
 - (int16_t)stateIDValue;
 - (void)setStateIDValue:(int16_t)value_;
 
 //- (BOOL)validateStateID:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSNumber* uid;
 
-
-
-@property int64_t uidValue;
+@property (atomic) int64_t uidValue;
 - (int64_t)uidValue;
 - (void)setUidValue:(int64_t)value_;
 
 //- (BOOL)validateUid:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSSet *orders;
 
 - (NSMutableSet*)ordersSet;
-
-
-
 
 @property (nonatomic, strong) NMSeller *seller;
 
 //- (BOOL)validateSeller:(id*)value_ error:(NSError**)error_;
 
-
-
-
 @property (nonatomic, strong) NSSet *shifts;
 
 - (NSMutableSet*)shiftsSet;
-
-
-
 
 @property (nonatomic, strong) NMUser *user;
 
 //- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @end
 
-@interface _NMCourier (CoreDataGeneratedAccessors)
-
+@interface _NMCourier (OrdersCoreDataGeneratedAccessors)
 - (void)addOrders:(NSSet*)value_;
 - (void)removeOrders:(NSSet*)value_;
 - (void)addOrdersObject:(NMOrder*)value_;
 - (void)removeOrdersObject:(NMOrder*)value_;
 
+@end
+
+@interface _NMCourier (ShiftsCoreDataGeneratedAccessors)
 - (void)addShifts:(NSSet*)value_;
 - (void)removeShifts:(NSSet*)value_;
 - (void)addShiftsObject:(NMShift*)value_;
@@ -115,15 +81,11 @@ extern const struct NMCourierFetchedProperties {
 
 @interface _NMCourier (CoreDataGeneratedPrimitiveAccessors)
 
-
 - (NSNumber*)primitiveStateID;
 - (void)setPrimitiveStateID:(NSNumber*)value;
 
 - (int16_t)primitiveStateIDValue;
 - (void)setPrimitiveStateIDValue:(int16_t)value_;
-
-
-
 
 - (NSNumber*)primitiveUid;
 - (void)setPrimitiveUid:(NSNumber*)value;
@@ -131,27 +93,16 @@ extern const struct NMCourierFetchedProperties {
 - (int64_t)primitiveUidValue;
 - (void)setPrimitiveUidValue:(int64_t)value_;
 
-
-
-
-
 - (NSMutableSet*)primitiveOrders;
 - (void)setPrimitiveOrders:(NSMutableSet*)value;
-
-
 
 - (NMSeller*)primitiveSeller;
 - (void)setPrimitiveSeller:(NMSeller*)value;
 
-
-
 - (NSMutableSet*)primitiveShifts;
 - (void)setPrimitiveShifts:(NSMutableSet*)value;
 
-
-
 - (NMUser*)primitiveUser;
 - (void)setPrimitiveUser:(NMUser*)value;
-
 
 @end

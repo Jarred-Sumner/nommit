@@ -1,8 +1,7 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to NMSeller.h instead.
 
-#import <CoreData/CoreData.h>
-
+@import CoreData;
 
 extern const struct NMSellerAttributes {
 	__unsafe_unretained NSString *logoURL;
@@ -15,15 +14,8 @@ extern const struct NMSellerRelationships {
 	__unsafe_unretained NSString *foods;
 } NMSellerRelationships;
 
-extern const struct NMSellerFetchedProperties {
-} NMSellerFetchedProperties;
-
 @class NMCourier;
 @class NMFood;
-
-
-
-
 
 @interface NMSellerID : NSManagedObjectID {}
 @end
@@ -32,70 +24,43 @@ extern const struct NMSellerFetchedProperties {
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (NMSellerID*)objectID;
-
-
-
-
+@property (nonatomic, readonly, strong) NMSellerID* objectID;
 
 @property (nonatomic, strong) NSString* logoURL;
 
-
-
 //- (BOOL)validateLogoURL:(id*)value_ error:(NSError**)error_;
-
-
-
-
 
 @property (nonatomic, strong) NSString* name;
 
-
-
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
-
-
-
 
 @property (nonatomic, strong) NSNumber* uid;
 
-
-
-@property int32_t uidValue;
+@property (atomic) int32_t uidValue;
 - (int32_t)uidValue;
 - (void)setUidValue:(int32_t)value_;
 
 //- (BOOL)validateUid:(id*)value_ error:(NSError**)error_;
 
-
-
-
-
 @property (nonatomic, strong) NSSet *couriers;
 
 - (NSMutableSet*)couriersSet;
-
-
-
 
 @property (nonatomic, strong) NSSet *foods;
 
 - (NSMutableSet*)foodsSet;
 
-
-
-
-
 @end
 
-@interface _NMSeller (CoreDataGeneratedAccessors)
-
+@interface _NMSeller (CouriersCoreDataGeneratedAccessors)
 - (void)addCouriers:(NSSet*)value_;
 - (void)removeCouriers:(NSSet*)value_;
 - (void)addCouriersObject:(NMCourier*)value_;
 - (void)removeCouriersObject:(NMCourier*)value_;
 
+@end
+
+@interface _NMSeller (FoodsCoreDataGeneratedAccessors)
 - (void)addFoods:(NSSet*)value_;
 - (void)removeFoods:(NSSet*)value_;
 - (void)addFoodsObject:(NMFood*)value_;
@@ -105,18 +70,11 @@ extern const struct NMSellerFetchedProperties {
 
 @interface _NMSeller (CoreDataGeneratedPrimitiveAccessors)
 
-
 - (NSString*)primitiveLogoURL;
 - (void)setPrimitiveLogoURL:(NSString*)value;
 
-
-
-
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
-
-
-
 
 - (NSNumber*)primitiveUid;
 - (void)setPrimitiveUid:(NSNumber*)value;
@@ -124,17 +82,10 @@ extern const struct NMSellerFetchedProperties {
 - (int32_t)primitiveUidValue;
 - (void)setPrimitiveUidValue:(int32_t)value_;
 
-
-
-
-
 - (NSMutableSet*)primitiveCouriers;
 - (void)setPrimitiveCouriers:(NSMutableSet*)value;
 
-
-
 - (NSMutableSet*)primitiveFoods;
 - (void)setPrimitiveFoods:(NSMutableSet*)value;
-
 
 @end
