@@ -44,11 +44,11 @@
         CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)uiFont.fontName, uiFont.pointSize, NULL);
         if (font) {
             [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:titleRange];
-            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:UIColorFromRGB(0xB6B6B6) range:titleRange];
-            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:UIColorFromRGB(0xB6B6B6) range:arrowRange];
+            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:UIColorFromRGB(0x9C9C9C) range:titleRange];
+            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:UIColorFromRGB(0x9C9C9C) range:arrowRange];
             
             NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-            [attributes setValue:UIColorFromRGB(0xB6B6B6) forKey:NSForegroundColorAttributeName];
+            [attributes setValue:UIColorFromRGB(0x9C9C9C) forKey:NSForegroundColorAttributeName];
             [attributes setValue:[UIColor whiteColor] forKey:UITextAttributeTextShadowColor];
             [attributes setValue:[NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)] forKey:UITextAttributeTextShadowOffset];
             [attributes setValue:[UIFont fontWithName:@"Avenir-Medium" size:18.0f] forKey:UITextAttributeFont];
