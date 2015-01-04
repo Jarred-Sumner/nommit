@@ -28,7 +28,7 @@
     [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarBG"] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
     
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    [attributes setValue:UIColorFromRGB(0xB6B6B6) forKey:NSForegroundColorAttributeName];
+    [attributes setValue:UIColorFromRGB(0x9C9C9C) forKey:NSForegroundColorAttributeName];
     [attributes setValue:[UIColor whiteColor] forKey:UITextAttributeTextShadowColor];
     [attributes setValue:[NSValue valueWithUIOffset:UIOffsetMake(0.0, 1.0)] forKey:UITextAttributeTextShadowOffset];
     [[UIBarButtonItem appearance] setTitleTextAttributes:attributes forState:UIControlStateNormal];
