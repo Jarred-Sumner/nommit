@@ -53,6 +53,7 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
                                                             style:UIBarButtonItemStylePlain
                                                            target:(UINavigationController *)self.navigationController
                                                            action:@selector(showMenu)];
+    lbb.imageInsets = UIEdgeInsetsMake(1, 0, 0, 0);
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     if (!self.navigationItem.leftBarButtonItem) self.navigationItem.leftBarButtonItem = lbb;

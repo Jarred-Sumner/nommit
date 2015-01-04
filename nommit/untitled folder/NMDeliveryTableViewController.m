@@ -198,6 +198,7 @@ static NSString *NMCallButtonInfoIdentifier = @"NMDeliveryCallButtonTableViewCel
                                                             style:UIBarButtonItemStylePlain
                                                            target:(NMNavigationController *)self.navigationController
                                                            action:@selector(showMenu)];
+    lbb.imageInsets = UIEdgeInsetsMake(1, 0, 0, 0);
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
     self.navigationItem.leftBarButtonItem = lbb;

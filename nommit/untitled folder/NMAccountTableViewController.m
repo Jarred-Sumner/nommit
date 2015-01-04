@@ -20,6 +20,7 @@
 #import "NMNotificationSettingsTableViewCell.h"
 #import "NMShowSchoolTableViewCell.h"
 #import "NMSchoolsViewController.h"
+#import <FAKFontAwesome.h>
 
 @interface NMAccountTableViewController() <NSFetchedResultsControllerDelegate>
 
@@ -230,6 +231,8 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
                                                            action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
+    lbb.imageInsets = UIEdgeInsetsMake(1, 0, 0, 0);
+    
     self.navigationItem.leftBarButtonItem = lbb;
     
     self.navigationController.navigationBarHidden = NO;

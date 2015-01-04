@@ -405,6 +405,7 @@ const NSInteger NMFooterSection = 1;
             action:@selector(showMenu)];
     
     lbb.tintColor = UIColorFromRGB(0xC3C3C3);
+    lbb.imageInsets = UIEdgeInsetsMake(1, 0, 0, 0);
     if (!self.navigationItem.leftBarButtonItem) self.navigationItem.leftBarButtonItem = lbb;
     self.navigationController.navigationBarHidden = NO;
     
