@@ -29,7 +29,7 @@
         self.backgroundColor = UIColorFromRGB(0xFBFBFB);
         
         // Setup checkout
-        PTKView *paymentView = [[PTKView alloc] initWithFrame:CGRectMake(24, 10, 290, 45)];
+        PTKView *paymentView = [[PTKView alloc] initWithFrame:CGRectMake(24, 30, 290, 45)];
         self.paymentView = paymentView;
         [self.contentView addSubview:paymentView];
         
@@ -64,7 +64,7 @@
         
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[poweredby]-24-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(poweredby)]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-63-[poweredby]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(poweredby)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-83-[poweredby]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(poweredby)]];
 
         _hiddenCardLabel.hidden = YES;
         hiddenCardButton.hidden = YES;

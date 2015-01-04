@@ -54,6 +54,8 @@
         [self setupSoldLabel];
         [self setupProgressBar];
         [self setupRating];
+        
+        [self setupOverLay];
     }
     return self;
 }
@@ -212,7 +214,13 @@
 
 
 - (void)setupOverLay {
-    _overlayView = [[UIImageView alloc] initWithFrame:CGRectMake(65, 36, 241, 202)];
+    _overlayView = [[UIImageView alloc] init];
+    _overlayView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:_overlayView];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-21-[_overlayView]-21-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_overlayView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-22-[_overlayView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_overlayView)]];
+    
     _overlayView.hidden = YES;
 }
 
@@ -222,37 +230,21 @@
         case NMFoodCellStateFuture: {
             _overlayView.image = nil;
             _overlayView.hidden = YES;
-            _soldLabel.hidden = YES;
-            _rateVw.hidden = YES;
-            _progressBarView.hidden = YES;
-
             break;
         }
         case NMFoodCellStateSoldOut:
             _overlayView.image = [UIImage imageNamed:@"SoldOutOverlay"];
             _overlayView.hidden = NO;
-            
-            _soldLabel.hidden = NO;
-            _rateVw.hidden = NO;
-            _progressBarView.hidden = NO;
 
             break;
         case NMFoodCellStateExpired:
             _overlayView.image = [UIImage imageNamed:@"SaleEndedOverlay"];
             _overlayView.hidden = NO;
 
-            _soldLabel.hidden = NO;
-            _rateVw.hidden = NO;
-            _progressBarView.hidden = NO;
-
             break;
         case NMFoodCellStateNormal:
             _overlayView.image = nil;
             _overlayView.hidden = YES;
-
-            _soldLabel.hidden = NO;
-            _rateVw.hidden = NO;
-            _progressBarView.hidden = NO;
 
             break;
         default:
