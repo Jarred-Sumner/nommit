@@ -95,7 +95,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     __weak NMDeliveryPlacesTableViewController *this = self;
     [self.refreshControl beginRefreshing];
     
-    [[NMApi instance] GET:@"places" parameters:@{ @"courier_id" : [NMCourier currentCourier].uid } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+    [[NMApi instance] GET:@"places" parameters:@{ @"delivery" : @1 } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
             NSArray *models = [MTLJSONAdapter modelsOfClass:[NMPlaceApiModel class] fromJSONArray:response.result error:nil];

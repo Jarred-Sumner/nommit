@@ -66,9 +66,9 @@
 - (void)setFood:(NMFood*)food {
     _featuredBadge.hidden = !food.featuredValue;
     
-    [_sellerLogoImageView setImageWithURL:food.restaurant.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
+    [_sellerLogoImageView setImageWithURL:food.seller.logoAsURL placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
     [_foodImageView setImageWithURL:food.headerImageAsURL placeholderImage:[UIImage imageNamed:@"LoadingImage"]];
-    _sellerLabel.text = [NSString stringWithFormat:@"by %@", food.restaurant.name];
+    _sellerLabel.text = [NSString stringWithFormat:@"by %@", food.seller.name];
     
     _nameLabel.text = food.title;
     _priceLabel.text = [NSString stringWithFormat:@"$%@", [food priceAtQuantity:@1]];
