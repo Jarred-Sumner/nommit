@@ -51,24 +51,28 @@ static NSNumber *NMCurrentPlaceID;
 // So, we only update active ones. Then, we mark all the others as inactive.
 + (void)refreshAllWithCompletion:(NMApiCompletionBlock)completion {
     [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            NSArray *places = [MTLJSONAdapter modelsOfClass:[NMPlaceApiModel class] fromJSONArray:response.result error:nil];
+
+        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            NSArray *activePlaces = [MTLJSONAdapter modelsOfClass:[NMPlaceApiModel class] fromJSONArray:response.result error:nil];
             
-            NSMutableArray *activePlaceIDs = [[NSMutableArray alloc] init];
-            
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT(uid IN %@)", activePlaceIDs];
-            NSArray *inactivePlaces = [NMPlace MR_findAllWithPredicate:predicate inContext:localContext];
-            for (NMPlace *place in inactivePlaces) {
-                place.foodCount = @0;
-            }
-            for (NMPlaceApiModel *model in places) {
+            NSMutableSet *activePlaceIDs = [[NSMutableSet alloc] init];
+            for (NMPlaceApiModel *model in activePlaces) {
                 [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:nil];
+                [activePlaceIDs addObject:model.uid];
             }
-        } completion:^(BOOL success, NSError *error) {
-            completion(response, error);
+            
+            // After we update the active places
+            // We make sure that the inactive places are marked as such.
+            NSArray *inactivePlaces = [NMPlace MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"NOT(uid in %@)", activePlaceIDs] inContext:localContext];
+            for (NMPlace *inactivePlace in inactivePlaces) {
+                inactivePlace.foodCount = @0;
+            }
+            
         }];
 
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(response, error);
+        });
         
     }];
 }
