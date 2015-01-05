@@ -18,7 +18,7 @@ static NSTimeInterval NMOrderFetchInterval = 15;
 static NSString *NMDeliveryPlaceHeaderReuseIdentifier = @"NMDeliveryPlaceHeaderReuseIdentifier";
 static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifier";
 
-@interface NMShiftTableViewController ()
+@interface NMShiftTableViewController () <MGSwipeTableCellDelegate>
 
 @property (nonatomic) NSUInteger placeIndex;
 @property (nonatomic, strong) UITableView *tableView;
@@ -190,7 +190,7 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     cell.nameLabel.text = order.user.name;
     cell.orderName.text = [NSString stringWithFormat:@"%@ - %@", order.quantity, order.food.title];
     cell.profileAvatar.profileID = order.user.facebookUID;
-    
+    cell.delegate = self;    
     cell.callButton.callback = ^BOOL(MGSwipeTableCell * sender) {
         [this callUserForOrder:order];
         return YES;
@@ -415,5 +415,12 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
     [_ordersTimer invalidate];
     [_headersTimer invalidate];
 }
+
+#pragma mark - MGSwipeCellDelegate 
+- (void) swipeTableCell:(MGSwipeTableCell*) cell didChangeSwipeState:(MGSwipeState) state gestureIsActive:(BOOL) gestureIsActive {
+    
+}
+
+
 
 @end

@@ -24,6 +24,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupAvatar];
         [self setupName];
+        [self setupSwipeRightIcon];
         [self setupOrderName];
         [self setupButtons];
     }
@@ -54,9 +55,24 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-14-[_nameLabel]" options:0 metrics:nil views:views]];
 }
 
+- (void)setupSwipeRightIcon {
+    _swipeRightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_swipeRightButton setImage:[UIImage imageNamed:@"SwipeRightIcon"] forState:UIControlStateNormal];
+    _swipeRightButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [_swipeRightButton addTarget:self action:@selector(swipeRightButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_swipeRightButton];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_swipeRightButton]-15-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_swipeRightButton)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[_swipeRightButton]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_swipeRightButton)]];
+}
+
+- (void)swipeRightButtonTapped {
+    [self showSwipe:MGSwipeDirectionLeftToRight animated:YES];
+}
+
 - (void)setupButtons {
-    _doneButton = [MGSwipeButton buttonWithTitle:nil icon:[UIImage imageNamed:@"CheckMarkIcon"] backgroundColor:[UIColor whiteColor]];
-    _callButton = [MGSwipeButton buttonWithTitle:nil icon:[UIImage imageNamed:@"PhoneIcon"] backgroundColor:[UIColor whiteColor]];
+    _doneButton = [MGSwipeButton buttonWithTitle:nil icon:[UIImage imageNamed:@"CheckMarkIcon"] backgroundColor:[UIColor purpleColor]];
+    _callButton = [MGSwipeButton buttonWithTitle:nil icon:[UIImage imageNamed:@"PhoneIcon"] backgroundColor:[UIColor purpleColor]];
     
     self.leftButtons = @[ _doneButton, _callButton ];
     
@@ -64,6 +80,7 @@
     exp.buttonIndex = 0;
     exp.fillOnTrigger = YES;
     self.leftExpansion = exp;
+    self.swipeBackgroundColor = [UIColor purpleColor];
 }
 
 - (void)setupOrderName

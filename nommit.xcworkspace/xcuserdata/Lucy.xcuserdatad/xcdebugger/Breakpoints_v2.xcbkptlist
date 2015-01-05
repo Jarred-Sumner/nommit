@@ -667,7 +667,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "362"
             endingLineNumber = "362"
-            landmarkName = "-configureCell:forIndexPath:"
+            landmarkName = "-showPlaces"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -682,9 +682,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "393"
-            endingLineNumber = "393"
-            landmarkName = "-notifyUser:"
-            landmarkType = "5">
+            endingLineNumber = "393">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -699,7 +697,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "331"
             endingLineNumber = "331"
-            landmarkName = "-configureCell:forIndexPath:"
+            landmarkName = "-initNavBar"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -715,7 +713,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "349"
             endingLineNumber = "349"
-            landmarkName = "-configureCell:forIndexPath:"
+            landmarkName = "-initNavBar"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -733,6 +731,36 @@
             endingLineNumber = "316"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[NMFoodsTableViewController tableView:didSelectRowAtIndexPath:]"
+                  moduleName = "nommit"
+                  urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/untitled%20folder/NMFoodsTableViewController.m"
+                  timestampString = "442111692.034457"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "316"
+                  endingLineNumber = "316"
+                  offsetFromSymbolStart = "539">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[NMFoodsTableViewController tableView:didSelectRowAtIndexPath:]"
+                  moduleName = "nommit"
+                  urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/untitled%20folder/NMFoodsTableViewController.m"
+                  timestampString = "442111692.034614"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "316"
+                  endingLineNumber = "316"
+                  offsetFromSymbolStart = "563">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

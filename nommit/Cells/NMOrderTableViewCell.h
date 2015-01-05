@@ -22,5 +22,6 @@ typedef NS_ENUM(NSInteger, NMOrderTableViewCellState) {
 @property (nonatomic, strong) FBProfilePictureView *profileAvatar;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *orderName;
+@property (nonatomic, strong) UIButton *swipeRightButton;
 
 @end
