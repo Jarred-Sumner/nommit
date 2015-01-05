@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, NMNoFoodCellState) {
+    NMNoFoodCellStateUnknown = 0,
+    NMNoFoodCellStateClosed
+};
+
 @interface NMNoFoodTableViewCell : UITableViewCell
+
+@property (nonatomic) NMNoFoodCellState state;
 
 @end

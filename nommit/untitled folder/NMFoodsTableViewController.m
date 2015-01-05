@@ -280,13 +280,12 @@ const NSInteger NMFooterSection = 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
-    NSUInteger count = [sectionInfo numberOfObjects];
-    
-    // Show no food cell if there's no food
-    if (count == 0) return 1;
-    
-    return count;
+    if (self.hasFoods) {
+        id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+        return [sectionInfo numberOfObjects];
+    } else {
+        return 1;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -310,15 +309,14 @@ const NSInteger NMFooterSection = 1;
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
-    NSUInteger count = [sectionInfo numberOfObjects];
-    if (count == 0) {
+    if (self.hasFoods) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
+        [self configureCell:cell forIndexPath:indexPath];
+        return cell;
+    } else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMNoFoodCellIdentifier forIndexPath:indexPath];
         return cell;
     }
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
-    [self configureCell:cell forIndexPath:indexPath];
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -341,10 +339,20 @@ const NSInteger NMFooterSection = 1;
 }
 
 - (void)configureCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath*)indexPath {
-    NMFoodTableViewCell *foodCell = (NMFoodTableViewCell*)cell;
-    NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if (self.hasFoods && [cell respondsToSelector:@selector(setFood:)]) {
+        NMFoodTableViewCell *foodCell = (NMFoodTableViewCell*)cell;
+        NMFood *food = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [foodCell setFood:food];
+    } else {
+        
+        if (NMUser.currentUser.school.isClosed) {
+            [(NMNoFoodTableViewCell*)cell setState:NMNoFoodCellStateClosed];
+        } else {
+            [(NMNoFoodTableViewCell*)cell setState:NMNoFoodCellStateUnknown];
+        }
+        
+    }
     
-    [foodCell setFood:food];
 }
 
 #pragma mark - nav bar
@@ -399,6 +407,11 @@ const NSInteger NMFooterSection = 1;
     }
 }
 
+- (BOOL)hasFoods {
+//    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+//    return [sectionInfo numberOfObjects] > 0;
+    return NO;
+}
 
 
 @end

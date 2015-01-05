@@ -176,31 +176,33 @@ const int numSlideshowPictures = 4;
         [[Mixpanel sharedInstance] track:@"Sign In"];
         [NMApi resetInstance];
         
-        [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
-            
-            [SVProgressHUD showSuccessWithStatus:@"Signed in!"];
-            if ([NMUser currentUser].state == NMUserStateActivated) {
+        [SVProgressHUD showSuccessWithStatus:@"Signed in!"];
+        if ([NMUser currentUser].state == NMUserStateActivated) {
+            [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
                 NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
                 [self.navigationController pushViewController:foodsViewController animated:YES];
                 [(NMNavigationController*)self.navigationController setDisabledMenu:NO];
-                
-            } else if ([NMUser currentUser].state == NMUserStateRegistered) {
-                
-                [[Mixpanel sharedInstance] track:@"Start Activation Flow"];
-                
-                __block NMNavigationController *navVC = self.navigationController;
-                [(NMNavigationController*)navVC setDisabledMenu:YES];
+            }];
+            
+        } else if ([NMUser currentUser].state == NMUserStateRegistered) {
+            
+            [[Mixpanel sharedInstance] track:@"Start Activation Flow"];
+            
+            __block NMNavigationController *navVC = self.navigationController;
+            [(NMNavigationController*)navVC setDisabledMenu:YES];
+            
+            NMSchoolsViewController *vc = [[NMSchoolsViewController alloc] initWithCompletionBlock:^{
+                NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
+                [navVC pushViewController:activateVC animated:YES];
+            }];
+            vc.navigationItem.hidesBackButton = YES;
+            [navVC pushViewController:vc animated:YES];
+            
+            
+        }
 
-                NMSchoolsViewController *vc = [[NMSchoolsViewController alloc] initWithCompletionBlock:^{
-                    NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
-                    [navVC pushViewController:activateVC animated:YES];
-                }];
-                vc.navigationItem.hidesBackButton = YES;
-                [navVC pushViewController:vc animated:YES];
-                
-                
-            }
-        }];
+        
+        
         
         
     }];

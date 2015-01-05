@@ -85,10 +85,15 @@
     dateFormatter.dateStyle = NSDateFormatterNoStyle;
     dateFormatter.timeStyle = NSDateFormatterShortStyle;
     [_startTimeLabel setText:[NSString stringWithFormat:@"AVAILABLE %@", [dateFormatter stringFromDate:food.startDate]]];
-    
-    self.state = food.state;
-    self.timingState = food.timingState;
-    self.quantityState = food.quantityState;
+
+    if (food.quantityState == NMFoodQuantityStateSoldOut) {
+        self.quantityState = food.quantityState;
+    }
+    else if (food.timingState == NMFoodTimingStateExpired || food.timingState == NMFoodTimingStatePending) {
+        self.timingState = food.timingState;
+    } else {
+        self.state = food.state;
+    }
 }
 
 - (void)setupFoodImage {
@@ -281,8 +286,6 @@
         _overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.24];
         _overlayView.hidden = NO;
         _startTimeLabel.hidden = NO;
-    } else {
-        self.state = NMFoodStateActive;
     }
 }
 
@@ -293,8 +296,6 @@
         _overlayView.backgroundColor = [UIColor clearColor];
         _overlayView.hidden = NO;
         _startTimeLabel.hidden = YES;
-    } else {
-        self.state = NMFoodStateActive;
     }
 }
 

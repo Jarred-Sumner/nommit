@@ -9,5 +9,6 @@ typedef NS_ENUM(NSInteger, NMSchoolMessageState) {
 @interface NMSchool : _NMSchool {}
 
 @property (readonly) NMSchoolMessageState messageState;
-
+@property (readonly) BOOL hasHours;
+@property (readonly) BOOL isClosed;
 @end

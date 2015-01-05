@@ -270,6 +270,12 @@
 #define COCOAPODS_VERSION_MINOR_Mixpanel 5
 #define COCOAPODS_VERSION_PATCH_Mixpanel 4
 
+// NSDate+Calendar
+#define COCOAPODS_POD_AVAILABLE_NSDate_Calendar
+#define COCOAPODS_VERSION_MAJOR_NSDate_Calendar 0
+#define COCOAPODS_VERSION_MINOR_NSDate_Calendar 0
+#define COCOAPODS_VERSION_PATCH_NSDate_Calendar 6
+
 // Overcoat
 #define COCOAPODS_POD_AVAILABLE_Overcoat
 #define COCOAPODS_VERSION_MAJOR_Overcoat 2

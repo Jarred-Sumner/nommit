@@ -11,7 +11,10 @@
 
 @interface NMNoFoodTableViewCell()
 
-@property (nonatomic, strong) UIImageView *chef;
+@property (nonatomic, strong) UIImageView *chefImageView;
+@property (nonatomic, strong) UIImageView *arrowImageView;
+@property (nonatomic, strong) UILabel *label;
+
 @end
 
 @implementation NMNoFoodTableViewCell
@@ -24,60 +27,63 @@
         self.backgroundColor = UIColorFromRGB(0xF3F1F1);
         [self setupChefIcon];
         [self setupLabel];
+        self.state = NMNoFoodCellStateUnknown;
     }
     return self;
 }
 
 - (void)setupChefIcon {
-    _chef = [[UIImageView alloc] init];
-    _chef.translatesAutoresizingMaskIntoConstraints = NO;
-    _chef.image = [UIImage imageNamed:@"Chef"];
-    _chef.contentMode = UIViewContentModeScaleAspectFit;
-    [self.contentView addSubview:_chef];
+    _chefImageView = [[UIImageView alloc] init];
+    _chefImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    _chefImageView.image = [UIImage imageNamed:@"Chef"];
+    _chefImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.contentView addSubview:_chefImageView];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-92-[_chef(135)]-92-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chef)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-92-[_chefImageView(135)]-92-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chefImageView)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[_chef(135)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chef)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[_chefImageView(135)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chefImageView)]];
 }
 
 - (void)setupLabel {
-    UILabel *label = [[UILabel alloc] init];
-    label.translatesAutoresizingMaskIntoConstraints = NO;
-    label.font = [UIFont fontWithName:@"Avenir" size:16];
-    label.textColor = UIColorFromRGB(0xB2B2B2);
+    _label = [[UILabel alloc] init];
+    _label.translatesAutoresizingMaskIntoConstraints = NO;
+    _label.font = [UIFont fontWithName:@"Avenir" size:16];
+    _label.textColor = UIColorFromRGB(0xB2B2B2);
+    _label.textAlignment = NSTextAlignmentCenter;
+    _label.lineBreakMode = NSLineBreakByWordWrapping;
+    _label.numberOfLines = 3;
     
-    label.text = @"There's no food available, but you can fix this!";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.lineBreakMode = NSLineBreakByWordWrapping;
-    label.numberOfLines = 3;
+    [self.contentView addSubview:_label];
     
-    [self.contentView addSubview:label];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-54-[_label]-54-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-54-[label]-54-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(label)]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_chef]-20-[label]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(label, _chef)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_chefImageView]-20-[_label]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _chefImageView)]];
 
-    UIImageView *arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DownArrow"]];
-    arrowImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DownArrow"]];
+    _arrowImageView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.contentView addSubview:arrowImageView];
+    [self.contentView addSubview:_arrowImageView];
 
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-155-[arrowImageView]-155-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(arrowImageView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-155-[_arrowImageView]-155-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_arrowImageView)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[label]-18-[arrowImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(label, arrowImageView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_label]-18-[_arrowImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _arrowImageView)]];
     
 
 }
 
-
-- (void)awakeFromNib {
-    // Initialization code
+- (void)setState:(NMNoFoodCellState)state {
+    if (state == NMNoFoodCellStateClosed && [[[NMUser currentUser] school] hasHours]) {
+        NSDateFormatter *shortFormatter = [[NSDateFormatter alloc] init];
+        shortFormatter.dateStyle = NSDateFormatterNoStyle;
+        shortFormatter.timeStyle = NSDateFormatterShortStyle;
+        
+        NSString *fromTime = [shortFormatter stringFromDate:NMUser.currentUser.school.fromHours];
+        NSString *toTime = [shortFormatter stringFromDate:NMUser.currentUser.school.toHours];
+        _label.text = [NSString stringWithFormat:@"We're closed! Open weekdays: %@ to %@", fromTime, toTime];
+        _arrowImageView.hidden = YES;
+    } else {
+        _label.text = @"No food available right now, but you can change that!";
+        _arrowImageView.hidden = NO;
+    }
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 @end

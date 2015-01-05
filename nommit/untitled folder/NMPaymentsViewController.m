@@ -69,7 +69,9 @@ static NSString *NMPaymentCellIdentifier = @"NMPaymentCellIdentifier";
 
 #pragma mark - Data Source
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 17.f;
+}
 
 - (UIView*)tableView:tableView viewForHeaderInSection:(NSInteger)section {
     NMTableSeparatorView *separatorView = [[NMTableSeparatorView alloc] initWithFrame:CGRectMake(0, 0, 273, 17)];

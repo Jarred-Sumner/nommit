@@ -15,6 +15,7 @@
 
 - (id)initWithPlace:(NMPlace*)place;
 
+@property (readonly) BOOL hasFoods;
 
 
 @end

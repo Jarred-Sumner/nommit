@@ -2,6 +2,7 @@
 platform :ios, "7.0"
 
 target "nommit" do
+  pod 'NSDate+Calendar'
   pod 'MGSwipeTableCell'
   pod 'TYMProgressBarView'
   pod 'AFNetworking'
