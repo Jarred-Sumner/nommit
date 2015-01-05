@@ -8,6 +8,8 @@
 
 #import "NMListTableViewCell.h"
 #import "NMSchoolsViewController.h"
+#import "NMFooterRequestView.h"
+#import "NMSupportViewController.h"
 
 
 @interface NMSchoolsViewController ()
@@ -50,9 +52,26 @@ static NSString *NMSchoolTableViewCellKey = @"NMSchoolTableViewCellKey";
     self.navigationItem.rightBarButtonItem = rightBarButton;
     
     [self setupRefreshing];
+    [self setupFooter];
     
     return self;
 }
+
+- (void)setupFooter {
+    NMFooterRequestView *view = [[NMFooterRequestView alloc] initWithText:@"Missing your school? Request it." withUnderlinedString:@"Request it." withFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
+    view.footerText.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture =
+    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(footerTapped)];
+    [view.footerText addGestureRecognizer:tapGesture];
+    
+    self.tableView.tableFooterView = view;
+}
+
+- (void)footerTapped {
+    NMSupportViewController *supportView = [[NMSupportViewController alloc] init];
+    [self.navigationController pushViewController:supportView animated:YES];
+}
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

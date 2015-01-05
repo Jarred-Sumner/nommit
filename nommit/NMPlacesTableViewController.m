@@ -9,6 +9,9 @@
 #import "NMPlacesTableViewController.h"
 #import "NMListTableViewCell.h"
 #import "NMNoFoodView.h"
+#import "NMFooterRequestView.h"
+#import "NMSupportViewController.h"
+
 
 @interface NMPlacesTableViewController ()
 
@@ -27,7 +30,25 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[NMListTableViewCell class] forCellReuseIdentifier:NMPlaceTableViewCellKey];
+    
+    [self setupFooter];
+    
     return self;
+}
+
+- (void)setupFooter {
+    NMFooterRequestView *view = [[NMFooterRequestView alloc] initWithText:@"Missing your delivery location? Request it." withUnderlinedString:@"Request it." withFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
+    view.footerText.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture =
+    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(footerTapped)];
+    [view.footerText addGestureRecognizer:tapGesture];
+    
+    self.tableView.tableFooterView = view;
+}
+
+- (void)footerTapped {
+    NMSupportViewController *supportView = [[NMSupportViewController alloc] init];
+    [self.navigationController pushViewController:supportView animated:YES];
 }
 
 - (void)loadView {
@@ -167,8 +188,10 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     if ([sectionInfo numberOfObjects] == 0) {
         _noFoodView.hidden = NO;
+        self.tableView.tableFooterView.hidden = YES;
     } else {
         _noFoodView.hidden = YES;
+        self.tableView.tableFooterView.hidden = NO;
     }
     return [sectionInfo numberOfObjects];
 }

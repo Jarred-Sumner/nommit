@@ -108,6 +108,8 @@
 		8D7D00AA19CD168C0006E5E6 /* NMFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */; };
 		8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */; };
 		8DA0A3411A5A424A007EEF7A /* NMNoFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3401A5A424A007EEF7A /* NMNoFoodTableViewCell.m */; };
+		8DA0A3441A5A5CDE007EEF7A /* NMFooterRequestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3431A5A5CDE007EEF7A /* NMFooterRequestView.m */; };
+		8DA0A3471A5A62F0007EEF7A /* UILabel+Boldify.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3461A5A62F0007EEF7A /* UILabel+Boldify.m */; };
 		8DA5198819D0ED9100BBA8A0 /* NMListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198719D0ED9100BBA8A0 /* NMListTableViewCell.m */; };
 		8DA5199419D3846800BBA8A0 /* NMOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5199319D3846800BBA8A0 /* NMOrderTableViewCell.m */; };
 		8DC5335719DC5D4D00A841EB /* NMLogoutButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */; };
@@ -380,6 +382,10 @@
 		8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPlaceDropdownView.m; path = Cells/NMPlaceDropdownView.m; sourceTree = "<group>"; };
 		8DA0A33F1A5A424A007EEF7A /* NMNoFoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNoFoodTableViewCell.h; path = Cells/NMNoFoodTableViewCell.h; sourceTree = "<group>"; };
 		8DA0A3401A5A424A007EEF7A /* NMNoFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNoFoodTableViewCell.m; path = Cells/NMNoFoodTableViewCell.m; sourceTree = "<group>"; };
+		8DA0A3421A5A5CDE007EEF7A /* NMFooterRequestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFooterRequestView.h; path = Views/NMFooterRequestView.h; sourceTree = "<group>"; };
+		8DA0A3431A5A5CDE007EEF7A /* NMFooterRequestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFooterRequestView.m; path = Views/NMFooterRequestView.m; sourceTree = "<group>"; };
+		8DA0A3451A5A62F0007EEF7A /* UILabel+Boldify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Boldify.h"; path = "nommit/Libraries/UILabel+Boldify.h"; sourceTree = "<group>"; };
+		8DA0A3461A5A62F0007EEF7A /* UILabel+Boldify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Boldify.m"; path = "nommit/Libraries/UILabel+Boldify.m"; sourceTree = "<group>"; };
 		8DA5198619D0ED9100BBA8A0 /* NMListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMListTableViewCell.h; path = Cells/NMListTableViewCell.h; sourceTree = "<group>"; };
 		8DA5198719D0ED9100BBA8A0 /* NMListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMListTableViewCell.m; path = Cells/NMListTableViewCell.m; sourceTree = "<group>"; };
 		8DA5198F19D3829C00BBA8A0 /* NMDeliveryPlaceNavigatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlaceNavigatorView.h; path = Views/NMDeliveryPlaceNavigatorView.h; sourceTree = "<group>"; };
@@ -709,6 +715,8 @@
 		8DD3FC2419B2512900DAFCDB = {
 			isa = PBXGroup;
 			children = (
+				8DA0A3451A5A62F0007EEF7A /* UILabel+Boldify.h */,
+				8DA0A3461A5A62F0007EEF7A /* UILabel+Boldify.m */,
 				8DD3FC3619B2512900DAFCDB /* nommit */,
 				8DD3FC4F19B2512900DAFCDB /* nommitTests */,
 				8DD3FC2F19B2512900DAFCDB /* Frameworks */,
@@ -993,6 +1001,8 @@
 				8D6B9D8D1A53B20500DB4A4B /* NMBecomeASellerFooterView.m */,
 				83CD00181A568F4A00D42560 /* NMPlaceTitleView.h */,
 				83CD00191A568F4A00D42560 /* NMPlaceTitleView.m */,
+				8DA0A3421A5A5CDE007EEF7A /* NMFooterRequestView.h */,
+				8DA0A3431A5A5CDE007EEF7A /* NMFooterRequestView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1239,6 +1249,7 @@
 				83454F4819DA398C005CEA8C /* _NMShift.m in Sources */,
 				8351379A19E9B13D00BE2093 /* NMRateView.m in Sources */,
 				8D51D2BB19B6A28700920F69 /* NMRibbonCell.m in Sources */,
+				8DA0A3441A5A5CDE007EEF7A /* NMFooterRequestView.m in Sources */,
 				83FB6D0119B57D6700B808B6 /* NMOrderFoodOrderButtonCell.m in Sources */,
 				8D7D00A419CD0BDD0006E5E6 /* NMFoodsTableViewController.m in Sources */,
 				835137A019EA143D00BE2093 /* _NMPrice.m in Sources */,
@@ -1301,6 +1312,7 @@
 				8DD32FB619D73595009485C2 /* NMConfirmPhoneTableViewCell.m in Sources */,
 				8DC5338A19DCBAF500A841EB /* THContactPickerTableViewCell.m in Sources */,
 				8D74819819B84269004A5090 /* NMAddressTableViewController.m in Sources */,
+				8DA0A3471A5A62F0007EEF7A /* UILabel+Boldify.m in Sources */,
 				8DD32FB019D662A4009485C2 /* NMPaymentInfoTableViewCell.m in Sources */,
 				8DA5199419D3846800BBA8A0 /* NMOrderTableViewCell.m in Sources */,
 				83C3A18C19CE54420052B6F7 /* NMSeller.m in Sources */,
