@@ -9,6 +9,8 @@
 #import "NMDeliveryPlacesTableViewController.h"
 #import "NMShiftTableViewController.h"
 #import "NMListTableViewCell.h"
+#import "NMFooterRequestView.h"
+#import "NMSupportViewController.h"
 
 #import <SIAlertView/SIAlertView.h>
 
@@ -36,7 +38,25 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     [self.tableView registerClass:[NMListTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];
+    [self setupFooter];
     return self;
+}
+
+- (void)setupFooter {
+    NMFooterRequestView *view = [[NMFooterRequestView alloc] initWithText:@"Missing your delivery location? Request it." withUnderlinedString:@"Request it." withFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30)];
+    view.footerText.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture =
+    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(footerTapped)];
+    [view.footerText addGestureRecognizer:tapGesture];
+    
+    self.tableView.tableFooterView = view;
+}
+
+- (void)footerTapped {
+    NMSupportViewController *supportView = [[NMSupportViewController alloc] initModal];
+    NMNavigationController *navController =
+    [[NMNavigationController alloc] initWithRootViewController:supportView];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

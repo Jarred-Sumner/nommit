@@ -384,8 +384,8 @@
 		8DA0A3401A5A424A007EEF7A /* NMNoFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNoFoodTableViewCell.m; path = Cells/NMNoFoodTableViewCell.m; sourceTree = "<group>"; };
 		8DA0A3421A5A5CDE007EEF7A /* NMFooterRequestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFooterRequestView.h; path = Views/NMFooterRequestView.h; sourceTree = "<group>"; };
 		8DA0A3431A5A5CDE007EEF7A /* NMFooterRequestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFooterRequestView.m; path = Views/NMFooterRequestView.m; sourceTree = "<group>"; };
-		8DA0A3451A5A62F0007EEF7A /* UILabel+Boldify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Boldify.h"; path = "nommit/Libraries/UILabel+Boldify.h"; sourceTree = "<group>"; };
-		8DA0A3461A5A62F0007EEF7A /* UILabel+Boldify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Boldify.m"; path = "nommit/Libraries/UILabel+Boldify.m"; sourceTree = "<group>"; };
+		8DA0A3451A5A62F0007EEF7A /* UILabel+Boldify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Boldify.h"; path = "Libraries/UILabel+Boldify.h"; sourceTree = "<group>"; };
+		8DA0A3461A5A62F0007EEF7A /* UILabel+Boldify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Boldify.m"; path = "Libraries/UILabel+Boldify.m"; sourceTree = "<group>"; };
 		8DA5198619D0ED9100BBA8A0 /* NMListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMListTableViewCell.h; path = Cells/NMListTableViewCell.h; sourceTree = "<group>"; };
 		8DA5198719D0ED9100BBA8A0 /* NMListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMListTableViewCell.m; path = Cells/NMListTableViewCell.m; sourceTree = "<group>"; };
 		8DA5198F19D3829C00BBA8A0 /* NMDeliveryPlaceNavigatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlaceNavigatorView.h; path = Views/NMDeliveryPlaceNavigatorView.h; sourceTree = "<group>"; };
@@ -630,6 +630,8 @@
 		8D51D28D19B3A3C200920F69 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8DA0A3451A5A62F0007EEF7A /* UILabel+Boldify.h */,
+				8DA0A3461A5A62F0007EEF7A /* UILabel+Boldify.m */,
 				8DFC100C1A0C92F2004862F7 /* KLCPopup.h */,
 				8DFC100D1A0C92F2004862F7 /* KLCPopup.m */,
 				8DC5335B19DCBAF500A841EB /* ContactPicker */,
@@ -715,8 +717,6 @@
 		8DD3FC2419B2512900DAFCDB = {
 			isa = PBXGroup;
 			children = (
-				8DA0A3451A5A62F0007EEF7A /* UILabel+Boldify.h */,
-				8DA0A3461A5A62F0007EEF7A /* UILabel+Boldify.m */,
 				8DD3FC3619B2512900DAFCDB /* nommit */,
 				8DD3FC4F19B2512900DAFCDB /* nommitTests */,
 				8DD3FC2F19B2512900DAFCDB /* Frameworks */,
