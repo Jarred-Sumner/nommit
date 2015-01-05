@@ -662,11 +662,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
-            timestampString = "442123169.034135"
+            timestampString = "442184177.614338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
             landmarkName = "-showPlaces"
             landmarkType = "5">
          </BreakpointContent>
@@ -678,11 +678,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
-            timestampString = "442123169.034135"
+            timestampString = "442184177.614338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413">
+            startingLineNumber = "415"
+            endingLineNumber = "415">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -692,11 +692,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
-            timestampString = "442123169.034135"
+            timestampString = "442184177.614338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "351"
-            endingLineNumber = "351"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "-initNavBar"
             landmarkType = "5">
          </BreakpointContent>
@@ -708,11 +708,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
-            timestampString = "442123169.034135"
+            timestampString = "442184177.614338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
             landmarkName = "-initNavBar"
             landmarkType = "5">
          </BreakpointContent>
@@ -724,11 +724,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
-            timestampString = "442123169.034135"
+            timestampString = "442184177.614338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
             <Locations>
@@ -739,11 +739,11 @@
                   symbolName = "-[NMFoodsTableViewController tableView:didSelectRowAtIndexPath:]"
                   moduleName = "nommit"
                   urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/untitled%20folder/NMFoodsTableViewController.m"
-                  timestampString = "442111692.034457"
+                  timestampString = "442183803.973662"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "316"
-                  endingLineNumber = "316"
+                  startingLineNumber = "336"
+                  endingLineNumber = "336"
                   offsetFromSymbolStart = "539">
                </Location>
                <Location
@@ -753,11 +753,11 @@
                   symbolName = "-[NMFoodsTableViewController tableView:didSelectRowAtIndexPath:]"
                   moduleName = "nommit"
                   urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/untitled%20folder/NMFoodsTableViewController.m"
-                  timestampString = "442111692.034614"
+                  timestampString = "442183803.974071"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "316"
-                  endingLineNumber = "316"
+                  startingLineNumber = "336"
+                  endingLineNumber = "336"
                   offsetFromSymbolStart = "563">
                </Location>
             </Locations>

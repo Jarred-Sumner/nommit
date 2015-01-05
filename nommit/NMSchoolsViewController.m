@@ -68,8 +68,10 @@ static NSString *NMSchoolTableViewCellKey = @"NMSchoolTableViewCellKey";
 }
 
 - (void)footerTapped {
-    NMSupportViewController *supportView = [[NMSupportViewController alloc] init];
-    [self.navigationController pushViewController:supportView animated:YES];
+    NMSupportViewController *supportView = [[NMSupportViewController alloc] initModal];
+    NMNavigationController *navController =
+    [[NMNavigationController alloc] initWithRootViewController:supportView];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 

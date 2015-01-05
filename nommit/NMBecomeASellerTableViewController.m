@@ -28,19 +28,31 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
 
 @implementation NMBecomeASellerTableViewController
 
+- (id)initModalWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    if (self) {
+        [self setupTableView];
+        [self initModalNavBar];
+    }
+    return self;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        self.tableView.backgroundColor = UIColorFromRGB(0xF3F1F1);
-        [self.tableView registerClass:[NMBecomeASellerBannerTableViewCell class] forCellReuseIdentifier:NMBecomeASellerBannerIdentifier];
-        [self.tableView registerClass:[NMBecomeASellerInfoTableViewCell class] forCellReuseIdentifier:NMBecomeASellerInfoIdentifier];
-        [self.tableView registerClass:[NMBecomeASellerApplyView class] forHeaderFooterViewReuseIdentifier:NMBecomeASellerApplyIdentifier];
-        
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
+        [self setupTableView];
         [self initNavBar];
     }
     return self;
+}
+
+- (void)setupTableView {
+    self.tableView.backgroundColor = UIColorFromRGB(0xF3F1F1);
+    [self.tableView registerClass:[NMBecomeASellerBannerTableViewCell class] forCellReuseIdentifier:NMBecomeASellerBannerIdentifier];
+    [self.tableView registerClass:[NMBecomeASellerInfoTableViewCell class] forCellReuseIdentifier:NMBecomeASellerInfoIdentifier];
+    [self.tableView registerClass:[NMBecomeASellerApplyView class] forHeaderFooterViewReuseIdentifier:NMBecomeASellerApplyIdentifier];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,6 +72,14 @@ static NSString *NMBecomeASellerApplyIdentifier = @"NMBecomeASellerApplyCell";
     
     self.navigationController.navigationBarHidden = NO;
     
+}
+
+- (void)initModalNavBar {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
+}
+
+- (void)cancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source

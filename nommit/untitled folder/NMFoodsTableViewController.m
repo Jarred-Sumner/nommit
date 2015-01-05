@@ -106,8 +106,10 @@ const NSInteger NMFooterSection = 1;
 }
 
 - (void)openSellerPage {
-    NMBecomeASellerTableViewController *becomeASellerVC = [[NMBecomeASellerTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    [self.navigationController pushViewController:becomeASellerVC animated:YES];
+    NMBecomeASellerTableViewController *becomeASellerVC = [[NMBecomeASellerTableViewController alloc] initModalWithStyle:UITableViewStylePlain];
+    NMNavigationController *navController =
+    [[NMNavigationController alloc] initWithRootViewController:becomeASellerVC];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

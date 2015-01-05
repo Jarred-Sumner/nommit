@@ -17,6 +17,20 @@
 
 @implementation NMSupportViewController
 
+- (id)initModal {
+    self = [super init];
+    if (self) {
+        NMSupportView *supportView = [[NMSupportView alloc] initWithFrame:self.view.frame];
+        [supportView.callButton addTarget:self action:@selector(callButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+        [supportView.emailButton addTarget:self action:@selector(emailButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+        [supportView.textButton addTarget:self action:@selector(textButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+        self.view = supportView;
+        
+        [self initModalNavBar];
+    }
+    return self;
+}
+
 - (id)init {
     self = [super init];
     if (self) {
@@ -121,6 +135,14 @@
     self.navigationItem.leftBarButtonItem = lbb;
     
     self.navigationController.navigationBarHidden = NO;    
+}
+
+- (void)initModalNavBar {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
+}
+
+- (void)cancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

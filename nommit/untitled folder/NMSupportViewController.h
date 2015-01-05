@@ -10,4 +10,6 @@
 
 @interface NMSupportViewController : UIViewController
 
+- (id)initModal;
+
 @end

@@ -10,4 +10,6 @@
 
 @interface NMBecomeASellerTableViewController : UITableViewController
 
+- (id)initModalWithStyle:(UITableViewStyle)style;
+
 @end
