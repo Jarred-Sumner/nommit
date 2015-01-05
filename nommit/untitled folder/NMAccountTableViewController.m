@@ -273,7 +273,7 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
-    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"facebookUID == %@", NMSession.userID];
+    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"facebookUID == %@", [NMUser currentUser].facebookUID];
     _fetchedResultsController = [NMUser MR_fetchAllSortedBy:@"facebookUID" ascending:NO withPredicate:userPredicate groupBy:nil delegate:self];
     return _fetchedResultsController;
 }

@@ -52,7 +52,7 @@ static NSNumber *NMCurrentPlaceID;
 + (void)refreshAllWithCompletion:(NMApiCompletionBlock)completion {
     [[NMApi instance] GET:@"places" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
 
-        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
             NSArray *activePlaces = [MTLJSONAdapter modelsOfClass:[NMPlaceApiModel class] fromJSONArray:response.result error:nil];
             
             NSMutableSet *activePlaceIDs = [[NSMutableSet alloc] init];
@@ -68,11 +68,11 @@ static NSNumber *NMCurrentPlaceID;
                 inactivePlace.foodCount = @0;
             }
             
+        } completion:^(BOOL success, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(response, error);
+            });
         }];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completion(response, error);
-        });
         
     }];
 }

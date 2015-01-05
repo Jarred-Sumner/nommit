@@ -47,11 +47,15 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
 
 + (void)setUserID:(NSString *)userID {
     [Lockbox setString:userID forKey:NMSessionUserIDKey];
-    [NMUser setCurrentUser:[NMUser MR_findFirstByAttribute:@"facebookUID" withValue:userID]];
+    if (userID.length) {
+        [NMUser setCurrentUser:[NMUser MR_findFirstByAttribute:@"facebookUID" withValue:userID]];
+    } else {
+        [NMUser setCurrentUser:nil];
+    }
 }
 
 + (void)logout {
-    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         [NMUser MR_truncateAllInContext:localContext];
         [NMShift MR_truncateAllInContext:localContext];
         [NMOrder MR_truncateAllInContext:localContext];

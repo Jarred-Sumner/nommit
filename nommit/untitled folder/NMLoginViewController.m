@@ -162,49 +162,62 @@ const int numSlideshowPictures = 4;
 
 }
 
+#pragma mark - Handle Login
+
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+    __block NMLoginViewController *this = self;
     [SVProgressHUD showWithStatus:@"Logging in..." maskType:SVProgressHUDMaskTypeBlack];
     [[NMApi instance] POST:@"sessions" parameters:@{ @"access_token" : FBSession.activeSession.accessTokenData.accessToken } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
-        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-           [MTLManagedObjectAdapter managedObjectFromModel:response.result insertingIntoContext:localContext error:nil];
+        __block NMUserApiModel *model = response.result;
+        
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:nil];
+        } completion:^(BOOL success, NSError *error) {
+            [NMSession setUserID:[response.result facebookUID]];
+            [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
+            
+            [this postLogin];
         }];
-        
-        
-        [NMSession setUserID:[response.result facebookUID]];
-        [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
+    }];
+}
+
+- (void)postLogin {
+    __block NMLoginViewController *this = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
         [[Mixpanel sharedInstance] track:@"Sign In"];
         [NMApi resetInstance];
         
-        [SVProgressHUD showSuccessWithStatus:@"Signed in!"];
         if ([NMUser currentUser].state == NMUserStateActivated) {
-            [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
-                NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
-                [self.navigationController pushViewController:foodsViewController animated:YES];
-                [(NMNavigationController*)self.navigationController setDisabledMenu:NO];
-            }];
-            
+            [this postActivation];
         } else if ([NMUser currentUser].state == NMUserStateRegistered) {
-            
-            [[Mixpanel sharedInstance] track:@"Start Activation Flow"];
-            
-            __block NMNavigationController *navVC = self.navigationController;
-            [(NMNavigationController*)navVC setDisabledMenu:YES];
-            
-            NMSchoolsViewController *vc = [[NMSchoolsViewController alloc] initWithCompletionBlock:^{
-                NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
-                [navVC pushViewController:activateVC animated:YES];
-            }];
-            vc.navigationItem.hidesBackButton = YES;
-            [navVC pushViewController:vc animated:YES];
-            
-            
+            [this preActivation];
         }
+    });
+}
 
-        
-        
-        
-        
+- (void)preActivation {
+    __block NMNavigationController *navVC = (NMNavigationController*)self.navigationController;
+
+    [[Mixpanel sharedInstance] track:@"Start Activation Flow"];
+    [navVC setDisabledMenu:YES];
+    
+    NMSchoolsViewController *vc = [[NMSchoolsViewController alloc] initWithCompletionBlock:^{
+        NMActivateAccountTableViewController *activateVC = [[NMActivateAccountTableViewController alloc] init];
+        [navVC pushViewController:activateVC animated:YES];
+    }];
+    vc.navigationItem.hidesBackButton = YES;
+    [navVC pushViewController:vc animated:YES];
+    [SVProgressHUD showSuccessWithStatus:@"Signed in!"];
+}
+
+- (void)postActivation {
+    __block NMNavigationController *navVC = (NMNavigationController*)self.navigationController;
+    [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
+        [SVProgressHUD showSuccessWithStatus:@"Signed in!"];
+        NMFoodsTableViewController *foodsViewController = [[NMFoodsTableViewController alloc] init];
+        [navVC pushViewController:foodsViewController animated:YES];
+        [(NMNavigationController*)navVC setDisabledMenu:NO];
     }];
 }
 
@@ -261,5 +274,11 @@ const int numSlideshowPictures = 4;
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     [controller dismissViewControllerAnimated:YES completion:NULL];
 }
+
+- (void)dealloc {
+    self.kenburnsSlideshowView.delegate = nil;
+}
+
+
 
 @end
