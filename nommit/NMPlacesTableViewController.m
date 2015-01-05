@@ -82,8 +82,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     
     [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
         [this.refreshControl endRefreshing];
-        [this.fetchedResultsController performFetch:&error];
-        NSLog(@"Error: %@", error);
+        [this.tableView reloadData];
     }];
 }
 

@@ -104,6 +104,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
             }
         } completion:^(BOOL success, NSError *error) {
             [this.refreshControl endRefreshing];
+            [this.tableView reloadData];
         }];
         
     }];
