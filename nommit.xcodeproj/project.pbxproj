@@ -107,6 +107,7 @@
 		8D7D00A719CD160B0006E5E6 /* NMFoodCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A619CD160B0006E5E6 /* NMFoodCellHeaderView.m */; };
 		8D7D00AA19CD168C0006E5E6 /* NMFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */; };
 		8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */; };
+		8DA0A3411A5A424A007EEF7A /* NMNoFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3401A5A424A007EEF7A /* NMNoFoodTableViewCell.m */; };
 		8DA5198819D0ED9100BBA8A0 /* NMListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198719D0ED9100BBA8A0 /* NMListTableViewCell.m */; };
 		8DA5199419D3846800BBA8A0 /* NMOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5199319D3846800BBA8A0 /* NMOrderTableViewCell.m */; };
 		8DC5335719DC5D4D00A841EB /* NMLogoutButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */; };
@@ -377,6 +378,8 @@
 		8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodTableViewCell.m; path = Cells/NMFoodTableViewCell.m; sourceTree = "<group>"; };
 		8D7D00AB19CD17940006E5E6 /* NMPlaceDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPlaceDropdownView.h; path = Cells/NMPlaceDropdownView.h; sourceTree = "<group>"; };
 		8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPlaceDropdownView.m; path = Cells/NMPlaceDropdownView.m; sourceTree = "<group>"; };
+		8DA0A33F1A5A424A007EEF7A /* NMNoFoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNoFoodTableViewCell.h; path = Cells/NMNoFoodTableViewCell.h; sourceTree = "<group>"; };
+		8DA0A3401A5A424A007EEF7A /* NMNoFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNoFoodTableViewCell.m; path = Cells/NMNoFoodTableViewCell.m; sourceTree = "<group>"; };
 		8DA5198619D0ED9100BBA8A0 /* NMListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMListTableViewCell.h; path = Cells/NMListTableViewCell.h; sourceTree = "<group>"; };
 		8DA5198719D0ED9100BBA8A0 /* NMListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMListTableViewCell.m; path = Cells/NMListTableViewCell.m; sourceTree = "<group>"; };
 		8DA5198F19D3829C00BBA8A0 /* NMDeliveryPlaceNavigatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlaceNavigatorView.h; path = Views/NMDeliveryPlaceNavigatorView.h; sourceTree = "<group>"; };
@@ -945,8 +948,8 @@
 				8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */,
 				8D1F3C781A1DAED900DC169B /* NMNotificationSettingsTableViewCell.h */,
 				8D1F3C791A1DAED900DC169B /* NMNotificationSettingsTableViewCell.m */,
-				8D73BF7E1A439B7D001DADC1 /* NMHoursBannerTableViewCell.h */,
-				8D73BF7F1A439B7D001DADC1 /* NMHoursBannerTableViewCell.m */,
+				8D73BF7E1A439B7D001DADC1 /* NMHoursBannerView.h */,
+				8D73BF7F1A439B7D001DADC1 /* NMHoursBannerView.m */,
 				83D663011A43919100090962 /* NMShowSchoolTableViewCell.h */,
 				83D663021A43919100090962 /* NMShowSchoolTableViewCell.m */,
 				8D6B9D981A5620E100DB4A4B /* NMBecomeASellerBannerTableViewCell.h */,
@@ -955,6 +958,8 @@
 				8D6B9D9C1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m */,
 				8D6B9D9E1A56212100DB4A4B /* NMBecomeASellerApplyView.h */,
 				8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyView.m */,
+				8DA0A33F1A5A424A007EEF7A /* NMNoFoodTableViewCell.h */,
+				8DA0A3401A5A424A007EEF7A /* NMNoFoodTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1199,6 +1204,7 @@
 				83454F5419DA3AFE005CEA8C /* NMDeliveryPlaceApiModel.m in Sources */,
 				8367D1BA1A1EAEE0009D8C63 /* NMSubscription.m in Sources */,
 				839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */,
+				8DA0A3411A5A424A007EEF7A /* NMNoFoodTableViewCell.m in Sources */,
 				8367D1BB1A1EAEE0009D8C63 /* _NMSubscription.m in Sources */,
 				8DD32FAA19D63A42009485C2 /* NMActivateAccountTableViewController.m in Sources */,
 				8D6B9D941A56202B00DB4A4B /* NMBecomeASellerTableViewController.m in Sources */,

@@ -23,11 +23,14 @@
 #import "NMBecomeASellerTableViewController.h"
 
 #import "NMPlaceTitleView.h"
+#import "NMNoFoodTableViewCell.h"
+
 
 static BOOL didAutoPresentPlaces = NO;
 
 static NSString *NMFoodCellIdentifier = @"FoodCellIdentifier";
 static NSString *NMLocationCellIdentifier = @"LocationCellIdentifier";
+static NSString *NMNoFoodCellIdentifier = @"NoFoodCellIdentifier";
 
 const NSInteger NMFooterSection = 1;
 
@@ -55,6 +58,7 @@ const NSInteger NMFooterSection = 1;
         }
         
         [self.tableView registerClass:[NMFoodTableViewCell class] forCellReuseIdentifier:NMFoodCellIdentifier];
+        [self.tableView registerClass:[NMNoFoodTableViewCell class] forCellReuseIdentifier:NMNoFoodCellIdentifier];
         
         NMBecomeASellerFooterView *footerView = [[NMBecomeASellerFooterView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 222)];
         footerView.footerText.text = @"Turn food students love into cash. \n Make up to $150/hour selling food on Nommit.";
@@ -276,10 +280,20 @@ const NSInteger NMFooterSection = 1;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
     NSUInteger count = [sectionInfo numberOfObjects];
+    
+    // Show no food cell if there's no food
+    if (count == 0) return 1;
+    
     return count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+    NSUInteger count = [sectionInfo numberOfObjects];
+    // no food cell
+    if (count == 0) {
+        return 250;
+    }
     return 198.5;
 }
 
@@ -294,6 +308,12 @@ const NSInteger NMFooterSection = 1;
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+    NSUInteger count = [sectionInfo numberOfObjects];
+    if (count == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMNoFoodCellIdentifier forIndexPath:indexPath];
+        return cell;
+    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMFoodCellIdentifier forIndexPath:indexPath];
     [self configureCell:cell forIndexPath:indexPath];
     return cell;
