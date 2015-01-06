@@ -107,12 +107,17 @@ static NSString *NMConfirmNumberTableViewCellKey = @"NMConfirmNumberTableViewCel
     
     [[NMApi instance] PUT:path parameters:@{ @"confirm_code" : _confirmPhoneTableViewCell.textField.text } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
-        [SVProgressHUD showSuccessWithStatus:@"Verified!"];
         
+        [SVProgressHUD showSuccessWithStatus:@"Verified!"];
         NMPaymentsViewController *payVC = [[NMPaymentsViewController alloc] initWithCompletionBlock:^{
-            NMFoodsTableViewController *foodsVC = [[NMFoodsTableViewController alloc] initWithPlace:nil];
-            [this.navigationController pushViewController:foodsVC animated:YES];
-            [[Mixpanel sharedInstance] track:@"Ended Activation Flow"];
+            [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
+
+                NMFoodsTableViewController *foodsVC = [[NMFoodsTableViewController alloc] initWithPlace:nil];
+                [this.navigationController pushViewController:foodsVC animated:YES];
+                [[Mixpanel sharedInstance] track:@"Ended Activation Flow"];
+            }];
+            
+            
         }];
         
         [this.navigationController pushViewController:payVC animated:YES];

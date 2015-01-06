@@ -175,6 +175,7 @@ const int numSlideshowPictures = 4;
             [MTLManagedObjectAdapter managedObjectFromModel:model insertingIntoContext:localContext error:nil];
         } completion:^(BOOL success, NSError *error) {
             [NMSession setUserID:[response.result facebookUID]];
+            [NMSession setSchoolID:[response.result school].uid];
             [NMSession setSessionID:response.HTTPResponse.allHeaderFields[@"X-SESSION-ID"]];
             
             [this postLogin];

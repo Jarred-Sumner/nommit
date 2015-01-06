@@ -99,7 +99,8 @@ static NSString *NMSchoolTableViewCellKey = @"NMSchoolTableViewCellKey";
                 user.school = [NMSchool MR_findFirstByAttribute:@"uid" withValue:schoolID inContext:localContext];
             
             } completion:^(BOOL success, NSError *error) {
-                
+                [NMPlace setActivePlace:nil];
+                [NMSession setSchoolID:[[response.result school] uid]];
                 [SVProgressHUD showSuccessWithStatus:@"Saved!"];
                 this.completionBlock();
 

@@ -78,8 +78,8 @@
         shortFormatter.dateStyle = NSDateFormatterNoStyle;
         shortFormatter.timeStyle = NSDateFormatterShortStyle;
         
-        NSString *fromTime = [shortFormatter stringFromDate:NMUser.currentUser.school.fromHours];
-        NSString *toTime = [shortFormatter stringFromDate:NMUser.currentUser.school.toHours];
+        NSString *fromTime = [shortFormatter stringFromDate:NMSchool.currentSchool.fromHours];
+        NSString *toTime = [shortFormatter stringFromDate:NMSchool.currentSchool.toHours];
         _label.text = [NSString stringWithFormat:@"We're closed! Open Weekdays: \n %@ to %@", fromTime, toTime];
         
         

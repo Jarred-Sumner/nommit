@@ -28,7 +28,6 @@
 @property (nonatomic, strong) NMAccountInformationTableViewCell *infoCell;
 @property (nonatomic, strong) NMPaymentMethodTableViewCell *cardCell;
 @property (nonatomic, strong) NMAccountPromoTableViewCell *promoCell;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NMLogoutButtonCell *logoutCell;
 @property (nonatomic, strong) NMShowSchoolTableViewCell *schoolCell;
 
@@ -75,7 +74,7 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
 }
 
 - (NMUser*)user {
-    return [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    return [NMUser currentUser];
 }
 
 #pragma mark - Table view data source
@@ -260,7 +259,7 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
             }
             break;
         case NMSchoolSection:
-            _schoolCell.schoolLabel.text = self.user.school.name;
+            _schoolCell.schoolLabel.text = NMSchool.currentSchool.name;
         case NMAccountPromoSection:
             [_promoCell.submitButton addTarget:self action:@selector(submitPromoCode:) forControlEvents:UIControlEventTouchUpInside];
             _promoCell.creditLabel.text = [NSString stringWithFormat:@"Account Credit: $%@", self.user.credit];
@@ -271,70 +270,7 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
 
 }
 
-- (NSFetchedResultsController *)fetchedResultsController {
-    if (_fetchedResultsController != nil) return _fetchedResultsController;
-    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"facebookUID == %@", [NMUser currentUser].facebookUID];
-    _fetchedResultsController = [NMUser MR_fetchAllSortedBy:@"facebookUID" ascending:NO withPredicate:userPredicate groupBy:nil delegate:self];
-    return _fetchedResultsController;
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    UITableView *tableView = self.tableView;
-    
-    switch(type) {
-            
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCellForIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView endUpdates];
-}
-
 - (void)logout {
-    _fetchedResultsController = nil;
     [NMSession logout];
 }
 

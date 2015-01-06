@@ -18,6 +18,9 @@
 + (NSString *)userID;
 + (void)setUserID:(NSString *)userID;
 
++ (NSNumber *)schoolID;
++ (void)setSchoolID:(NSNumber *)schoolID;
+
 + (BOOL)hasRequestedPush;
 + (void)setRequestedPush:(BOOL)requestedPush;
 

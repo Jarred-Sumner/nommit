@@ -135,7 +135,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
 
-    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"school = %@", [NMUser currentUser].school] groupBy:nil delegate:self];
+    _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"school = %@", [NMSchool currentSchool]] groupBy:nil delegate:self];
     return _fetchedResultsController;
 }
 

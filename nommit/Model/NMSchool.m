@@ -10,6 +10,18 @@
 
 @implementation NMSchool
 
+static id NMCurrentSchool;
+
++ (void)setCurrentSchool:(NMSchool*)school {
+    NMCurrentSchool = school;
+}
+
++ (NMSchool*)currentSchool {
+    if (!NMCurrentSchool) {
+        NMCurrentSchool = [NMSchool MR_findFirstByAttribute:@"uid" withValue:[NMSession schoolID]];
+    }
+    return NMCurrentSchool;
+}
 
 - (NMSchoolMessageState)messageState {
     if (self.motd && [self.motdExpiration timeIntervalSinceNow] > 0) {

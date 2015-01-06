@@ -14,6 +14,7 @@
 static NSString *NMPushNotificationsKey = @"NMPushNotificationsKey";
 static NSString *NMSessionIDKey = @"NMSessionIDKey";
 static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
+static NSString *NMSessionSchoolIDKey = @"NMSessionSchoolIDKey";
 
 @implementation NMSession
 
@@ -54,6 +55,20 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
     }
 }
 
++ (NSNumber *)schoolID {
+    NSNumber *schoolID = [[NSUserDefaults standardUserDefaults] objectForKey:NMSessionSchoolIDKey];
+    return schoolID;
+}
+
++ (void)setSchoolID:(NSNumber *)schoolID {
+    [[NSUserDefaults standardUserDefaults] setObject:schoolID forKey:NMSessionSchoolIDKey];
+    if (schoolID) {
+        [NMSchool setCurrentSchool:[NMSchool MR_findFirstByAttribute:@"uid" withValue:schoolID]];
+    } else {
+        [NMSchool setCurrentSchool:nil];
+    }
+}
+
 + (void)logout {
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         [NMUser MR_truncateAllInContext:localContext];
@@ -66,10 +81,12 @@ static NSString *NMSessionUserIDKey = @"NMSessionUserIDKey";
         [NMFood MR_truncateAllInContext:localContext];
         [NMSeller MR_truncateAllInContext:localContext];
         [NMLocation MR_truncateAllInContext:localContext];
+        [NMSchool MR_truncateAllInContext:localContext];
     }];
 
     [NMSession setSessionID:nil];
     [NMSession setUserID:nil];
+    [NMSession setSchoolID:nil];
     [NMPlace setActivePlace:nil];
     [FBSession.activeSession closeAndClearTokenInformation];
     [FBSession setActiveSession:nil];

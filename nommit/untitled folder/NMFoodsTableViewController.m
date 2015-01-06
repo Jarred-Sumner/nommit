@@ -156,9 +156,9 @@ const NSInteger NMFooterSection = 1;
         // - Stopped being sold (due to endDate being < now)
         // - Haven't been sold (startDate > now)
         // - Have sold out
-        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (endDate >= %@) AND (startDate <= %@) AND stateID = %@ AND seller.school = %@", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStatePending)], _place, [NSDate date], [NSDate date], @(NMFoodStateActive), [NMUser currentUser].school];
+        foodPredicate = [NSPredicate predicateWithFormat:@"ANY deliveryPlaces.place = %@ AND SUBQUERY(deliveryPlaces, $dp, $dp.stateID IN %@ AND $dp.place = %@).@count > 0 AND (endDate >= %@) AND (startDate <= %@) AND stateID = %@ AND seller.school = %@", _place, @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStateReady), @(NMDeliveryPlaceStatePending)], _place, [NSDate date], [NSDate date], @(NMFoodStateActive), [NMSchool currentSchool]];
     } else {
-        foodPredicate = [NSPredicate predicateWithFormat:@"endDate >= %@ AND seller.school = %@", [[NSDate date] dateByAddingTimeInterval:-86400], [NMUser currentUser].school];
+        foodPredicate = [NSPredicate predicateWithFormat:@"endDate >= %@ AND seller.school = %@", [[NSDate date] dateByAddingTimeInterval:-86400], [NMSchool currentSchool]];
     }
     
     _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"featured" ascending:NO withPredicate:foodPredicate groupBy:nil delegate: self];
@@ -203,8 +203,13 @@ const NSInteger NMFooterSection = 1;
 
 - (void)refreshFood {
     __weak NMFoodsTableViewController *this = self;
+    
+    // When we go from "No Foods" to some foods, just reload the table view.
+    __block BOOL shouldReloadTableView = !self.hasFoods;
+    
     [[NMApi instance] GET:[NSString stringWithFormat:@"foods"] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         [this didRefresh];
+        if (shouldReloadTableView) [this.tableView reloadData];
     }];
 }
 
@@ -300,11 +305,14 @@ const NSInteger NMFooterSection = 1;
 
 #pragma mark - Spacing for Footer View
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [[UIView alloc] initWithFrame:CGRectMake(0,0,1,44.0)];
+    return [[UIView alloc] initWithFrame:CGRectMake(0,0,1,10.0)];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 44.f;
+    if (self.hasFoods) {
+        return 44.f;
+    } else return 10.f;
+    
 }
 
 
