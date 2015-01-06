@@ -315,6 +315,7 @@ const NSInteger NMFooterSection = 1;
         return cell;
     } else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMNoFoodCellIdentifier forIndexPath:indexPath];
+        [self configureCell:cell forIndexPath:indexPath];
         return cell;
     }
 }
@@ -408,9 +409,8 @@ const NSInteger NMFooterSection = 1;
 }
 
 - (BOOL)hasFoods {
-//    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
-//    return [sectionInfo numberOfObjects] > 0;
-    return NO;
+    id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+    return [sectionInfo numberOfObjects] > 0;
 }
 
 

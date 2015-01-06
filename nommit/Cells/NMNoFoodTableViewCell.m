@@ -11,7 +11,7 @@
 
 @interface NMNoFoodTableViewCell()
 
-@property (nonatomic, strong) UIImageView *chefImageView;
+@property (nonatomic, strong) UIImageView *topImageView;
 @property (nonatomic, strong) UIImageView *arrowImageView;
 @property (nonatomic, strong) UILabel *label;
 
@@ -33,15 +33,15 @@
 }
 
 - (void)setupChefIcon {
-    _chefImageView = [[UIImageView alloc] init];
-    _chefImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    _chefImageView.image = [UIImage imageNamed:@"Chef"];
-    _chefImageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.contentView addSubview:_chefImageView];
+    _topImageView = [[UIImageView alloc] init];
+    _topImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    _topImageView.image = [UIImage imageNamed:@"ClosedSign"];
+    _topImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.contentView addSubview:_topImageView];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-92-[_chefImageView(135)]-92-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chefImageView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-92-[_topImageView]-92-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_topImageView)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-25-[_chefImageView(135)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chefImageView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_topImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_topImageView)]];
 }
 
 - (void)setupLabel {
@@ -55,16 +55,17 @@
     
     [self.contentView addSubview:_label];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-54-[_label]-54-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-44-[_label]-44-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_chefImageView]-20-[_label]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _chefImageView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_topImageView]-20-[_label]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _topImageView)]];
 
     _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DownArrow"]];
     _arrowImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    _arrowImageView.contentMode = UIViewContentModeCenter;
     
     [self.contentView addSubview:_arrowImageView];
 
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-155-[_arrowImageView]-155-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_arrowImageView)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_arrowImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_arrowImageView)]];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_label]-18-[_arrowImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _arrowImageView)]];
     
@@ -79,7 +80,9 @@
         
         NSString *fromTime = [shortFormatter stringFromDate:NMUser.currentUser.school.fromHours];
         NSString *toTime = [shortFormatter stringFromDate:NMUser.currentUser.school.toHours];
-        _label.text = [NSString stringWithFormat:@"We're closed! Open weekdays: %@ to %@", fromTime, toTime];
+        _label.text = [NSString stringWithFormat:@"We're closed! Open Weekdays: \n %@ to %@", fromTime, toTime];
+        
+        
         _arrowImageView.hidden = YES;
     } else {
         _label.text = @"No food available right now, but you can change that!";
