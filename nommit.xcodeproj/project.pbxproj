@@ -107,7 +107,7 @@
 		8D7D00A719CD160B0006E5E6 /* NMFoodCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A619CD160B0006E5E6 /* NMFoodCellHeaderView.m */; };
 		8D7D00AA19CD168C0006E5E6 /* NMFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */; };
 		8D7D00AD19CD17940006E5E6 /* NMPlaceDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */; };
-		8DA0A3411A5A424A007EEF7A /* NMNoFoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3401A5A424A007EEF7A /* NMNoFoodTableViewCell.m */; };
+		8DA0A3411A5A424A007EEF7A /* NMNoFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3401A5A424A007EEF7A /* NMNoFoodView.m */; };
 		8DA0A3441A5A5CDE007EEF7A /* NMFooterRequestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3431A5A5CDE007EEF7A /* NMFooterRequestView.m */; };
 		8DA0A3471A5A62F0007EEF7A /* UILabel+Boldify.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3461A5A62F0007EEF7A /* UILabel+Boldify.m */; };
 		8DA5198819D0ED9100BBA8A0 /* NMListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198719D0ED9100BBA8A0 /* NMListTableViewCell.m */; };
@@ -142,7 +142,6 @@
 		8DCE836319D4D69E00D770D0 /* NMPromoCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836219D4D69E00D770D0 /* NMPromoCodeTableViewCell.m */; };
 		8DCE836619D4D7E600D770D0 /* NMAccountPromoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836519D4D7E600D770D0 /* NMAccountPromoTableViewCell.m */; };
 		8DCE836B19D50B2E00D770D0 /* NMPromoTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836A19D50B2E00D770D0 /* NMPromoTextField.m */; };
-		8DCE836E19D53AF700D770D0 /* NMNoFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE836D19D53AF700D770D0 /* NMNoFoodView.m */; };
 		8DD32FAA19D63A42009485C2 /* NMActivateAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FA919D63A42009485C2 /* NMActivateAccountTableViewController.m */; };
 		8DD32FAD19D6628D009485C2 /* NMActivatePhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FAC19D6628D009485C2 /* NMActivatePhoneTableViewCell.m */; };
 		8DD32FB019D662A4009485C2 /* NMPaymentInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD32FAF19D662A4009485C2 /* NMPaymentInfoTableViewCell.m */; };
@@ -380,8 +379,8 @@
 		8D7D00A919CD168C0006E5E6 /* NMFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFoodTableViewCell.m; path = Cells/NMFoodTableViewCell.m; sourceTree = "<group>"; };
 		8D7D00AB19CD17940006E5E6 /* NMPlaceDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPlaceDropdownView.h; path = Cells/NMPlaceDropdownView.h; sourceTree = "<group>"; };
 		8D7D00AC19CD17940006E5E6 /* NMPlaceDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPlaceDropdownView.m; path = Cells/NMPlaceDropdownView.m; sourceTree = "<group>"; };
-		8DA0A33F1A5A424A007EEF7A /* NMNoFoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNoFoodTableViewCell.h; path = Cells/NMNoFoodTableViewCell.h; sourceTree = "<group>"; };
-		8DA0A3401A5A424A007EEF7A /* NMNoFoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNoFoodTableViewCell.m; path = Cells/NMNoFoodTableViewCell.m; sourceTree = "<group>"; };
+		8DA0A33F1A5A424A007EEF7A /* NMNoFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNoFoodView.h; path = Cells/NMNoFoodView.h; sourceTree = "<group>"; };
+		8DA0A3401A5A424A007EEF7A /* NMNoFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNoFoodView.m; path = Cells/NMNoFoodView.m; sourceTree = "<group>"; };
 		8DA0A3421A5A5CDE007EEF7A /* NMFooterRequestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMFooterRequestView.h; path = Views/NMFooterRequestView.h; sourceTree = "<group>"; };
 		8DA0A3431A5A5CDE007EEF7A /* NMFooterRequestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFooterRequestView.m; path = Views/NMFooterRequestView.m; sourceTree = "<group>"; };
 		8DA0A3451A5A62F0007EEF7A /* UILabel+Boldify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Boldify.h"; path = "Libraries/UILabel+Boldify.h"; sourceTree = "<group>"; };
@@ -443,8 +442,6 @@
 		8DCE836519D4D7E600D770D0 /* NMAccountPromoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMAccountPromoTableViewCell.m; path = Cells/NMAccountPromoTableViewCell.m; sourceTree = "<group>"; };
 		8DCE836919D50B2E00D770D0 /* NMPromoTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMPromoTextField.h; path = "Custom Components/NMPromoTextField.h"; sourceTree = "<group>"; };
 		8DCE836A19D50B2E00D770D0 /* NMPromoTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMPromoTextField.m; path = "Custom Components/NMPromoTextField.m"; sourceTree = "<group>"; };
-		8DCE836C19D53AF700D770D0 /* NMNoFoodView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMNoFoodView.h; path = Views/NMNoFoodView.h; sourceTree = "<group>"; };
-		8DCE836D19D53AF700D770D0 /* NMNoFoodView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMNoFoodView.m; path = Views/NMNoFoodView.m; sourceTree = "<group>"; };
 		8DD32FA819D63A42009485C2 /* NMActivateAccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMActivateAccountTableViewController.h; path = "untitled folder/NMActivateAccountTableViewController.h"; sourceTree = "<group>"; };
 		8DD32FA919D63A42009485C2 /* NMActivateAccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMActivateAccountTableViewController.m; path = "untitled folder/NMActivateAccountTableViewController.m"; sourceTree = "<group>"; };
 		8DD32FAB19D6628D009485C2 /* NMActivatePhoneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMActivatePhoneTableViewCell.h; path = Cells/NMActivatePhoneTableViewCell.h; sourceTree = "<group>"; };
@@ -966,8 +963,8 @@
 				8D6B9D9C1A5620FA00DB4A4B /* NMBecomeASellerInfoTableViewCell.m */,
 				8D6B9D9E1A56212100DB4A4B /* NMBecomeASellerApplyView.h */,
 				8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyView.m */,
-				8DA0A33F1A5A424A007EEF7A /* NMNoFoodTableViewCell.h */,
-				8DA0A3401A5A424A007EEF7A /* NMNoFoodTableViewCell.m */,
+				8DA0A33F1A5A424A007EEF7A /* NMNoFoodView.h */,
+				8DA0A3401A5A424A007EEF7A /* NMNoFoodView.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -981,8 +978,6 @@
 				8DA5199019D3829C00BBA8A0 /* NMDeliveryPlaceNavigatorView.m */,
 				8DCE835819D4D5C900D770D0 /* NMTableSeparatorView.h */,
 				8DCE835919D4D5C900D770D0 /* NMTableSeparatorView.m */,
-				8DCE836C19D53AF700D770D0 /* NMNoFoodView.h */,
-				8DCE836D19D53AF700D770D0 /* NMNoFoodView.m */,
 				8DD32FB719D8E804009485C2 /* NMDeliveryPlaceFooter.h */,
 				8DD32FB819D8E804009485C2 /* NMDeliveryPlaceFooter.m */,
 				8DC5339819DCDCCF00A841EB /* NMInviteCodeView.h */,
@@ -1209,12 +1204,11 @@
 				8D6B9D8E1A53B20500DB4A4B /* NMBecomeASellerFooterView.m in Sources */,
 				8DC5339A19DCDCCF00A841EB /* NMInviteCodeView.m in Sources */,
 				83D6A9E219B822B8009A6D9B /* _NMOrder.m in Sources */,
-				8DCE836E19D53AF700D770D0 /* NMNoFoodView.m in Sources */,
 				8DD3FC6C19B258F700DAFCDB /* NMColors.m in Sources */,
 				83454F5419DA3AFE005CEA8C /* NMDeliveryPlaceApiModel.m in Sources */,
 				8367D1BA1A1EAEE0009D8C63 /* NMSubscription.m in Sources */,
 				839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */,
-				8DA0A3411A5A424A007EEF7A /* NMNoFoodTableViewCell.m in Sources */,
+				8DA0A3411A5A424A007EEF7A /* NMNoFoodView.m in Sources */,
 				8367D1BB1A1EAEE0009D8C63 /* _NMSubscription.m in Sources */,
 				8DD32FAA19D63A42009485C2 /* NMActivateAccountTableViewController.m in Sources */,
 				8D6B9D941A56202B00DB4A4B /* NMBecomeASellerTableViewController.m in Sources */,

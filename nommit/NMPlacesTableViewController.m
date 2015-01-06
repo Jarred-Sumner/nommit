@@ -115,7 +115,7 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
 - (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) return _fetchedResultsController;
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"foodCount > 0 AND school = %@", [NMSchool currentSchool]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"foodCount > 0"];
     _fetchedResultsController = [NMPlace MR_fetchAllSortedBy:@"name" ascending:YES withPredicate:predicate groupBy:nil delegate:self];
     return _fetchedResultsController;
 }

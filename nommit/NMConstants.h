@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Blah Labs, Inc. All rights reserved.
 //
 
-#define DEVELOPMENT_URL @"http://10.0.0.16:3000/api/v1"
+#define DEVELOPMENT_URL @"http://127.0.0.1:3000/api/v1"
 #define DEVELOPMENT_STRIPE_KEY @"pk_test_evT0Hl8iSqKRXKkOvjJfPsKt"
 
 #define PRODUCTION_URL @"http://www.getnommit.com/api/v1"
 #define PRODUCTION_STRIPE_KEY @"pk_live_lLUJxo6DJJiHvuCwFtxPlYmS"
 
-#define DEVELOPMENT
+#define PRODUCTION
 
 #ifdef DEVELOPMENT
     #define API_URL DEVELOPMENT_URL

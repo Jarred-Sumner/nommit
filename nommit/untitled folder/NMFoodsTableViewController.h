@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMFoodsTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface NMFoodsTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NMPlace *place;

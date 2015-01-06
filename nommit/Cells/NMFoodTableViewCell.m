@@ -285,6 +285,7 @@
     } else if (timingState == NMFoodTimingStatePending) {
         _overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.24];
         _overlayView.hidden = NO;
+        _overlayView.image = nil;
         _startTimeLabel.hidden = NO;
     }
 }

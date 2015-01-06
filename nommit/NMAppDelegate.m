@@ -52,7 +52,7 @@
     [[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x898989)];
 
     if ([NMSession isUserLoggedIn]) {
-        [self checkForActiveOrders];
+        [self refreshContent];
         
         // Always send off the device token on app load in case they changed whether or not push notifications is enabled
         if (self.isPushEnabled) {
@@ -69,7 +69,7 @@
     return YES;
 }
 
-- (void)checkForActiveOrders {
+- (void)refreshContent {
     [[NMApi instance] GET:@"orders" parameters:nil completion:NULL];
 }
 

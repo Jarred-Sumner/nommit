@@ -97,13 +97,16 @@ static NSString *NMSchoolTableViewCellKey = @"NMSchoolTableViewCellKey";
                 NMUser *user = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID] inContext:localContext];
                 
                 user.school = [NMSchool MR_findFirstByAttribute:@"uid" withValue:schoolID inContext:localContext];
-            
+                
+                [NMFood MR_truncateAllInContext:localContext];
+                [NMPlace MR_truncateAllInContext:localContext];
+                [NMDeliveryPlace MR_truncateAllInContext:localContext];
+                [NMOrder MR_truncateAllInContext:localContext];
             } completion:^(BOOL success, NSError *error) {
                 [NMPlace setActivePlace:nil];
                 [NMSession setSchoolID:[[response.result school] uid]];
                 [SVProgressHUD showSuccessWithStatus:@"Saved!"];
                 this.completionBlock();
-
             }];
             
 
