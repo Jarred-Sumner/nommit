@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Lucy Guo. All rights reserved.
 //
 
-#import "NMNoFoodTableViewCell.h"
+#import "NMNoFoodView.h"
 #import <FAKFontAwesome.h>
 
-@interface NMNoFoodTableViewCell()
+@interface NMNoFoodView()
 
 @property (nonatomic, strong) UIImageView *topImageView;
 @property (nonatomic, strong) UIImageView *arrowImageView;
@@ -17,18 +17,17 @@
 
 @end
 
-@implementation NMNoFoodTableViewCell
+@implementation NMNoFoodView
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)init
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.backgroundColor = UIColorFromRGB(0xF3F1F1);
-        [self setupChefIcon];
-        [self setupLabel];
-        self.state = NMNoFoodCellStateUnknown;
-    }
+    self = [super init];
+
+    self.backgroundColor = UIColorFromRGB(0xF3F1F1);
+    [self setupChefIcon];
+    [self setupLabel];
+    self.state = NMNoFoodViewStateUnknown;
+
     return self;
 }
 
@@ -37,11 +36,11 @@
     _topImageView.translatesAutoresizingMaskIntoConstraints = NO;
     _topImageView.image = [UIImage imageNamed:@"ClosedSign"];
     _topImageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.contentView addSubview:_topImageView];
+    [self addSubview:_topImageView];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-92-[_topImageView]-92-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_topImageView)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-92-[_topImageView]-92-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_topImageView)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_topImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_topImageView)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_topImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_topImageView)]];
 }
 
 - (void)setupLabel {
@@ -53,27 +52,27 @@
     _label.lineBreakMode = NSLineBreakByWordWrapping;
     _label.numberOfLines = 3;
     
-    [self.contentView addSubview:_label];
+    [self addSubview:_label];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-44-[_label]-44-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-44-[_label]-44-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_topImageView]-20-[_label]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _topImageView)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_topImageView]-20-[_label]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _topImageView)]];
 
     _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DownArrow"]];
     _arrowImageView.translatesAutoresizingMaskIntoConstraints = NO;
     _arrowImageView.contentMode = UIViewContentModeCenter;
     
-    [self.contentView addSubview:_arrowImageView];
+    [self addSubview:_arrowImageView];
 
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_arrowImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_arrowImageView)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_arrowImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_arrowImageView)]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_label]-18-[_arrowImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _arrowImageView)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_label]-18-[_arrowImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _arrowImageView)]];
     
 
 }
 
-- (void)setState:(NMNoFoodCellState)state {
-    if (state == NMNoFoodCellStateClosed && [[[NMUser currentUser] school] hasHours]) {
+- (void)setState:(NMNoFoodViewState)state {
+    if (state == NMNoFoodViewStateClosed && [[[NMUser currentUser] school] hasHours]) {
         NSDateFormatter *shortFormatter = [[NSDateFormatter alloc] init];
         shortFormatter.dateStyle = NSDateFormatterNoStyle;
         shortFormatter.timeStyle = NSDateFormatterShortStyle;
@@ -89,4 +88,7 @@
         _arrowImageView.hidden = NO;
     }
 }
+
+- (BOOL)isUserInteractionEnabled { return NO; }
+
 @end

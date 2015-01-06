@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, NMNoFoodCellState) {
-    NMNoFoodCellStateUnknown = 0,
-    NMNoFoodCellStateClosed
+typedef NS_ENUM(NSInteger, NMNoFoodViewState) {
+    NMNoFoodViewStateUnknown = 0,
+    NMNoFoodViewStateClosed
 };
 
-@interface NMNoFoodTableViewCell : UITableViewCell
+@interface NMNoFoodView : UIView
 
-@property (nonatomic) NMNoFoodCellState state;
+@property (nonatomic) NMNoFoodViewState state;
 
 @end
