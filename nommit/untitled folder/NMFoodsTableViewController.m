@@ -91,6 +91,7 @@ typedef NS_ENUM(NSInteger, NMFoodsTableViewControllerState) {
 - (void)loadView {
     [super loadView];
     self.view.backgroundColor = UIColorFromRGB(0xF3F1F1);
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [(NMNavigationController*)self.navigationController setDisabledMenu:NO];
     [self initNavBar];

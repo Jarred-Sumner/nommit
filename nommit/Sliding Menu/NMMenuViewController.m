@@ -26,6 +26,8 @@
 #import "NMSupportViewController.h"
 #import "NMSellFoodInformationViewController.h"
 #import "NMBecomeASellerTableViewController.h"
+#import "NMChooseSellerTableViewController.h"
+
 
 static NSInteger NMStaticSection = 0;
 static NSInteger NMOrdersSection = 1;
@@ -351,13 +353,15 @@ static NSInteger NMOrdersSection = 1;
 - (void)openDeliveriesPageWithShift:(NMShiftApiModel*)shift {
     
     UINavigationController *navVC;
-    if (shift) {
-        NMShiftTableViewController *ordersVC = [[NMShiftTableViewController alloc] initWithShift:shift];
-        navVC = [[NMNavigationController alloc] initWithRootViewController:ordersVC];
-    } else {
-        NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];
-        navVC = [[NMNavigationController alloc] initWithRootViewController:pickPlacesTVC];
-    }
+//    if (shift) {
+//        NMShiftTableViewController *ordersVC = [[NMShiftTableViewController alloc] initWithShift:shift];
+//        navVC = [[NMNavigationController alloc] initWithRootViewController:ordersVC];
+//    } else {
+//        NMDeliveryPlacesTableViewController *pickPlacesTVC = [[NMDeliveryPlacesTableViewController alloc] initWithShift:shift];
+//        navVC = [[NMNavigationController alloc] initWithRootViewController:pickPlacesTVC];
+//    }
+    NMChooseSellerTableViewController *chooseSellerVC = [[NMChooseSellerTableViewController alloc] init];
+    navVC = [[NMNavigationController alloc] initWithRootViewController:chooseSellerVC];
     [self presentViewController:navVC animated:YES completion:nil];
 }
 

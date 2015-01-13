@@ -110,6 +110,9 @@
 		8DA0A3411A5A424A007EEF7A /* NMNoFoodView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3401A5A424A007EEF7A /* NMNoFoodView.m */; };
 		8DA0A3441A5A5CDE007EEF7A /* NMFooterRequestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3431A5A5CDE007EEF7A /* NMFooterRequestView.m */; };
 		8DA0A3471A5A62F0007EEF7A /* UILabel+Boldify.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3461A5A62F0007EEF7A /* UILabel+Boldify.m */; };
+		8DA0A34A1A63A218007EEF7A /* NMChooseSellerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A3491A63A218007EEF7A /* NMChooseSellerTableViewController.m */; };
+		8DA0A34D1A63A303007EEF7A /* NMDeliveryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A34C1A63A303007EEF7A /* NMDeliveryTableViewCell.m */; };
+		8DA0A3501A63AC77007EEF7A /* NMChooseFoodTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0A34F1A63AC77007EEF7A /* NMChooseFoodTableViewController.m */; };
 		8DA5198819D0ED9100BBA8A0 /* NMListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5198719D0ED9100BBA8A0 /* NMListTableViewCell.m */; };
 		8DA5199419D3846800BBA8A0 /* NMOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA5199319D3846800BBA8A0 /* NMOrderTableViewCell.m */; };
 		8DC5335719DC5D4D00A841EB /* NMLogoutButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5335619DC5D4D00A841EB /* NMLogoutButtonCell.m */; };
@@ -385,6 +388,12 @@
 		8DA0A3431A5A5CDE007EEF7A /* NMFooterRequestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMFooterRequestView.m; path = Views/NMFooterRequestView.m; sourceTree = "<group>"; };
 		8DA0A3451A5A62F0007EEF7A /* UILabel+Boldify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Boldify.h"; path = "Libraries/UILabel+Boldify.h"; sourceTree = "<group>"; };
 		8DA0A3461A5A62F0007EEF7A /* UILabel+Boldify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Boldify.m"; path = "Libraries/UILabel+Boldify.m"; sourceTree = "<group>"; };
+		8DA0A3481A63A218007EEF7A /* NMChooseSellerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMChooseSellerTableViewController.h; path = "untitled folder/NMChooseSellerTableViewController.h"; sourceTree = "<group>"; };
+		8DA0A3491A63A218007EEF7A /* NMChooseSellerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMChooseSellerTableViewController.m; path = "untitled folder/NMChooseSellerTableViewController.m"; sourceTree = "<group>"; };
+		8DA0A34B1A63A303007EEF7A /* NMDeliveryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryTableViewCell.h; path = Cells/NMDeliveryTableViewCell.h; sourceTree = "<group>"; };
+		8DA0A34C1A63A303007EEF7A /* NMDeliveryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMDeliveryTableViewCell.m; path = Cells/NMDeliveryTableViewCell.m; sourceTree = "<group>"; };
+		8DA0A34E1A63AC77007EEF7A /* NMChooseFoodTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMChooseFoodTableViewController.h; path = "untitled folder/NMChooseFoodTableViewController.h"; sourceTree = "<group>"; };
+		8DA0A34F1A63AC77007EEF7A /* NMChooseFoodTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMChooseFoodTableViewController.m; path = "untitled folder/NMChooseFoodTableViewController.m"; sourceTree = "<group>"; };
 		8DA5198619D0ED9100BBA8A0 /* NMListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMListTableViewCell.h; path = Cells/NMListTableViewCell.h; sourceTree = "<group>"; };
 		8DA5198719D0ED9100BBA8A0 /* NMListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMListTableViewCell.m; path = Cells/NMListTableViewCell.m; sourceTree = "<group>"; };
 		8DA5198F19D3829C00BBA8A0 /* NMDeliveryPlaceNavigatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlaceNavigatorView.h; path = Views/NMDeliveryPlaceNavigatorView.h; sourceTree = "<group>"; };
@@ -854,6 +863,10 @@
 				8DFC10041A09EB2B004862F7 /* NMSellFoodInformationViewController.m */,
 				8D6B9D921A56202B00DB4A4B /* NMBecomeASellerTableViewController.h */,
 				8D6B9D931A56202B00DB4A4B /* NMBecomeASellerTableViewController.m */,
+				8DA0A3481A63A218007EEF7A /* NMChooseSellerTableViewController.h */,
+				8DA0A3491A63A218007EEF7A /* NMChooseSellerTableViewController.m */,
+				8DA0A34E1A63AC77007EEF7A /* NMChooseFoodTableViewController.h */,
+				8DA0A34F1A63AC77007EEF7A /* NMChooseFoodTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -965,6 +978,8 @@
 				8D6B9D9F1A56212100DB4A4B /* NMBecomeASellerApplyView.m */,
 				8DA0A33F1A5A424A007EEF7A /* NMNoFoodView.h */,
 				8DA0A3401A5A424A007EEF7A /* NMNoFoodView.m */,
+				8DA0A34B1A63A303007EEF7A /* NMDeliveryTableViewCell.h */,
+				8DA0A34C1A63A303007EEF7A /* NMDeliveryTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1221,6 +1236,7 @@
 				8D51D2AC19B6382D00920F69 /* NMMiniItemView.m in Sources */,
 				8D51D29419B3A43F00920F69 /* UIImage+ImageEffects.m in Sources */,
 				8DCE835719D4D56700D770D0 /* NMAccountTableViewController.m in Sources */,
+				8DA0A3501A63AC77007EEF7A /* NMChooseFoodTableViewController.m in Sources */,
 				83C3A18519CE54380052B6F7 /* _NMPlace.m in Sources */,
 				8DC5338819DCBAF500A841EB /* THContact.m in Sources */,
 				833185241A420C1F004AA347 /* NMSchoolsViewController.m in Sources */,
@@ -1294,6 +1310,7 @@
 				8DD32FC519D9495F009485C2 /* NMDeliveryAvatarsTableViewCell.m in Sources */,
 				83EE765819BBE3CD006FEDDF /* NMSession.m in Sources */,
 				8DD32FBC19D91BD1009485C2 /* NMOrderFoodBasicInfoTableViewCell.m in Sources */,
+				8DA0A34A1A63A218007EEF7A /* NMChooseSellerTableViewController.m in Sources */,
 				83C3A19219CE547A0052B6F7 /* NMPlaceApiModel.m in Sources */,
 				83EE765B19BBF9A6006FEDDF /* NMLocationApiModel.m in Sources */,
 				83D6A9E619B822B8009A6D9B /* NMUser.m in Sources */,
@@ -1320,6 +1337,7 @@
 				8DFC100E1A0C92F2004862F7 /* KLCPopup.m in Sources */,
 				8DD3FC4119B2512900DAFCDB /* NMAppDelegate.m in Sources */,
 				8DEED50519B2669F00EE227A /* NMCollectionViewSmallLayout.m in Sources */,
+				8DA0A34D1A63A303007EEF7A /* NMDeliveryTableViewCell.m in Sources */,
 				8DFC10111A0D51E0004862F7 /* NMNotificationAskView.m in Sources */,
 				83C3649719D1F37C004B4F22 /* NMOrderFoodConfirmAddressCell.m in Sources */,
 				8D1F3C7A1A1DAED900DC169B /* NMNotificationSettingsTableViewCell.m in Sources */,

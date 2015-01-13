@@ -406,11 +406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/Sliding Menu/NMMenuViewController.m"
-            timestampString = "441856198.91306"
+            timestampString = "442737667.653086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "-showInvite"
             landmarkType = "5">
          </BreakpointContent>
@@ -662,12 +662,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
-            timestampString = "442184177.614338"
+            timestampString = "442394301.326508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
-            landmarkName = "-showPlaces"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
+            landmarkName = "-configureTableViewHeader"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -678,26 +678,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
-            timestampString = "442184177.614338"
+            timestampString = "442394301.326508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "415"
-            endingLineNumber = "415">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
-            timestampString = "442184177.614338"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
-            landmarkName = "-initNavBar"
+            startingLineNumber = "416"
+            endingLineNumber = "416"
+            landmarkName = "-handlePendingOrders"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -708,28 +694,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
-            timestampString = "442184177.614338"
+            timestampString = "442394301.326508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
-            landmarkName = "-initNavBar"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
-            timestampString = "442184177.614338"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
+            timestampString = "442394301.326508"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
+            landmarkName = "-configureTableViewHeader"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "nommit/untitled folder/NMFoodsTableViewController.m"
+            timestampString = "442394301.326508"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
             <Locations>
                <Location
