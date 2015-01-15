@@ -437,7 +437,7 @@ typedef NS_ENUM(NSInteger, NMFoodsTableViewControllerState) {
 - (void)setState:(NMFoodsTableViewControllerState)state {
     if (state == NMFoodsTableViewControllerStateFoods) {
         _noFoodView.hidden = YES;
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 66, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(self.tableView.contentInset.top, self.tableView.contentInset.left, 66, self.tableView.contentInset.right);
         [self loadFooterView];
         self.tableView.tableFooterView = _footerView;
         _footerView.translatesAutoresizingMaskIntoConstraints = YES;
