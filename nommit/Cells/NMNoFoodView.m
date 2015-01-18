@@ -12,7 +12,6 @@
 @interface NMNoFoodView()
 
 @property (nonatomic, strong) UIImageView *topImageView;
-@property (nonatomic, strong) UIImageView *arrowImageView;
 @property (nonatomic, strong) UILabel *label;
 
 @end
@@ -57,18 +56,6 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-44-[_label]-44-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label)]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_topImageView]-20-[_label]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _topImageView)]];
-
-//    _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DownArrow"]];
-//    _arrowImageView.translatesAutoresizingMaskIntoConstraints = NO;
-//    _arrowImageView.contentMode = UIViewContentModeCenter;
-//    
-//    [self addSubview:_arrowImageView];
-//
-//    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_arrowImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_arrowImageView)]];
-//    
-//    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_label]-18-[_arrowImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _arrowImageView)]];
-    
-
 }
 
 - (void)setState:(NMNoFoodViewState)state {
@@ -82,10 +69,8 @@
         _label.text = [NSString stringWithFormat:@"We're closed! Open Weekdays: \n %@ to %@", fromTime, toTime];
         
         
-        _arrowImageView.hidden = YES;
     } else {
         _label.text = @"No food available right now, but you can change that!";
-        _arrowImageView.hidden = NO;
     }
 }
 
