@@ -40,7 +40,7 @@
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-92-[_topImageView]-92-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_topImageView)]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[_topImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_topImageView)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-28-[_topImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_topImageView)]];
 }
 
 - (void)setupLabel {
@@ -58,15 +58,15 @@
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_topImageView]-20-[_label]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _topImageView)]];
 
-    _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DownArrow"]];
-    _arrowImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    _arrowImageView.contentMode = UIViewContentModeCenter;
-    
-    [self addSubview:_arrowImageView];
-
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_arrowImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_arrowImageView)]];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_label]-18-[_arrowImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _arrowImageView)]];
+//    _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DownArrow"]];
+//    _arrowImageView.translatesAutoresizingMaskIntoConstraints = NO;
+//    _arrowImageView.contentMode = UIViewContentModeCenter;
+//    
+//    [self addSubview:_arrowImageView];
+//
+//    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_arrowImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_arrowImageView)]];
+//    
+//    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_label]-18-[_arrowImageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_label, _arrowImageView)]];
     
 
 }
