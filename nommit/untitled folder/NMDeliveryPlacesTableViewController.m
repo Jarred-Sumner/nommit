@@ -16,7 +16,11 @@
 
 @interface NMDeliveryPlacesTableViewController ()
 
+@property (nonatomic, strong) NSArray *foods;
+@property (nonatomic, strong) NMSellerApiModel *seller;
+
 @property (nonatomic, strong) NMShiftApiModel *shift;
+
 @property (nonatomic, strong) NSMutableOrderedSet *placeIDs;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
@@ -32,6 +36,13 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     return self;
 }
 
+- (id)initWithFoods:(NSArray *)foods seller:(NMSellerApiModel *)seller {
+    self = [self initWithStyle:UITableViewStylePlain];
+    _foods = foods;
+    _seller = seller;
+    return self;
+}
+
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     self.placeIDs = [[NSMutableOrderedSet alloc] initWithCapacity:1];
@@ -39,6 +50,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     self.view.backgroundColor = UIColorFromRGB(0xF8F8F8);
     [self.tableView registerClass:[NMListTableViewCell class] forCellReuseIdentifier:NMCellIdentifier];
     [self setupFooter];
+
     return self;
 }
 
@@ -224,7 +236,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     NMListTableViewCell *cell = (NMListTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     NMPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    if ([self.placeIDs containsObject:place.uid]) {
+    if ([self.placeIDs containsObject:place.uid] && _shift) {
         SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"Can't Stop Deliveries" andMessage:[NSString stringWithFormat:@"Can't stop delivering to %@ until your shift ends.", place.name]];
         [alert addButtonWithTitle:@"Close" type:SIAlertViewButtonTypeDestructive handler:NULL];
         [alert show];
@@ -269,7 +281,7 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     [SVProgressHUD showWithStatus:@"Starting Shift..." maskType:SVProgressHUDMaskTypeBlack];
     __block NMDeliveryPlacesTableViewController *this = self;
     
-    [[NMApi instance] POST:@"shifts" parameters:@{ @"place_ids": [self.placeIDs array] } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+    [[NMApi instance] POST:@"shifts" parameters:@{ @"food_ids": _foods, @"seller_id" : _seller.uid, @"place_ids" : _placeIDs.array } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         
         __block NMShiftApiModel *shiftModel = [MTLJSONAdapter modelOfClass:[NMShiftApiModel class] fromJSONDictionary:response.result error:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -304,6 +316,8 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
     _fetchedResultsController.delegate = nil;
     _fetchedResultsController = nil;
     _shift = nil;
+    _seller = nil;
+    _foods = nil;
     _placeIDs = nil;
 }
 

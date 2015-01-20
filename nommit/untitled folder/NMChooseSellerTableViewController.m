@@ -7,10 +7,12 @@
 //
 
 #import "NMChooseSellerTableViewController.h"
-#import "NMDeliveryTableViewCell.h"
+#import "NMChooseTableViewCell.h"
 #import "NMChooseFoodTableViewController.h"
 
 @interface NMChooseSellerTableViewController ()
+
+@property (nonatomic, strong) NSArray *sellers;
 
 @end
 
@@ -23,49 +25,37 @@ static NSString *NMDeliveryTableViewCellKey = @"NMDeliveryTableViewCell";
     if (self) {
         self.view.backgroundColor = UIColorFromRGB(0xF3F1F1);
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self.tableView registerClass:[NMDeliveryTableViewCell class] forCellReuseIdentifier:NMDeliveryTableViewCellKey];
-
+        [self.tableView registerClass:[NMChooseTableViewCell class] forCellReuseIdentifier:NMDeliveryTableViewCellKey];
     }
     return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.title = @"Choose a Seller";
+
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [self refresh];
 }
 
-- (void)cancel:(id)sender
-{
+- (void)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 10;
+    if (section == 0) {
+        return _sellers.count;
+    } else return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -74,20 +64,37 @@ static NSString *NMDeliveryTableViewCellKey = @"NMDeliveryTableViewCell";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NMDeliveryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMDeliveryTableViewCellKey];
+    NMChooseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMDeliveryTableViewCellKey];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 
 }
 
-- (void)configureCell:(NMDeliveryTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.avatar.image = [UIImage imageNamed:@"PepperoniPizza2"];
-    cell.name.text = @"Delta Delta Delta";
+- (void)configureCell:(NMChooseTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    NMSellerApiModel *seller = (NMSellerApiModel*)_sellers[indexPath.row];
+
+    [cell.avatar setImageWithURL:[NSURL URLWithString:seller.logoURL] placeholderImage:[UIImage imageNamed:@"LoadingSeller"]];
+    cell.name.text = seller.name;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NMChooseFoodTableViewController *chooseFoodVC = [[NMChooseFoodTableViewController alloc] init];
+    NMSellerApiModel *seller = _sellers[indexPath.row];
+    
+    NMChooseFoodTableViewController *chooseFoodVC = [[NMChooseFoodTableViewController alloc] initWithSeller:seller];
     [self.navigationController pushViewController:chooseFoodVC animated:YES];
+}
+
+#pragma mark - Refresh
+
+- (void)refresh {
+    [self.refreshControl beginRefreshing];
+    
+    __block NMChooseSellerTableViewController *this = self;
+    [[NMApi instance] GET:@"sellers" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        this.sellers = [MTLJSONAdapter modelsOfClass:[NMSellerApiModel class] fromJSONArray:response.result error:nil];
+        [this.tableView reloadData];
+        [this.refreshControl endRefreshing];
+    }];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NMDeliveryTableViewCell : UITableViewCell
+@interface NMChooseTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *avatar;
 @property (nonatomic, strong) UIImageView *selectedOverlay;

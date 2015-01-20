@@ -7,11 +7,14 @@
 //
 
 #import "NMChooseFoodTableViewController.h"
-#import "NMDeliveryTableViewCell.h"
+#import "NMChooseTableViewCell.h"
+#import "NMDeliveryPlacesTableViewController.h"
 
 @interface NMChooseFoodTableViewController ()
 
-@property (nonatomic, strong) NSMutableArray *selectedItemsArray;
+@property (nonatomic, strong) NMSellerApiModel *seller;
+@property (nonatomic, strong) NSArray *foods;
+@property (nonatomic, strong) NSMutableSet *selectedFoods;
 
 @end
 
@@ -19,12 +22,19 @@ static NSString *NMDeliveryTableViewCellIdentifier = @"NMDeliveryTableViewCellKe
 
 @implementation NMChooseFoodTableViewController
 
+- (id)initWithSeller:(NMSellerApiModel *)seller {
+    self = [self init];
+    _seller = seller;
+    _selectedFoods = [[NSMutableSet alloc] init];
+    return self;
+}
+
 - (id)init {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         self.view.backgroundColor = UIColorFromRGB(0xF3F1F1);
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self.tableView registerClass:[NMDeliveryTableViewCell class] forCellReuseIdentifier:NMDeliveryTableViewCellIdentifier];
+        [self.tableView registerClass:[NMChooseTableViewCell class] forCellReuseIdentifier:NMDeliveryTableViewCellIdentifier];
         
     }
     return self;
@@ -33,22 +43,25 @@ static NSString *NMDeliveryTableViewCellIdentifier = @"NMDeliveryTableViewCellKe
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.title = @"Choose a Food";
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [self refresh];
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(choosePlaces)];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)choosePlaces {
+    if (_selectedFoods.count > 0) {
+        NMDeliveryPlacesTableViewController *vc = [[NMDeliveryPlacesTableViewController alloc] initWithFoods:_selectedFoods.allObjects seller:_seller];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+        [SVProgressHUD showErrorWithStatus:@"Please choose a food to deliver"];
+    }
 }
 
 #pragma mark - Table view data source
@@ -59,8 +72,9 @@ static NSString *NMDeliveryTableViewCellIdentifier = @"NMDeliveryTableViewCellKe
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 10;
+    if (section == 0) {
+        return _foods.count;
+    } else return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -69,40 +83,48 @@ static NSString *NMDeliveryTableViewCellIdentifier = @"NMDeliveryTableViewCellKe
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NMDeliveryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMDeliveryTableViewCellIdentifier];
+    NMChooseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NMDeliveryTableViewCellIdentifier];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
     
 }
 
-- (void)configureCell:(NMDeliveryTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.avatar.image = [UIImage imageNamed:@"PepperoniPizza2"];
-    cell.name.text = @"Pepperoni Pizza";
+- (void)configureCell:(NMChooseTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    NMFoodApiModel *food = [self.foods objectAtIndex:indexPath.row];
+    [cell.avatar setImageWithURL:[NSURL URLWithString:food.thumbnailImageURL] placeholderImage:nil];
+    cell.name.text = food.title;
+    cell.tag = food.uid.integerValue;
     
-    if([_selectedItemsArray containsObject:cell])
-    {
+    if ([_selectedFoods member:food.uid]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
+    } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NMDeliveryTableViewCell *cell = (NMDeliveryTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    if(cell.selectedOverlay.hidden == YES)
-    {
+    NMChooseTableViewCell *cell = (NMChooseTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (cell.selectedOverlay.hidden == YES) {
         cell.selectedOverlay.hidden = NO;
-        [_selectedItemsArray addObject:cell];
-    }
-    else
-    {
+        [_selectedFoods addObject:@(cell.tag)];
+    } else {
         cell.selectedOverlay.hidden = YES;
-        [_selectedItemsArray removeObject:cell];
+        [_selectedFoods removeObject:@(cell.tag)];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - Refresh
+
+- (void)refresh {
+    [self.refreshControl beginRefreshing];
+    
+    __block NMChooseFoodTableViewController *this = self;
+    [[NMApi instance] GET:[NSString stringWithFormat:@"sellers/%@/foods", _seller.uid] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
+        this.foods = [MTLJSONAdapter modelsOfClass:[NMFoodApiModel class] fromJSONArray:response.result error:nil];
+        [this.tableView reloadData];
+        [this.refreshControl endRefreshing];
+    }];
+}
 
 @end

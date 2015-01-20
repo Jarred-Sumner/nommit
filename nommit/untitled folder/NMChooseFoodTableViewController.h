@@ -10,4 +10,6 @@
 
 @interface NMChooseFoodTableViewController : UITableViewController
 
+- (instancetype)initWithSeller:(NMSellerApiModel*)seller;
+
 @end

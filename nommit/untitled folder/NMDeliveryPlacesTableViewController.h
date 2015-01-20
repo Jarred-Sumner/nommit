@@ -11,4 +11,5 @@
 @interface NMDeliveryPlacesTableViewController : UITableViewController<UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
 
 - (id)initWithShift:(NMShiftApiModel*)shift;
+- (id)initWithFoods:(NSArray*)foods seller:(NMSellerApiModel*)seller;
 @end

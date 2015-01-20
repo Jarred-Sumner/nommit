@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Lucy Guo. All rights reserved.
 //
 
-#import "NMDeliveryTableViewCell.h"
+#import "NMChooseTableViewCell.h"
 
-@interface NMDeliveryTableViewCell()
+@interface NMChooseTableViewCell()
 
 @property (nonatomic, strong) UIImageView *cellBG;
 
 @end
 
-@implementation NMDeliveryTableViewCell
+@implementation NMChooseTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -63,7 +63,7 @@ typedef NS_ENUM(NSInteger, NMFoodsTableViewControllerState) {
 - (void)setPlace:(NMPlace *)place {
     _place = place;
     _fetchedResultsController = nil;
-    [self.fetchedResultsController performFetch:nil];
+    [self.tableView reloadData];
     
     self.navigationItem.titleView = [[NMPlaceTitleView alloc] initWithFrame:CGRectMake(0, -4, 200, 44) title:@"" target:self selector:@selector(showPlaces)];
     if (place) {
