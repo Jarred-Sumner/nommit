@@ -199,7 +199,14 @@ typedef NS_ENUM(NSInteger, NMFoodsTableViewControllerState) {
         foodPredicate = [NSPredicate predicateWithFormat:@"endDate >= %@", [[NSDate date] dateByAddingTimeInterval:-86400]];
     }
     
-    _fetchedResultsController = [NMFood MR_fetchAllSortedBy:@"featured" ascending:NO withPredicate:foodPredicate groupBy:nil delegate: self];
+    _fetchedResultsController = [NMFood MR_fetchAllSortedBy:nil ascending:NO withPredicate:foodPredicate groupBy:nil delegate:self];
+    NSArray *sorting = @[
+        [NSSortDescriptor sortDescriptorWithKey:@"featured" ascending:NO],
+        [NSSortDescriptor sortDescriptorWithKey:@"stateID" ascending:NO],
+        [NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES]
+    ];
+    _fetchedResultsController.fetchRequest.sortDescriptors = sorting;
+    [_fetchedResultsController performFetch:nil];
     return _fetchedResultsController;
 }
 

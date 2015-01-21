@@ -25,7 +25,7 @@
 @property (nonatomic, strong) NMDeliveryAvatarsTableViewCell *avatarsCell;
 @property (nonatomic, strong) NMDeliveryCallButtonTableViewCell *callButtonCell;
 @property (nonatomic, strong) NMReceiptTableViewCell *receiptCell;
-@property (nonatomic, strong) NSNumber *totalAmount;
+@property int totalInCents;
 
 @end
 
@@ -45,7 +45,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         self.view.backgroundColor = [NMColors lightGray];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _order = order;
-        _totalAmount = @([_order.priceChargedInCents doubleValue] / 100.f);
+        _totalInCents = [_order.priceChargedInCents intValue];
         
         [self.tableView addParallaxWithImage:nil andHeight:90];
         [self.tableView.parallaxView setDelegate:self];
@@ -104,7 +104,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         _receiptCell.plusButton.hidden = (_order.chargeState != NMOrderChargeStateNotCharged);
         _receiptCell.minusButton.hidden = (_order.chargeState != NMOrderChargeStateNotCharged);
         
-        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
+        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", @(@(_totalInCents).doubleValue / 100.f)];
         [self enableMinusButton];
         return _receiptCell;
     } else if (indexPath.section == NMRateCallButtonSection) {
@@ -117,7 +117,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 }
 
 - (void)enableMinusButton {
-    if ([_totalAmount doubleValue] > @([_order.priceChargedInCents doubleValue] / 100.f).doubleValue) {
+    if (_totalInCents > _order.priceChargedInCents.intValue) {
         _receiptCell.minusButton.alpha = 1.0f;
         _receiptCell.minusButton.enabled = YES;
     } else {
@@ -128,8 +128,8 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 
 - (void)addOneToTip {
     if (_order.chargeState == NMOrderChargeStateNotCharged) {
-        _totalAmount = @(_totalAmount.doubleValue + 1.0f);
-        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
+        _totalInCents += 100;
+        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", @( @(_totalInCents).doubleValue / 100.f)];
         [self enableMinusButton];
     }
 
@@ -137,8 +137,8 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 
 - (void)minusOneFromTip {
     if (_order.chargeState == NMOrderChargeStateNotCharged) {
-        _totalAmount = @(_totalAmount.doubleValue - 1.0f);
-        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", _totalAmount];
+        _totalInCents -= 100;
+        _receiptCell.tipLabel.text = [NSString stringWithFormat:@"$%@", @( @(_totalInCents).doubleValue / 100.f)];
         [self enableMinusButton];
     }
     
@@ -152,7 +152,9 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
         return;
     }
     NSString *path = [NSString stringWithFormat:@"orders/%@", _order.uid];
-    NSNumber *tip = @( (_totalAmount.doubleValue * 100.f) - _order.priceChargedInCents.doubleValue);
+    
+    
+    NSNumber *tip = @(_totalInCents - _order.priceChargedInCents.intValue);
     NSDictionary *params = @{ @"tip_in_cents" : tip, @"rating" : @(_receiptCell.rateVw.rating), @"state_id" : @(NMOrderStateRated) };
     
     [[NMApi instance] PUT:path parameters:params completionWithErrorHandling:^(id response, NSError *error) {
@@ -164,8 +166,7 @@ static NSString *NMRateDoneButtonInfoIdentifier = @"NMDeliveryDoneButtonTableVie
 
 -(BOOL)prefersStatusBarHidden { return YES; }
 
-- (void)initNavBar
-{
+- (void)initNavBar {
     UIBarButtonItem *lbb = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"HamburgerIcon"]
                                                             style:UIBarButtonItemStylePlain
                                                            target:(NMNavigationController *)self.navigationController

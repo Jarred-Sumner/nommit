@@ -136,7 +136,12 @@ static NSString *NMCellIdentifier = @"NMCellIdentifier";
             }
         } completion:^(BOOL success, NSError *error) {
             [this.refreshControl endRefreshing];
-            [this.tableView reloadData];
+            [UIView transitionWithView: self.tableView
+                duration: 0.15f
+                options: UIViewAnimationOptionTransitionCrossDissolve
+                animations: ^(void) {
+                    [this.tableView reloadData];
+                } completion:NULL];
         }];
         
     }];

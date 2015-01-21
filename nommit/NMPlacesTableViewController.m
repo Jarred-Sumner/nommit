@@ -106,7 +106,12 @@ static NSString *NMPlaceTableViewCellKey = @"NMPlaceTableViewCell";
     
     [NMPlace refreshAllWithCompletion:^(id response, NSError *error) {
         [this.refreshControl endRefreshing];
-        [this.tableView reloadData];
+        [UIView transitionWithView: self.tableView
+                          duration: 0.15f
+                           options: UIViewAnimationOptionTransitionCrossDissolve
+                        animations: ^(void) {
+                            [this.tableView reloadData];
+                        } completion:NULL];
     }];
 }
 

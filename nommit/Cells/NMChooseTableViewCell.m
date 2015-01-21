@@ -45,6 +45,7 @@
     _avatar.translatesAutoresizingMaskIntoConstraints = NO;
     _avatar.layer.cornerRadius = 53 / 2;
     _avatar.clipsToBounds = YES;
+    [_avatar setContentMode:UIViewContentModeScaleAspectFill];
     [_cellBG addSubview:_avatar];
     
     [_cellBG addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-232-[_avatar(53)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_avatar)]];
