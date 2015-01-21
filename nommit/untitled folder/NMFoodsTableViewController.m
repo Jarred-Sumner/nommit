@@ -348,6 +348,13 @@ typedef NS_ENUM(NSInteger, NMFoodsTableViewControllerState) {
     NMFood *food = (NMFood*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     
     if (food.orderable) {
+        
+        if (food.deliveryPlaces.count == 0) {
+            SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"" andMessage:@"Sorry! We're currently not delivering this food - check back soon!"];
+            [alert addButtonWithTitle:@"Okay" type:SIAlertViewButtonTypeDestructive handler:NULL];
+            [alert show];
+            return;
+        }
 
         if (!_place) {
             [self showPlaces];
