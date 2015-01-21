@@ -84,7 +84,12 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = NSDateFormatterNoStyle;
     dateFormatter.timeStyle = NSDateFormatterShortStyle;
-    [_startTimeLabel setText:[NSString stringWithFormat:@"AVAILABLE %@", [dateFormatter stringFromDate:food.startDate]]];
+    
+    if (food.startDate.timeIntervalSinceNow > 0) {
+        [_startTimeLabel setText:[NSString stringWithFormat:@"AVAILABLE %@", [dateFormatter stringFromDate:food.startDate]]];
+    } else {
+        _startTimeLabel.text = @"AVAILABLE SOON!";
+    }
 
     if (food.quantityState == NMFoodQuantityStateSoldOut) {
         self.quantityState = food.quantityState;

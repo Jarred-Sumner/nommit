@@ -19,12 +19,12 @@
 }
 
 - (NMFoodTimingState)timingState {
-    if (self.startDate.timeIntervalSinceNow < 0.0 && self.endDate.timeIntervalSinceNow > 0.0) {
+    if (self.startDate.timeIntervalSinceNow < 0.0 && self.endDate.timeIntervalSinceNow > 0.0 && [self isBeingDelivered]) {
         return NMFoodTimingStateActive;
-    } else if (self.startDate.timeIntervalSinceNow > 0.0) {
-        return NMFoodTimingStatePending;
-    } else {
+    } else if (self.endDate.timeIntervalSinceNow < 0.0) {
         return NMFoodTimingStateExpired;
+    } else {
+        return NMFoodTimingStatePending;
     }
 }
 
@@ -65,6 +65,11 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"food = %@ AND quantity = %@", self, quantity];
     NMPrice *price = [NMPrice MR_findFirstWithPredicate:predicate];
     return price.price;
+}
+
+- (BOOL)isBeingDelivered {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"stateID IN %@ AND %@ IN foods", @[@(NMDeliveryPlaceStateArrived), @(NMDeliveryPlaceStatePending), @(NMDeliveryPlaceStateReady) ], self];
+    return [NMDeliveryPlace MR_countOfEntitiesWithPredicate:predicate inContext:[NSManagedObjectContext MR_defaultContext]] > 0;
 }
 
 @end

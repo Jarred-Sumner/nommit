@@ -206,6 +206,7 @@ typedef NS_ENUM(NSInteger, NMFoodsTableViewControllerState) {
         [NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES]
     ];
     _fetchedResultsController.fetchRequest.sortDescriptors = sorting;
+    _fetchedResultsController.fetchRequest.returnsDistinctResults = YES;
     [_fetchedResultsController performFetch:nil];
     return _fetchedResultsController;
 }
