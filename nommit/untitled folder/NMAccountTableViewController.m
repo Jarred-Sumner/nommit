@@ -201,7 +201,12 @@ static NSString *NMNotificationSettingsTableViewCellKey = @"NMNotificationSettin
         [[NMApi instance] POST:[NSString stringWithFormat:@"users/%@/promos", self.user.facebookUID] parameters:@{ @"code" : _promoCell.textField.text } completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
             [[Mixpanel sharedInstance] track:@"Applied Promo"];
             [SVProgressHUD showSuccessWithStatus:@"Applied!"];
-            [this.tableView reloadData];
+            [UIView transitionWithView: self.tableView
+                              duration: 0.15f
+                               options: UIViewAnimationOptionTransitionCrossDissolve
+                            animations: ^(void) {
+                                [this.tableView reloadData];
+                            } completion:NULL];
         }];
     } else {
         SIAlertView *alert = [[SIAlertView alloc] initWithTitle:@"No Promo Code" andMessage:@"Please enter a promo code and try again"];

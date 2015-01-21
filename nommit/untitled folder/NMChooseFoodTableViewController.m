@@ -122,7 +122,12 @@ static NSString *NMDeliveryTableViewCellIdentifier = @"NMDeliveryTableViewCellKe
     __block NMChooseFoodTableViewController *this = self;
     [[NMApi instance] GET:[NSString stringWithFormat:@"sellers/%@/foods", _seller.uid] parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
         this.foods = [MTLJSONAdapter modelsOfClass:[NMFoodApiModel class] fromJSONArray:response.result error:nil];
-        [this.tableView reloadData];
+        [UIView transitionWithView: self.tableView
+                          duration: 0.15f
+                           options: UIViewAnimationOptionTransitionCrossDissolve
+                        animations: ^(void) {
+                            [this.tableView reloadData];
+                        } completion:NULL];
         [this.refreshControl endRefreshing];
     }];
 }

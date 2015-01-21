@@ -91,8 +91,14 @@ static NSString *NMDeliveryTableViewCellKey = @"NMDeliveryTableViewCell";
     
     __block NMChooseSellerTableViewController *this = self;
     [[NMApi instance] GET:@"sellers" parameters:nil completionWithErrorHandling:^(OVCResponse *response, NSError *error) {
-        this.sellers = [MTLJSONAdapter modelsOfClass:[NMSellerApiModel class] fromJSONArray:response.result error:nil];
-        [this.tableView reloadData];
+        this.sellers = [MTLJSONAdapter modelsOfClass:[NMSellerApiModel class] fromJSONArray:response.result error:&error];
+        
+        [UIView transitionWithView: self.tableView
+                          duration: 0.15f
+                           options: UIViewAnimationOptionTransitionCrossDissolve
+                        animations: ^(void) {
+                            [this.tableView reloadData];
+                        } completion:NULL];
         [this.refreshControl endRefreshing];
     }];
 }

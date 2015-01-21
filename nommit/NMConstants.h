@@ -12,7 +12,7 @@
 #define PRODUCTION_URL @"http://www.getnommit.com/api/v1"
 #define PRODUCTION_STRIPE_KEY @"pk_live_lLUJxo6DJJiHvuCwFtxPlYmS"
 
-#define PRODUCTION
+#define DEVELOPMENT
 
 #ifdef DEVELOPMENT
     #define API_URL DEVELOPMENT_URL

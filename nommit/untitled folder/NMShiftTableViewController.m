@@ -229,20 +229,14 @@ static NSString *NMOrderTableViewCellIdentifier = @"NMOrderTableViewCellIdentifi
             }
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [this.tableView beginUpdates];
                 [this.shift removeOrder:order];
-                
-                [this.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationFade];
-                
-                BOOL isRemoved = true;
-                for (NMDeliveryPlaceApiModel *dp in self.deliveryPlaces) {
-                    if ([dp.uid isEqualToNumber:order.deliveryPlace.uid]) {
-                        isRemoved = false;
-                    }
-                }
-                if (isRemoved) [this.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
-                
-                [this.tableView endUpdates];
+
+                [UIView transitionWithView: self.tableView
+                                  duration: 0.35f
+                                   options: UIViewAnimationOptionTransitionCrossDissolve
+                                animations: ^(void) {
+                     [this.tableView reloadData];
+                 } completion:NULL];
                 
             });
         }
