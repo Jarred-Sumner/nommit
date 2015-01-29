@@ -7,6 +7,10 @@
 
 static id NMCurrentUser;
 
++ (void)setCurrentUser:(NMUser*)currentUser {
+    NMCurrentUser = currentUser;
+}
+
 + (NMUser *)currentUser {
     if (!NMCurrentUser) {
         NMCurrentUser = [NMUser MR_findFirstByAttribute:@"facebookUID" withValue:[NMSession userID]];
@@ -28,9 +32,7 @@ static id NMCurrentUser;
     return NMCurrentUser;
 }
 
-+ (void)setCurrentUser:(NMUser*)currentUser {
-    NMCurrentUser = currentUser;
-}
+
 
 - (NMUserState)state { return (NMUserState)self.stateID.integerValue; }
 
