@@ -71,6 +71,7 @@
 		8D1F3C7A1A1DAED900DC169B /* NMNotificationSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1F3C791A1DAED900DC169B /* NMNotificationSettingsTableViewCell.m */; };
 		8D3D052E19DB5C3400B02677 /* NMCourierSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */; };
 		8D3D053119DB688900B02677 /* NMCourierSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D053019DB688900B02677 /* NMCourierSummaryTableViewCell.m */; };
+		8D459FE51A802FEC007052EA /* NMCreateFoodTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D459FE41A802FEC007052EA /* NMCreateFoodTableViewController.m */; };
 		8D4907D91A044F47001A2225 /* NMShiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4907D81A044F47001A2225 /* NMShiftTableViewController.m */; };
 		8D4907DC1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4907DB1A04520F001A2225 /* NMDeliveryPlaceHeaderView.m */; };
 		8D49F30819BE942600E60145 /* NMPaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D49F30719BE942600E60145 /* NMPaymentsViewController.m */; };
@@ -312,6 +313,8 @@
 		8D3D052D19DB5C3400B02677 /* NMCourierSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCourierSummaryTableViewController.m; path = "untitled folder/NMCourierSummaryTableViewController.m"; sourceTree = "<group>"; };
 		8D3D052F19DB688900B02677 /* NMCourierSummaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMCourierSummaryTableViewCell.h; path = Cells/NMCourierSummaryTableViewCell.h; sourceTree = "<group>"; };
 		8D3D053019DB688900B02677 /* NMCourierSummaryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMCourierSummaryTableViewCell.m; path = Cells/NMCourierSummaryTableViewCell.m; sourceTree = "<group>"; };
+		8D459FE31A802FEC007052EA /* NMCreateFoodTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMCreateFoodTableViewController.h; sourceTree = "<group>"; };
+		8D459FE41A802FEC007052EA /* NMCreateFoodTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMCreateFoodTableViewController.m; sourceTree = "<group>"; };
 		8D4907D71A044F47001A2225 /* NMShiftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMShiftTableViewController.h; path = "untitled folder/NMShiftTableViewController.h"; sourceTree = "<group>"; };
 		8D4907D81A044F47001A2225 /* NMShiftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMShiftTableViewController.m; path = "untitled folder/NMShiftTableViewController.m"; sourceTree = "<group>"; };
 		8D4907DA1A04520F001A2225 /* NMDeliveryPlaceHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMDeliveryPlaceHeaderView.h; path = Views/NMDeliveryPlaceHeaderView.h; sourceTree = "<group>"; };
@@ -867,6 +870,8 @@
 				8DA0A3491A63A218007EEF7A /* NMChooseSellerTableViewController.m */,
 				8DA0A34E1A63AC77007EEF7A /* NMChooseFoodTableViewController.h */,
 				8DA0A34F1A63AC77007EEF7A /* NMChooseFoodTableViewController.m */,
+				8D459FE31A802FEC007052EA /* NMCreateFoodTableViewController.h */,
+				8D459FE41A802FEC007052EA /* NMCreateFoodTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1225,6 +1230,7 @@
 				839765B619BBCDF000EE8254 /* NMFoodApiModel.m in Sources */,
 				8DA0A3411A5A424A007EEF7A /* NMNoFoodView.m in Sources */,
 				8367D1BB1A1EAEE0009D8C63 /* _NMSubscription.m in Sources */,
+				8D459FE51A802FEC007052EA /* NMCreateFoodTableViewController.m in Sources */,
 				8DD32FAA19D63A42009485C2 /* NMActivateAccountTableViewController.m in Sources */,
 				8D6B9D941A56202B00DB4A4B /* NMBecomeASellerTableViewController.m in Sources */,
 				8DA5198819D0ED9100BBA8A0 /* NMListTableViewCell.m in Sources */,
