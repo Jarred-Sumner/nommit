@@ -104,6 +104,21 @@ static char UIScrollViewParallaxView;
     [self.parallaxView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[eventName]-5-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(eventName)]];
 }
 
+- (void)addTextFieldToParallaxView {
+    UITextField *textField = [[UITextField alloc] init];
+    UIColor *color = [UIColor whiteColor];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Set Title" attributes:@{NSForegroundColorAttributeName: color}];
+    
+    textField.font = [UIFont fontWithName:@"Avenir" size:18];
+    textField.textColor = [UIColor whiteColor];
+    textField.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.parallaxView addSubview:textField];
+    
+    [self.parallaxView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-106-[textField]-16-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(textField)]];
+    
+    [self.parallaxView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[textField]-5-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(textField)]];
+}
+
 - (void)addBlackOverlayToParallaxView
 {
     UIView *blackOverlay = [[UIView alloc] init];
