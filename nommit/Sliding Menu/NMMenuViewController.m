@@ -27,6 +27,7 @@
 #import "NMSellFoodInformationViewController.h"
 #import "NMBecomeASellerTableViewController.h"
 #import "NMChooseSellerTableViewController.h"
+#import "NMCreateFoodTableViewController.h"
 
 
 static NSInteger NMStaticSection = 0;
@@ -143,6 +144,8 @@ static NSInteger NMOrdersSection = 1;
                 [self showSupport];
             } else if (indexPath.row == 5) {
                 [self showSellFood];
+            } else if (indexPath.row == 6) {
+                [self showCreateFood];
             }
         } else {
             if (indexPath.row == 0) {
@@ -155,6 +158,8 @@ static NSInteger NMOrdersSection = 1;
                 [self showSupport];
             } else if (indexPath.row == 4) {
                 [self showSellFood];
+            } else if (indexPath.row == 5) {
+                [self showCreateFood];
             }
         }
 
@@ -256,9 +261,9 @@ static NSInteger NMOrdersSection = 1;
 {
     if (sectionIndex == 0) {
         if ([NMUser currentUser].isCourierValue) {
-            return 6;
+            return 7;
         } else {
-            return 5;
+            return 6;
         }
     } else if (sectionIndex == 1) {
         id sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
@@ -279,9 +284,9 @@ static NSInteger NMOrdersSection = 1;
     if (indexPath.section == 0) {
         NSArray *titles;
         if ([[NMUser currentUser] isCourierValue]) {
-            titles = @[@"Menu", @"Deliver", @"Account", @"Invite Friends", @"Support", @"Become a Seller"];
+            titles = @[@"Menu", @"Deliver", @"Account", @"Invite Friends", @"Support", @"Become a Seller", @"Create Food"];
         } else {
-            titles = @[@"Menu", @"Account", @"Invite Friends", @"Support", @"Become a Seller"];
+            titles = @[@"Menu", @"Account", @"Invite Friends", @"Support", @"Become a Seller", @"Create Food"];
         }
         cell.textLabel.text = titles[indexPath.row];
     } else {
@@ -342,6 +347,11 @@ static NSInteger NMOrdersSection = 1;
 - (void)showSellFood {
     NMBecomeASellerTableViewController *becomeASellerVC = [[NMBecomeASellerTableViewController alloc] init];
     [self navigateTo:becomeASellerVC];
+}
+
+- (void)showCreateFood {
+    NMCreateFoodTableViewController *createFoodVC = [[NMCreateFoodTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self navigateTo:createFoodVC];
 }
 
 - (void)navigateTo:(UIViewController*)viewController {

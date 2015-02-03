@@ -332,9 +332,7 @@
             startingColumnNumber = "0"
             endingColumnNumber = "0"
             startingLineNumber = "0"
-            endingLineNumber = "0"
-            landmarkName = "-loginViewShowingLoggedInUser:"
-            landmarkType = "5">
+            endingLineNumber = "0">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -378,9 +376,7 @@
             startingColumnNumber = "0"
             endingColumnNumber = "0"
             startingLineNumber = "0"
-            endingLineNumber = "0"
-            landmarkName = "-loginViewShowingLoggedInUser:"
-            landmarkType = "5">
+            endingLineNumber = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -406,11 +402,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nommit/Sliding Menu/NMMenuViewController.m"
-            timestampString = "442737667.653086"
+            timestampString = "444635804.444565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "-showInvite"
             landmarkType = "5">
          </BreakpointContent>
@@ -667,8 +663,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "394"
             endingLineNumber = "394"
-            landmarkName = "@implementation NMFoodsTableViewController"
-            landmarkType = "3">
+            landmarkName = "-configureTableViewHeader"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -683,7 +679,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "425"
             endingLineNumber = "425"
-            landmarkName = "-handlePendingOrders"
+            landmarkName = "-initNavBar"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -715,7 +711,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "381"
             endingLineNumber = "381"
-            landmarkName = "-configureTableViewHeader"
+            landmarkName = "-configureCell:forIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -731,38 +727,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "341"
             endingLineNumber = "341"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkName = "-tableView:heightForFooterInSection:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[NMFoodsTableViewController tableView:didSelectRowAtIndexPath:]"
-                  moduleName = "nommit"
-                  urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/untitled%20folder/NMFoodsTableViewController.m"
-                  timestampString = "442183803.973662"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "336"
-                  endingLineNumber = "336"
-                  offsetFromSymbolStart = "539">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[NMFoodsTableViewController tableView:didSelectRowAtIndexPath:]"
-                  moduleName = "nommit"
-                  urlString = "file:///Users/Lucy/Documents/thiel-projects/nommit/nommit/untitled%20folder/NMFoodsTableViewController.m"
-                  timestampString = "442183803.974071"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "336"
-                  endingLineNumber = "336"
-                  offsetFromSymbolStart = "563">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -777,7 +743,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "247"
             endingLineNumber = "247"
-            landmarkName = "-slideshowView:willShowKenburnsView:"
+            landmarkName = "-setupSlideShow"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -793,7 +759,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "243"
             endingLineNumber = "243"
-            landmarkName = "-slideshowView:willShowKenburnsView:"
+            landmarkName = "-setupSlideShow"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
