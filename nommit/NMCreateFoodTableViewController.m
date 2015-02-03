@@ -206,7 +206,7 @@ static NSString *NMCreateOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
         return _infoCell;
     } else if (indexPath.section == NMCreateDescriptionSecton) {
         _descriptionCell = [self.tableView dequeueReusableCellWithIdentifier:NMCreateOrderFoodDescriptionIdentifier];
-        _descriptionCell.descriptionLabel.text = @"Enter description here";
+        _descriptionCell.descriptionLabel.hidden = YES;
         return _descriptionCell;
     } else if (indexPath.section == NMCreateProgressSection) {
         _progressCell = [self.tableView dequeueReusableCellWithIdentifier:NMCreateOrderFoodProgressIdentifier];
