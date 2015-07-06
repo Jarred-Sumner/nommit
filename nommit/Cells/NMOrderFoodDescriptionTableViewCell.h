@@ -11,5 +11,6 @@
 @interface NMOrderFoodDescriptionTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *descriptionLabel;
+@property (nonatomic, strong) UITextView *descriptionField;
 
 @end

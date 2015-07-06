@@ -20,9 +20,11 @@
 - (void)addParallaxWithView:(UIView*)view andHeight:(CGFloat)height;
 - (void)addTitleToParallaxView:(NSString *)title;
 - (void)addBlackOverlayToParallaxView;
+- (void)addTextFieldToParallaxView;
 
 @property (nonatomic, strong, readonly) APParallaxView *parallaxView;
 @property (nonatomic, assign) BOOL showsParallax;
+@property (nonatomic, strong) UITextField *textField;
 
 @end
 

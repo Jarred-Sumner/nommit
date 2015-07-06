@@ -147,6 +147,7 @@ static NSString *NMOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
     } else if (indexPath.section == NMDescriptionSecton) {
         _descriptionCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodDescriptionIdentifier];
         _descriptionCell.descriptionLabel.text = _food.details;
+        _descriptionCell.descriptionField.hidden = YES;
         return _descriptionCell;
     } else if (indexPath.section == NMProgressSection) {
         _progressCell = [self.tableView dequeueReusableCellWithIdentifier:NMOrderFoodProgressIdentifier];

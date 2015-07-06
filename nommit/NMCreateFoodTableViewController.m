@@ -72,22 +72,28 @@ static NSString *NMCreateOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
         [self.tableView addParallaxWithImage:nil andHeight:150];
         [self.tableView.parallaxView setDelegate:self];
         [self.tableView addBlackOverlayToParallaxView];
-        [self.tableView addTitleToParallaxView:@"Set Title"];
+        
         [self.tableView.parallaxView.imageView setImage:[UIImage imageNamed:@"LoadingImage"]];
         
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setHeader)];
-
-        singleTap.numberOfTapsRequired = 1;
-        singleTap.numberOfTouchesRequired = 1;
-        singleTap.delegate = self;
-        [self.tableView.parallaxView addGestureRecognizer:singleTap];
-        self.tableView.parallaxView.userInteractionEnabled = YES;
+        
+        [self addTapGestureRecognizer:singleTap onView:self.tableView.parallaxView];        
+        [self.tableView addTextFieldToParallaxView];
         
         
         return self;
 
     }
     return self;
+}
+
+- (void)addTapGestureRecognizer:(UITapGestureRecognizer *)gesture onView:(UIView *)view
+{
+    gesture.numberOfTapsRequired = 1;
+    gesture.numberOfTouchesRequired = 1;
+    gesture.delegate = self;
+    [view addGestureRecognizer:gesture];
+    view.userInteractionEnabled = YES;
 }
 
 - (void)setHeader {
@@ -200,7 +206,7 @@ static NSString *NMCreateOrderFoodPromoIdentifier = @"NMOrderFoodPromoCell";
         return _infoCell;
     } else if (indexPath.section == NMCreateDescriptionSecton) {
         _descriptionCell = [self.tableView dequeueReusableCellWithIdentifier:NMCreateOrderFoodDescriptionIdentifier];
-        _descriptionCell.descriptionLabel.text = @"Enter description here";
+        _descriptionCell.descriptionLabel.hidden = YES;
         return _descriptionCell;
     } else if (indexPath.section == NMCreateProgressSection) {
         _progressCell = [self.tableView dequeueReusableCellWithIdentifier:NMCreateOrderFoodProgressIdentifier];
