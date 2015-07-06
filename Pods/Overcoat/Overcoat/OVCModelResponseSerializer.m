@@ -110,8 +110,8 @@
 
 - (void)saveResult:(id)result {
     NSParameterAssert(result);
-    
     [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+        
         NSArray *models = [result isKindOfClass:[NSArray class]] ? result : @[result];
         for (MTLModel<MTLManagedObjectSerializing> *model in models) {
             NSError *error = nil;
